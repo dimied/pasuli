@@ -17,9 +17,6 @@ void ArchimedicSpiral(double u, double v,
 }
 #endif
 
-
-
-
 #if(COMPILE_SPIRAL != 0)
 void HyperbolicSpiral(double u, double v, 
 					double* constants, PaSuLiObject* pO) {

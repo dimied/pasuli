@@ -164,8 +164,6 @@ void BoysSurface(double u, double v,
 #endif
 
 
-
-
 #if(COMPILE_SURFACES != 0)
 void CrossCup(double u, double v, 
 			  double* constants, PaSuLiObject* pO) {
@@ -344,8 +342,6 @@ void Handkerchief(double u, double v, double* constants, PaSuLiObject* pO) {
 	VVD_Z( 0 );
 }
 #endif
-
-
 
 
 #if(COMPILE_SURFACES != 0)

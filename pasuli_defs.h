@@ -27,19 +27,6 @@ typedef double CoordType;
 #define pasuli_consttype	double
 #define CoordType double
 #endif
-//typedef float pasuli_vartype;
-//typedef float pasuli_consttype;
-
-
-
-
-#if( 1 )
-
-typedef Particle	PaSuLiObject;
-//#define PaSuLiObject	Particle
-//#define PaSuLiObject	Par3D
-
-#else
 
 typedef struct {
 #if(PASULIOBJECT_POS != 0)
@@ -67,7 +54,6 @@ typedef struct {
 	CoordType vvd[3];			//derivative in v-direction two times
 #endif
 } PaSuLiObject;
-#endif
 
 typedef void (*parsurFunc)(pasuli_vartype u, pasuli_vartype v, 
 						pasuli_consttype* constants, PaSuLiObject* pO);

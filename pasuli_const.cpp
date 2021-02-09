@@ -1,14 +1,11 @@
 
-//#include "pasuli_cfg.h"		//already in pasuli_const.h included
 #include "pasuli_const.h"
 
 
 #define PASULI_PARSUR_STATIC	static
 //#define PASULI_PARSUR_STATIC
-//#define PARSUR_ARRAY_SIZE		NUMB_OF_SURFACES
-#define PARSUR_ARRAY_SIZE
 
-PASULI_PARSUR_STATIC parsurFunc parsur_array[PARSUR_ARRAY_SIZE] = {
+PASULI_PARSUR_STATIC parsurFunc parsur_array[] = {
 Plane
 
 #if(COMPILE_SURFACES != 0)
@@ -218,7 +215,7 @@ Plane
 };
 
 //PASULI_PARSUR_STATIC
-pasuli_name_type parsur_name_array[PARSUR_ARRAY_SIZE] = {
+pasuli_name_type parsur_name_array[] = {
 PASULI_SET_NAME( "Plane", PLANE )
 #if(COMPILE_NAMES_SURFACES != 0)
 ,PASULI_SET_NAME("Bohemian Dome Surface", BOHEMIAN_DOME_SURFACE )
@@ -421,7 +418,7 @@ PASULI_SET_NAME( "Plane", PLANE )
 };
 
 
-PASULI_PARSUR_STATIC char* parsur_desc_array[PARSUR_ARRAY_SIZE] = {
+PASULI_PARSUR_STATIC char* parsur_desc_array[] = {
 descPlane		//0
 #if(COMPILE_DESC_SURFACES != 0)
 ,descBohemianDomeSurface
@@ -640,7 +637,7 @@ descPlane		//0
 
 
 
-PASULI_PARSUR_STATIC PaSuLiDefDesc* parsur_def_desc_array[PARSUR_ARRAY_SIZE] = {
+PASULI_PARSUR_STATIC PaSuLiDefDesc* parsur_def_desc_array[] = {
 &pslddPlane		//0
 #if(COMPILE_DEF_DESC_SURFACES != 0)
 ,&pslddBohemianDomeSurface		//1

@@ -17,14 +17,17 @@ void Cylinder(pasuli_vartype u, pasuli_vartype v,
 	P_Y( r*sin(u) );
 	P_Z( v );
 
+	// 1.st derivative for u
 	UD_X( -PASULI_COND_COPY_POS_Y( r*sin(u) ) );
 	UD_Y( PASULI_COND_COPY_POS_X( r*cos(u) ) );
 	UD_Z_CONST( 0 );
 
+	// 1.st derivative for v
 	VD_X_CONST( 0 );
 	VD_Y_CONST( 0 );
 	VD_Z_CONST( 1 );
 
+	// Normal
 	N_X( PASULI_COND_COPY_POS_X( r*cos(u) ) );
 	N_Y( PASULI_COND_COPY_POS_Y( r*sin(u) ) );
 	N_Z_CONST( 0 );
@@ -33,20 +36,17 @@ void Cylinder(pasuli_vartype u, pasuli_vartype v,
 	UUD_Y( -PASULI_COND_COPY_POS_X( r*sin(u) ) );
 	UUD_Z( 0 );
 
-	UVD_X( 0 );
-	UVD_Y( 0 );
-	UVD_Z( 0 );
-
-	VVD_X( 0 );
-	VVD_Y( 0 );
-	VVD_Z( 0 );
+	UVD_ALL( 0 );
+	VVD_ALL( 0 );
 }
 
+/*
 void initConstCylinder(PaSuLiObject* pO, pasuli_consttype* constants) {
 	UD_Z( 0 );
 	VD_X( 0 );	VD_Y( 0 );	VD_Z( 1 );
 	N_Z( 0 );
 }
+*/
 
 
 
@@ -80,20 +80,18 @@ void EpizykloidCylinder(pasuli_vartype u, pasuli_vartype v,
 	UUD_Y( -PASULI_COND_COPY_POS_X( r*sin(u) ) );
 	UUD_Z( 0 );
 
-	UVD_X( 0 );
-	UVD_Y( 0 );
-	UVD_Z( 0 );
+	UVD_ALL( 0 );
 
-	VVD_X( 0 );
-	VVD_Y( 0 );
-	VVD_Z( 0 );
+	VVD_ALL( 0 );
 }
 
+/*
 void initConstEpizykloidCylinder(PaSuLiObject* pO, pasuli_consttype* constants) {
 	UD_Y( 0 );
 	VD_X( 0 );	VD_Y( constants[3] );	VD_Z( 0 );
 	N_Y( 0 );
 }
+*/
 
 
 
@@ -123,11 +121,13 @@ void HypozykloidCylinder(pasuli_vartype u, pasuli_vartype v,
 	N_Y_CONST( 0 );
 	N_Z( H*(h*(R)*sin((R)*u/r)/r -(R)*sin(u)) );
 }
+/*
 void initConstHypozykloidCylinder(PaSuLiObject* pO, pasuli_consttype* constants) {
 	UD_Y( 0 );
 	VD_X( 0 );	VD_Y( constants[3] );	VD_Z( 0 );
 	N_Y( 0 );
 }
+*/
 
 
 

@@ -51,6 +51,7 @@
 				N_Y( xu*zv - zu*xv ); \
 				N_Z( xu*yv - yu*xv );
 
+// Position macros
 #if(PASULIOBJECT_POS != 0)
 #define P_X( V )			pO->pos[0] = V
 #define P_Y( V )			pO->pos[1] = V
@@ -63,6 +64,8 @@
 #define POS_OP( O )
 #endif
 
+
+// Macros for derivative with respect to U
 #if(PASULIOBJECT_UD != 0)
 #define UD_X( V )			pO->ud[0] = V
 #define UD_Y( V )			pO->ud[1] = V
@@ -75,6 +78,7 @@
 #define UD_OP( O )
 #endif
 
+// Macros for derivative for V
 #if(PASULIOBJECT_VD != 0)
 #define VD_X( V )			pO->vd[0] = V
 #define VD_Y( V )			pO->vd[1] = V
@@ -86,6 +90,8 @@
 #define VD_Z( V )
 #define VD_OP( O )
 #endif
+
+// Macros for Normal vector
 #if(PASULIOBJECT_N != 0)
 #define N_X( V )			pO->n[0] = V
 #define N_Y( V )			pO->n[1] = V
@@ -98,6 +104,7 @@
 #define NORMAL_OP( O )
 #endif
 
+// Macros for 2.nd derivative with respect to U
 #if(PASULIOBJECT_UUD != 0)
 #define UUD_X( V )			pO->uud[0] = V
 #define UUD_Y( V )			pO->uud[1] = V
@@ -110,10 +117,12 @@
 #define UUD_OP( O )
 #endif
 
+// Macros for 2.nd derivative with respect to U and V
 #if(PASULIOBJECT_UVD != 0)
 #define UVD_X( V )			pO->uvd[0] = V
 #define UVD_Y( V )			pO->uvd[1] = V
 #define UVD_Z( V )			pO->uvd[2] = V
+#define UVD_ALL( V )		pO->uvd[0] = V; pO->uvd[1] = V; pO->uvd[2] = V;
 #define UVD_OP( O )			O
 #else
 #define UVD_X( V )
@@ -122,10 +131,12 @@
 #define UVD_OP( O )
 #endif
 
+// Macros for 2.nd derivative with respect to V
 #if(PASULIOBJECT_VVD != 0)
 #define VVD_X( V )			pO->vvd[0] = V
 #define VVD_Y( V )			pO->vvd[1] = V
 #define VVD_Z( V )			pO->vvd[2] = V
+#define VVD_ALL( V )		pO->vvd[0] = V; pO->vvd[1] = V; pO->vvd[2] = V;
 #define VVD_OP( O )			O
 #else
 #define VVD_X( V )

@@ -3,7 +3,6 @@
 
 #include "pasuli_defs.h"
 
-
 void getSF3DExamplesConstants(unsigned int exampleNum, pasuli_consttype* pC);
 
 #define MAX_NUM_OF_SUPERFORMULA_3D_EXAMPLES		32
@@ -125,4 +124,3 @@ extern SuperFormula3D_Desc examplePBHexagon;
 extern SuperFormula3D_Desc examplePBPentagon;
 
 #endif
-

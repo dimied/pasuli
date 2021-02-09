@@ -1,23 +1,31 @@
 #ifndef __PASULI_COMPILING_CONFIGURATION_FILE_
 #define __PASULI_COMPILING_CONFIGURATION_FILE_
 
+// For MS compiler
 #define PASULI_COMPILER_MSVC		1
+// For GCC compiler collection
 #define PASULI_COMPILER_GCC			2
 
-#define PASULI_COMPILER		PASULI_COMPILER_MSVC
-
-
+// Used compiler
+#define PASULI_COMPILER		PASULI_COMPILER_GCC
 
 //Debuging
 #define PASULI_DEBUG_MODE			1
+// ??
 #define USE_ID_IN_PSLDD				0
+// ??
 #define USE_ID_IN_PASULI_FUNCTION	0
+
+/////////////////////////
+/////////////////////////
+/////////////////////////
 
 #if(USE_ID_IN_PSLDD != 0)
 #define	PSLDD_ID(X)			X,
 #else
 #define PSLDD_ID(X)
 #endif
+
 #if(USE_ID_IN_PASULI_FUNCTION != 0)
 #define PASULI_SET_TYPE_ID(X)	pO->_ID = X;
 #else
@@ -152,9 +160,6 @@
 #define COMPILE_DESC_DERIV_UV_TORUS		1
 
 
-
-
-
 //////////////////////////////////////////
 ///// In Version   0.8.07   not used yet
 ///// DEFINES , WHICH EXPLICITLY DEFINES IF SURFACE TYPE WILL BE USED
@@ -261,7 +266,6 @@
 #define USE_SIEVERT_SURFACE				1
 #define USE_COSINE_SURFACE2				1
 
-
 //CYLINDER SURFACES
 #define USE_CYLINDER					1
 #define USE_EPIZYKLOID_CYLINDER			1
@@ -278,9 +282,4 @@
 #define USE_APPLE2_SURFACE				1
 #define USE_LEMON_SURFACE				1
 
-
 #endif
-
-
-
-

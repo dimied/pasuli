@@ -34,8 +34,8 @@ void GaussCylinder(pasuli_vartype u, pasuli_vartype v,
 					pasuli_consttype* constants, PaSuLiObject* pO);
 
 
-void initConstCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
-void initConstEpizykloidCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
+//void initConstCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
+//void initConstEpizykloidCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
 void initConstHypozykloidCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
 void initConstLemniskateCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
 void initConstStrophoideCylinder(PaSuLiObject* pO, pasuli_consttype* constants);

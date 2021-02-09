@@ -9,8 +9,10 @@
 typedef double pasuli_approx_type;
 
 void approximatePaSuLi(int whatToApproximate, 
-					pasuli_vartype u, pasuli_vartype v,
-					pasuli_consttype* pC, PaSuLiObject* pO,
+					pasuli_vartype u, 
+					pasuli_vartype v,
+					pasuli_consttype* pC, 
+					PaSuLiObject* pO,
 					parsurFunc f);
 
 #define PASULI_APPROXIMATE_UD	1

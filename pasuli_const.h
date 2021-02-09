@@ -4,12 +4,15 @@
 #include "pasuli_cfg.h"
 #include "pasuli_defs.h"
 #include "pasuli_approx.h"
+
 #if((COMPILE_DEF_DESC_CYLINDER != 0)||(COMPILE_DESC_CYLINDER != 0) )
 #include "cylinder/cylinder_desc.h"
 #endif
+
 #if(COMPILE_CYLINDER != 0)
 #include "cylinder/cylinder.h"
 #endif
+
 #if((COMPILE_DEF_DESC_FRUITS != 0)||(COMPILE_DESC_FRUITS != 0) )
 #include "fruits/fruits_desc.h"
 #endif
@@ -50,11 +53,6 @@
 
 #include "pasuli_desc.h"
 
-
-#if(PASULI_DEBUG_MODE != 0)
-int TestPaSuLi();			//returns -1 on success
-#endif
-
 #if(PASULI_DEBUG_MODE != 0)
 typedef struct _pasuli_name_type {
 	char* szName;
@@ -93,8 +91,7 @@ typedef unsigned char pasuli_avail_info_type;
 extern pasuli_funcnum_range_type pasuli_cat_func_ranges[PASULI_CATEGORY_COUNT];
 extern pasuli_avail_info_type availablePaSuLiInfo[PASULI_CATEGORY_COUNT];
 
-//These constants are defined anyway not depending on their usage 
-//or implementation
+//These constants define unique IDs for surfaces/surface types
 enum SurfaceType {
 NOT_VALID_SURFACE_TYPE = 0
 ,PLANE = 0

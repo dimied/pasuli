@@ -10,30 +10,6 @@
 #define NN10(X)					SF3D_NATURAL10(X)
 #define NWN(X)					SF3D_NEG_WHOLE(X)
 
-SuperFormula3D_Desc* examplesPB[32] = {
-&examplePB1, &examplePB2, &examplePB3, &examplePB4, &examplePB5,
-&examplePB6, &examplePB7, &examplePB8, &examplePB9, &examplePB10,
-&examplePB11, &examplePB12, &examplePB13, &examplePB14, &examplePB15,
-&examplePB16, &examplePB17, &examplePB18, &examplePB19, &examplePB20,
-&examplePB21, &examplePB22, &examplePB23, &examplePB24, 
-
-&examplePBCube, &examplePBCone, &examplePBDiamond, 
-&examplePBSphere, &examplePBPrism, &examplePBCylinder,
-&examplePBHexagon, &examplePBPentagon };
-
-void getSF3DExamplesConstants(unsigned int exampleNum, pasuli_consttype* pC) {
-
-	sf3d_packtype *p = examplesPB[exampleNum%MAX_NUM_OF_SUPERFORMULA_3D_EXAMPLES]->constants;
-
-	if( pC != 0) {
-		for(int i = 0; i < 12; i++) {
-
-			pC[i] = SF3D_EXTRACT_DOUBLE(p[i]);
-		}
-	}
-	//return examplesPB[exampleNum%MAX_NUM_OF_SUPERFORMULA_3D_EXAMPLES]->constants;
-}
-
 //Following examples are from the webpage 
 //of Paul Bourke in zig-zag order of two-column view
 //a1, b1, a2, b2 are 1
@@ -203,5 +179,30 @@ NN(1) , NN(1) , NN(4) , NN10(30) , NN10(30), NN10(30)} };
 
 #undef NN
 #undef RN
+
+SuperFormula3D_Desc* examplesPB[MAX_NUM_OF_SUPERFORMULA_3D_EXAMPLES] = {
+&examplePB1, &examplePB2, &examplePB3, &examplePB4, 
+&examplePB5, &examplePB6, &examplePB7, &examplePB8, 
+&examplePB9, &examplePB10, &examplePB11, &examplePB12, 
+&examplePB13, &examplePB14, &examplePB15, &examplePB16,
+
+&examplePB17, &examplePB18, &examplePB19, &examplePB20,
+&examplePB21, &examplePB22, &examplePB23, &examplePB24, 
+&examplePBCube, &examplePBCone, &examplePBDiamond, &examplePBSphere, 
+&examplePBPrism, &examplePBCylinder, &examplePBHexagon, &examplePBPentagon 
+};
+
+void getSF3DExamplesConstants(unsigned int exampleNum, pasuli_consttype* pC) {
+
+	sf3d_packtype *p = examplesPB[exampleNum%MAX_NUM_OF_SUPERFORMULA_3D_EXAMPLES]->constants;
+
+	if( pC != 0) {
+		for(int i = 0; i < 12; i++) {
+
+			pC[i] = SF3D_EXTRACT_DOUBLE(p[i]);
+		}
+	}
+	//return examplesPB[exampleNum%MAX_NUM_OF_SUPERFORMULA_3D_EXAMPLES]->constants;
+}
 
 
