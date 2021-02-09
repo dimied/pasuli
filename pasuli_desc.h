@@ -1,0 +1,117 @@
+#ifndef __PASULI_DESCRIPTION_STRUCTURES_AND_THEIR_FUNCTIONS__
+#define __PASULI_DESCRIPTION_STRUCTURES_AND_THEIR_FUNCTIONS__
+
+typedef float pasulidefdesc_ct;				//const type
+typedef float pasulidefdesc_vt;				//variable type
+typedef unsigned short pasulidefdesc_pt;	//property type
+
+#define PASULI_DEF_DESC_CT_FLOAT	0x1
+#define PASuLI_DEF_DESC_CT_DOUBLE	0x2
+#define PASULI_DEF_DESC_VT_FLOAT	0x10
+#define PASuLI_DEF_DESC_VT_DOUBLE	0x20
+
+#define PASULI_DEF_DESC_CT_TYPE		PASULI_DEF_DESC_CT_FLOAT
+#define PASuLI_DEF_DESC_VT_TYPE		PASULI_DEF_DESC_VT_FLOAT
+
+#define PASULI_U_CLOSED         0x1
+#define PASULI_V_CLOSED         0x2
+#define PASULI_U_PI             0x4
+#define PASULI_V_PI             0x8
+#define PASULI_U_START_PI       PASULI_U_PI
+#define PASULI_U_END_PI         PASULI_U_PI
+#define PASULI_V_START_PI       PASULI_V_PI
+#define PASULI_V_END_PI         PASULI_V_PI
+
+#define PASULI_CALC_U           0x10
+#define PASULI_CALC_V           0x20
+#define PASULI_CALC_U_START     PASULI_CALC_U
+#define PASULI_CALC_U_END       PASULI_CALC_U
+#define PASULI_CALC_V_START     PASULI_CALC_V
+#define PASULI_CALC_V_END       PASULI_CALC_V
+#define PASULI_DERIV1_IMPL      0x40
+#define PASULI_DERIV2_IMPL      0x80
+#define PASULI_FULL_IMPL        (PASULI_DERIV1_IMPL|PASULI_DERIV2_IMPL)
+
+#define PASULI_DEF_DESC_USE_PASULI_CONSTTYPE_CONSTANTS	0x100
+#define PASULI_CONST_CONSTANTS	0x200
+
+#define PASULI_DEF_CONSTANTS_1  0x400
+//#define PASULI_DEF_CONSTANTS_2  0x800
+#define PASULI_DEF_CONSTANTS_3  (PASULI_DEF_CONSTANTS_1+PASULI_DEF_CONSTANTS_2)
+
+#define PASULI_CONST_COUNT(X)	(X<<12)		//4 bits( = 15 valid values)
+											//should be enough, except for SuperFormula
+
+#define GET_PASULI_CONST_COUNT(X)		((X>>12)&0xF)
+#define PASULI_ARE_CONSTANTS_CONST(X)	(X&PASULI_CONST_CONSTANTS)
+#define PASULI_IS_FULL_IMPLEMENTED(X)	(X&PASULI_FULL_IMPL)
+
+typedef struct _PaSuLiDefDesc {
+#if(USE_ID_IN_PSLDD != 0)
+	unsigned short _ID;
+#endif
+	pasulidefdesc_pt properties;
+	pasulidefdesc_vt u_start;
+	pasulidefdesc_vt u_end;
+	pasulidefdesc_vt v_start;
+	pasulidefdesc_vt v_end;
+	pasulidefdesc_ct* constants;
+} PaSuLiDefDesc;
+
+//Following two macros should be ORed
+#define COPY_DEFDESC_RANGE_TYPE(X)	(X)
+#define COPY_DEFDESC_CONST_TYPE(X)	(X<<PASULI_TYPE_DEF_BIT_LENGTH)
+#define COPY_DEFDESC_TYPES(R,C)		((R)|((C<<PASULI_TYPE_DEF_BIT_LENGTH)))
+
+void copyDefDesc(PaSuLiDefDesc* pDD, int iSurfaceType,
+				unsigned int dstType, void* pRange, void* pConstants);
+
+#define MAX_DESC_LENGTH		512
+
+typedef struct _PaSuLiTextDesc {
+	unsigned short memSize;
+	char* memPtr;
+	unsigned char ucConstCount;
+	unsigned char ucAbrCount;
+
+	char szName[32];
+	char szCat[16];
+	char szTypeU;	//o : open, c : closed, u : unknown, \0 : unknown
+	char szTypeV;	//o : open, c : closed, u : unknown, \0 : unknown
+	char szStartU[8];
+	char szEndU[8];
+	char szStartV[8];
+	char szEndV[8];
+	char szConstNames[8][4];
+	char szConstValues[8][8];
+	char szConstConstraints[8][8];
+	char szX[MAX_DESC_LENGTH];
+	char szY[MAX_DESC_LENGTH];
+	char szZ[MAX_DESC_LENGTH];
+	char szXu[MAX_DESC_LENGTH];
+	char szYu[MAX_DESC_LENGTH];
+	char szZu[MAX_DESC_LENGTH];
+	char szXv[MAX_DESC_LENGTH];
+	char szYv[MAX_DESC_LENGTH];
+	char szZv[MAX_DESC_LENGTH];
+	char szXn[MAX_DESC_LENGTH];
+	char szYn[MAX_DESC_LENGTH];
+	char szZn[MAX_DESC_LENGTH];
+	char szXuu[MAX_DESC_LENGTH];
+	char szYuu[MAX_DESC_LENGTH];
+	char szZuu[MAX_DESC_LENGTH];
+	char szXuv[MAX_DESC_LENGTH];
+	char szYuv[MAX_DESC_LENGTH];
+	char szZuv[MAX_DESC_LENGTH];
+	char szXvv[MAX_DESC_LENGTH];
+	char szYvv[MAX_DESC_LENGTH];
+	char szZvv[MAX_DESC_LENGTH];
+} PaSuLiTextDesc;
+
+//void clearDesc(PaSuLiDesc* p);
+void parsePaSuLiDesc(char* szDescString, PaSuLiTextDesc *pPSLD);
+void clearPaSuLiTextDesc(PaSuLiTextDesc* pTD);
+
+
+#endif
+
