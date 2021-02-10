@@ -108,11 +108,13 @@
 #define UUD_X( V )			pO->uud[0] = V
 #define UUD_Y( V )			pO->uud[1] = V
 #define UUD_Z( V )			pO->uud[2] = V
+#define UUD_ALL( V )		pO->uud[0] = V; pO->uud[1] = V; pO->uud[2] = V
 #define UUD_OP( O )			O
 #else
 #define UUD_X( V )
 #define UUD_Y( V )
 #define UUD_Z( V )
+#define UUD_ALL( V )
 #define UUD_OP( O )
 #endif
 

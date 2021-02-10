@@ -3,7 +3,18 @@
 
 #include "../pasuli_defs.h"
 
+typedef struct _SF_2D {
 
+	char* desc;
+	float a;
+	float b;
+	float m;
+	float n1;
+	float n2;
+	float n3;
+} SF_2D;
+
+/*
 template<class Type>
 struct SF_2D_Template {
 
@@ -24,6 +35,7 @@ template<class Type, class CalcType>
 void TorusWithSuperFormulaTemplate(Particle *pParticle,
 						   Type phi, Type rho, Type radius,
 						   SF_2D *p2DSuperFormula);
+*/
 
 
 ////typedef struct {

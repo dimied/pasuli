@@ -7,13 +7,6 @@
 #define PASULI_SF3D_SAVE_STATE		0
 typedef PaSuLiObject		PaSuLiSF3DObject;
 
-#define GET_UD_X			(pO->ud[0])
-#define GET_UD_Y			(pO->ud[1])
-#define GET_UD_Z			(pO->ud[2])
-#define GET_VD_X			(pO->vd[0])
-#define GET_VD_Y			(pO->vd[1])
-#define GET_VD_Z			(pO->vd[2])
-
 typedef float pasuli_sf3d_calctype;
 typedef float pasuli_sf3d_vartype;
 typedef float pasuli_sf3d_consttype;

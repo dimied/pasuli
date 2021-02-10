@@ -2,8 +2,6 @@
 
 #include "torus_sf_sample.h"
 
-
-
 ///////////// desc         a    b    m   n1    n2    n3
 SF_2D ex1 = {"Sharp 3" ,  1 ,  1 ,  3 ,  5 ,  18 ,  18 };
 

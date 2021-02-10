@@ -1,5 +1,5 @@
-#ifndef __SAMPLE_TORUS_SUPERFORMULA_
-#define __SAMPLE_TORUS_SUPERFORMULA_
+#ifndef __SAMPLE_TORUS_SUPERFORMULA__
+#define __SAMPLE_TORUS_SUPERFORMULA__
 
 #include "superformula2d.h"
 

@@ -1,7 +1,16 @@
 
 
+#include "../pasuli_macros.h"
 #include "superformula3d.h"
 #include <math.h>
+
+#define GET_UD_X			(pO->ud[0])
+#define GET_UD_Y			(pO->ud[1])
+#define GET_UD_Z			(pO->ud[2])
+#define GET_VD_X			(pO->vd[0])
+#define GET_VD_Y			(pO->vd[1])
+#define GET_VD_Z			(pO->vd[2])
+
 
 //u is rho
 //v is phi
@@ -39,16 +48,18 @@ defend;";
 
 #pragma warning(disable: 4005)
 
+/*
 #define PASULIOBJECT_POS PASULI_SF3D_OBJECT_POS
 #define PASULIOBJECT_UD PASULI_SF3D_OBJECT_UD
 #define PASULIOBJECT_VD PASULI_SF3D_OBJECT_VD
 #define PASULIOBJECT_N PASULI_SF3D_OBJECT_N
+*/
 
+/*
 #define PASULIOBJECT_UUD	0		//NOT IMPLEMENTED
 #define PASULIOBJECT_UVD	0		//NOT IMPLEMENTED
 #define PASULIOBJECT_VVD	0		//NOT IMPLEMENTED
-
-#include "../pasuli_macros.h"
+*/
 
 #define PASULI_SF3D_A1_LOW	0x1
 #define PASULI_SF3D_A1_BIG	0x2
@@ -96,7 +107,7 @@ void SuperFormula3D(pasuli_sf3d_vartype rho, pasuli_sf3d_vartype phi,
 #else
 	if((abs_a1 > SUPER_FORMULA_PARAMETER_A_LOWER_BOUND)&&
 		( abs_a1 < SUPER_FORMULA_PARAMETER_A_UPPER_BOUND) ) {
-		R1 = pow(abs(cosMrho/a1), n12);
+		R1 = pow(fabs(cosMrho/a1), n12);
 	}
 #endif
 #if(PASULI_SF3D_SAVE_STATE != 0)
@@ -112,7 +123,7 @@ void SuperFormula3D(pasuli_sf3d_vartype rho, pasuli_sf3d_vartype phi,
 #else
 	if((abs_b1 > SUPER_FORMULA_PARAMETER_B_LOWER_BOUND)&&
 		( abs_b1 < SUPER_FORMULA_PARAMETER_B_UPPER_BOUND) ) {
-		R1 += pow(abs(sinMrho/b1), n13); 
+		R1 += pow(fabs(sinMrho/b1), n13); 
 	}
 #endif
 
@@ -147,7 +158,7 @@ void SuperFormula3D(pasuli_sf3d_vartype rho, pasuli_sf3d_vartype phi,
 #else
 	if((abs_a2 > SUPER_FORMULA_PARAMETER_A_LOWER_BOUND)&&
 		( abs_a2 < SUPER_FORMULA_PARAMETER_A_UPPER_BOUND) ) {
-		R2 = pow(abs(cosMphi/a2), n22);
+		R2 = pow(fabs(cosMphi/a2), n22);
 	}
 #endif
 #if(PASULI_SF3D_SAVE_STATE != 0)
@@ -163,7 +174,7 @@ void SuperFormula3D(pasuli_sf3d_vartype rho, pasuli_sf3d_vartype phi,
 #else
 	if((abs_b2 > SUPER_FORMULA_PARAMETER_B_LOWER_BOUND)&&
 		( abs_b2 < SUPER_FORMULA_PARAMETER_B_UPPER_BOUND) ) {
-		R2 += pow(abs(sinMphi/b2), n23); 
+		R2 += pow(fabs(sinMphi/b2), n23); 
 	}
 #endif
 	pasuli_sf3d_calctype R2n21 = 1.0 / pow(R2 , (pasuli_sf3d_calctype)1.0/n21);
@@ -186,8 +197,8 @@ void SuperFormula3D(pasuli_sf3d_vartype rho, pasuli_sf3d_vartype phi,
 
 	t1 = n11*pow(abs_a1, n12)*pow(abs_b1, n13);
 
-	xy = (sgn_cu*n12*pow(abs_b1, n13)*pow(abs(cosMrho), (n12 - 1))*sinMrho
-		- sgn_su*n13*pow(abs_a1, n12)*pow(abs(sinMrho), (n13 - 1))*cosMrho );
+	xy = (sgn_cu*n12*pow(abs_b1, n13)*pow(fabs(cosMrho), (n12 - 1))*sinMrho
+		- sgn_su*n13*pow(abs_a1, n12)*pow(fabs(sinMrho), (n13 - 1))*cosMrho );
 
 	xy *= R1*0.25*m1;
 
@@ -205,8 +216,8 @@ void SuperFormula3D(pasuli_sf3d_vartype rho, pasuli_sf3d_vartype phi,
 
 	t1 = n21*pow(abs_a2, n22)*pow(abs_b2, n23);
 
-	xy = (sgn_cu*n22*pow(abs_b2, n23)*pow(abs(cosMphi), (n22 - 1))*sinMphi
-		- sgn_su*n23*pow(abs_a2, n22)*pow(abs(sinMphi), (n23 - 1))*cosMphi );
+	xy = (sgn_cu*n22*pow(abs_b2, n23)*pow(fabs(cosMphi), (n22 - 1))*sinMphi
+		- sgn_su*n23*pow(abs_a2, n22)*pow(fabs(sinMphi), (n23 - 1))*cosMphi );
 
 	xy *= R1*0.25*m2;
 
@@ -223,17 +234,15 @@ void SuperFormula3D(pasuli_sf3d_vartype rho, pasuli_sf3d_vartype phi,
 	N_Z( GET_UD_X*GET_VD_Y - GET_UD_Y*GET_VD_X );
 #endif
 
-/////UU
-	UUD_X( 0 );
-	UUD_Y( 0 );
-	UUD_Z_CONST( 0 );
-//Here we differetiate the u-derivative with respect to v
-	UVD_X( 0 );
-	UVD_Y( 0 );
-	UVD_Z_CONST( 0 );
-//second derivative with respect to v
-	VVD_X( 0 );
-	VVD_Y( 0 );
-	VVD_Z( 0 );
+	UUD_ALL( 0 );
+	UVD_ALL( 0 );
+	VVD_ALL( 0 );
 }
 
+#undef GET_UD_X
+#undef GET_UD_Y
+#undef GET_UD_Z
+
+#undef GET_VD_X
+#undef GET_VD_Y
+#undef GET_VD_Z
