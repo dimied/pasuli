@@ -62,7 +62,7 @@ int TestPaSuLi() {
 	std::cout<< "OLD\n" << pC << "\n";
 	parsePaSuLiDesc( pC, &tD );
 	std::cout<< "NEW\n";
-	std::cout<< "Mem-size: "<< tD.memSize << "\n";
+	//std::cout<< "Mem-size: "<< tD.memSize << "\n";
 	std::cout<< tD.szName << std::endl;
 	return -1;
 

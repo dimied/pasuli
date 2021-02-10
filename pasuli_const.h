@@ -2,7 +2,7 @@
 #define __PARAMETRIC_SURFACE_CONSTANTS_
 
 #include "pasuli_cfg.h"
-#include "pasuli_defs.h"
+//#include "pasuli_defs.h"
 #include "pasuli_approx.h"
 
 #if((COMPILE_DEF_DESC_CYLINDER != 0)||(COMPILE_DESC_CYLINDER != 0) )
@@ -16,6 +16,7 @@
 #if((COMPILE_DEF_DESC_FRUITS != 0)||(COMPILE_DESC_FRUITS != 0) )
 #include "fruits/fruits_desc.h"
 #endif
+
 #if(COMPILE_FRUITS != 0)
 #include "fruits/fruits.h"
 #endif
@@ -51,14 +52,12 @@
 
 #include "surfaces/surfaces.h"
 
-#include "pasuli_desc.h"
-
 #if(PASULI_DEBUG_MODE != 0)
 typedef struct _pasuli_name_type {
 	char* szName;
 	int _ID;
 } pasuli_name_type;
-#
+
 #define PASULI_SET_NAME( TEXT, _ID)		{ TEXT, _ID}
 #define PASULI_NAME_CHAR_PTR( X )		((char*)X.szName)
 #else

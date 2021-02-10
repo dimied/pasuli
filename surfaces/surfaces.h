@@ -6,7 +6,7 @@
 #include "surfaces_desc.h"
 #include <math.h>
 
-void Plane(double u, double v, double* constants, Particle* pParticles);
+void Plane(double u, double v, double* constants, PaSuLiObject* pParticles);
 
 extern char *descPlane;
 
@@ -318,8 +318,6 @@ void CosineSurface2(double u, double v,
 					double* constants, PaSuLiObject* pO);
 
 #endif
-/*
-*/
 
 #endif
 

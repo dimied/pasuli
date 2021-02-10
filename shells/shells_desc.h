@@ -1,7 +1,7 @@
 #ifndef __PARAMETRIC_SURFACE_LIBRARY_SHELLS_DESCRIPTION_HEADER_INCL__
 #define __PARAMETRIC_SURFACE_LIBRARY_SHELLS_DESCRIPTION_HEADER_INCL__
 
-#include "../pasuli_desc.h"
+#include "../pasuli_defs.h"
 #include "../pasuli_cfg.h"
 
 #if(COMPILE_DESC_SHELLS != 0)

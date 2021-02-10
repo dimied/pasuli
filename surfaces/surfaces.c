@@ -4,6 +4,7 @@
 //#include "../../particle.h"
 #include "../pasuli_defs.h"
 #include "../pasuli_macros.h"
+#include <math.h>
 
 #pragma warning(disable:4244)
 
@@ -41,6 +42,7 @@ void initConstPlane(PaSuLiObject* pO, pasuli_consttype* constants) {
 void Plane(double u, double v, double* constants, PaSuLiObject* pO) {
 
 	PASULI_SET_TYPE_ID( PLANE )
+
 	initConstPlane( pO, constants);
 	P_X( u );
 	P_Y( v );
@@ -70,8 +72,6 @@ void Plane(double u, double v, double* constants, PaSuLiObject* pO) {
 	VVD_Y_CONST( 0 );
 	VVD_Z_CONST( 0 );
 }
-
-
 
 #if(COMPILE_SURFACES != 0)
 
@@ -209,8 +209,6 @@ void CrossCup(double u, double v,
 	VVD_Z( 0 );
 }
 #endif
-
-
 
 
 #if(COMPILE_SURFACES != 0)
@@ -2610,7 +2608,7 @@ void Lemniscape(double u, double v,
 				double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( LEMNISCAPE )
 
-	double sqrt_abs_sin_2u_cos_u = sqrt((double)abs(sin(2*u)));
+	double sqrt_abs_sin_2u_cos_u = sqrt((double)fabs(sin(2*u)));
 	double sqrt_abs_sin_2u_sin_u = sqrt_abs_sin_2u_cos_u*sin(u);
 	sqrt_abs_sin_2u_cos_u *= cos(u);
 
@@ -3527,13 +3525,13 @@ void TwistedHeart(double u, double v,
 	double cosh_mu;
 	double m_inv = sqrt((double)2.0);
 
-	abs_u = abs((double)u);
-	tanh_mum = abs(tanh(u/m_inv)*m_inv);
+	abs_u = fabs((double)u);
+	tanh_mum = fabs(tanh(u/m_inv)*m_inv);
 	cosh_mu = cosh(u / m_inv);
 	u = u*u;
 
-	abs_v = abs(v) - tanh_mum;
-	tanh_mvm = abs(tanh(v/m_inv)*m_inv) - abs_u;
+	abs_v = fabs(v) - tanh_mum;
+	tanh_mvm = fabs(tanh(v/m_inv)*m_inv) - abs_u;
 
 	P_X( (abs_v - tanh_mvm)*sin(v) );
 	P_Y( (abs_v + tanh_mvm)*cos(v) );
@@ -4111,7 +4109,7 @@ void Spinner(double u, double v,
 			  double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( SPINNER )
 
-	double x_or_z = abs(u) - 1.0;
+	double x_or_z = fabs(u) - 1.0;
 	x_or_z *= x_or_z;
 	double cv = cos(v);
 	double sv = sin(v);
@@ -4327,7 +4325,7 @@ void TripleCorkScrew1(double u, double v,
 	Lu = L*u;
 	y_u = cos(u*N);
 	z_u = sin(u*N);
-	u = (1 - abs((double)u));
+	u = (1 - fabs((double)u));
 	y_u *= u*R;
 	z_u *= u*R;
 	u *= r;
@@ -4447,7 +4445,7 @@ void TripleCorkScrew3(double u, double v,
 	z_u = R*cos(u*0.5*MY_PI);
 	y_u = cos(u*N)*z_u;
 	z_u *= sin(N*u);
-	u = (1 - abs((double)u))*r;
+	u = (1 - fabs((double)u))*r;
 
 	P_X( Lu );
 	P_Y( u*cos(v) + y_u );

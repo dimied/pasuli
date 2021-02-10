@@ -6,6 +6,7 @@
 //#define PASULI_PARSUR_STATIC
 
 PASULI_PARSUR_STATIC parsurFunc parsur_array[] = {
+	/*
 Plane
 
 #if(COMPILE_SURFACES != 0)
@@ -212,6 +213,7 @@ Plane
 ,TorusKnot
 ,GearTorus
 #endif
+*/
 };
 
 //PASULI_PARSUR_STATIC
@@ -419,6 +421,7 @@ PASULI_SET_NAME( "Plane", PLANE )
 
 
 PASULI_PARSUR_STATIC char* parsur_desc_array[] = {
+	/*
 descPlane		//0
 #if(COMPILE_DESC_SURFACES != 0)
 ,descBohemianDomeSurface
@@ -633,11 +636,13 @@ descPlane		//0
 ,descTorusKnot
 ,descGearTorus
 #endif
+*/
 };
 
 
 
 PASULI_PARSUR_STATIC PaSuLiDefDesc* parsur_def_desc_array[] = {
+	/*
 &pslddPlane		//0
 #if(COMPILE_DEF_DESC_SURFACES != 0)
 ,&pslddBohemianDomeSurface		//1
@@ -852,6 +857,7 @@ PASULI_PARSUR_STATIC PaSuLiDefDesc* parsur_def_desc_array[] = {
 ,&pslddTorusKnot
 ,&pslddGearTorus
 #endif
+*/
 };
 
 
@@ -897,7 +903,7 @@ void* getPaSuLiPointer(unsigned int uiSurfaceType, unsigned int uiInfo) {
 		(uiSurfaceType < NUMB_OF_SURFACES))) {
 		return 0;		//NOT SAVED INFORMATION ANYWAY
 	}
-	bool not_available = false;
+	//bool not_available = false;
 	int cat = -1;
 	int curImpl = 0, fullImpl = 0;
 	int i = 0;

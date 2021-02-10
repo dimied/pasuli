@@ -1,7 +1,6 @@
 #ifndef __PASULI_MACRO_DEFINITIONS__
 #define __PASULI_MACRO_DEFINITIONS__
 
-
 #include "pasuli_cfg.h"
 
 #pragma warning(disable: 4244)

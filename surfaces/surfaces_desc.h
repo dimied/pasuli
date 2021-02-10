@@ -1,7 +1,7 @@
 #ifndef __PASULI_SURFACES_DESCRIPTION__
 #define __PASULI_SURFACES_DESCRIPTION__
 
-#include "../pasuli_desc.h"
+#include "../pasuli_defs.h"
 #include "../pasuli_cfg.h"
 
 #if(COMPILE_DESC_SURFACES != 0)

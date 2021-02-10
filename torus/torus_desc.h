@@ -2,7 +2,7 @@
 #define __PARAMETRIC_SURFACE_LIBRARY_TORUS_DESCRIPTION_HEADER_INCL__
 
 #include "../pasuli_cfg.h"
-#include "../pasuli_desc.h"
+#include "../pasuli_defs.h"
 
 extern pasulidefdesc_ct torus_def_constants[4];
 

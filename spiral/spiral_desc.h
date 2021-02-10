@@ -2,7 +2,7 @@
 #define __PARAMETRIC_SURFACE_LIBRARY_SPIRAL_DESCRIPTION_HEADER_INCL__
 
 #include "../pasuli_cfg.h"
-#include "../pasuli_desc.h"
+#include "../pasuli_defs.h"
 
 #if(COMPILE_DESC_SPIRAL != 0)
 extern char* descArchimedicSpiral;

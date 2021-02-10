@@ -1,7 +1,7 @@
 #ifndef __PARAMETRIC_SURFACE_LIBRARY_SPHERE_DESCRIPTIONS__
 #define __PARAMETRIC_SURFACE_LIBRARY_SPHERE_DESCRIPTIONS__
 
-#include "../pasuli_desc.h"
+#include "../pasuli_defs.h"
 #include "../pasuli_cfg.h"
 
 #if(COMPILE_DESC_SPHERE != 0)
