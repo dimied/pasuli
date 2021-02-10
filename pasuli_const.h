@@ -27,15 +27,19 @@
 #include "shells/shells.h"
 #endif
 
+/*
 #if((COMPILE_DEF_DESC_SPHERE != 0)||(COMPILE_DESC_SPHERE != 0) )
 #include "sphere/sphere_desc.h"
 #endif
+*/
 #if(COMPILE_SPHERE != 0)
 #include "sphere/sphere.h"
 #endif
+/*
 #if((COMPILE_DEF_DESC_SPIRAL != 0)||(COMPILE_DESC_SPIRAL != 0) )
 #include "spiral/spiral_desc.h"
 #endif
+*/
 #if(COMPILE_SPIRAL != 0)
 #include "spiral/spiral.h"
 #endif
@@ -46,9 +50,11 @@
 #include "torus/torus.h"
 #endif
 
+/*
 #if((COMPILE_DEF_DESC_SURFACES != 0)||(COMPILE_DESC_SURFACES != 0) )
 #include "surfaces/surfaces_desc.h"
 #endif
+*/
 
 #include "surfaces/surfaces.h"
 

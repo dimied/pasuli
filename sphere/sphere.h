@@ -3,8 +3,6 @@
 
 #include "../pasuli_cfg.h"
 #include "../pasuli_defs.h"
-#include <math.h>
-
 
 #if(COMPILE_SPHERE != 0)
 void Sphere(double u, double v, double* constants, PaSuLiObject* pO);
@@ -27,7 +25,26 @@ void PseudoSphere(double u, double v,
 #endif
 
 
+#if(COMPILE_DESC_SPHERE != 0)
+extern char* descSphere;
+extern char* descEllipsoid;
+extern char* descSphereV;
+extern char* descOpenSphere;
+extern char* descSphereUV;
+extern char* descTwistedSphere;
+extern char* descWaveSphere;
+extern char* descPseudoSphere;
 #endif
 
+#if(COMPILE_DEF_DESC_SPHERE != 0)
+extern PaSuLiDefDesc pslddSphere;
+extern PaSuLiDefDesc pslddEllipsoid;
+extern PaSuLiDefDesc pslddSphereV;
+extern PaSuLiDefDesc pslddOpenSphere;
+extern PaSuLiDefDesc pslddSphereUV;
+extern PaSuLiDefDesc pslddTwistedSphere;
+extern PaSuLiDefDesc pslddWaveSphere;
+extern PaSuLiDefDesc pslddPseudoSphere;
+#endif
 
-
+#endif
