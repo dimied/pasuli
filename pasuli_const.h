@@ -1,5 +1,5 @@
-#ifndef __PARAMETRIC_SURFACE_CONSTANTS_
-#define __PARAMETRIC_SURFACE_CONSTANTS_
+#ifndef __PARAMETRIC_SURFACE_CONSTANTS__
+#define __PARAMETRIC_SURFACE_CONSTANTS__
 
 #include "pasuli_cfg.h"
 //#include "pasuli_defs.h"

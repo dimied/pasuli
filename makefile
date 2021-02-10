@@ -1,11 +1,13 @@
 
-FILES = *.c cylinder/*.c fruits/*.c shells/*.c spiral/*.c sphere/*.c surfaces/*.c torus/*.c
+FILES1 = *.c cylinder/*.c fruits/*.c 
+FILES2 = shells/*.c spiral/*.c sphere/*.c 
+FILES3 = superformula/*.c surfaces/*.c torus/*.c
 
 all: clean doall # doopt
 
 
 doall: #*.c #*.o surfaces/*.o
-	gcc -o ex  ${FILES} -lm
+	gcc -o ex  ${FILES1} ${FILES2} ${FILES3} -lm
 	#gcc -o ex *.o surfaces/*.o -lm
 
 doopt:
