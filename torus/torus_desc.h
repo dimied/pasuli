@@ -4,11 +4,8 @@
 #include "../pasuli_cfg.h"
 #include "../pasuli_defs.h"
 
-extern pasulidefdesc_ct torus_def_constants[4];
-
 #if(COMPILE_DESC_TORUS != 0)
-extern char* descTorus;
-extern char* descAntisymmetricTorus;
+
 extern char* descEightTorus;
 extern char* descTwistedEightTorus;
 extern char* descUmbillicTorus;

@@ -163,3 +163,61 @@ void Torus_UVA(pasuli_vartype* pUV, int c,
 #endif
 
 #include "torus_undef.h"
+
+#include "torus_const.h"
+
+#if(COMPILE_DEF_DESC_TORUS != 0)
+PaSuLiDefDesc pslddTorus = {
+PSLDD_ID( TORUS )
+PASULI_U_CLOSED|PASULI_V_CLOSED| \
+PASULI_U_END_PI|PASULI_V_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
+0 , 2 , 0 , 2 , torus_def_constants };
+#endif
+#if(COMPILE_DESC_TORUS != 0)
+char* descTorus =
+"start; \
+name: Torus; \
+cat: torus; \
+utype: closed; \
+vtype: closed; \
+ustart: 0  \
+uend: pi: 2; \
+vstart: 0; \
+vend: pi: 2; \
+c:1:R: 1.5; \
+c:2:r: 0.5; \
+x: (R + r*cos(v))*cos(u) ; \
+y: (R + r*cos(v))*sin(u) ; \
+z: r*sin(v) ; "
+#if(COMPILE_DESC_DERIV_U_TORUS != 0)
+"xu: -(R + r*cos(v))*sin(u) ; \
+yu: (R + r*cos(v))*cos(u); \
+zu: 0; "
+#endif
+#if(COMPILE_DESC_DERIV_V_TORUS != 0)
+"xv: -r*sin(v)*cos(u); \
+yv: -r*sin(v)*sin(u); \
+zv: r*cos(v); "
+#endif
+#if(COMPILE_DESC_NORMAL_TORUS != 0)
+"xn: r*(R + r*cos(v))*cos(u)*cos(v); \
+yn: r*(R + r*cos(v))*sin(u)*cos(v); \
+zn: (R + r*cos(v))*r*sin(v); "
+#endif
+#if(COMPILE_DESC_DERIV2_U_TORUS != 0)
+"xuu: -(R + r*cos(v))*cos(u); \
+yuu: -(R + r*cos(v))*sin(u); \
+zuu: 0; "
+#endif
+#if(COMPILE_DESC_DERIV_UV_TORUS != 0)
+"xuv: r*sin(v)*sin(u); \
+yuv: -r*sin(v)*cos(u); \
+zuv: 0; "
+#endif
+#if(COMPILE_DESC_DERIV2_V_TORUS != 0)
+"xvv: -r*cos(v)*cos(u); \
+yvv: -r*cos(v)*sin(u); \
+zvv: -r*sin(v); "
+#endif
+"end;";
+#endif

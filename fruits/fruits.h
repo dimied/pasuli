@@ -1,11 +1,8 @@
 #ifndef __PARAMETRIC_SURFACE_LIBRARY_FRUITS_FUNCTION_DECLARATIONS__
 #define __PARAMETRIC_SURFACE_LIBRARY_FRUITS_FUNCTION_DECLARATIONS__
 
-#include "../pasuli_defs.h"
 #include "../pasuli_cfg.h"
-#include "fruits_desc.h"
-#include <math.h>
-
+#include "../pasuli_defs.h"
 
 #if(COMPILE_FRUITS != 0)
 
@@ -26,6 +23,20 @@ void LemonSurface(pasuli_vartype u, pasuli_vartype v,
 #endif
 
 
+#if(COMPILE_DESC_FRUITS != 0)
+
+extern char* descKidneySurface;
+extern char* descAppleSurface;
+extern char* descApple2_Surface;
+extern char* descLemonSurface;
 #endif
 
+#if(COMPILE_DEF_DESC_FRUITS != 0)
 
+extern PaSuLiDefDesc pslddKidneySurface;
+extern PaSuLiDefDesc pslddAppleSurface;
+extern PaSuLiDefDesc pslddApple2_Surface;
+extern PaSuLiDefDesc pslddLemonSurface;
+#endif
+
+#endif

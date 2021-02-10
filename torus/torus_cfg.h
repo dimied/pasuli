@@ -4,21 +4,13 @@
 #include "../pasuli_defs.h"
 
 /*
-
 #define TORUS_POS
-
 #define TORUS_UD
-
 #define TORUS_VD
-
 #define TORUS_N
-
 #define TORUS_UUD
-
 #define TORUS_UVD
-
 #define TORUS_VVD
-
 */
 
 #define TORUS_NORMAL_VARS_DECL		PASULI_NORMAL_VARS_DECL

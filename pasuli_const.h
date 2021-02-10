@@ -5,24 +5,30 @@
 //#include "pasuli_defs.h"
 #include "pasuli_approx.h"
 
+/*
 #if((COMPILE_DEF_DESC_CYLINDER != 0)||(COMPILE_DESC_CYLINDER != 0) )
 #include "cylinder/cylinder_desc.h"
 #endif
+*/
 
 #if(COMPILE_CYLINDER != 0)
 #include "cylinder/cylinder.h"
 #endif
 
+/*
 #if((COMPILE_DEF_DESC_FRUITS != 0)||(COMPILE_DESC_FRUITS != 0) )
 #include "fruits/fruits_desc.h"
 #endif
+*/
 
 #if(COMPILE_FRUITS != 0)
 #include "fruits/fruits.h"
 #endif
+/*
 #if((COMPILE_DEF_DESC_SHELLS != 0)||(COMPILE_DESC_SHELLS != 0) )
 #include "shells/shells_desc.h"
 #endif
+*/
 #if(COMPILE_SHELLS != 0)
 #include "shells/shells.h"
 #endif

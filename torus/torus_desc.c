@@ -3,132 +3,7 @@
 #include "../pasuli_cfg.h"
 #include "torus_desc.h"
 #include "../pasuli_const.h"
-
-pasulidefdesc_ct torus_def_constants[4] = {1.5, 0.5, 1.0, 1.0};
-
-#if(COMPILE_DEF_DESC_TORUS != 0)
-PaSuLiDefDesc pslddTorus = {
-PSLDD_ID( TORUS )
-PASULI_U_CLOSED|PASULI_V_CLOSED| \
-PASULI_U_END_PI|PASULI_V_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
-0 , 2 , 0 , 2 , torus_def_constants };
-#endif
-#if(COMPILE_DESC_TORUS != 0)
-char* descTorus =
-"start; \
-name: Torus; \
-cat: torus; \
-utype: closed; \
-vtype: closed; \
-ustart: 0  \
-uend: pi: 2; \
-vstart: 0; \
-vend: pi: 2; \
-c:1:R: 1.5; \
-c:2:r: 0.5; \
-x: (R + r*cos(v))*cos(u) ; \
-y: (R + r*cos(v))*sin(u) ; \
-z: r*sin(v) ; "
-#if(COMPILE_DESC_DERIV_U_TORUS != 0)
-"xu: -(R + r*cos(v))*sin(u) ; \
-yu: (R + r*cos(v))*cos(u); \
-zu: 0; "
-#endif
-#if(COMPILE_DESC_DERIV_V_TORUS != 0)
-"xv: -r*sin(v)*cos(u); \
-yv: -r*sin(v)*sin(u); \
-zv: r*cos(v); "
-#endif
-#if(COMPILE_DESC_NORMAL_TORUS != 0)
-"xn: r*(R + r*cos(v))*cos(u)*cos(v); \
-yn: r*(R + r*cos(v))*sin(u)*cos(v); \
-zn: (R + r*cos(v))*r*sin(v); "
-#endif
-#if(COMPILE_DESC_DERIV2_U_TORUS != 0)
-"xuu: -(R + r*cos(v))*cos(u); \
-yuu: -(R + r*cos(v))*sin(u); \
-zuu: 0; "
-#endif
-#if(COMPILE_DESC_DERIV_UV_TORUS != 0)
-"xuv: r*sin(v)*sin(u); \
-yuv: -r*sin(v)*cos(u); \
-zuv: 0; "
-#endif
-#if(COMPILE_DESC_DERIV2_V_TORUS != 0)
-"xvv: -r*cos(v)*cos(u); \
-yvv: -r*cos(v)*sin(u); \
-zvv: -r*sin(v); "
-#endif
-"end;";
-#endif
-
-
-#if(COMPILE_DEF_DESC_TORUS != 0)
-PaSuLiDefDesc pslddAntisymmetricTorus = {
-PSLDD_ID( ANTISYMMETRIC_TORUS )
-PASULI_U_CLOSED|PASULI_V_CLOSED| \
-PASULI_U_END_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(2),
-0 , 2 , 0 , 2 , torus_def_constants };
-#endif
-#if(COMPILE_DESC_TORUS != 0)
-char* descAntisymmetricTorus =
-"start; \
-name: Antisymmetric Torus; \
-cat: torus; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi: 2; \
-vstart: 0; \
-vend: pi: 2; \
-c:1:R: 1.5; \
-c:2:r: 0.5; \
-c:3:a: 1; \
-x: (R + r*cos(v)*(a + sin(u)))*cos(u); \
-y: (R + r*cos(v)*(a + sin(u)))*sin(u); \
-z: r*sin(v)*(a + sin(u)); "
-#if(COMPILE_DESC_DERIV_U_TORUS != 0)
-"xu: r*cos(v)*cos(u)*cos(u) -  (R + r*cos(v)*(a + sin(u)))*sin(u); \
-yu: r*cos(v)*cos(u)*sin(u) +  (R + r*cos(v)*(a + sin(u)))*cos(u); \
-zu: r*sin(v)*cos(u); "
-#endif
-#if(COMPILE_DESC_DERIV_V_TORUS != 0)
-"xv: -r*sin(v)*(a + sin(u))*cos(u); \
-yv: -r*sin(v)*(a + sin(u))*sin(u); \
-zv: r*cos(v)*(a + sin(u)); "
-#endif
-#if(COMPILE_DESC_NORMAL_TORUS != 0)
-"xn:X; \
-xn: r*(R*a*cos(v) + R*cos(v)*sin(u) + 3*a*r*cos(v)*cos(v)*sin(u) + \
-a*r*sin(u)*sin(v)*sin(v) + 2*r*(cos(v)*sin(u))^2) + \
-r*(sin(u)*sin(v))^2 + a*a*r*cos(v)*cos(v))*cos(u); \
-yn:X; \
-yn: R*a*r*cps(v)*sin(u) + R*r*cos(v) - R*r*cos(u)*cos(u)*cos(v) - \
-a*r*r*cos(u)*cos(u)-2*a*(r*cos(u)*cos(v))^2 - \
-2*a*(r*cos(v))^2 + sin(u)*((a*r*cos(v))^2 - (r*cos(u))^2) + r*r*cos(v)*cos(v)*sin(u)^3; \
-zn:X; \
-zn: R*a*r*sin(v) + R*r*sin(u)*sin(v) + 2*a*r*r*cos(v)*sin(u)*sin(v) - \
-a*a*r*r*cos(v)*sin(v) + r*r*cos(v)*sin(v)*sin(u)*sin(u); "
-#endif
-#if(COMPILE_DESC_DERIV2_U_TORUS != 0)
-"xuu: r*cos(v)*2*cos(u)*sin(u) + \
-(R + r*cos(v)*(a + sin(u)))*cos(u) + (r*cos(v)*cos(u))*sin(u); \
-yuu -r*cos(v)*sin(u)*sin(u) + r*cos(v)*cos(u)*cos(u) + \
-(r*cos(v)*cos(u))*cos(u) - (R + r*cos(v)*(a + sin(u)))*sin(u); \
-zuu: -r*sin(v)*sin(u); "
-#endif
-#if(COMPILE_DESC_DERIV_UV_TORUS != 0)
-"xuv: -r*sin(v)*(a + sin(u))*cos(u); \
-yuv: -r*sin(v)*(a + sin(u))*sin(u); \
-zuv: r*cos(v)*(a + sin(u)); "
-#endif
-#if(COMPILE_DESC_DERIV2_V_TORUS != 0)
-"xvv: -r*cos(v)*(a + sin(u))*cos(u); \
-yvv: -r*cos(v)*(a + sin(u))*sin(u); \
-zvv: -r*sin(v)*(a + sin(u)); "
-#endif
-"end;";
-#endif
+#include "torus_const.h"
 
 
 #if(COMPILE_DEF_DESC_TORUS != 0)
@@ -300,7 +175,6 @@ zvv: 0; "
 #endif
 "end;";
 #endif
-
 
 
 #if(COMPILE_DEF_DESC_TORUS != 0)

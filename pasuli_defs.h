@@ -60,6 +60,10 @@ typedef void (*parsurFunc)(pasuli_vartype u, pasuli_vartype v,
 
 #define USE_INITCONST		0
 
+#define PARTICLE_POS 1
+#define PARTICLE_VD 1
+#define PARTICLE_UD 1
+
 typedef float pasulidefdesc_ct;				//const type
 typedef float pasulidefdesc_vt;				//variable type
 typedef unsigned short pasulidefdesc_pt;	//property type

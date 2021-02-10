@@ -12,8 +12,7 @@
 void Torus(pasuli_vartype u, pasuli_vartype v, 
 			pasuli_consttype* constants, PaSuLiObject* pO);
 
-void AntisymmetricTorus(pasuli_vartype u, pasuli_vartype v, 
-						pasuli_consttype* constants, PaSuLiObject* pO);
+
 
 void EightTorus(pasuli_vartype u, pasuli_vartype v ,
 				pasuli_consttype* constants, PaSuLiObject* pO);
@@ -120,6 +119,10 @@ void TorusKnot(pasuli_vartype u, pasuli_vartype v,
 void GearTorus(pasuli_vartype u, pasuli_vartype v, 
 			  pasuli_consttype* constants, PaSuLiObject* pO);
 
+#endif
+
+#if(COMPILE_DESC_TORUS != 0)
+	extern char* descTorus;
 #endif
 
 

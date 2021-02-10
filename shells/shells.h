@@ -3,8 +3,6 @@
 
 #include "../pasuli_defs.h"
 #include "../pasuli_cfg.h"
-#include "shells_desc.h"
-#include <math.h>
 
 #if(COMPILE_SHELLS != 0)
 
@@ -47,8 +45,36 @@ void MyaArenaria(double u, double v,
 #endif
 
 
+#if(COMPILE_DESC_SHELLS != 0)
 
-
+extern char* descCornucopia;
+extern char* descSnail;
+extern char* descSeashell;
+extern char* descSnailSurface;
+extern char* descSnails;
+extern char* descPseudohelicerasSubcatenatum;
+extern char* descAstroceras;
+extern char* descBellerophina;
+extern char* descEuhoplites;
+extern char* descNautilus;
+extern char* descNaticaStellata;
+extern char* descMyaArenaria;
 #endif
 
 
+#if(COMPILE_DEF_DESC_SHELLS != 0)
+extern PaSuLiDefDesc pslddCornucopia;
+extern PaSuLiDefDesc pslddSnail;
+extern PaSuLiDefDesc pslddSeashell;
+extern PaSuLiDefDesc pslddSnailSurface;
+extern PaSuLiDefDesc pslddSnails;
+extern PaSuLiDefDesc pslddPseudohelicerasSubcatenatum;
+extern PaSuLiDefDesc pslddAstroceras;
+extern PaSuLiDefDesc pslddBellerophina;
+extern PaSuLiDefDesc pslddEuhoplites;
+extern PaSuLiDefDesc pslddNautilus;
+extern PaSuLiDefDesc pslddNaticaStellata;
+extern PaSuLiDefDesc pslddMyaArenaria;
+#endif
+
+#endif

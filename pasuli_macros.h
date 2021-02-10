@@ -127,6 +127,7 @@
 #define UVD_X( V )
 #define UVD_Y( V )
 #define UVD_Z( V )
+#define UVD_ALL( V )
 #define UVD_OP( O )
 #endif
 
@@ -141,6 +142,7 @@
 #define VVD_X( V )
 #define VVD_Y( V )
 #define VVD_Z( V )
+#define VVD_ALL( V )
 #define VVD_OP( O )
 #endif
 
