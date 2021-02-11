@@ -1,8 +1,10 @@
 
 #include <GL/glut.h>
 #include <stdio.h>
+#include <math.h>
 //
 #include "pasuli_defs.h"
+#include "pasuli_approx.h"
 
 GLfloat light_diffuse[] = {.7, 0.0, 0.5, 1.0};
 // Infinite light position
@@ -18,11 +20,18 @@ float uEnd = 2;
 float vStart = -2;
 float vEnd = 2;
 
-int numUvalues = 10;
-int numVvalues = 10;
+int partial = 0;
+int useNormal = 1;
+int showLines = 0;
+
+int numUvalues = 20;
+int numVvalues = 20;
 unsigned int numAllObject = 0;
 unsigned int numAllTriangles = 0;
 unsigned int memoryAllocated = 0;
+
+static float lmodel_twoside[] = {GL_TRUE};
+static float lmodel_oneside[] = {GL_FALSE};
 
 void printTriangleInformationToConsole(
     unsigned int verticeIdx1,
@@ -61,14 +70,28 @@ void releaseMemory()
   }
 }
 
+#include "torus/umbillictorus.h"
+#include "torus/torus.h"
+
+double constants[] = {4, 2.5};
+
 void initGeometry(int verbose)
 {
+  uStart = -M_PI;
+  uEnd = M_PI;
+  vStart = -M_PI;
+  vEnd = M_PI;
+
   float uDiff = uEnd - uStart;
   float vDiff = vEnd - vStart;
 
   unsigned int numObjects = numUvalues * numVvalues;
   numAllObject = numObjects;
   size_t memSize = numObjects * sizeof(PaSuLiObject);
+
+  parsurFunc pCurrentFunc = &UmbillicTorus;
+
+  pCurrentFunc = &Torus;
 
   pObjects = malloc(memSize);
 
@@ -102,8 +125,8 @@ void initGeometry(int verbose)
 
   for (unsigned int i = 0; i < numObjects; i++)
   {
-    pCurrentObjects->pos[0] = i;
-    pCurrentObjects->pos[1] = i / 2;
+    pCurrentObjects->pos[0] = 0;
+    pCurrentObjects->pos[1] = 0;
     pCurrentObjects->pos[2] = 0;
 
     pCurrentObjects->n[0] = 0;
@@ -136,6 +159,17 @@ void initGeometry(int verbose)
 
       pCurrentObjects->pos[0] = uValue;
       pCurrentObjects->pos[1] = vValue;
+
+      pCurrentFunc(uValue, vValue, constants, pCurrentObjects);
+
+      approximatePaSuLi(
+          PASULI_APPROXIMATE_N,
+          uValue,
+          vValue,
+          constants,
+          pCurrentObjects,
+          pCurrentFunc);
+
       if (verbose > 0)
       {
         printf("V @ (%x,%x) = (%.2lf, %.2lf, 0)\n", i, j, uValue, vValue);
@@ -202,53 +236,133 @@ void initGeometry(int verbose)
          numAllTriangles * 3);
 }
 
+void renderSurface(unsigned int pointIdx1,
+                   unsigned int pointIdx2,
+                   unsigned int pointIdx3,
+                   int fill)
+{
+  PaSuLiObject *pCurrentObject = &pObjects[pointIdx1];
+
+  if (fill > 0)
+  {
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+  } else {
+    glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+  }
+
+  glBegin(GL_TRIANGLES);
+
+  if (useNormal > 0)
+  {
+    glNormal3dv(&pCurrentObject->n[0]);
+  }
+
+  glColor3f(0.0, 0.0, 1.0); /* blue */
+
+  glVertex3dv(&pCurrentObject->pos[0]);
+
+  pCurrentObject = &pObjects[pointIdx2];
+
+  if (useNormal > 0)
+  {
+    glNormal3dv(&pCurrentObject->n[0]);
+  }
+  glColor3f(0.0, 1.0, 0.0); /* green */
+
+  glVertex3dv(&pCurrentObject->pos[0]);
+
+  pCurrentObject = &pObjects[pointIdx3];
+
+  if (useNormal > 0)
+  {
+    glNormal3dv(&pCurrentObject->n[0]);
+  }
+  glColor3f(1.0, 0.0, 0.0); /* red */
+
+  glVertex3dv(&pCurrentObject->pos[0]);
+
+  pCurrentObject = &pObjects[pointIdx1];
+
+  if (useNormal > 0)
+  {
+    glNormal3dv(&pCurrentObject->n[0]);
+  }
+  glColor3f(0.0, 0.0, 1.0); /* blue */
+
+  glVertex3dv(&pCurrentObject->pos[0]);
+
+  glEnd();
+}
+
 void drawGeometry(void)
 {
   PaSuLiObject *pCurrentObject;
 
   for (unsigned int i = 0; i < numAllTriangles; i++)
   {
-    if (i % 2 == 0)
+    if (partial > 0 && i % 2 == 0)
     {
       continue;
     }
 
     unsigned int *pSomeFace = pTriangleIndices + i * 3;
-    unsigned int pointIdx1 = pSomeFace[0];
+    unsigned int pointIdx1 = pSomeFace[2];
     unsigned int pointIdx2 = pSomeFace[1];
-    unsigned int pointIdx3 = pSomeFace[2];
+    unsigned int pointIdx3 = pSomeFace[0];
 
-    glBegin(GL_TRIANGLES);
+    //renderSurface(pointIdx1, pointIdx2, pointIdx3, 1);
 
-    pCurrentObject = &pObjects[pointIdx1];
+    renderSurface(pointIdx1, pointIdx2, pointIdx3, 0);
 
-    glNormal3dv(&pCurrentObject->n[0]);
-    glColor3f(0.0, 0.0, 1.0); /* blue */
+    if (showLines > 0)
+    {
+      PaSuLiObject *pCurrentObject1 = &pObjects[pointIdx1];
+      PaSuLiObject *pCurrentObject2 = &pObjects[pointIdx2];
+      PaSuLiObject *pCurrentObject3 = &pObjects[pointIdx3];
 
-    glVertex3dv(&pCurrentObject->pos[0]);
+      glLineWidth(4);
 
-    pCurrentObject = &pObjects[pointIdx2];
+      // "Inside"
+      glBegin(GL_LINES);
 
-    glNormal3dv(&pCurrentObject->n[0]);
-    glColor3f(0.0, 1.0, 0.0); /* green */
+      /* blue */
+      glColor3f(0.0, 1.0, 0.0);
+      glVertex3dv(&pCurrentObject1->pos[0]);
+      glVertex3d(0, 0, 0);
 
-    glVertex3dv(&pCurrentObject->pos[0]);
+      glVertex3dv(&pCurrentObject2->pos[0]);
+      glVertex3d(0, 0, 0);
 
-    pCurrentObject = &pObjects[pointIdx3];
+      glVertex3dv(&pCurrentObject3->pos[0]);
+      glVertex3d(0, 0, 0);
 
-    glNormal3dv(&pCurrentObject->n[0]);
-    glColor3f(1.0, 0.0, 0.0); /* red */
+      glEnd();
 
-    glVertex3dv(&pCurrentObject->pos[0]);
+      float scale = 2;
 
-    pCurrentObject = &pObjects[pointIdx1];
+      // "Outside"
+      glBegin(GL_LINES);
 
-    glNormal3dv(&pCurrentObject->n[0]);
-    glColor3f(0.0, 0.0, 1.0); /* blue */
+      /* blue */
+      glColor3f(.80, 1.0, 0.0);
 
-    glVertex3dv(&pCurrentObject->pos[0]);
+      glVertex3dv(&pCurrentObject1->pos[0]);
+      glVertex3d(pCurrentObject1->pos[0] * scale,
+                 pCurrentObject1->pos[1] * scale,
+                 pCurrentObject1->pos[2] * scale);
 
-    glEnd();
+      glVertex3dv(&pCurrentObject2->pos[0]);
+      glVertex3d(pCurrentObject2->pos[0] * scale,
+                 pCurrentObject2->pos[1] * scale,
+                 pCurrentObject2->pos[2] * scale);
+
+      glVertex3dv(&pCurrentObject3->pos[0]);
+      glVertex3d(pCurrentObject3->pos[0] * scale,
+                 pCurrentObject3->pos[1] * scale,
+                 pCurrentObject3->pos[2] * scale);
+
+      glEnd();
+    }
   }
 }
 
@@ -270,22 +384,22 @@ void init(void)
   // Depth buffering to eliminate hidden surfaces
   glEnable(GL_DEPTH_TEST);
 
+  glLightModelfv(GL_LIGHT_MODEL_TWO_SIDE, lmodel_twoside);
+
   /* Setup the view of the cube. */
   glMatrixMode(GL_PROJECTION);
-  gluPerspective(/* field of view in degree */ 40.0,
+  gluPerspective(/* field of view in degree */ 60.0,
                  /* aspect ratio */ 1.0,
-                 /* Z near */ 1.0, /* Z far */ 10.0);
+                 /* Z near */ 1.0, /* Z far */ 50.0);
 
   glMatrixMode(GL_MODELVIEW);
-  gluLookAt(0.0, 0.0, -7.0, /* eye is at (0,0,-7) */
-            0.0, 0.0, 0.0,  /* center is at (0,0,0) */
-            0.0, 1.0, 0.);  /* up is in positive Y direction */
+  gluLookAt(.0, .0, 16.0,  /* eye is at (0,0,-7) */
+            0.0, 0.0, 0.0, /* center is at (0,0,0) */
+            0.0, 1.0, 0.); /* up is in positive Y direction */
 
-  /*
-  glTranslatef(0.0, 0.0, -1.0);
-  glRotatef(60, 1.0, 0.0, 0.0);
-  glRotatef(-20, 0.0, 0.0, 1.0);
-  */
+  //glTranslatef(0.0, 0.0, -1.0);
+  //glRotatef(45, 1.0, 0.0, 0.0);
+  //glRotatef(-20, 0.0, 0.0, 1.0);
 }
 
 int sizes[][2] = {
@@ -295,7 +409,7 @@ int sizes[][2] = {
 
 int main(int argc, char **argv)
 {
-  initGeometry(0);
+  initGeometry(1);
 
   unsigned int inKB = (memoryAllocated + 1024) / 1024;
   unsigned int inMB = inKB / 1024;

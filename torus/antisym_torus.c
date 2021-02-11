@@ -82,6 +82,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED| \
 PASULI_U_END_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 0 , 2 , 0 , 2 , torus_def_constants };
 #endif
+
 #if(COMPILE_DESC_TORUS != 0)
 char* descAntisymmetricTorus =
 "start; \

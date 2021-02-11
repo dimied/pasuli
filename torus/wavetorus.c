@@ -1,5 +1,6 @@
 
-#include "torus_inc.h"
+#include "wavetorus.h"
+#include <math.h>
 
 #define GET__C		pasuli_vartype R = constants[0]; \
 					pasuli_vartype r = constants[1]; \
@@ -61,7 +62,14 @@ void WaveTorus(pasuli_vartype u, pasuli_vartype v,
 }
 #endif
 
-#include "torus_undef.h"
+#undef GET__C
+#undef TORUS_POS
+#undef TORUS_UD
+#undef TORUS_VD
+#undef TORUS_N
+#undef TORUS_UUD
+#undef TORUS_UVD
+#undef TORUS_VVD
 
 
 #include "torus_desc_inc.h"

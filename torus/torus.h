@@ -6,6 +6,8 @@
 #include "torus_desc.h"
 #include <math.h>
 
+#include "wavetorus.h"
+
 
 #if(COMPILE_TORUS != 0)
 
@@ -19,12 +21,6 @@ void EightTorus(pasuli_vartype u, pasuli_vartype v ,
 
 void TwistedEightTorus(pasuli_vartype u, pasuli_vartype v, 
 						pasuli_consttype* constants, PaSuLiObject* pO);
-
-void UmbillicTorus(pasuli_vartype u, pasuli_vartype v, 
-					pasuli_consttype* constants, PaSuLiObject* pO);
-
-void WaveTorus(pasuli_vartype u, pasuli_vartype v, 
-			  pasuli_consttype* constants, PaSuLiObject* pO);
 
 void EllipticTorus(pasuli_vartype u, pasuli_vartype v, 
 					pasuli_consttype* constants, PaSuLiObject* pO);
