@@ -13,16 +13,18 @@ GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
 PaSuLiObject *pObjects = 0;
 unsigned int *pTriangleIndices = 0;
 
-int count = 0;
-
 float uStart = -2;
 float uEnd = 2;
 float vStart = -2;
 float vEnd = 2;
 
+int verboseInit = 0;
 int partial = 0;
+int partialStep = 3;
 int useNormal = 1;
 int showLines = 0;
+int showNormal = 0;
+int showSurfaces = 1;
 
 int numUvalues = 20;
 int numVvalues = 20;
@@ -30,8 +32,8 @@ unsigned int numAllObject = 0;
 unsigned int numAllTriangles = 0;
 unsigned int memoryAllocated = 0;
 
-static float lmodel_twoside[] = {GL_TRUE};
-static float lmodel_oneside[] = {GL_FALSE};
+float lmodel_twoside[] = {GL_TRUE};
+float lmodel_oneside[] = {GL_FALSE};
 
 void printTriangleInformationToConsole(
     unsigned int verticeIdx1,
@@ -70,10 +72,12 @@ void releaseMemory()
   }
 }
 
-#include "torus/umbillictorus.h"
 #include "torus/torus.h"
+#include "torus/umbillictorus.h"
+#include "torus/wavetorus.h"
 
-double constants[] = {4, 2.5};
+double torusConstants[] = {4, 2};
+double waveTorusConstants[] = {1.5, 0.5, 1, 1};
 
 void initGeometry(int verbose)
 {
@@ -89,9 +93,10 @@ void initGeometry(int verbose)
   numAllObject = numObjects;
   size_t memSize = numObjects * sizeof(PaSuLiObject);
 
-  parsurFunc pCurrentFunc = &UmbillicTorus;
+  parsurFunc pCurrentFunc = &Torus; //&UmbillicTorus;
+  double *pConstants = torusConstants;
 
-  pCurrentFunc = &Torus;
+  int approximateNormal = 0;
 
   pObjects = malloc(memSize);
 
@@ -157,18 +162,35 @@ void initGeometry(int verbose)
                          ? vStart + vDiff * j / (numVvalues - 1)
                          : vEnd;
 
-      pCurrentObjects->pos[0] = uValue;
-      pCurrentObjects->pos[1] = vValue;
+      //pCurrentObjects->pos[0] = uValue;
+      //pCurrentObjects->pos[1] = vValue;
+      
 
-      pCurrentFunc(uValue, vValue, constants, pCurrentObjects);
+      pCurrentFunc(uValue, vValue, pConstants, pCurrentObjects);
 
-      approximatePaSuLi(
-          PASULI_APPROXIMATE_N,
-          uValue,
-          vValue,
-          constants,
-          pCurrentObjects,
-          pCurrentFunc);
+      if (approximateNormal > 0)
+      {
+        approximatePaSuLi(
+            PASULI_APPROXIMATE_N,
+            uValue,
+            vValue,
+            pConstants,
+            pCurrentObjects,
+            pCurrentFunc);
+      }
+
+      // Normalize
+      double normalLength = pCurrentObjects->n[0] * pCurrentObjects->n[0];
+      normalLength += pCurrentObjects->n[1] * pCurrentObjects->n[1];
+      normalLength += pCurrentObjects->n[2] * pCurrentObjects->n[2];
+      normalLength = sqrt(normalLength);
+
+      if (normalLength > 0)
+      {
+        pCurrentObjects->n[0] /= normalLength;
+        pCurrentObjects->n[1] /= normalLength;
+        pCurrentObjects->n[2] /= normalLength;
+      }
 
       if (verbose > 0)
       {
@@ -246,8 +268,10 @@ void renderSurface(unsigned int pointIdx1,
   if (fill > 0)
   {
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-  } else {
-    glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+  }
+  else
+  {
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   }
 
   glBegin(GL_TRIANGLES);
@@ -300,7 +324,7 @@ void drawGeometry(void)
 
   for (unsigned int i = 0; i < numAllTriangles; i++)
   {
-    if (partial > 0 && i % 2 == 0)
+    if (partial > 0 && i % partialStep == 0)
     {
       continue;
     }
@@ -310,15 +334,44 @@ void drawGeometry(void)
     unsigned int pointIdx2 = pSomeFace[1];
     unsigned int pointIdx3 = pSomeFace[0];
 
-    //renderSurface(pointIdx1, pointIdx2, pointIdx3, 1);
+    renderSurface(pointIdx1, pointIdx2, pointIdx3, showSurfaces);
 
-    renderSurface(pointIdx1, pointIdx2, pointIdx3, 0);
+    PaSuLiObject *pCurrentObject1 = &pObjects[pointIdx1];
+    PaSuLiObject *pCurrentObject2 = &pObjects[pointIdx2];
+    PaSuLiObject *pCurrentObject3 = &pObjects[pointIdx3];
+
+    if (showNormal > 0)
+    {
+      glLineWidth(4);
+
+      // "Inside"
+      glBegin(GL_LINES);
+
+      /* blue */
+      glColor3f(0.0, 0.0, 1.0);
+      glVertex3dv(&pCurrentObject1->pos[0]);
+      glVertex3d(
+        pCurrentObject1->pos[0] + pCurrentObject1->n[0], 
+        pCurrentObject1->pos[1] + pCurrentObject1->n[1], 
+        pCurrentObject1->pos[2] + pCurrentObject1->n[2]);
+
+      glVertex3dv(&pCurrentObject2->pos[0]);
+      glVertex3d(
+        pCurrentObject2->pos[0] + pCurrentObject2->n[0], 
+        pCurrentObject2->pos[1] + pCurrentObject2->n[1], 
+        pCurrentObject2->pos[2] + pCurrentObject2->n[2]);
+
+      glVertex3dv(&pCurrentObject3->pos[0]);
+      glVertex3d(
+        pCurrentObject3->pos[0] + pCurrentObject3->n[0], 
+        pCurrentObject3->pos[1] + pCurrentObject3->n[1], 
+        pCurrentObject3->pos[2] + pCurrentObject3->n[2]);
+
+      glEnd();
+    }
 
     if (showLines > 0)
     {
-      PaSuLiObject *pCurrentObject1 = &pObjects[pointIdx1];
-      PaSuLiObject *pCurrentObject2 = &pObjects[pointIdx2];
-      PaSuLiObject *pCurrentObject3 = &pObjects[pointIdx3];
 
       glLineWidth(4);
 
@@ -409,7 +462,7 @@ int sizes[][2] = {
 
 int main(int argc, char **argv)
 {
-  initGeometry(1);
+  initGeometry(verboseInit);
 
   unsigned int inKB = (memoryAllocated + 1024) / 1024;
   unsigned int inMB = inKB / 1024;

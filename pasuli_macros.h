@@ -5,6 +5,7 @@
 
 #pragma warning(disable: 4244)
 
+/*
 #define GUARD_START(X)		if(X != 0) {
 #define POS_GUARD_START(X)	if(X & 0x1) {
 #define UD_GUARD_START(X)	if(X & 0x2) {
@@ -24,6 +25,7 @@
 #define UUD_GUARD		UUD_GUARD_START(pO->X)
 #define UVD_GUARD		UVD_GUARD_START(pO->X)
 #define VVD_GUARD       VVD_GUARD_START(pO->X)
+*/
 
 #define PASULI_NORMAL_VARS_DECL 	\
 				pasuli_vartype xu, yu, zu; \
@@ -49,6 +51,10 @@
 				N_X( yu*zv - zu*yv ); \
 				N_Y( xu*zv - zu*xv ); \
 				N_Z( xu*yv - yu*xv );
+
+#define PASULI_CALC_NORMAL_FROM_UD_VD \
+		PASULI_NORMAL_VARS_DEF \
+		PASULI_NORMAL
 
 // Position macros
 #if(PASULIOBJECT_POS != 0)

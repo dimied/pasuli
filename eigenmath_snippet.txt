@@ -1,0 +1,20 @@
+fx = (R + cos(v)*(r + a*sin(n*u)))*cos(u)
+fy = (R + cos(v)*(r + a sin(n*u)))*sin(u)
+fz = (r + a*sin(n*u))*sin(v)
+
+a1 = d(fx, u)
+b1 = d(fy, u)
+c1 = d(fz, u)
+
+d1 = d(fx, v)
+e1 = d(fy, v)
+f1 = d(fz, v)
+
+U = (a1,b1,c1)
+V = (d1,e1,f1)
+#A = outer(U, V)
+#A
+
+N= (b1*f1 - c1*e1, c1*d1 - a1*f1, a1*e1 - b1*d1)
+N
+
