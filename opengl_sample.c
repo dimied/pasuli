@@ -24,6 +24,30 @@ unsigned int numAllObject = 0;
 unsigned int numAllTriangles = 0;
 unsigned int memoryAllocated = 0;
 
+void printTriangleInformationToConsole(
+    unsigned int verticeIdx1,
+    unsigned int verticeIdx2,
+    unsigned int verticeIdx3,
+    PaSuLiObject *pSomeObjects)
+{
+  printf("T @ (%d,%d,%d) = \n\
+      (%.2lf, %.2lf, %.2lf) - (%.2lf, %.2lf, %.2lf) - (%.2lf, %.2lf, %.2lf) \n",
+         verticeIdx1,
+         verticeIdx2,
+         verticeIdx3,
+         pSomeObjects[verticeIdx1].pos[0],
+         pSomeObjects[verticeIdx1].pos[1],
+         pSomeObjects[verticeIdx1].pos[2],
+
+         pSomeObjects[verticeIdx2].pos[0],
+         pSomeObjects[verticeIdx2].pos[1],
+         pSomeObjects[verticeIdx2].pos[2],
+
+         pSomeObjects[verticeIdx3].pos[0],
+         pSomeObjects[verticeIdx3].pos[1],
+         pSomeObjects[verticeIdx3].pos[2]);
+}
+
 void releaseMemory()
 {
   if (pObjects != 0)
@@ -141,36 +165,17 @@ void initGeometry(int verbose)
 
       if (verbose > 0)
       {
-        printf("T @ (%x,%x,%x,%x) = \n\
-      (%.2lf, %.2lf, %.2lf) - (%.2lf, %.2lf, %.2lf) - (%.2lf, %.2lf, %.2lf) \n \
-       (%.2lf, %.2lf, %.2lf) - (%.2lf, %.2lf, %.2lf) - (%.2lf, %.2lf, %.2lf) \n",
-               verticeIdx1,
-               verticeIdx2,
-               verticeIdx3,
-               verticeIdx4,
-               pObjects[verticeIdx1].pos[0],
-               pObjects[verticeIdx1].pos[1],
-               pObjects[verticeIdx1].pos[2],
+        printTriangleInformationToConsole(
+            verticeIdx1,
+            verticeIdx2,
+            verticeIdx3,
+            pObjects);
 
-               pObjects[verticeIdx2].pos[0],
-               pObjects[verticeIdx2].pos[1],
-               pObjects[verticeIdx2].pos[2],
-
-               pObjects[verticeIdx3].pos[0],
-               pObjects[verticeIdx3].pos[1],
-               pObjects[verticeIdx3].pos[2],
-
-               pObjects[verticeIdx3].pos[0],
-               pObjects[verticeIdx3].pos[1],
-               pObjects[verticeIdx3].pos[2],
-
-               pObjects[verticeIdx2].pos[0],
-               pObjects[verticeIdx2].pos[1],
-               pObjects[verticeIdx2].pos[2],
-
-               pObjects[verticeIdx4].pos[0],
-               pObjects[verticeIdx4].pos[1],
-               pObjects[verticeIdx4].pos[2]);
+        printTriangleInformationToConsole(
+            verticeIdx3,
+            verticeIdx2,
+            verticeIdx4,
+            pObjects);
       }
 
       // 1.st triangle
