@@ -28,6 +28,7 @@ void SuperFormula3D(pasuli_sf3d_vartype rho, pasuli_sf3d_vartype phi,
 
 extern char* descSuperFormula3D;
 
+/*
 const pasuli_consttype pasuli_sf3d_a_lower_bound = \
 	SUPER_FORMULA_PARAMETER_A_LOWER_BOUND;
 const pasuli_consttype pasuli_sf3d_a_upper_bound = \
@@ -36,6 +37,7 @@ const pasuli_consttype pasuli_sf3d_b_lower_bound = \
 	SUPER_FORMULA_PARAMETER_B_LOWER_BOUND;
 const pasuli_consttype pasuli_sf3d_b_upper_bound = \
 	SUPER_FORMULA_PARAMETER_B_UPPER_BOUND;
+*/
 
 
 //pConstants[0 .. 5] = a1, b1, m1, n11, n12, n13
