@@ -13,7 +13,7 @@
 #define PASULI_DEBUG_MODE			1
 // ??
 #define USE_ID_IN_PSLDD				0
-// ??
+// If not 0, then the ID will be assigned in the evaluation function
 #define USE_ID_IN_PASULI_FUNCTION	0
 
 /////////////////////////
@@ -161,8 +161,7 @@
 
 
 //////////////////////////////////////////
-///// In Version   0.8.07   not used yet
-///// DEFINES , WHICH EXPLICITLY DEFINES IF SURFACE TYPE WILL BE USED
+#define USE_PLANE                       1
 #define USE_BOHEMIAN_DOME_SURFACE		1
 #define USE_BOYS_SURFACE				1
 #define USE_CROSS_CUP					1
@@ -241,7 +240,6 @@
 #define USE_TRIAXIAL_HEXATORUS			1
 #define USE_TWISTED_HEART				1
 #define USE_HOLE_DISCUS					1
-#define USE_PLANE						1
 #define USE_DISC						1
 #define USE_WAVES						1
 #define USE_SINE_WAVE					1
@@ -281,5 +279,75 @@
 #define USE_APPLE_SURFACE				1
 #define USE_APPLE2_SURFACE				1
 #define USE_LEMON_SURFACE				1
+
+// Shells
+#define USE_CORNUCOPIA                  1
+#define USE_SNAIL                       1
+#define USE_SEASHELL                    1
+#define USE_SNAIL_SURFACE               1
+#define USE_SNAILS                      1
+#define USE_PSEUDOHELICERAS_SUBCATENATUM    1
+#define USE_ASTROCERAS                  1
+#define USE_BELLEROPHINA                1
+#define USE_EUHOPLITES                  1
+#define USE_NAUTILUS                    1
+#define USE_NATICA_STELLATA             1
+#define USE_MYA_ARENARIA                1
+
+// Sphere surfaces
+#define USE_SPHERE                      1
+#define USE_ELLIPSOID                   1
+#define USE_SPHERE_V                    1
+#define USE_SPHERE_UV                   1
+#define USE_PSEUDOSPHERE                1
+#define USE_TWISTED_SPHERE              1
+#define USE_OPEN_SPHERE                 1
+#define USE_WAVE_SPHERE                 1
+
+// Spiral surfaces
+#define USE_ARCHIMEDIC_SPIRAL           1
+#define USE_HYPERBOLIC_SPIRAL           1
+#define USE_FERMAT_SPIRAL               1
+#define USE_TANH_SPIRAL                 1
+#define USE_LOG_SPIRAL                  1
+
+// TORUS SURFACES
+#define USE_TORUS  				        1
+#define USE_EIGHT_TORUS                 1
+#define USE_ELLIPTIC_TORUS              1
+#define USE_SADDLE_TORUS                1
+#define USE_ANTISYMMETRIC_TORUS         1
+#define USE_TWISTED_EIGHT_TORUS         1
+#define USE_UMBILLIC_TORUS              1
+#define USE_BRAIDED_TORUS               1
+#define USE_LIMPET_TORUS                1
+#define USE_STRANGLED_TORUS             1
+#define USE_ASTROID_TORUS               1
+#define USE_TRICUSPOID_TORUS_1          1
+#define USE_TRICUSPOID_TORUS_2          1
+#define USE_NETHROID_TORUS_1            1
+#define USE_NETHROID_TORUS_2            1
+#define USE_LEMNISKATE_TORUS_1          1
+#define USE_LEMNISKATE_TORUS_2          1
+#define USE_EPIZYKLOID_TORUS_1          1
+#define USE_EPIZYKLOID_TORUS_2          1
+#define USE_HYPOZYKLOID_TORUS_1         1
+#define USE_HYPOZYKLOID_TORUS_2         1
+#define USE_PIRIFORM_TORUS_1            1
+#define USE_PIRIFORM_TORUS_2            1
+#define USE_BICORN_TORUS_1              1
+#define USE_BICORN_TORUS_2              1
+#define USE_CARDIOID_TORUS_1            1
+#define USE_CARDIOID_TORUS_2            1
+#define USE_CASSINIAN_OVAL_TORUS_1      1
+#define USE_CASSINIAN_OVAL_TORUS_2      1
+#define USE_GERONO_LEMNISKATE_TORUS_1   1
+#define USE_GERONO_LEMNISKATE_TORUS_2   1
+#define USE_CURLY_TORUS_1               1
+#define USE_CURLY_TORUS_2               1
+#define USE_SPIRAL_TORUS                1
+#define USE_TORUS_KNOT                  1
+#define USE_GEAR_TORUS                  1
+#define USE_WAVE_TORUS  				1
 
 #endif

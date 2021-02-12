@@ -1,15 +1,15 @@
 
 
-//#include "fruits_inc.h"
-//#include "../fruits.h"
+#include "fruits.h"
 ////
 //#pragma warning(disable:4244)
-//#include "../pasuli_macros.h"
-//#include "../pasuli_const.h"
+#include "../pasuli_macros.h"
+#include "../pasuli_const.h"
 
-/*
+
 #if(COMPILE_FRUITS != 0)
 
+/*
 void KidneySurface(pasuli_vartype u, pasuli_vartype v, 
 					pasuli_consttype* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( KIDNEY_SURFACE )
@@ -57,7 +57,7 @@ void KidneySurface(pasuli_vartype u, pasuli_vartype v,
 	VVD_Y( su*xy );
 	VVD_Z( 9*s3v - 3*sv );
 }
-
+/*
 
 void KidneySurface_UA(pasuli_vartype u, pasuli_vartype v, 
 					pasuli_consttype* constants, PaSuLiObject* pO) {
@@ -154,5 +154,5 @@ void KidneySurface_VA(pasuli_vartype u, pasuli_vartype v,
 	VVD_Y( su*xy );
 	VVD_Z( 9*s3v - 3*sv );
 }
-#endif
 */
+#endif

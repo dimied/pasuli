@@ -44,8 +44,9 @@ void copyDefDesc(PaSuLiDefDesc* pDD, int iSurfaceType,
 	}
 
 	if((pDD == 0)&&(iSurfaceType >= 0)) {
-		pDD = (PaSuLiDefDesc*)getPaSuLiPointer( iSurfaceType ,
-									PASULI_INFO_DEF_DESC_PTR);
+		// TODO
+		//pDD = (PaSuLiDefDesc*)getPaSuLiPointer( iSurfaceType ,
+		//									PASULI_INFO_DEF_DESC_PTR);
 		if( pDD == 0) {
 			//std::cout<< "Invalid pointer @ "<< iSurfafeType <<std::endl;
 			return;

@@ -15,48 +15,48 @@ void KidneySurface(pasuli_vartype u, pasuli_vartype v,
 					pasuli_consttype* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( KIDNEY_SURFACE )
 
-	pasuli_vartype cv = cos(v);
-	pasuli_vartype c3v = cos(3*v);
-	pasuli_vartype sv = sin(v);
-	pasuli_vartype s3v = sin(3*v);
-	pasuli_vartype cu = cos(u);
-	pasuli_vartype su = sin(u);
+	pasuli_vartype cos_v = cos(v);
+	pasuli_vartype cos_3v = cos(3*v);
+	pasuli_vartype sin_v = sin(v);
+	pasuli_vartype sin_3v = sin(3*v);
+	pasuli_vartype cos_u = cos(u);
+	pasuli_vartype sin_u = sin(u);
 	
-	pasuli_vartype xy = (3*cv - c3v);
+	pasuli_vartype xy = (3*cos_v - cos_3v);
 
-	P_X( cu*xy );
-	P_Y( su*xy );
-	P_Z( 3*sv - s3v );
+	P_X( cos_u*xy );
+	P_Y( sin_u*xy );
+	P_Z( 3*sin_v - sin_3v );
 
-	xy = (3*cv - c3v);
-	UD_X( -su*xy );
-	UD_Y( cu*xy );
+	xy = (3*cos_v - cos_3v);
+	UD_X( -sin_u*xy );
+	UD_Y( cos_u*xy );
 	UD_Z_CONST( 0 );
 
-	xy = (3*s3v - 3*sv);
-	VD_X( cu*xy );
-	VD_Y( su*xy );
-	VD_Z( 3*cv - 3*c3v );
+	xy = (3*sin_3v - 3*sin_v);
+	VD_X( cos_u*xy );
+	VD_Y( sin_u*xy );
+	VD_Z( 3*cos_v - 3*cos_3v );
 
-	xy = (3*cv - c3v)*(3*cv - 3*c3v);
-	N_X( cu*xy );
-	N_Y( -su*xy );
-	N_Z( -(3*s3v - 3*sv)*(3*cv - c3v) );
+	xy = (3*cos_v - cos_3v)*(3*cos_v - 3*cos_3v);
+	N_X( cos_u*xy );
+	N_Y( -sin_u*xy );
+	N_Z( -(3*sin_3v - 3*sin_v)*(3*cos_v - cos_3v) );
 
-	xy = (3*cv - c3v);
-	UUD_X( -cu*xy );
-	UUD_Y( -su*xy );
+	xy = (3*cos_v - cos_3v);
+	UUD_X( -cos_u*xy );
+	UUD_Y( -sin_u*xy );
 	UUD_Z( 0 );
 
-	xy = (3*s3v - 3*sv);
-	UVD_X( -su*xy );
-	UVD_Y( cu*xy );
+	xy = (3*sin_3v - 3*sin_v);
+	UVD_X( -sin_u*xy );
+	UVD_Y( cos_u*xy );
 	UVD_Z( 0 );
 
-	xy = (9*c3v -3*cv);
-	VVD_X( cu*xy );
-	VVD_Y( su*xy );
-	VVD_Z( 9*s3v - 3*sv );
+	xy = (9*cos_3v -3*cos_v);
+	VVD_X( cos_u*xy );
+	VVD_Y( sin_u*xy );
+	VVD_Z( 9*sin_3v - 3*sin_v );
 }
 #endif
 
@@ -98,8 +98,6 @@ void AppleSurface(pasuli_vartype u, pasuli_vartype v,
 	VVD_Z( 0 );
 }
 #endif
-
-
 
 
 #if(COMPILE_FRUITS != 0)

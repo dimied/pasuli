@@ -2,7 +2,7 @@
 #include "torus_inc.h"
 
 
-#if(COMPILE_TORUS != 0)
+#if(USE_TWISTED_EIGHT_TORUS != 0)
 void TwistedEightTorus(pasuli_vartype u, pasuli_vartype v, 
 						pasuli_consttype* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( TWISTED_EIGHT_TORUS )

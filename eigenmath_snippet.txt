@@ -1,6 +1,6 @@
-fx = (R + cos(v)*(r + a*sin(n*u)))*cos(u)
-fy = (R + cos(v)*(r + a sin(n*u)))*sin(u)
-fz = (r + a*sin(n*u))*sin(v)
+fx = (R + r*cos(v))*cos(u)
+fy = (R + r*cos(v))*sin(u)
+fz = r*sin(v)
 
 a1 = d(fx, u)
 b1 = d(fy, u)
@@ -15,6 +15,22 @@ V = (d1,e1,f1)
 #A = outer(U, V)
 #A
 
-N= (b1*f1 - c1*e1, c1*d1 - a1*f1, a1*e1 - b1*d1)
+a1
+b1
+c1
+
+d1
+e1
+f1
+
+nx =  b1*f1 - c1*e1
+ny = c1*d1 - a1*f1
+nz = a1*e1 - b1*d1
+
+simplify(nx)
+simplify(ny)
+simplify(nz)
+
+N= (nx, ny, nz)
 N
 

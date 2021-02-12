@@ -9,18 +9,21 @@
 
 #include "pasuli_defs.h"
 #include "pasuli_macros.h"
+#include "pasuli_repository.h"
 
 PaSuLiObject example;
 
 int main() {
 
-    printf("Hello World \n");
-
+    /*
     printf("Start %.2lf \n", example.pos[0]);
 
     initConstAll(&example, 1);
 
     printf("Set... %.2lf \n", example.pos[0]);
+    */
+
+    printf("#functions = %d\n\n", numberOfPasuliRepositoryItems);
 
     return 0;
 }

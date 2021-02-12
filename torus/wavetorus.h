@@ -5,7 +5,7 @@
 #include "../pasuli_defs.h"
 #include "../pasuli_macros.h"
 
-#if (COMPILE_TORUS != 0)
+#if (USE_WAVE_TORUS != 0)
 void WaveTorus(pasuli_vartype u, pasuli_vartype v,
                pasuli_consttype *constants, PaSuLiObject *pO);
 #endif

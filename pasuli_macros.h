@@ -3,29 +3,7 @@
 
 #include "pasuli_cfg.h"
 
-#pragma warning(disable: 4244)
-
-/*
-#define GUARD_START(X)		if(X != 0) {
-#define POS_GUARD_START(X)	if(X & 0x1) {
-#define UD_GUARD_START(X)	if(X & 0x2) {
-#define VD_GUARD_START(X)	if(X & 0x4) {
-#define N_GUARD_START(X)	if(X & 0x8) {
-
-#define UUD_GUARD_START(X)	if(X & 0x10) {
-#define UVD_GUARD_START(X)	if(X & 0x20) {
-#define VVD_GUARD_START(X)	if(X & 0x40) {
-#define GUARD_END			}
-
-#define POS_GUARD		POS_GUARD_START(pO->X)
-#define UD_GUARD_		UD_GUARD_START(pO->X)
-#define VD_GUARD		VD_GUARD_START(pO->X)
-#define N_GUARD			N_GUARD_START(pO->)
-
-#define UUD_GUARD		UUD_GUARD_START(pO->X)
-#define UVD_GUARD		UVD_GUARD_START(pO->X)
-#define VVD_GUARD       VVD_GUARD_START(pO->X)
-*/
+//#pragma warning(disable: 4244)
 
 #define PASULI_NORMAL_VARS_DECL 	\
 				pasuli_vartype xu, yu, zu; \
@@ -199,30 +177,36 @@
 #define UUD_X_CONST( V )			pO->uud[0] = V
 #define UUD_Y_CONST( V )			pO->uud[1] = V
 #define UUD_Z_CONST( V )			pO->uud[2] = V
+#define UUD_CONST_ALL( V )			pO->uud[0] = V; pO->uud[1] = V; pO->uud[2] = V
 #else
 #define UUD_X_CONST( V )
 #define UUD_Y_CONST( V )
 #define UUD_Z_CONST( V )
+#define UUD_CONST_ALL( V )
 #endif
 
 #if((PASULIOBJECT_UVD != 0)&&(USE_INITCONST == 0))
 #define UVD_X_CONST( V )			pO->uvd[0] = V
 #define UVD_Y_CONST( V )			pO->uvd[1] = V
 #define UVD_Z_CONST( V )			pO->uvd[2] = V
+#define UVD_CONST_ALL( V )			pO->uvd[0] = V; pO->uvd[1] = V; pO->uvd[2] = V
 #else
 #define UVD_X_CONST( V )
 #define UVD_Y_CONST( V )
 #define UVD_Z_CONST( V )
+#define UVD_CONST_ALL( V )
 #endif
 
 #if((PASULIOBJECT_VVD != 0)&&(USE_INITCONST == 0))
 #define VVD_X_CONST( V )			pO->vvd[0] = V
 #define VVD_Y_CONST( V )			pO->vvd[1] = V
 #define VVD_Z_CONST( V )			pO->vvd[2] = V
+#define VVD_CONST_ALL( V )			pO->vvd[0] = V; pO->vvd[1] = V; pO->vvd[2] = V
 #else
 #define VVD_X_CONST( V )
 #define VVD_Y_CONST( V )
 #define VVD_Z_CONST( V )
+#define VVD_CONST_ALL( V )
 #endif
 
 

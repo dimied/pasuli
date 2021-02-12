@@ -22,7 +22,7 @@
 					VD_Z( cv*r_a_sin_u );
 
 
-#if(USE_PASULI_TORUS_ANTISYM_TORUS != 0)
+#if(USE_ANTISYMMETRIC_TORUS != 0)
 
 void AntisymmetricTorus(pasuli_vartype u, pasuli_vartype v, 
 						pasuli_consttype* constants, PaSuLiObject* pO) {
