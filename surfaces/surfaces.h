@@ -24,7 +24,14 @@
 #include "catenoid.h"
 #include "helicoid.h"
 #include "paraboloid.h"
-
+#include "hyperbolic_helicoid.h"
+#include "funnel.h"
+#include "tractroid.h"
+#include "catalans_surface.h"
+#include "hyperboloid.h"
+#include "hennebergs_surface.h"
+#include "swallow_surface.h"
+#include "wallis_conical_surface.h"
 
 #ifndef __PASULI_DINI_SURFACE__
 #define __PASULI_DINI_SURFACE__
@@ -37,30 +44,6 @@
 #endif
 
 #if(COMPILE_SURFACES != 0)
-
-void HyperbolicHelicoid(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void Funnel(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Tractroid(double u, double v, 
-				double* constants, PaSuLiObject* pO);
-
-void CatalansSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void Hyperboloid(double u, double v, 
-				double* constants, PaSuLiObject* pO);
-
-void HennebergsSurface(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void SwallowSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void WallisConicalSurface(double u, double v, 
-							double* constants, PaSuLiObject* pO);
 
 void MaedersOwl(double u, double v, 
 				double* constants, PaSuLiObject* pO);

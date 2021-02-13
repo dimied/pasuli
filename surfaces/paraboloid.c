@@ -10,6 +10,7 @@ void Paraboloid(double u, double v,
 
 	double a = constants[0];
 	double b = constants[1];
+    
 	double acu = a*cos(u);
 	double asu = a*sin(u);
 
