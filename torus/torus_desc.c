@@ -15,8 +15,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descTwistedEightTorus =
-"start; \
-name: Twisted Torus; \
+"name: Twisted Torus; \
 cat: torus; \
 ut: c; \
 vt: c; \
@@ -72,8 +71,7 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descUmbillicTorus =
-"start; \
-name: umbillic torus; \
+"name: umbillic torus; \
 cat: torus; \
 ut: c; \
 vt: c; \
@@ -130,8 +128,7 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descEightTorus =
-"start; \
-name: Eight Torus; \
+"name: Eight Torus; \
 cat: torus; \
 ut: c; \
 vt: c; \
@@ -186,8 +183,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descEllipticTorus =
-"start; \
-name: Elliptic Torus; \
+"name: Elliptic Torus; \
 cat: torus; \
 ut: c; \
 vt: c; \
@@ -242,8 +238,7 @@ PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descSaddleTorus =
-"start; \
-name: Saddle Torus; \
+"name: Saddle Torus; \
 cat: torus; \
 ut: c; \
 vt: c; \
@@ -298,8 +293,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descBraidedTorus =
-"start; \
-name: Braided Torus; \
+"name: Braided Torus; \
 cat: torus; \
 ut: c; \
 vt: c; \
@@ -358,8 +352,7 @@ PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descLimpetTorus =
-"start; \
-name: Limpet Torus; \
+"name: Limpet Torus; \
 cat: torus; \
 ut: c; \
 vt: c; \
@@ -413,8 +406,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descStrangledTorus =
-"start; \
-name: Strangled Torus; \
+"name: Strangled Torus; \
 cat: torus; \
 ut: c; \
 vt: c; \
@@ -472,8 +464,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descAstroidTorus =
-"start; \
-name: Astroid Torus; \
+"name: Astroid Torus; \
 cat: torus; \
 ut: c; \
 vt: c; \
@@ -530,8 +521,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descTricuspoidTorus1 =
-"start; \
-name: Tricuspoid Torus 1; \
+"name: Tricuspoid Torus 1; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -585,8 +575,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descTricuspoidTorus2 =
-"start; \
-name: Tricuspoid Torus 2; \
+"name: Tricuspoid Torus 2; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -641,8 +630,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descNethroidTorus1 =
-"start; \
-name: Nethroid Torus 1; \
+"name: Nethroid Torus 1; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -696,8 +684,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descNethroidTorus2 =
-"start; \
-name: Nethroid Torus 2; \
+"name: Nethroid Torus 2; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -751,8 +738,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descLemniskateTorus1 =
-"start; \
-name: Lemniskate Torus 1; \
+"name: Lemniskate Torus 1; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -807,8 +793,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descLemniskateTorus2 =
-"start; \
-name: Lemniskate Torus 2; \
+"name: Lemniskate Torus 2; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -862,8 +847,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descEpizykloidTorus1 =
-"start; \
-name: Epizykloid Torus 1; \
+"name: Epizykloid Torus 1; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -919,8 +903,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descEpizykloidTorus2 =
-"start; \
-name: Epizykloid Torus 2; \
+"name: Epizykloid Torus 2; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -976,8 +959,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descHypozykloidTorus1 =
-"start; \
-name: HypozykloidTorus1; \
+"name: HypozykloidTorus1; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -1033,8 +1015,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descHypozykloidTorus2 =
-"start; \
-name: HypozykloidTorus2; \
+"name: HypozykloidTorus2; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -1091,8 +1072,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descPiriformTorus1 =
-"start; \
-name: Piriform Torus 1; \
+"name: Piriform Torus 1; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -1146,8 +1126,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descPiriformTorus2 =
-"start; \
-name: Piriform Torus 2; \
+"name: Piriform Torus 2; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -1201,8 +1180,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descBicornTorus1 =
-"start; \
-name: Bicorn Torus 1; \
+"name: Bicorn Torus 1; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -1257,8 +1235,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descBicornTorus2 =
-"start; \
-name: Bicorn Torus 2; \
+"name: Bicorn Torus 2; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -1312,8 +1289,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descCardioidTorus1 =
-"start; \
-name: Cardioid Torus 1; \
+"name: Cardioid Torus 1; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \
@@ -1368,8 +1344,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descCardioidTorus2 =
-"start; \
-name: Cardioid Torus 2; \
+"name: Cardioid Torus 2; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \

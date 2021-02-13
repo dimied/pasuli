@@ -4,283 +4,6 @@
 pasulidefdesc_ct psldd_15_05_constants[] = {1.5, 0.5, 1.0, 1.0, 1.0, 1.0};
 pasulidefdesc_ct psldd_10_constants[] = {1.0};
 
-
-#if(COMPILE_DEF_DESC_SURFACES != 0)
-PaSuLiDefDesc pslddMaedersOwl = {
-PSLDD_ID( MAEDERS_OWL )
-PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI,
-0, 4 , 0.001f , 1 , 0 };
-#endif
-#if(COMPILE_DESC_SURFACES != 0)
-char *descMaedersOwl =
-"start; \
-name: Maeders Owl; \
-ut:c; \
-vt:c; \
-us: 0; \
-ue:pi: 4; \
-vs: 0.001; \
-ve: 1; \
-x: v*cos(u) - 0.5*v*v*cos(2*u); \
-y: -v*sin(u) - 0.5*v*v*sin(2*u); \
-z: 4*exp(1.5*log(v))*cos(3*u/2)/3; \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
-#endif
-
-
-#if(COMPILE_DEF_DESC_SURFACES != 0)
-PaSuLiDefDesc pslddRichmondSurface = {
-PSLDD_ID(RICHMOND_SURFACE)
-PASULI_U_CLOSED|PASULI_V_CLOSED,
--1, 1 , -1 , 1 , 0 };
-#endif
-#if(COMPILE_DESC_SURFACES != 0)
-char *descRichmondSurface =
-"start; \
-name: Richmond Surface; \
-ut:c; \
-vt:c; \
-us: -1; \
-ue: 1; \
-vs: -1; \
-ve: 1; \
-x: (-3*u - u^(5) + 2*u*u*u*v*v + 3*u*v*v*v*v)/(6*(u*u + v*v)); \
-y: (-3*v - 3*u*u*u*u*v - 2*u*u*v*v*v + v^(5))/(6*(u*u + v*v)); \
-z: u; \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
-#endif
-
-
-#if(COMPILE_DEF_DESC_SURFACES != 0)
-PaSuLiDefDesc pslddScherkSurface = {
-PSLDD_ID( SCHERK_SURFACE )
-PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_START_PI|PASULI_U_END_PI| \
-PASULI_V_START_PI|PASULI_V_END_PI|PASULI_FULL_IMPL,
--1, 1 , -1 , 1 , 0 };
-#endif
-#if(COMPILE_DESC_SURFACES != 0)
-char *descScherkSurface =
-"start; \
-name: Scherk Surface; \
-ut:c; \
-vt:c; \
-us:pi: -1; \
-ue:pi: 1; \
-vs:pi: -1; \
-ve:pi: 1; \
-c1:c:!=0: 1.5; \
-x: u; \
-y: v; \
-z: log(cos(c*u)/cos(c*v))/c; "
-"xu: 1; yu: 0; zu: -sin(c*u)/cos(c*u); "
-"xv: 0; yv: 1; zv: sin(c*v)/cos(c*v); "
-"xn: sin(c*u)/cos(c*u); \
-yn: -sin(c*v)/cos(c*v); \
-zn: 1; "
-"xuu: 0; \
-yuu: 0; \
-zuu: -c/(cos(c*u)*cos(c*u)); "
-"xuv: 0; yuv: 0; zuv: 0; "
-"xvv: 0; yvv: 0; zvv: c/(cos(c*v)*cos(c*v)); "
-"end;";
-#endif
-
-
-#if(COMPILE_DEF_DESC_SURFACES != 0)
-PaSuLiDefDesc pslddCosineSurface = {
-PSLDD_ID( COSINE_SURFACE )
-PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_START_PI|PASULI_U_END_PI| \
-PASULI_V_START_PI|PASULI_V_END_PI|PASULI_FULL_IMPL,
--1, 1 , -1 , 1 , 0 };
-#endif
-#if(COMPILE_DESC_SURFACES != 0)
-char *descCosineSurface =
-"start; \
-name: Cosine Surface; \
-ut:c; \
-vt:c; \
-us:pi: -1; \
-ue:pi: 1; \
-vs:pi: -1; \
-ve:pi: 1; \
-x: cos(u); \
-y: cos(v); \
-z: cos(u + v); "
-"xu: -sin(u); yu: 0; zu: -sin(u+v); "
-"xv: 0; yv: -sin(v); zv: -sin(u+v); "
-"xn: -sin(v)*sin(u+v); \
-yn: -sin(u)*sin(u+v); \
-zn: sin(u)*sin(v); "
-"xuu: -cos(u); yuu: 0; zuu: -cos(u+v); "
-"xuv: 0; yuv: 0; zuv: -cos(u+v); "
-"xvv: 0; yvv: -cos(v); zvv: -cos(u+v); "
-"end;";
-#endif
-
-
-#if(COMPILE_DEF_DESC_SURFACES != 0)
-PaSuLiDefDesc pslddEightSurface = {
-PSLDD_ID( EIGHT_SURFACE )
-PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI| \
-PASULI_V_START_PI|PASULI_V_END_PI|PASULI_FULL_IMPL,
-0, 2 , -0.5 , 0.5 , 0 };
-#endif
-#if(COMPILE_DESC_SURFACES != 0)
-char *descEightSurface =
-"start; \
-name: Eight Surface; \
-ut:c; \
-vt:c; \
-us: 0; \
-ue:pi: 2; \
-vs:pi: -0.5; \
-ve:pi: 0.5; \
-x: cos(u)*sin(2*v); \
-y: sin(u)*sin(2*v); \
-z: sin(v); "
-"xu: -sin(u)*sin(2*v); \
-yu: cos(u)*sin(2*v); \
-zu: 0; "
-"xv: 2*cos(u)*cos(2*v); \
-yv: 2*cos(2*v)*sin(u); \
-zv: cos(v); "
-"xn: cos(u)*cos(v)*sin(2*v); \
-yn: sin(u)*cos(v)*sin(2*v); \
-zn: -2*cos(2*v)*sin(2*v); "
-"xuu: -cos(u)*sin(2*v); \
-yuu: -sin(u)*sin(2*v); \
-zuu: 0; "
-"xuv: -2*cos(2*v)*sin(u); \
-yuv: 2*cos(2*v)*cos(u); \
-zuv: 0; "
-"xvv: -4*cos(u)*sin(2*v); \
-yvv: -4*sin(u)*sin(2*v); \
-zvv: -sin(v); "
-"end;";
-#endif
-
-
-#if(COMPILE_DEF_DESC_SURFACES != 0)
-PaSuLiDefDesc pslddJetSurface = {
-PSLDD_ID( JET_SURFACE )
-PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_V_END_PI,
-0, 1 , 0 , 2 , 0 };
-#endif
-#if(COMPILE_DESC_SURFACES != 0)
-char *descJetSurface =
-"start; \
-name: Jet Surface; \
-ut:c; \
-vt:c; \
-us: 0; \
-ue:pi: 1; \
-vs: 0; \
-ve:pi: 2; \
-x: (1 - cosh(u))*sin(u)*cos(v)/2; \
-y: (1 - cosh(u))*sin(u)*sin(v)/2; \
-z: cosh(u); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
-#endif
-
-
-#if(COMPILE_DEF_DESC_SURFACES != 0)
-PaSuLiDefDesc pslddDrop = {
-PSLDD_ID( DROP )
-PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI| \
-PASULI_V_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
-0, 1 , 0 , 2 , psldd_15_05_constants };
-#endif
-#if(COMPILE_DESC_SURFACES != 0)
-char *descDrop =
-"start; \
-name: Drop; \
-ut:c; \
-vt:c; \
-us: 0; \
-ue:pi: 1; \
-vs: 0; \
-ve:pi: 2; \
-c1:a: 1.5; \
-c2:b: 0.5; \
-x: a*(b - cos(u))*sin(u)*cos(v); \
-y: a*(b - cos(u))*sin(u)*sin(v); \
-z: cos(u); "
-"xu: a*cos(v)*(b*cos(u) - cos(u)*cos(u) + sin(u)*sin(u)); \
-yu: a*sin(v)*(b*cos(u) - cos(u)*cos(u) + sin(u)*sin(u)); \
-zu: -sin(u); "
-"xv: sin(u)*sin(v)*a*(cos(u)-b); \
-yv: sin(u)*cos(v)*a*(b - cos(u)); \
-zv: 0; "
-"xn: a*(b - cos(u))*cos(v)*sin(u)*sin(u); \
-yn: a*(b - cos(u))*sin(u)*sin(u)*sin(v); \
-zn: sin(u)*a*a*(b-cos(u)*(1 - b*b + 3*b*cos(u)-2*cos(u)*cos(u))); "
-"xuu: sin(u)*a*cos(v)*(4*cos(u)-b); \
-yuu: sin(u)*a*sin(v)*(4*cos(u)-b); \
-zuu: -cos(u); "
-"xuv: sin(v)*a*(cos(u)*cos(u)-sin(u)*sin(u)-b*cos(u)); \
-yuv: -cos(v)*a*(cos(u)*cos(u)-sin(u)*sin(u)-b*cos(u)); \
-zuv: 0; "
-"xvv: sin(u)*a*cos(v)*(cos(u)-b); \
-yvv: sin(u)*a*sin(v)*(cos(u)-b); \
-zvv: 0; "
-"end;";
-#endif
-
-
 #if(COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddTriaxialTeardrop = {
 PSLDD_ID( TRIAXIAL_TEARDROP )
@@ -289,8 +12,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTriaxialTeardrop =
-"start; \
-name: Triaxial Teardrop; \
+"name: Triaxial Teardrop; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -331,8 +53,7 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descPillowShape =
-"start; \
-name:pillow Shape; \
+"name:pillow Shape; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -373,8 +94,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descFishSurface =
-"start; \
-name: Fish Surface; \
+"name: Fish Surface; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -416,8 +136,7 @@ PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descHorn =
-"start; \
-name: Horn; \
+"name: Horn; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -461,8 +180,7 @@ PASULI_V_START_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descBentHorns =
-"start; \
-name: Bent Horns; \
+"name: Bent Horns; \
 ut:c; \
 vt:c; \
 us:pi: -1; \
@@ -502,8 +220,7 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_FULL_IMPL,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descHyperbolicOctahedron =
-"start; \
-name: Hyperbolic Octahedron; \
+"name: Hyperbolic Octahedron; \
 ut:c; \
 vt:c; \
 us:pi: -0.5; \
@@ -543,8 +260,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_V_START_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descPseudoCrossCap =
-"start; \
-name: Pseudo Cross Cap; \
+"name: Pseudo Cross Cap; \
 ut:c; \
 vt:c; \
 us: -1; \
@@ -584,8 +300,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descCresent =
-"start; \
-name: Cresent; \
+"name: Cresent; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -628,8 +343,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descStilettoSurface =
-"start; \
-name: Stiletto Surface; \
+"name: Stiletto Surface; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -669,8 +383,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descKuensSurface =
-"start; \
-name: Kuens Surface; \
+"name: Kuens Surface; \
 ut:c; \
 vt:c; \
 us: -4.3; \
@@ -712,8 +425,7 @@ PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTrefoilKnots =
-"start; \
-name: Trefoil Knots; \
+"name: Trefoil Knots; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -759,8 +471,7 @@ PASULI_V_START_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTranguloidTrefoil =
-"start; \
-name: Tranguloid Trefoil; \
+"name: Tranguloid Trefoil; \
 ut:c; \
 vt:c; \
 us:pi: -1; \
@@ -800,8 +511,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descCrown =
-"start; \
-name: Crown; \
+"name: Crown; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -841,8 +551,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTwistedPipeSurface =
-"start; \
-name: Twistedpipe Surface; \
+"name: Twistedpipe Surface; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -884,8 +593,7 @@ PASULI_V_START_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descLoop =
-"start; \
-name: Loop; \
+"name: Loop; \
 ut:c; \
 vt:c; \
 us:pi: -1; \
@@ -926,8 +634,7 @@ PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descDupinCyclide =
-"start; \
-name: Dupin Cyclide; \
+"name: Dupin Cyclide; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -972,8 +679,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descGuimardSurface =
-"start; \
-name: Guimard Surface; \
+"name: Guimard Surface; \
 ut:c; \
 vt:c; \
 us: -1; \
@@ -1016,8 +722,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descMennsSurface =
-"start; \
-name: Menns Surface; \
+"name: Menns Surface; \
 ut:c; \
 vt:c; \
 us: -1; \
@@ -1059,8 +764,7 @@ PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descMilkBag =
-"start; \
-name: Milk Bag; \
+"name: Milk Bag; \
 ut:c; \
 vt:c; \
 us: -1; \
@@ -1102,8 +806,7 @@ PASULI_V_START_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTriaxialTritorus =
-"start; \
-name: Triaxial Tritorus; \
+"name: Triaxial Tritorus; \
 ut:c; \
 vt:c; \
 us:pi: -1; \
@@ -1143,8 +846,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descVerrillSurface =
-"start; \
-name: Verrill Surface; \
+"name: Verrill Surface; \
 ut:c; \
 vt:c; \
 us: 0.5; \
@@ -1184,8 +886,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descZindlersConoid =
-"start; \
-name: Zindlers Conoid; \
+"name: Zindlers Conoid; \
 ut:c; \
 vt:c; \
 us: -1; \
@@ -1227,8 +928,7 @@ PASULI_V_START_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descFolium =
-"start; \
-name: Folium; \
+"name: Folium; \
 ut:c; \
 vt:c; \
 us:pi: -1; \
@@ -1268,8 +968,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descLemniscape =
-"start; \
-name: Lemniscape; \
+"name: Lemniscape; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -1309,8 +1008,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTriplePointTwist =
-"start; \
-name: Triple point Twist; \
+"name: Triple point Twist; \
 ut:c; \
 vt:c; \
 us: -2; \
@@ -1351,8 +1049,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTrashcan =
-"start; \
-name: Trashcan; \
+"name: Trashcan; \
 ut: c; \
 vt: c; \
 us: 0; \
@@ -1395,8 +1092,7 @@ PASULI_CONST_COUNT(4)|PASULI_CALC_U_END,//MUL_BY_CONST(3),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descSpring1 =
-"start; \
-name: Spring 1; \
+"name: Spring 1; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -1441,8 +1137,7 @@ PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descSpring2 =
-"start; \
-name: Spring 2; \
+"name: Spring 2; \
 ut:c; \
 vt:c; \
 us:pi: -1; \
@@ -1486,8 +1181,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descCone =
-"start; \
-name: Cone; \
+"name: Cone; \
 ut:c; \
 vt:c; \
 us: 1; \
@@ -1529,8 +1223,7 @@ PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descIsolator =
-"start; \
-name: Isolator; \
+"name: Isolator; \
 ut:c; \
 vt:c; \
 us: 1.5; \
@@ -1574,8 +1267,7 @@ PASULI_CALC_U_END,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descEgg =
-"start; \
-name: Egg; \
+"name: Egg; \
 ut: c; \
 vt: c; \
 us: 0; \
@@ -1618,8 +1310,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descHyperbolicParaboloid =
-"start; \
-name: Hyperbolic Paraboloid; \
+"name: Hyperbolic Paraboloid; \
 ut: c; \
 vt: c; \
 us: -1; \
@@ -1660,8 +1351,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descDropSurface =
-"start; \
-name: Drop Surface; \
+"name: Drop Surface; \
 ut:c; \
 vt:c; \
 us:pi: -0.5; \
@@ -1703,8 +1393,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descFacingSnail =
-"start; \
-name: Facing Snail; \
+"name: Facing Snail; \
 ut:c; \
 vt:c; \
 us:pi: -0.5; \
@@ -1745,8 +1434,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descPaperBag =
-"start; \
-name: Paper Bag; \
+"name: Paper Bag; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -1789,8 +1477,7 @@ PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descJeenerKleinSurface =
-"start; \
-name: Jeener Klein Surface; \
+"name: Jeener Klein Surface; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -1835,8 +1522,7 @@ PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descBonanJeenerKleinSurface =
-"start; \
-name: Bonan Jeener Klein Surface; \
+"name: Bonan Jeener Klein Surface; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -1879,8 +1565,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descKleinCycloid =
-"start; \
-name: Klein Cycloid; \
+"name: Klein Cycloid; \
 ut: c; \
 vt: c; \
 us: 0; \
@@ -1923,8 +1608,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descDoubleCone =
-"start; \
-name: Double Cone; \
+"name: Double Cone; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -1964,8 +1648,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descHoleDisc =
-"start; \
-name: Hole Disc; \
+"name: Hole Disc; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -2005,8 +1688,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_V_END_PI|PASULI_U_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descPisotTriaxial =
-"start; \
-name:pisot Triaxial; \
+"name:pisot Triaxial; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -2046,8 +1728,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_V_END_PI|PASULI_U_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTriaxialHexatorus =
-"start; \
-name: Triaxial Hexatorus; \
+"name: Triaxial Hexatorus; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -2088,8 +1769,7 @@ PASULI_V_START_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTwistedHeart =
-"start; \
-name: Twisted Heart; \
+"name: Twisted Heart; \
 ut: c; \
 vt: c; \
 us: 0; \
@@ -2131,8 +1811,7 @@ PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descHoleDiscus =
-"start; \
-name: Hole Discus; \
+"name: Hole Discus; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -2174,8 +1853,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descDisc =
-"start; \
-name: Disc; \
+"name: Disc; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -2216,8 +1894,7 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descWaves =
-"start; \
-name: Waves; \
+"name: Waves; \
 ut:c; \
 vt:c; \
 us:pi: -2; \
@@ -2260,8 +1937,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descSineWave =
-"start; \
-name: Sine Wave; \
+"name: Sine Wave; \
 ut:c; \
 vt:c; \
 us: -5; \
@@ -2303,8 +1979,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descCosineWave =
-"start; \
-name: Cosine Wave; \
+"name: Cosine Wave; \
 ut:c; \
 vt:c; \
 us: -5; \
@@ -2346,8 +2021,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descSpiralWave =
-"start; \
-name: Spiral Wave; \
+"name: Spiral Wave; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -2390,8 +2064,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descBell =
-"start; \
-name: Bell; \
+"name: Bell; \
 ut:c; \
 vt:c; \
 us: -5; \
@@ -2434,8 +2107,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descBellPolar =
-"start; \
-name: Bell Polar; \
+"name: Bell Polar; \
 ut: c; \
 vt: c; \
 us: 0; \
@@ -2478,8 +2150,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descBellWave =
-"start; \
-name: Bell Wave; \
+"name: Bell Wave; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -2523,8 +2194,7 @@ PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descSoucoupoid =
-"start; \
-name: Soucoupoid; \
+"name: Soucoupoid; \
 ut:c; \
 vt:c; \
 us:pi: -1; \
@@ -2564,8 +2234,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descEnneperSurfacePolar =
-"start; \
-name: Enneper Surface Polar; \
+"name: Enneper Surface Polar; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -2608,8 +2277,7 @@ PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descSineCone =
-"start; \
-name: Sine Cone; \
+"name: Sine Cone; \
 ut:c; \
 vt:c; \
 us: -10; \
@@ -2651,8 +2319,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descSpinner =
-"start; \
-name: Spinner; \
+"name: Spinner; \
 ut:c; \
 vt:c; \
 us: -1; \
@@ -2695,8 +2362,7 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descFresnel =
-"start; \
-name: Fresnel; \
+"name: Fresnel; \
 ut:c; \
 vt:c; \
 us:pi: -1; \
@@ -2740,8 +2406,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTrefoilKnots2 =
-"start; \
-name: Trefoil Knots 2; \
+"name: Trefoil Knots 2; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -2785,8 +2450,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descBowCurve =
-"start; \
-name: Bow Curve; \
+"name: Bow Curve; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -2828,8 +2492,7 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTripleCorkScrew1 =
-"start; \
-name: Triple Cork Screw 1; \
+"name: Triple Cork Screw 1; \
 ut: c; \
 vt: c; \
 us: -1; \
@@ -2874,8 +2537,7 @@ PASULI_CONST_COUNT(6),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTripleCorkScrew2 =
-"start; \
-name: Triple Cork Screw 2; \
+"name: Triple Cork Screw 2; \
 ut:c; \
 vt:c; \
 us: -1; \
@@ -2924,8 +2586,7 @@ PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descTripleCorkScrew3 =
-"start; \
-name: Triple Cork Screw 3; \
+"name: Triple Cork Screw 3; \
 ut:c; \
 vt:c; \
 us: -1; \
@@ -2971,8 +2632,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descBicornSurface =
-"start; \
-name: Bicorn Surface; \
+"name: Bicorn Surface; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -3013,8 +2673,7 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descPiriformSurface =
-"start; \
-name:piriform Surface; \
+"name:piriform Surface; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -3060,8 +2719,7 @@ PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descKappaSurface =
-"start; \
-name: Kappa Surface; \
+"name: Kappa Surface; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -3104,8 +2762,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descBulletNose =
-"start; \
-name: Bullet Nose; \
+"name: Bullet Nose; \
 ut:c; \
 vt:c; \
 us: 0; \
@@ -3149,8 +2806,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descSievertSurface =
-"start; \
-name: Sievert Surface; \
+"name: Sievert Surface; \
 ut:c; \
 vt:c; \
 us:pi: -0.5; \
@@ -3194,8 +2850,7 @@ PASULI_V_START_PI|PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descCosineSurface2 =
-"start; \
-name: Cosine Surface 2; \
+"name: Cosine Surface 2; \
 ut:c; \
 vt:c; \
 us:pi: -1; \

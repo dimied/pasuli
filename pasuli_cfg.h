@@ -250,6 +250,7 @@
 #define USE_BELL_WAVE					1
 #define USE_SOUCOUPOID					1
 #define USE_ENNEPER_SURFACE_POLAR		1
+#define USE_SINE_CONE                   1
 #define USE_SPINNER						1
 #define USE_FRESNEL						1
 #define USE_TREFOIL_KNOTS2				1

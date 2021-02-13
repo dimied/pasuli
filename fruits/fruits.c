@@ -201,8 +201,7 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_FULL_IMPL,
 #endif
 #if(COMPILE_DESC_FRUITS != 0)
 char *descKidneySurface = 
-"start; \
-name: Kidney Surface; \
+"name: Kidney Surface; \
 cat: fruits; \
 ut: c; \
 vt: c; \
@@ -257,8 +256,7 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_FULL_IMPL,
 #endif
 #if(COMPILE_DESC_FRUITS != 0)
 char *descAppleSurface = 
-"start; \
-name: Apple Surface; \
+"name: Apple Surface; \
 ut: c; \
 vt: c; \
 cat: fruits; \
@@ -315,8 +313,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_FRUITS != 0)
 char *descApple2_Surface = 
-"start; \
-name: Apple Surface (V2); \
+"name: Apple Surface (V2); \
 ut: c; \
 vt: c; \
 us: pi : -1; \
@@ -376,8 +373,7 @@ PASULI_V_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 #if(COMPILE_DESC_FRUITS != 0)
 //f means formula
 char *descLemonSurface = 
-"start; \
-name: Lemon Surface; \
+"name: Lemon Surface; \
 cat: fruits; \
 ut: c; \
 vt: c; \

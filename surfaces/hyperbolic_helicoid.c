@@ -61,8 +61,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(1),
 */
 #if(COMPILE_DESC_SURFACES != 0)
 char *descHyperbolicHelicoid =
-"start; \
-name: Hyperbolic Helicoid; \
+"name: Hyperbolic Helicoid; \
 ut:c; \
 vt:c; \
 us: -4; \

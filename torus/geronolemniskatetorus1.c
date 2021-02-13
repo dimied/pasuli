@@ -67,8 +67,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descGeronoLemniskateTorus1 =
-"start; \
-name: Gerono Lemniskate Torus 1; \
+"name: Gerono Lemniskate Torus 1; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \

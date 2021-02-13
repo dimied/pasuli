@@ -58,8 +58,7 @@ PASULI_V_END_PI| PASULI_CONST_COUNT(0),
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descBoysSurface =
-"start; \
-name: Boys Surface; \
+"name: Boys Surface; \
 ut:c; \
 vt:c; \
 us:pi: -0.5; \

@@ -394,8 +394,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(0),
 #endif
 #if(COMPILE_DESC_SPHERE != 0)
 char *descSphere = 
-"start; \
-name: sphere; \
+"name: sphere; \
 cat: sphere; \
 ut: c; \
 vt: c; \
@@ -449,8 +448,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_SPHERE != 0)
 char *descEllipsoid = 
-"start; \
-name: ellipsoid; \
+"name: ellipsoid; \
 cat: sphere; \
 ut: c; \
 vt: c; \
@@ -508,8 +506,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(0),
 #endif
 #if(COMPILE_DESC_SPHERE != 0)
 char *descSphereV =
-"start; \
-name: sphere v; \
+"name: sphere v; \
 cat: sphere; \
 ut: c; \
 vt: c; \
@@ -562,8 +559,7 @@ PASULI_FULL_IMPL|PASULI_U_CLOSED|PASULI_V_CLOSED,
 #endif
 #if(COMPILE_DESC_SPHERE != 0)
 char *descOpenSphere = 
-"start; \
-name: open sphere; \
+"name: open sphere; \
 cat: sphere; \
 ut: o; \
 vt: o; \
@@ -616,8 +612,7 @@ PASULI_FULL_IMPL|PASULI_U_CLOSED|PASULI_V_CLOSED,
 #endif
 #if(COMPILE_DESC_SPHERE != 0)
 char *descSphereUV = 
-"start; \
-name: sphere uv; \
+"name: sphere uv; \
 cat: sphere; \
 ut: c; \
 vt: c; \
@@ -672,8 +667,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SPHERE != 0)
 char *descTwistedSphere =
-"start; \
-name: twisted sphere; \
+"name: twisted sphere; \
 cat: sphere; \
 ut: c; \
 vt: c; \
@@ -729,8 +723,7 @@ PASULI_FULL_IMPL,
 #endif
 #if(COMPILE_DESC_SPHERE != 0)
 char *descWaveSphere = 
-"start; \
-name: wave sphere; \
+"name: wave sphere; \
 cat: sphere; \
 ut: c; \
 vt: c; \
@@ -785,8 +778,7 @@ PASULI_FULL_IMPL,
 #endif
 #if(COMPILE_DESC_SPHERE != 0)
 char *descPseudoSphere = 
-"start; \
-name: pseudo sphere; \
+"name: pseudo sphere; \
 cat: sphere; \
 ut: c; \
 vt: c; \

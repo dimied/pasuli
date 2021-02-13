@@ -13,6 +13,9 @@ doall: #*.c #*.o surfaces/*.o
 doopt:
 	gcc -Os -o ex_opt  ${FILES} -lm
 
+filegen:
+	gcc -Os -o gen_files temp_gen.c
+
 # For Ubuntu: You need to install freeglut3 package
 opengl:
 	gcc -o ex_ogl  opengl_sample.c ${FILES1} ${FILES2} ${FILES3} -lm -lGL -lGLU -lglut

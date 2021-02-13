@@ -73,8 +73,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descCassinianOvalTorus1 =
-"start; \
-name: Cassinian Oval Torus 1; \
+"name: Cassinian Oval Torus 1; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \

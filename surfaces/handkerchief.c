@@ -49,8 +49,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_FULL_IMPL,
 #endif
 #if(COMPILE_DESC_SURFACES != 0)
 char *descHandkerchief =
-"start; \
-name: Handkerchief; \
+"name: Handkerchief; \
 ut: c; \
 vt: c; \
 us: -1; \

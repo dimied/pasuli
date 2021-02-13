@@ -61,8 +61,7 @@ PASULI_CONST_COUNT(1),
 */
 #if(COMPILE_DESC_SURFACES != 0)
 char *descMoebiusBand =
-"start; \
-name: Moebius Band; \
+"name: Moebius Band; \
 ut: c; \
 vt: c; \
 us: -1; \

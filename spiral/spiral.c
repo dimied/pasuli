@@ -107,8 +107,7 @@ PASULI_U_CLOSED|PASULI_FULL_IMPL|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SPIRAL != 0)
 char *descArchimedicSpiral = 
-"start; \
-name: Archimedic Spiral; \
+"name: Archimedic Spiral; \
 cat: spiral; \
 ut: c; \
 vt: o; \
@@ -157,8 +156,7 @@ PASULI_U_CLOSED|PASULI_FULL_IMPL|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SPIRAL != 0)
 char *descHyperbolicSpiral = 
-"start; \
-name: Hyperbolic Spiral; \
+"name: Hyperbolic Spiral; \
 cat: spiral; \
 ut: c; \
 vt: o; \
@@ -207,8 +205,7 @@ PASULI_U_CLOSED|PASULI_FULL_IMPL|PASULI_CONST_COUNT(1),
 #endif
 #if(COMPILE_DESC_SPIRAL != 0)
 char *descFermatSpiral = 
-"start; \
-name: Fermat Spiral; \
+"name: Fermat Spiral; \
 cat: spiral; \
 ut: c; \
 vt: o; \
@@ -258,8 +255,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SPIRAL != 0)
 char *descTanhSpiral = 
-"start; \
-name: Tanh Spiral; \
+"name: Tanh Spiral; \
 cat: spiral; \
 ut: c; \
 vt: o; \
@@ -326,8 +322,7 @@ PASULI_U_CLOSED|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_SPIRAL != 0)
 char *descLogSpiral = 
-"start; \
-name: Log Spiral; \
+"name: Log Spiral; \
 cat: spiral; \
 ut: c; \
 vt: o; \

@@ -68,8 +68,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descSpiralTorus =
-"start; \
-name: SpiralTorus; \
+"name: SpiralTorus; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \

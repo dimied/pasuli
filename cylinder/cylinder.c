@@ -352,8 +352,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(1) ,
 #endif
 #if(COMPILE_DESC_CYLINDER != 0)
 char *descCylinder = 
-"start; \
-name: cylinder; \
+"name: cylinder; \
 ut: c; \
 vt: o; \
 us: pi : -1; \
@@ -403,8 +402,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_CYLINDER != 0)
 char* descEpizykloidCylinder = 
-"start; \
-name: Epizykloid-Cylinder; \
+"name: Epizykloid-Cylinder; \
 ut: c; \
 vt: o; \
 us: pi : -1; \
@@ -455,8 +453,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_CYLINDER != 0)
 char* descHypozykloidCylinder = 
-"start; \
-name: Hypozykloid-Cylinder; \
+"name: Hypozykloid-Cylinder; \
 ut: c; \
 vt: o; \
 us: pi : -1; \
@@ -507,8 +504,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_CYLINDER != 0)
 char *descLemniskateCylinder = 
-"start; \
-name: Lemniskate-Cylinder; \
+"name: Lemniskate-Cylinder; \
 ut: c; \
 vt: o; \
 us: pi : -1; \
@@ -559,8 +555,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_CYLINDER != 0)
 char *descStrophoideCylinder = 
-"start; \
-name: Strophoide-Cylinder; \
+"name: Strophoide-Cylinder; \
 ut: c; \
 vt: o; \
 us: pi : -1; \
@@ -611,8 +606,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_CYLINDER != 0)
 char *descZissoideCylinder = 
-"start; \
-name: Zissoide-Cylinder; \
+"name: Zissoide-Cylinder; \
 ut: c; \
 vt: o; \
 us: pi : -1; \
@@ -663,8 +657,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 #endif
 #if(COMPILE_DESC_CYLINDER != 0)
 char *descVACylinder = 
-"start; \
-name: Versiera-Agnesi-Cylinder; \
+"name: Versiera-Agnesi-Cylinder; \
 ut: c; \
 vt: o; \
 us: pi : -1; \
@@ -715,8 +708,7 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(3),
 #endif
 #if(COMPILE_DESC_CYLINDER != 0)
 char *descGaussCylinder = 
-"start; \
-name: Gauss-Cylinder; \
+"name: Gauss-Cylinder; \
 ut: c; \
 vt: o; \
 us: pi : -1; \

@@ -70,8 +70,7 @@ PASULI_V_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descGearTorus =
-"start; \
-name: GearTorus; \
+"name: GearTorus; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \

@@ -48,8 +48,7 @@ PaSuLiDefDesc pslddMonkeySaddle = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descMonkeySaddle =
-    "start; \
-name: Monkey Saddle; \
+    "name: Monkey Saddle; \
 ut:c; \
 vt:c; \
 us: -1; \

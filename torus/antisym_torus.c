@@ -85,8 +85,7 @@ PASULI_U_END_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 
 #if(COMPILE_DESC_TORUS != 0)
 char* descAntisymmetricTorus =
-"start; \
-name: Antisymmetric Torus; \
+"name: Antisymmetric Torus; \
 cat: torus; \
 ut: c; \
 vt: c; \

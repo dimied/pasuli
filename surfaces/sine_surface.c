@@ -60,8 +60,7 @@ PaSuLiDefDesc pslddSineSurface = {
 
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSineSurface =
-    "start; \
-name: Sine Surface; \
+    "name: Sine Surface; \
 ut:c; vt:c; \
 us:pi:-1; ue:pi:1; \
 vs:pi:-1; ve:pi:1; \

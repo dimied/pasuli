@@ -69,8 +69,7 @@ PASULI_CONST_COUNT(2),
 #if(COMPILE_DESC_SURFACES != 0)
 //TODO TODO TODO
 char *descKleinBottleSurface =
-"start; \
-name: Klein Bottle Surface; \
+"name: Klein Bottle Surface; \
 ut:c; \
 vt:c; \
 us: 0;  \

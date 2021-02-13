@@ -58,8 +58,7 @@ PaSuLiDefDesc pslddRomanSurface = {
 
 #if (COMPILE_DESC_SURFACES != 0)
 char *descRomanSurface =
-    "start; \
-name: Roman Surface; \
+    "name: Roman Surface; \
 ut:c; \
 vt:c; \
 us: 0; \

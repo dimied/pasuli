@@ -32,265 +32,966 @@
 #include "hennebergs_surface.h"
 #include "swallow_surface.h"
 #include "wallis_conical_surface.h"
+#include "maeders_owl.h"
+#include "richmond_surface.h"
+#include "scherk_surface.h"
+#include "cosine_surface.h"
+#include "eight_surface.h"
+#include "jet_surface.h"
+#include "drop.h"
 
-#ifndef __PASULI_DINI_SURFACE__
-#define __PASULI_DINI_SURFACE__
+#ifndef __PASULI_TRIAXIAL_TEARDROP__
+#define __PASULI_TRIAXIAL_TEARDROP__
 
 #include "../pasuli_cfg.h"
 #include "../pasuli_defs.h"
-#if (USE_ENNEPER_SURFACE != 0)
+
+#if (USE_TRIAXIAL_TEARDROP != 0)
+void TriaxialTeardrop(double u, double v,
+					  double *constants,
+					  PaSuLiObject *pO);
 #endif
 
 #endif
 
-#if(COMPILE_SURFACES != 0)
-
-void MaedersOwl(double u, double v, 
-				double* constants, PaSuLiObject* pO);
-
-void RichmondSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void ScherkSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void CosineSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void EightSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void JetSurface(double u, double v, 
-				double* constants, PaSuLiObject* pO);
-
-void Drop(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void TriaxialTeardrop(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void PillowShape(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void FishSurface(double u, double v, 
-				 double* constants, PaSuLiObject* pO);
-
-void Horn(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void BentHorns(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void HyperbolicOctahedron(double u, double v, 
-							double* constants, PaSuLiObject* pO);
-
-void PseudoCrossCap(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void Cresent(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void StilettoSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void KuensSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void TrefoilKnots(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void TranguloidTrefoil(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void Crown(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void TwistedPipeSurface(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void Loop(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void DupinCyclide(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void GuimardSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void MennsSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void MilkBag(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void TriaxialTritorus(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void VerrillSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void ZindlersConoid(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void Folium(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Lemniscape(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void TriplePointTwist(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void Trashcan(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Spring1(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Spring2(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Cone(double u, double v, 
-			double* constants, PaSuLiObject* pO);
-
-void Egg(double u, double v, double* constants, PaSuLiObject* pO);
-
-void Isolator(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void HyperbolicParaboloid(double u, double v, 
-							double* constants, PaSuLiObject* pO);
-
-void DropSurface(double u, double v, 
-				double* constants, PaSuLiObject* pO);
-
-void FacingSnail(double u, double v, 
-				double* constants, PaSuLiObject* pO);
-
-void PaperBag(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void JeenerKleinSurface(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void BonanJeenerKleinSurface(double u, double v, 
-							double* constants, PaSuLiObject* pO);
-
-void KleinCycloid(double u, double v, 
-				double* constants, PaSuLiObject* pO);
-
-void DoubleCone(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void HoleDisc(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void PisotTriaxial(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void TriaxialHexatorus(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void TwistedHeart(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void HoleDiscus(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Disc(double u, double v, 
-			double* constants, PaSuLiObject* pO);
-
-void Waves(double u, double v, double* constants, PaSuLiObject* pO);
-
-void SineWave(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void CosineWave(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void SpiralWave(double u, double v, 
-				double* constants, PaSuLiObject* pO);
-
-void Bell(double u, double v, 
-			double* constants, PaSuLiObject* pO);
-
-void BellPolar(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void BellWave(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Soucoupoid(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void EnneperSurfacePolar(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void SineCone(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Spinner(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Fresnel(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void TrefoilKnots2(double u, double v, 
-				double* constants, PaSuLiObject* pO);
-
-void BowCurve(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void TripleCorkScrew1(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void TripleCorkScrew2(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void TripleCorkScrew3(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void BicornSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void PiriformSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void KappaSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void BulletNose(double u, double v, 
-				double* constants, PaSuLiObject* pO);
-
-void SievertSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void CosineSurface2(double u, double v, 
-					double* constants, PaSuLiObject* pO);
+#ifndef __PASULI_PILLOW_SHAPE__
+#define __PASULI_PILLOW_SHAPE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_PILLOW_SHAPE != 0)
+void PillowShape(double u, double v,
+				 double *constants,
+				 PaSuLiObject *pO);
+#endif
 
 #endif
 
-#if(COMPILE_DESC_SURFACES != 0)
-extern char *descBohemianDomeSurface;
-extern char *descBoysSurface;			// ?!?
-extern char *descCrossCup;
-extern char *descDiniSurface;
-extern char *descEnneperSurface;
-extern char *descHandkerchief;
-extern char *descKleinBottleSurface;	//?!?
-extern char *descMoebiusBand;
-extern char *descMonkeySaddle;
-extern char *descPlueckerConoid;
-extern char *descRomanSurface;
-extern char *descShoeSurface;
-extern char *descSineSurface;
-extern char *descSteinbachScrew;
-extern char *descWhitneyUmbrella;
-extern char *descCatenoid;
-extern char *descHelicoid;
-extern char *descParaboloid;
-extern char *descHyperbolicHelicoid;
-extern char *descFunnel;
+#ifndef __PASULI_FISH_SURFACE__
+#define __PASULI_FISH_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_FISH_SURFACE != 0)
+void FishSurface(double u, double v,
+				 double *constants,
+				 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_HORN__
+#define __PASULI_HORN__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_HORN != 0)
+void Horn(double u, double v,
+		  double *constants,
+		  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_BENT_HORNS__
+#define __PASULI_BENT_HORNS__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_BENT_HORNS != 0)
+void BentHorns(double u, double v,
+			   double *constants,
+			   PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_HYPERBOLIC_OCTAHEDRON__
+#define __PASULI_HYPERBOLIC_OCTAHEDRON__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_HYPERBOLIC_OCTAHEDRON != 0)
+void HyperbolicOctahedron(double u, double v,
+						  double *constants,
+						  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_PSEUDO_CROSS_CAP__
+#define __PASULI_PSEUDO_CROSS_CAP__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_PSEUDO_CROSS_CAP != 0)
+void PseudoCrossCap(double u, double v,
+					double *constants,
+					PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_CRESENT__
+#define __PASULI_CRESENT__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_CRESENT != 0)
+void Cresent(double u, double v,
+			 double *constants,
+			 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_STILETTO_SURFACE__
+#define __PASULI_STILETTO_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_STILETTO_SURFACE != 0)
+void StilettoSurface(double u, double v,
+					 double *constants,
+					 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_KUENS_SURFACE__
+#define __PASULI_KUENS_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_KUENS_SURFACE != 0)
+void KuensSurface(double u, double v,
+				  double *constants,
+				  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_TREFOIL_KNOTS__
+#define __PASULI_TREFOIL_KNOTS__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_TREFOIL_KNOTS != 0)
+void TrefoilKnots(double u, double v,
+				  double *constants,
+				  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_TRANGULOID_TREFOIL__
+#define __PASULI_TRANGULOID_TREFOIL__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_TRANGULOID_TREFOIL != 0)
+void TranguloidTrefoil(double u, double v,
+					   double *constants,
+					   PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_CROWN__
+#define __PASULI_CROWN__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_CROWN != 0)
+void Crown(double u, double v,
+		   double *constants,
+		   PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_TWISTED_PIPE_SURFACE__
+#define __PASULI_TWISTED_PIPE_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_TWISTED_PIPE_SURFACE != 0)
+void TwistedPipeSurface(double u, double v,
+						double *constants,
+						PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_LOOP__
+#define __PASULI_LOOP__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_LOOP != 0)
+void Loop(double u, double v,
+		  double *constants,
+		  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_DUPIN_CYCLIDE__
+#define __PASULI_DUPIN_CYCLIDE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_DUPIN_CYCLIDE != 0)
+void DupinCyclide(double u, double v,
+				  double *constants,
+				  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_GUIMARD_SURFACE__
+#define __PASULI_GUIMARD_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_GUIMARD_SURFACE != 0)
+void GuimardSurface(double u, double v,
+					double *constants,
+					PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_MENNS_SURFACE__
+#define __PASULI_MENNS_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_MENNS_SURFACE != 0)
+void MennsSurface(double u, double v,
+				  double *constants,
+				  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_MILK_BAG__
+#define __PASULI_MILK_BAG__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_MILK_BAG != 0)
+void MilkBag(double u, double v,
+			 double *constants,
+			 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_TRIAXIAL_TRITORUS__
+#define __PASULI_TRIAXIAL_TRITORUS__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_TRIAXIAL_TRITORUS != 0)
+void TriaxialTritorus(double u, double v,
+					  double *constants,
+					  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_VERRILL_SURFACE__
+#define __PASULI_VERRILL_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_VERRILL_SURFACE != 0)
+void VerrillSurface(double u, double v,
+					double *constants,
+					PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_ZINDLERS_CONOID__
+#define __PASULI_ZINDLERS_CONOID__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_ZINDLERS_CONOID != 0)
+void ZindlersConoid(double u, double v,
+					double *constants,
+					PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_FOLIUM__
+#define __PASULI_FOLIUM__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_FOLIUM != 0)
+void Folium(double u, double v,
+			double *constants,
+			PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_LEMNISCAPE__
+#define __PASULI_LEMNISCAPE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_LEMNISCAPE != 0)
+void Lemniscape(double u, double v,
+				double *constants,
+				PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_TRIPLE_POINT_TWIST__
+#define __PASULI_TRIPLE_POINT_TWIST__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_TRIPLE_POINT_TWIST != 0)
+void TriplePointTwist(double u, double v,
+					  double *constants,
+					  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_TRASHCAN__
+#define __PASULI_TRASHCAN__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_TRASHCAN != 0)
+void Trashcan(double u, double v,
+			  double *constants,
+			  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_SPRING1__
+#define __PASULI_SPRING1__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_SPRING1 != 0)
+void Spring1(double u, double v,
+			 double *constants,
+			 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_SPRING2__
+#define __PASULI_SPRING2__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_SPRING2 != 0)
+void Spring2(double u, double v,
+			 double *constants,
+			 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_CONE__
+#define __PASULI_CONE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_CONE != 0)
+void Cone(double u, double v,
+		  double *constants,
+		  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_EGG__
+#define __PASULI_EGG__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_EGG != 0)
+void Egg(double u, double v,
+		 double *constants,
+		 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_ISOLATOR__
+#define __PASULI_ISOLATOR__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_ISOLATOR != 0)
+void Isolator(double u, double v,
+			  double *constants,
+			  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_HYPERBOLIC_PARABOLOID__
+#define __PASULI_HYPERBOLIC_PARABOLOID__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_HYPERBOLIC_PARABOLOID != 0)
+void HyperbolicParaboloid(double u, double v,
+						  double *constants,
+						  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_DROP_SURFACE__
+#define __PASULI_DROP_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_DROP_SURFACE != 0)
+void DropSurface(double u, double v,
+				 double *constants,
+				 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_FACING_SNAIL__
+#define __PASULI_FACING_SNAIL__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_FACING_SNAIL != 0)
+void FacingSnail(double u, double v,
+				 double *constants,
+				 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_PAPER_BAG__
+#define __PASULI_PAPER_BAG__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_PAPER_BAG != 0)
+void PaperBag(double u, double v,
+			  double *constants,
+			  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_JEENER_KLEIN_SURFACE__
+#define __PASULI_JEENER_KLEIN_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_JEENER_KLEIN_SURFACE != 0)
+void JeenerKleinSurface(double u, double v,
+						double *constants,
+						PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_BONAN_JEENER_KLEIN_SURFACE__
+#define __PASULI_BONAN_JEENER_KLEIN_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_BONAN_JEENER_KLEIN_SURFACE != 0)
+void BonanJeenerKleinSurface(double u, double v,
+							 double *constants,
+							 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_KLEIN_CYCLOID__
+#define __PASULI_KLEIN_CYCLOID__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_KLEIN_CYCLOID != 0)
+void KleinCycloid(double u, double v,
+				  double *constants,
+				  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_DOUBLE_CONE__
+#define __PASULI_DOUBLE_CONE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_DOUBLE_CONE != 0)
+void DoubleCone(double u, double v,
+				double *constants,
+				PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_HOLE_DISC__
+#define __PASULI_HOLE_DISC__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_HOLE_DISC != 0)
+void HoleDisc(double u, double v,
+			  double *constants,
+			  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_PISOT_TRIAXIAL__
+#define __PASULI_PISOT_TRIAXIAL__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_PISOT_TRIAXIAL != 0)
+void PisotTriaxial(double u, double v,
+				   double *constants,
+				   PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_TRIAXIAL_HEXATORUS__
+#define __PASULI_TRIAXIAL_HEXATORUS__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_TRIAXIAL_HEXATORUS != 0)
+void TriaxialHexatorus(double u, double v,
+					   double *constants,
+					   PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_TWISTED_HEART__
+#define __PASULI_TWISTED_HEART__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_TWISTED_HEART != 0)
+void TwistedHeart(double u, double v,
+				  double *constants,
+				  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_HOLE_DISCUS__
+#define __PASULI_HOLE_DISCUS__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_HOLE_DISCUS != 0)
+void HoleDiscus(double u, double v,
+				double *constants,
+				PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_DISC__
+#define __PASULI_DISC__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_DISC != 0)
+void Disc(double u, double v,
+		  double *constants,
+		  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_WAVES__
+#define __PASULI_WAVES__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_WAVES != 0)
+void Waves(double u, double v,
+		   double *constants,
+		   PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_SINE_WAVE__
+#define __PASULI_SINE_WAVE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_SINE_WAVE != 0)
+void SineWave(double u, double v,
+			  double *constants,
+			  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_COSINE_WAVE__
+#define __PASULI_COSINE_WAVE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_COSINE_WAVE != 0)
+void CosineWave(double u, double v,
+				double *constants,
+				PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_SPIRAL_WAVE__
+#define __PASULI_SPIRAL_WAVE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_SPIRAL_WAVE != 0)
+void SpiralWave(double u, double v,
+				double *constants,
+				PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_BELL__
+#define __PASULI_BELL__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_BELL != 0)
+void Bell(double u, double v,
+		  double *constants,
+		  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_BELL_POLAR__
+#define __PASULI_BELL_POLAR__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_BELL_POLAR != 0)
+void BellPolar(double u, double v,
+			   double *constants,
+			   PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_BELL_WAVE__
+#define __PASULI_BELL_WAVE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_BELL_WAVE != 0)
+void BellWave(double u, double v,
+			  double *constants,
+			  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_SOUCOUPOID__
+#define __PASULI_SOUCOUPOID__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_SOUCOUPOID != 0)
+void Soucoupoid(double u, double v,
+				double *constants,
+				PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_ENNEPER_SURFACE_POLAR__
+#define __PASULI_ENNEPER_SURFACE_POLAR__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_ENNEPER_SURFACE_POLAR != 0)
+void EnneperSurfacePolar(double u, double v,
+						 double *constants,
+						 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_SINE_CONE__
+#define __PASULI_SINE_CONE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_SINE_CONE != 0)
+void SineCone(double u, double v,
+			  double *constants,
+			  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_SPINNER__
+#define __PASULI_SPINNER__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_SPINNER != 0)
+void Spinner(double u, double v,
+			 double *constants,
+			 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_FRESNEL__
+#define __PASULI_FRESNEL__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_FRESNEL != 0)
+void Fresnel(double u, double v,
+			 double *constants,
+			 PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_TREFOIL_KNOTS2__
+#define __PASULI_TREFOIL_KNOTS2__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_TREFOIL_KNOTS2 != 0)
+void TrefoilKnots2(double u, double v,
+				   double *constants,
+				   PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_BOW_CURVE__
+#define __PASULI_BOW_CURVE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_BOW_CURVE != 0)
+void BowCurve(double u, double v,
+			  double *constants,
+			  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_TRIPLE_CORK_SCREW1__
+#define __PASULI_TRIPLE_CORK_SCREW1__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_TRIPLE_CORK_SCREW1 != 0)
+void TripleCorkScrew1(double u, double v,
+					  double *constants,
+					  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_TRIPLE_CORK_SCREW2__
+#define __PASULI_TRIPLE_CORK_SCREW2__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_TRIPLE_CORK_SCREW2 != 0)
+void TripleCorkScrew2(double u, double v,
+					  double *constants,
+					  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_TRIPLE_CORK_SCREW3__
+#define __PASULI_TRIPLE_CORK_SCREW3__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_TRIPLE_CORK_SCREW3 != 0)
+void TripleCorkScrew3(double u, double v,
+					  double *constants,
+					  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_BICORN_SURFACE__
+#define __PASULI_BICORN_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_BICORN_SURFACE != 0)
+void BicornSurface(double u, double v,
+					  double *constants,
+					  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_PIRIFORM_SURFACE__
+#define __PASULI_PIRIFORM_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_PIRIFORM_SURFACE != 0)
+void PiriformSurface(double u, double v,
+					  double *constants,
+					  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_KAPPA_SURFACE__
+#define __PASULI_KAPPA_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_KAPPA_SURFACE != 0)
+void KappaSurface(double u, double v,
+					  double *constants,
+					  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_BULLET_NOSE__
+#define __PASULI_BULLET_NOSE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_BULLET_NOSE != 0)
+void BulletNose(double u, double v,
+					  double *constants,
+					  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_SIEVERT_SURFACE__
+#define __PASULI_SIEVERT_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_SIEVERT_SURFACE != 0)
+void SievertSurface(double u, double v,
+					  double *constants,
+					  PaSuLiObject *pO);
+#endif
+
+#endif
+
+#ifndef __PASULI_COSINE_SURFACE2__
+#define __PASULI_COSINE_SURFACE2__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_COSINE_SURFACE2 != 0)
+void CosineSurface2(double u, double v,
+					  double *constants,
+					  PaSuLiObject *pO);
+#endif
+
+#endif
+
 extern char *descTractroid;
 extern char *descCatalansSurface;
 extern char *descHyperboloid;
@@ -372,17 +1073,14 @@ extern char *descKappaSurface;
 extern char *descBulletNose;
 extern char *descSievertSurface;
 extern char *descCosineSurface2;
-#endif
 
-
-#if(COMPILE_DEF_DESC_SURFACES != 0)
 extern PaSuLiDefDesc pslddBohemianDomeSurface;
-extern PaSuLiDefDesc pslddBoysSurface;			// ?!?
+extern PaSuLiDefDesc pslddBoysSurface; // ?!?
 extern PaSuLiDefDesc pslddCrossCup;
 extern PaSuLiDefDesc pslddDiniSurface;
 extern PaSuLiDefDesc pslddEnneperSurface;
 extern PaSuLiDefDesc pslddHandkerchief;
-extern PaSuLiDefDesc pslddKleinBottleSurface;	//?!?
+extern PaSuLiDefDesc pslddKleinBottleSurface; //?!?
 extern PaSuLiDefDesc pslddMoebiusBand;
 extern PaSuLiDefDesc pslddMonkeySaddle;
 extern PaSuLiDefDesc pslddPlueckerConoid;
@@ -477,6 +1175,5 @@ extern PaSuLiDefDesc pslddKappaSurface;
 extern PaSuLiDefDesc pslddBulletNose;
 extern PaSuLiDefDesc pslddSievertSurface;
 extern PaSuLiDefDesc pslddCosineSurface2;
-#endif
 
 #endif

@@ -56,8 +56,7 @@ PaSuLiDefDesc pslddSteinbachScrew = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSteinbachScrew =
-    "start; \
-name: Steinbach Screw; \
+    "name: Steinbach Screw; \
 ut:c; \
 vt:c; \
 us: -4; \

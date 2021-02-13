@@ -57,8 +57,7 @@ PaSuLiDefDesc pslddSwallowSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSwallowSurface =
-    "start; \
-name: Swallow Surface; \
+    "name: Swallow Surface; \
 ut:c; \
 vt:c; \
 us: -2; \

@@ -69,8 +69,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(5),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descTorusKnot =
-"start; \
-name: TorusKnot; \
+"name: Torus Knot; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \

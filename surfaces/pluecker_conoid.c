@@ -49,8 +49,7 @@ PaSuLiDefDesc pslddPlueckerConoid = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descPlueckerConoid =
-    "start; \
-name: Pluecker Conoid; \
+    "name: Pluecker Conoid; \
 ut:c; \
 vt:c; \
 us: -2; \

@@ -69,8 +69,7 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(4),
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descCurlyTorus2 =
-"start; \
-name: Curly Torus 2; \
+"name: Curly Torus 2; \
 cat: torus; \
 us: 0; \
 ue:pi:2; \

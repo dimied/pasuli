@@ -57,8 +57,7 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 */
 #if(COMPILE_DESC_SURFACES != 0)
 char *descDiniSurface =
-"start; \
-name: Dini Surface; \
+"name: Dini Surface; \
 ut:c; \
 vt:c; \
 us: 0; \

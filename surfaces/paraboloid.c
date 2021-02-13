@@ -55,8 +55,7 @@ PASULI_U_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 */
 #if(COMPILE_DESC_SURFACES != 0)
 char *descParaboloid =
-"start; \
-name: Paraboloid; \
+"name: Paraboloid; \
 ut:c; \
 vt:c; \
 us:pi: -1; \
