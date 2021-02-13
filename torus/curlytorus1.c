@@ -71,14 +71,14 @@ char* descCurlyTorus1 =
 "start; \
 name: Curly Torus 1; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R1: 1.0; \
-c:2:R2: 1.0; \
-c:3:r: 1.0; \
-c:4:n: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R1: 1.0; \
+c2:R2: 1.0; \
+c3:r: 1.0; \
+c4:n: 1.0; \
 x: (R1 + r*cos(v))*cos(u); \
 y: r*sin(v) + R2*sin(n*u); \
 z: (R1 + r*cos(v))*sin(u); "

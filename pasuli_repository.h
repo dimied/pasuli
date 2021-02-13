@@ -12,7 +12,14 @@ extern unsigned int numberOfPasuliRepositoryItems;
  * 
  * \param [in] id ID of the surface
  */
-
 parsurFunc findPasuliFunctionById(unsigned int id);
+
+/**
+ * \brief Tries to find default constants for the function of the given ID 
+ * of the parametric surface
+ * 
+ * \param [in] id ID of the surface
+ */
+int findDefaultConstants(unsigned int id, double* pConstants, int size);
 
 #endif

@@ -71,12 +71,12 @@ char* descGeronoLemniskateTorus2 =
 "start; \
 name: Gerono Lemniskate Torus 2; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R:1.0; \
-c:2:1: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R:1.0; \
+c2:1: 1.0; \
 a:1:F: r*sin(v); \
 a:2:G: F*cos(v); \
 x = (R + G)*cos(u); \

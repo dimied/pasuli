@@ -397,12 +397,12 @@ char *descSphere =
 "start; \
 name: sphere; \
 cat: sphere; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend:pi: 2; \
-vstart: 0; \
-vend:pi: 1; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue:pi: 2; \
+vs: 0; \
+ve:pi: 1; \
 x: cos(u)*sin(v); \
 y: sin(u)*sin(v); \
 z: cos(v); "
@@ -452,15 +452,15 @@ char *descEllipsoid =
 "start; \
 name: ellipsoid; \
 cat: sphere; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi : 2; \
-vstart: 0; \
-vend: pi : 1; \
-c:1:a: 1.5; \
-c:2:b: 1.0; \
-c:3:c: 1.0; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: pi : 2; \
+vs: 0; \
+ve: pi : 1; \
+c1:a: 1.5; \
+c2:b: 1.0; \
+c3:c: 1.0; \
 x: a*cos(u)*sin(v); \
 y: b*sin(u)*sin(v); \
 z: c*cos(v); "
@@ -511,12 +511,12 @@ char *descSphereV =
 "start; \
 name: sphere v; \
 cat: sphere; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi : 1; \
-vstart: pi : -1; \
-vend: pi : 1; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: pi : 1; \
+vs: pi : -1; \
+ve: pi : 1; \
 x: cos(u)*cos(v); \
 y: sin(v); \
 z: sin(u)*cos(v); "
@@ -565,12 +565,12 @@ char *descOpenSphere =
 "start; \
 name: open sphere; \
 cat: sphere; \
-utype: open; \
-vtype: open; \
-ustart: -10; \
-uend: 10; \
-vstart: -10; \
-vend: 10; \
+ut: o; \
+vt: o; \
+us: -10; \
+ue: 10; \
+vs: -10; \
+ve: 10; \
 x: 2*u/(1 + u*u + v*v); \
 y: (u*u + v*v - 1)/(1 + u*u + v*v); \
 z: 2*v/(1 + u*u + v*v); "
@@ -619,12 +619,12 @@ char *descSphereUV =
 "start; \
 name: sphere uv; \
 cat: sphere; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: 10; \
-vstart: -10; \
-vend: 10; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: 10; \
+vs: -10; \
+ve: 10; \
 x: 2*u*(1 - v*v)/((1 + u*u)*(1 + v*v)); \
 y: (1 - u*u)/(1 + u*u); \
 z: (4*u*v)/((1 + u*u)*(1 + v*v)); "
@@ -675,14 +675,14 @@ char *descTwistedSphere =
 "start; \
 name: twisted sphere; \
 cat: sphere; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi : 2; \
-vstart: pi : -1; \
-vend: pi : 1; \
-c:1:a: 1.0; \
-c:2:b: 1.0; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: pi : 2; \
+vs: pi : -1; \
+ve: pi : 1; \
+c1:a: 1.0; \
+c2:b: 1.0; \
 x: a*cos(u)*cos(v); \
 y: a*sin(v) + b*u; \
 z: a*sin(u)*cos(v); "
@@ -732,12 +732,12 @@ char *descWaveSphere =
 "start; \
 name: wave sphere; \
 cat: sphere; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: 14; \
-vstart: 0; \
-vend: pi : 2; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: 14; \
+vs: 0; \
+ve: pi : 2; \
 x: u*cos(cos(u))*cos(v); \
 y: u*cos(cos(u))*sin(v); \
 z: u*sin(cos(u)); "
@@ -788,12 +788,12 @@ char *descPseudoSphere =
 "start; \
 name: pseudo sphere; \
 cat: sphere; \
-utype: closed; \
-vtype: closed; \
-ustart: pi : -1; \
-uend: pi : 1; \
-vstart: 0.1; \
-vend: 3.10; \
+ut: c; \
+vt: c; \
+us: pi : -1; \
+ue: pi : 1; \
+vs: 0.1; \
+ve: 3.10; \
 x: cos(u)*sin(v); \
 y: sin(u)*sin(v); \
 z: cos(v) + log(tan(v/2)); "

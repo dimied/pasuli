@@ -294,18 +294,21 @@ void parsePaSuLiDesc(char* szDescString, PaSuLiTextDesc *pPSLD) {
 									
 			case PASULI_TEXT_DESC_CAT:
 									break;
-			case PASULI_TEXT_DESC_UTYPE:
+									/*
+			case PASULI_TEXT_DESC_ut:
 									break;						
-			case PASULI_TEXT_DESC_VTYPE:
+			case PASULI_TEXT_DESC_vt:
 									break;
-			case PASULI_TEXT_DESC_USTART:
+									
+			case PASULI_TEXT_DESC_us:
 									break;
-			case PASULI_TEXT_DESC_UEND:
+			case PASULI_TEXT_DESC_ue:
 									break;
-			case PASULI_TEXT_DESC_VSTART:
+			case PASULI_TEXT_DESC_vs:
 									break;
-			case PASULI_TEXT_DESC_VEND:
+			case PASULI_TEXT_DESC_ve:
 									break;
+									*/
 			
 			case PASULI_TEXT_DESC_CONSTANT:
 									break;

@@ -14,6 +14,7 @@ char *descPlane =
 ut:o; vt:o; \
 us: 0; ue: 1; vs: 0; ve: 1; \
 x: u; y: v; z: 0; \
+c1:z:0; \
 xu:1); yu:0);zu:0); \
 xv:0); yv:1); zv:0); \
 xn:0); yn:0); zn:1); \
@@ -25,10 +26,11 @@ xvv:0); yvv:0); zvv: 0);";
 void Plane(double u, double v, double *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(PLANE)
+    double z = constants[0];
 
     P_X(u);
     P_Y(v);
-    P_Z_CONST(0);
+    P_Z(z);
 
     UD_X_CONST(1);
     UD_Y_CONST(0);

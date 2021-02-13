@@ -72,15 +72,15 @@ char* descTorusKnot =
 "start; \
 name: TorusKnot; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R1: 1.0; \
-c:2:R2: 1.0; \
-c:3:r: 1.0; \
-c:4:p: 1.0; \
-c:5:q: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R1: 1.0; \
+c2:R2: 1.0; \
+c3:r: 1.0; \
+c4:p: 1.0; \
+c5:q: 1.0; \
 a:1:F: (R1 + R2*cos(p*u) + r*cos(v)); \
 x: F*cos(q*u); \
 y: r*sin(v) + R2*sin(p*u); \

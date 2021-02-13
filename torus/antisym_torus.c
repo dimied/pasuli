@@ -88,15 +88,15 @@ char* descAntisymmetricTorus =
 "start; \
 name: Antisymmetric Torus; \
 cat: torus; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi: 2; \
-vstart: 0; \
-vend: pi: 2; \
-c:1:R: 1.5; \
-c:2:r: 0.5; \
-c:3:a: 1; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: pi: 2; \
+vs: 0; \
+ve: pi: 2; \
+c1:R: 1.5; \
+c2:r: 0.5; \
+c3:a: 1; \
 x: (R + r*cos(v)*(a + sin(u)))*cos(u); \
 y: (R + r*cos(v)*(a + sin(u)))*sin(u); \
 z: r*sin(v)*(a + sin(u)); "

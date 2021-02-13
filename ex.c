@@ -25,5 +25,9 @@ int main() {
 
     printf("#functions = %d\n\n", numberOfPasuliRepositoryItems);
 
+    double constants[10];
+
+    findDefaultConstants(1, constants, 10);
+
     return 0;
 }

@@ -204,12 +204,12 @@ char *descKidneySurface =
 "start; \
 name: Kidney Surface; \
 cat: fruits; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi : 2; \
-vstart: pi : -0.5; \
-vend: pi : 0.5; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: pi : 2; \
+vs: pi : -0.5; \
+ve: pi : 0.5; \
 x: cos(u)*(3*cos(v) - cos(3*v)); \
 y: sin(u)*(3*cos(v) - cos(3*v)); \
 z: 3*sin(v) - sin(3*v); "
@@ -259,13 +259,13 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_FULL_IMPL,
 char *descAppleSurface = 
 "start; \
 name: Apple Surface; \
-utype: closed; \
-vtype: closed; \
+ut: c; \
+vt: c; \
 cat: fruits; \
-ustart: 0; \
-uend: pi : 2 ; \
-vstart:pi: -1; \
-vend: pi : 1; \
+us: 0; \
+ue: pi : 2 ; \
+vs:pi: -1; \
+ve: pi : 1; \
 x: cos(u)*(4 + 3.8*cos(v)); \
 y: sin(u)*(4 + 3.8*cos(v)); \
 z: (cos(v)+sin(v)-1)*(1+sin(v))*log(1-pi*v/10)+7.5*sin(v); "
@@ -317,14 +317,14 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 char *descApple2_Surface = 
 "start; \
 name: Apple Surface (V2); \
-utype: closed; \
-vtype: closed; \
-ustart: pi : -1; \
-uend: pi : 1; \
-vstart: pi : -1; \
-vend: pi : 1; \
-c:1:R: 1.5; \
-c:2:r: 0.5; \
+ut: c; \
+vt: c; \
+us: pi : -1; \
+ue: pi : 1; \
+vs: pi : -1; \
+ve: pi : 1; \
+c1:R: 1.5; \
+c2:r: 0.5; \
 x: cos(u)*(R + r*cos(v)) + (v/pi)^(20); \
 y: sin(u)*(R + r*cos(v)) + 0.25*cos(5*u); \
 z: -2.3*log(1 - v*0.3157) + 6*sin(v) + 2*cos(v); "
@@ -379,14 +379,14 @@ char *descLemonSurface =
 "start; \
 name: Lemon Surface; \
 cat: fruits; \
-utype: closed; \
-vtype: closed; \
-ustart: f : -sqrt(R*R-r*r); \
-uend: f : sqrt(R*R-r*r); \
-vstart: 0; \
-vend: pi : 2; \
-c:1:R: 2; \
-c:2:r: 1; \
+ut: c; \
+vt: c; \
+us: f : -sqrt(R*R-r*r); \
+ue: f : sqrt(R*R-r*r); \
+vs: 0; \
+ve: pi : 2; \
+c1:R: 2; \
+c2:r: 1; \
 x: (sqrt(R^2 - u^2) - r)*sin(v); \
 y: (sqrt(R^2 - u^2) - r)*cos(v); \
 z: u; "

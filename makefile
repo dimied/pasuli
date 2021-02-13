@@ -1,5 +1,5 @@
 
-FILES1 = pasuli_const.c pasuli_approx.c pasuli_defs.c pasuli_repository.c
+FILES1 = pasuli_const.c pasuli_approx.c pasuli_defs.c pasuli_repository.c pasuli_repository_constdata.c
 FILES2 = cylinder/*.c fruits/*.c shells/*.c spiral/*.c sphere/*.c 
 FILES3 = superformula/*.c surfaces/*.c torus/*.c sf3d_examples.c
 

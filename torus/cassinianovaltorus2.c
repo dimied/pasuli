@@ -77,13 +77,13 @@ char* descCassinianOvalTorus2 =
 "start; \
 name: Cassinian Oval Torus 2; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R:1.0; \
-c:2:a: 1.0; \
-c:3:b: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R:1.0; \
+c2:a: 1.0; \
+c3:b: 1.0; \
 a:1:M: 2*a*a*cos(2*v) + 2*sqrt((-a^{4} + b^{4}) + a^{4}*cos(2*v)^{2}); \
 x: (R + sqrt(M/2)*sin(v))*cos(u); \
 y: sqrt(M/2)*cos(v); \

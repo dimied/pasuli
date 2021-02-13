@@ -6,62 +6,37 @@
 #include <math.h>
 
 #include "plane.h"
+#include "bohemian_dome_surface.h"
+#include "boys_surface.h"
+#include "cross_cup.h"
+#include "dini_surface.h"
+#include "enneper_surface.h"
+#include "handkerchief.h"
+#include "klein_bottle_surface.h"
+#include "moebius_band.h"
+#include "monkey_saddle.h"
+#include "pluecker_conoid.h"
+#include "roman_surface.h"
+#include "shoe_surface.h"
+#include "sine_surface.h"
+#include "steinbach_screw.h"
+#include "whitney_umbrella.h"
+#include "catenoid.h"
+#include "helicoid.h"
+#include "paraboloid.h"
 
+
+#ifndef __PASULI_DINI_SURFACE__
+#define __PASULI_DINI_SURFACE__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+#if (USE_ENNEPER_SURFACE != 0)
+#endif
+
+#endif
 
 #if(COMPILE_SURFACES != 0)
-
-void BohemianDomeSurface(double u, double v, 
-						double* constants, PaSuLiObject* pO);
-
-void BoysSurface(double u, double v, 
-				double* constants, PaSuLiObject* pO);	// ?!?
-
-void CrossCup(double u, double v, double* constants, PaSuLiObject* pO);
-
-void DiniSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void EnneperSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void Handkerchief(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void KleinBottleSurface(double u, double v, 
-						double* constants, PaSuLiObject* pO);	//?!?
-
-void MoebiusBand(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void MonkeySaddle(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void PlueckerConoid(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void RomanSurface(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void ShoeSurface(double u, double v, 
-				double* constants, PaSuLiObject* pO);
-
-void SineSurface(double u, double v, 
-				double* constants, PaSuLiObject* pO);
-
-void SteinbachScrew(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void WhitneyUmbrella(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void Catenoid(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Helicoid(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Paraboloid(double u, double v, 
-				double* constants, PaSuLiObject* pO);
 
 void HyperbolicHelicoid(double u, double v, 
 						double* constants, PaSuLiObject* pO);

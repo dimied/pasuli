@@ -73,14 +73,14 @@ char* descGearTorus =
 "start; \
 name: GearTorus; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R: 1.0; \
-c:2:a: 1.0; \
-c:3:b: 1.0; \
-c:4:N: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R: 1.0; \
+c2:a: 1.0; \
+c3:b: 1.0; \
+c4:N: 1.0; \
 a:1:r: a + tanh(b*sin(n*v))/b; \
 x: (R + r*cos(v))*cos(u); \
 y: r*sin(v); \

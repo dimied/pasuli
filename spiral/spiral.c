@@ -110,13 +110,13 @@ char *descArchimedicSpiral =
 "start; \
 name: Archimedic Spiral; \
 cat: spiral; \
-utype: closed; \
-vtype: open; \
-ustart: 0; \
-uend: 23; \
-vstart: 0; \
-vend: 1; \
-c:1: H: 1.0; \
+ut: c; \
+vt: o; \
+us: 0; \
+ue: 23; \
+vs: 0; \
+ve: 1; \
+c1: H: 1.0; \
 x: u*cos(u); \
 y: H*v; \
 z: u*sin(u); "
@@ -160,13 +160,13 @@ char *descHyperbolicSpiral =
 "start; \
 name: Hyperbolic Spiral; \
 cat: spiral; \
-utype: closed; \
-vtype: open; \
-ustart: 0; \
-uend: 23; \
-vstart: 0; \
-vend: 1; \
-c:1:H: 1.0; \
+ut: c; \
+vt: o; \
+us: 0; \
+ue: 23; \
+vs: 0; \
+ve: 1; \
+c1:H: 1.0; \
 x: cos(u)/u; \
 y: H*v; \
 z: sin(u)/u; "
@@ -210,13 +210,13 @@ char *descFermatSpiral =
 "start; \
 name: Fermat Spiral; \
 cat: spiral; \
-utype: closed; \
-vtype: open; \
-ustart: 0; \
-uend: 10; \
-vstart: 0; \
-vend: 1; \
-c:1:H: 1.0; \
+ut: c; \
+vt: o; \
+us: 0; \
+ue: 10; \
+vs: 0; \
+ve: 1; \
+c1:H: 1.0; \
 x: sqrt(u)*cos(u); \
 y: H*v; \
 z: sqrt(u)*sin(u); "
@@ -261,14 +261,14 @@ char *descTanhSpiral =
 "start; \
 name: Tanh Spiral; \
 cat: spiral; \
-utype: closed; \
-vtype: open; \
-ustart: -1.5; \
-uend: 1.5; \
-vstart: 0; \
-vend: 1; \
-c:1:a: 1.0; \
-c:2:H: 1.0; \
+ut: c; \
+vt: o; \
+us: -1.5; \
+ue: 1.5; \
+vs: 0; \
+ve: 1; \
+c1:a: 1.0; \
+c2:H: 1.0; \
 x: sinh(2*u)/(cos(2*a*u) + cosh(2*u)); \
 y: H*v; \
 z: sin(2*u)/(cos(2*a*u) + cosh(2*u)); "
@@ -329,14 +329,14 @@ char *descLogSpiral =
 "start; \
 name: Log Spiral; \
 cat: spiral; \
-utype: closed; \
-vtype: open; \
-ustart: 0; \
-uend: 25; \
-vstart: 0; \
-vend: 1; \
-c:1: a: 1.0; \
-c:2: H: 1.0; \
+ut: c; \
+vt: o; \
+us: 0; \
+ue: 25; \
+vs: 0; \
+ve: 1; \
+c1: a: 1.0; \
+c2: H: 1.0; \
 x: exp(a*u)*cos(u); \
 y: H*v; \
 z: exp(a*u)*sin(u); "

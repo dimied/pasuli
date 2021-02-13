@@ -18,14 +18,14 @@ char* descTwistedEightTorus =
 "start; \
 name: Twisted Torus; \
 cat: torus; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi: 2; \
-vstart: 0; \
-vend: pi: 2; \
-c:1:R: 1.5; \
-c:2:r: 0.5; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: pi: 2; \
+vs: 0; \
+ve: pi: 2; \
+c1:R: 1.5; \
+c2:r: 0.5; \
 x: (R+r*(cos(u/2)*sin(v)-sin(u/2)*sin(2*v)))*cos(u); \
 y: (R+r*(cos(u/2)*sin(v)-sin(u/2)*sin(2*v)))*sin(u); \
 z: r*(sin(u/2)*sin(v) + cos(u/2)*sin(2*v)); "
@@ -75,14 +75,14 @@ char* descUmbillicTorus =
 "start; \
 name: umbillic torus; \
 cat: torus; \
-utype: closed; \
-vtype: closed; \
-ustart: pi: -1; \
-uend: pi: 1; \
-vstart: pi: -1; \
-vend: pi: 1; \
-c:1:R: 1.5; \
-c:2:r: 0.5; \
+ut: c; \
+vt: c; \
+us: pi: -1; \
+ue: pi: 1; \
+vs: pi: -1; \
+ve: pi: 1; \
+c1:R: 1.5; \
+c2:r: 0.5; \
 x: sin(u)*(7 + cos(u/3 - 2*v) + 2*cos(u/3 + v));  \
 y: cos(u)*(7 + cos(u/3 - 2*v) + 2*cos(u/3 + v)); \
 z: sin(u/3 - 2*v) + 2*sin(u/3 + v); "
@@ -133,13 +133,13 @@ char* descEightTorus =
 "start; \
 name: Eight Torus; \
 cat: torus; \
-utype: closed; \
-vtype: closed; \
-ustart: pi : -1; \
-uend: pi: 1; \
-vstart: pi: -1; \
-vend: pi : 1; \
-c:1:c: 1.0; \
+ut: c; \
+vt: c; \
+us: pi : -1; \
+ue: pi: 1; \
+vs: pi: -1; \
+ve: pi : 1; \
+c1:c: 1.0; \
 x: cos(u) (c + sin(v) cos(u) - sin(2 v) sin(u)/2); \
 y: sin(u) sin(v) + cos(u) sin(2 v)/2; \
 z: sin(u) (c + sin(v) cos(u) - sin(2 v) sin(u)/2); "
@@ -189,13 +189,13 @@ char* descEllipticTorus =
 "start; \
 name: Elliptic Torus; \
 cat: torus; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi: 2; \
-vstart: 0; \
-vend: pi: 2; \
-c:1:a: 1.0; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: pi: 2; \
+vs: 0; \
+ve: pi: 2; \
+c1:a: 1.0; \
 x: (a + cos(v))*cos(u); \
 y: (a + cos(v))*sin(u); \
 z: sin(v) + cos(v); "
@@ -245,12 +245,12 @@ char* descSaddleTorus =
 "start; \
 name: Saddle Torus; \
 cat: torus; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi: 2; \
-vstart: 0; \
-vend: pi: 2; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: pi: 2; \
+vs: 0; \
+ve: pi: 2; \
 a:1:F: 1-cos(x)*cos(x) - cos(x + 2 pi/3)*cos(x + 2 pi/3); \
 x: (2 + cos(u))*cos(v); \
 y: (2 + cos(u + 2*pi/3))*cos(v + 2*pi/3); \
@@ -301,16 +301,16 @@ char* descBraidedTorus =
 "start; \
 name: Braided Torus; \
 cat: torus; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi: 8; \
-vstart: 0; \
-vend: pi: 2; \
-c:1:a: 1.0; \
-c:2:R: 1.0; \
-c:3:r: 1.0; \
-c:4:n: 1.0; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: pi: 8; \
+vs: 0; \
+ve: pi: 2; \
+c1:a: 1.0; \
+c2:R: 1.0; \
+c3:r: 1.0; \
+c4:n: 1.0; \
 x: r*cos(v)*cos(u) + cos(u)*R*(1 + a*cos(n*u)); \
 y: 2.5*(r*sin(v) + a*sin(n*u)); \
 z: r*cos(v)*sin(u) + sin(u)*R*(1 + a*cos(n*u)); "
@@ -361,12 +361,12 @@ char* descLimpetTorus =
 "start; \
 name: Limpet Torus; \
 cat: torus; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi: 2; \
-vstart: 0; \
-vend: pi: 2; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: pi: 2; \
+vs: 0; \
+ve: pi: 2; \
 x: cos(u)/(sqrt(2) + sin(v)); \
 y: 1/(sqrt(2) + cos(v)); \
 z: sin(u)/(sqrt(2) + sin(v)); "
@@ -416,15 +416,15 @@ char* descStrangledTorus =
 "start; \
 name: Strangled Torus; \
 cat: torus; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi: 2; \
-vstart: 0; \
-vend: pi: 2; \
-c:1:R: 1.0; \
-c:2:r: 1.0; \
-c:3:n: 1.0; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: pi: 2; \
+vs: 0; \
+ve: pi: 2; \
+c1:R: 1.0; \
+c2:r: 1.0; \
+c3:n: 1.0; \
 x: (R + r*sin(v))*cos(u); \
 y: r*cos(v)*cos(n*u/2); \
 z: (R + r*sin(v))*sin(u); "
@@ -475,14 +475,14 @@ char* descAstroidTorus =
 "start; \
 name: Astroid Torus; \
 cat: torus; \
-utype: closed; \
-vtype: closed; \
-ustart: 0; \
-uend: pi: 2; \
-vstart: 0; \
-vend: pi: 2; \
-c:1:R: 1.0; \
-c:2:r: 1.0; \
+ut: c; \
+vt: c; \
+us: 0; \
+ue: pi: 2; \
+vs: 0; \
+ve: pi: 2; \
+c1:R: 1.0; \
+c2:r: 1.0; \
 a:1:F: (R + r*cos(v)*cos(v)*cos(v)); \
 x: F*cos(u); \
 y: r*sin(v)*sin(v)*sin(v); \
@@ -533,12 +533,12 @@ char* descTricuspoidTorus1 =
 "start; \
 name: Tricuspoid Torus 1; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R:1.5; \
-c:2:r:0.5; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R:1.5; \
+c2:r:0.5; \
 x: (R + r (2*cos(v) + cos(2*v)))*cos(u); \
 y: r*(2*sin(v) - sin(2*v)); \
 z: (R + r*(2*cos(v) + cos(2*v)))*sin(u); "
@@ -588,12 +588,12 @@ char* descTricuspoidTorus2 =
 "start; \
 name: Tricuspoid Torus 2; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R:1.5; \
-c:2:r:0.5; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R:1.5; \
+c2:r:0.5; \
 x: (R + r*(2*sin(v) - sin(2*v)))*cos(u); \
 y: r*(2*cos(v) + cos(2*v)); \
 z: (R + r*(2*sin(v) - sin(2*v)))*sin(u); "
@@ -644,12 +644,12 @@ char* descNethroidTorus1 =
 "start; \
 name: Nethroid Torus 1; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R:1.5; \
-c:2:r:0.5; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R:1.5; \
+c2:r:0.5; \
 x: (R + r*(3*cos(v) - cos(3*v)))*cos(u); \
 y: r*(3*sin(v) - sin(3*v)); \
 z: (R + r*(3*cos(v) - cos(3*v)))*sin(u); "
@@ -699,12 +699,12 @@ char* descNethroidTorus2 =
 "start; \
 name: Nethroid Torus 2; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R:1.5; \
-c:2:r:0.5; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R:1.5; \
+c2:r:0.5; \
 x: (R + r*(3 sin(v) - sin(3*v)))*cos(u); \
 y: r*(3*cos(v) - cos(3*v)); \
 z: (R + r*(3*sin(v) - sin(3*v)))*sin(u); "
@@ -754,12 +754,12 @@ char* descLemniskateTorus1 =
 "start; \
 name: Lemniskate Torus 1; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R:1.5; \
-c:2:r:0.5; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R:1.5; \
+c2:r:0.5; \
 a:1:F: r cos(v)/(1 + sin(v) sin(v)); \
 x: (R + F)*cos(u); \
 y: r*sin(v)*F; \
@@ -810,12 +810,12 @@ char* descLemniskateTorus2 =
 "start; \
 name: Lemniskate Torus 2; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R:1.5; \
-c:2:r:0.5; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R:1.5; \
+c2:r:0.5; \
 x: (R + r*sin(v)*cos(v)/(1 + sin(v)*sin(v)))*cos(u); \
 y: r*cos(v)/(1 + sin(v)*sin(v)); \
 z: (R + r*sin(v) cos(v)/(1 + sin(v)*sin(v)))*sin(u); "
@@ -865,14 +865,14 @@ char* descEpizykloidTorus1 =
 "start; \
 name: Epizykloid Torus 1; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R1:1.0; \
-c:2:R: 1.0; \
-c:3:r:0.5; \
-c:4:h: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R1:1.0; \
+c2:R: 1.0; \
+c3:r:0.5; \
+c4:h: 1.0; \
 x: (R1 + (R + r)*cos(v) - h*cos(((R + r)/r) v))*cos(u); \
 y: (R + r)*sin(v) - h*sin(((R + r)/r)*v); \
 z: (R1 + (R + r)*cos(v) - h*cos(((R + r)/r)*v))*sin(u); "
@@ -922,14 +922,14 @@ char* descEpizykloidTorus2 =
 "start; \
 name: Epizykloid Torus 2; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R1:1.0; \
-c:2:R: 1.0; \
-c:3:r:0.5; \
-c:4:h: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R1:1.0; \
+c2:R: 1.0; \
+c3:r:0.5; \
+c4:h: 1.0; \
 x: (R1 + (R + r)*sin(v) - h*sin(((R + r)/r)*v))*cos(u); \
 y: (R + r)*cos(v) - h*cos(((R + r)/r) v); \
 z: (R1 + (R + r)*sin(v) - h*sin(((R + r)/r)*v))*sin(u); "
@@ -979,14 +979,14 @@ char* descHypozykloidTorus1 =
 "start; \
 name: HypozykloidTorus1; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R1:1.0; \
-c:2:R: 1.0; \
-c:3:r:0.5; \
-c:4:h: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R1:1.0; \
+c2:R: 1.0; \
+c3:r:0.5; \
+c4:h: 1.0; \
 x = (R1 + (R - r)*cos(v) - h*cos(((R - r)/r)*v))*cos(u); \
 y = (R - r)*sin(v) - h*sin(((R + r)/r)*v); \
 z = (R1 + (R - r)*cos(v) - h*cos(((R - r)/r)*v))*sin(u); "
@@ -1036,14 +1036,14 @@ char* descHypozykloidTorus2 =
 "start; \
 name: HypozykloidTorus2; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R1:1.0; \
-c:2:R: 1.0; \
-c:3:r:0.5; \
-c:4:h: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R1:1.0; \
+c2:R: 1.0; \
+c3:r:0.5; \
+c4:h: 1.0; \
 a:1:F: (R1 + (R - r)*sin(v) - h*sin(((R - r)/r)*v)); \
 x: F*cos(u); \
 y: (R - r)*cos(v) - h*cos(((R + r)/r)*v); \
@@ -1094,12 +1094,12 @@ char* descPiriformTorus1 =
 "start; \
 name: Piriform Torus 1; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R1:1.0; \
-c:2:R: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R1:1.0; \
+c2:R: 1.0; \
 x: (R + (r + sin(v)))*cos(u); \
 y: cos(v)*(r + sin(v)); \
 z: (R + (r + sin(v)))*sin(u); "
@@ -1149,12 +1149,12 @@ char* descPiriformTorus2 =
 "start; \
 name: Piriform Torus 2; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R1:1.0; \
-c:2:R: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R1:1.0; \
+c2:R: 1.0; \
 x: (R + cos(v)*(r + sin(v)))*cos(u); \
 y: r + sin(v); \
 z: (R + cos(v)*(r + sin(v)))*sin(u); "
@@ -1204,12 +1204,12 @@ char* descBicornTorus1 =
 "start; \
 name: Bicorn Torus 1; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R1:1.0; \
-c:2:R: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R1:1.0; \
+c2:R: 1.0; \
 x: (R + r*cos(v)^{2}*(2 + cos(v))/(3 + sin(v)^{2}))*cos(u); \
 y: r*sin(v); \
 z: (R + r*cos(v)^{2}*(2 + cos(v))/(3 + sin(v)^{2}))*sin(u); "
@@ -1260,12 +1260,12 @@ char* descBicornTorus2 =
 "start; \
 name: Bicorn Torus 2; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R1:1.0; \
-c:2:R: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R1:1.0; \
+c2:R: 1.0; \
 x: (R + r*sin(v))*cos(u); \
 y: r*cos(v)^{2}*(2 + cos(v))/(3 + sin(v)^{2}); \
 z: (R + r*sin(v))*sin(u); "
@@ -1315,12 +1315,12 @@ char* descCardioidTorus1 =
 "start; \
 name: Cardioid Torus 1; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R1:1.0; \
-c:2:R: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R1:1.0; \
+c2:R: 1.0; \
 x: (R + r*(2*cos(v) - cos(2*v)))*cos(u); \
 y: r (2 sin(v) - sin(2 v)); \
 z: (R + r*(2*cos(v) - cos(2*v)))*sin(u); "
@@ -1371,12 +1371,12 @@ char* descCardioidTorus2 =
 "start; \
 name: Cardioid Torus 2; \
 cat: torus; \
-ustart: 0; \
-uend:pi:2; \
-vstart: 0; \
-vend: pi:2; \
-c:1:R1:1.0; \
-c:2:R: 1.0; \
+us: 0; \
+ue:pi:2; \
+vs: 0; \
+ve: pi:2; \
+c1:R1:1.0; \
+c2:R: 1.0; \
 x: (R + r*(2*sin(v) - sin(2*v)))*cos(u); \
 y: r*(2*cos(v) - cos(2*v)); \
 z: (R + r*(2*sin(v) - sin(2*v)))*sin(u); "

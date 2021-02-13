@@ -21,17 +21,17 @@
 char* descSuperFormula3D= 
 "start; \
 name: SuperFormula 3D;\
-utype:closed; \
-vtype:closed; \
-ustart:pi: -1; \
-uend: pi: 1; \
-vstart:pi: -0.5 ; \
-vend:pi: 0.5; \
-c:1:a1: ; \
-c:2:b1: ; \
-c:3:m1: ; \
-c:4:n11: ; \
-c:5:n12: ; \
+ut:c; \
+vt:c; \
+us:pi: -1; \
+ue: pi: 1; \
+vs:pi: -0.5 ; \
+ve:pi: 0.5; \
+c1:a1: ; \
+c2:b1: ; \
+c3:m1: ; \
+c4:n11: ; \
+c5:n12: ; \
 c:6:n13: ; \
 c:7:a2: ; \
 c:8:b2: ; \

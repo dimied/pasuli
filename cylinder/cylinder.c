@@ -354,12 +354,12 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(1) ,
 char *descCylinder = 
 "start; \
 name: cylinder; \
-utype: closed; \
-vtype: open; \
-ustart: pi : -1; \
-uend: pi : 1; \
-vstart: 0; \
-vend: 1; \
+ut: c; \
+vt: o; \
+us: pi : -1; \
+ue: pi : 1; \
+vs: 0; \
+ve: 1; \
 x: r*cos(u); \
 y: r*sin(u); \
 z: v; \
@@ -405,17 +405,17 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(4),
 char* descEpizykloidCylinder = 
 "start; \
 name: Epizykloid-Cylinder; \
-utype: closed; \
-vtype: open; \
-ustart: pi : -1; \
-uend: pi : 1; \
-vstart: 0; \
-vend: 1; \
+ut: c; \
+vt: o; \
+us: pi : -1; \
+ue: pi : 1; \
+vs: 0; \
+ve: 1; \
 x: (R + r)*cos(u) - h*cos((R + r)*u/r); \
 y: H*v; \
 z: (R + r)*sin(u) - h*sin((R + r)*u/r); \
-c:1:R: 1.5; c:2:r: 1.0; \
-c:3:h: 0.5; c:4:H: 1.0; "
+c1:R: 1.5; c2:r: 1.0; \
+c3:h: 0.5; c4:H: 1.0; "
 #if(COMPILE_DESC_DERIV_U_CYLINDER != 0)
 "xu: h*(R + r)*sin((R + r)*u/r)/r -(R + r)*sin(u); \
 yu: 0; \
@@ -457,14 +457,14 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(4),
 char* descHypozykloidCylinder = 
 "start; \
 name: Hypozykloid-Cylinder; \
-utype: closed; \
-vtype: open; \
-ustart: pi : -1; \
-uend: pi : 1; \
-vstart: 0; \
-vend: 1; \
-c:1:R: 1.5; c:2:r: 1.0; \
-c:3:h: 0.5; c:4:H: 1.0; \
+ut: c; \
+vt: o; \
+us: pi : -1; \
+ue: pi : 1; \
+vs: 0; \
+ve: 1; \
+c1:R: 1.5; c2:r: 1.0; \
+c3:h: 0.5; c4:H: 1.0; \
 x: (R - r)*cos(u) + h*cos(((R - r)/r)*u); \
 y: H*v; \
 z: (R - r)*sin(u) - h*sin(((R - r)/r)*u); "
@@ -509,14 +509,14 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 char *descLemniskateCylinder = 
 "start; \
 name: Lemniskate-Cylinder; \
-utype: closed; \
-vtype: open; \
-ustart: pi : -1; \
-uend: pi : 1; \
-vstart: 0; \
-vend: 1; \
-c:1:r: 1.0; \
-c:2:H: 1.0; \
+ut: c; \
+vt: o; \
+us: pi : -1; \
+ue: pi : 1; \
+vs: 0; \
+ve: 1; \
+c1:r: 1.0; \
+c2:H: 1.0; \
 x: r*cos(u)/(1 + sin(u)^2); \
 y: H*v; \
 z: r*sin(u)*cos(u)/(1 + sin(u)^2); "
@@ -561,14 +561,14 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 char *descStrophoideCylinder = 
 "start; \
 name: Strophoide-Cylinder; \
-utype: closed; \
-vtype: open; \
-ustart: pi : -1; \
-uend: pi : 1; \
-vstart: -2; \
-vend: 2; \
-c:1:R: 1.0; \
-c:2:a: 1.0; \
+ut: c; \
+vt: o; \
+us: pi : -1; \
+ue: pi : 1; \
+vs: -2; \
+ve: 2; \
+c1:R: 1.0; \
+c2:a: 1.0; \
 x: (R + a*(v*v - 1)/(v*v + 1))*cos(u); \
 y: a*v*(v*v - 1)/(v*v + 1); \
 z: (R + a*(v*v - 1)/(v*v + 1))*sin(u); "
@@ -613,14 +613,14 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 char *descZissoideCylinder = 
 "start; \
 name: Zissoide-Cylinder; \
-utype: closed; \
-vtype: open; \
-ustart: pi : -1; \
-uend: pi : 1; \
-vstart: -5; \
-vend: 5; \
-c:1:R: 1.0; \
-c:2:a: 1.0; \
+ut: c; \
+vt: o; \
+us: pi : -1; \
+ue: pi : 1; \
+vs: -5; \
+ve: 5; \
+c1:R: 1.0; \
+c2:a: 1.0; \
 x: (R + a*v*v/(1 + v*v))*cos(u); \
 y: a*v^(3)/(1 + v*v); \
 z: (R + a*v*v/(1 + v*v))*sin(u); "
@@ -665,14 +665,14 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 char *descVACylinder = 
 "start; \
 name: Versiera-Agnesi-Cylinder; \
-utype: closed; \
-vtype: open; \
-ustart: pi : -1; \
-uend: pi : 1; \
-vstart: -3; \
-vend: 3; \
-c:1:R: 1.0; \
-c:2:a: 1.0; \
+ut: c; \
+vt: o; \
+us: pi : -1; \
+ue: pi : 1; \
+vs: -3; \
+ve: 3; \
+c1:R: 1.0; \
+c2:a: 1.0; \
 x: (R + 2*a/(1 + v*v))*cos(u); \
 y: 2*a*v; \
 z: (R + 2*a/(1 + v*v))*sin(u); "
@@ -717,15 +717,15 @@ PASULI_FULL_IMPL|PASULI_CONST_COUNT(3),
 char *descGaussCylinder = 
 "start; \
 name: Gauss-Cylinder; \
-utype: closed; \
-vtype: open; \
-ustart: pi : -1; \
-uend: pi : 1; \
-vstart: 0; \
-vend: 1; \
-c:1:R: 1.0; \
-c:2:a: 1.0; \
-c:3:b: 1.0; \
+ut: c; \
+vt: o; \
+us: pi : -1; \
+ue: pi : 1; \
+vs: 0; \
+ve: 1; \
+c1:R: 1.0; \
+c2:a: 1.0; \
+c3:b: 1.0; \
 x: (R + b*exp(-(a*a*v*v)))*cos(u); \
 y: v; \
 z: (R + b*exp(-(a*a*v*v)))*sin(u); "
