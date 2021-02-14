@@ -29,13 +29,10 @@ PaSuLiDefDesc pslddFermatSpiral = {
 char *descFermatSpiral =
 	"name: Fermat Spiral; \
 cat: spiral; \
-ut: c; \
-vt: o; \
-us: 0; \
-ue: 10; \
-vs: 0; \
-ve: 1; \
-c1:H: 1.0; \
+ut: c; vt: o; \
+us: 0; ue: 10; \
+vs: 0; ve: 1; \
+c1:H: 1; \
 x: sqrt(u)*cos(u); \
 y: H*v; \
 z: sqrt(u)*sin(u); "

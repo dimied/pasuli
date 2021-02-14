@@ -4,14 +4,6 @@
 #include "../pasuli_cfg.h"
 #include "../pasuli_defs.h"
 
-#include "epizykloid_cylinder.h"
-#include "gauss_cylinder.h"
-#include "hypozykloid_cylinder.h"
-#include "lemniskate_cylinder.h"
-#include "strophoide_cylinder.h"
-#include "versiera_agnesi_cylinder.h"
-#include "zissoide_cylinder.h"
-
 #if (USE_CYLINDER != 0)
 void Cylinder(pasuli_vartype u, pasuli_vartype v,
 			  pasuli_consttype *constants,

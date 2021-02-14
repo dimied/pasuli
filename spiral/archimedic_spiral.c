@@ -27,13 +27,10 @@ PaSuLiDefDesc pslddArchimedicSpiral = {
 char *descArchimedicSpiral =
 	"name: Archimedic Spiral; \
 cat: spiral; \
-ut: c; \
-vt: o; \
-us: 0; \
-ue: 23; \
-vs: 0; \
-ve: 1; \
-c1: H: 1.0; \
+ut: c; vt: o; \
+us: 0; ue: 23; \
+vs: 0; ve: 1; \
+c1:H: 1; \
 x: u*cos(u); \
 y: H*v; \
 z: u*sin(u); "

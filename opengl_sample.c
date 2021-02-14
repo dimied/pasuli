@@ -73,8 +73,8 @@ void releaseMemory()
 }
 
 #include "torus/torus.h"
-#include "torus/umbillictorus.h"
-#include "torus/wavetorus.h"
+#include "torus/umbillic_torus.h"
+#include "torus/wave_torus.h"
 
 double torusConstants[] = {4, 2};
 double waveTorusConstants[] = {1.5, 0.5, 1, 1};

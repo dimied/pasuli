@@ -54,13 +54,10 @@ PaSuLiDefDesc pslddAppleSurface = {
 #if (COMPILE_DESC_FRUITS != 0)
 char *descAppleSurface =
     "name: Apple Surface; \
-ut: c; \
-vt: c; \
 cat: fruits; \
-us: 0; \
-ue: pi : 2 ; \
-vs:pi: -1; \
-ve: pi : 1; \
+ut: c; vt: c; \
+us: 0; ue: pi : 2 ; \
+vs:pi: -1; ve: pi : 1; \
 x: cos(u)*(4 + 3.8*cos(v)); \
 y: sin(u)*(4 + 3.8*cos(v)); \
 z: (cos(v)+sin(v)-1)*(1+sin(v))*log(1-pi*v/10)+7.5*sin(v); "

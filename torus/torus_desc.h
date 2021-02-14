@@ -4,8 +4,7 @@
 #include "../pasuli_cfg.h"
 #include "../pasuli_defs.h"
 
-#if(COMPILE_DESC_TORUS != 0)
-
+#if(COMPILE_DESC_TORUS != 0 && 1 != 1)
 extern char* descEightTorus;
 extern char* descTwistedEightTorus;
 extern char* descUmbillicTorus;
@@ -43,7 +42,7 @@ extern char* descTorusKnot;
 extern char* descGearTorus;
 #endif
 
-#if(COMPILE_DEF_DESC_TORUS != 0)
+#if(COMPILE_DEF_DESC_TORUS != 0 && 1 != 1)
 extern PaSuLiDefDesc pslddTorus;
 extern PaSuLiDefDesc pslddAntisymmetricTorus;
 extern PaSuLiDefDesc pslddEightTorus;

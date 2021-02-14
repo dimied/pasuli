@@ -7,7 +7,7 @@
 #include "snails.h"
 
 pasuli_consttype EuhoplitesParams[] = {
-	0.6f, 0.4f, 1.0f, 0.9f, 0.0f, 0.1626f};
+	2, 0.6f, 0.4f, 1.0f, 0.9f, 0.0f, 0.1626f};
 
 void Euhoplites(pasuli_vartype u,
 				pasuli_vartype v,

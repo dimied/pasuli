@@ -10,10 +10,10 @@ void TanhSpiral(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(TANH_SPIRAL)
 
-	double x_u;
-	double z_u;
 	double a = constants[0];
 	double H = constants[1];
+	double x_u;
+	double z_u;
 
 	if (u > 0)
 	{
@@ -46,14 +46,10 @@ PaSuLiDefDesc pslddTanhSpiral = {
 char *descTanhSpiral =
 	"name: Tanh Spiral; \
 cat: spiral; \
-ut: c; \
-vt: o; \
-us: -1.5; \
-ue: 1.5; \
-vs: 0; \
-ve: 1; \
-c1:a: 1.0; \
-c2:H: 1.0; \
+ut: c; vt: o; \
+us: -1.5; ue: 1.5; \
+vs: 0; ve: 1; \
+c1:a: 1; c2:H: 1; \
 x: sinh(2*u)/(cos(2*a*u) + cosh(2*u)); \
 y: H*v; \
 z: sin(2*u)/(cos(2*a*u) + cosh(2*u)); "

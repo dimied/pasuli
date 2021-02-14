@@ -65,12 +65,9 @@ PaSuLiDefDesc pslddWaveSphere = {
 char *descWaveSphere =
 	"name: wave sphere; \
 cat: sphere; \
-ut: c; \
-vt: c; \
-us: 0; \
-ue: 14; \
-vs: 0; \
-ve: pi : 2; \
+ut: c; vt: c; \
+us: 0; ue: 14; \
+vs: 0; ve:pi: 2; \
 x: u*cos(cos(u))*cos(v); \
 y: u*cos(cos(u))*sin(v); \
 z: u*sin(cos(u)); "

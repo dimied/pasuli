@@ -5,62 +5,17 @@
 //#include "pasuli_defs.h"
 #include "pasuli_approx.h"
 
-/*
-#if((COMPILE_DEF_DESC_CYLINDER != 0)||(COMPILE_DESC_CYLINDER != 0) )
-#include "cylinder/cylinder_desc.h"
-#endif
-*/
-
-#if (COMPILE_CYLINDER != 0)
 #include "cylinder/cylinder.h"
-#endif
 
-/*
-#if((COMPILE_DEF_DESC_FRUITS != 0)||(COMPILE_DESC_FRUITS != 0) )
-#include "fruits/fruits_desc.h"
-#endif
-*/
-
-#if (COMPILE_FRUITS != 0)
 #include "fruits/fruits.h"
-#endif
-/*
-#if((COMPILE_DEF_DESC_SHELLS != 0)||(COMPILE_DESC_SHELLS != 0) )
-#include "shells/shells_desc.h"
-#endif
-*/
-#if (COMPILE_SHELLS != 0)
+
 #include "shells/shells.h"
-#endif
 
-/*
-#if((COMPILE_DEF_DESC_SPHERE != 0)||(COMPILE_DESC_SPHERE != 0) )
-#include "sphere/sphere_desc.h"
-#endif
-*/
-#if (COMPILE_SPHERE != 0)
 #include "sphere/sphere.h"
-#endif
-/*
-#if((COMPILE_DEF_DESC_SPIRAL != 0)||(COMPILE_DESC_SPIRAL != 0) )
-#include "spiral/spiral_desc.h"
-#endif
-*/
-#if (COMPILE_SPIRAL != 0)
-#include "spiral/spiral.h"
-#endif
-#if ((COMPILE_DEF_DESC_TORUS != 0) || (COMPILE_DESC_TORUS != 0))
-#include "torus/torus_desc.h"
-#endif
-#if (COMPILE_TORUS != 0)
-#include "torus/torus.h"
-#endif
 
-/*
-#if((COMPILE_DEF_DESC_SURFACES != 0)||(COMPILE_DESC_SURFACES != 0) )
-#include "surfaces/surfaces_desc.h"
-#endif
-*/
+#include "spiral/spiral.h"
+
+#include "torus/torus.h"
 
 #include "surfaces/surfaces.h"
 

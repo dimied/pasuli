@@ -2,20 +2,15 @@
 #include "pasuli_repository.h"
 #include <stdlib.h>
 
-
-#include "cylinder/cylinder.h"
+#include "cylinder/cylinder_all.h"
 #include "fruits/fruits.h"
 #include "shells/shells.h"
 #include "sphere/sphere.h"
 #include "spiral/spiral.h"
 //
-#include "surfaces/plane.h"
 #include "surfaces/surfaces.h"
 //
-#include "torus/antisym_torus.h"
-#include "torus/torus.h"
-#include "torus/umbillictorus.h"
-#include "torus/wavetorus.h"
+#include "torus/torus_all.h"
 
 typedef struct
 {

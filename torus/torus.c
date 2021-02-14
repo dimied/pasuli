@@ -1,9 +1,12 @@
 
-#include "torus_inc.h"
+#include "torus.h"
+#include "torus_c_includes.h"
 
-#if (USE_PASULI_TORUS_TORUS != 0)
-void Torus(pasuli_vartype u, pasuli_vartype v,
-		   pasuli_consttype *constants, PaSuLiObject *pO)
+#if (USE_TORUS != 0)
+void Torus(pasuli_vartype u,
+		   pasuli_vartype v,
+		   pasuli_consttype *constants,
+		   PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(TORUS)
 
@@ -60,14 +63,10 @@ PaSuLiDefDesc pslddTorus = {
 char *descTorus =
 	"name: Torus; \
 cat: torus; \
-ut: c; \
-vt: c; \
-us:0;  \
-ue:pi:2; \
-vs:0; \
-ve:pi:2; \
-c1:R:1.5; \
-c2:r:0.5; \
+ut: c; vt: c; \
+us:0;  ue:pi:2; \
+vs:0; ve:pi:2; \
+c1:R:1.5; c2:r:0.5; \
 x: (R + r*cos(v))*cos(u); \
 y: (R + r*cos(v))*sin(u); \
 z: r*sin(v); \

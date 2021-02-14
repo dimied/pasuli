@@ -56,14 +56,11 @@ PaSuLiDefDesc pslddOpenSphere = {
 #endif
 #if (COMPILE_DESC_SPHERE != 0)
 char *descOpenSphere =
-	"name: open sphere; \
+	"name: Open sphere; \
 cat: sphere; \
-ut: o; \
-vt: o; \
-us: -10; \
-ue: 10; \
-vs: -10; \
-ve: 10; \
+ut: o; vt: o; \
+us: -10; ue: 10; \
+vs: -10; ve: 10; \
 x: 2*u/(1 + u*u + v*v); \
 y: (u*u + v*v - 1)/(1 + u*u + v*v); \
 z: 2*v/(1 + u*u + v*v); "

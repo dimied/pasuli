@@ -6,7 +6,7 @@
 #include "snails.h"
 
 pasuli_consttype MyaArenariaParams[] = {
-    0.85f, 1.6f, 3.0f, 0.9f, 0, 2.5f};
+    2, 0.85f, 1.6f, 3.0f, 0.9f, 0, 2.5f};
 
 void MyaArenaria(pasuli_vartype u,
                  pasuli_vartype v,

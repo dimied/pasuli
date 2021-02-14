@@ -42,9 +42,10 @@ char *descHyperbolicSpiral =
 	"name: Hyperbolic Spiral; \
 cat: spiral; \
 ut: c; vt: o; \
+uc:not:0; \
 us: 0; ue: 23; \
 vs: 0; ve: 1; \
-c1:H: 1.0; \
+c1:H: 1; \
 x: cos(u)/u; \
 y: H*v; \
 z: sin(u)/u; "

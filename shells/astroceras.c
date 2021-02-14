@@ -6,7 +6,7 @@
 #include "snails.h"
 
 pasuli_consttype AstrocerasParams[] = {
-	1.25f, 1.25f, 1.0f, 3.5f, 0.0f, 0.12f};
+	2, 1.25f, 1.25f, 1.0f, 3.5f, 0.0f, 0.12f};
 
 void Astroceras(pasuli_vartype u,
 				pasuli_vartype v,

@@ -6,7 +6,7 @@
 #include "snails.h"
 
 pasuli_consttype BellerophinaParams[] = {
-    0.85f, 1.2f, 1.0f, 0.75f, 0.0f, 0.06f};
+    2, 0.85f, 1.2f, 1.0f, 0.75f, 0.0f, 0.06f};
 
 void Bellerophina(pasuli_vartype u,
                   pasuli_vartype v,

@@ -3,7 +3,7 @@
 #include "../pasuli_macros.h"
 #include <math.h>
 
-#if (COMPILE_SURFACES != 0)
+#if (USE_ROMAN_SURFACE != 0)
 void RomanSurface(double u, double v,
                   double *constants, PaSuLiObject *pO)
 {

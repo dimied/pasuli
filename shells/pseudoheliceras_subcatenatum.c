@@ -6,7 +6,7 @@
 #include "snails.h"
 
 pasuli_consttype PseudohelicerasSubcatenatumParams[] = {
-    1.6f, 1.6f, 1.0f, 1.5f, -7.0f, 0.075f};
+    2, 1.6f, 1.6f, 1.0f, 1.5f, -7.0f, 0.075f};
 
 void PseudohelicerasSubcatenatum(pasuli_vartype u,
                                  pasuli_vartype v,

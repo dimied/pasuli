@@ -7,7 +7,7 @@
 #include "snails.h"
 
 pasuli_consttype NautilusParams[] = {
-	1.0f, 0.6f, 1.0f, 1.0f, 0.0f, 0.18f};
+	2, 1.0f, 0.6f, 1.0f, 1.0f, 0.0f, 0.18f};
 
 void Nautilus(pasuli_vartype u,
 			  pasuli_vartype v,

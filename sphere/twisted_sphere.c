@@ -60,14 +60,10 @@ PaSuLiDefDesc pslddTwistedSphere = {
 char *descTwistedSphere =
     "name: twisted sphere; \
 cat: sphere; \
-ut: c; \
-vt: c; \
-us: 0; \
-ue: pi : 2; \
-vs: pi : -1; \
-ve: pi : 1; \
-c1:a: 1.0; \
-c2:b: 1.0; \
+ut: c; vt: c; \
+us: 0; ue:pi: 2; \
+vs:pi: -1; ve:pi: 1; \
+c1:a: 1; c2:b: 1; \
 x: a*cos(u)*cos(v); \
 y: a*sin(v) + b*u; \
 z: a*sin(u)*cos(v); "

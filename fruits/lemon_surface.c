@@ -61,12 +61,10 @@ PASULI_V_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 char *descLemonSurface =
     "name: Lemon Surface; \
 cat: fruits; \
-ut: c; \
-vt: c; \
-us: f : -sqrt(R*R-r*r); \
-ue: f : sqrt(R*R-r*r); \
-vs: 0; \
-ve: pi : 2; \
+ut: c; vt: c; \
+us:f: -sqrt(R*R-r*r); \
+ue:f: sqrt(R*R-r*r); \
+vs: 0; ve:pi: 2; \
 c1:R: 2; \
 c2:r: 1; \
 x: (sqrt(R^2 - u^2) - r)*sin(v); \

@@ -10,8 +10,6 @@ void Snails(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(SNAILS)
 
-	double cos_cu;
-	double sin_cu;
 	double R = constants[0];
 	double a = constants[1];
 	double b = constants[2];
@@ -20,8 +18,8 @@ void Snails(pasuli_vartype u,
 	double K = constants[5];
 	double w = constants[6];
 
-	cos_cu = cos(c * u);
-	sin_cu = sin(c * u);
+	double cos_cu = cos(c * u);
+	double sin_cu = sin(c * u);
 	double hacv = h + a * cos(v);
 	double ewu = exp(w * u);
 

@@ -7,7 +7,7 @@
 #include "snails.h"
 
 pasuli_consttype NaticaStellataParams[] = {
-    2.6f, 2.4f, 1.0f, 1.25f, -2.8f, 0.18f};
+    2, 2.6f, 2.4f, 1.0f, 1.25f, -2.8f, 0.18f};
 
 void NaticaStellata(pasuli_vartype u,
                     pasuli_vartype v,

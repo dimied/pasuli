@@ -3,7 +3,7 @@
 #include "../pasuli_macros.h"
 #include <math.h>
 
-#if(COMPILE_SURFACES != 0)
+#if(USE_SHOE_SURFACE != 0)
 void ShoeSurface(double u, double v, 
 				double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( SHOE_SURFACE )
