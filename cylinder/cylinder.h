@@ -4,55 +4,32 @@
 #include "../pasuli_cfg.h"
 #include "../pasuli_defs.h"
 
+#include "epizykloid_cylinder.h"
+#include "gauss_cylinder.h"
+#include "hypozykloid_cylinder.h"
+#include "lemniskate_cylinder.h"
+#include "strophoide_cylinder.h"
+#include "versiera_agnesi_cylinder.h"
+#include "zissoide_cylinder.h"
 
-void Cylinder(pasuli_vartype u, pasuli_vartype v, 
-			pasuli_consttype* constants, PaSuLiObject* pO);
-
-void EpizykloidCylinder(pasuli_vartype u, pasuli_vartype v, 
-						pasuli_consttype* constants, PaSuLiObject* pO);
-
-void HypozykloidCylinder(pasuli_vartype u, pasuli_vartype v, 
-						pasuli_consttype* constants, PaSuLiObject* pO);
-
-void LemniskateCylinder(pasuli_vartype u, pasuli_vartype v, 
-						pasuli_consttype* constants, PaSuLiObject* pO);
-
-
-void StrophoideCylinder(pasuli_vartype u, pasuli_vartype v, 
-						pasuli_consttype* constants, PaSuLiObject* pO);
-
-
-void ZissoideCylinder(pasuli_vartype u, pasuli_vartype v, 
-						pasuli_consttype* constants, PaSuLiObject* pO);
-
-void VersieraAgnesiCylinder(pasuli_vartype u, pasuli_vartype v, 
-						pasuli_consttype* constants, PaSuLiObject* pO);
-
-void GaussCylinder(pasuli_vartype u, pasuli_vartype v, 
-					pasuli_consttype* constants, PaSuLiObject* pO);
-
-
-//void initConstCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
-//void initConstEpizykloidCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
-void initConstHypozykloidCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
-void initConstLemniskateCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
-void initConstStrophoideCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
-void initConstZissoideCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
-void initConstVersieraAgnesiCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
-void initConstGaussCylinder(PaSuLiObject* pO, pasuli_consttype* constants);
-
-#if(COMPILE_DESC_CYLINDER != 0)
-extern char* descCylinder;
-extern char* descEpizykloidCylinder;
-extern char* descHypozykloidCylinder;
-extern char* descLemniskateCylinder;
-extern char* descStrophoideCylinder;
-extern char* descZissoideCylinder;
-extern char* descVACylinder;
-extern char* descGaussCylinder;
+#if (USE_CYLINDER != 0)
+void Cylinder(pasuli_vartype u, pasuli_vartype v,
+			  pasuli_consttype *constants,
+			  PaSuLiObject *pO);
 #endif
 
-#if(COMPILE_DEF_DESC_CYLINDER != 0)
+#if (COMPILE_DESC_CYLINDER != 0)
+extern char *descCylinder;
+extern char *descEpizykloidCylinder;
+extern char *descHypozykloidCylinder;
+extern char *descLemniskateCylinder;
+extern char *descStrophoideCylinder;
+extern char *descZissoideCylinder;
+extern char *descVACylinder;
+extern char *descGaussCylinder;
+#endif
+
+#if (COMPILE_DEF_DESC_CYLINDER != 0)
 extern PaSuLiDefDesc pslddCylinder;
 extern PaSuLiDefDesc pslddEpizykloidCylinder;
 extern PaSuLiDefDesc pslddHypozykloidCylinder;
@@ -64,5 +41,3 @@ extern PaSuLiDefDesc pslddGaussCylinder;
 #endif
 
 #endif
-
-

@@ -1,68 +1,40 @@
-#ifndef __PARAMETRIC_SURFACE_SHELLS_DECLARATIONS__
-#define __PARAMETRIC_SURFACE_SHELLS_DECLARATIONS__
+#ifndef __PASULI_SHELLS__
+#define __PASULI_SHELLS__
 
 #include "../pasuli_defs.h"
 #include "../pasuli_cfg.h"
 
-#if(COMPILE_SHELLS != 0)
+#include "astroceras.h"
+#include "bellerophina.h"
+#include "cornucopia.h"
+#include "euhoplites.h"
+#include "mya_arenaria.h"
+#include "natica_stellata.h"
+#include "nautilus.h"
+#include "pseudoheliceras_subcatenatum.h"
+#include "seashell.h"
+#include "snail.h"
+#include "snail_surface.h"
+#include "snails.h"
 
-void Cornucopia(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
 
-void Snail(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
+#if (COMPILE_DESC_SHELLS != 0)
 
-void Seashell(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void SnailSurface(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Snails(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void PseudohelicerasSubcatenatum(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Astroceras(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Bellerophina(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Euhoplites(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void Nautilus(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
-void NaticaStellata(double u, double v, 
-					double* constants, PaSuLiObject* pO);
-
-void MyaArenaria(double u, double v, 
-			  double* constants, PaSuLiObject* pO);
-
+extern char *descCornucopia;
+extern char *descSnail;
+extern char *descSeashell;
+extern char *descSnailSurface;
+extern char *descSnails;
+extern char *descPseudohelicerasSubcatenatum;
+extern char *descAstroceras;
+extern char *descBellerophina;
+extern char *descEuhoplites;
+extern char *descNautilus;
+extern char *descNaticaStellata;
+extern char *descMyaArenaria;
 #endif
 
-
-#if(COMPILE_DESC_SHELLS != 0)
-
-extern char* descCornucopia;
-extern char* descSnail;
-extern char* descSeashell;
-extern char* descSnailSurface;
-extern char* descSnails;
-extern char* descPseudohelicerasSubcatenatum;
-extern char* descAstroceras;
-extern char* descBellerophina;
-extern char* descEuhoplites;
-extern char* descNautilus;
-extern char* descNaticaStellata;
-extern char* descMyaArenaria;
-#endif
-
-
-#if(COMPILE_DEF_DESC_SHELLS != 0)
+#if (COMPILE_DEF_DESC_SHELLS != 0)
 extern PaSuLiDefDesc pslddCornucopia;
 extern PaSuLiDefDesc pslddSnail;
 extern PaSuLiDefDesc pslddSeashell;

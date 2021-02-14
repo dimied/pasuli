@@ -18,7 +18,7 @@ void clearBuffer(char *buffer, int size)
 
 char *readMode = "r";
 char *writeMode = "w";
-char *commonInclude = "surfaces_c_includes.h";
+char *commonInclude = "spiral_c_includes.h";
 char *include = "#include";
 
 int createCFile(char *path, char *headerName)
@@ -171,9 +171,10 @@ int copyIfBlock(char *from, char *to)
             return -1;
         }
 
-        int written = fwrite(foundStart, 1, l+7, toFile);
+        int written = fwrite(foundStart, 1, l + 7, toFile);
 
-        if(written != l+7) {
+        if (written != l + 7)
+        {
             printf("Not written enough into %s\n", to);
             fclose(toFile);
             return -1;
@@ -186,7 +187,7 @@ int copyIfBlock(char *from, char *to)
     return 0;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
 
     int num = 20;
@@ -195,7 +196,13 @@ int main()
 
     DIR *d;
     struct dirent *dir;
-    char *basepath = "./surfaces";
+    char *basepath = argv[1];
+
+    if (argc < 2)
+    {
+        printf("Arg %s\n\n", basepath);
+        return 0;
+    }
 
     d = opendir(basepath);
 

@@ -1,42 +1,36 @@
-#ifndef __PARAMETRIC_SURFACE_LIBRARY_SPHERE_DECLARATIONS__
-#define __PARAMETRIC_SURFACE_LIBRARY_SPHERE_DECLARATIONS__
+#ifndef __PASULI_SPHERE__
+#define __PASULI_SPHERE__
 
 #include "../pasuli_cfg.h"
 #include "../pasuli_defs.h"
 
-#if(COMPILE_SPHERE != 0)
-void Sphere(double u, double v, double* constants, PaSuLiObject* pO);
+#include "ellipsoid.h"
+#include "open_sphere.h"
+#include "pseudosphere.h"
+#include "sphere_v.h"
+#include "sphere_uv.h"
+#include "twisted_sphere.h"
+#include "wave_sphere.h"
 
-void Ellipsoid(double u, double v, double* constants, PaSuLiObject* pO);
-
-void SphereV(double u, double v, double* constants, PaSuLiObject* pO);
-
-void OpenSphere(double u, double v, double* constants, PaSuLiObject* pO);
-
-void SphereUV(double u, double v, double* constants, PaSuLiObject* pO);
-
-void TwistedSphere(double u, double v, 
-				   double* constants, PaSuLiObject* pO);
-
-void WaveSphere(double u, double v, double* constants, PaSuLiObject* pO);
-
-void PseudoSphere(double u, double v, 
-					double* constants, PaSuLiObject* pO);
+#if (USE_SPHERE != 0)
+void Sphere(pasuli_vartype u,
+			pasuli_vartype v,
+			pasuli_consttype *constants,
+			PaSuLiObject *pO);
 #endif
 
-
-#if(COMPILE_DESC_SPHERE != 0)
-extern char* descSphere;
-extern char* descEllipsoid;
-extern char* descSphereV;
-extern char* descOpenSphere;
-extern char* descSphereUV;
-extern char* descTwistedSphere;
-extern char* descWaveSphere;
-extern char* descPseudoSphere;
+#if (COMPILE_DESC_SPHERE != 0)
+extern char *descSphere;
+extern char *descEllipsoid;
+extern char *descSphereV;
+extern char *descOpenSphere;
+extern char *descSphereUV;
+extern char *descTwistedSphere;
+extern char *descWaveSphere;
+extern char *descPseudoSphere;
 #endif
 
-#if(COMPILE_DEF_DESC_SPHERE != 0)
+#if (COMPILE_DEF_DESC_SPHERE != 0)
 extern PaSuLiDefDesc pslddSphere;
 extern PaSuLiDefDesc pslddEllipsoid;
 extern PaSuLiDefDesc pslddSphereV;

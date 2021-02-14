@@ -1,37 +1,22 @@
-#ifndef __PARAMETRIC_SURFACE_LIBRARY_FRUITS_FUNCTION_DECLARATIONS__
-#define __PARAMETRIC_SURFACE_LIBRARY_FRUITS_FUNCTION_DECLARATIONS__
+#ifndef __PASULI_FRUITS__
+#define __PASULI_FRUITS__
 
-#include "../pasuli_cfg.h"
-#include "../pasuli_defs.h"
+#include "apple_surface.h"
+#include "apple2_surface.h"
+#include "kidney_surface.h"
+#include "lemon_surface.h"
 
-#if(COMPILE_FRUITS != 0)
+extern pasulidefdesc_ct def_fruits_constants[2];
 
-void KidneySurface(pasuli_vartype u, pasuli_vartype v, 
-					pasuli_consttype* constants, PaSuLiObject* pO);
+#if (COMPILE_DESC_FRUITS != 0)
 
-void AppleSurface(pasuli_vartype u, pasuli_vartype v, 
-				pasuli_consttype* constants, PaSuLiObject* pO);
-
-
-void Apple2_Surface(pasuli_vartype u, pasuli_vartype v, 
-				pasuli_consttype* constants, PaSuLiObject* pO);
-
-
-void LemonSurface(pasuli_vartype u, pasuli_vartype v, 
-				pasuli_consttype* constants, PaSuLiObject* pO);
-
+extern char *descKidneySurface;
+extern char *descAppleSurface;
+extern char *descApple2_Surface;
+extern char *descLemonSurface;
 #endif
 
-
-#if(COMPILE_DESC_FRUITS != 0)
-
-extern char* descKidneySurface;
-extern char* descAppleSurface;
-extern char* descApple2_Surface;
-extern char* descLemonSurface;
-#endif
-
-#if(COMPILE_DEF_DESC_FRUITS != 0)
+#if (COMPILE_DEF_DESC_FRUITS != 0)
 
 extern PaSuLiDefDesc pslddKidneySurface;
 extern PaSuLiDefDesc pslddAppleSurface;
