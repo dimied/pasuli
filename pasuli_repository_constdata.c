@@ -19,37 +19,28 @@
 #define SPHERE_VALUES 124
 #define TORUS1_VALUES 125
 
-#define ALL_ONES 130
-#define ALL_HALFES 131
+#define ALL_ONES 255
+#define ALL_HALFES 254
 
-float std1_constants[] = {
+// Constants defined so should be divided by 10 to get real (stored) value
+#define CONSTANT_TUPLE_10(V1, V2, V3, V4, V5, V6) V1, V2, V3, V4, V5, V6
+
+unsigned char constants_multiplied[] = {
 	// STD1
-	1.5,
-	0.5,
-	1,
-	1,
-	1,
-	1,
+	CONSTANT_TUPLE_10(15, 5, 10, 10, 10, 10),
 	// DINI
-	1,
-	0.2,
-	0,
-	0,
-	0,
-	0,
+	CONSTANT_TUPLE_10(10, 2, 0, 0, 0, 0),
 	// CYLINDER
-	1.5,
-	1,
-	0.5,
-	1,
-	1,
-	1,
+	CONSTANT_TUPLE_10(15, 10, 5, 10, 10, 10),
 	// LEMON
-	2, 1, 0, 0, 0, 0,
+	CONSTANT_TUPLE_10(20, 10, 0, 0, 0, 0),
 	// Sphere
-	1.5, 1, 1, 0, 0, 0,
+	CONSTANT_TUPLE_10(15, 10, 10, 0, 0, 0),
 	// Torus 1
-	1, 1, 0.5, 1, 0, 0};
+	CONSTANT_TUPLE_10(10, 10, 5, 10, 10, 10),
+};
+
+#undef CONSTANT_TUPLE_10
 
 unsigned char id_and_length[][3] = {
 	ID_AND_LENGTH_C(PLANE, 1, 0),
@@ -274,8 +265,8 @@ unsigned char id_and_length[][3] = {
 	//
 	ID_AND_LENGTH_C(SPIRAL_TORUS, 4, ALL_ONES),
 	ID_AND_LENGTH_C(TORUS_KNOT, 5, ALL_ONES),
-	ID_AND_LENGTH_C(GEAR_TORUS, 4, ALL_ONES),
-
+	ID_AND_LENGTH_C(GEAR_TORUS, 4, ALL_ONES)
+	// END
 };
 
 #include <stdio.h>
@@ -311,9 +302,34 @@ int findDefaultConstants(unsigned int id, double *pConstants, int size)
 				if (typeOrValue == ALL_ONES || typeOrValue == ALL_HALFES)
 				{
 					double v = typeOrValue == ALL_ONES ? 1.0 : 0.5;
+
 					for (int j = 0; j < length; j++)
 					{
 						pConstants[j] = v;
+					}
+				}
+
+				if (typeOrValue >= STD1_VALUES && typeOrValue <= TORUS1_VALUES)
+				{
+					int idx = (typeOrValue - STD1_VALUES) * 6;
+
+					if (idx > sizeof(constants_multiplied) / sizeof(char) ||
+						length > 6)
+					{
+						// INTERNAL error
+						return -3;
+					}
+
+					for (int j = 0; j < length; j++)
+					{
+						pConstants[j] = (constants_multiplied[j] * 1.0) / 10.0;
+					}
+				}
+				else
+				{
+					for (int j = 0; j < length; j++)
+					{
+						pConstants[j] = typeOrValue * 1.0;
 					}
 				}
 			}
@@ -324,3 +340,10 @@ int findDefaultConstants(unsigned int id, double *pConstants, int size)
 	// Not found
 	return -1;
 }
+
+#undef STD1_VALUES
+#undef DINI_VALUES
+#undef CYLINDER_VALUES
+#undef LEMON_VALUES
+#undef SPHERE_VALUES
+#undef TORUS1_VALUES
