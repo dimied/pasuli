@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_TRIPLE_POINT_TWIST != 0)
-void TriplePointTwist(double u, double v,
-					  double *constants,
+void TriplePointTwist(pasuli_vartype u, pasuli_vartype v,
+					  pasuli_consttype *constants,
 					  PaSuLiObject *pO);
 #endif
 

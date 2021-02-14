@@ -3,7 +3,7 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_HORN != 0)
-void Horn(double u, double v, 
+void Horn(pasuli_vartype u, pasuli_vartype v, 
 			  double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( HORN )
 

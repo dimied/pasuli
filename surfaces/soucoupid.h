@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_SOUCOUPOID != 0)
-void Soucoupoid(double u, double v,
-				double *constants,
+void Soucoupoid(pasuli_vartype u, pasuli_vartype v,
+				pasuli_consttype *constants,
 				PaSuLiObject *pO);
 #endif
 

@@ -3,8 +3,8 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_VERRILL_SURFACE != 0)
-void VerrillSurface(double u, double v,
-					double *constants,
+void VerrillSurface(pasuli_vartype u, pasuli_vartype v,
+					pasuli_consttype *constants,
 					PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(VERRILL_SURFACE)

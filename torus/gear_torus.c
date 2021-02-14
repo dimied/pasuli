@@ -62,7 +62,7 @@ void GearTorus(pasuli_vartype u,
 }
 #endif
 
-#include "torus_desc_inc.h"
+#include "torus_desc.h"
 
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddGearTorus = {

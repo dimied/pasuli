@@ -4,8 +4,8 @@
 
 #if (USE_SPIRAL_WAVE != 0)
 
-void SpiralWave(double u, double v,
-                double *constants,
+void SpiralWave(pasuli_vartype u, pasuli_vartype v,
+                pasuli_consttype *constants,
                 PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(SPIRAL_WAVE)

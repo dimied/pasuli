@@ -4,7 +4,7 @@
 
 #if (USE_SINE_CONE != 0)
 
-void SineCone(double u, double v, 
+void SineCone(pasuli_vartype u, pasuli_vartype v, 
 			  double* constants, 
 			  PaSuLiObject* pO) {
 

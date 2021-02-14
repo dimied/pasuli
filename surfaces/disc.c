@@ -4,8 +4,8 @@
 
 #if (USE_DISC != 0)
 
-void Disc(double u, double v,
-          double *constants,
+void Disc(pasuli_vartype u, pasuli_vartype v,
+          pasuli_consttype *constants,
           PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(DISC)

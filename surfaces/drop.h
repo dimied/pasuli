@@ -5,7 +5,7 @@
 #include "../pasuli_defs.h"
 
 #if (USE_DROP != 0)
-void Drop(double u, double v, 
+void Drop(pasuli_vartype u, pasuli_vartype v, 
 			  double* constants, 
 			  PaSuLiObject* pO);
 #endif

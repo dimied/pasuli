@@ -4,7 +4,7 @@
 #include <math.h>
 
 #if(USE_FUNNEL != 0)
-void Funnel(double u, double v, 
+void Funnel(pasuli_vartype u, pasuli_vartype v, 
 			  double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( FUNNEL )
 

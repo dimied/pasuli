@@ -4,8 +4,8 @@
 #include <math.h>
 
 #if (USE_RICHMOND_SURFACE != 0)
-void RichmondSurface(double u, double v,
-                     double *constants,
+void RichmondSurface(pasuli_vartype u, pasuli_vartype v,
+                     pasuli_consttype *constants,
                      PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(RICHMOND_SURFACE)

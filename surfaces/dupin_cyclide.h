@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_DUPIN_CYCLIDE != 0)
-void DupinCyclide(double u, double v,
-				  double *constants,
+void DupinCyclide(pasuli_vartype u, pasuli_vartype v,
+				  pasuli_consttype *constants,
 				  PaSuLiObject *pO);
 #endif
 

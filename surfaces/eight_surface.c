@@ -4,8 +4,8 @@
 #include <math.h>
 
 #if (USE_EIGHT_SURFACE != 0)
-void EightSurface(double u, double v,
-                  double *constants,
+void EightSurface(pasuli_vartype u, pasuli_vartype v,
+                  pasuli_consttype *constants,
                   PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(EIGHT_SURFACE)

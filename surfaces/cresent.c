@@ -3,8 +3,8 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_CRESENT != 0)
-void Cresent(double u, double v,
-             double *constants, PaSuLiObject *pO)
+void Cresent(pasuli_vartype u, pasuli_vartype v,
+             pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(CRESENT)
 

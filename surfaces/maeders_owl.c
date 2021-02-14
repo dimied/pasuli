@@ -4,7 +4,7 @@
 #include <math.h>
 
 #if(USE_MAEDERS_OWL != 0)
-void MaedersOwl(double u, double v, 
+void MaedersOwl(pasuli_vartype u, pasuli_vartype v, 
 				double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( MAEDERS_OWL )
 

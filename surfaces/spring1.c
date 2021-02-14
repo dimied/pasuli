@@ -3,7 +3,7 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_SPRING1 != 0)
-void Spring1(double u, double v, 
+void Spring1(pasuli_vartype u, pasuli_vartype v, 
 			  double* constants, 
 			  PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( SPRING1 )

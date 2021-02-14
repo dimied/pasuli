@@ -64,7 +64,7 @@ void CassinianOvalTorus2(pasuli_vartype u, pasuli_vartype v,
 #endif
 
 
-#include "torus_desc_inc.h"
+#include "torus_desc.h"
 
 #if(COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddCassinianOvalTorus2 = {

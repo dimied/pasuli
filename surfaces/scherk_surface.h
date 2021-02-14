@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_SCHERK_SURFACE != 0)
-void ScherkSurface(double u, double v,
-                   double *constants,
+void ScherkSurface(pasuli_vartype u, pasuli_vartype v,
+                   pasuli_consttype *constants,
                    PaSuLiObject *pO);
 #endif
 

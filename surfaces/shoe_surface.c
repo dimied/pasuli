@@ -4,7 +4,7 @@
 #include <math.h>
 
 #if(USE_SHOE_SURFACE != 0)
-void ShoeSurface(double u, double v, 
+void ShoeSurface(pasuli_vartype u, pasuli_vartype v, 
 				double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( SHOE_SURFACE )
 

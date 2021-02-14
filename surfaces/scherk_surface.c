@@ -4,8 +4,8 @@
 #include <math.h>
 
 #if (USE_SCHERK_SURFACE != 0)
-void ScherkSurface(double u, double v,
-                   double *constants, PaSuLiObject *pO)
+void ScherkSurface(pasuli_vartype u, pasuli_vartype v,
+                   pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(SCHERK_SURFACE)
 

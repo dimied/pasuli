@@ -4,8 +4,8 @@
 
 #if (USE_SINE_WAVE != 0)
 
-void SineWave(double u, double v,
-              double *constants,
+void SineWave(pasuli_vartype u, pasuli_vartype v,
+              pasuli_consttype *constants,
               PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(SINE_WAVE)

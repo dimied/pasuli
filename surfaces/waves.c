@@ -4,7 +4,7 @@
 
 #if (USE_WAVES != 0)
 
-void Waves(double u, double v, 
+void Waves(pasuli_vartype u, pasuli_vartype v, 
 			  double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( WAVES )
 

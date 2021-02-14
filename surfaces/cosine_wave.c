@@ -4,8 +4,8 @@
 
 #if (USE_COSINE_WAVE != 0)
 
-void CosineWave(double u, double v,
-				double *constants,
+void CosineWave(pasuli_vartype u, pasuli_vartype v,
+				pasuli_consttype *constants,
 				PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(COSINE_WAVE)

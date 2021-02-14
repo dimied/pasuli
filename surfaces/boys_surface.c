@@ -4,7 +4,7 @@
 #include <math.h>
 
 #if (USE_BOYS_SURFACE != 0)
-void BoysSurface(double u, double v, 
+void BoysSurface(pasuli_vartype u, pasuli_vartype v, 
 			  double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( BOYS_SURFACE )
 

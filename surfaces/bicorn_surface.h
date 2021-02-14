@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_BICORN_SURFACE != 0)
-void BicornSurface(double u, double v,
-                   double *constants,
+void BicornSurface(pasuli_vartype u, pasuli_vartype v,
+                   pasuli_consttype *constants,
                    PaSuLiObject *pO);
 #endif
 

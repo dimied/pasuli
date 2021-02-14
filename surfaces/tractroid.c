@@ -4,7 +4,7 @@
 #include <math.h>
 
 #if(USE_TRACTROID != 0)
-void Tractroid(double u, double v, 
+void Tractroid(pasuli_vartype u, pasuli_vartype v, 
 			  double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( TRACTROID )
 

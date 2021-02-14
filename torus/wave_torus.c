@@ -52,7 +52,7 @@ void WaveTorus(pasuli_vartype u, pasuli_vartype v,
 }
 #endif
 
-#include "torus_desc_inc.h"
+#include "torus_desc.h"
 #include "torus_const.h"
 
 #if (COMPILE_DEF_DESC_TORUS != 0)

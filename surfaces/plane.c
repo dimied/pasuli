@@ -23,7 +23,7 @@ xuv:0); yuv:0); zuv: 0); \
 xvv:0); yvv:0); zvv: 0);";
 
 #if (USE_PLANE != 0)
-void Plane(double u, double v, double *constants, PaSuLiObject *pO)
+void Plane(pasuli_vartype u, pasuli_vartype v, pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(PLANE)
     double z = constants[0];

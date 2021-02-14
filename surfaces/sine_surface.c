@@ -5,8 +5,8 @@
 #include <math.h>
 
 #if (USE_SINE_SURFACE != 0)
-void SineSurface(double u, double v,
-                 double *constants, PaSuLiObject *pO)
+void SineSurface(pasuli_vartype u, pasuli_vartype v,
+                 pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(SINE_SURFACE)
 

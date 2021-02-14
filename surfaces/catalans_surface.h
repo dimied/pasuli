@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_CATALANS_SURFACE != 0)
-void CatalansSurface(double u, double v,
-                     double *constants, PaSuLiObject *pO);
+void CatalansSurface(pasuli_vartype u, pasuli_vartype v,
+                     pasuli_consttype *constants, PaSuLiObject *pO);
 #endif
 
 #endif

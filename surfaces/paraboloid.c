@@ -4,7 +4,7 @@
 #include <math.h>
 
 #if(USE_PARABOLOID != 0)
-void Paraboloid(double u, double v, 
+void Paraboloid(pasuli_vartype u, pasuli_vartype v, 
 			  double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( PARABOLOID )
 

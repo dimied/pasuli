@@ -4,8 +4,8 @@
 #include <math.h>
 
 #if (USE_ROMAN_SURFACE != 0)
-void RomanSurface(double u, double v,
-                  double *constants, PaSuLiObject *pO)
+void RomanSurface(pasuli_vartype u, pasuli_vartype v,
+                  pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(ROMAN_SURFACE);
 

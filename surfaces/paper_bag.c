@@ -3,7 +3,7 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_PAPER_BAG != 0)
-void PaperBag(double u, double v, 
+void PaperBag(pasuli_vartype u, pasuli_vartype v, 
 			  double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( PAPER_BAG )
 

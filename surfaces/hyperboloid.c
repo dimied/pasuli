@@ -4,8 +4,8 @@
 #include <math.h>
 
 #if (USE_HYPERBOLOID != 0)
-void Hyperboloid(double u, double v,
-                 double *constants, PaSuLiObject *pO)
+void Hyperboloid(pasuli_vartype u, pasuli_vartype v,
+                 pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(HYPERBOLOID)
 

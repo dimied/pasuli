@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_DINI_SURFACE != 0)
-void DiniSurface(double u, double v,
-                 double *constants, PaSuLiObject *pO);
+void DiniSurface(pasuli_vartype u, pasuli_vartype v,
+                 pasuli_consttype *constants, PaSuLiObject *pO);
 #endif
 
 #endif

@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_FISH_SURFACE != 0)
-void FishSurface(double u, double v,
-				 double *constants,
+void FishSurface(pasuli_vartype u, pasuli_vartype v,
+				 pasuli_consttype *constants,
 				 PaSuLiObject *pO);
 #endif
 

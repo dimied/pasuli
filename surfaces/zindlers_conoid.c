@@ -3,8 +3,8 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_ZINDLERS_CONOID != 0)
-void ZindlersConoid(double u, double v,
-                    double *constants,
+void ZindlersConoid(pasuli_vartype u, pasuli_vartype v,
+                    pasuli_consttype *constants,
                     PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(ZINDLERS_CONOID)

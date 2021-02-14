@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_STEINBACH_SCREW != 0)
-void SteinbachScrew(double u, double v,
-                    double *constants, PaSuLiObject *pO);
+void SteinbachScrew(pasuli_vartype u, pasuli_vartype v,
+                    pasuli_consttype *constants, PaSuLiObject *pO);
 #endif
 
 #endif

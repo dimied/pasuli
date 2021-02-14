@@ -3,7 +3,7 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_TRIAXIAL_TRITORUS != 0)
-void TriaxialTritorus(double u, double v, 
+void TriaxialTritorus(pasuli_vartype u, pasuli_vartype v, 
 						double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( TRIAXIAL_TRITORUS )
 

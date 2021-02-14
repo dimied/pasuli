@@ -4,8 +4,8 @@
 
 #if (USE_SIEVERT_SURFACE != 0)
 
-void SievertSurface(double u, double v,
-                    double *constants,
+void SievertSurface(pasuli_vartype u, pasuli_vartype v,
+                    pasuli_consttype *constants,
                     PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(SIEVERT_SURFACE)

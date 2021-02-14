@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_FACING_SNAIL != 0)
-void FacingSnail(double u, double v,
-				 double *constants,
+void FacingSnail(pasuli_vartype u, pasuli_vartype v,
+				 pasuli_consttype *constants,
 				 PaSuLiObject *pO);
 #endif
 

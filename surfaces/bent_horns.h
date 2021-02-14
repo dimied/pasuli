@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_BENT_HORNS != 0)
-void BentHorns(double u, double v,
-               double *constants,
+void BentHorns(pasuli_vartype u, pasuli_vartype v,
+               pasuli_consttype *constants,
                PaSuLiObject *pO);
 #endif
 

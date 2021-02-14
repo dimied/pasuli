@@ -3,8 +3,8 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_BELL_WAVE != 0)
-void BellWave(double u, double v,
-			  double *constants,
+void BellWave(pasuli_vartype u, pasuli_vartype v,
+			  pasuli_consttype *constants,
 			  PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(BELL_WAVE)

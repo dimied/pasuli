@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_WAVES != 0)
-void Waves(double u, double v,
-           double *constants,
+void Waves(pasuli_vartype u, pasuli_vartype v,
+           pasuli_consttype *constants,
            PaSuLiObject *pO);
 #endif
 

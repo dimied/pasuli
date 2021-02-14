@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_HORN != 0)
-void Horn(double u, double v,
-		  double *constants,
+void Horn(pasuli_vartype u, pasuli_vartype v,
+		  pasuli_consttype *constants,
 		  PaSuLiObject *pO);
 #endif
 

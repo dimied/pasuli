@@ -4,8 +4,8 @@
 
 #if (USE_TRIPLE_CORK_SCREW1 != 0)
 
-void TripleCorkScrew1(double u, double v,
-					  double *constants,
+void TripleCorkScrew1(pasuli_vartype u, pasuli_vartype v,
+					  pasuli_consttype *constants,
 					  PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(TRIPLE_CORK_SCREW1)

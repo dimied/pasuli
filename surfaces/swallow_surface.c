@@ -4,8 +4,8 @@
 #include <math.h>
 
 #if (USE_SWALLOW_SURFACE != 0)
-void SwallowSurface(double u, double v,
-                    double *constants, PaSuLiObject *pO)
+void SwallowSurface(pasuli_vartype u, pasuli_vartype v,
+                    pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(SWALLOW_SURFACE)
 

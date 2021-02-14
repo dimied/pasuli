@@ -4,8 +4,8 @@
 
 #if (USE_TREFOIL_KNOTS2 != 0)
 
-void TrefoilKnots2(double u, double v,
-				   double *constants,
+void TrefoilKnots2(pasuli_vartype u, pasuli_vartype v,
+				   pasuli_consttype *constants,
 				   PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(TREFOIL_KNOTS2)

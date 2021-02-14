@@ -59,7 +59,7 @@ void CurlyTorus2(pasuli_vartype u, pasuli_vartype v,
 
 
 
-#include "torus_desc_inc.h"
+#include "torus_desc.h"
 
 #if(COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddCurlyTorus2 = {

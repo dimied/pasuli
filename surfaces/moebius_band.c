@@ -4,8 +4,8 @@
 #include <math.h>
 
 #if (USE_MOEBIUS_BAND != 0)
-void MoebiusBand(double u, double v,
-                 double *constants, PaSuLiObject *pO)
+void MoebiusBand(pasuli_vartype u, pasuli_vartype v,
+                 pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(MOEBIUS_BAND)
 

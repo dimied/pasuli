@@ -23,7 +23,7 @@ typedef struct
         ID, FUNC_PTR                 \
     }
 
-void NoneSurface(double u, double v, double *constants, PaSuLiObject *pO)
+void NoneSurface(pasuli_vartype u, pasuli_vartype v, pasuli_consttype *constants, PaSuLiObject *pO)
 {
 }
 

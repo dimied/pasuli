@@ -3,8 +3,8 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_JEENER_KLEIN_SURFACE != 0)
-void JeenerKleinSurface(double u, double v,
-						double *constants, PaSuLiObject *pO)
+void JeenerKleinSurface(pasuli_vartype u, pasuli_vartype v,
+						pasuli_consttype *constants, PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(JEENER_KLEIN_SURFACE)
 

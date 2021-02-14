@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_TRIAXIAL_TEARDROP != 0)
-void TriaxialTeardrop(double u, double v,
-					  double *constants,
+void TriaxialTeardrop(pasuli_vartype u, pasuli_vartype v,
+					  pasuli_consttype *constants,
 					  PaSuLiObject *pO);
 #endif
 

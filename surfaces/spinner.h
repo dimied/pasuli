@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_SPINNER != 0)
-void Spinner(double u, double v,
-             double *constants,
+void Spinner(pasuli_vartype u, pasuli_vartype v,
+             pasuli_consttype *constants,
              PaSuLiObject *pO);
 #endif
 

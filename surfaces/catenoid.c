@@ -4,8 +4,8 @@
 #include <math.h>
 
 #if (USE_CATENOID != 0)
-void Catenoid(double u, double v,
-              double *constants,
+void Catenoid(pasuli_vartype u, pasuli_vartype v,
+              pasuli_consttype *constants,
               PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(CATENOID)

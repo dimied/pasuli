@@ -3,8 +3,8 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_HYPERBOLIC_OCTAHEDRON != 0)
-void HyperbolicOctahedron(double u, double v,
-						  double *constants,
+void HyperbolicOctahedron(pasuli_vartype u, pasuli_vartype v,
+						  pasuli_consttype *constants,
 						  PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(HYPERBOLIC_OCTAHEDRON)

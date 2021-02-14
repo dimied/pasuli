@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_SINE_CONE != 0)
-void SineCone(double u, double v,
-			  double *constants,
+void SineCone(pasuli_vartype u, pasuli_vartype v,
+			  pasuli_consttype *constants,
 			  PaSuLiObject *pO);
 #endif
 

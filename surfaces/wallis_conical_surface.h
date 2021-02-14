@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_WALLIS_CONICAL_SURFACE != 0)
-void WallisConicalSurface(double u, double v,
-                          double *constants,
+void WallisConicalSurface(pasuli_vartype u, pasuli_vartype v,
+                          pasuli_consttype *constants,
                           PaSuLiObject *pO);
 #endif
 

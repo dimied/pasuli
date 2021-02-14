@@ -5,7 +5,7 @@
 #include "../pasuli_defs.h"
 
 #if (USE_RICHMOND_SURFACE != 0)
-void RichmondSurface(double u, double v, 
+void RichmondSurface(pasuli_vartype u, pasuli_vartype v, 
 					double* constants, PaSuLiObject* pO);
 #endif
 

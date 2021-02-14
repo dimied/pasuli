@@ -3,8 +3,8 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_HOLE_DISC != 0)
-void HoleDisc(double u, double v,
-              double *constants,
+void HoleDisc(pasuli_vartype u, pasuli_vartype v,
+              pasuli_consttype *constants,
               PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(HOLE_DISC)

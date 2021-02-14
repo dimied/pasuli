@@ -4,7 +4,7 @@
 #include <math.h>
 
 #if (USE_HANDKERCHIEF != 0)
-void Handkerchief(double u, double v, double *constants, PaSuLiObject *pO)
+void Handkerchief(pasuli_vartype u, pasuli_vartype v, pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(HANDKERCHIEF)
 

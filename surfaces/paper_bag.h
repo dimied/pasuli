@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_PAPER_BAG != 0)
-void PaperBag(double u, double v,
-			  double *constants,
+void PaperBag(pasuli_vartype u, pasuli_vartype v,
+			  pasuli_consttype *constants,
 			  PaSuLiObject *pO);
 #endif
 

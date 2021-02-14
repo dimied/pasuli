@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_PLUECKER_CONOID != 0)
-void PlueckerConoid(double u, double v,
-                    double *constants, PaSuLiObject *pO);
+void PlueckerConoid(pasuli_vartype u, pasuli_vartype v,
+                    pasuli_consttype *constants, PaSuLiObject *pO);
 #endif
 
 #endif

@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_COSINE_SURFACE != 0)
-void CosineSurface(double u, double v,
-                   double *constants,
+void CosineSurface(pasuli_vartype u, pasuli_vartype v,
+                   pasuli_consttype *constants,
                    PaSuLiObject *pO);
 #endif
 

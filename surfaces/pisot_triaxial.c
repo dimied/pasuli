@@ -4,8 +4,8 @@
 
 #if (USE_PISOT_TRIAXIAL != 0)
 
-void PisotTriaxial(double u, double v,
-                   double *constants,
+void PisotTriaxial(pasuli_vartype u, pasuli_vartype v,
+                   pasuli_consttype *constants,
                    PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(PISOT_TRIAXIAL)

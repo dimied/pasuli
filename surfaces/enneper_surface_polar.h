@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_ENNEPER_SURFACE_POLAR != 0)
-void EnneperSurfacePolar(double u, double v,
-						 double *constants,
+void EnneperSurfacePolar(pasuli_vartype u, pasuli_vartype v,
+						 pasuli_consttype *constants,
 						 PaSuLiObject *pO);
 #endif
 

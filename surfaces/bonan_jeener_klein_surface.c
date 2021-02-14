@@ -4,8 +4,8 @@
 
 #if (USE_BONAN_JEENER_KLEIN_SURFACE != 0)
 
-void BonanJeenerKleinSurface(double u, double v,
-							 double *constants,
+void BonanJeenerKleinSurface(pasuli_vartype u, pasuli_vartype v,
+							 pasuli_consttype *constants,
 							 PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(BONAN_JEENER_KLEIN_SURFACE)

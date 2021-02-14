@@ -4,7 +4,7 @@
 
 #if (USE_COSINE_SURFACE2 != 0)
 
-void CosineSurface2(double u, double v, 
+void CosineSurface2(pasuli_vartype u, pasuli_vartype v, 
 					double* constants, PaSuLiObject* pO) {
 
 	PASULI_SET_TYPE_ID( COSINE_SURFACE2 )

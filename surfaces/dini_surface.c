@@ -4,7 +4,7 @@
 #include <math.h>
 
 #if(USE_DINI_SURFACE != 0)
-void DiniSurface(double u, double v, 
+void DiniSurface(pasuli_vartype u, pasuli_vartype v, 
 				double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( DINI_SURFACE )
 

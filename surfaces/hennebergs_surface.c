@@ -4,8 +4,8 @@
 #include <math.h>
 
 #if (USE_HENNEBERGS_SURFACE != 0)
-void HennebergsSurface(double u, double v,
-                       double *constants, PaSuLiObject *pO)
+void HennebergsSurface(pasuli_vartype u, pasuli_vartype v,
+                       pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(HENNEBERGS_SURFACE)
 

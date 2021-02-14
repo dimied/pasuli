@@ -5,8 +5,8 @@
 
 #if (USE_BOHEMIAN_DOME_SURFACE != 0)
 
-void BohemianDomeSurface(double u, double v,
-                         double *constants, PaSuLiObject *pO)
+void BohemianDomeSurface(pasuli_vartype u, pasuli_vartype v,
+                         pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(BOHEMIAN_DOME_SURFACE)
     double a = constants[0];

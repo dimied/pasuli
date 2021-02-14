@@ -4,8 +4,8 @@
 
 #if (USE_BELL != 0)
 
-void Bell(double u, double v,
-          double *constants,
+void Bell(pasuli_vartype u, pasuli_vartype v,
+          pasuli_consttype *constants,
           PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(BELL)

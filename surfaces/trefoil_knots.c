@@ -3,8 +3,8 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_TREFOIL_KNOTS != 0)
-void TrefoilKnots(double u, double v,
-                  double *constants,
+void TrefoilKnots(pasuli_vartype u, pasuli_vartype v,
+                  pasuli_consttype *constants,
                   PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(TREFOIL_KNOTS)

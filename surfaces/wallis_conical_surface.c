@@ -4,7 +4,7 @@
 #include <math.h>
 
 #if(USE_WALLIS_CONICAL_SURFACE != 0)
-void WallisConicalSurface(double u, double v, 
+void WallisConicalSurface(pasuli_vartype u, pasuli_vartype v, 
 							double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( WALLIS_CONICAL_SURFACE )
 

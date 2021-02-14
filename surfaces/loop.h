@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_LOOP != 0)
-void Loop(double u, double v,
-		  double *constants,
+void Loop(pasuli_vartype u, pasuli_vartype v,
+		  pasuli_consttype *constants,
 		  PaSuLiObject *pO);
 #endif
 

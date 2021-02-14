@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_KLEIN_BOTTLE_SURFACE != 0)
-void KleinBottleSurface(double u, double v,
-                        double *constants, PaSuLiObject *pO);
+void KleinBottleSurface(pasuli_vartype u, pasuli_vartype v,
+                        pasuli_consttype *constants, PaSuLiObject *pO);
 #endif
 
 #endif

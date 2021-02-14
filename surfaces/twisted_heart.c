@@ -4,8 +4,8 @@
 
 #if (USE_TWISTED_HEART != 0)
 
-void TwistedHeart(double u, double v,
-                  double *constants,
+void TwistedHeart(pasuli_vartype u, pasuli_vartype v,
+                  pasuli_consttype *constants,
                   PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(TWISTED_HEART)

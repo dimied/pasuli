@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_CATENOID != 0)
-void Catenoid(double u, double v,
-              double *constants, PaSuLiObject *pO);
+void Catenoid(pasuli_vartype u, pasuli_vartype v,
+              pasuli_consttype *constants, PaSuLiObject *pO);
 #endif
 
 #endif

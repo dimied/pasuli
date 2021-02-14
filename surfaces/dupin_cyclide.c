@@ -4,7 +4,7 @@
 
 #if (USE_DUPIN_CYCLIDE != 0)
 
-void DupinCyclide(double u, double v, 
+void DupinCyclide(pasuli_vartype u, pasuli_vartype v, 
 					double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( DUPIN_CYCLIDE )
 

@@ -4,7 +4,7 @@
 #include <math.h>
 
 #if(USE_ENNEPER_SURFACE != 0)
-void EnneperSurface(double u, double v, 
+void EnneperSurface(pasuli_vartype u, pasuli_vartype v, 
 					double* constants, PaSuLiObject* pO) {
 	PASULI_SET_TYPE_ID( ENNEPER_SURFACE )
 

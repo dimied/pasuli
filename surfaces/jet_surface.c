@@ -4,8 +4,8 @@
 #include <math.h>
 
 #if (USE_JET_SURFACE != 0)
-void JetSurface(double u, double v,
-                double *constants, PaSuLiObject *pO)
+void JetSurface(pasuli_vartype u, pasuli_vartype v,
+                pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(JET_SURFACE)
 

@@ -3,8 +3,8 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_KUENS_SURFACE != 0)
-void KuensSurface(double u, double v,
-				  double *constants,
+void KuensSurface(pasuli_vartype u, pasuli_vartype v,
+				  pasuli_consttype *constants,
 				  PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(KUENS_SURFACE)

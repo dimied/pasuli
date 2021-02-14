@@ -4,8 +4,8 @@
 #include <math.h>
 
 #if (USE_MONKEY_SADDLE != 0)
-void MonkeySaddle(double u, double v,
-                  double *constants, PaSuLiObject *pO)
+void MonkeySaddle(pasuli_vartype u, pasuli_vartype v,
+                  pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(MONKEY_SADDLE)
 

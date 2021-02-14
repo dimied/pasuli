@@ -5,7 +5,7 @@
 #include "../pasuli_defs.h"
 
 #if (USE_BOHEMIAN_DOME_SURFACE != 0)
-void BohemianDomeSurface(double u, double v, 
+void BohemianDomeSurface(pasuli_vartype u, pasuli_vartype v, 
 			  double* constants, PaSuLiObject* pO);
 #endif
 

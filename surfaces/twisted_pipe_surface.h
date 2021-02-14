@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_TWISTED_PIPE_SURFACE != 0)
-void TwistedPipeSurface(double u, double v,
-                        double *constants,
+void TwistedPipeSurface(pasuli_vartype u, pasuli_vartype v,
+                        pasuli_consttype *constants,
                         PaSuLiObject *pO);
 #endif
 

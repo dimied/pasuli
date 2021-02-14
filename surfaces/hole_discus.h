@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_HOLE_DISCUS != 0)
-void HoleDiscus(double u, double v,
-                double *constants,
+void HoleDiscus(pasuli_vartype u, pasuli_vartype v,
+                pasuli_consttype *constants,
                 PaSuLiObject *pO);
 #endif
 

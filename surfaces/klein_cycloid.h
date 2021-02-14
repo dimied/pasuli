@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_KLEIN_CYCLOID != 0)
-void KleinCycloid(double u, double v,
-                  double *constants,
+void KleinCycloid(pasuli_vartype u, pasuli_vartype v,
+                  pasuli_consttype *constants,
                   PaSuLiObject *pO);
 #endif
 

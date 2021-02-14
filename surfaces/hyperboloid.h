@@ -5,9 +5,9 @@
 #include "../pasuli_defs.h"
 
 #if (USE_HYPERBOLOID != 0)
-void Hyperboloid(double u,
-                 double v,
-                 double *constants,
+void Hyperboloid(pasuli_vartype u,
+                 pasuli_vartype v,
+                 pasuli_consttype *constants,
                  PaSuLiObject *pO);
 #endif
 

@@ -3,8 +3,8 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_FOLIUM != 0)
-void Folium(double u, double v,
-			double *constants,
+void Folium(pasuli_vartype u, pasuli_vartype v,
+			pasuli_consttype *constants,
 			PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(FOLIUM)

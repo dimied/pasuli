@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_VERRILL_SURFACE != 0)
-void VerrillSurface(double u, double v,
-					double *constants,
+void VerrillSurface(pasuli_vartype u, pasuli_vartype v,
+					pasuli_consttype *constants,
 					PaSuLiObject *pO);
 #endif
 

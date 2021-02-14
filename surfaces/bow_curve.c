@@ -4,8 +4,8 @@
 
 #if (USE_BOW_CURVE != 0)
 
-void BowCurve(double u, double v,
-              double *constants,
+void BowCurve(pasuli_vartype u, pasuli_vartype v,
+              pasuli_consttype *constants,
               PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(BOW_CURVE)

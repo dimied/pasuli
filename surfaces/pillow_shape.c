@@ -3,8 +3,8 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_PILLOW_SHAPE != 0)
-void PillowShape(double u, double v,
-                 double *constants, PaSuLiObject *pO)
+void PillowShape(pasuli_vartype u, pasuli_vartype v,
+                 pasuli_consttype *constants, PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(PILLOW_SHAPE)
 

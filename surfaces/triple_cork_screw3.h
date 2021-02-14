@@ -5,8 +5,8 @@
 #include "../pasuli_defs.h"
 
 #if (USE_TRIPLE_CORK_SCREW3 != 0)
-void TripleCorkScrew3(double u, double v,
-					  double *constants,
+void TripleCorkScrew3(pasuli_vartype u, pasuli_vartype v,
+					  pasuli_consttype *constants,
 					  PaSuLiObject *pO);
 #endif
 
