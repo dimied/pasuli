@@ -6,9 +6,12 @@ FILES3 = superformula/*.c surfaces/*.c torus/*.c sf3d_examples.c
 all: clean doall # doopt
 
 
-doall: #*.c #*.o surfaces/*.o
+doall:
 	gcc -o ex ex.c ${FILES1} ${FILES2} ${FILES3} -lm
 	#gcc -o ex *.o surfaces/*.o -lm
+
+do99:
+	gcc -std=c99 -o ex ex.c ${FILES1} ${FILES2} ${FILES3} -lm
 
 doopt:
 	gcc -Os -o ex_opt  ${FILES} -lm
