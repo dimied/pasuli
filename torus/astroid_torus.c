@@ -78,7 +78,7 @@ ut: c; vt: c; \
 us: 0; ue:pi: 2; \
 vs: 0; ve:pi: 2; \
 c1:R: 1; c2:r: 1; \
-a:1:F: (R + r*cos(v)*cos(v)*cos(v)); \
+a1:F: (R + r*cos(v)*cos(v)*cos(v)); \
 x: F*cos(u); \
 y: r*sin(v)*sin(v)*sin(v); \
 z: F*sin(u); "

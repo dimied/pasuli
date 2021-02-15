@@ -20,11 +20,6 @@
 #include "surfaces/surfaces.h"
 
 #if (PASULI_DEBUG_MODE != 0)
-typedef struct _pasuli_name_type
-{
-	char *szName;
-	int _ID;
-} pasuli_name_type;
 
 #define PASULI_SET_NAME(TEXT, _ID) \
 	{                              \

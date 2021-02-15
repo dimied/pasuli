@@ -78,7 +78,7 @@ ut:c; vt:c; \
 us: 0; ue:pi: 2; \
 vs: 0; ve:pi: 2; \
 c1:a: 1.5; c2:b: 0.5; c3:c: 1.0; c4:d: 1.0; \
-a:1:h: a - c*cos(u)*cos(v); \
+a1:h: a - c*cos(u)*cos(v); \
 x: (d*(c - a*cos(u)*cos(v)) + b*b*cos(u))/h; \
 y: (b*sin(u)*(a - d*cos(v)))/h; \
 z: b*sin(v)*(c*cos(u) - d)/h; \

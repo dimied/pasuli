@@ -16,15 +16,10 @@
 #define PASULIOBJECT_UVD 1
 #define PASULIOBJECT_VVD 1
 
-#if (0)
-typedef double pasuli_vartype;
-typedef double pasuli_consttype;
-typedef double CoordType;
-#else
 #define pasuli_vartype double
 #define pasuli_consttype double
+#define pasuli_calctype double
 #define CoordType double
-#endif
 
 typedef struct
 {

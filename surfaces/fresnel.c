@@ -84,7 +84,7 @@ ut:c; vt:c; \
 us:pi: -1; ue:pi: 1; \
 vs:pi: -0.5; ve:pi: 0.5; \
 c1:a: 1.5; c2:b: 0.5; c3:c: 1.0; \
-a:1:d: (sin(v)^(2)+c*c*cos(v)^(2)*(cos(u)^(2)/a*a + sin(u)^(2)/b*b)); \
+a1:d: (sin(v)^(2)+c*c*cos(v)^(2)*(cos(u)^(2)/a*a + sin(u)^(2)/b*b)); \
 x: (c*c/a)*(cos(u)^(2))/d; \
 y: (c*c/b)*(sin(u)*cos(v))/d; \
 z: c*(sin(v))/d; \

@@ -69,7 +69,7 @@ ut:c; vt:c; \
 us: 0; ue:pi: 2; \
 vs: 0; ve: 12; \
 c1:a: 1.5; c2:b: 0.5; \
-a:1:r: sqrt(u*u + v*v); \
+a1:r: sqrt(u*u + v*v); \
 x: u; \
 y: v; \
 z: cos(c*r)*b*exp(-(a*r)^(2)); \

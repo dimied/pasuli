@@ -77,7 +77,7 @@ cat: torus; \
 us: 0; ue:pi:2; \
 vs: 0; ve:pi:2; \
 c1:R1:1; c2:R: 1; c3:r:0.5; c4:h: 1; \
-a:1:F: (R1 + (R - r)*sin(v) - h*sin(((R - r)/r)*v)); \
+a1:F: (R1 + (R - r)*sin(v) - h*sin(((R - r)/r)*v)); \
 x: F*cos(u); \
 y: (R - r)*cos(v) - h*cos(((R + r)/r)*v); \
 z: F*sin(u); "

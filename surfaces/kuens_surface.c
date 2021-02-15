@@ -69,7 +69,7 @@ char *descKuensSurface =
 ut:c; vt:c; \
 us: -4.3; ue: 4.3; \
 vs: 0.01; ve: 3.11; \
-a:1:h: 1 + u*u*sin(v)*sin(v); \
+a1:h: 1 + u*u*sin(v)*sin(v); \
 x: (2*(cos(u) + u sin(u))*sin(v))/h; \
 y: (2*(-u*cos(u) + sin(u))*sin(v))/h; \
 z: log(tan(v/2)) + 2*cos(v)/h; \

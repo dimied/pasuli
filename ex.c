@@ -29,5 +29,7 @@ int main() {
 
     findDefaultConstants(1, constants, 10);
 
+    getImplementationState(1);
+
     return 0;
 }

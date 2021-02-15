@@ -22,4 +22,5 @@ parsurFunc findPasuliFunctionById(unsigned int id);
  */
 int findDefaultConstants(unsigned int id, double* pConstants, int size);
 
+int getImplementationState(unsigned int id);
 #endif

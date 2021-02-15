@@ -347,3 +347,46 @@ int findDefaultConstants(unsigned int id, double *pConstants, int size)
 #undef LEMON_VALUES
 #undef SPHERE_VALUES
 #undef TORUS1_VALUES
+
+#define PASULI_IMPLEMENTED(ID, IMPL_MASK) \
+	{                                     \
+		ID, IMPL_MASK                     \
+	}
+
+#define IMPL_POS 0x1
+#define IMPL_UD 0x2
+#define IMPL_VD 0x4
+#define IMPL_N 0x8
+#define IMPL_UUD 0x10
+#define IMPL_UVD 0x20
+#define IMPL_VVD 0x40
+#define IMPL_ALL 0x7F
+#define IMPL_NO_2DERIV 0x0F
+#define IMPL_MINUS(ALL_VAL, TO_SUBTRACT) (ALL_VAL - (TO_SUBTRACT))
+
+unsigned char implemented[][2] = {
+	// Cylinder
+	PASULI_IMPLEMENTED(CYLINDER, IMPL_ALL),
+	PASULI_IMPLEMENTED(EPIZYKLOID_CYLINDER, IMPL_ALL),
+	PASULI_IMPLEMENTED(GAUSS_CYLINDER, IMPL_NO_2DERIV),
+	PASULI_IMPLEMENTED(HYPOZYKLOID_CYLINDER, IMPL_ALL),
+	PASULI_IMPLEMENTED(LEMNISKATE_CYLINDER, IMPL_MINUS(IMPL_ALL, IMPL_UUD)),
+};
+
+#undef PASULI_IMPLEMENTED
+
+int getImplementationState(unsigned int id)
+{
+	unsigned int alreadyImplemented =
+		sizeof(implemented) / (2 * sizeof(char));
+
+	printf("#implemented/checked = %d\n", alreadyImplemented);
+
+	if (id >= 255)
+	{
+		// Not found
+		return -1;
+	}
+	// TODO
+	return 0;
+}

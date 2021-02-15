@@ -75,7 +75,7 @@ char *descTwistedHeart =
 ut: c; vt: c; \
 us: 0; ue:pi: 1; \
 vs:pi: -1; ve:pi: 1; \
-a:1:m: 1/sqrt(2); \
+a1:m: 1/sqrt(2); \
 x: (|v| - |u| - |tanh(m*u)/m| + |tanh(m*v)/m|)*sin(v); \
 y: (|v| + |u| - |(tanh(m*u)/m| - |tanh(m*v)/m|)*cos(v); \
 z: m*(u*u + v*v)/(cosh(m*u)*cosh(m*v)); \

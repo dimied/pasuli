@@ -65,8 +65,8 @@ char *descEnneperSurfacePolar =
 ut:c; vt:c; \
 us: 0; ue:pi: 2; \
 vs: 0; ve: 2.5; \
-a:1:s: v*cos(u); \
-a:2:t: v*sin(u); \
+a1:s: v*cos(u); \
+a2:t: v*sin(u); \
 x: s - s^(3)/3 + s*t*t; \
 y: t - t^(3)/3 + t*s*s; \
 z: s*s - t*t; \

@@ -65,8 +65,8 @@ ut:c; vt:c; \
 us: 0; ue:pi: 2; \
 vs:pi: -0.5; ve:pi: 0.5; \
 c1:a: 1.5; c2:b: 0.5; c3:r: 1.0; \
-a:1:c: (r + sin(v)); \
-a:2:d: b*(cos(v)*c; \
+a1:c: (r + sin(v)); \
+a2:d: b*(cos(v)*c; \
 x: d*cos(u); \
 y: d*sin(u); \
 z: a*c; \

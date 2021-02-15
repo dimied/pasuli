@@ -67,7 +67,7 @@ ut:c; vt:c; \
 us: -5; ue: 5; \
 vs: -5; ve: 5; \
 c1:a: 1.5; c2:b: 0.5; \
-a:1:r: sqrt(u*u + v*v); \
+a1:r: sqrt(u*u + v*v); \
 x: u; \
 y: v; \
 z: b*exp(-(a*r)^(2)); \

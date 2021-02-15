@@ -66,7 +66,7 @@ ut: c; vt: c; \
 us: 0; ue:pi: 2; \
 vs: 0; ve: 12; \
 c1:a: 1.5; c2:b: 0.5; \
-a:1:r: sqrt(2*v*v) = sqrt(x*x + y*y); \
+a1:r: sqrt(2*v*v) = sqrt(x*x + y*y); \
 x: v*cos(u); \
 y: v*sin(u); \
 z: b*exp(-(a*r)^(2)); \

@@ -68,7 +68,7 @@ char *descTwistedPipeSurface =
 ut:c; vt:c; \
 us: 0; ue:pi: 2; \
 vs: 0; ve:pi: 2; \
-a:1:h: sqrt(1 + sin(v)*sin(v)); \
+a1:h: sqrt(1 + sin(v)*sin(v)); \
 x: cos(v)*(2 + cos(u))/h; \
 y: sin(v - 2*pi/3)*(2 + cos(u - 2*pi/3))/h; \
 z: sin(v + 2*pi/3)*(2 + cos(u + 2*pi/3))/h; \

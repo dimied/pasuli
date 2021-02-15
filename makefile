@@ -1,5 +1,5 @@
 
-FILES1 = pasuli_const.c pasuli_approx.c pasuli_defs.c pasuli_repository.c pasuli_repository_constdata.c
+FILES1 = pasuli_const.c pasuli_approx.c pasuli_defs.c pasuli_repository.c pasuli_repository_constdata.c pasuli_desc_parser.c
 FILES2 = cylinder/*.c fruits/*.c shells/*.c spiral/*.c sphere/*.c 
 FILES3 = superformula/*.c surfaces/*.c torus/*.c sf3d_examples.c
 
@@ -18,6 +18,9 @@ doopt:
 
 filegen:
 	gcc -Os -o gen_files temp_gen.c
+
+genhtml:
+	gcc -Os -o gen_html gen_html.c ${FILES1} ${FILES2} ${FILES3} -lm
 
 # For Ubuntu: You need to install freeglut3 package
 opengl:

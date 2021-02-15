@@ -67,7 +67,7 @@ ut:c; vt:c; \
 us: 0; ue:pi: 2; \
 vs: 0.25; ve:pi: 0.5; \
 c1:a: 1.5; c2:b: 0.5; \
-a:1:c: a*cos(v); \
+a1:c: a*cos(v); \
 x: c*cos(u); \
 y: c*sin(u); \
 z: -b/tan(v); \

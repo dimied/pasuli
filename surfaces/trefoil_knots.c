@@ -81,9 +81,9 @@ ut:c; vt:c; \
 us: 0; ue:pi: 12; \
 vs: 0; ve:pi: 2; \
 c1:R: 1.5; c2:r: 0.5; \
-a:1:Bx: (R + r*cos(u/2))*cos(u/3); \
-a:2:By: (R + r*cos(u/2))*sin(u/3); \
-a:3:Bz: r + sin(u/2); \
+a1:Bx: (R + r*cos(u/2))*cos(u/3); \
+a2:By: (R + r*cos(u/2))*sin(u/3); \
+a3:Bz: r + sin(u/2); \
 x: Bx + r*cos(u/3)*cos(v-pi); \
 y: By + r*sin(u/3)*cos(v-pi); \
 z: Bz + r*sin(v-pi); \

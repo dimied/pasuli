@@ -72,7 +72,7 @@ ut:c; vt:c; \
 us:pi: -1; ue:pi: 1; \
 vs: 0; ve:pi: 5; \
 c1:R: 1.5; c2:r: 0.5; c3:h: 1.0; \
-a:1:w: sqrt(R*R + r*r); \
+a1:w: sqrt(R*R + r*r); \
 x: (R + r*cos(u))*cos(v) + r*h*sin(u)*sin(v)/w; \
 y: (R + r*cos(u))*sin(v) - r*h*sin(u)*cos(v)/w; \
 z: h*v + R*r*sin(u)/w; \

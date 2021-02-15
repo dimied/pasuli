@@ -74,8 +74,8 @@ ut:c; vt:c; \
 us: -1; ue: 1; \
 vs:pi: -1; ve:pi: 1; \
 c1:R: 1.5; c2:r: 0.5; c3:L: 1.0; c4:N: 1.0; \
-a:1:a: r*(1 - |u|); \
-a:2:b: R*cos(u*pi/2); \
+a1:a: r*(1 - |u|); \
+a2:b: R*cos(u*pi/2); \
 x: L*u; \
 y: a*cos(v) + b*cos(u*N*pi); \
 z: a*sin(v) + b*sin(u*N*pi); \
