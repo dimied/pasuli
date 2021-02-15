@@ -8,13 +8,22 @@
 #define MAX_NUMBER_OF_CONSTANTS 12
 #define MAX_NUMBER_OF_ABBREVIATIONS 4
 
-typedef struct {
-    char name[10];
-    char value[10];
+#define MAX_CONSTANT_NAME_LENGTH 9
+#define MAX_CONSTANT_VALUE_LENGTH 9
+#define MAX_ABBREVIATION_NAME_LENGTH 9
+#define MAX_ABBREVIATION_VALUE_LENGTH 120
+
+typedef struct
+{
+    char name[MAX_CONSTANT_NAME_LENGTH + 1];
+    char value[MAX_CONSTANT_VALUE_LENGTH + 1];
 } PaSuLiFunctionDescriptionConstant;
 
-
-typedef PaSuLiFunctionDescriptionConstant PaSuLiFunctionDescriptionAbbreviation;
+typedef struct
+{
+    char name[MAX_ABBREVIATION_NAME_LENGTH + 1];
+    char value[MAX_ABBREVIATION_VALUE_LENGTH + 1];
+} PaSuLiFunctionDescriptionAbbreviation;
 
 typedef struct
 {
@@ -60,7 +69,6 @@ typedef struct
     char xvv[MAX_FUNCTION_LENGTH];
     char yvv[MAX_FUNCTION_LENGTH];
     char zvv[MAX_FUNCTION_LENGTH];
-
 
 } PaSuLiFunctionDescription;
 

@@ -134,7 +134,7 @@ descPlane		//0
 ,descLemniskateCylinder
 ,descStrophoideCylinder
 ,descZissoideCylinder
-,descVACylinder
+,descVersieraAgnesiCylinder
 ,descGaussCylinder
 #endif
 //////////////////////////////////////

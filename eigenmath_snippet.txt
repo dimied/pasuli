@@ -1,6 +1,10 @@
-fx = (R + r*cos(v))*cos(u)
-fy = (R + r*cos(v))*sin(u)
-fz = r*sin(v)
+fx= (R - r)*cos(u) - h*cos((R - r)*u/r)
+fy= H*v
+fz= (R - r)*sin(u) - h*sin((R - r)*u/r)
+
+fx= r*cos(u)/(1 + sin(u)^2)
+fy= H*v
+fz= r*sin(u)*cos(u)/(1 + sin(u)^2)
 
 a1 = d(fx, u)
 b1 = d(fy, u)
@@ -27,10 +31,34 @@ nx =  b1*f1 - c1*e1
 ny = c1*d1 - a1*f1
 nz = a1*e1 - b1*d1
 
-simplify(nx)
-simplify(ny)
-simplify(nz)
+nx = simplify(nx)
+ny = simplify(ny)
+nz = simplify(nz)
 
 N= (nx, ny, nz)
 N
 
+
+xuu = d(a1, u)
+yuu = d(b1, u)
+zuu = d(c1, u)
+
+xuv = d(a1, v)
+yuv = d(b1, v)
+zuv = d(c1, v)
+
+xvv = d(d1, v)
+yv= d(e1, v)
+zvv = d(f1, v)
+
+xuu
+yuu
+zuu
+
+xvv
+yvv
+zvv
+
+xuv
+yuv
+zuv

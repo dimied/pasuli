@@ -50,8 +50,9 @@ void AntisymmetricTorus(pasuli_vartype u, pasuli_vartype v,
 
 	TORUS_VD
 
-	PASULI_NORMAL_VARS_DEF
-	PASULI_NORMAL
+	//PASULI_NORMAL_VARS_DEF
+	//PASULI_NORMAL
+	PASULI_CALC_NORMAL_FROM_UD_VD
 
 	pasuli_vartype xy = (R + cv * r_a_sin_u);
 

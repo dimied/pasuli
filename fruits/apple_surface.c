@@ -11,11 +11,12 @@ void AppleSurface(pasuli_vartype u,
     PASULI_SET_TYPE_ID(APPLE_SURFACE)
 
     pasuli_vartype sin_v = sin(v);
-    pasuli_vartype x_or_y_mul = 4 + 3.8 * cos(v);
+    pasuli_vartype cos_v = cos(v);
+    pasuli_vartype x_or_y_mul = 4 + 3.8 * cos_v;
 
     P_X(cos(u) * x_or_y_mul);
     P_Y(sin(u) * x_or_y_mul);
-    P_Z((cos(v) + sin_v - 1) * (1 + sin_v) * log(1 - MY_PI * v / 10.0) + 7.5 * sin_v);
+    P_Z((cos_v + sin_v - 1) * (1 + sin_v) * log(1 - MY_PI * v / 10.0) + 7.5 * sin_v);
 
     UD_X(0);
     UD_Y(0);
@@ -24,22 +25,6 @@ void AppleSurface(pasuli_vartype u,
     VD_X(0);
     VD_Y(0);
     VD_Z(0);
-
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
-
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
-
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
 }
 #endif
 
@@ -56,8 +41,8 @@ char *descAppleSurface =
     "name: Apple Surface; \
 cat: fruits; \
 ut: c; vt: c; \
-us: 0; ue: pi : 2 ; \
-vs:pi: -1; ve: pi : 1; \
+us: 0; ue:pi: 2 ; \
+vs:pi: -1; ve:pi: 1; \
 x: cos(u)*(4 + 3.8*cos(v)); \
 y: sin(u)*(4 + 3.8*cos(v)); \
 z: (cos(v)+sin(v)-1)*(1+sin(v))*log(1-pi*v/10)+7.5*sin(v); "

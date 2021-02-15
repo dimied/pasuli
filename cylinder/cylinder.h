@@ -17,7 +17,7 @@ extern char *descHypozykloidCylinder;
 extern char *descLemniskateCylinder;
 extern char *descStrophoideCylinder;
 extern char *descZissoideCylinder;
-extern char *descVACylinder;
+extern char *descVersieraAgnesiCylinder;
 extern char *descGaussCylinder;
 #endif
 

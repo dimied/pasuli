@@ -7,6 +7,15 @@
 //
 #include <stdio.h>
 
+/**
+ * \brief Copies trimmed string
+ * \param[in] pSrc Pointer to source string
+ * \param[in] srcLength number of characters to consider in source string
+ * \param[out] pDesc Pointer to destination memory
+ * \param[in] limitChar additional limiting character to abort at
+ * 
+ * \returns pointer in the source string after the copied section of text
+ */
 char *copyTrimmed(char *pSrc, int srcLength, char *pDest, char limitChar)
 {
     if (pSrc != 0 && srcLength > 0 && pDest != 0)
@@ -37,6 +46,53 @@ typedef struct
     char *dst;
 } SimpleToCopy;
 
+int extractRangeValue(char *pRangeText)
+{
+    int rangeTextLength = strlen(pRangeText);
+    char nameBuffer[32];
+    int result = 0;
+
+    if (rangeTextLength > 0)
+    {
+        if (rangeTextLength >= 32)
+        {
+            // Buffer is too small
+            return -1;
+        }
+
+        memset(nameBuffer, 0, 32);
+        char *pAfter = copyTrimmed(pRangeText,
+                                   rangeTextLength,
+                                   nameBuffer, 0);
+
+        char *pAfterPoints = strstr(nameBuffer, ":");
+        int copied = 0;
+        char between[32];
+
+        memset(between, 0, 32);
+
+        if (pAfterPoints != 0)
+        {
+            char *pValueAfter = copyTrimmed(nameBuffer, strlen(nameBuffer), between, ':');
+
+            if (strcmp("pi", between) == 0 && pValueAfter != 0)
+            {
+                memset(pRangeText, 0, rangeTextLength);
+                copyTrimmed(pValueAfter, strlen(pValueAfter), pRangeText, ':');
+                result = 1;
+                copied = 1;
+            }
+        }
+
+        if (copied == 0)
+        {
+            memset(pRangeText, 0, rangeTextLength);
+            strcpy(pRangeText, nameBuffer);
+        }
+    }
+    return result;
+}
+
 void extractText(char *pBuffer, PaSuLiFunctionDescription *pResult)
 {
 
@@ -49,17 +105,17 @@ void extractText(char *pBuffer, PaSuLiFunctionDescription *pResult)
     }
 
     ptrdiff_t offset = firstSeparator - pBuffer;
-    if (offset < 1)
+    if (firstSeparator == pBuffer)
     {
         // starts with ':', INVALID state
         return;
     }
 
-    char tempBuffer[512];
-    memset(tempBuffer, 0, 512);
+    char nameBuffer[32];
+    memset(nameBuffer, 0, 32);
 
-    copyTrimmed(pBuffer, offset, tempBuffer, 0);
-    int bufferLength = strlen(tempBuffer);
+    copyTrimmed(pBuffer, offset, nameBuffer, 0);
+    int bufferLength = strlen(nameBuffer);
 
     int maxEntries = 27;
 
@@ -107,7 +163,7 @@ void extractText(char *pBuffer, PaSuLiFunctionDescription *pResult)
     {
         // Exact match !
         if (toCopy[i].name &&
-            strstr(tempBuffer, toCopy[i].name) != 0 &&
+            strstr(nameBuffer, toCopy[i].name) != 0 &&
             strlen(toCopy[i].name) == bufferLength)
         {
             int valueLength = strlen(pValue);
@@ -127,14 +183,16 @@ void extractText(char *pBuffer, PaSuLiFunctionDescription *pResult)
         return;
     }
 
-    if (tempBuffer[0] == 'c')
+    if (nameBuffer[0] == 'c')
     {
-        int idx = atoi(tempBuffer + 1);
-        if(idx < 0) {
-            printf("Error: failed to parse constant: %s\n", tempBuffer);
+        int idx = atoi(nameBuffer + 1);
+        if (idx < 0)
+        {
+            printf("Error: failed to parse constant: %s\n", nameBuffer);
         }
-        if(idx > MAX_NUMBER_OF_CONSTANTS) {
-            printf("Error: can not save constant, out-of-range: %s\n", tempBuffer);
+        if (idx > MAX_NUMBER_OF_CONSTANTS)
+        {
+            printf("Error: can not save constant, out-of-range: %s\n", nameBuffer);
         }
         printf("Found constant: %s|%d \n", pValue, idx);
 
@@ -151,14 +209,17 @@ void extractText(char *pBuffer, PaSuLiFunctionDescription *pResult)
                         ':');
         }
     }
-    if (tempBuffer[0] == 'a')
+    if (nameBuffer[0] == 'a')
     {
-        int idx = atoi(tempBuffer + 1);
-        if(idx < 0) {
-            printf("Error: failed to parse abbreviation: %s\n", tempBuffer);
+        int idx = atoi(nameBuffer + 1);
+        
+        if (idx < 0)
+        {
+            printf("Error: failed to parse abbreviation: %s\n", nameBuffer);
         }
-        if(idx > MAX_NUMBER_OF_ABBREVIATIONS) {
-            printf("Error: can not save constant, out-of-range: %s\n", tempBuffer);
+        if (idx > MAX_NUMBER_OF_ABBREVIATIONS)
+        {
+            printf("Error: can not save constant, out-of-range: %s\n", nameBuffer);
         }
         printf("Found abbreviation: %s|%d \n", pValue, idx);
 
@@ -176,7 +237,19 @@ void extractText(char *pBuffer, PaSuLiFunctionDescription *pResult)
         }
     }
 
-    //printf("Trimmed|%s|%ld, %ld\n", tempBuffer, offset, strlen(tempBuffer));
+    int res = extractRangeValue(pResult->uRangeStart);
+    int res2 = extractRangeValue(pResult->uRangeEnd);
+    if (res > 0 || res2 > 0)
+    {
+        pResult->u_Pi = 1;
+    }
+
+    res = extractRangeValue(pResult->vRangeStart);
+    res2 = extractRangeValue(pResult->vRangeEnd);
+    if (res > 0 || res2 > 0)
+    {
+        pResult->v_Pi = 1;
+    }
 }
 
 int parseDescription(char *pDescription, PaSuLiFunctionDescription *pResult)
@@ -243,6 +316,20 @@ void printFunctionDesc(char *name, char *value)
     printf("%s : %s%s", name, value, separator);
 }
 
+void printRangeInformation(char *name, char *start, char *end, int isPi)
+{
+    char *tmplStart = "%s-Start: %s%s";
+    char *tmplEnd = "%s-End: %s%s";
+
+    if (isPi)
+    {
+        tmplStart = "%s-Start:PI: %s%s";
+        tmplEnd = "%s-End:PI: %s%s";
+    }
+    printf(tmplStart, name, start, separator);
+    printf(tmplEnd, name, end, separator);
+}
+
 int printDescription(PaSuLiFunctionDescription *pDesc)
 {
     if (pDesc == 0)
@@ -253,11 +340,8 @@ int printDescription(PaSuLiFunctionDescription *pDesc)
     printf("\nName: %s%s", pDesc->name, separator);
     printf("Category: %s%s", pDesc->category, separator);
 
-    printf("U-Start: %s%s", pDesc->uRangeStart, separator);
-    printf("U-End: %s%s", pDesc->uRangeEnd, separator);
-
-    printf("V-Start: %s%s", pDesc->vRangeStart, separator);
-    printf("V-End: %s%s", pDesc->vRangeEnd, separator);
+    printRangeInformation("U", pDesc->uRangeStart, pDesc->uRangeEnd, pDesc->u_Pi);
+    printRangeInformation("V", pDesc->vRangeStart, pDesc->vRangeEnd, pDesc->v_Pi);
 
     for (int i = 0; i < MAX_NUMBER_OF_CONSTANTS; i++)
     {

@@ -5,34 +5,8 @@
 
 //#pragma warning(disable: 4244)
 
-#define PASULI_NORMAL_VARS_DECL \
-	pasuli_vartype xu, yu, zu;  \
-	pasuli_vartype xv, yv, zv;
 
-#define PASULI_NORMAL_VARS_DEF     \
-	pasuli_vartype xu = pO->ud[0]; \
-	pasuli_vartype yu = pO->ud[1]; \
-	pasuli_vartype zu = pO->ud[2]; \
-	pasuli_vartype xv = pO->vd[0]; \
-	pasuli_vartype yv = pO->vd[1]; \
-	pasuli_vartype zv = pO->vd[2];
-
-#define PASULI_NORMAL_VARS_COPY \
-	xu = pO->ud[0];             \
-	yu = pO->ud[1];             \
-	zu = pO->ud[2];             \
-	xv = pO->vd[0];             \
-	yv = pO->vd[1];             \
-	zv = pO->vd[2];
-
-#define PASULI_NORMAL      \
-	N_X(yu *zv - zu * yv); \
-	N_Y(xu *zv - zu * xv); \
-	N_Z(xu *yv - yu * xv);
-
-#define PASULI_CALC_NORMAL_FROM_UD_VD \
-	PASULI_NORMAL_VARS_DEF            \
-	PASULI_NORMAL
+#define PASULI_USE_NORMAL_BY_CROSS_PRODUCT	1
 
 // Position macros
 #if (PASULIOBJECT_POS != 0)
@@ -49,35 +23,64 @@
 
 // Macros for derivative with respect to U
 #if (PASULIOBJECT_UD != 0)
-#define UD_X(V) pO->ud[0] = V
-#define UD_Y(V) pO->ud[1] = V
-#define UD_Z(V) pO->ud[2] = V
+#define UD_X(V)               \
+	pasuli_calctype xu = (V); \
+	pO->ud[0] = xu
+#define UD_Y(V)               \
+	pasuli_calctype yu = (V); \
+	pO->ud[1] = yu
+#define UD_Z(V)               \
+	pasuli_calctype zu = (V); \
+	pO->ud[2] = zu
 #define UD_OP(O) O
 #else
+
+#if(PASULI_USE_NORMAL_BY_CROSS_PRODUCT != 1)
+#define UD_X(V)               pasuli_calctype xu = (V) 
+#define UD_Y(V)               pasuli_calctype yu = (V)
+#define UD_Z(V)               pasuli_calctype zu = (V)
+
+#else
+
 #define UD_X(V)
 #define UD_Y(V)
 #define UD_Z(V)
 #define UD_OP(O)
 #endif
 
+#endif
+
 // Macros for derivative for V
 #if (PASULIOBJECT_VD != 0)
-#define VD_X(V) pO->vd[0] = V
-#define VD_Y(V) pO->vd[1] = V
-#define VD_Z(V) pO->vd[2] = V
+#define VD_X(V)              \
+	pasuli_vartype xv = (V); \
+	pO->vd[0] = xv
+#define VD_Y(V)              \
+	pasuli_vartype yv = (V); \
+	pO->vd[1] = yv
+#define VD_Z(V)              \
+	pasuli_vartype zv = (V); \
+	pO->vd[2] = zv
 #define VD_OP(O) O
+#else
+#if(PASULI_USE_NORMAL_BY_CROSS_PRODUCT != 1)
+#define VD_X(V)               pasuli_calctype xv = (V) 
+#define VD_Y(V)               pasuli_calctype yv = (V)
+#define VD_Z(V)               pasuli_calctype zv = (V)
+
 #else
 #define VD_X(V)
 #define VD_Y(V)
 #define VD_Z(V)
 #define VD_OP(O)
 #endif
+#endif
 
 // Macros for Normal vector
 #if (PASULIOBJECT_N != 0)
-#define N_X(V) pO->n[0] = V
-#define N_Y(V) pO->n[1] = V
-#define N_Z(V) pO->n[2] = V
+#define N_X(V) pO->n[0] = (V)
+#define N_Y(V) pO->n[1] = (V)
+#define N_Z(V) pO->n[2] = (V)
 #define NORMAL_OP(O) O
 #else
 #define N_X(V)
@@ -313,8 +316,21 @@
 #define PASULI_COND_COPY_VVD_Z(D) (D)
 #endif
 
-#define PASULI_2ND_DERIVATIVES_START		if(1 == 1) {
-#define PASULI_2ND_DERIVATIVES_END 			}
+#define PASULI_NORMAL      \
+	N_X(yu *zv - zu * yv); \
+	N_Y(xu *zv - zu * xv); \
+	N_Z(xu *yv - yu * xv);
+
+#define PASULI_CALC_NORMAL_FROM_UD_VD \
+	N_X(yu *zv - zu * yv);            \
+	N_Y(xu *zv - zu * xv);            \
+	N_Z(xu *yv - yu * xv);
+//PASULI_NORMAL_VARS_DEF
+//PASULI_NORMAL
+
+#define PASULI_2ND_DERIVATIVES_START \
+	if (1 == 1)                      \
+	{
+#define PASULI_2ND_DERIVATIVES_END }
 
 #endif
-
