@@ -1,18 +1,14 @@
-fx= (R - r)*cos(u) - h*cos((R - r)*u/r)
-fy= H*v
-fz= (R - r)*sin(u) - h*sin((R - r)*u/r)
+x= cos(u)*(4 + 3.8*cos(v))
+y= sin(u)*(4 + 3.8*cos(v))
+z= (cos(v)+sin(v)-1)*(1+sin(v))*log(1-pi*v/10)+7.5*sin(v)
 
-fx= r*cos(u)/(1 + sin(u)^2)
-fy= H*v
-fz= r*sin(u)*cos(u)/(1 + sin(u)^2)
+a1 = d(x, u)
+b1 = d(y, u)
+c1 = d(z, u)
 
-a1 = d(fx, u)
-b1 = d(fy, u)
-c1 = d(fz, u)
-
-d1 = d(fx, v)
-e1 = d(fy, v)
-f1 = d(fz, v)
+d1 = d(x, v)
+e1 = d(y, v)
+f1 = d(z, v)
 
 U = (a1,b1,c1)
 V = (d1,e1,f1)
@@ -48,7 +44,7 @@ yuv = d(b1, v)
 zuv = d(c1, v)
 
 xvv = d(d1, v)
-yv= d(e1, v)
+yvv= d(e1, v)
 zvv = d(f1, v)
 
 xuu
