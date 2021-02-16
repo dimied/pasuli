@@ -25,14 +25,16 @@ void Ellipsoid(pasuli_vartype u,
 
 	UD_X(-a * sin_u * sin_v);
 	UD_Y(b * cos_u * sin_v);
-	UD_Z_CONST(0);
+	UD_Z(0);
 
 	VD_X(a * cos_u * cos_v);
 	VD_Y(b * sin_u * cos_v);
 	VD_Z(-c * sin_v);
 
-	N_X(-b * c * sin_v * sin_v * cos_u);
-	N_Y(-a * c * sin_v * sin_v * sin_u);
+	//sin(v)^2 = (1-cos(v))*0.5
+	NORMAL_OP(pasuli_calctype sin_v2 = 0.5 - 0.5*cos(2*v));
+	N_X(-b * c * sin_v2 * cos_u);
+	N_Y(-a * c * sin_v2 * sin_u);
 	N_Z(-a * b * sin_v * cos_v);
 
 	UUD_X(-PASULI_COND_COPY_POS_X(a * cos_u * sin_v));
@@ -43,12 +45,11 @@ void Ellipsoid(pasuli_vartype u,
 	UVD_Y(b * cos_u * cos_v);
 	UVD_Z_CONST(0);
 
-	VVD_X(-a * cos_u * sin_v);
-	VVD_Y(-b * sin_u * sin_v);
+	VVD_X(-PASULI_COND_COPY_POS_X(a * cos_u * sin_v));
+	VVD_Y(-PASULI_COND_COPY_POS_Y(b * sin_u * sin_v));
 	VVD_Z(-c * cos_v);
 }
 #endif
-
 
 #if (COMPILE_DEF_DESC_SPHERE != 0)
 PaSuLiDefDesc pslddEllipsoid = {
@@ -69,36 +70,23 @@ vs: 0; ve:pi: 1; \
 c1:a: 1.5; c2:b: 1.0; c3:c: 1.0; \
 x: a*cos(u)*sin(v); \
 y: b*sin(u)*sin(v); \
-z: c*cos(v); "
-#if (COMPILE_DESC_DERIV_U_SPHERE != 0)
-	"xu: -a*sin(u)*sin(v); \
+z: c*cos(v); \
+xu: -a*sin(u)*sin(v); \
 yu: b*cos(u)*sin(v); \
-zu: 0; "
-#endif
-#if (COMPILE_DESC_DERIV_V_SPHERE != 0)
-	"xv: a*cos(u)*cos(v); \
+zu: 0; \
+xv: a*cos(u)*cos(v); \
 yv: b*sin(u)*cos(v); \
-zv: -c*sin(v); "
-#endif
-#if (COMPILE_DESC_NORMAL_SPHERE != 0)
-	"xn: -b*c*sin(v)*sin(v)*cos(u); \
+zv: -c*sin(v); \
+xn: -b*c*sin(v)*sin(v)*cos(u); \
 yn: -a*c*sin(v)*sin(v)*sin(u); \
-zn: -a*b*sin(v)*cos(v); "
-#endif
-#if (COMPILE_DESC_DERIV2_U_SPHERE != 0)
-	"xuu: -a*cos(u)*sin(v); \
+zn: -a*b*sin(v)*cos(v); \
+xuu: -a*cos(u)*sin(v); \
 yuu: -b*sin(u)*sin(v); \
-zuu: 0; "
-#endif
-#if (COMPILE_DESC_DERIV_UV_SPHERE != 0)
-	"xuv: -a*sin(u)*cos(v); \
+zuu: 0; \
+xuv: -a*sin(u)*cos(v); \
 yuv: b*cos(u)*cos(v); \
-zuv: 0; "
-#endif
-#if (COMPILE_DESC_DERIV2_U_SPHERE != 0)
-	"xvv: -a*cos(u)*sin(v); \
+zuv: 0; \
+xvv: -a*cos(u)*sin(v); \
 yvv: -b*sin(u)*sin(v); \
-zvv: -c*cos(v); "
-#endif
-	"end;";
+zvv: -c*cos(v); ";
 #endif

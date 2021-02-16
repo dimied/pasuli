@@ -10,24 +10,24 @@ void SphereUV(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(SPHERE_UV)
 
-	double uq = u * u;
-	double vq = v * v;
-	double uqp1 = u * u + 1.0;
-	double u2 = u * 2.0;
-	double vqp1 = v * v + 1.0;
+	pasuli_calctype uq = u * u;
+	pasuli_calctype vq = v * v;
+	pasuli_calctype uqp1 = u * u + 1.0;
+	pasuli_calctype u2 = u * 2.0;
+	pasuli_calctype vqp1 = v * v + 1.0;
 
 	P_X((u2 * (1.0 - vq)) / (uqp1 * vqp1));
 	P_Y((1.0 - uq) / (uqp1));
 	P_Z((2.0 * v) / (uqp1 * vqp1));
 
-	double uqp1q = uqp1 * uqp1;
-	double divisor = vqp1 * uqp1q;
+	pasuli_calctype uqp1q = uqp1 * uqp1;
+	pasuli_calctype divisor = vqp1 * uqp1q;
 
 	UD_X(2 * (1 + uq * (1 - vq - uq * (1 + vq - uq * (1 - vq))) - vq) / (divisor * uqp1q));
 	UD_Y(4 * u * (-1 - uq * (3 - uq * (3 - uq))) / (uqp1 * uqp1q * uqp1q));
 	UD_Z(4 * v * (1 - vq) / (uqp1q * vqp1));
 
-	double vqp1q = vqp1 * vqp1;
+	pasuli_calctype vqp1q = vqp1 * vqp1;
 
 	VD_X(-8 * u * v * (1 + vq * (3 + vq * (3 + vq))) / (uqp1 * vqp1q * vqp1q * vqp1));
 	VD_Y_CONST(0);

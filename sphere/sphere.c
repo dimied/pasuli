@@ -13,10 +13,10 @@ void Sphere(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(SPHERE)
 
-	double cu = cos(u);
-	double su = sin(u);
-	double cv = cos(v);
-	double sv = sin(v);
+	pasuli_calctype cu = cos(u);
+	pasuli_calctype su = sin(u);
+	pasuli_calctype cv = cos(v);
+	pasuli_calctype sv = sin(v);
 
 	P_X(cu * sv);
 	P_Y(su * sv);
