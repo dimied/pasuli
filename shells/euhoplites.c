@@ -7,16 +7,13 @@
 #include "snails.h"
 
 pasuli_consttype EuhoplitesParams[] = {
-	2, 0.6f, 0.4f, 1.0f, 0.9f, 0.0f, 0.1626f};
+	1, 0.6f, 0.4f, 1.0f, 0.9f, 0.0f, 0.1626f};
 
 void Euhoplites(pasuli_vartype u,
 				pasuli_vartype v,
 				pasuli_consttype *constants,
 				PaSuLiObject *pO)
 {
-
-	//int k = 0;
-	//double u , v;
 	PASULI_SET_TYPE_ID(EUHOPLITES)
 	Snails(u, v, &EuhoplitesParams[0], pO);
 }
@@ -32,15 +29,13 @@ PaSuLiDefDesc pslddEuhoplites = {
 	-40, -1, 0, 2, 0};
 #endif
 #if (COMPILE_DESC_SHELLS != 0)
-/**
-a : 0.6
-b : 0.4 
-c 	: 	1.0 	
-h 	: 	0.9 	
-k 	: 	0.0 	
-w 	: 	0.1626 	
-umin 	: 	-40.0 	
-umax 	: 	-1.0
-*/
-char *descEuhoplites = "";
+char *descEuhoplites = "name: Euhoplites; \
+cat: shells; \
+kindof: Snails; \
+ut: c; vt: c; \
+us: -40; ue: -1; \
+c1:R: 1; c2:a: 0.6; \
+c3:b: 0.4; c4:c: 1; \
+c5:h: 0.9; c6:k: 0; \
+c7:w: 0.1626;";
 #endif

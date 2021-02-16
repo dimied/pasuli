@@ -7,16 +7,13 @@
 #include "snails.h"
 
 pasuli_consttype NaticaStellataParams[] = {
-    2, 2.6f, 2.4f, 1.0f, 1.25f, -2.8f, 0.18f};
+    1, 2.6f, 2.4f, 1.0f, 1.25f, -2.8f, 0.18f};
 
 void NaticaStellata(pasuli_vartype u,
                     pasuli_vartype v,
                     pasuli_consttype *constants,
                     PaSuLiObject *pO)
 {
-
-    //int k = 0;
-    //double u , v;
     PASULI_SET_TYPE_ID(NATICA_STELLATA)
     Snails(u, v, &NaticaStellataParams[0], pO);
 }
@@ -32,15 +29,13 @@ PaSuLiDefDesc pslddNaticaStellata = {
 	-20, 1, 0, 2, 0};
 #endif
 #if (COMPILE_DESC_SHELLS != 0)
-/**
-a : 2.6
-b : 2.4 
-c 	: 	1.0 	
-h 	: 	1.25 	
-k 	: 	-2.8 	
-w 	: 	0.18 	
-umin 	: 	-20.0 	
-umax 	: 	1.0
-*/
-char *descNaticaStellata = "";
+char *descNaticaStellata = "name: Natica Stellata; \
+cat: shells; \
+kindof: Snails; \
+ut: c; vt: c; \
+us: -20; ue: 1; \
+c1:R: 1; c2:a: 2.6; \
+c3:b: 2.4; c4:c: 1; \
+c5:h: 1.25; c6:k: -2.8; \
+c7:w: 0.18;";
 #endif

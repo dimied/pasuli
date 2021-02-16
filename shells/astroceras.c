@@ -6,18 +6,15 @@
 #include "snails.h"
 
 pasuli_consttype AstrocerasParams[] = {
-	2, 1.25f, 1.25f, 1.0f, 3.5f, 0.0f, 0.12f};
+	1, 1.25f, 1.25f, 1.0f, 3.5f, 0.0f, 0.12f};
 
 void Astroceras(pasuli_vartype u,
 				pasuli_vartype v,
 				pasuli_consttype *constants,
 				PaSuLiObject *pO)
 {
-
-	//int k = 0;
-	//double u , v;
-	Snails(u, v, &AstrocerasParams[0], pO);
 	PASULI_SET_TYPE_ID(ASTROCERAS)
+	Snails(u, v, &AstrocerasParams[0], pO);	
 }
 #endif
 
@@ -31,15 +28,13 @@ PaSuLiDefDesc pslddAstroceras = {
 	-40, -1, 0, 2, 0};
 #endif
 #if (COMPILE_DESC_SHELLS != 0)
-/**
-a : 1.25
-b : 1.25 
-c 	: 	1.0 	
-h 	: 	3.5 	
-k 	: 	0.0 	
-w 	: 	0.12 	
-umin 	: 	-40.0 	
-umax 	: 	-1.0
-*/
-char *descAstroceras = "";
+char *descAstroceras = "name: Astroceras; \
+cat: shells; \
+kindof: Snails; \
+ut: c; vt: c; \
+us: -40; ue: -1; \
+c1:R: 1; c2:a: 1.25; \
+c3:b: 1.25; c4:c: 1; \
+c5:h: 3.5; c6:k: 0; \
+c7:w: 0.12;";
 #endif
