@@ -10,44 +10,44 @@ void Catenoid(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(CATENOID)
 
-    double c = constants[0];
+    pasuli_consttype c = constants[0];
 
-    double cdc = cosh(v / c);
+    pasuli_calctype cosh_vc = cosh(v / c);
+    pasuli_calctype c_cosh_vc = cosh_vc*c;
+    pasuli_calctype cos_u = cos(u);
+    pasuli_calctype sin_u = cos(u);
 
-    P_X(cos(u) * cdc);
-    P_Y(sin(u) * cdc);
+    P_X(cos_u * c_cosh_vc);
+    P_Y(sin_u * c_cosh_vc);
     P_Z(v);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double cu = cos(u);
-    double su = sin(u);
-    double cv = cos(v);
-    double sv = sin(v);
-#endif
+    UD_X(-c_cosh_vc*sin_u);
+    UD_Y(c_cosh_vc*cos_u);
+    UD_Z_CONST(0);
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    pasuli_calctype sinh_vc = sinh(v / c);
+    VD_X(sinh_vc*cos_u);
+    VD_Y(sinh_vc*sin_u);
+    VD_Z(1);
 
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    // Ignore costant c
+    N_X(cosh_vc*cos_u);
+    N_Y(cosh_vc*sin_u);
+    N_Z(cosh_vc*sinh_vc);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
+    // Ignore c
+    UUD_X(-PASULI_COND_COPY_POS_X(cosh_vc*cos_u));
+    UUD_Y(-PASULI_COND_COPY_POS_Y(cosh_vc*sin_u));
+    UUD_Z_CONST(0);
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
+    UVD_X(-sinh_vc*sin_u);
+    UVD_Y(sinh_vc*cos_u);
+    UVD_Z_CONST(0);
 
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    // Ignore c
+    VVD_X(PASULI_COND_COPY_POS_X(cosh_vc*cos_u));
+    VVD_Y(PASULI_COND_COPY_POS_Y(cosh_vc*sin_u));
+    VVD_Z_CONST(0);
 }
 #endif
 
@@ -82,7 +82,7 @@ zn: -c*cosh(v/c)*sinh(v/c); \
 xuu: -c*cos(u)*cosh(v/c); \
 yuu: -c*sin(u)*cosh(v/c); \
 zuu: 0; \
-xuv: sinh(v/c)*sin(u); \
+xuv: -sinh(v/c)*sin(u); \
 yuv: sinh(v/c)*cos(u); \
 zuv: 0; \
 xvv: (cos(u)*cosh(v/c))/c; \

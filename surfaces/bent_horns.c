@@ -9,42 +9,31 @@ void BentHorns(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(BENT_HORNS)
 
-    double cos_v_minus_1 = cos(v) - 1.0;
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype sin_v = sin(v);
+    pasuli_calctype cos_v_minus_1 = cos_v - 1.0;
 
-    P_X((cos(u) + 2.0) * (v / 3.0 - sin(v)));
-    P_Y((2.0 + cos(u + 2 * MY_PI / 3.0)) * cos_v_minus_1);
-    P_Z((2.0 + cos(u - 2 * MY_PI / 3.0)) * cos_v_minus_1);
+    pasuli_calctype cos_u = cos(u);
+    pasuli_calctype cos_u_plus = cos(u + 2 * MY_PI / 3.0);
+    pasuli_calctype cos_u_minus = cos(u - 2 * MY_PI / 3.0);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double cu = cos(u);
-    double su = sin(u);
-    double cv = cos(v);
-    double sv = sin(v);
-#endif
+    P_X((cos_u + 2.0) * (v / 3.0 - sin_v));
+    P_Y((2.0 + cos_u_plus) * cos_v_minus_1);
+    P_Z((2.0 + cos_u_minus) * cos_v_minus_1);
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    UD_OP(pasuli_calctype sin_u = sin(u));
+    UD_OP(pasuli_calctype sin_u_plus = sin(u + 2 * MY_PI / 3.0));
+    UD_OP(pasuli_calctype sin_u_minus = sin(u - 2 * MY_PI / 3.0));
 
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    UD_X(sin_u * (sin_v - v / 3));
+    UD_Y(-sin_u_plus * cos_v_minus_1);
+    UD_Z(sin_u_minus * cos_v_minus_1);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
+    VD_X((cos_u - 3 * cos_u * cos_v - 6 * cos_v + 2) / 3);
+    VD_Y(-sin_v * (2 + cos_u_plus));
+    VD_Z(-sin_v * (2 + cos_u_minus));
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
-
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -65,23 +54,10 @@ vs:pi: -2; ve:pi: 2; \
 x: (2 + cos(u))*(v/3 - sin(v)); \
 y: (2 + cos(u + 2*pi/3))*(cos(v) - 1); \
 z: (2 + cos(u - 2*pi/3))*(cos(v) - 1); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
+xu: sin(u)*(sin(v) - v/3); \
+yu: sin(u + 2*pi/3)*(1-cos(v)); \
+zu: sin(u - 2*pi/3)*(cos(v)-1); \
+xv: cos(u)/3 - cos(u)*cos(v) - 2*cos(v) + 2/3; \
+yv: -sin(v)*(2+cos(u + 2*pi/3)); \
+zv: -sin(v)*(2+cos(u - 2*pi/3)); ";
 #endif

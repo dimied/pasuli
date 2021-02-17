@@ -10,36 +10,38 @@ void CosineWave(pasuli_vartype u, pasuli_vartype v,
 {
 	PASULI_SET_TYPE_ID(COSINE_WAVE)
 
-	double a = constants[0];
-	double b = constants[1];
+	pasuli_consttype a = constants[0];
+	pasuli_consttype b = constants[1];
+	pasuli_calctype sqrt_uv = sqrt(u * u + v * v);
 
 	P_X(u);
 	P_Y(v);
-	P_Z(a * cos(b * sqrt(u * u + v * v)));
+	P_Z(a * cos(b * sqrt_uv));
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
+	pasuli_calctype sin_b_sqrt = sin(b * sqrt_uv);
+	// Multiplied by sqrt(u*u + v*v)
+	UD_X(sqrt_uv);
+	UD_Y_CONST(0);
+	UD_Z(a * b * u * sin_b_sqrt);
 
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
+	// Multiplied by sqrt(u*u + v*v)
+	VD_X_CONST(0);
+	VD_Y(sqrt_uv);
+	VD_Z(a * b * v * sin_b_sqrt);
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
-
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
-
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
-
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	if (sqrt_uv > 0.01)
+	{
+		N_X(PASULI_COND_COPY_UD_X(a * b * u * sin_b_sqrt) / sqrt_uv);
+		N_Y(PASULI_COND_COPY_VD_X(a * b * v * sin_b_sqrt) / sqrt_uv);
+		N_Z(1);
+	}
+	else
+	{
+		// Multiplied by sqrt(u*u + v*v)
+		N_X(PASULI_COND_COPY_UD_X(a * b * u * sin_b_sqrt));
+		N_Y(PASULI_COND_COPY_VD_X(a * b * v * sin_b_sqrt));
+		N_Z(sqrt_uv);
+	}
 }
 
 #endif
@@ -52,9 +54,9 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(2),
 -5, 5 , -5 , 5 , psldd_15_05_constants };
 #endif
 */
-#if(COMPILE_DESC_SURFACES != 0)
+#if (COMPILE_DESC_SURFACES != 0)
 char *descCosineWave =
-"name: Cosine Wave; \
+	"name: Cosine Wave; \
 ut:c; vt:c; \
 us: -5; ue: 5; \
 vs: -5; ve: 5; \
@@ -62,23 +64,13 @@ c1:a: 1.5; c2:b: 0.5; \
 x: u; \
 y: v; \
 z: a*cos(b*sqrt(u*u + v*v)); \
-xu: 0; \
+xu: 1; \
 yu: 0; \
-zu: 0; \
+zu: a*b*u*sin(b*sqrt(u*u + v*v))/sqrt(u*u + v*v); \
 xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
+yv: 1; \
+zv: a*b*v*sin(b*sqrt(u*u + v*v))/sqrt(u*u + v*v); \
+xn: a*b*u*sin(b*sqrt(u*u + v*v))/sqrt(u*u + v*v); \
+yn: a*b*v*sin(b*sqrt(u*u + v*v))/sqrt(u*u + v*v); \
+zn: 1;";
 #endif

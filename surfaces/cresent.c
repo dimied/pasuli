@@ -8,46 +8,34 @@ void Cresent(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(CRESENT)
 
-    double a = constants[0];
-    double bpi = constants[1] * MY_PI;
-    double cpi = constants[2] * MY_PI;
+    pasuli_consttype a = constants[0];
+    pasuli_consttype b = constants[1];
+    pasuli_consttype c = constants[2];
 
-    double a_sinsin = a + sin(bpi * u) * sin(bpi * v);
+    pasuli_calctype cos_bu = cos(b * u);
+    pasuli_calctype sin_bu = sin(b * u);
 
-    P_X(a_sinsin * sin(cpi * v));
-    P_Y(a_sinsin * cos(cpi * v));
-    P_Z(cos(bpi * u) * sin(bpi * v) + v * 4.0 - 2.0);
+    pasuli_calctype sin_bv = sin(b * v);
+    pasuli_calctype cos_cv = cos(c * v);
+    pasuli_calctype sin_cv = sin(c * v);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double cu = cos(u);
-    double su = sin(u);
-    double cv = cos(v);
-    double sv = sin(v);
-#endif
+    pasuli_calctype a_sinsin = a + sin_bu * sin_bv;
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    P_X(a_sinsin * sin_cv);
+    P_Y(a_sinsin * cos_cv);
+    P_Z(cos_bu * sin_bv + v * 4.0 / MY_PI - 2.0);
 
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    UD_X(b * cos_bu * sin_bv * sin_cv);
+    UD_Y(b * cos_bu * sin_bv * cos_cv);
+    UD_Z(-b * sin_bu * sin_bv);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
+    pasuli_calctype cos_bv = cos(b * v);
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
+    VD_X(a * c * cos_cv + b * cos_bv * sin_bu * sin_cv + c * cos_cv * sin_bu * sin_bv);
+    VD_Y(b * cos_bv * sin_bu * cos_cv - a * c * sin_cv - c * sin_cv * sin_bu * sin_bv);
+    VD_Z(b * cos_bu * cos_bv + 4 / MY_PI);
 
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -64,29 +52,16 @@ PaSuLiDefDesc pslddCresent = {
 char *descCresent =
     "name: Cresent; \
 ut:c; vt:c; \
-us: 0; ue: 1; \
-vs: 0; ve: 1; \
+us: 0; ue:pi: 1; \
+vs: 0; ve:pi: 1; \
 c1:a: 1.5; c2:b: 0.5; c3:c: 1.0; \
-x: (a + sin(b*pi*u)*sin(b*pi*v))*sin(c*pi*v); \
-y: (a + sin(b*pi*u)*sin(b*pi*v))*cos(c*pi*v); \
-z: cos(b*pi*u)*sin(b*pi*v) + 4*v - 2; \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
+x: (a + sin(b*u)*sin(b*v))*sin(c*v); \
+y: (a + sin(b*u)*sin(b*v))*cos(c*v); \
+z: cos(b*u)*sin(b*v) + 4*v/pi - 2; \
+xu: b*cos(b*u)*sin(b*v)*sin(c*v); \
+yu: b*cos(b*u)*sin(b*v)*cos(c*v); \
+zu: -b*sin(b*u)*sin(b*v); \
+xv: a*c*cos(c*v) + b*cos(b*v)*sin(b*u)*sin(c*v) + c*cos(c*v)*sin(b*u)*sin(b*v); \
+yv: -a*c*sin(c*v) + b*cos(b*v)*sin(b*u)*cos(c*v) -  c*sin(c*v)*sin(b*u)*sin(b*v); \
+zv: b*cos(b*u)*cos(b*v) + 4/PI; ";
 #endif

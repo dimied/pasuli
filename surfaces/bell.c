@@ -10,45 +10,47 @@ void Bell(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(BELL)
 
-    double a = constants[0];
-    double b = constants[1];
+    pasuli_consttype a = constants[0];
+    pasuli_consttype b = constants[1];
 
-    double emv = b * exp(-(u * u + v * v) * a * a);
+    pasuli_consttype b_exp_auv = b * exp(-(u * u + v * v) * a * a);
 
     P_X(u);
     P_Y(v);
-    P_Z(emv);
+    P_Z(b_exp_auv);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double cu = cos(u);
-    double su = sin(u);
-    double cv = cos(v);
-    double sv = sin(v);
-#endif
+    pasuli_consttype aa_2 = 2 * a * a;
+    UD_X_CONST(1);
+    UD_Y_CONST(0);
+    UD_Z(-aa_2 * b_exp_auv * u);
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    VD_X_CONST(0);
+    VD_Y_CONST(1);
+    VD_Z(-aa_2 * b_exp_auv * v);
 
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    N_X(-PASULI_COND_COPY_UD_Z(-aa_2 * b_exp_auv * u));
+    N_Y(-PASULI_COND_COPY_VD_Z(-aa_2 * b_exp_auv * v));
+    N_Z_CONST(1);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
+    // Ignore factor exp(-(a*r)^(2))*2*a*a
+    UUD_X_CONST(0);
+    UUD_Y_CONST(0);
+    UUD_Z(aa_2 * b * u * u - b);
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
+    // Ignore factor 4*exp(-(a*r)^(2))*a^2
+    UVD_X_CONST(0);
+    UVD_Y_CONST(0);
+    UVD_Z(aa_2 * b * u * v);
 
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    // Ignore factor exp(-(a*r)^(2))*2*a*a
+    VVD_X_CONST(0);
+    VVD_Y_CONST(0);
+    VVD_Z(aa_2 * b * v * v - b);
+    /*
+xuv: 0; \
+yuv: 0; \
+zuv: 4*exp(-(a*r)^(2))*a^4*b*u*v; \
+*/
 }
 #endif
 
@@ -71,23 +73,22 @@ a1:r: sqrt(u*u + v*v); \
 x: u; \
 y: v; \
 z: b*exp(-(a*r)^(2)); \
-xu: 0; \
+xu: 1; \
 yu: 0; \
-zu: 0; \
+zu: -2*a*a*b*u*exp(-(a*r)^(2)); \
 xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
+yv: 1; \
+zv: -2*a*a*b*v*exp(-(a*r)^(2)); \
+xn: 2*a*a*b*u*exp(-(a*r)^(2)); \
+yn: 2*a*a*b*v*exp(-(a*r)^(2)); \
+zn: 1; \
 xuu: 0; \
 yuu: 0; \
-zuu: 0; \
+zuu: 2*exp(-(a*r)^(2))*(2*a^4*b*u^2 - a^2*b); \
 xuv: 0; \
 yuv: 0; \
-zuv: 0; \
+zuv: 4*exp(-(a*r)^(2))*a^4*b*u*v; \
 xvv: 0; \
 yvv: 0; \
-zvv: 0; \
-end;";
+zvv: 2*exp(-(a*r)^(2))*(2*a^4*b*v^2 - a^2*b); ";
 #endif

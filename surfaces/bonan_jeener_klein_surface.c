@@ -10,50 +10,18 @@ void BonanJeenerKleinSurface(pasuli_vartype u, pasuli_vartype v,
 {
 	PASULI_SET_TYPE_ID(BONAN_JEENER_KLEIN_SURFACE)
 
-	double M = constants[0];
-	double T = constants[1];
-	double cv = cos(v);
-	double sv = sin(v);
+	pasuli_consttype M = constants[0];
+	pasuli_consttype T = constants[1];
 
-	double W = sin((M - 1) * u) + T;
-	double M_cos_u_Mu = M * cos(u) - cos(M * u);
-	double M_sin_u_Mu = M * sin(u) - sin(M * u);
-	u = (M + 1) * u * 0.5;
-	double MMW_sin_u2 = (((M - 1) * W) / M) * sin(u);
-	u = (((M - 1) * W) / M) * cos(u);
+	pasuli_calctype cos_v = cos(v);
 
-	P_Y(W * sv);
-	P_X(M_cos_u_Mu - cv * MMW_sin_u2);
-	P_Z(M_sin_u_Mu - cv * u);
+	pasuli_calctype W = sin((M - 1) * u) + T;
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double cu = cos(u);
-	double su = sin(u);
-#endif
+	P_X(M * cos(u) - cos(M * u) - W * (M - 1) * sin((M + 1) * u * 0.5) * cos_v / M);
+	P_Y(W * sin(v));
+	P_Z(M * sin(u) - sin(M * u) - W * (M - 1) * cos((M + 1) * u * 0.5) * cos_v / M);
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
-
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
-
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
-
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
-
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
-
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	// No further calculations, because errors would be too large
 }
 #endif
 
@@ -76,24 +44,5 @@ c1:M: 1.5; c2:T: 0.5; \
 a1:W: sin((M - 1)*u) + T; \
 x: M*cos(u) - cos(M*u) - ((M - 1)/M)*W*sin((M + 1)*u/2)*cos(v); \
 y: W*sin(v); \
-z: M*sin(u) - sin(M*u) + ((M - 1)/M)*W*cos((M + 1)*u/2)*cos(v); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
+z: M*sin(u) - sin(M*u) + ((M - 1)/M)*W*cos((M + 1)*u/2)*cos(v);";
 #endif
