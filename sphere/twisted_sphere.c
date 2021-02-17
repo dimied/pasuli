@@ -10,40 +10,45 @@ void TwistedSphere(pasuli_vartype u,
 {
     PASULI_SET_TYPE_ID(TWISTED_SPHERE)
 
-    double a = constants[0];
-    double b = constants[1];
-    double cu = cos(u);
-    double su = sin(u);
-    double cv = cos(v);
-    double sv = sin(v);
+    pasuli_consttype a = constants[0];
+    pasuli_consttype b = constants[1];
+    pasuli_calctype cos_u = cos(u);
+    pasuli_calctype sin_u = sin(u);
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype sin_v = sin(v);
 
-    P_X(a * cu * cv);
-    P_Y(a * sv + b * u);
-    P_Z(a * su * cv);
+    P_X(a * cos_u * cos_v);
+    P_Y(a * sin_v + b * u);
+    P_Z(a * sin_u * cos_v);
 
-    UD_X(-a * su * cv);
+    // Ignore scaling by cos_v
+    UD_X(-a * sin_u);
     UD_Y(b);
-    UD_Z(a * cu * cv);
+    UD_Z(a * cos_u);
 
-    VD_X(-a * cu * sv);
-    VD_Y(a * cv);
-    VD_Z(-a * su * sv);
+    VD_X(-a * cos_u * sin_v);
+    VD_Y(a * cos_v);
+    VD_Z(-a * sin_u * sin_v);
 
-    N_X(-b * a * su * sv - a * a * cv * cv * cu);
-    N_Y(a * a * sv * cv);
-    N_Z(b * a * cu * sv - a * su * cv * cv);
+    // No scaling by a
+    NORMAL_OP(pasuli_calctype cos_v_squared = cos_v * cos_v);
+    N_X(-b * sin_u * sin_v - a * cos_u * cos_v_squared);
+    N_Y(-a * sin_v * cos_v);
+    N_Z(b * cos_u * sin_v - a * sin_u * cos_v_squared);
 
-    UUD_X(-a * cu * cv);
+    // No scaling by cos_v
+    UUD_X(-a * cos_u);
     UUD_Y_CONST(0);
-    UUD_Z(-a * cv * su);
-
-    UVD_X(a * su * sv);
+    UUD_Z(-a * sin_u);
+    
+    // No scaling by sin_v
+    UVD_X(a * sin_u);
     UVD_Y_CONST(0);
-    UVD_Z(-a * cu * sv);
+    UVD_Z(-a * cos_u);
 
-    VVD_X(-a * cu * cv);
-    VVD_Y(-a * sv);
-    VVD_Z(-a * su * cv);
+    VVD_X(-a * cos_u * cos_v);
+    VVD_Y(-a * sin_v);
+    VVD_Z(-a * sin_u * cos_v);
 }
 #endif
 
@@ -66,36 +71,23 @@ vs:pi: -1; ve:pi: 1; \
 c1:a: 1; c2:b: 1; \
 x: a*cos(u)*cos(v); \
 y: a*sin(v) + b*u; \
-z: a*sin(u)*cos(v); "
-#if (COMPILE_DESC_DERIV_U_SPHERE != 0)
-    "xu: -a*sin(u)*cos(v); \
+z: a*sin(u)*cos(v); \
+xu: -a*sin(u)*cos(v); \
 yu: b; \
-zu: a*cos(u)*cos(v); "
-#endif
-#if (COMPILE_DESC_DERIV_V_SPHERE != 0)
-    "xv: -a*cos(u)*sin(v); \
+zu: a*cos(u)*cos(v); \
+xv: -a*cos(u)*sin(v); \
 yv: a*cos(v); \
-zv: -a*sin(u)*sin(v); "
-#endif
-#if (COMPILE_DESC_NORMAL_SPHERE != 0)
-    "xn: -a*(a*cos(u)*cos(v)*cos(v) + b*sin(u)*sin(v)); \
+zv: -a*sin(u)*sin(v); \
+xn: -a*(a*cos(u)*cos(v)*cos(v) + b*sin(u)*sin(v)); \
 yn: -a*a*(cos(v)*sin(v)); \
-zn: a*(b*cos(u)*sin(v) - a*cos(v)*cos(v)*sin(u)); "
-#endif
-#if (COMPILE_DESC_DERIV2_U_SPHERE != 0)
-    "xuu: -a*cos(u)*cos(v); \
+zn: a*(b*cos(u)*sin(v) - a*cos(v)*cos(v)*sin(u)); \
+xuu: -a*cos(u)*cos(v); \
 yuu: 0; \
-zuu: -a*cos(v)*sin(u); "
-#endif
-#if (COMPILE_DESC_DERIV_UV_SPHERE != 0)
-    "xuv: a*sin(u)*sin(v); \
+zuu: -a*cos(v)*sin(u); \
+xuv: a*sin(u)*sin(v); \
 yuv: 0; \
-zuv: -a*cos(u)*sin(v); "
-#endif
-#if (COMPILE_DESC_DERIV2_V_SPHERE != 0)
-    "xvv: -a*cos(u)*cos(v); \
+zuv: -a*cos(u)*sin(v); \
+xvv: -a*cos(u)*cos(v); \
 yvv: -a*sin(v); \
-zvv: -a*cos(v)*sin(u); "
-#endif
-    "end;";
+zvv: -a*cos(v)*sin(u); ";
 #endif

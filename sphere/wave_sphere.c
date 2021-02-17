@@ -10,45 +10,49 @@ void WaveSphere(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(WAVE_SPHERE)
 
-	double cu = cos(u);
-	double su = sin(u);
-	double cv = cos(v);
-	double sv = sin(v);
-	double ccu = cos(cu);
-	double scu = sin(cu);
-	double u_scu = u * scu;
-	double u_ccu = u * ccu;
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_u = sin(u);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
 
-	P_X(u_ccu * cv);
-	P_Y(u_ccu * sv);
-	P_Z(u_scu);
+	pasuli_calctype cos_of_cos_u = cos(cos_u);
+	pasuli_calctype sin_of_cos_u = sin(cos_u);
+	pasuli_calctype u_sin_of_cos_u = u * sin_of_cos_u;
+	pasuli_calctype u_cos_of_cos_u = u * cos_of_cos_u;
 
-	double xy = (ccu + u_scu * su);
-	UD_X(cv * xy);
-	UD_Y(sv * xy);
-	UD_Z(scu - u_ccu * su);
+	P_X(u_cos_of_cos_u * cos_v);
+	P_Y(u_cos_of_cos_u * sin_v);
+	P_Z(u_sin_of_cos_u);
 
-	VD_X(-u_ccu * sv);
-	VD_Y(u_ccu * cv);
+	pasuli_calctype vd_common = (cos_of_cos_u + u_sin_of_cos_u * sin_u);
+	UD_X(cos_v * vd_common);
+	UD_Y(sin_v * vd_common);
+	UD_Z(sin_of_cos_u - u_cos_of_cos_u * sin_u);
+
+	VD_X(-u_cos_of_cos_u * sin_v);
+	VD_Y(u_cos_of_cos_u * cos_v);
 	VD_Z_CONST(0);
 
-	xy = u * (-scu + u_ccu * su) * ccu;
-	N_X(cv * xy);
-	N_Y(sv * xy);
-	N_Z(u_ccu * (ccu + u * scu * su));
+	// No multiplication of u_cos_of_cos_u
+	pasuli_calctype normal_common = (-sin_of_cos_u + u_cos_of_cos_u * sin_u);
+	N_X(cos_v * normal_common);
+	N_Y(sin_v * normal_common);
+	N_Z((cos_of_cos_u + u_sin_of_cos_u * sin_u));
 
-	xy = u_scu * cu + u * ccu * su * su + 2 * scu * su;
-	UUD_X(cv * xy);
-	UUD_Y(sv * xy);
-	UUD_Z(u_ccu * cu + u_scu * su * su + 2 * ccu * su);
+	vd_common = u_sin_of_cos_u * cos_u + u * cos_of_cos_u * sin_u * sin_u + 2 * sin_of_cos_u * sin_u;
+	UUD_X(cos_v * vd_common);
+	UUD_Y(sin_v * vd_common);
+	UUD_Z(-(u_cos_of_cos_u * cos_u + u_sin_of_cos_u * sin_u * sin_u + 2 * cos_of_cos_u * sin_u));
 
-	xy = (ccu + u_scu * su);
-	UVD_X(-sv * xy);
-	UVD_Y(cv * xy);
+	// No scaling
+	// vd_common = (cos_of_cos_u + u_sin_of_cos_u * sin_u);
+	UVD_X(-sin_v);
+	UVD_Y(cos_v);
 	UVD_Z_CONST(0);
 
-	VVD_X(-u_ccu * cv);
-	VVD_Y(u_ccu * sv);
+	// No scaling by u_cos_of_cos_u
+	VVD_X(-cos_v);
+	VVD_Y(-sin_v);
 	VVD_Z_CONST(0);
 }
 #endif
@@ -63,43 +67,30 @@ PaSuLiDefDesc pslddWaveSphere = {
 #endif
 #if (COMPILE_DESC_SPHERE != 0)
 char *descWaveSphere =
-	"name: wave sphere; \
+	"name: Wave sphere; \
 cat: sphere; \
 ut: c; vt: c; \
 us: 0; ue: 14; \
 vs: 0; ve:pi: 2; \
 x: u*cos(cos(u))*cos(v); \
 y: u*cos(cos(u))*sin(v); \
-z: u*sin(cos(u)); "
-#if (COMPILE_DESC_DERIV_U_SPHERE != 0)
-	"xu: cos(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u))); \
+z: u*sin(cos(u)); \
+xu: cos(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u))); \
 yu: sin(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u))); \
-zu: sin(cos(u)) - u*cos(cos(u))*sin(u); "
-#endif
-#if (COMPILE_DESC_DERIV_V_SPHERE != 0)
-	"xv: -u*cos(cos(u))*sin(v); \
+zu: sin(cos(u)) - u*cos(cos(u))*sin(u); \
+xv: -u*cos(cos(u))*sin(v); \
 yv: u*cos(v)*cos(cos(u)); \
-zv: 0; "
-#endif
-#if (COMPILE_DESC_NORMAL_SPHERE != 0)
-	"xn: u*cos(cos(u))(u*cos(cos(u)*sin(u)-sin(cos(u))))*cos(v); \
-yn: u*cos(cos(u))(u*cos(cos(u)*sin(u)-sin(cos(u))))*sin(v); \
-zn: u*(cos(cos(u))^2 + u*cos(cos(u))*sin(u)*sin(cos(u))); "
-#endif
-#if (COMPILE_DESC_DERIV2_U_SPHERE != 0)
-	"xuu: cos(v)*(u*cos(u)*sin(cos(u)) - u*cos(cos(u))*sin(u)^2 + 2*sin(u)*sin(cos(u))); \
+zv: 0; \
+xn: u*cos(cos(u))*(u*cos(cos(u))*sin(u)-sin(cos(u)))*cos(v); \
+yn: u*cos(cos(u))*(u*cos(cos(u))*sin(u)-sin(cos(u)))*sin(v); \
+zn: u*cos(cos(u))*(cos(cos(u)) + u*sin(u)*sin(cos(u))); \
+xuu: cos(v)*(u*cos(u)*sin(cos(u)) - u*cos(cos(u))*sin(u)^2 + 2*sin(u)*sin(cos(u))); \
 yuu: sin(v)*(u*cos(u)*sin(cos(u)) - u*cos(cos(u))*sin(u)^2 + 2*sin(u)*sin(cos(u))); \
-zuu: -(cos(cos(u))*(2*sin(u) + u*cos(u)) + u*sin(cos(u))*sin(u)*sin(u)); "
-#endif
-#if (COMPILE_DESC_DERIV_UV_SPHERE != 0)
-	"xuv: -sin(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u))); \
+zuu: -(cos(cos(u))*(2*sin(u) + u*cos(u)) + u*sin(cos(u))*sin(u)*sin(u)); \
+xuv: -sin(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u))); \
 yuv: cos(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u))); \
-zuv: 0; "
-#endif
-#if (COMPILE_DESC_DERIV2_V_SPHERE != 0)
-	"xvv: -u*cos(cos(u))*cos(v); \
+zuv: 0; \
+xvv: -u*cos(cos(u))*cos(v); \
 yvv: -u*sin(v)*cos(cos(u)); \
-zvv: 0; "
-#endif
-	"end;";
+zvv: 0; ";
 #endif

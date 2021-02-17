@@ -10,9 +10,37 @@ void ArchimedicSpiral(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(ARCHIMEDIC_SPIRAL)
 
-	P_X(u * cos(u));
-	P_Y(v * (*constants));
-	P_Z(sin(u));
+	pasuli_consttype H = constants[0];
+
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype u_cos_u = u * cos_u;
+	pasuli_calctype sin_u = sin(u);
+	pasuli_calctype u_sin_u = u * sin_u;
+
+	P_X(u_cos_u);
+	P_Y(v * H);
+	P_Z(u_sin_u);
+
+	UD_X(cos_u - u_sin_u);
+	UD_Y_CONST(0);
+	UD_Z(sin_u + u_cos_u);
+
+	VD_X_CONST(0);
+	VD_Y_CONST(H);
+	VD_Z_CONST(0);
+
+	// No scaling by H
+	N_X(-PASULI_COND_COPY_VD_Z(sin_u + u_cos_u));
+	N_Y_CONST(0);
+	N_Z(PASULI_COND_COPY_VD_X(cos_u - u_sin_u));
+
+	UUD_X(-(2 * sin_u + u_cos_u));
+	UUD_Y_CONST(0);
+	UUD_Z(2 * cos_u - u_sin_u);
+
+	UVD_ALL(0);
+
+	VVD_ALL(0);
 }
 #endif
 
@@ -33,30 +61,19 @@ vs: 0; ve: 1; \
 c1:H: 1; \
 x: u*cos(u); \
 y: H*v; \
-z: u*sin(u); "
-#if (COMPILE_DESC_DERIV_U_SPIRAL != 0)
-	"xu: cos(u) - u*sin(u); \
+z: u*sin(u); \
+xu: cos(u) - u*sin(u); \
 yu: 0; \
-zu: sin(u) + u*cos(u); "
-#endif
-#if (COMPILE_DESC_DERIV_V_SPIRAL != 0)
-	"xv: 0; \
+zu: sin(u) + u*cos(u); \
+xv: 0; \
 yv: H; \
-zv: 0; "
-#endif
-#if (COMPILE_DESC_NORMAL_SPIRAL != 0)
-	"xn: -H*(sin(u) + u*cos(u)); \
+zv: 0; \
+xn: -H*(sin(u) + u*cos(u)); \
 yn: 0; \
-zn: H*(cos(u) - u*sin(u)); "
-#endif
-	"xuu: -2*sin(u) - u*cos(u); \
+zn: H*(cos(u) - u*sin(u)); \
+xuu: -2*sin(u) - u*cos(u); \
 yuu: 0; \
-zuu: 2*cos(u) - u*sin(u); "
-	"xuv: 0; \
-yuv: 0; \
-zuv: 0; "
-	"xvv: 0; \
-yvv: 0; \
-zvv: 0; "
-	"end;";
+zuu: 2*cos(u) - u*sin(u); \
+xuv: 0; yuv: 0; zuv: 0; \
+xvv: 0; yvv: 0; zvv: 0; ";
 #endif

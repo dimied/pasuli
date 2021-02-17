@@ -14,36 +14,50 @@ void PseudoSphere(pasuli_vartype u,
 	pasuli_calctype sin_u = sin(u);
 	pasuli_calctype sin_v = sin(v);
 	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype tan_v_half = tan(v * 0.5);
 
 	P_X(cos_u * sin_v);
 	P_Y(sin_u * sin_v);
-	P_Z(cos_v + log(tan(v * 0.5)));
+	P_Z(cos_v + log(tan_v_half));
 
 	UD_X(-sin_u * sin_v);
 	UD_Y(cos_u * sin_v);
 	UD_Z(0);
 
-	pasuli_calctype xyz = -sin_v + 0.5 / (cos(0.5 * v) * cos(0.5 * v) * tan(v * 0.5));
+	// tan(v) = sin(v)/cos(v)
+	// sin(x)*cos(y) = (sin(x-y) + sin(x+y))/2
+	// => sin(v/2)*cos(v/2) = (0 + sin(2*v/2))*0.5
+	// => 1/sin(v)  - sin(v) = (1-sin(v)^2)/sin(v)
+	// = cos(v)^2/sin(v) = cos(v)*cot(v)
+	pasuli_calctype xyz = atan(v) * cos_v; //-sin_v + 1 / sin_v;
 	VD_X(cos_u * cos_v);
 	VD_Y(sin_u * cos_v);
-	VD_Z(xyz);
+	VD_Z(atan(v) * cos_v);
 
 	N_X(xyz * cos_u * sin_v);
 	N_Y(xyz * sin_u * sin_v);
 	N_Z(-sin_v * cos_v);
 
+	/*
 	UUD_X(-PASULI_COND_COPY_POS_X(cos_u * sin_v));
 	UUD_Y(-PASULI_COND_COPY_POS_Y(sin_u * sin_v));
 	UUD_Z_CONST(0);
 
-	UVD_X(-cos_v * sin_u); //same as -VD_Y
-	UVD_Y(cos_u * cos_v);  //same as VD_X
+	UVD_X(-PASULI_COND_COPY_VD_Y(cos_v * sin_u));
+	UVD_Y(PASULI_COND_COPY_VD_X(cos_u * cos_v));
 	UVD_Z_CONST(0);
 
-	xyz = 0.5 / (cos(0.5 * v) * cos(0.5 * v) * tan(v * 0.5));
+	xyz = 0.5 / (cos(0.5 * v) * cos(0.5 * v));
 	VVD_X(-PASULI_COND_COPY_POS_X(cos_u * sin_v));
 	VVD_Y(-PASULI_COND_COPY_POS_Y(sin_u * sin_v));
-	VVD_Z(-cos_v - xyz * xyz + xyz * tan(0.5 * v));
+	//-cos(v) - (1/(2*cos(0.5*v)*sin(0.5*v)))^2 + 1/(2*cos(0.5*v)*cos(0.5*v))
+	//-cos(v) - (1/sin(v))^2 + 1/(1+cos(v))
+	//(-(sin(v)^2+cos(v))*(1+cos(v)) + sin(v)^2) /((1+cos(v))*sin(v)^2)
+	// sin(v)^2 - (sin(v)^2 + cos(v) + sin(v)^2*cos(v) + cos(v)^2)
+	// sin(v)^2 - (1 + cos(v) + sin(v)^2*cos(v))
+	// cos(v)^2 - cos(v) - sin(v)^2*cos(v) ...
+	VVD_Z(-cos_v - xyz * xyz / (tan_v_half * tan_v_half) + xyz);
+	*/
 }
 #endif
 
@@ -83,5 +97,5 @@ yuv: cos(u)*cos(v); \
 zuv: 0; \
 xvv: -cos(u)*sin(v); \
 yvv: -sin(u)*sin(v); \
-zvv: -cos(v) - (1/(2*cos(0.5*v)*cos(0.5*v)*tan(0.5*v)))^2 + 1/(2*cos(0.5*v)*cos(0.5*v));";
+zvv: -cos(v) - (1/(2*cos(0.5*v)*sin(0.5*v)))^2 + 1/(2*cos(0.5*v)*cos(0.5*v));";
 #endif
