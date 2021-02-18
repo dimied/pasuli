@@ -110,5 +110,5 @@ zuv: -r*cos(u)*sin(v); "
 yvv: -r*sin(v); \
 zvv: -r*cos(v)*sin(u); "
 #endif
-	"end;";
+	"";
 #endif

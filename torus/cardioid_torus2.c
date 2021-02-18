@@ -106,5 +106,5 @@ zuv: 0; "
 yvv: 0; \
 zvv: 0; "
 #endif
-	"end;";
+	"";
 #endif

@@ -89,6 +89,11 @@
 #define NORMAL_OP(O)
 #endif
 
+#define MULTIPLY_NORMAL_BY_MINUS_ONE \
+	pO->n[0] = -pO->n[0]; \
+	pO->n[1] = -pO->n[1]; \
+	pO->n[2] = -pO->n[2];
+
 // Macros for 2.nd derivative with respect to U
 #if (PASULIOBJECT_UUD != 0)
 #define UUD_X(V) pO->uud[0] = V

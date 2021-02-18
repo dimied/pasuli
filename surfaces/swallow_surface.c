@@ -81,5 +81,5 @@ zn: 2*v*v*(u+6*v*v); "
     "xvv: 2*u+36*v*v; \
 yvv: -24*v; \
 zvv: 0; "
-    "end;";
+    "";
 #endif

@@ -9,45 +9,37 @@ void Egg(pasuli_vartype u, pasuli_vartype v,
 {
 	PASULI_SET_TYPE_ID(EGG)
 
-	double a = constants[0];
-	double b = constants[1];
-	double c = constants[2];
-	double fx = c * sqrt(u * (u - a) * (u - b));
+	pasuli_consttype a = constants[0];
+	pasuli_consttype b = constants[1];
+	pasuli_consttype c = constants[2];
 
-	P_X(fx * sin(v));
-	P_Y(u);
-	P_Z(fx * cos(v));
+	pasuli_calctype sqrt_uab = sqrt(u * (u - a) * (u - b));
+	pasuli_calctype pos_factor = c * sqrt_uab;
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double cu = cos(u);
-	double su = sin(u);
-	double cv = cos(v);
-	double sv = sin(v);
-#endif
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
+	P_X(pos_factor * sin_v);
+	P_Y(pos_factor * cos_v);
+	P_Z(u);
 
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
+	pasuli_calctype ud_common = c * (u * (a + b - 2 * u) - (a - u) * (b - u));
+	// Scale by 2*sqrt(u*(a-u)*(b-u)) to avoid division
+	UD_X(-ud_common * sin_v);
+	UD_Y(ud_common * cos_v);
+	UD_Z(2 * sqrt(u * (a - u) * (b - u)));
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
+	// Skip multiplication by sqrt(u * (u - a) * (u - b))
+	VD_X(c * cos_v);
+	VD_Y(-c * sin_v);
+	VD_Z_CONST(0);
 
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
+	// Avoid one multiplication by c
+	pasuli_calctype normal_factor = (c < 0) ? -1 : 1;
 
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
-
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	N_X(normal_factor * sqrt_uab * sin_v);
+	N_Y(normal_factor * sqrt_uab * cos_v);
+	N_Z(normal_factor * (-a * b + a + b - u * u * 1.5) * c);
 }
 #endif
 
@@ -65,29 +57,18 @@ char *descEgg =
 ut: c; vt: c; \
 us: 0; ue: c1: 1; \
 vs: 0; ve:pi: 2; \
-c1:a:<=c1: 0.5; \
-c2:b: 0.5; \
-c3:c: 1.0; \
+c1:a: 0.5; c2:b: 0.5; c3:c: 1.0; \
+cond:a:<=:c; \
 x: c*sqrt(u*(u - a)*(u - b))*sin(v); \
-y: u; \
-z: c*sqrt(u*(u - a)*(u - b))*cos(v); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
+y: c*sqrt(u*(u - a)*(u - b))*cos(v); \
+z: u; \
+xu: -c*(u*(a+b - 2*u) - (a-u)*(b-u))*sin(v)/2*sqrt(u*(a-u)*(b-u)); \
+yu: -c*(u*(a+b - 2*u) - (a-u)*(b-u))*cos(v)/2*sqrt(u*(a-u)*(b-u)); \
+zu: 1; \
+xv: c*sqrt(u*(u - a)*(u - b))*cos(v); \
+yv: -c*sqrt(u*(u - a)*(u - b))*sin(v); \
 zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
+xn: c*sqrt(u*(u - a)*(u - b))*sin(v); \
+yn: c*sqrt(u*(u - a)*(u - b))*cos(v); \
+zn: -a*b*c^2/2 + a*c^2 + b*c^2 - 3*c^2*u^2/2;";
 #endif

@@ -10,41 +10,34 @@ void Disc(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(DISC)
 
-    double cu = cos(u);
-    double su = sin(u);
+    pasuli_calctype cos_u = cos(u);
+    pasuli_calctype sin_u = sin(u);
 
-    P_X(v * cu);
-    P_Y(0);
-    P_Z(v * su);
+    P_X(v * cos_u);
+    P_Y(v * sin_u);
+    P_Z(0);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double cv = cos(v);
-    double sv = sin(v);
-#endif
+    UD_X(-PASULI_COND_COPY_POS_Y(v * sin_u));
+    UD_Y(PASULI_COND_COPY_POS_X(v * cos_u));
+    UD_Z_CONST(0);
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    VD_X(cos_u);
+    VD_Y(sin_u);
+    VD_Z_CONST(0);
 
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    N_X_CONST(0);
+    N_Y_CONST(0);
+    N_Z(-v);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
+    UUD_X(-PASULI_COND_COPY_POS_X(v * cos_u));
+    UUD_Y(-PASULI_COND_COPY_POS_Y(v * sin_u));
+    UUD_Z_CONST(0);
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
+    UVD_X(-sin_u);
+    UVD_Y(cos_u);
+    UVD_Z_CONST(0);
 
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    VVD_ALL(0);
 }
 #endif
 
@@ -62,25 +55,22 @@ ut:c; vt:c; \
 us: 0; ue:pi: 2; \
 vs: 0; ve: 1; \
 x: v*cos(u); \
-y: 0; \
-z: v*sin(u); \
-xu: 0; \
-yu: 0; \
+y: v*sin(u); \
+z: 0; \
+xu: -v*sin(u); \
+yu: v*cos(u); \
 zu: 0; \
-xv: 0; \
-yv: 0; \
+xv: cos(u); \
+yv: sin(u); \
 zv: 0; \
 xn: 0; \
 yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
+zn: -v; \
+xuu: -v*cos(u); \
+yuu: -v*sin(u); \
 zuu: 0; \
-xuv: 0; \
-yuv: 0; \
+xuv: -sin(u); \
+yuv: cos(u); \
 zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
+xvv: 0; yvv: 0; zvv: 0;";
 #endif

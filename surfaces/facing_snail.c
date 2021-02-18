@@ -9,42 +9,42 @@ void FacingSnail(pasuli_vartype u, pasuli_vartype v,
 {
 	PASULI_SET_TYPE_ID(FACING_SNAIL)
 
-	double a = constants[0];
-	double su = sin(u);
-	double cu = cos(u);
+	pasuli_consttype a = constants[0];
 
-	P_X(cu * cos(v));
-	P_Y(cu * sin(v));
-	P_Z((1 - a * v) * su);
+	pasuli_calctype sin_u = sin(u);
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_v = sin(v);
+	pasuli_calctype cos_v = cos(v);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double cv = cos(v);
-	double sv = sin(v);
-#endif
+	pasuli_calctype one_minus_av = (1 - a * v);
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
+	P_X(cos_u * cos_v);
+	P_Y(cos_u * sin_v);
+	P_Z(one_minus_av * sin_u);
 
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
+	UD_X(-cos_v * sin_u);
+	UD_Y(-sin_v * sin_u);
+	UD_Z(one_minus_av * cos_u);
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
+	VD_X(-PASULI_COND_COPY_POS_Y(cos_u * sin_v));
+	VD_Y(PASULI_COND_COPY_POS_X(cos_u * cos_v));
+	VD_Z(-a * sin_u);
 
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
+	N_X(-one_minus_av * cos_u * cos_u * cos_v + a * sin_u * sin_u * sin_v);
+	N_Y(-one_minus_av * cos_u * cos_u * sin_v - a * sin_u * sin_u * cos_v);
+	N_Z(-cos_u * sin_u);
 
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
+	UUD_X(-PASULI_COND_COPY_POS_X(cos_u * cos_v));
+	UUD_Y(-PASULI_COND_COPY_POS_Y(cos_u * sin_v));
+	UUD_Z(-PASULI_COND_COPY_POS_Z(one_minus_av * sin_u));
 
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	UVD_X(sin_u * sin_v);
+	UVD_Y(-sin_u * cos_v);
+	UVD_Z(-a * cos_u);
+
+	VVD_X(-PASULI_COND_COPY_POS_X(cos_u * cos_v));
+	VVD_Y(-PASULI_COND_COPY_POS_Y(cos_u * sin_v));
+	VVD_Z_CONST(0);
 }
 #endif
 
@@ -57,9 +57,9 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 -0.5f, 0.5f , 0 , 6 , psldd_15_05_constants };
 #endif
 */
-#if(COMPILE_DESC_SURFACES != 0)
+#if (COMPILE_DESC_SURFACES != 0)
 char *descFacingSnail =
-"name: Facing Snail; \
+	"name: Facing Snail; \
 ut:c; vt:c; \
 us:pi: -0.5; ue:pi: 0.5; \
 vs: 0; ve:pi: 6; \
@@ -67,23 +67,22 @@ c1:a: 1.5; \
 x: cos(v)*cos(u); \
 y: sin(v)*cos(u); \
 z: (1 - a*v)*sin(u); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
+xu: -cos(v)*sin(u); \
+yu: -sin(v)*sin(u); \
+zu: (1-a*v)*cos(u); \
+xv: -cos(u)*sin(v); \
+yv: cos(u)*cos(v); \
+zv: -a*sin(u); \
+xn: (a*v - 1)*cos(u)^2*cos(v) + a*sin(u)^2*sin(v); \
+yn: (a*v - 1)*cos(u)^2*sin(v) - a*sin(u)^2*cos(v); \
+zn: -cos(u)*sin(u); \
+xuu: -cos(u)*cos(v); \
+yuu: -cos(u)*sin(v); \
+zuu: (a*v-1)*sin(u); \
+xuv: sin(u)*sin(v); \
+yuv: -sin(u)*cos(v); \
+zuv: -a*cos(u); \
+xvv: -cos(u)*cos(v); \
+yvv: -cos(u)*sin(v); \
+zvv: 0; ";
 #endif

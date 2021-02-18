@@ -8,38 +8,27 @@ void FishSurface(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(FISH_SURFACE)
 
-    double cu = cos(u);
-    double su = sin(u);
-    double cv = cos(v);
-    double sv = sin(v);
+    pasuli_calctype cos_u = cos(u);
+    pasuli_calctype sin_u = sin(u);
+    pasuli_calctype cos_2u = cos(2 * u);
+    pasuli_calctype sin_2u = sin(2 * u);
 
-    P_X((cu - cos(2 * u)) * 0.25 * cv);
-    P_Y((sin(u) - sin(2 * u)) * 0.25 * sv);
-    P_Z(cu);
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype sin_v = sin(v);
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    P_X((cos_u - cos_2u) * 0.25 * cos_v);
+    P_Y((sin_u - sin_2u) * 0.25 * sin_v);
+    P_Z(cos_u);
 
-    VD_X(0);
-    VD_Y(0);
+    UD_X((4 * cos_u - 1) * cos_v * sin_u * 0.25);
+    UD_Y((cos_u - 2 * cos_2u) * sin_v * 0.25);
+    UD_Z(-sin_u);
+
+    VD_X(-(cos_u - cos_2u) * sin_v * 0.25);
+    VD_Y((sin_u - sin_2u) * cos_v * 0.25);
     VD_Z(0);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
-
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
-
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -53,32 +42,16 @@ PaSuLiDefDesc pslddFishSurface = {
 #if (COMPILE_DESC_SURFACES != 0)
 char *descFishSurface =
     "name: Fish Surface; \
-ut:c; \
-vt:c; \
-us: 0; \
-ue:pi: 1; \
-vs: 0; \
-ve:pi: 2; \
+ut:c; vt:c; \
+us: 0; ue:pi: 1; \
+vs: 0; ve:pi: 2; \
 x: (cos(u) - cos(2*u))*cos(v)/4; \
 y: (sin(u) - sin(2*u))*sin(v)/4; \
 z: cos(u); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
+xu: (4*cos(u) - 1)*cos(v)*sin(u)/4; \
+yu: (cos(u) - 2*cos(2*u))*sin(v)/4; \
+zu: -sin(u); \
+xv: -(cos(u) - cos(2*u))*sin(v)/4; \
+yv: (sin(u) - sin(2*u))*cos(v)/4; \
+zv: 0; ";
 #endif

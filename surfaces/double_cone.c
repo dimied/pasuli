@@ -9,79 +9,74 @@ void DoubleCone(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(DOUBLE_CONE)
 
-    double two_pi_div_3 = (2 * MY_PI) / 3.0;
+    pasuli_calctype two_pi_div_3 = (2 * MY_PI) / 3.0;
+    pasuli_calctype cos_u = cos(u);
 
-    P_X(v * cos(u));
-    P_Y((v - 1) * cos(u + two_pi_div_3));
-    P_Z((1 - v) * cos(u - two_pi_div_3));
+    pasuli_calctype cos_u_plus = cos(u + two_pi_div_3);
+    pasuli_calctype cos_u_minus = cos(u - two_pi_div_3);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double cu = cos(u);
-    double su = sin(u);
-    double cv = cos(v);
-    double sv = sin(v);
-#endif
+    P_X(v * cos_u);
+    P_Y((v - 1) * cos_u_plus);
+    P_Z((1 - v) * cos_u_minus);
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    pasuli_calctype sin_u = sin(u);
+    pasuli_calctype sin_u_plus = sin(u + two_pi_div_3);
+    pasuli_calctype sin_u_minus = sin(two_pi_div_3 - u);
 
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    UD_X(-v * sin_u);
+    UD_Y((1 - v) * sin_u_plus);
+    UD_Z((1 - v) * sin_u_minus);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
+    VD_X(cos_u);
+    VD_Y(cos_u_plus);
+    VD_Z(-cos_u_minus);
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
+    N_X((v - 1) * (cos_u_plus * sin_u_minus + cos_u_minus * sin_u_plus));
+    N_Y(-(v * cos_u * sin_u_minus + v * cos_u_minus * sin_u + cos_u * sin_u_minus));
+    N_Z(v * cos_u * sin_u_plus - v * cos_u_plus * sin_u - cos_u * sin_u_plus);
 
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
+    UUD_X(-v * cos_u);
+    UUD_Y((1 - v) * cos_u_plus);
+    UUD_Z((v - 1) * cos_u_minus);
 
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    UVD_X(-sin_u);
+    UVD_Y(-sin_u_plus);
+    UVD_Z(-sin_u_minus);
+
+    VVD_ALL(0);
 }
 #endif
 
-
-
-#if(COMPILE_DEF_DESC_SURFACES != 0)
+#if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddDoubleCone = {
-PSLDD_ID( DOUBLE_CONE )
-PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI,
-0, 2 , -1 , 1 , 0 };
+    PSLDD_ID(DOUBLE_CONE)
+            PASULI_U_CLOSED |
+        PASULI_V_CLOSED | PASULI_U_END_PI,
+    0, 2, -1, 1, 0};
 #endif
-#if(COMPILE_DESC_SURFACES != 0)
+#if (COMPILE_DESC_SURFACES != 0)
 char *descDoubleCone =
-"name: Double Cone; \
+    "name: Double Cone; \
 ut:c; vt:c; \
 us: 0; ue:pi: 2; \
 vs: -1; ve: 1; \
 x: v*cos(u); \
 y: (v - 1)*cos(u + 2*pi/3); \
 z: (1 - v)*cos(u - 2*pi/3); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
+xu: -v*sin(u); \
+yu: (1-v)*sin(u + 2*pi/3); \
+zu: (1-v)*sin(2*pi/3 - u); \
+xv: cos(u); \
+yv: cos(u+2*pi/3); \
+zv: -cos(u - 2*pi/3); \
+xn: v*cos(2*pi/3 + u)*sin(2*pi/3 -u) + v*cos(2*pi/3 - u)*sin(2*pi/3 +u) - cos(2*pi/3 + u)*sin(2*pi/3 -u) - cos(2*pi/3 - u)*sin(2*pi/3 +u); \
+yn: -v*cos(u)*sin(2*pi/3-u) - v*cos(2*pi/3 - u)*sin(u) - cos(u)*sin(2*pi/3-u); \
+zn: v*cos(u)*sin(u + 2*pi/3) - v*cos(u + 2*pi/3)*sin(u) - cos(u)*sin(u + 2*pi/3); \
+xuu: -v*cos(u); \
+yuu: (1-v)*cos(2*pi/3 + u); \
+zuu: (v-1)*cos(u - 2*pi/3); \
+xuv: -sin(u); \
+yuv: -sin(2*pi/3 + u); \
+zuv: -sin(2*pi/3 - u); \
+xvv: 0; yvv: 0; zvv: 0;";
 #endif

@@ -77,5 +77,5 @@ yuu: 0; \
 zuu: -c/(cos(c*u)*cos(c*u)); "
 "xuv: 0; yuv: 0; zuv: 0; "
 "xvv: 0; yvv: 0; zvv: c/(cos(c*v)*cos(c*v)); "
-"end;";
+"";
 #endif

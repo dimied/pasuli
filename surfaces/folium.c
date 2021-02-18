@@ -9,46 +9,33 @@ void Folium(pasuli_vartype u, pasuli_vartype v,
 {
 	PASULI_SET_TYPE_ID(FOLIUM)
 
-	double two_pi_3 = 2.0 * MY_PI / 3.0;
+	pasuli_calctype two_pi_3 = 2.0 * MY_PI / 3.0;
 
-	double y_u = cos(u + two_pi_3);
-	double z_u = cos(u - two_pi_3);
-	double cu = cos(u);
-	double chv = cosh(v);
+	pasuli_calctype cos_u_plus = cos(u + two_pi_3);
+	pasuli_calctype cos_u_minus = cos(u - two_pi_3);
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype cosh_v = cosh(v);
+	pasuli_calctype tanh_v = tanh(v);
 
-	P_X(cu * ((2.0 * v) / MY_PI - tanh(v)));
-	P_Y(y_u / chv);
-	P_Z(z_u / chv);
+	P_X(cos_u * ((2.0 * v) / MY_PI - tanh_v));
+	P_Y(cos_u_plus / cosh_v);
+	P_Z(cos_u_minus / cosh_v);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double su = sin(u);
-	double cv = cos(v);
-	double sv = sin(v);
-#endif
+	pasuli_calctype sin_u = sin(u);
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
+	UD_X((tanh_v - 2 * v) * sin_u / MY_PI);
+	UD_Y(sin(u + two_pi_3) / cosh_v);
+	UD_Z(cos(u + two_pi_3) * tanh_v);
 
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
+	pasuli_calctype sinh_v = sinh(v);
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
+	pasuli_calctype cosh_v2 = cosh_v * cosh_v;
 
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
+	VD_X((2 - MY_PI / cosh_v2) * cos_u / MY_PI);
+	VD_Y(-cos_u_minus * sinh_v / cosh_v2);
+	VD_Z(sin(u + MY_PI / 3) * sinh_v / cosh_v2);
 
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
-
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -69,23 +56,10 @@ vs:pi: -1; ve:pi: 1; \
 x: cos(u)*(2*v/pi - tanh(v)); \
 y: cos(u + 2*pi/3)/cosh(v); \
 z: cos(u - 2*pi/3)/cosh(v); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
+xu: (tanh(v) - 2*v)*sin(u)/pi; \
+yu: sin(u + 2*pi/3)/cosh(v); \
+zu: cos(u + pi/3)*sinh(v)/cosh(v); \
+xv: (2 - pi*sech(v)^2)*cos(u)/pi; \
+yv: -cos(u + 2*pi/3)*sinh(v)/cosh(v)^2; \
+zv: sin(u + pi/3)*sinh(v)/cosh(v)^2; ";
 #endif

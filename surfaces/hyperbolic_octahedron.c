@@ -87,5 +87,5 @@ zuv: 0; "
 	"xvv: 3*(2-3*cos(v)*cos(v))*(cos(u)^3)*cos(v); \
 yvv: 3*(2-3*cos(v)*cos(v))*(sin(u)^3)*cos(v); \
 zvv: 3*sin(v)*(2-3*sin(v)*sin(v)); "
-	"end;";
+	"";
 #endif

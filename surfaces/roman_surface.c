@@ -86,5 +86,5 @@ zuv: 8*u*cos(v)*sin(v); \
 xvv: -2*u*(sqrt(1-u*u))*cos(v); \
 yvv: -2*u*(sqrt(1-u*u))*sin(v); \
 zvv: 4*u*u*(2*cos(v)*cos(v) - 1); \
-end;";
+";
 #endif

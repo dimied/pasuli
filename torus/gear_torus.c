@@ -133,5 +133,5 @@ zvv: (-a*cos(v) - (2*b*n*n*cos(v)*(cos(n*v)^2)*sinh(b*sin(n*v)))/(cosh(b*sin(n*v
 (2*n*cos(n*v)*sin(v))/(cosh(b*sin(n*v))^2) - (cos(v)*tanh(b*sin(n*v)))/b - \
 (n*n*cos(v)*sin(n*v))/(cosh(b*sin(n*v))^2))*sin(u); "
 #endif
-	"end;";
+	"";
 #endif

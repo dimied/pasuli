@@ -77,5 +77,5 @@ zuv: 2*v; "
 "xvv: 0; \
 yvv: 0; \
 zvv: 2*u-4; "
-"end;";
+"";
 #endif

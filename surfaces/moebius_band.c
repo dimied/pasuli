@@ -90,5 +90,5 @@ zuv: 0.5*cos(0.5*v); "
 "xvv: u*(sin(v)*sin(0.5*v) - 1.25*cos(v)*cos(0.5*v)) - r*cos(v); \
 yvv: -u*(cos(v)*sin(0.5*v) + 1.25*cos(0.5*v)*sin(v)) - r*sin(v); \
 zvv: -0.25*u*sin(0.5*v); "
-"end;";
+"";
 #endif

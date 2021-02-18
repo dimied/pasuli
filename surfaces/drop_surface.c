@@ -9,44 +9,43 @@ void DropSurface(pasuli_vartype u, pasuli_vartype v,
 {
 	PASULI_SET_TYPE_ID(DROP_SURFACE)
 
-	double a = constants[0];
+	pasuli_consttype a = constants[0];
 
-	double sin_ua = sin(u - a);
-	double cu = cos(u);
+	pasuli_calctype sin_ua = sin(u - a);
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
 
-	P_X(cu * cos(v));
-	P_Y(cu * sin(v));
+	P_X(cos_u * cos_v);
+	P_Y(cos_u * sin_v);
 	P_Z(sin_ua);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double su = sin(u);
-	double cv = cos(v);
-	double sv = sin(v);
-#endif
+	pasuli_calctype sin_u = sin(u);
+	pasuli_calctype cos_ua = cos(a -u);
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
+	UD_X(-sin_u*cos_v);
+	UD_Y(-sin_u*sin_v);
+	UD_Z(cos_ua);
 
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
+	VD_X(-PASULI_COND_COPY_POS_Y(cos_u*sin_v));
+	VD_Y(PASULI_COND_COPY_POS_X(cos_u*cos_v));
+	VD_Z_CONST(0);
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
+	N_X(-cos_u*cos_v*cos_ua);
+	N_Y(-cos_u*cos_ua*sin_v);
+	N_Z(-cos_u*sin_u);
 
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
+	UUD_X(-PASULI_COND_COPY_POS_X(cos_u*cos_v));
+	UUD_Y(-PASULI_COND_COPY_POS_Y(cos_u*sin_v));
+	UUD_Z(-sin_ua);
 
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
+	UVD_X(sin_u*sin_v);
+	UVD_Y(-sin_u*cos_v);
+	UVD_Z_CONST(0);
 
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	VVD_X(-PASULI_COND_COPY_POS_X(cos_u*cos_v));
+	VVD_Y(-PASULI_COND_COPY_POS_Y(cos_u*sin_v));
+	VVD_Z_CONST(0);
 }
 #endif
 
@@ -69,23 +68,22 @@ c1:a: 1.5; \
 x: cos(v)*cos(u); \
 y: sin(v)*cos(u); \
 z: sin(u - a); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
+xu: -sin(u)*cos(v); \
+yu: -sin(u)*sin(v); \
+zu: cos(a-u); \
+xv: -cos(u)*sin(v); \
+yv: cos(u)*cos(v); \
 zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
+xn: -cos(u)*cos(v)*cos(a-u); \
+yn: -cos(u)*cos(a-u)*sin(v); \
+zn: -cos(u)*sin(u); \
+xuu: -cos(u)*cos(v); \
+yuu: -cos(u)*sin(v); \
+zuu: -sin(u-a); \
+xuv: sin(u)*sin(v); \
+yuv: -sin(u)*cos(v); \
 zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-end;";
+xvv: -cos(u)*cos(v); \
+yvv: -cos(u)*sin(v); \
+zvv: 0; ";
 #endif

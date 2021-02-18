@@ -80,5 +80,5 @@ zuv: -sin(u); "
     "xvv: -u*cos(v); \
 yvv: -u*sin(v); \
 zvv: 0; "
-    "end;";
+    "";
 #endif

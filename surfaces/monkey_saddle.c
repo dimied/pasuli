@@ -76,5 +76,5 @@ zuv: -6*v; "
     "xvv: 0; \
 yvv: 0; \
 zvv: -6*u; "
-    "end;";
+    "";
 #endif

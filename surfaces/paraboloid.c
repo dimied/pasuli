@@ -81,5 +81,5 @@ yuu: -a*v*sin(u); \
 zuu: 0; "
 "xuv: -a*sin(u); yuv: a*cos(u); zuv: 0; "
 "xvv: 0; yvv: 0; zvv: 2*b; "
-"end;";
+"";
 #endif

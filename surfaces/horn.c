@@ -88,5 +88,5 @@ zuv: cos(v); "
 "xvv: -u*cos(v)*sin(b*pi*u); \
 yvv: -u*cos(v)*cos(b*pi*u); \
 zvv: -u*sin(v); "
-"end;";
+"";
 #endif

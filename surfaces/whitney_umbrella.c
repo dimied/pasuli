@@ -66,5 +66,5 @@ zn: -u; "
     "xuu: 0; yuu: 0; zuu: 0; "
     "xuv: 1; yuv: 0; zuv: 0; "
     "xvv: 0; yvv: 0; zvv: 2; "
-    "end;";
+    "";
 #endif
