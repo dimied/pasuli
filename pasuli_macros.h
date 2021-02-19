@@ -5,8 +5,14 @@
 
 //#pragma warning(disable: 4244)
 
+#define PASULI_USE_NORMAL_BY_CROSS_PRODUCT 1
 
-#define PASULI_USE_NORMAL_BY_CROSS_PRODUCT	1
+#define PASULI_CALC_FACTOR(F, CALC) \
+	F = (CALC);                     \
+	F = (F < 0) ? -1 : (F > 0 ? 1 : 0)
+
+// Or 2*cos(v)^2-1
+#define PASULI_TRIG_CALC_SUM_DIFFERENCE(C, S) (C * C - S * S)
 
 // Position macros
 #if (PASULIOBJECT_POS != 0)
@@ -35,10 +41,10 @@
 #define UD_OP(O) O
 #else
 
-#if(PASULI_USE_NORMAL_BY_CROSS_PRODUCT != 1)
-#define UD_X(V)               pasuli_calctype xu = (V) 
-#define UD_Y(V)               pasuli_calctype yu = (V)
-#define UD_Z(V)               pasuli_calctype zu = (V)
+#if (PASULI_USE_NORMAL_BY_CROSS_PRODUCT != 1)
+#define UD_X(V) pasuli_calctype xu = (V)
+#define UD_Y(V) pasuli_calctype yu = (V)
+#define UD_Z(V) pasuli_calctype zu = (V)
 
 #else
 
@@ -63,10 +69,10 @@
 	pO->vd[2] = zv
 #define VD_OP(O) O
 #else
-#if(PASULI_USE_NORMAL_BY_CROSS_PRODUCT != 1)
-#define VD_X(V)               pasuli_calctype xv = (V) 
-#define VD_Y(V)               pasuli_calctype yv = (V)
-#define VD_Z(V)               pasuli_calctype zv = (V)
+#if (PASULI_USE_NORMAL_BY_CROSS_PRODUCT != 1)
+#define VD_X(V) pasuli_calctype xv = (V)
+#define VD_Y(V) pasuli_calctype yv = (V)
+#define VD_Z(V) pasuli_calctype zv = (V)
 
 #else
 #define VD_X(V)
@@ -90,8 +96,8 @@
 #endif
 
 #define MULTIPLY_NORMAL_BY_MINUS_ONE \
-	pO->n[0] = -pO->n[0]; \
-	pO->n[1] = -pO->n[1]; \
+	pO->n[0] = -pO->n[0];            \
+	pO->n[1] = -pO->n[1];            \
 	pO->n[2] = -pO->n[2];
 
 // Macros for 2.nd derivative with respect to U

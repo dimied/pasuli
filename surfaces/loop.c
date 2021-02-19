@@ -9,41 +9,41 @@ void Loop(pasuli_vartype u, pasuli_vartype v,
 {
 	PASULI_SET_TYPE_ID(LOOP)
 
-	double cv = cos(v);
-	double sv = sin(v);
-	double cu = cos(u);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
+	pasuli_calctype cos_u = cos(u);
 
-	P_X(sv * cu);
-	P_Y(2.0 * sv * cv);
-	P_Z(4.0 * sv * cv);
+	P_X(sin_v * cos_u);
+	P_Y(2.0 * cos_v);
+	P_Z(4.0 * sin_v * cos_v);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double su = sin(u);
-#endif
+	pasuli_calctype sin_u = sin(u);
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
+	UD_X(-sin_u * sin_v);
+	UD_Y_CONST(0);
+	UD_Z_CONST(0);
 
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
+	VD_X(cos_u * cos_v);
+	VD_Y(-2 * sin_v);
+	VD_Z(4 * (2 * cos_v * cos_v - 1));
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
+	// skip scaling by 2
+	N_X_CONST(0);
+	//N_Y(2*(cos_v*cos_v*sin_u*sin_v - sin_u*sin_v*sin_v*sin_v));
+	N_Y(2 * sin_u * sin_v * (2 * cos_v * cos_v - 1));
+	N_Z(sin_u * sin_v * sin_v);
 
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
+	UUD_X(-cos_u * sin_v);
+	UUD_Y_CONST(0);
+	UUD_Z_CONST(0);
 
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
+	UVD_X(-cos_v * sin_u);
+	UVD_Y_CONST(0);
+	UVD_Z_CONST(0);
 
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	VVD_X(-cos_u * sin_v);
+	VVD_Y(2 * cos_v);
+	VVD_Z(-16 * cos_v * sin_v);
 }
 #endif
 
@@ -64,23 +64,22 @@ vs:pi: -1; ve:pi: 1; \
 x: sin(v)*cos(u); \
 y: 2*cos(v); \
 z: 4*sin(v)*cos(v); \
-xu: 0; \
+xu: -sin(u)*sin(v); \
 yu: 0; \
 zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
+xv: cos(u)*cos(v); \
+yv: -2*sin(v); \
+zv: 4*(cos(v)^2 - sin(v)^2); \
 xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
+yn: 4*(cos(v)^2*sin(u)*sin(v) - sin(u)*sin(v)^3); \
+zn: 2*sin(u)*sin(v)^2; \
+xuu: -cos(u)*sin(v); \
 yuu: 0; \
 zuu: 0; \
-xuv: 0; \
+xuv: -cos(v)*sin(u); \
 yuv: 0; \
 zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+xvv: -cos(u)*sin(v); \
+yvv: -2*cos(v); \
+zvv: -16*cos(v)*sin(v);";
 #endif

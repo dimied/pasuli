@@ -9,44 +9,30 @@ void MoebiusBand(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(MOEBIUS_BAND)
 
-    double r = constants[0];
-    double s_cost = u * cos(v * 0.5f);
-    s_cost += r;
+    pasuli_consttype r = constants[0];
 
-    P_X(s_cost * cos(v));
-    P_Y(s_cost * sin(v));
-    P_Z(u * sin(v * 0.5f));
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype cos_v_half = cos(v * 0.5);
+    pasuli_calctype sin_v = sin(v);
+    pasuli_calctype sin_v_half = sin(v * 0.5);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double cu = cos(u);
-    double su = sin(u);
-    double cv = cos(v);
-    double sv = sin(v);
-#endif
+    pasuli_calctype factor = u * cos_v_half + r;
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    P_X(factor * cos_v);
+    P_Y(factor * sin_v);
+    P_Z(u * sin_v_half);
 
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    UD_X(cos_v_half * cos_v);
+    UD_Y(cos_v_half * sin_v);
+    UD_Z(sin_v_half);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
+    VD_X(-r * sin_v - u * (0.5 * cos_v * sin_v_half + cos_v_half * sin_v));
+    VD_Y(r * cos_v + u * (cos_v * cos_v_half - 0.5*sin_v * sin_v_half));
+    VD_Z(0.5 * u * cos_v_half);
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
-
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    N_X(-factor * sin_v_half * cos_v + 0.5 * u * sin_v);
+    N_Y(-factor * sin_v_half * cos_v - 0.5 * u * cos_v);
+    N_Z(factor * cos_v_half);
 }
 #endif
 
@@ -59,36 +45,32 @@ PASULI_CONST_COUNT(1),
 -1, 1 , 0 , 2 , psldd_15_05_constants };
 #endif
 */
-#if(COMPILE_DESC_SURFACES != 0)
+#if (COMPILE_DESC_SURFACES != 0)
 char *descMoebiusBand =
-"name: Moebius Band; \
-ut: c; \
-vt: c; \
-us: -1; \
-ue: 1; \
-vs: 0; \
-ve:pi: 2; \
+    "name: Moebius Band; \
+ut: c; vt: c; \
+us: -1; ue: 1; \
+vs: 0; ve:pi: 2; \
 c1:r: 1.5; \
 x: (r + u*cos(v/2))*cos(v); \
 y: (r + u*cos(v/2))*sin(v); \
-z: u*sin(v/2); "
-"xu: cos(v)*cos(0.5*v); \
-yu: cos(0.5*v)*sin(v); \
-zu: sin(0.5*v); "
-"xv: -r*sin(v) - 0.5*u*cos(v)*sin(0.5*v)-u*cos(0.5*v)*sin(v); \
-yv: r*cos(v) + u*(cos(v)*cos(0.5*v)-sin(v)*sin(0.5*v)); \
-zv: 0.5*u*cos(0.5*v); "
-"xn: -sin(0.5*v)*(r*cos(v) + u*cos(v)*cos(0.5*v)) + 0.5*u*sin(v); \
-yn: -sin(0.5*v)*(r*sin(v)+u*cos(0.5*v)*sin(v)) - 0.5*u*cos(v); \
-zn: (r+u*cos(0.5*v))*cos(0.5*v); "
-"xuu: 0; \
+z: u*sin(v/2); \
+xu: cos(v)*cos(0.5*v); \
+yu: sin(v)*cos(0.5*v); \
+zu: sin(0.5*v); \
+xv: -r*sin(v) - 0.5*u*cos(v)*sin(0.5*v)-u*cos(0.5*v)*sin(v); \
+yv: r*cos(v) + u*(cos(v)*cos(0.5*v)-0.5*sin(v)*sin(0.5*v)); \
+zv: 0.5*u*cos(0.5*v); \
+xn: -sin(0.5*v)*cos(v)*(r + u*cos(0.5*v)) + 0.5*u*sin(v); \
+yn: -sin(0.5*v)*sin(v)*(r+u*cos(0.5*v)) - 0.5*u*cos(v); \
+zn: (r+u*cos(0.5*v))*cos(0.5*v); \
+xuu: 0; \
 yuu: 0; \
-zuu: 0; "
-"xuv: -0.5*cos(v)*sin(0.5*v) - cos(0.5*v)*sin(v); \
+zuu: 0; \
+xuv: -0.5*cos(v)*sin(0.5*v) - cos(0.5*v)*sin(v); \
 yuv: cos(v)*cos(0.5*v) - 0.5*sin(v)*sin(0.5*v); \
-zuv: 0.5*cos(0.5*v); "
-"xvv: u*(sin(v)*sin(0.5*v) - 1.25*cos(v)*cos(0.5*v)) - r*cos(v); \
-yvv: -u*(cos(v)*sin(0.5*v) + 1.25*cos(0.5*v)*sin(v)) - r*sin(v); \
-zvv: -0.25*u*sin(0.5*v); "
-"";
+zuv: 0.5*cos(0.5*v); \
+xvv: u*(sin(v)*sin(0.5*v) - 5*cos(v)*cos(0.5*v)/4) - r*cos(v); \
+yvv: -u*(cos(v)*sin(0.5*v) + 5*cos(0.5*v)*sin(v)/4) - r*sin(v); \
+zvv: -u*sin(0.5*v)/4; ";
 #endif

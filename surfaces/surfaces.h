@@ -12,6 +12,7 @@
 #include "handkerchief.h"
 #include "klein_bottle_surface.h"
 #include "moebius_band.h"
+#include "moebius_band2.h"
 #include "monkey_saddle.h"
 #include "pluecker_conoid.h"
 #include "roman_surface.h"

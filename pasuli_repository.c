@@ -55,6 +55,9 @@ PaSuLiRepositoryItem repositoryItems[] = {
 #if (USE_MOEBIUS_BAND != 0)
     DEFINE_SURFACE(MOEBIUS_BAND, &MoebiusBand),
 #endif
+#if (USE_MOEBIUS_BAND2 != 0)
+    DEFINE_SURFACE(MOEBIUS_BAND2, &MoebiusBand2),
+#endif
 #if (USE_MONKEY_SADDLE != 0)
     DEFINE_SURFACE(MONKEY_SADDLE, &MonkeySaddle),
 #endif

@@ -9,43 +9,36 @@ void MennsSurface(pasuli_vartype u, pasuli_vartype v,
 {
 	PASULI_SET_TYPE_ID(MENNS_SURFACE)
 
-	double a = constants[0];
-	double u2 = u * u;
+	pasuli_consttype a = constants[0];
+	pasuli_calctype u2 = u * u;
 
 	P_X(u);
 	P_Y(v);
 	P_Z(a * u2 * u2 + u2 * v - v * v);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double cu = cos(u);
-	double su = sin(u);
-	double cv = cos(v);
-	double sv = sin(v);
-#endif
+	UD_X_CONST(1);
+	UD_Y_CONST(0);
+	UD_Z(4 * a * u * u2 + 2 * u * v);
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
+	VD_X_CONST(0);
+	VD_Y_CONST(1);
+	VD_Z(u2 - 2 * v);
 
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
+	N_X(-PASULI_COND_COPY_UD_Z(4 * a * u * u2 + 2 * u * v));
+	N_Y(-PASULI_COND_COPY_VD_Z(u2 - 2 * v));
+	N_Z_CONST(1);
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
+	UUD_X_CONST(0);
+	UUD_Y_CONST(0);
+	UUD_Z(12 * a * u2 + 2 * v);
 
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
+	UVD_X_CONST(0);
+	UVD_Y_CONST(0);
+	UVD_Z(2 * u);
 
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
-
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	VVD_X_CONST(0);
+	VVD_Y_CONST(0);
+	VVD_Z(-2);
 }
 #endif
 
@@ -67,23 +60,22 @@ c1:a: 1.0; \
 x: u; \
 y: v; \
 z: a*u^(4) + u*u*v - v*v; \
-xu: 0; \
+xu: 1; \
 yu: 0; \
-zu: 0; \
+zu: 4*a*u^3 + 2*u*v; \
 xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
+yv: 1; \
+zv: u^2 - 2*v; \
+xn: -4*a*u^3-2*u*v; \
+yn: -u^2 + 2*v; \
+zn: 1; \
 xuu: 0; \
 yuu: 0; \
-zuu: 0; \
+zuu: 12*a*u^2 + 2*v; \
 xuv: 0; \
 yuv: 0; \
-zuv: 0; \
+zuv: 2*u; \
 xvv: 0; \
 yvv: 0; \
-zvv: 0; \
-";
+zvv: -2; ";
 #endif

@@ -9,36 +9,35 @@ void MilkBag(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(MILK_BAG)
 
-    double K = constants[0];
-    double cv = cos(v);
-    double sv = sin(v);
+    pasuli_consttype K = constants[0];
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype sin_v = sin(v);
 
-    P_X(K * (1 + u) * cos(v));
-    P_Y(K * (1 - u) * sin(v));
+    P_X(K * (1 + u) * cos_v);
+    P_Y(K * (1 - u) * sin_v);
     P_Z(u);
 
-    UD_X(K * cv);
-    UD_Y(-K * sv);
+    UD_X(K * cos_v);
+    UD_Y(-K * sin_v);
     UD_Z(1);
 
-    VD_X(-K * (1 + u) * sv);
-    VD_Y(K * (1 - u) * cv);
+    VD_X(-K * (1 + u) * sin_v);
+    VD_Y(K * (1 - u) * cos_v);
     VD_Z(0);
 
-    N_X(-K * (1 - u) * cv);
-    N_Y(K * (1 + u) * sv);
-    N_Z(K * K * (cv * cv * (1 - u) + sv * sv * (1 + u)));
+    N_X(-K * (1 - u) * cos_v);
+    N_Y(K * (1 + u) * sin_v);
+    pasuli_calctype difference = PASULI_TRIG_CALC_SUM_DIFFERENCE(cos_v, sin_v);
+    N_Z(K * K * (difference - u));
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
+    UUD_ALL(0);
 
-    UVD_X(-sv);
-    UVD_Y(-cv);
+    UVD_X(-K * sin_v);
+    UVD_Y(-K * cos_v);
     UVD_Z(0);
 
-    VVD_X(-K * (1 + u) * cv);
-    VVD_Y(-K * (1 + u) * sv);
+    VVD_X(-PASULI_COND_COPY_POS_X(K * (1 + u) * cos_v));
+    VVD_Y(-PASULI_COND_COPY_POS_Y(K * (1 - u) * sin_v));
     VVD_Z(0);
 }
 #endif
@@ -62,23 +61,22 @@ c1:k: 1.0; \
 x: k*(1 + u)*cos(v); \
 y: k*(1 - u)*sin(v); \
 z: u; \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
+xu: k*cos(v); \
+yu: -k*sin(v); \
+zu: 1; \
+xv: -k*(1+u)*sin(v); \
+yv: k*(1-u)*cos(v); \
 zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
+xn: -k*(1-u)*cos(v); \
+yn: -k*(1+u)*sin(v); \
+zn: -k^2*u + k^2*(cos(v)^2 - sin(v)^2); \
 xuu: 0; \
 yuu: 0; \
 zuu: 0; \
-xuv: 0; \
-yuv: 0; \
+xuv: -k*sin(v); \
+yuv: -k*cos(v); \
 zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+xvv: -k*(1+u)*cos(v); \
+yvv: -k*(1 - u)*sin(v); \
+zvv: 0;  ";
 #endif
