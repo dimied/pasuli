@@ -9,45 +9,51 @@ void GuimardSurface(pasuli_vartype u, pasuli_vartype v,
 {
 	PASULI_SET_TYPE_ID(GUIMARD_SURFACE)
 
-	double a = constants[0];
-	double b = constants[1];
-	double c = constants[2];
+	pasuli_consttype a = constants[0];
+	pasuli_consttype b = constants[1];
+	pasuli_consttype c = constants[2];
 
-	double cv = cos(v);
-	double sv = sin(v);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
 
-	P_X(((1 - u) * a + b * u) * cv);
-	P_Y(b * u * sv);
-	P_Z(c * u * sv * sv);
+	P_X(((1 - u) * a + b * u) * cos_v);
+	P_Y(b * u * sin_v);
+	P_Z(c * u * sin_v * sin_v);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double cu = cos(u);
-	double su = sin(u);
-#endif
+	UD_X(cos_v * (b - a));
+	UD_Y(b * sin_v);
+	UD_Z(c * sin_v * sin_v);
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
+	pasuli_consttype vd_x_common = a * (u - 1) - b * u;
+	VD_X(sin_v * vd_x_common);
+	VD_Y(b * u * cos_v);
+	VD_Z(2 * c * u * cos_v * sin_v);
 
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
+	N_X(b * c * u * cos_v * sin_v * sin_v);
+	// 2*a*c*u*cos(v)^2*sin(v) + a*c*u*sin(v)^3
+	// - a*c*sin(v)^3
+	// - 2*b*c*u*cos(v)^2*sin(v) - b*c*u*sin(v)^3
+	// =
+	// 2*a*c*u*cos(v)^2*sin(v) + a*c*u*sin(v)*(1-cos(v)^2)
+	// - a*c*sin(v)*(1-cos(v)^2)
+	// - 2*b*c*u*cos(v)^2*sin(v) - b*c*u*sin(v)*(1-cos(v)^2)
+	// =
+	// a*c*u*sin(v)*(cos(v)^2 + 1)
+	// + a*c*sin(v)*(cos(v)^2 - 1)
+	// - b*c*u*sin(v)*(cos(v)^2+1)
+	// = c*sin(v)*(u*(a-b)*(cos(v)^2 + 1) + a*(cos(v)^2 -1) )
+	N_Y(c * sin_v * (u * (a - b) * (cos_v * cos_v + 1) + a * (cos_v * cos_v - 1)));
+	N_Z(-a * b * u + a * b * sin_v * sin_v + b * b * u);
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
+	UUD_ALL(0);
 
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
+	UVD_X(sin_v * (a - b));
+	UVD_Y(b * cos_v);
+	UVD_Z(2 * c * cos_v * sin_v);
 
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
-
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	VVD_X(cos_v * vd_x_common);
+	VVD_Y(-b * u * sin_v);
+	VVD_Z(2 * c * u * (cos_v * cos_v - sin_v * sin_v));
 }
 #endif
 
@@ -69,23 +75,22 @@ c1:a: 1.5; c2:b: 0.5; c3:c: 1.0; \
 x: ((1 - u)*a + u*b)*cos(v); \
 y: b*u*sin(v); \
 z: c*u*sin(v)*sin(v); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
+xu: cos(v)(b-a); \
+yu: b*sin(v); \
+zu: c*sin(v)^2; \
+xv: sin(v)*(a*(u-1) - b*u); \
+yv: b*u*cos(v); \
+zv: 2*c*u*cos(v)*sin(v); \
+xn: b*c*u*cos(v)*sin(v)^2; \
+yn: 2*a*c*u*cos(v)^2*sin(v) + a*c*u*sin(v)^3 - a*c*sin(v)^3 - 2*b*c*u*cos(v)^2*sin(v) - b*c*u*sin(v)^3; \
+zn: -a*b*u + a*b*sin(v)^2 + b^2*u; \
 xuu: 0; \
 yuu: 0; \
 zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+xuv: sin(v)*(a-b); \
+yuv: b*cos(v); \
+zuv: 2*c*cos(v)*sin(v); \
+xvv: cos(v)*(a*(u-1) - b*u); \
+yvv: -b*u*sin(v); \
+zvv: 2*c*u*(cos(v)^2 - sin(v)^2);";
 #endif

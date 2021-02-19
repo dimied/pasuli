@@ -13,36 +13,25 @@ void HyperbolicParaboloid(pasuli_vartype u, pasuli_vartype v,
 	P_Y(v);
 	P_Z(u * v);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double cu = cos(u);
-	double su = sin(u);
-	double cv = cos(v);
-	double sv = sin(v);
-#endif
+	UD_X_CONST(1);
+	UD_Y_CONST(0);
+	UD_Z(v);
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
+	VD_X_CONST(0);
+	VD_Y_CONST(1);
+	VD_Z(u);
 
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
+	N_X(-v);
+	N_Y(-u);
+	N_Z(1);
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
+	UUD_ALL(0);
 
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
+	UVD_X_CONST(0);
+	UVD_Y_CONST(0);
+	UVD_Z_CONST(1);
 
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
-
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	VVD_ALL(0);
 }
 #endif
 
@@ -68,17 +57,16 @@ zu: v; \
 xv: 0; \
 yv: 1; \
 zv: u; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
+xn: -v; \
+yn: -u; \
+zn: 1; \
 xuu: 0; \
 yuu: 0; \
 zuu: 0; \
 xuv: 0; \
 yuv: 0; \
-zuv: 0; \
+zuv: 1; \
 xvv: 0; \
 yvv: 0; \
-zvv: 0; \
-";
+zvv: 0;";
 #endif

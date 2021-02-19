@@ -9,40 +9,36 @@ void HennebergsSurface(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(HENNEBERGS_SURFACE)
 
-    double sinh_u_2 = 2 * sinh(u);
-    double sinh_3u_2 = 2 * sinh(3.0 * u);
-    double cv = cos(v);
-    double sv = sin(v);
-    double c3v = cos(3.0 * v);
-    double s3v = sin(3.0 * v);
+    pasuli_calctype sinh_u = sinh(u);
+    pasuli_calctype sinh_u_2 = 2 * sinh_u;
+    pasuli_calctype sinh_3u = sinh(3.0 * u);
+    pasuli_calctype sinh_3u_2 = 2 * sinh_3u;
+    pasuli_calctype cosh_2u_2 = 2 * cosh(2.0 * u);
 
-    P_X(cv * sinh_u_2 - (c3v * sinh_3u_2) / 3.0);
-    P_Y(sv * sinh_u_2 + (s3v * sinh_3u_2) / 3.0);
-    P_Z(cos(2 * v) * 2 * cosh(2.0 * u));
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype sin_v = sin(v);
+    pasuli_calctype cos_2v = cos(2 * v);
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    pasuli_calctype cos_3v = cos(3.0 * v);
+    pasuli_calctype sin_3v = sin(3.0 * v);
 
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    P_X(cos_v * sinh_u_2 - (cos_3v * sinh_3u_2) / 3.0);
+    P_Y(sin_v * sinh_u_2 + (sin_3v * sinh_3u_2) / 3.0);
+    P_Z(cos_2v * cosh_2u_2);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
+    pasuli_calctype cosh_u = cosh(u);
+    pasuli_calctype cosh_3u = cosh(3 * u);
+    // No scaling by 2
+    UD_X(cos_v * cosh_u - cos_3v * cosh_3u);
+    UD_Y(sin_v * cosh_u + sin_3v * cosh_3u);
+    UD_Z(2 * cos_2v * sinh(2 * u));
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
+    // No scaling by 2
+    VD_X(sin_3v * sinh_3u - sin_v * sinh_u);
+    VD_Y(cos_3v * sinh_3u + cos_v * sinh_u);
+    VD_Z(-sin(2 * v) * cosh_2u_2);
 
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -57,31 +53,16 @@ PaSuLiDefDesc pslddHennebergsSurface = {
 #if (COMPILE_DESC_SURFACES != 0)
 char *descHennebergsSurface =
     "name: Hennerbergs Surface; \
-ut:c; \
-vt:c; \
-us: -1; \
-ue: 1; \
-vs:pi: -0.5; \
-ve:pi: 0.5; \
-x: 2*cos(v)*sinh(u) - (2.0/3.0)*cos(3*v)*sinh(3*u); \
-y: 2*sin(v)*sinh(u) + (2.0/3.0)*sin(3*v)*sinh(3*u); \
+ut:c; vt:c; \
+us: -1; ue: 1; \
+vs:pi: -0.5; ve:pi: 0.5; \
+x: 2*cos(v)*sinh(u) - (2/3)*cos(3*v)*sinh(3*u); \
+y: 2*sin(v)*sinh(u) + (2/3)*sin(3*v)*sinh(3*u); \
 z: 2*cos(2*v)*cosh(2*u); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0;";
+xu: 2*(cos(v)*cosh(u) - cos(3*v)*cosh(3*u)); \
+yu: 2*(sin(v)*cosh(u) + sin(3*v)*cosh(3*u)); \
+zu: 4*cos(2*v)*sinh(2*u); \
+xv: 2*(sin(3*v)*sinh(3*u) - sin(v)*sinh(u)); \
+yv: 2*(cos(3*v)*sinh(3*u) + cos(v)*sinh(u)); \
+zv: -4*sin(2*v)*cosh(2*u); ";
 #endif
