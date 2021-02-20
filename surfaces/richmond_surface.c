@@ -10,41 +10,33 @@ void RichmondSurface(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(RICHMOND_SURFACE)
 
-    double u2 = u * u;
-    double u3 = u2 * u;
-    double u4 = u2 * u2;
+    pasuli_calctype u2 = u * u;
+    pasuli_calctype u3 = u2 * u;
+    pasuli_calctype u4 = u2 * u2;
 
-    double v2 = v * v;
-    double v3 = v2 * v;
-    double divisor = 6.0 * (u2 + v2);
+    pasuli_calctype v2 = v * v;
+    pasuli_calctype v3 = v2 * v;
 
-    P_X(((-3.0) * u - u2 * u3 + 2.0 * u3 * v2 + 3.0 * u * v2 * v2) / divisor);
+    pasuli_calctype divisor = 6.0 * (u2 + v2);
+
+    P_X((-3.0 * u - u2 * u3 + 2.0 * u3 * v2 + 3.0 * u * v2 * v2) / divisor);
     P_Y((-3.0 * v - 3.0 * u4 * v - 2 * u2 * v3 + v2 * v3) / divisor);
     P_Z(u);
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    pasuli_calctype v4 = v2 * v2;
+    // Multiply by divisor divisor
+    //divisor = (u4 + v4 + 2 * u2 * v2);
+    divisor = u2 + v2;
+    divisor *= divisor;
+    UD_X(u2 * (1 - u4) + v4 * v2 + u2 * v4 - u4 * v2);
+    UD_Y(2 * u * v * (1 - divisor));
+    UD_Z(divisor);
 
-    VD_X(0);
-    VD_Y(0);
+    VD_X(2 * u * v * (1 + divisor));
+    VD_Y(v2 * (1 + v4) - u2 * (1 + u4) + u2 * v4 - u4 * v2);
     VD_Z(0);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
-
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
-
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -58,31 +50,16 @@ PaSuLiDefDesc pslddRichmondSurface = {
 #if (COMPILE_DESC_SURFACES != 0)
 char *descRichmondSurface =
     "name: Richmond Surface; \
-ut:c; \
-vt:c; \
-us: -1; \
-ue: 1; \
-vs: -1; \
-ve: 1; \
-x: (-3*u - u^(5) + 2*u*u*u*v*v + 3*u*v*v*v*v)/(6*(u*u + v*v)); \
-y: (-3*v - 3*u*u*u*u*v - 2*u*u*v*v*v + v^(5))/(6*(u*u + v*v)); \
+ut:c; vt:c; \
+us: -1; ue: 1; \
+vs: -1; ve: 1; \
+x: (-3*u - u^(5) + 2*u^3*v^2 + 3*u*v^4)/(6*(u^2 + v^2)); \
+y: (-3*v - 3*u^4*v - 2*u^2*v^3 + v^(5))/(6*(u^2 + v^2)); \
 z: u; \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0;";
+xu: (u^2+v^6-u^6-v^2+u^2*v^4-u^4*v^2)/(2*(u^4+v^4+2*u^2*v^2)); \
+yu: u*v*(1-u^4-v^4-2*u^2*v^2)/(u^4+v^4+2*u^2*v^2); \
+zu: 1; \
+xv: u*v*(1+u^4+v^4+2*u^2*v^2)/(u^4+v^4+2*u^2*v^2); \
+yv: (v^2+v^6-u^2-u^6+u^2*v^4-u^4*v^2)/(2*(u^4+v^4+2*u^2*v^2)); \
+zv: 0;";
 #endif

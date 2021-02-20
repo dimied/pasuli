@@ -4,47 +4,46 @@
 
 #if (USE_SINE_CONE != 0)
 
-void SineCone(pasuli_vartype u, pasuli_vartype v, 
-			  double* constants, 
-			  PaSuLiObject* pO) {
+void SineCone(pasuli_vartype u,
+			  pasuli_vartype v,
+			  double *constants,
+			  PaSuLiObject *pO)
+{
+	PASULI_SET_TYPE_ID(SINE_CONE)
 
-	double K = constants[0];
-	double N = constants[1];
+	pasuli_consttype K = constants[0];
+	pasuli_consttype N = constants[1];
 
-	P_X( u*cos(v) );
-	P_Y( K*u*cos(N*v) );
-	P_Z( u*sin(v) );
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
+	pasuli_calctype cos_Nv = cos(N * v);
 
-#if((PARTICLE_UD != 0)||(PARTICLE_VD != 0)||(PARTICLE_UD != 0))
-	double cu = cos(u);
-	double su = sin(u);
-	double cv = cos(v);
-	double sv = sin(v);
-#endif
+	P_X(u * cos_v);
+	P_Y(u * sin_v);
+	P_Z(K * u * cos_Nv);
 
-	UD_X( 0 );
-	UD_Y( 0 );
-	UD_Z( 0 );
+	UD_X(cos_v);
+	UD_Y(sin_v);
+	UD_Z(K * cos_Nv);
 
-	VD_X( 0 );
-	VD_Y( 0 );
-	VD_Z( 0 );
+	pasuli_calctype sin_Nv = sin(N * v);
+	VD_X(-u * sin_v);
+	VD_Y(u * cos_v);
+	VD_Z(-K * N * u * sin_Nv);
 
-	N_X( 0 );
-	N_Y( 0 );
-	N_Z( 0 );
+	N_X(-K * u * (N * sin_v * sin_Nv - cos_v * cos_Nv));
+	N_Y(K * u * (N * cos_v * sin_Nv - sin_v * cos_Nv));
+	N_Z(u);
 
-	UUD_X( 0 );
-	UUD_Y( 0 );
-	UUD_Z( 0 );
+	UUD_ALL(0);
 
-	UVD_X( 0 );
-	UVD_Y( 0 );
-	UVD_Z( 0 );
+	UVD_X(-sin_v);
+	UVD_Y(cos_v);
+	UVD_Z(-K * N * sin_Nv);
 
-	VVD_X( 0 );
-	VVD_Y( 0 );
-	VVD_Z( 0 );
+	VVD_X(-u * cos_v);
+	VVD_Y(-u * sin_v);
+	VVD_Z(-K * N * N * u * cos_Nv);
 }
 #endif
 
@@ -57,33 +56,32 @@ PASULI_CONST_COUNT(2),
 -10, 10 , -1 , 1 , psldd_15_05_constants };
 #endif
 */
-#if(COMPILE_DESC_SURFACES != 0)
+#if (COMPILE_DESC_SURFACES != 0)
 char *descSineCone =
-"name: Sine Cone; \
+	"name: Sine Cone; \
 ut:c; vt:c; \
 us: -10; ue: 10; \
 vs:pi: -1; ve:pi: 1; \
 c1:k: 1.5; c2:N: 0.5; \
 x: u*cos(v); \
-y: k*u*cos(N*v); \
-z: u*sin(v); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+y: u*sin(v); \
+z: k*u*cos(N*v); \
+xu: cos(v); \
+yu: sin(v); \
+zu: k*cos(N*v); \
+xv: -u*sin(v); \
+yv: u *cos(v); \
+zv: -k *N *u *sin(N *v); \
+xn: -k *u *(n *sin(v) * sin(N * v) - cos(v) * cos(N * v)); \
+yn: k *u *(n *cos(v) * sin(n * v) - sin(v) * cos(n * v)); \
+zn: u; \
+xuu:0; \
+yuu:0; \
+zuu:0; \
+xuv: -sin(v); \
+yuv: cos(v); \
+zuv: -k *N *sin(n *v); \
+xvv: -u *cos(v); \
+yvv: -u *sin(v); \
+zvv: -k *N *N *u *cos(n *v);";
 #endif

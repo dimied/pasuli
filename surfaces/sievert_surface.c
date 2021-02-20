@@ -4,62 +4,29 @@
 
 #if (USE_SIEVERT_SURFACE != 0)
 
-void SievertSurface(pasuli_vartype u, pasuli_vartype v,
+void SievertSurface(pasuli_vartype u,
+                    pasuli_vartype v,
                     pasuli_consttype *constants,
                     PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(SIEVERT_SURFACE)
 
-    double C = constants[0];
-    double sqrtC = sqrt(C);
-    double sqrtC1 = sqrt(C + 1);
+    pasuli_consttype C = constants[0];
+    pasuli_calctype sqrt_C = sqrt(C);
+    pasuli_calctype sqrt_Cplus1 = sqrt(C + 1);
 
-    double r_u = sin(u);
-    r_u = sqrt((C + 1) * (1 + C * r_u * r_u)) / sqrtC;
-    double sin_p = -u / (sqrtC1) + atan(sqrtC1 * tan(u));
-    double cos_p = cos(sin_p);
-    sin_p = sin(sin_p);
-    u = cos(u);
-    u *= u;
+    pasuli_calctype p = -u / (sqrt_Cplus1) + atan(sqrt_Cplus1 * tan(u));
 
-    double sin_v = sin(v);
-    double a = 2.0 / (C + 1 - C * sin_v * sin_v * u);
-    sin_v = sin(v) * r_u * a;
+    pasuli_calctype cos_u = cos(u);
+    pasuli_calctype sin_v = sin(v);
+    pasuli_calctype a = 2.0 / (C + 1 - C * sin_v * sin_v * cos_u * cos_u);
 
-    P_X(sin_v * cos_p);
-    P_Y(sin_v * sin_p);
-    P_Z((log(tan(v * 0.5)) + a * (C + 1) * cos(v)) / sqrtC);
+    pasuli_calctype sin_u = sin(u);
+    pasuli_calctype r = a * sqrt((C + 1) * (1 + C * sin_u * sin_u)) * sin_v / sqrt_C;
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double cu = cos(u);
-    double su = sin(u);
-    double cv = cos(v);
-    double sv = sin(v);
-#endif
-
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
-
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
-
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
-
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
-
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    P_X(r * cos(p));
+    P_Y(r * sin(p));
+    P_Z((log(tan(v * 0.5)) + a * (C + 1) * cos(v)) / sqrt_C);
 }
 #endif
 
@@ -84,24 +51,5 @@ a2:a: 2/(C + 1 - C*sin(v)*sin(v)*cos(u)*cos(u)); \
 a3:r: a*sqrt((C + 1)*(1 + C*sin(u)*sin(u)))*sin(v)/sqrt(C); \
 x: r*cos(p); \
 y: r*sin(p); \
-z: (ln(tan(v/2)) + a*(C + 1)*cos(v))/sqrt(C); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+z: (ln(tan(v/2)) + a*(C + 1)*cos(v))/sqrt(C);";
 #endif
