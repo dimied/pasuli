@@ -3,56 +3,45 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_SPRING2 != 0)
-void Spring2(pasuli_vartype u, pasuli_vartype v,
+
+void Spring2(pasuli_vartype u,
+			 pasuli_vartype v,
 			 pasuli_consttype *constants,
 			 PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(SPRING2)
 
-	double R = constants[0];
-	double r = constants[1];
-	double h = constants[2];
-	double w = R * R + r * r;
+	pasuli_consttype R = constants[0];
+	pasuli_consttype r = constants[1];
+	pasuli_consttype h = constants[2];
 
-	double rr_cos_u = R + r * cos(u);
-	double rr_sin_u = R + r * sin(u);
-	double rh_sin_u_w = r * h * sin(u) / w;
-	double Rrsu = R * r * sin(u) / w;
-	double cv = cos(v);
-	double sv = sin(v);
+	pasuli_calctype w = sqrt(R * R + r * r);
 
-	P_X(rr_cos_u * cv + rh_sin_u_w * sv);
-	P_Y(rr_cos_u * sv + rh_sin_u_w * cv);
-	P_Z(h * sv + Rrsu);
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_u = sin(u);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double cu = cos(u);
-	double su = sin(u);
-#endif
+	pasuli_calctype R_r_cos_u = R + r * cos_u;
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
+	pasuli_calctype r_h_sin_u_w = r * h * sin_u / w;
+	pasuli_calctype R_r_sin_u_w = R * r * sin_u / w;
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
 
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
+	P_X(R_r_cos_u * cos_v + r_h_sin_u_w * sin_v);
+	P_Y(R_r_cos_u * sin_v - r_h_sin_u_w * cos_v);
+	P_Z(h * v + R_r_sin_u_w);
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
+	pasuli_calctype R_r_sin_u = R + r * sin_u;
 
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
+	UD_X(h * r * cos_u * sin_v / w - r * cos_v * sin_u);
+	UD_Y(-h * r * cos_u * cos_v / w - r * sin_v * sin_u);
+	UD_Z(r * R * cos_u / w);
 
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
+	VD_X(h * r * cos_v * sin_u / w - (r * cos_u + R) * sin_v);
+	VD_Y(h * r * sin_v * sin_u / w + (r * cos_u + R) * cos_v);
+	VD_Z(h);
 
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -76,23 +65,10 @@ a1:w: sqrt(R*R + r*r); \
 x: (R + r*cos(u))*cos(v) + r*h*sin(u)*sin(v)/w; \
 y: (R + r*cos(u))*sin(v) - r*h*sin(u)*cos(v)/w; \
 z: h*v + R*r*sin(u)/w; \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+xu: h*r*cos(u)*sin(v)/sqrt(R*R + r*r) - r*cos(v)*sin(u); \
+yu: -h*r*cos(u)*cos(v)/sqrt(R*R + r*r) - r*sin(v)*sin(u); \
+zu: r*R*cos(u)/sqrt(R*R + r*r); \
+xv: h*r*cos(v)*sin(u)/sqrt(R*R + r*r) - (r*cos(u) + R)*sin(v); \
+yv: h*r*sin(v)*sin(u)/sqrt(R*R + r*r) + (r*cos(u) + R)*cos(v); \
+zv: h;";
 #endif

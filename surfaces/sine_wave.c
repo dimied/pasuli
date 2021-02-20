@@ -10,43 +10,30 @@ void SineWave(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(SINE_WAVE)
 
-    double a = constants[0];
-    double b = constants[1];
+    pasuli_consttype a = constants[0];
+    pasuli_consttype b = constants[1];
+
+    pasuli_calctype sqrt_uv = sqrt(u * u + v * v);
 
     P_X(u);
     P_Y(v);
-    P_Z(a * sin(b * sqrt(u * u + v * v)));
+    P_Z(a * sin(b * sqrt_uv));
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double cu = cos(u);
-    double su = sin(u);
-    double cv = cos(v);
-    double sv = sin(v);
-#endif
-
-    UD_X(0);
+    pasuli_calctype cos_b_uv = sin(b * sqrt_uv);
+    // Multiply by sqrt(u*u + v*v)
+    UD_X(sqrt_uv);
     UD_Y(0);
-    UD_Z(0);
+    UD_Z(a * b * u * cos_b_uv);
 
+    // Multiply by sqrt(u*u + v*v)
     VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    VD_Y(sqrt_uv);
+    VD_Z(a * b * v * cos_b_uv);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
-
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
-
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    // Multiply by sqrt(u*u + v*v)
+    N_X(PASULI_COND_COPY_UD_Z(a * b * u * cos_b_uv));
+    N_Y(PASULI_COND_COPY_VD_Z(a * b * v * cos_b_uv));
+    N_Z(sqrt_uv);
 }
 #endif
 
@@ -68,23 +55,13 @@ c1:a: 1.5; c2:b: 0.5; \
 x: u; \
 y: v; \
 z: a*sin(b*sqrt(u*u + v*v)); \
-xu: 0; \
+xu: 1; \
 yu: 0; \
-zu: 0; \
+zu: a*b*u*cos(b*sqrt(u*u + v*v))/sqrt(u*u + v*v); \
 xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+yv: 1; \
+zv: a*b*v*cos(b*sqrt(u*u + v*v))/sqrt(u*u + v*v); \
+xn: a*b*u*cos(b*sqrt(u*u + v*v))/sqrt(u*u + v*v); \
+yn: a*b*v*cos(b*sqrt(u*u + v*v))/sqrt(u*u + v*v); \
+zn: 1;";
 #endif

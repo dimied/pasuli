@@ -7,6 +7,8 @@
 
 #define PASULI_USE_NORMAL_BY_CROSS_PRODUCT 1
 
+#define PASULI_CALC_SIGN(F) ((F < 0) ? -1 : (F > 0 ? 1 : 0))
+
 #define PASULI_CALC_FACTOR(F, CALC) \
 	F = (CALC);                     \
 	F = (F < 0) ? -1 : (F > 0 ? 1 : 0)

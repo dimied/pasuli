@@ -3,50 +3,47 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_TRASHCAN != 0)
-void Trashcan(pasuli_vartype u, pasuli_vartype v,
+
+void Trashcan(pasuli_vartype u,
+			  pasuli_vartype v,
 			  pasuli_consttype *constants,
 			  PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(TRASHCAN)
 
-	double a = constants[0];
-	double b = constants[1];
+	pasuli_consttype a = constants[0];
+	pasuli_consttype b = constants[1];
 
-	double cu = cos(u);
-	double su = sin(u);
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_u = sin(u);
 
-	P_X((b + v) * cu);
-	P_Y(v * su);
+	P_X((b + v) * cos_u);
+	P_Y(v * sin_u);
 	P_Z(a * v * v);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double cv = cos(v);
-	double sv = sin(v);
-#endif
-
-	UD_X(0);
-	UD_Y(0);
+	UD_X(-(b + v) * sin_u);
+	UD_Y(v * cos_u);
 	UD_Z(0);
 
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
+	VD_X(cos_u);
+	VD_Y(sin_u);
+	VD_Z(2 * a * v);
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
+	N_X(2 * a * v * v * cos_u);
+	N_Y(2 * a * (b + v) * v * sin_u);
+	N_Z(-b * sin_u * sin_u - v);
 
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
+	UUD_X(-(b + v) * cos_u);
+	UUD_Y(-v * sin_u);
+	UUD_Z_CONST(0);
 
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
+	UVD_X(-sin_u);
+	UVD_Y(cos_u);
+	UVD_Z_CONST(0);
 
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	VVD_X_CONST(0);
+	VVD_Y_CONST(0);
+	VVD_Z(2 * a);
 }
 #endif
 
@@ -68,23 +65,22 @@ c1:a: 1.5; c2:b: 0.5; \
 x: (b + v)*cos(u); \
 y: v*sin(u); \
 z: a*v*v; \
-xu: 0; \
-yu: 0; \
+xu: -(b+v)*sin(u); \
+yu: v*cos(u); \
 zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
+xv: cos(u); \
+yv: sin(u); \
+zv: 2*a*v; \
+xn: 2*a*v*v*cos(u); \
+yn: 2*a*(b+v)*v*sin(u); \
+zn: -b*sin(u)^2 - v; \
+xuu: -(b+v)*cos(u); \
+yuu: -v*sin(u); \
 zuu: 0; \
-xuv: 0; \
-yuv: 0; \
+xuv: -sin(u); \
+yuv: cos(u); \
 zuv: 0; \
 xvv: 0; \
 yvv: 0; \
-zvv: 0; \
-";
+zvv: 2*a;";
 #endif

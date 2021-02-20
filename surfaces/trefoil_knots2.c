@@ -14,6 +14,7 @@ void TrefoilKnots2(pasuli_vartype u, pasuli_vartype v,
 	double r = constants[1];
 	double a = constants[2];
 	double N = constants[3];
+
 	double r_cos_u;
 	double r_sin_u;
 	double x_u;
@@ -81,8 +82,8 @@ us: 0; ue:pi: 4; \
 vs: 0; ve:pi: 2; \
 c1:R: 1.5; c2:r: 0.5; c3:a: 1.0; c4:N: 1.0; \
 x: r*cos(v)*cos(u) + R*cos(u)*(1 + a*cos(N*u)); \
-y: r*sin(v) + a*sin(N*u); \
-z: r*cos(v)*sin(u) + R*sin(u)*(1 + a*cos(N*u)); \
+y: r*cos(v)*sin(u) + R*sin(u)*(1 + a*cos(N*u)); \
+z: r*sin(v) + a*sin(N*u); \
 xu: 0; \
 yu: 0; \
 zu: 0; \

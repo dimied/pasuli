@@ -4,46 +4,46 @@
 #include <math.h>
 
 #if (USE_STEINBACH_SCREW != 0)
-void SteinbachScrew(pasuli_vartype u, pasuli_vartype v,
-                    pasuli_consttype *constants, PaSuLiObject *pO)
+
+void SteinbachScrew(pasuli_vartype u,
+                    pasuli_vartype v,
+                    pasuli_consttype *constants,
+                    PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(STEINBACH_SCREW)
 
-    double cv = cos(v);
-    double sv = sin(v);
-    double cu = cos(u);
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype sin_v = sin(v);
+    pasuli_calctype cos_u = cos(u);
+    pasuli_calctype sin_u = sin(u);
 
-    P_X(u * cv);
-    P_Y(u * sv);
-    P_Z(v * cu);
+    P_X(u * cos_v);
+    P_Y(u * sin_v);
+    P_Z(v * cos_u);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double su = sin(u);
-#endif
+    UD_X(cos_v);
+    UD_Y(sin_v);
+    UD_Z(-v * sin_u);
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    VD_X(-u * sin_v);
+    VD_Y(u * cos_v);
+    VD_Z(cos_u);
 
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    N_X(u * v * cos_v * sin_u + cos_u * sin_v);
+    N_Y(u * v * sin_v * sin_u - cos_u * cos_v);
+    N_Z(u);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
+    UUD_X_CONST(0);
+    UUD_Y_CONST(0);
+    UUD_Z(-v * cos_u);
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
+    UVD_X(-sin_v);
+    UVD_Y(cos_v);
+    UVD_Z(-sin_u);
 
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    VVD_X(-u * cos_v);
+    VVD_Y(-u * sin_v);
+    VVD_Z_CONST(0);
 }
 #endif
 
@@ -57,28 +57,28 @@ PaSuLiDefDesc pslddSteinbachScrew = {
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSteinbachScrew =
     "name: Steinbach Screw; \
-ut:c; \
-vt:c; \
-us: -4; \
-ue: 4; \
-vs: 0; \
-ve:pi: 2; \
+ut:c; vt:c; \
+us: -4; ue: 4; \
+vs: 0; ve:pi: 2; \
 x: u*cos(v); \
 y: u*sin(v); \
-z: v*cos(u); "
-    "xu: cos(v); yu: sin(v); zu: -v*sin(u); "
-    "xv: -u*sin(v); yv: u*cos(v); zv: cos(u); "
-    "xn: u*v*cos(v)*sin(u) + cos(u)*sin(v); \
+z: v*cos(u); \
+xu: cos(v); \
+yu: sin(v); \
+zu: -v*sin(u); \
+xv: -u*sin(v); \
+yv: u*cos(v); \
+zv: cos(u); \
+xn: u*v*cos(v)*sin(u) + cos(u)*sin(v); \
 yn: u*v*sin(u)*sin(v) - cos(u)*cos(v); \
-zn: u; "
-    "xuu: 0; \
+zn: u; \
+xuu: 0; \
 yuu: 0; \
-zuu: -v*cos(u); "
-    "xuv: -sin(v); \
+zuu: -v*cos(u); \
+xuv: -sin(v); \
 yuv: cos(v); \
-zuv: -sin(u); "
-    "xvv: -u*cos(v); \
+zuv: -sin(u); \
+xvv: -u*cos(v); \
 yvv: -u*sin(v); \
-zvv: 0; "
-    "";
+zvv: 0;";
 #endif

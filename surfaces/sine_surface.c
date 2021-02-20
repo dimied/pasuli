@@ -5,47 +5,49 @@
 #include <math.h>
 
 #if (USE_SINE_SURFACE != 0)
-void SineSurface(pasuli_vartype u, pasuli_vartype v,
-                 pasuli_consttype *constants, PaSuLiObject *pO)
+
+void SineSurface(pasuli_vartype u,
+                 pasuli_vartype v,
+                 pasuli_consttype *constants,
+                 PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(SINE_SURFACE)
 
-    double su = sin(u);
-    double sv = sin(v);
-    double suv = sin(u + v);
+    pasuli_calctype sin_u = sin(u);
+    pasuli_calctype sin_v = sin(v);
+    pasuli_calctype sin_uv = sin(u + v);
 
-    P_X(su);
-    P_Y(sv);
-    P_Z(suv);
+    P_X(sin_u);
+    P_Y(sin_v);
+    P_Z(sin_uv);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double cu = cos(u);
-    double cv = cos(v);
-#endif
+    pasuli_calctype cos_u = cos(u);
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype cos_uv = cos(u + v);
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    UD_X(cos_u);
+    UD_Y_CONST(0);
+    UD_Z(cos_uv);
 
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    VD_X_CONST(0);
+    VD_Y(cos_v);
+    VD_Z(cos_uv);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
+    N_X(-cos_v * cos_uv);
+    N_Y(-cos_u * cos_uv);
+    N_Z(cos_u * cos_v);
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
+    UUD_X(-sin_u);
+    UUD_Y_CONST(0);
+    UUD_Z(-sin_uv);
 
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
+    UVD_X_CONST(0);
+    UVD_Y_CONST(0);
+    UVD_Z(-sin_uv);
 
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    VVD_X_CONST(0);
+    VVD_Y(-sin_v);
+    VVD_Z(-sin_uv);
 }
 #endif
 

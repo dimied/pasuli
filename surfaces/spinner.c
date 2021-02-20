@@ -3,44 +3,36 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_SPINNER != 0)
-void Spinner(pasuli_vartype u, pasuli_vartype v,
+
+void Spinner(pasuli_vartype u,
+             pasuli_vartype v,
              pasuli_consttype *constants,
              PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(SPINNER)
 
-    double x_or_z = fabs(u) - 1.0;
-    x_or_z *= x_or_z;
-    double cv = cos(v);
-    double sv = sin(v);
+    pasuli_calctype u_sign = PASULI_CALC_SIGN(u);
 
-    P_X(x_or_z * cv);
-    P_Y(u);
-    P_Z(x_or_z * sv);
+    pasuli_calctype factor = fabs(u) - 1.0;
+    factor *= factor;
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype sin_v = sin(v);
 
-    VD_X(0);
-    VD_Y(0);
+    P_X(factor * cos_v);
+    P_Y(factor * sin_v);
+    P_Z(u);
+
+    UD_X(2 * u_sign * factor * cos_v);
+    UD_Y(2 * u_sign * factor * sin_v);
+    UD_Z(1);
+
+    // Don't scale by (|u| - 1)^(2)
+    u_sign = PASULI_CALC_SIGN(factor);
+
+    VD_X(-u_sign * sin_v);
+    VD_Y(u_sign * cos_v);
     VD_Z(0);
-
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
-
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
-
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
 }
 #endif
 
@@ -59,25 +51,12 @@ ut:c; vt:c; \
 us: -1; ue: 1; \
 vs: 0; ve:pi: 2; \
 x: (|u| - 1)^(2)*cos(v); \
-y: u; \
-z: (|u| - 1)^(2)*sin(v); \
-xu: 0; \
-yu: 1; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+y: (|u| - 1)^(2)*sin(v); \
+z: u; \
+xu: 2*u*(|u|-1)*cos(v)/|u|; \
+yu: 2*u*(|u|-1)*sin(v)/|u|; \
+zu: 1; \
+xv: -(|u| - 1)^(2)*sin(v); \
+yv: (|u| - 1)^(2)*cos(v); \
+zv: 0;";
 #endif

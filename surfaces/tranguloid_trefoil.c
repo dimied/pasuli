@@ -9,90 +9,61 @@ void TranguloidTrefoil(pasuli_vartype u, pasuli_vartype v,
 {
 	PASULI_SET_TYPE_ID(TRANGULOID_TREFOIL)
 
-	double x_u = 2 * sin(3.0 * u);
-	double y_u = 2 * (sin(u) + 2 * sin(2 * u));
-	double z_u = cos(u) - 2 * cos(2 * u);
-	z_u *= 0.25;
+	pasuli_calctype sin_3u = sin(3.0 * u);
+	pasuli_calctype sin_2u = sin(2.0 * u);
+	pasuli_calctype sin_u = sin(u);
 
-	double cos_v_plus_2 = 2.0 + cos(v);
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype cos_2u = cos(2.0 * u);
 
-	P_X(x_u / cos_v_plus_2);
-	P_Y(y_u / (2 + cos(v + 2 * MY_PI / 3.0)));
-	P_Z(z_u * cos_v_plus_2 * (2 + cos(v + 2 * MY_PI / 3.0)));
+	pasuli_calctype cos_v_plus_2 = 2.0 + cos(v);
+	pasuli_calctype cos_v_plus_2PI = (2 + cos(v + 2 * MY_PI / 3.0));
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double cu = cos(u);
-	double su = sin(u);
-	double cv = cos(v);
-	double sv = sin(v);
-#endif
+	P_X(2 * sin_3u / cos_v_plus_2);
+	P_Y(2 * (sin_u + 2 * sin_2u) / cos_v_plus_2PI);
+	P_Z((cos_u - 2 * cos_2u) * cos_v_plus_2 * cos_v_plus_2PI * 0.25);
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
+	pasuli_calctype cos_3u = cos(3.0 * u);
+	pasuli_calctype sin_v_pi3 = sin(v + MY_PI / 3.0);
+	pasuli_calctype sin_2v = sin(2.0 * v);
+	pasuli_calctype cos_2v = cos(2.0 * v);
 
-	VD_X(0);
-	VD_Y(0);
-	VD_Z(0);
+	UD_X(6 * cos_3u / cos_v_plus_2);
+	UD_Y(-2 * (cos_u + 4 * cos_2u) / cos_v_plus_2PI);
+	UD_Z((-2 * cos_2u + cos_u) * (2 * sin_v_pi3 - 0.5 * (sin_2v + sqrt(3) * cos_2v)) * 0.25);
 
-#if (PARTICLE_N != 0)
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
-#endif
+	pasuli_calctype sin_v = sin(v);
+	pasuli_calctype sin_v_pi6 = sin(v + MY_PI / 6.0);
 
-#if (PARTICLE_UUD != 0)
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
-#endif
-#if (PARTICLE_UVD != 0)
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
-#endif
-#if (PARTICLE_VVD != 0)
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
-#endif
+	VD_X(2 * sin_v * sin_3u / (cos_v_plus_2 * cos_v_plus_2));
+	VD_Y(2 * (1 + 4 * cos_u) * cos_v_plus_2PI * sin_u / (sin_v_pi6 * sin_v_pi6));
+	VD_Z((-2 + sin_v_pi6) * (cos_v_plus_2) * (sin_u - 4 * sin_2u) * 0.25);
+
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
-
-#if(COMPILE_DEF_DESC_SURFACES != 0)
+#if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddTranguloidTrefoil = {
-PSLDD_ID( TRANGULOID_TREFOIL )
-PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_START_PI|PASULI_U_END_PI| \
-PASULI_V_START_PI|PASULI_V_END_PI,
--1, 1 , -1 , 1 , 0 };
+	PSLDD_ID(TRANGULOID_TREFOIL)
+			PASULI_U_CLOSED |
+		PASULI_V_CLOSED | PASULI_U_START_PI | PASULI_U_END_PI |
+		PASULI_V_START_PI | PASULI_V_END_PI,
+	-1, 1, -1, 1, 0};
 #endif
-#if(COMPILE_DESC_SURFACES != 0)
+#if (COMPILE_DESC_SURFACES != 0)
 char *descTranguloidTrefoil =
-"name: Tranguloid Trefoil; \
+	"name: Tranguloid Trefoil; \
 ut:c; vt:c; \
 us:pi: -1; ue:pi: 1; \
 vs:pi: -1; ve:pi: 1; \
 x: 2*sin(3*u)/(2 + cos(v)); \
 y: 2*(sin(u) + 2*sin(2*u))/(2 + cos(v + 2*pi/3)); \
 z: (cos(u) - 2*cos(2*u))*(2 + cos(v))*(2 + cos(v + 2*pi/3))/4; \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+xu: 6*cos(3*u)/(2+cos(v)); \
+yu: -(2*cos(u) + 8*cos(2*u))/(sin(v+pi/6) - 2); \
+zu: (-2*cos(2*u) + cos(u))*(2*sin(v+pi/3) - sin(2*v)/2 + sqrt(3)*cos(2*v)/2) /4; \
+xv: 2*sin(v)*sin(3*u)/(2+cos(v))^2; \
+yv: 2*(1+4*cos(u))*cos(v+pi/6)*sin(u)/(sin(v+pi/6) - 2)^2; \
+zv: (-2+sin(v+pi/6))*(2+cos(v))*(-4*sin(2*u) + sin(u))/4;";
 #endif

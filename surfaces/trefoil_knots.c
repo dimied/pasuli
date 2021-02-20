@@ -9,58 +9,41 @@ void TrefoilKnots(pasuli_vartype u, pasuli_vartype v,
 {
     PASULI_SET_TYPE_ID(TREFOIL_KNOTS)
 
-    double Bx;
-    double By;
-    double Bz;
-    double r_cos_u3;
-    double r_sin_u3;
     double R = constants[0];
     double r = constants[1];
 
-    r_cos_u3 = cos(u / 3.0);
-    r_sin_u3 = sin(u / 3.0);
-    By = R + r * cos(u * 0.5);
-    Bx = By * r_cos_u3;
-    By = By * r_sin_u3;
-    Bz = r + sin(u * 0.5);
-    r_cos_u3 *= r;
-    r_sin_u3 *= r;
+    pasuli_calctype cos_u3 = cos(u / 3.0);
+    pasuli_calctype sin_u3 = sin(u / 3.0);
 
-    double vpi = cos(v - MY_PI);
+    pasuli_calctype cos_u_half = cos(u * 0.5);
+    pasuli_calctype sin_u_half = sin(u * 0.5);
 
-    P_X(Bx + r_cos_u3 * vpi);
-    P_Y(By + r_sin_u3 * vpi);
-    P_Z(Bz + r * sin(v - MY_PI));
+    pasuli_calctype By = R + r * cos_u_half;
+    pasuli_calctype Bx = By * cos_u3;
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double cu = cos(u);
-    double su = sin(u);
-    double cv = cos(v);
-    double sv = sin(v);
-#endif
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    By = By * sin_u3;
 
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    pasuli_calctype Bz = r + sin_u_half;
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
+    pasuli_calctype cos_v_minus_pi = cos(v - MY_PI);
+    pasuli_calctype sin_v_minus_pi = sin(v - MY_PI);
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
+    P_X(Bx + cos_u3 * r * cos_v_minus_pi);
+    P_Y(By + sin_u3 * r * cos_v_minus_pi);
+    P_Z(Bz + r * sin_v_minus_pi);
 
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
+    pasuli_calctype cos_v = sin(v);
+    pasuli_calctype sin_v = sin(v);
 
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    UD_X(r * (cos_v * sin_u3 / 3.0 - cos_u3 * sin_u_half * 0.5 - cos_u_half * sin_u3 / 3.0) - R * sin_u3 / 3.0);
+    UD_Y(r * (-cos_v * cos_u3 / 3.0 - sin_u3 * sin_u_half * 0.5 - cos_u_half * cos_u3 / 3.0) + R * cos_u3 / 3.0);
+    UD_Z(cos_u_half * 0.5);
+
+    VD_X(r * cos_u3 * sin_v);
+    VD_Y(r * sin_v * sin_u3);
+    VD_Z(-r * cos_v);
+
+    PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -87,23 +70,10 @@ a3:Bz: r + sin(u/2); \
 x: Bx + r*cos(u/3)*cos(v-pi); \
 y: By + r*sin(u/3)*cos(v-pi); \
 z: Bz + r*sin(v-pi); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+xu: r*(cos(v)*sin(u/3)/3 - cos(u/3)*sin(u/2)/2 - cos(u/2)*sin(u/3)/3) - R*sin(u/3)/3; \
+yu: r*(-cos(v)*cos(u/3)/3 - sin(u/3)*sin(u/2)/2 + cos(u/3)*cos(u/2)/3) + R*cos(u/3)/3; \
+zu: cos(u/2)/2; \
+xv: r*cos(u/3)*sin(v); \
+yv: r*sin(v)*sin(u/3); \
+zv: -r*cos(v);";
 #endif
