@@ -3,6 +3,7 @@
 #include "torus_c_includes.h"
 
 #if (USE_ELLIPTIC_TORUS != 0)
+
 void EllipticTorus(pasuli_vartype u,
 				   pasuli_vartype v,
 				   pasuli_consttype *constants,
@@ -12,27 +13,28 @@ void EllipticTorus(pasuli_vartype u,
 
 	pasuli_consttype c = constants[0];
 
-	P_Z(sin(v) * cos(v));
-	v = cos(v);
-	v += (constants[0]);
-	P_X(v * cos(u));
-	P_Y(v * sin(u));
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_u = sin(u);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	pasuli_vartype cu = cos(u);
-	pasuli_vartype su = sin(u);
-	pasuli_vartype cv = cos(v);
-	pasuli_vartype sv = sin(v);
-#endif
+	pasuli_calctype factor = cos_v + c;
 
-	UD_X(-su);
-	UD_Y(-cu);
+	P_X(factor * cos_u);
+	P_Y(factor * sin_u);
+	P_Z(sin_v * cos_v);
+
+	// Ignore scaling by (a + cos(v))
+	factor = PASULI_CALC_SIGN(factor);
+	UD_X(-factor * sin_u);
+	UD_Y(factor * cos_u);
 	UD_Z(0);
 
-	VD_X(-c * sv * cu);
-	VD_Y(-c * sv * su);
-	VD_Z(-c * cv);
+	VD_X(-cos_u * sin_v);
+	VD_Y(-sin_u * sin_v);
+	VD_Z(cos_v - sin_v);
 
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -55,5 +57,11 @@ vs: 0; ve:pi: 2;\
 c1:a: 1;\
 x: (a + cos(v))*cos(u);\
 y: (a + cos(v))*sin(u);\
-z: sin(v) + cos(v); ";
+z: sin(v) + cos(v);\
+xu: -(a + cos(v))*sin(u);\
+yu: (a + cos(v))*cos(u);\
+zu: 0;\
+xv: -cos(u)*sin(v);\
+yv: -sin(u)*sin(v);\
+zv: cos(v) - sin(v);";
 #endif
