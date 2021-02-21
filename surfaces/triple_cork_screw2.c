@@ -9,56 +9,40 @@ void TripleCorkScrew2(pasuli_vartype u, pasuli_vartype v,
 {
 	PASULI_SET_TYPE_ID(TRIPLE_CORK_SCREW2)
 
-	double R = constants[0];
-	double r = constants[1];
-	double L = constants[2];
-	double N = constants[3];
-	double a = constants[4];
-	double b = constants[5];
+	pasuli_consttype R = constants[0];
+	pasuli_consttype r = constants[1];
+	pasuli_consttype L = constants[2];
+	pasuli_consttype N = constants[3];
+	pasuli_consttype a = constants[4];
+	pasuli_consttype b = constants[5];
+
 	N *= MY_PI;
 	a *= a;
 	b *= b;
 
-	double Lu = L * u;
-	double z_u = R * exp(-a * u * u);
-	double y_u = cos(u * N) * z_u;
-	z_u *= sin(u * N);
-	u = r * exp(-b * u * u);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
+	pasuli_calctype r_exp_bu = r * exp(-b * u * u);
 
-	P_X(Lu);
-	P_Y(u * cos(v) + y_u);
-	P_Z(u * sin(v) + z_u);
+	pasuli_calctype R_exp_au = R * exp(-a * u * u);
+	pasuli_calctype cos_Nu = cos(u * N);
+	pasuli_calctype sin_Nu = sin(u * N);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double cu = cos(u);
-	double su = sin(u);
-	double cv = cos(v);
-	double sv = sin(v);
-#endif
+	P_X(r_exp_bu * cos_v + R_exp_au * cos_Nu);
+	P_Y(r_exp_bu * sin_v + R_exp_au * sin_Nu);
+	P_Z(L * u);
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
+	r_exp_bu *= 2 * b * b * u;
+	UD_X(-R_exp_au * (2 * a * a * u * cos_Nu + N * sin_Nu) - r_exp_bu * cos_v);
+	UD_Y(R_exp_au * (2 * a * a * u * sin_Nu - N * cos_Nu) - r_exp_bu * sin_v);
+	UD_Z(L);
 
-	VD_X(0);
-	VD_Y(0);
+	pasuli_calctype sign_value = PASULI_CALC_SIGN(r_exp_bu);
+	VD_X(-sign_value * sin_v);
+	VD_Y(sign_value * cos_v);
 	VD_Z(0);
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
-
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
-
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
-
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -81,26 +65,13 @@ c1:R: 1.5; c2:r: 0.5; c3:L: 1.0; \
 c4:N: 1.0; c5:a: 1.0; c6:b: 1.0; \
 a1:c: r*exp(-(b*b*u*u)); \
 a2:d: R*exp(-(a*a*u*u)); \
-x: L*u; \
-y: c*cos(v) + d*cos(u*N*pi); \
-z: c*sin(v) + d*sin(u*N*pi); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+x: c*cos(v) + d*cos(u*N*pi); \
+y: c*sin(v) + d*sin(u*N*pi); \
+z: L*u; \
+xu: -R*exp(-(a*a*u*u))*(2*a*a*u*cos(N*pi*u) + N*pi*sin(N*pi*u)) - 2*b*b*r*u*cos(v)*exp(-(b*b*u*u)); \
+yu: -R*exp(-(a*a*u*u))*(2*a*a*u*sin(N*pi*u) - N*pi*cos(N*pi*u)) - 2*b*b*r*u*sin(v)*exp(-(b*b*u*u)); \
+zu: L; \
+xv: -r*sin(v)*exp(-(b*b*u*u)); \
+yv: r*cos(v)*exp(-(b*b*u*u)); \
+zv: 0;";
 #endif

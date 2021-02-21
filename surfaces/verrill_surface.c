@@ -3,50 +3,37 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_VERRILL_SURFACE != 0)
-void VerrillSurface(pasuli_vartype u, pasuli_vartype v,
+void VerrillSurface(pasuli_vartype u,
+					pasuli_vartype v,
 					pasuli_consttype *constants,
 					PaSuLiObject *pO)
 {
 	PASULI_SET_TYPE_ID(VERRILL_SURFACE)
 
-	double cv2 = 2.0 * cos(v);
-	double cv3 = (cos(3.0 * v) * -(2.0 * u * u * u)) / 3.0;
-	double sv2 = 2.0 * sin(v);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
+	pasuli_calctype cos_3v = cos(3.0 * v);
+	pasuli_calctype u2 = u * u;
+	pasuli_calctype u_pow3_2 = 2.0 * u * u2;
+	pasuli_calctype common = u_pow3_2 * cos_3v / 3.0;
 
-	P_X(cv2 / u - cv2 + cv3);
-	P_Y(3.0 * sv2 - sv2 / u + cv3);
+	P_X(-2 * u * cos_v + 2 * cos_v / u - common);
+	P_Y(6 * u * sin_v - 2 * sin_v / u - common);
 	P_Z(4.0 * log(u));
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	double cu = cos(u);
-	double su = sin(u);
-	double cv = cos(v);
-	double sv = sin(v);
-#endif
+	common = u2 * cos_3v;
+	// Multiply by u^2 and divide by 2
+	UD_X(u2 * (-common - cos_v) - cos_v);
+	UD_Y(u2 * (-common + 3 * sin_v) + sin_v);
+	UD_Z(4 * u);
 
-	UD_X(0);
-	UD_Y(0);
-	UD_Z(0);
-
-	VD_X(0);
-	VD_Y(0);
+	common = u_pow3_2 * sin(3 * v);
+	// Multiply by u
+	VD_X(u * (common + 2 * sin_v) - 2 * sin_v);
+	VD_Y(u * (common + 6 * cos_v) - 2 * cos_v);
 	VD_Z(0);
 
-	N_X(0);
-	N_Y(0);
-	N_Z(0);
-
-	UUD_X(0);
-	UUD_Y(0);
-	UUD_Z(0);
-
-	UVD_X(0);
-	UVD_Y(0);
-	UVD_Z(0);
-
-	VVD_X(0);
-	VVD_Y(0);
-	VVD_Z(0);
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -65,24 +52,11 @@ us: 0.5; ue: 1; \
 vs: 0; ve:pi: 2; \
 x: -2*u*cos(v) + (2*cos(v)/u) - 2*u^(3)*cos(3*v)/3; \
 y: 6*u*sin(v) - 2*sin(v)/u - 2*u^(3)*cos(3*v)/3; \
-z: 4*log(u); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+z: 4*log(u);\
+xu: -2*u^2*cos(3*v) - 2*cos(v)/u^2 - 2*cos(v); \
+yu: -2*u^2*cos(3*v) + 2*sin(v)/u^2 + 6*sin(v); \
+zu: 4/u; \
+xv: 2*u^3*sin(3*v) + 2*u*sin(v) - 2*sin(v)/u; \
+yv: 2*u^3*sin(3*v) + 6*u*cos(v) - 2*cos(v)/u; \
+zv: 0;";
 #endif

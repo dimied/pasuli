@@ -1,11 +1,13 @@
 
 #include "whitney_umbrella.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_WHITNEY_UMBRELLA != 0)
-void WhitneyUmbrella(pasuli_vartype u, pasuli_vartype v,
-                     pasuli_consttype *constants, PaSuLiObject *pO)
+
+void WhitneyUmbrella(pasuli_vartype u,
+                     pasuli_vartype v,
+                     pasuli_consttype *constants,
+                     PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(WHITNEY_UMBRELLA)
 
@@ -21,21 +23,19 @@ void WhitneyUmbrella(pasuli_vartype u, pasuli_vartype v,
     VD_Y_CONST(0);
     VD_Z(2 * v);
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
+    N_X(2 * v);
+    N_Y(-2 * v * v);
+    N_Z(-u);
 
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
+    UUD_ALL(0);
 
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
+    UVD_X_CONST(1);
+    UVD_Y_CONST(0);
+    UVD_Z_CONST(0);
 
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    VVD_X_CONST(0);
+    VVD_Y_CONST(0);
+    VVD_Z_CONST(2);
 }
 #endif
 
@@ -49,22 +49,18 @@ PaSuLiDefDesc pslddWhitneyUmbrella = {
 #if (COMPILE_DESC_SURFACES != 0)
 char *descWhitneyUmbrella =
     "name: Whitney Umbrella; \
-ut:c; \
-vt:c; \
-us: -1.5; \
-ue: 1.5; \
-vs: -1.5; \
-ve: 1.5; \
+ut:c; vt:c; \
+us: -1.5; ue: 1.5; \
+vs: -1.5; ve: 1.5; \
 x: u*v; \
 y: u; \
-z: v*v; "
-    "xu: v; yu: 1; zu: 0; "
-    "xv: u; yv: 0; zv: 2*v; "
-    "xn: 2*v; \
+z: v*v;\
+xu: v; yu: 1; zu: 0;\
+xv: u; yv: 0; zv: 2*v;\
+xn: 2*v; \
 yn: -2*v*v; \
-zn: -u; "
-    "xuu: 0; yuu: 0; zuu: 0; "
-    "xuv: 1; yuv: 0; zuv: 0; "
-    "xvv: 0; yvv: 0; zvv: 2; "
-    "";
+zn: -u;\
+xuu: 0; yuu: 0; zuu: 0;\
+xuv: 1; yuv: 0; zuv: 0;\
+xvv: 0; yvv: 0; zvv: 2;";
 #endif

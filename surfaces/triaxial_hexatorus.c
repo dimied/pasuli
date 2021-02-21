@@ -3,49 +3,37 @@
 #include "surfaces_c_includes.h"
 
 #if (USE_TRIAXIAL_HEXATORUS != 0)
-void TriaxialHexatorus(pasuli_vartype u, pasuli_vartype v,
+
+void TriaxialHexatorus(pasuli_vartype u,
+                       pasuli_vartype v,
                        pasuli_consttype *constants,
                        PaSuLiObject *pO)
 {
     PASULI_SET_TYPE_ID(TRIAXIAL_HEXATORUS)
 
-    double two_pi_3 = (2 * MY_PI) / 3.0;
-    double sqrt2 = sqrt(2.0);
+    pasuli_calctype two_pi_3 = (2 * MY_PI) / 3.0;
+    pasuli_calctype sqrt2 = sqrt(2.0);
+    pasuli_calctype sin_u = sin(u);
+    pasuli_calctype div_pos_x = (sqrt2 + cos(v + two_pi_3));
+    pasuli_calctype div_pos_y = (sqrt2 + cos(v - two_pi_3));
+    pasuli_calctype div_pos_z = (sqrt2 + cos(v));
 
-    P_X(sin(u) / (sqrt2 + cos(v)));
-    P_Y(sin(u + two_pi_3) / (sqrt2 + cos(v + two_pi_3)));
-    P_Z(cos(u - two_pi_3) / (sqrt2 + cos(v - two_pi_3)));
+    pasuli_calctype pos_x_u = sin(u + two_pi_3);
+    pasuli_calctype pos_y_u = cos(u - two_pi_3);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-    double cu = cos(u);
-    double su = sin(u);
-    double cv = cos(v);
-    double sv = sin(v);
-#endif
+    P_X(pos_x_u / div_pos_x);
+    P_Y(pos_y_u / div_pos_y);
+    P_Z(sin_u / div_pos_z);
 
-    UD_X(0);
-    UD_Y(0);
-    UD_Z(0);
+    UD_X(cos(u + two_pi_3) / div_pos_x);
+    UD_Y(-sin(u - two_pi_3) / div_pos_y);
+    UD_Z(cos(u) / div_pos_z);
 
-    VD_X(0);
-    VD_Y(0);
-    VD_Z(0);
+    VD_X(pos_x_u * sin(v + two_pi_3) / (div_pos_x * div_pos_x));
+    VD_Y(-pos_y_u * sin(two_pi_3 - v) / (div_pos_y * div_pos_y));
+    VD_Z(sin_u * sin(v) / (div_pos_z * div_pos_z));
 
-    N_X(0);
-    N_Y(0);
-    N_Z(0);
-
-    UUD_X(0);
-    UUD_Y(0);
-    UUD_Z(0);
-
-    UVD_X(0);
-    UVD_Y(0);
-    UVD_Z(0);
-
-    VVD_X(0);
-    VVD_Y(0);
-    VVD_Z(0);
+    PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -62,26 +50,13 @@ char *descTriaxialHexatorus =
 ut:c; vt:c; \
 us: 0; ue:pi: 2; \
 vs: 0; ve:pi: 2; \
-x: sin(u)/(sqrt(2) + cos(v)); \
-y: sin(u + 2*pi/3)/(sqrt(2) + cos(v + 2*pi/3)); \
-z: cos(u - 2*pi/3)/(sqrt(2) + cos(v - 2*pi/3)); \
-xu: 0; \
-yu: 0; \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: 0; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
-zvv: 0; \
-";
+x: sin(u + 2*pi/3)/(sqrt(2) + cos(v + 2*pi/3)); \
+y: cos(u - 2*pi/3)/(sqrt(2) + cos(v - 2*pi/3)); \
+z: sin(u)/(sqrt(2) + cos(v)); \
+xu: cos(u + 2*pi/3)/(sqrt(2) + cos(v + 2*pi/3)); \
+yu: -sin(u - 2*pi/3)/(sqrt(2) + cos(v - 2*pi/3)); \
+zu: cos(u)/(sqrt(2) + cos(v)); \
+xv: sin(u + 2*pi/3)*sin(v + 2*pi/3)/(sqrt(2) + cos(v + 2*pi/3))^2; \
+yv: -cos(u - 2*pi/3)*sin(2*pi/3-v)/(sqrt(2) + cos(v - 2*pi/3))^2; \
+zv: sin(u)*sin(v)/(sqrt(2) + cos(v))^2;";
 #endif
