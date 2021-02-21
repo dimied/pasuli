@@ -3,6 +3,7 @@
 #include "torus_c_includes.h"
 
 #if (USE_ASTROID_TORUS != 0)
+
 void AstroidTorus(pasuli_vartype u,
 				  pasuli_vartype v,
 				  pasuli_consttype *constants,
@@ -10,55 +11,32 @@ void AstroidTorus(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(ASTROID_TORUS)
 
-	pasuli_vartype R = constants[0];
-	pasuli_vartype r = constants[1];
+	pasuli_consttype R = constants[0];
+	pasuli_consttype r = constants[1];
 
-	pasuli_vartype y_v = sin(v);
-	v = cos(v);
-	v *= v * v;
-	v *= r;
-	v += R;
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_u = sin(u);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
+	pasuli_calctype factor = R + cos_v * cos_v * cos_v;
 
-	P_X(cos(u) * v);
-	P_Y(r * y_v * y_v);
-	P_Z(sin(u) * v);
+	P_X(cos_u * factor);
+	P_Y(sin_u * factor);
+	P_Y(r * sin_v * sin_v * sin_v);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	pasuli_vartype cu = cos(u);
-	pasuli_vartype su = sin(u);
-	pasuli_vartype cv = cos(v);
-	pasuli_vartype sv = sin(v);
-#endif
-
-	UD_X(-su);
-	UD_Y(-cu);
+	pasuli_calctype sign_value = PASULI_CALC_SIGN(factor);
+	// Don't scale (R + r*cos(v)^3)
+	UD_X(-sin_u * sign_value);
+	UD_Y(cos_u * sign_value);
 	UD_Z(0);
 
-	VD_X(-r * sv * cu);
-	VD_Y(-r * sv * su);
-	VD_Z(-r * cv);
+	sign_value = PASULI_CALC_SIGN(cos_v * sin_v * r);
+	// Don't scale by 3*cos(v)*sin(v)*r
+	VD_X(-sign_value * cos_u * cos_v);
+	VD_Y(-sign_value * sin_u * cos_v);
+	VD_Z(sign_value * sin_v);
 
-#if (PARTICLE_N != 0)
-	pO->n[0] = cu * r * cv;
-	pO->n[1] = su * r * sv;
-	pO->n[2] = r * sv;
-#endif
-
-#if (PARTICLE_UUD != 0)
-	pO->uud[0] = cos(u);
-	pO->uud[1] = sin(u);
-	pO->uud[2] = 0;
-#endif
-#if (PARTICLE_UVD != 0)
-	pO->uvd[0] = r * sv * su;
-	pO->uvd[1] = -r * sv * cu;
-	pO->uvd[2] = 0;
-#endif
-#if (PARTICLE_VVD != 0)
-	pO->vvd[0] = -r * cv * cu;
-	pO->vvd[1] = -r * cv * su;
-	pO->vvd[2] = -r * sv;
-#endif
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -78,39 +56,14 @@ ut: c; vt: c; \
 us: 0; ue:pi: 2; \
 vs: 0; ve:pi: 2; \
 c1:R: 1; c2:r: 1; \
-a1:F: (R + r*cos(v)*cos(v)*cos(v)); \
-x: F*cos(u); \
-y: r*sin(v)*sin(v)*sin(v); \
-z: F*sin(u); "
-#if (COMPILE_DESC_DERIV_U_TORUS != 0)
-	"xu: 0; \
-yu: 0; \
-zu: 0; "
-#endif
-#if (COMPILE_DESC_DERIV_V_TORUS != 0)
-	"xv: 0; \
-yv: 0; \
-zv: 0; "
-#endif
-#if (COMPILE_DESC_NORMAL_TORUS != 0)
-	"xn: 0; \
-yn: 0; \
-zn: 0; "
-#endif
-#if (COMPILE_DESC_DERIV2_U_TORUS != 0)
-	"xuu: 0; \
-yuu: 0; \
-zuu: 0; "
-#endif
-#if (COMPILE_DESC_DERIV_UV_TORUS != 0)
-	"xuv: 0; \
-yuv: 0; \
-zuv: 0; "
-#endif
-#if (COMPILE_DESC_DERIV2_V_TORUS != 0)
-	"xvv: 0; \
-yvv: 0; \
-zvv: 0; "
-#endif
-	"";
+a1:F: (R + r*cos(v)^3); \
+x: F*cos(u);\
+y: F*sin(u);\
+z: r*sin(v)^3;\
+xu: -sin(u)*(R + r*cos(v)^3);\
+yu: cos(u)*(R + r*cos(v)^3);\
+zu: 0;\
+xv: -3*r*cos(u)*cos(v)^2*sin(v);\
+yv: -3*r*sin(u)*cos(v)^2*sin(v);\
+zv: 3*r*cos(v)*sin(v)^2;";
 #endif

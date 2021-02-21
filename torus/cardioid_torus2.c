@@ -3,6 +3,7 @@
 #include "torus_c_includes.h"
 
 #if (USE_CARDIOID_TORUS_2 != 0)
+
 void CardioidTorus2(pasuli_vartype u,
 					pasuli_vartype v,
 					pasuli_consttype *constants,
@@ -10,51 +11,36 @@ void CardioidTorus2(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(CARDIOID_TORUS_2)
 
-	pasuli_vartype R = constants[0];
-	pasuli_vartype r = constants[1];
+	pasuli_consttype R = constants[0];
+	pasuli_consttype r = constants[1];
 
-	P_Y(r * (2.0 * cos(v) - cos(2.0 * v)));
-	v = R + r * (2.0 * sin(v) - sin(2.0 * v));
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_u = sin(u);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype cos_2v = cos(2.0 * v);
+	pasuli_calctype sin_v = sin(v);
+	pasuli_calctype sin_2v = sin(2 * v);
 
-	P_X(v * cos(u));
-	P_Z(v * sin(u));
+	pasuli_calctype factor = R + r * (2 * sin_v - sin_2v);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	pasuli_vartype cu = cos(u);
-	pasuli_vartype su = sin(u);
-	pasuli_vartype cv = cos(v);
-	pasuli_vartype sv = sin(v);
-#endif
+	P_X(factor * cos_u);
+	P_Y(factor * sin_u);
+	P_Z(r * (2.0 * cos_v - cos_2v));
 
-	UD_X(-su);
-	UD_Y(-cu);
+	factor = PASULI_CALC_SIGN(factor);
+	// Ignore scaling by (R + r*(2*sin(v) - sin(2*v)))
+	UD_X(-factor * sin_u);
+	UD_Y(-factor * cos_u);
 	UD_Z(0);
 
-	VD_X(-r * sv * cu);
-	VD_Y(-r * sv * su);
-	VD_Z(-r * cv);
+	factor = cos_v - cos_2v;
+	// Ignore scaling by 2*r
+	pasuli_calctype sign_value = PASULI_CALC_SIGN(r);
+	VD_X(sign_value * factor * cos_u);
+	VD_Y(sign_value * factor * sin_u);
+	VD_Z(sign_value * (sin_2v - sin_v));
 
-#if (PARTICLE_N != 0)
-	pO->n[0] = cu * r * cv;
-	pO->n[1] = su * r * sv;
-	pO->n[2] = r * sv;
-#endif
-
-#if (PARTICLE_UUD != 0)
-	pO->uud[0] = cos(u);
-	pO->uud[1] = sin(u);
-	pO->uud[2] = 0;
-#endif
-#if (PARTICLE_UVD != 0)
-	pO->uvd[0] = r * sv * su;
-	pO->uvd[1] = -r * sv * cu;
-	pO->uvd[2] = 0;
-#endif
-#if (PARTICLE_VVD != 0)
-	pO->vvd[0] = -r * cv * cu;
-	pO->vvd[1] = -r * cv * su;
-	pO->vvd[2] = -r * sv;
-#endif
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -72,39 +58,14 @@ char *descCardioidTorus2 =
 cat: torus; \
 us: 0; ue:pi:2; \
 vs: 0; ve:pi:2; \
-c1:R1:1; c2:R: 1; \
-x: (R + r*(2*sin(v) - sin(2*v)))*cos(u); \
-y: r*(2*cos(v) - cos(2*v)); \
-z: (R + r*(2*sin(v) - sin(2*v)))*sin(u); "
-#if (COMPILE_DESC_DERIV_U_TORUS != 0)
-	"xu: 0; \
-yu: 0; \
-zu: 0; "
-#endif
-#if (COMPILE_DESC_DERIV_V_TORUS != 0)
-	"xv: 0; \
-yv: 0; \
-zv: 0; "
-#endif
-#if (COMPILE_DESC_NORMAL_TORUS != 0)
-	"xn: 0; \
-yn: 0; \
-zn: 0; "
-#endif
-#if (COMPILE_DESC_DERIV2_U_TORUS != 0)
-	"xuu: 0; \
-yuu: 0; \
-zuu: 0; "
-#endif
-#if (COMPILE_DESC_DERIV_UV_TORUS != 0)
-	"xuv: 0; \
-yuv: 0; \
-zuv: 0; "
-#endif
-#if (COMPILE_DESC_DERIV2_V_TORUS != 0)
-	"xvv: 0; \
-yvv: 0; \
-zvv: 0; "
-#endif
-	"";
+c1:R:1; c2:r: 1; \
+x: (R + r*(2*sin(v) - sin(2*v)))*cos(u);\
+y: (R + r*(2*sin(v) - sin(2*v)))*sin(u);\
+z: r*(2*cos(v) - cos(2*v));\
+xu: -(R + r*(2*sin(v) - sin(2*v)))*sin(u);\
+yu: (R + r*(2*sin(v) - sin(2*v)))*cos(u);\
+zu: 0;\
+xv: 2*r*cos(u)*(cos(v) - cos(2*v));\
+yv: 2*r*sin(u)*(cos(v) - cos(2*v));\
+zv: -2*r*(sin(v) - sin(2*v));";
 #endif
