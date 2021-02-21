@@ -65,30 +65,30 @@ PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descHoleDiscus =
-    "name: Hole Discus; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-c1:a: 1.5; c2:b: 0.5; \
-x: sin(u)/(a + sin(v)); \
-y: cos(u)/(a + sin(v)); \
-z: cos(v)/b; \
-xu: cos(u)/(a + sin(v)); \
-yu: -sin(u)/(a + sin(v)); \
-zu: 0; \
-xv: -sin(u)*cos(v)/(a + sin(v))^2; \
-yv: -cos(u)*cos(v)/(a + sin(v))^2; \
-zv: -sin(v)/b; \
-xn: sin(u)*sin(v)/(b*(a+sin(v))); \
-yn: cos(u)*sin(v)/(b*(a+sin(v))); \
-zn: -cos(v)/((a+sin(v))^3); \
-xuu: -sin(u)/(a + sin(v)); \
-yuu: -cos(u)/(a + sin(v)); \
-zuu: 0; \
-xuv: -cos(u)*cos(v)/(a + sin(v))^2; \
-yuv: sin(u)*cos(v)/(a + sin(v))^2; \
-zuv: 0; \
-xvv: sin(u)*(1 + cos(v)^2 + a*sin(v))/(a + sin(v))^3; \
-yvv: cos(u)*(1 + cos(v)^2 + a*sin(v))/(a + sin(v))^3; \
+    "name: Hole Discus;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+c1:a: 1.5; c2:b: 0.5;\
+x: sin(u)/(a + sin(v));\
+y: cos(u)/(a + sin(v));\
+z: cos(v)/b;\
+xu: cos(u)/(a + sin(v));\
+yu: -sin(u)/(a + sin(v));\
+zu: 0;\
+xv: -sin(u)*cos(v)/(a + sin(v))^2;\
+yv: -cos(u)*cos(v)/(a + sin(v))^2;\
+zv: -sin(v)/b;\
+xn: sin(u)*sin(v)/(b*(a+sin(v)));\
+yn: cos(u)*sin(v)/(b*(a+sin(v)));\
+zn: -cos(v)/((a+sin(v))^3);\
+xuu: -sin(u)/(a + sin(v));\
+yuu: -cos(u)/(a + sin(v));\
+zuu: 0;\
+xuv: -cos(u)*cos(v)/(a + sin(v))^2;\
+yuv: sin(u)*cos(v)/(a + sin(v))^2;\
+zuv: 0;\
+xvv: sin(u)*(1 + cos(v)^2 + a*sin(v))/(a + sin(v))^3;\
+yvv: cos(u)*(1 + cos(v)^2 + a*sin(v))/(a + sin(v))^3;\
 zvv: -cos(v)/b; ";
 #endif

@@ -40,13 +40,13 @@ PASULI_CONST_COUNT(3),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descJeenerKleinSurface =
-	"name: Jeener Klein Surface; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-c1:S: 1.5; c2:T: 0.5; c3:a: 1.0; \
-a1:W: ((S + 1)/4)*cos((S + 1)*u +pi/T) + sqrt(a); \
-x: S*cos(u) + cos(S*u) - W*sin((S - 1)*u/2)*cos(v); \
-y: S*sin(u) - sin(S*u) - W*cos((S - 1)*u/2)*cos(v); \
+	"name: Jeener Klein Surface;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+c1:S: 1.5; c2:T: 0.5; c3:a: 1.0;\
+a1:W: ((S + 1)/4)*cos((S + 1)*u +pi/T) + sqrt(a);\
+x: S*cos(u) + cos(S*u) - W*sin((S - 1)*u/2)*cos(v);\
+y: S*sin(u) - sin(S*u) - W*cos((S - 1)*u/2)*cos(v);\
 z: W*sin(v); ";
 #endif

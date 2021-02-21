@@ -62,30 +62,30 @@ PASULI_U_START_PI|PASULI_U_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descCatenoid =
-    "name: Catenoid; \
-ut:c; vt:c; \
-us:pi:-1; ue:pi:1; \
-vs:-2; ve:2; \
-c1:c:!=0: 1.5 ; \
-x: c*cosh(v/c)*cos(u); \
-y: c*cosh(v/c)*sin(u); \
-z: v; \
-xu: -c*cosh(v/c)*sin(u); \
-yu: c*cosh(v/c)*cos(u); \
-zu: 0; \
-xv: sinh(v/c)*cos(u); \
-yv: sinh(v/c)*sin(u); \
-zv: 1; \
-xn: c*cos(u)*cosh(v/c); \
-yn: c*cosh(v/c)*sin(u); \
-zn: -c*cosh(v/c)*sinh(v/c); \
-xuu: -c*cos(u)*cosh(v/c); \
-yuu: -c*sin(u)*cosh(v/c); \
-zuu: 0; \
-xuv: -sinh(v/c)*sin(u); \
-yuv: sinh(v/c)*cos(u); \
-zuv: 0; \
-xvv: (cos(u)*cosh(v/c))/c; \
-yvv: (sin(u)*cosh(v/c))/c; \
+    "name: Catenoid;\
+ut:c; vt:c;\
+us:pi:-1; ue:pi:1;\
+vs:-2; ve:2;\
+c1:c:!=0: 1.5 ;\
+x: c*cosh(v/c)*cos(u);\
+y: c*cosh(v/c)*sin(u);\
+z: v;\
+xu: -c*cosh(v/c)*sin(u);\
+yu: c*cosh(v/c)*cos(u);\
+zu: 0;\
+xv: sinh(v/c)*cos(u);\
+yv: sinh(v/c)*sin(u);\
+zv: 1;\
+xn: c*cos(u)*cosh(v/c);\
+yn: c*cosh(v/c)*sin(u);\
+zn: -c*cosh(v/c)*sinh(v/c);\
+xuu: -c*cos(u)*cosh(v/c);\
+yuu: -c*sin(u)*cosh(v/c);\
+zuu: 0;\
+xuv: -sinh(v/c)*sin(u);\
+yuv: sinh(v/c)*cos(u);\
+zuv: 0;\
+xvv: (cos(u)*cosh(v/c))/c;\
+yvv: (sin(u)*cosh(v/c))/c;\
 zvv: 0; ";
 #endif

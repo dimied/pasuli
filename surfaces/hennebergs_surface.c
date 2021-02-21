@@ -52,17 +52,17 @@ PaSuLiDefDesc pslddHennebergsSurface = {
 
 #if (COMPILE_DESC_SURFACES != 0)
 char *descHennebergsSurface =
-    "name: Hennerbergs Surface; \
-ut:c; vt:c; \
-us: -1; ue: 1; \
-vs:pi: -0.5; ve:pi: 0.5; \
-x: 2*cos(v)*sinh(u) - (2/3)*cos(3*v)*sinh(3*u); \
-y: 2*sin(v)*sinh(u) + (2/3)*sin(3*v)*sinh(3*u); \
-z: 2*cos(2*v)*cosh(2*u); \
-xu: 2*(cos(v)*cosh(u) - cos(3*v)*cosh(3*u)); \
-yu: 2*(sin(v)*cosh(u) + sin(3*v)*cosh(3*u)); \
-zu: 4*cos(2*v)*sinh(2*u); \
-xv: 2*(sin(3*v)*sinh(3*u) - sin(v)*sinh(u)); \
-yv: 2*(cos(3*v)*sinh(3*u) + cos(v)*sinh(u)); \
+    "name: Hennerbergs Surface;\
+ut:c; vt:c;\
+us: -1; ue: 1;\
+vs:pi: -0.5; ve:pi: 0.5;\
+x: 2*cos(v)*sinh(u) - (2/3)*cos(3*v)*sinh(3*u);\
+y: 2*sin(v)*sinh(u) + (2/3)*sin(3*v)*sinh(3*u);\
+z: 2*cos(2*v)*cosh(2*u);\
+xu: 2*(cos(v)*cosh(u) - cos(3*v)*cosh(3*u));\
+yu: 2*(sin(v)*cosh(u) + sin(3*v)*cosh(3*u));\
+zu: 4*cos(2*v)*sinh(2*u);\
+xv: 2*(sin(3*v)*sinh(3*u) - sin(v)*sinh(u));\
+yv: 2*(cos(3*v)*sinh(3*u) + cos(v)*sinh(u));\
 zv: -4*sin(2*v)*cosh(2*u); ";
 #endif

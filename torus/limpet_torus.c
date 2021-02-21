@@ -66,42 +66,42 @@ PaSuLiDefDesc pslddLimpetTorus = {
 #endif
 #if (COMPILE_DESC_TORUS != 0)
 char *descLimpetTorus =
-	"name: Limpet Torus; \
-cat: torus; \
-ut: c; vt: c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-x: cos(u)/(sqrt(2) + sin(v)); \
-y: 1/(sqrt(2) + cos(v)); \
+	"name: Limpet Torus;\
+cat: torus;\
+ut: c; vt: c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+x: cos(u)/(sqrt(2) + sin(v));\
+y: 1/(sqrt(2) + cos(v));\
 z: sin(u)/(sqrt(2) + sin(v)); "
 #if (COMPILE_DESC_DERIV_U_TORUS != 0)
-	"xu: 0; \
-yu: 0; \
+	"xu: 0;\
+yu: 0;\
 zu: 0; "
 #endif
 #if (COMPILE_DESC_DERIV_V_TORUS != 0)
-	"xv: 0; \
-yv: 0; \
+	"xv: 0;\
+yv: 0;\
 zv: 0; "
 #endif
 #if (COMPILE_DESC_NORMAL_TORUS != 0)
-	"xn: 0; \
-yn: 0; \
+	"xn: 0;\
+yn: 0;\
 zn: 0; "
 #endif
 #if (COMPILE_DESC_DERIV2_U_TORUS != 0)
-	"xuu: 0; \
-yuu: 0; \
+	"xuu: 0;\
+yuu: 0;\
 zuu: 0; "
 #endif
 #if (COMPILE_DESC_DERIV_UV_TORUS != 0)
-	"xuv: 0; \
-yuv: 0; \
+	"xuv: 0;\
+yuv: 0;\
 zuv: 0; "
 #endif
 #if (COMPILE_DESC_DERIV2_V_TORUS != 0)
-	"xvv: 0; \
-yvv: 0; \
+	"xvv: 0;\
+yvv: 0;\
 zvv: 0; "
 #endif
 	"";

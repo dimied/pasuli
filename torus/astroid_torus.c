@@ -50,13 +50,13 @@ PaSuLiDefDesc pslddAstroidTorus = {
 #endif
 #if (COMPILE_DESC_TORUS != 0)
 char *descAstroidTorus =
-	"name: Astroid Torus; \
-cat: torus; \
-ut: c; vt: c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-c1:R: 1; c2:r: 1; \
-a1:F: (R + r*cos(v)^3); \
+	"name: Astroid Torus;\
+cat: torus;\
+ut: c; vt: c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+c1:R: 1; c2:r: 1;\
+a1:F: (R + r*cos(v)^3);\
 x: F*cos(u);\
 y: F*sin(u);\
 z: r*sin(v)^3;\

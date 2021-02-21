@@ -44,31 +44,31 @@ void ZissoideCylinder(pasuli_vartype u,
 
 #if (COMPILE_DESC_CYLINDER != 0)
 char *descZissoideCylinder =
-	"name: Zissoide-Cylinder; \
-ut: c; vt: o; \
-us:pi: -1; ue:pi: 1; \
-vs: -5; ve: 5; \
-c1:R: 1; c2:a: 1; \
-x: (R + a*v*v/(1 + v*v))*cos(u); \
-y: a*v^(3)/(1 + v*v); \
-z: (R + a*v*v/(1 + v*v))*sin(u); \
-xu: -sin(u)*(R+a*v*v/(1+v*v)); \
-yu: 0; \
-zu: cos(u)*(R+a*v*v/(1+v*v)); \
-xv: 2*a*v*cos(u)/((1+v*v)^2); \
-yv: a*v*v*(v*v + 3)/((1+v*v)^2); \
-zv: 2*a*v*sin(u)/((1+v*v)^2); \
-xn: ?; \
-yn: ?; \
-zn: ?; \
-xuu: -(R+(a*v*v)/(1+v*v))*cos(u); \
-yuu: 0; \
-zuu: -(R+(a*v*v)/(1+v*v))*sin(u); \
-xuv: -2*a*v*sin(u)/((1+v*v)^2); \
-yuv: 0; \
-zuv 2*a*v*cos(u)/((1+v*v)^2); \
-xvv: 2*a*cos(u)*(4*v^4*/(v*v + 1)^2 - 5*v*v/(v*v + 1) +1) /(v*v + 1); \
-yvv: 2*a*v(4*v^4/(v*v+1)^2 + - 7*v*v/(v*v+1) + 3)/(v*v+1); \
+	"name: Zissoide-Cylinder;\
+ut: c; vt: o;\
+us:pi: -1; ue:pi: 1;\
+vs: -5; ve: 5;\
+c1:R: 1; c2:a: 1;\
+x: (R + a*v*v/(1 + v*v))*cos(u);\
+y: a*v^(3)/(1 + v*v);\
+z: (R + a*v*v/(1 + v*v))*sin(u);\
+xu: -sin(u)*(R+a*v*v/(1+v*v));\
+yu: 0;\
+zu: cos(u)*(R+a*v*v/(1+v*v));\
+xv: 2*a*v*cos(u)/((1+v*v)^2);\
+yv: a*v*v*(v*v + 3)/((1+v*v)^2);\
+zv: 2*a*v*sin(u)/((1+v*v)^2);\
+xn: ?;\
+yn: ?;\
+zn: ?;\
+xuu: -(R+(a*v*v)/(1+v*v))*cos(u);\
+yuu: 0;\
+zuu: -(R+(a*v*v)/(1+v*v))*sin(u);\
+xuv: -2*a*v*sin(u)/((1+v*v)^2);\
+yuv: 0;\
+zuv 2*a*v*cos(u)/((1+v*v)^2);\
+xvv: 2*a*cos(u)*(4*v^4*/(v*v + 1)^2 - 5*v*v/(v*v + 1) +1) /(v*v + 1);\
+yvv: 2*a*v(4*v^4/(v*v+1)^2 + - 7*v*v/(v*v+1) + 3)/(v*v+1);\
 zvv: 2*a*cos(u)*(4*v^4*/(v*v + 1)^2 - 5*v*v/(v*v + 1) +1) /(v*v + 1); ";
 #endif
 

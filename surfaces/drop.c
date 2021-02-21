@@ -69,31 +69,31 @@ PASULI_V_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descDrop =
-	"name: Drop; \
-ut:c; vt:c; \
-us: 0; ue:pi: 1; \
-vs: 0; ve:pi: 2; \
-c1:a: 1.5; \
-c2:b: 0.5; \
-x: a*(b - cos(u))*sin(u)*cos(v); \
-y: a*(b - cos(u))*sin(u)*sin(v); \
-z: cos(u); \
-xu: a*cos(v)*(b*cos(u) - cos(u)*cos(u) + sin(u)*sin(u)); \
-yu: a*sin(v)*(b*cos(u) - cos(u)*cos(u) + sin(u)*sin(u)); \
-zu: -sin(u); \
-xv: sin(u)*sin(v)*a*(cos(u)-b); \
-yv: sin(u)*cos(v)*a*(b - cos(u)); \
-zv: 0; \
-xn: a*(b - cos(u))*cos(v)*sin(u)*sin(u); \
-yn: a*(b - cos(u))*sin(v)*sin(u)*sin(u); \
-zn: sin(u)*a*a*(b*b*cos(u) - 2*b*cos(u)^2 + b*sin(u)^2 + cos(u)^3 - cos(u)*sin(u)^2 ); \
-xuu: sin(u)*a*cos(v)*(4*cos(u)-b); \
-yuu: sin(u)*a*sin(v)*(4*cos(u)-b); \
-zuu: -cos(u); \
-xuv: sin(v)*a*(cos(u)*cos(u)-sin(u)*sin(u)-b*cos(u)); \
-yuv: -cos(v)*a*(cos(u)*cos(u)-sin(u)*sin(u)-b*cos(u)); \
-zuv: 0; \
-xvv: sin(u)*a*cos(v)*(cos(u)-b); \
-yvv: sin(u)*a*sin(v)*(cos(u)-b); \
+	"name: Drop;\
+ut:c; vt:c;\
+us: 0; ue:pi: 1;\
+vs: 0; ve:pi: 2;\
+c1:a: 1.5;\
+c2:b: 0.5;\
+x: a*(b - cos(u))*sin(u)*cos(v);\
+y: a*(b - cos(u))*sin(u)*sin(v);\
+z: cos(u);\
+xu: a*cos(v)*(b*cos(u) - cos(u)*cos(u) + sin(u)*sin(u));\
+yu: a*sin(v)*(b*cos(u) - cos(u)*cos(u) + sin(u)*sin(u));\
+zu: -sin(u);\
+xv: sin(u)*sin(v)*a*(cos(u)-b);\
+yv: sin(u)*cos(v)*a*(b - cos(u));\
+zv: 0;\
+xn: a*(b - cos(u))*cos(v)*sin(u)*sin(u);\
+yn: a*(b - cos(u))*sin(v)*sin(u)*sin(u);\
+zn: sin(u)*a*a*(b*b*cos(u) - 2*b*cos(u)^2 + b*sin(u)^2 + cos(u)^3 - cos(u)*sin(u)^2 );\
+xuu: sin(u)*a*cos(v)*(4*cos(u)-b);\
+yuu: sin(u)*a*sin(v)*(4*cos(u)-b);\
+zuu: -cos(u);\
+xuv: sin(v)*a*(cos(u)*cos(u)-sin(u)*sin(u)-b*cos(u));\
+yuv: -cos(v)*a*(cos(u)*cos(u)-sin(u)*sin(u)-b*cos(u));\
+zuv: 0;\
+xvv: sin(u)*a*cos(v)*(cos(u)-b);\
+yvv: sin(u)*a*sin(v)*(cos(u)-b);\
 zvv: 0; ";
 #endif

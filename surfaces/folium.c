@@ -49,17 +49,17 @@ PaSuLiDefDesc pslddFolium = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descFolium =
-	"name: Folium; \
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs:pi: -1; ve:pi: 1; \
-x: cos(u)*(2*v/pi - tanh(v)); \
-y: cos(u + 2*pi/3)/cosh(v); \
-z: cos(u - 2*pi/3)/cosh(v); \
-xu: (tanh(v) - 2*v)*sin(u)/pi; \
-yu: sin(u + 2*pi/3)/cosh(v); \
-zu: cos(u + pi/3)*sinh(v)/cosh(v); \
-xv: (2 - pi*sech(v)^2)*cos(u)/pi; \
-yv: -cos(u + 2*pi/3)*sinh(v)/cosh(v)^2; \
+	"name: Folium;\
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs:pi: -1; ve:pi: 1;\
+x: cos(u)*(2*v/pi - tanh(v));\
+y: cos(u + 2*pi/3)/cosh(v);\
+z: cos(u - 2*pi/3)/cosh(v);\
+xu: (tanh(v) - 2*v)*sin(u)/pi;\
+yu: sin(u + 2*pi/3)/cosh(v);\
+zu: cos(u + pi/3)*sinh(v)/cosh(v);\
+xv: (2 - pi*sech(v)^2)*cos(u)/pi;\
+yv: -cos(u + 2*pi/3)*sinh(v)/cosh(v)^2;\
 zv: sin(u + pi/3)*sinh(v)/cosh(v)^2; ";
 #endif

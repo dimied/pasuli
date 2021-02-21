@@ -53,22 +53,22 @@ PaSuLiDefDesc pslddEgg = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descEgg =
-	"name: Egg; \
-ut: c; vt: c; \
-us: 0; ue: c1: 1; \
-vs: 0; ve:pi: 2; \
-c1:a: 0.5; c2:b: 0.5; c3:c: 1.0; \
-cond:a:<=:c; \
-x: c*sqrt(u*(u - a)*(u - b))*sin(v); \
-y: c*sqrt(u*(u - a)*(u - b))*cos(v); \
-z: u; \
-xu: -c*(u*(a+b - 2*u) - (a-u)*(b-u))*sin(v)/2*sqrt(u*(a-u)*(b-u)); \
-yu: -c*(u*(a+b - 2*u) - (a-u)*(b-u))*cos(v)/2*sqrt(u*(a-u)*(b-u)); \
-zu: 1; \
-xv: c*sqrt(u*(u - a)*(u - b))*cos(v); \
-yv: -c*sqrt(u*(u - a)*(u - b))*sin(v); \
-zv: 0; \
-xn: c*sqrt(u*(u - a)*(u - b))*sin(v); \
-yn: c*sqrt(u*(u - a)*(u - b))*cos(v); \
+	"name: Egg;\
+ut: c; vt: c;\
+us: 0; ue: c1: 1;\
+vs: 0; ve:pi: 2;\
+c1:a: 0.5; c2:b: 0.5; c3:c: 1.0;\
+cond:a:<=:c;\
+x: c*sqrt(u*(u - a)*(u - b))*sin(v);\
+y: c*sqrt(u*(u - a)*(u - b))*cos(v);\
+z: u;\
+xu: -c*(u*(a+b - 2*u) - (a-u)*(b-u))*sin(v)/2*sqrt(u*(a-u)*(b-u));\
+yu: -c*(u*(a+b - 2*u) - (a-u)*(b-u))*cos(v)/2*sqrt(u*(a-u)*(b-u));\
+zu: 1;\
+xv: c*sqrt(u*(u - a)*(u - b))*cos(v);\
+yv: -c*sqrt(u*(u - a)*(u - b))*sin(v);\
+zv: 0;\
+xn: c*sqrt(u*(u - a)*(u - b))*sin(v);\
+yn: c*sqrt(u*(u - a)*(u - b))*cos(v);\
 zn: -a*b*c^2/2 + a*c^2 + b*c^2 - 3*c^2*u^2/2;";
 #endif

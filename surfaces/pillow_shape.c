@@ -56,30 +56,30 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descPillowShape =
-    "name: Pillow Shape; \
-ut:c; vt:c; \
-us: 0; ue:pi: 1; \
-vs:pi: -1; ve:pi: 1; \
-c1:a: 1.5; \
-x: cos(u); \
-y: cos(v); \
-z: a*sin(u)*sin(v); \
-xu: -sin(u); \
-yu: 0; \
-zu: a*cos(u)*sin(v); \
-xv: 0; \
-yv: -sin(v); \
-zv: a*cos(v)*sin(u); \
-xn: a*cos(u)*sin(v)*sin(v); \
-yn: a*cos(v)*sin(u)*sin(u); \
-zn: sin(u)*sin(v); \
-xuu: -cos(u); \
-yuu: 0; \
-zuu: -a*sin(u)*sin(v); \
-xuv: 0; \
-yuv: 0; \
-zuv: a*cos(u)*cos(v); \
-xvv: 0; \
-yvv: -cos(v); \
+    "name: Pillow Shape;\
+ut:c; vt:c;\
+us: 0; ue:pi: 1;\
+vs:pi: -1; ve:pi: 1;\
+c1:a: 1.5;\
+x: cos(u);\
+y: cos(v);\
+z: a*sin(u)*sin(v);\
+xu: -sin(u);\
+yu: 0;\
+zu: a*cos(u)*sin(v);\
+xv: 0;\
+yv: -sin(v);\
+zv: a*cos(v)*sin(u);\
+xn: a*cos(u)*sin(v)*sin(v);\
+yn: a*cos(v)*sin(u)*sin(u);\
+zn: sin(u)*sin(v);\
+xuu: -cos(u);\
+yuu: 0;\
+zuu: -a*sin(u)*sin(v);\
+xuv: 0;\
+yuv: 0;\
+zuv: a*cos(u)*cos(v);\
+xvv: 0;\
+yvv: -cos(v);\
 zvv: -a*sin(u)*sin(v);";
 #endif

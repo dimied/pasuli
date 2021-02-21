@@ -80,30 +80,30 @@ PaSuLiDefDesc pslddOpenSphere = {
 #endif
 #if (COMPILE_DESC_SPHERE != 0)
 char *descOpenSphere =
-	"name: Open sphere; \
-cat: sphere; \
-ut: o; vt: o; \
-us: -10; ue: 10; \
-vs: -10; ve: 10; \
-x: 2*u/(1 + u*u + v*v); \
-y: (u*u + v*v - 1)/(1 + u*u + v*v); \
-z: 2*v/(1 + u*u + v*v); \
-xu: 2*(1 - u*u + v*v)/((1 + u*u + v*v)^2); \
-yu: 4*u/((1 + u*u + v*v)^2); \
-zu: -4*u*v/((1 + u*u + v*v)^2); \
-xv: -4*u*v/((1 + u*u + v*v)^2); \
-yv: 4*v/((1 + u*u + v*v)^2); \
-zv: 2*(1+u*u - v*v)/((1 + u*u + v*v)^2); \
-xn: 8*u/((1 + u*u + v*v)^3); \
-yn: 4*(-1 + u*u + v*v)/((1 + u*u + v*v)^3); \
-zn: 8*v/((1 + u*u + v*v)^3); \
-xuu: 4*u*(u*u - 3*(1+v*v))/((1 + u*u + v*v)^3); \
-yuu: 4*(1+v*v-3*u*u)/((1 + u*u + v*v)^3); \
-zuu: 4*v*(3*u*u - (1+v*v))/((1 + u*u + v*v)^3); \
-xuv: 4*v*(3*u*u - (1+v*v))/((1 + u*u + v*v)^3); \
-yuv: -(16*u*v)/((1 + u*u + v*v)^3); \
-zuv: 4*u*(3*v*v - (1+u*u))/((1 + u*u + v*v)^3); \
-xvv: 4*u*(3*v*v - (1+u*u))/((1 + u*u + v*v)^3); \
-yvv: 4*(1+u*u-3*v*v)/((1 + u*u + v*v)^3); \
+	"name: Open sphere;\
+cat: sphere;\
+ut: o; vt: o;\
+us: -10; ue: 10;\
+vs: -10; ve: 10;\
+x: 2*u/(1 + u*u + v*v);\
+y: (u*u + v*v - 1)/(1 + u*u + v*v);\
+z: 2*v/(1 + u*u + v*v);\
+xu: 2*(1 - u*u + v*v)/((1 + u*u + v*v)^2);\
+yu: 4*u/((1 + u*u + v*v)^2);\
+zu: -4*u*v/((1 + u*u + v*v)^2);\
+xv: -4*u*v/((1 + u*u + v*v)^2);\
+yv: 4*v/((1 + u*u + v*v)^2);\
+zv: 2*(1+u*u - v*v)/((1 + u*u + v*v)^2);\
+xn: 8*u/((1 + u*u + v*v)^3);\
+yn: 4*(-1 + u*u + v*v)/((1 + u*u + v*v)^3);\
+zn: 8*v/((1 + u*u + v*v)^3);\
+xuu: 4*u*(u*u - 3*(1+v*v))/((1 + u*u + v*v)^3);\
+yuu: 4*(1+v*v-3*u*u)/((1 + u*u + v*v)^3);\
+zuu: 4*v*(3*u*u - (1+v*v))/((1 + u*u + v*v)^3);\
+xuv: 4*v*(3*u*u - (1+v*v))/((1 + u*u + v*v)^3);\
+yuv: -(16*u*v)/((1 + u*u + v*v)^3);\
+zuv: 4*u*(3*v*v - (1+u*u))/((1 + u*u + v*v)^3);\
+xvv: 4*u*(3*v*v - (1+u*u))/((1 + u*u + v*v)^3);\
+yvv: 4*(1+u*u-3*v*v)/((1 + u*u + v*v)^3);\
 zvv: 4*v*(v*v - 3*(1+u*u))/((1 + u*u + v*v)^3); ";
 #endif

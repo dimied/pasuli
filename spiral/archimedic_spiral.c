@@ -53,27 +53,27 @@ PaSuLiDefDesc pslddArchimedicSpiral = {
 #endif
 #if (COMPILE_DESC_SPIRAL != 0)
 char *descArchimedicSpiral =
-	"name: Archimedic Spiral; \
-cat: spiral; \
-ut: c; vt: o; \
-us: 0; ue: 23; \
-vs: 0; ve: 1; \
-c1:H: 1; \
-x: u*cos(u); \
-y: H*v; \
-z: u*sin(u); \
-xu: cos(u) - u*sin(u); \
-yu: 0; \
-zu: sin(u) + u*cos(u); \
-xv: 0; \
-yv: H; \
-zv: 0; \
-xn: -H*(sin(u) + u*cos(u)); \
-yn: 0; \
-zn: H*(cos(u) - u*sin(u)); \
-xuu: -2*sin(u) - u*cos(u); \
-yuu: 0; \
-zuu: 2*cos(u) - u*sin(u); \
-xuv: 0; yuv: 0; zuv: 0; \
+	"name: Archimedic Spiral;\
+cat: spiral;\
+ut: c; vt: o;\
+us: 0; ue: 23;\
+vs: 0; ve: 1;\
+c1:H: 1;\
+x: u*cos(u);\
+y: H*v;\
+z: u*sin(u);\
+xu: cos(u) - u*sin(u);\
+yu: 0;\
+zu: sin(u) + u*cos(u);\
+xv: 0;\
+yv: H;\
+zv: 0;\
+xn: -H*(sin(u) + u*cos(u));\
+yn: 0;\
+zn: H*(cos(u) - u*sin(u));\
+xuu: -2*sin(u) - u*cos(u);\
+yuu: 0;\
+zuu: 2*cos(u) - u*sin(u);\
+xuv: 0; yuv: 0; zuv: 0;\
 xvv: 0; yvv: 0; zvv: 0; ";
 #endif

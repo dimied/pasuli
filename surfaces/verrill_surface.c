@@ -46,17 +46,17 @@ PaSuLiDefDesc pslddVerrillSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descVerrillSurface =
-	"name: Verrill Surface; \
-ut:c; vt:c; \
-us: 0.5; ue: 1; \
-vs: 0; ve:pi: 2; \
-x: -2*u*cos(v) + (2*cos(v)/u) - 2*u^(3)*cos(3*v)/3; \
-y: 6*u*sin(v) - 2*sin(v)/u - 2*u^(3)*cos(3*v)/3; \
+	"name: Verrill Surface;\
+ut:c; vt:c;\
+us: 0.5; ue: 1;\
+vs: 0; ve:pi: 2;\
+x: -2*u*cos(v) + (2*cos(v)/u) - 2*u^(3)*cos(3*v)/3;\
+y: 6*u*sin(v) - 2*sin(v)/u - 2*u^(3)*cos(3*v)/3;\
 z: 4*log(u);\
-xu: -2*u^2*cos(3*v) - 2*cos(v)/u^2 - 2*cos(v); \
-yu: -2*u^2*cos(3*v) + 2*sin(v)/u^2 + 6*sin(v); \
-zu: 4/u; \
-xv: 2*u^3*sin(3*v) + 2*u*sin(v) - 2*sin(v)/u; \
-yv: 2*u^3*sin(3*v) + 6*u*cos(v) - 2*cos(v)/u; \
+xu: -2*u^2*cos(3*v) - 2*cos(v)/u^2 - 2*cos(v);\
+yu: -2*u^2*cos(3*v) + 2*sin(v)/u^2 + 6*sin(v);\
+zu: 4/u;\
+xv: 2*u^3*sin(3*v) + 2*u*sin(v) - 2*sin(v)/u;\
+yv: 2*u^3*sin(3*v) + 6*u*cos(v) - 2*cos(v)/u;\
 zv: 0;";
 #endif

@@ -41,17 +41,17 @@ PaSuLiDefDesc pslddFishSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descFishSurface =
-    "name: Fish Surface; \
-ut:c; vt:c; \
-us: 0; ue:pi: 1; \
-vs: 0; ve:pi: 2; \
-x: (cos(u) - cos(2*u))*cos(v)/4; \
-y: (sin(u) - sin(2*u))*sin(v)/4; \
-z: cos(u); \
-xu: (4*cos(u) - 1)*cos(v)*sin(u)/4; \
-yu: (cos(u) - 2*cos(2*u))*sin(v)/4; \
-zu: -sin(u); \
-xv: -(cos(u) - cos(2*u))*sin(v)/4; \
-yv: (sin(u) - sin(2*u))*cos(v)/4; \
+    "name: Fish Surface;\
+ut:c; vt:c;\
+us: 0; ue:pi: 1;\
+vs: 0; ve:pi: 2;\
+x: (cos(u) - cos(2*u))*cos(v)/4;\
+y: (sin(u) - sin(2*u))*sin(v)/4;\
+z: cos(u);\
+xu: (4*cos(u) - 1)*cos(v)*sin(u)/4;\
+yu: (cos(u) - 2*cos(2*u))*sin(v)/4;\
+zu: -sin(u);\
+xv: -(cos(u) - cos(2*u))*sin(v)/4;\
+yv: (sin(u) - sin(2*u))*cos(v)/4;\
 zv: 0; ";
 #endif

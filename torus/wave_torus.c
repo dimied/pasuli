@@ -86,21 +86,21 @@ B
 
 #if (COMPILE_DESC_TORUS != 0)
 char *descWaveTorus =
-	"name: wave torus; \
+	"name: wave torus;\
 cat: torus;\
 ut: c; vt: c;\
 us:0; ue:pi:2;\
 vs:0; ve:pi:2;\
-c1:R:1.5; c2:r:0.5; c3:a:1; c4:n:1; \
-x: (R + cos(v)*(r + a*sin(n*u)))*cos(u); \
-y: (R + cos(v)*(r + a*sin(n*u)))*sin(u); \
-z: (r + a*sin(n*u))*sin(v); \
-xu: -R*sin(u) + cos(v)*(a*(n*cos(n*u)*cos(u) - sin(u)*sin(n*u)) -  r*sin(u)); \
-yu: -R*cos(u) + cos(v)*(a*(n*cos(n*u)*sin(u) - cos(u)*sin(n*u)) -  r*cos(u)); \
-zu: a*n*cos(n*u)*sin(v); \
-xv: -(r + a*sin(n*u))*sin(v)*cos(u); \
-yv: -(r + a*sin(n*u))*sin(v)*sin(u); \
-zv: (r + a*sin(n*u))*cos(v); \
+c1:R:1.5; c2:r:0.5; c3:a:1; c4:n:1;\
+x: (R + cos(v)*(r + a*sin(n*u)))*cos(u);\
+y: (R + cos(v)*(r + a*sin(n*u)))*sin(u);\
+z: (r + a*sin(n*u))*sin(v);\
+xu: -R*sin(u) + cos(v)*(a*(n*cos(n*u)*cos(u) - sin(u)*sin(n*u)) -  r*sin(u));\
+yu: -R*cos(u) + cos(v)*(a*(n*cos(n*u)*sin(u) - cos(u)*sin(n*u)) -  r*cos(u));\
+zu: a*n*cos(n*u)*sin(v);\
+xv: -(r + a*sin(n*u))*sin(v)*cos(u);\
+yv: -(r + a*sin(n*u))*sin(v)*sin(u);\
+zv: (r + a*sin(n*u))*cos(v);\
 xn: a^2*n*cos(v)^2*cos(n*u)*sin(u)*sin(n*u) + \
 a^2*n*cos(n*u)*sin(u)*sin(v)^2*sin(n*u) + \
 a^2*cos(u)*cos(v)^2*sin(n*u)^2 +\
@@ -109,7 +109,7 @@ a*n*r*cos(n*u)*sin(u)*sin(v)^2 +\
 2*a*r*cos(u)*cos(v)^2*sin(n*u) +\
 a*R*cos(u)*cos(v)*sin(n*u) +\
 r*2*cos(u)*cos(v)^2 + \
-r*R*cos(u)*cos(v); \
+r*R*cos(u)*cos(v);\
 yn: −a^2*n*cos(u)*cos(v)^2*cos(n*u)*sin(n*u) −\
 a^2*n*cos(u)*cos(n*u)*sin(v)^2*sin(n*u) +\
 a^2*cos(v)^2*sin(u)*sin(n*u)^2 −\
@@ -118,7 +118,7 @@ a*n*r*cos(u)*cos(n*u)*sin(v)^2 +\
 2*a*r*cos(v)^2*sin(u)*sin(n*u) +\
 a*R*cos(v)*sin(u)*sin(n*u) +\
 r*2*cos(v)^2*sin(u) + \
-r*R*cos(v)*sin(u); \
+r*R*cos(v)*sin(u);\
 zn: a*2*cos(u)^2*cos(v)*sin(v)*sin(n*u)^2 +\
 a*2*cos(v)*sin(u)^2*sin(v)*sin(n*u)^2 +\
 2*a*r*cos(u)^2*cos(v)*sin(v)*sin(n*u) +\
@@ -128,15 +128,15 @@ a*R*sin(u)^2*sin(v)*sin(n*u) +\
 r*2*cos(u)^2*cos(v)*sin(v) +\
 r*2*cos(v)*sin(u)^2*sin(v) +\
 r*R*cos(u)^2*sin(v) +\
-r*R*sin(u)^2*sin(v); \
-xuu: -cos(u)*(R + a*cos(v)*sin(n*u) + a*n*n*cos(v)*sin(n*u) + r*cos(v)) - 2*a*n*cos(v)*cos(n*u)*sin(u); \
-yuu: -sin(u)*(R + a*cos(v)*sin(n*u) + a*n*n*cos(v)*sin(n*u) + r*cos(v)) -  2*a*n*cos(v)*cos(n*u)*cos(u); \
-zuu: -a*n*n*sin(v)*sin(n*u); \
-xuv: (-a*n*cos(u)*cos(n*u) + sin(u)*(a*sin(n*u) + r))*sin(v); \
-yuv: -(a*n*sin(u)*cos(n*u) + cos(u)*(a*sin(n*u) + r))*sin(v); \
-zuv: a*n*cos(v)*cos(n*u); \
-xvv: -(r + a*sin(n*u))*cos(v)*cos(u); \
-yvv: -(r + a*sin(n*u))*cos(v)*sin(u); \
+r*R*sin(u)^2*sin(v);\
+xuu: -cos(u)*(R + a*cos(v)*sin(n*u) + a*n*n*cos(v)*sin(n*u) + r*cos(v)) - 2*a*n*cos(v)*cos(n*u)*sin(u);\
+yuu: -sin(u)*(R + a*cos(v)*sin(n*u) + a*n*n*cos(v)*sin(n*u) + r*cos(v)) -  2*a*n*cos(v)*cos(n*u)*cos(u);\
+zuu: -a*n*n*sin(v)*sin(n*u);\
+xuv: (-a*n*cos(u)*cos(n*u) + sin(u)*(a*sin(n*u) + r))*sin(v);\
+yuv: -(a*n*sin(u)*cos(n*u) + cos(u)*(a*sin(n*u) + r))*sin(v);\
+zuv: a*n*cos(v)*cos(n*u);\
+xvv: -(r + a*sin(n*u))*cos(v)*cos(u);\
+yvv: -(r + a*sin(n*u))*cos(v)*sin(u);\
 zvv: (r + a*sin(n*u))*sin(v);";
 
 #endif

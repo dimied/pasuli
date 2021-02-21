@@ -60,29 +60,29 @@ PaSuLiDefDesc pslddHoleDisc = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descHoleDisc =
-    "name: Hole Disc; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 3; ve: 4.5; \
-x: sin(u)/(sqrt(2) + sin(v)); \
-y: cos(u)/(sqrt(2) + sin(v)); \
-z: cos(u)/(1 + sqrt(2)); \
-xu: cos(u)/(sqrt(2) + sin(v)); \
-yu: -sin(u)/(sqrt(2) + sin(v)); \
-zu: -sin(u)/(1 + sqrt(2)); \
-xv: sin(u)*cos(v)/(sqrt(2) + sin(v))^2; \
-yv: cos(u)*cos(v)/(sqrt(2) + sin(v))^2; \
-zv: 0; \
-xn: -cos(u)*cos(v)*sin(u)/((1 + sqrt(2))*(sqrt(2) + sin(v))^2); \
-yn: cos(v)*sin(u)^2/((1 + sqrt(2))*(sqrt(2) + sin(v))^2); \
-zn: -cos(v)/((sqrt(2) + sin(v))^3); \
-xuu: -sin(u)/(sqrt(2) + sin(v)); \
-yuu: -cos(u)/(sqrt(2) + sin(v)); \
-zuu: -cos(u)/(1 + sqrt(2)); \
-xuv: -cos(u)*cos(v)/(sqrt(2) + sin(v))^2; \
-yuv: sin(u)*cos(v)/(sqrt(2) + sin(v))^2; \
-zuv: 0; \
-xvv: sin(u)*(1 + cos(v)^2 + sqrt(2)*sin(v))/(sqrt(2) + sin(v))^3; \
-yvv: cos(u)*(1 + cos(v)^2 + sqrt(2)*sin(v))/(sqrt(2) + sin(v))^3; \
+    "name: Hole Disc;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 3; ve: 4.5;\
+x: sin(u)/(sqrt(2) + sin(v));\
+y: cos(u)/(sqrt(2) + sin(v));\
+z: cos(u)/(1 + sqrt(2));\
+xu: cos(u)/(sqrt(2) + sin(v));\
+yu: -sin(u)/(sqrt(2) + sin(v));\
+zu: -sin(u)/(1 + sqrt(2));\
+xv: sin(u)*cos(v)/(sqrt(2) + sin(v))^2;\
+yv: cos(u)*cos(v)/(sqrt(2) + sin(v))^2;\
+zv: 0;\
+xn: -cos(u)*cos(v)*sin(u)/((1 + sqrt(2))*(sqrt(2) + sin(v))^2);\
+yn: cos(v)*sin(u)^2/((1 + sqrt(2))*(sqrt(2) + sin(v))^2);\
+zn: -cos(v)/((sqrt(2) + sin(v))^3);\
+xuu: -sin(u)/(sqrt(2) + sin(v));\
+yuu: -cos(u)/(sqrt(2) + sin(v));\
+zuu: -cos(u)/(1 + sqrt(2));\
+xuv: -cos(u)*cos(v)/(sqrt(2) + sin(v))^2;\
+yuv: sin(u)*cos(v)/(sqrt(2) + sin(v))^2;\
+zuv: 0;\
+xvv: sin(u)*(1 + cos(v)^2 + sqrt(2)*sin(v))/(sqrt(2) + sin(v))^3;\
+yvv: cos(u)*(1 + cos(v)^2 + sqrt(2)*sin(v))/(sqrt(2) + sin(v))^3;\
 zvv: 0; ";
 #endif

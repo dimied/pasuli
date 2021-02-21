@@ -65,30 +65,30 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descBowCurve =
-    "name: Bow Curve; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-c1:T: 1.5; \
-x: (2 + T*sin(u))*sin(2*v); \
-y: (2 + T*sin(u))*cos(2*v); \
-z: T*cos(u) + 3*cos(v); \
-xu: T*cos(u)*sin(2*v); \
-yu: T*cos(u)*cos(2*v); \
-zu: -T*sin(u); \
-xv: 2*T*cos(2*v)*sin(u) + 4*cos(2*v); \
-yv: -(2*T*sin(2*v)*sin(u) + 4*sin(2*v)); \
-zv: -3*sin(v); \
-xn: -T*(2*T*sin(u)*sin(u)*sin(2*v) + 3*cos(u)*cos(2*v)*sin(v) + 4*sin(u)*sin(2*v)); \
-yn: -T*(2*T*sin(u)*sin(u)*cos(2*v) - 3*cos(u)*sin(2*v)*sin(v) + 4*sin(u)*cos(2*v)); \
-zn: -2*T*(T*cos(u)*sin(u) + 2*cos(u)); \
-xuu: -T*sin(u)*sin(2*v); \
-yuu: -T*sin(u)*cos(2*v); \
-zuu: -T*cos(u); \
-xuv: 2*T*cos(u)*cos(2*v); \
-yuv: -2*T*cos(u)*sin(2*v); \
-zuv: 0; \
-xvv: -4*sin(2*v)(T*sin(u) - 2); \
-yvv: -4*cos(2*v)(T*sin(u) - 2); \
+    "name: Bow Curve;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+c1:T: 1.5;\
+x: (2 + T*sin(u))*sin(2*v);\
+y: (2 + T*sin(u))*cos(2*v);\
+z: T*cos(u) + 3*cos(v);\
+xu: T*cos(u)*sin(2*v);\
+yu: T*cos(u)*cos(2*v);\
+zu: -T*sin(u);\
+xv: 2*T*cos(2*v)*sin(u) + 4*cos(2*v);\
+yv: -(2*T*sin(2*v)*sin(u) + 4*sin(2*v));\
+zv: -3*sin(v);\
+xn: -T*(2*T*sin(u)*sin(u)*sin(2*v) + 3*cos(u)*cos(2*v)*sin(v) + 4*sin(u)*sin(2*v));\
+yn: -T*(2*T*sin(u)*sin(u)*cos(2*v) - 3*cos(u)*sin(2*v)*sin(v) + 4*sin(u)*cos(2*v));\
+zn: -2*T*(T*cos(u)*sin(u) + 2*cos(u));\
+xuu: -T*sin(u)*sin(2*v);\
+yuu: -T*sin(u)*cos(2*v);\
+zuu: -T*cos(u);\
+xuv: 2*T*cos(u)*cos(2*v);\
+yuv: -2*T*cos(u)*sin(2*v);\
+zuv: 0;\
+xvv: -4*sin(2*v)(T*sin(u) - 2);\
+yvv: -4*cos(2*v)(T*sin(u) - 2);\
 zvv: -3*cos(v);";
 #endif

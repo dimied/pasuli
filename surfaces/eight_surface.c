@@ -58,29 +58,29 @@ PaSuLiDefDesc pslddEightSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descEightSurface =
-    "name: Eight Surface; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs:pi: -0.5; ve:pi: 0.5; \
-x: cos(u)*sin(2*v); \
-y: sin(u)*sin(2*v); \
-z: sin(v); \
-xu: -sin(u)*sin(2*v); \
-yu: cos(u)*sin(2*v); \
-zu: 0; \
-xv: 2*cos(u)*cos(2*v); \
-yv: 2*sin(u)*cos(2*v); \
-zv: cos(v); \
-xn: cos(u)*cos(v)*sin(2*v); \
-yn: sin(u)*cos(v)*sin(2*v); \
-zn: -2*cos(2*v)*sin(2*v); \
-xuu: -cos(u)*sin(2*v); \
-yuu: -sin(u)*sin(2*v); \
-zuu: 0; \
-xuv: -2*cos(2*v)*sin(u); \
-yuv: 2*cos(2*v)*cos(u); \
-zuv: 0; \
-xvv: -4*cos(u)*sin(2*v); \
-yvv: -4*sin(u)*sin(2*v); \
+    "name: Eight Surface;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs:pi: -0.5; ve:pi: 0.5;\
+x: cos(u)*sin(2*v);\
+y: sin(u)*sin(2*v);\
+z: sin(v);\
+xu: -sin(u)*sin(2*v);\
+yu: cos(u)*sin(2*v);\
+zu: 0;\
+xv: 2*cos(u)*cos(2*v);\
+yv: 2*sin(u)*cos(2*v);\
+zv: cos(v);\
+xn: cos(u)*cos(v)*sin(2*v);\
+yn: sin(u)*cos(v)*sin(2*v);\
+zn: -2*cos(2*v)*sin(2*v);\
+xuu: -cos(u)*sin(2*v);\
+yuu: -sin(u)*sin(2*v);\
+zuu: 0;\
+xuv: -2*cos(2*v)*sin(u);\
+yuv: 2*cos(2*v)*cos(u);\
+zuv: 0;\
+xvv: -4*cos(u)*sin(2*v);\
+yvv: -4*sin(u)*sin(2*v);\
 zvv: -sin(v); ";
 #endif

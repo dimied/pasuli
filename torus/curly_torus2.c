@@ -54,12 +54,12 @@ PaSuLiDefDesc pslddCurlyTorus2 = {
 #endif
 #if (COMPILE_DESC_TORUS != 0)
 char *descCurlyTorus2 =
-	"name: Curly Torus 2; \
-cat: torus; \
-us: 0; ue:pi:2; \
-vs: 0; ve:pi:2; \
-c1:R1:1; c2:R2:1; c3:r:1; c4:n:1; \
-a1:F: (R1 + R2*cos(n*u) + r*cos(v)); \
+	"name: Curly Torus 2;\
+cat: torus;\
+us: 0; ue:pi:2;\
+vs: 0; ve:pi:2;\
+c1:R1:1; c2:R2:1; c3:r:1; c4:n:1;\
+a1:F: (R1 + R2*cos(n*u) + r*cos(v));\
 x: F*cos(u);\
 y: F*sin(u);\
 z: r*sin(v);\

@@ -48,21 +48,21 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descZindlersConoid =
-    "name: Zindlers Conoid; \
-ut:c; vt:c; \
-us: -1; ue: 1; \
-vs: -0.75; ve: 0.75; \
-c1:a: 1.5; \
-x: u*cos(v); \
-y: u*sin(v); \
-z: a*tan(2*v); \
-xu: cos(v); \
-yu: sin(v); \
-zu: 0; \
-xv: -u*sin(v); \
-yv: u*cos(v); \
-zv: 2*a/cos(2*v)^2; \
-xn: 2*a*sin(v)/cos(2*v)^2; \
-yn: -2*a*cos(v)/cos(2*v)^2; \
+    "name: Zindlers Conoid;\
+ut:c; vt:c;\
+us: -1; ue: 1;\
+vs: -0.75; ve: 0.75;\
+c1:a: 1.5;\
+x: u*cos(v);\
+y: u*sin(v);\
+z: a*tan(2*v);\
+xu: cos(v);\
+yu: sin(v);\
+zu: 0;\
+xv: -u*sin(v);\
+yv: u*cos(v);\
+zv: 2*a/cos(2*v)^2;\
+xn: 2*a*sin(v)/cos(2*v)^2;\
+yn: -2*a*cos(v)/cos(2*v)^2;\
 zn: u;";
 #endif

@@ -45,18 +45,18 @@ PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descMoebiusBand2 =
-    "name: Moebius Band 2; \
-ut: c; vt: c; \
-us: -0.4; ue: 0.4; \
-vs: 0; ve:pi: 2; \
-c1:a: 1; c2:b: 1; c3:m: 1; \
-x: (a + u*sin(m*v/2))*cos(v); \
-y: (b + u*sin(m*v/2))*sin(v); \
-z: u*cos(m*v/2); \
-xu: cos(v)*sin(0.5*m*v); \
-yu: sin(v)*sin(0.5*m*v); \
-zu: cos(0.5*m*v); \
-xv: -a*sin(v) - 0.5*m*u*cos(v)*cos(0.5*m*v)-u*sin(0.5*m*v)*sin(v); \
-yv: b*cos(v) + u*(0.5*m*sin(v)*cos(0.5*m*v) + cos(v)*sin(0.5*m*v)); \
+    "name: Moebius Band 2;\
+ut: c; vt: c;\
+us: -0.4; ue: 0.4;\
+vs: 0; ve:pi: 2;\
+c1:a: 1; c2:b: 1; c3:m: 1;\
+x: (a + u*sin(m*v/2))*cos(v);\
+y: (b + u*sin(m*v/2))*sin(v);\
+z: u*cos(m*v/2);\
+xu: cos(v)*sin(0.5*m*v);\
+yu: sin(v)*sin(0.5*m*v);\
+zu: cos(0.5*m*v);\
+xv: -a*sin(v) - 0.5*m*u*cos(v)*cos(0.5*m*v)-u*sin(0.5*m*v)*sin(v);\
+yv: b*cos(v) + u*(0.5*m*sin(v)*cos(0.5*m*v) + cos(v)*sin(0.5*m*v));\
 zv: -0.5*m*u*sin(0.5*m*v);";
 #endif

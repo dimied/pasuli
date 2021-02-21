@@ -56,19 +56,19 @@ PaSuLiDefDesc pslddAntisymmetricTorus = {
 
 #if (COMPILE_DESC_TORUS != 0)
 char *descAntisymmetricTorus =
-	"name: Antisymmetric Torus; \
-cat: torus; \
-ut: c; vt: c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-c1:R: 1.5; c2:r: 0.5; c3:a: 1; \
-x: (R + r*cos(v)*(a + sin(u)))*cos(u); \
-y: (R + r*cos(v)*(a + sin(u)))*sin(u); \
+	"name: Antisymmetric Torus;\
+cat: torus;\
+ut: c; vt: c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+c1:R: 1.5; c2:r: 0.5; c3:a: 1;\
+x: (R + r*cos(v)*(a + sin(u)))*cos(u);\
+y: (R + r*cos(v)*(a + sin(u)))*sin(u);\
 z: r*sin(v)*(a + sin(u));\
-xu: r*cos(v)*cos(u)*cos(u) -  (R + r*cos(v)*(a + sin(u)))*sin(u); \
-yu: (R + r*cos(v)*(a + 2*sin(u)))*cos(u); \
-zu: r*sin(v)*cos(u); \
-xv: -r*sin(v)*(a + sin(u))*cos(u); \
-yv: -r*sin(v)*(a + sin(u))*sin(u); \
+xu: r*cos(v)*cos(u)*cos(u) -  (R + r*cos(v)*(a + sin(u)))*sin(u);\
+yu: (R + r*cos(v)*(a + 2*sin(u)))*cos(u);\
+zu: r*sin(v)*cos(u);\
+xv: -r*sin(v)*(a + sin(u))*cos(u);\
+yv: -r*sin(v)*(a + sin(u))*sin(u);\
 zv: r*cos(v)*(a + sin(u));";
 #endif

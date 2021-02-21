@@ -70,42 +70,42 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 */
 #if(COMPILE_DESC_TORUS != 0)
 char* descLemniskateTorus2 =
-"name: Lemniskate Torus 2; \
-cat: torus; \
-us: 0; ue:pi:2; \
-vs: 0; ve:pi:2; \
-c1:R:1.5; c2:r:0.5; \
-x: (R + r*sin(v)*cos(v)/(1 + sin(v)*sin(v)))*cos(u); \
-y: r*cos(v)/(1 + sin(v)*sin(v)); \
+"name: Lemniskate Torus 2;\
+cat: torus;\
+us: 0; ue:pi:2;\
+vs: 0; ve:pi:2;\
+c1:R:1.5; c2:r:0.5;\
+x: (R + r*sin(v)*cos(v)/(1 + sin(v)*sin(v)))*cos(u);\
+y: r*cos(v)/(1 + sin(v)*sin(v));\
 z: (R + r*sin(v) cos(v)/(1 + sin(v)*sin(v)))*sin(u); "
 #if(COMPILE_DESC_DERIV_U_TORUS != 0)
-"xu: 0; \
-yu: 0; \
+"xu: 0;\
+yu: 0;\
 zu: 0; "
 #endif
 #if(COMPILE_DESC_DERIV_V_TORUS != 0)
-"xv: 0; \
-yv: 0; \
+"xv: 0;\
+yv: 0;\
 zv: 0; "
 #endif
 #if(COMPILE_DESC_NORMAL_TORUS != 0)
-"xn: 0; \
-yn: 0; \
+"xn: 0;\
+yn: 0;\
 zn: 0; "
 #endif
 #if(COMPILE_DESC_DERIV2_U_TORUS != 0)
-"xuu: 0; \
-yuu: 0; \
+"xuu: 0;\
+yuu: 0;\
 zuu: 0; "
 #endif
 #if(COMPILE_DESC_DERIV_UV_TORUS != 0)
-"xuv: 0; \
-yuv: 0; \
+"xuv: 0;\
+yuv: 0;\
 zuv: 0; "
 #endif
 #if(COMPILE_DESC_DERIV2_V_TORUS != 0)
-"xvv: 0; \
-yvv: 0; \
+"xvv: 0;\
+yvv: 0;\
 zvv: 0; "
 #endif
 "";

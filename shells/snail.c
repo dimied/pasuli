@@ -54,20 +54,20 @@ PaSuLiDefDesc pslddSnail = {
 	0, 6, 0, 2, 0};
 #endif
 #if (COMPILE_DESC_SHELLS != 0)
-char *descSnail = "name: Snail; \
-cat: shells; \
-ut: c; vt: c; \
-us: 0; ue:pi: 6; \
-vs: 0; ve:pi: 2; \
-c1:a: 1; c2:b: 1; \
-a1:h: e^(u/(6*pi)); \
-x: a*(1-h)*cos(u)*cos(0.5*v)*cos(0.5*v); \
-y: 1 - e^(u/(b*pi)) - sin(v) + h*sin(v); \
-z: a*(h-1)*sin(u)*cos(0.5*v)*cos(0.5*v); \
-xu: a*h*cos(0.5*v)^2*sin(u) - a*cos(0.5*v)^2*sin(u) - a*h*cos(u)*cos(0.5*v)^2/(6*pi); \
-yu: h*sin(v)/6*pi - h/(b*pi); \
-zu: a*h*cos(0.5*v)^2*cos(u) - a*cos(0.5*v)^2*cos(u) - a*h*sin(u)*cos(0.5*v)^2/(6*pi); \
-xv: a*(h-1)*cos(u)*sin(0.5*v)*cos(0.5*v); \
-yv: (h-1)*cos(v); \
+char *descSnail = "name: Snail;\
+cat: shells;\
+ut: c; vt: c;\
+us: 0; ue:pi: 6;\
+vs: 0; ve:pi: 2;\
+c1:a: 1; c2:b: 1;\
+a1:h: e^(u/(6*pi));\
+x: a*(1-h)*cos(u)*cos(0.5*v)*cos(0.5*v);\
+y: 1 - e^(u/(b*pi)) - sin(v) + h*sin(v);\
+z: a*(h-1)*sin(u)*cos(0.5*v)*cos(0.5*v);\
+xu: a*h*cos(0.5*v)^2*sin(u) - a*cos(0.5*v)^2*sin(u) - a*h*cos(u)*cos(0.5*v)^2/(6*pi);\
+yu: h*sin(v)/6*pi - h/(b*pi);\
+zu: a*h*cos(0.5*v)^2*cos(u) - a*cos(0.5*v)^2*cos(u) - a*h*sin(u)*cos(0.5*v)^2/(6*pi);\
+xv: a*(h-1)*cos(u)*sin(0.5*v)*cos(0.5*v);\
+yv: (h-1)*cos(v);\
 zv: a*(1-h)*sin(u)*sin(0.5*v)*cos(0.5*v); ";
 #endif

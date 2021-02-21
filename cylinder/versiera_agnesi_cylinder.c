@@ -44,31 +44,31 @@ void VersieraAgnesiCylinder(pasuli_vartype u,
 
 #if (COMPILE_DESC_CYLINDER != 0)
 char *descVersieraAgnesiCylinder =
-	"name: Versiera-Agnesi-Cylinder; \
-ut: c; vt: o; \
-us:pi: -1; ue:pi: 1; \
-vs: -3; ve: 3; \
-c1:R: 1; c2:a: 1; \
-x: (R + 2*a/(1 + v*v))*cos(u); \
-y: 2*a*v; \
-z: (R + 2*a/(1 + v*v))*sin(u); \
-xu: -sin(u)*(R+2*a/(1+v*v)); \
-yu: 0; \
-zu: cos(u)*(R+2*a/(1+v*v)); \
-xv: -4*a*v*cos(u)/((1+v*v)^2); \
-yv: 2*a; \
-zv: -4*a*v*sin(u)/((1+v*v)^2); \
-xn: -2*a*(2*a/(1+v*v)-R)*cos(u); \
-yn: -4*a*v*(R + 2*a + R*v*v)/((1+v*v)^3); \
-xn: -2*a*(2*a/(1+v*v)-R)*sin(u); \
-xuu : -cos(u) * (R + 2 * a * / (1 + v * v)); \
-yuu : 0; \
-zuu : -sin(u) * (R + 2 * a * / (1 + v * v)); \
-xuv : 4 * a *v *sin(u) / ((1 + v * v) ^ 2); \
-yuv : 0; \
-zuv : -4 * a *v *cos(u) / ((1 + v * v) ^ 2); \
-xvv : 4 * a * cos(u)*(4*v/(1 + v * v) - 1) / ((1 + v * v) ^ 2); \
-yvv: 0; \
+	"name: Versiera-Agnesi-Cylinder;\
+ut: c; vt: o;\
+us:pi: -1; ue:pi: 1;\
+vs: -3; ve: 3;\
+c1:R: 1; c2:a: 1;\
+x: (R + 2*a/(1 + v*v))*cos(u);\
+y: 2*a*v;\
+z: (R + 2*a/(1 + v*v))*sin(u);\
+xu: -sin(u)*(R+2*a/(1+v*v));\
+yu: 0;\
+zu: cos(u)*(R+2*a/(1+v*v));\
+xv: -4*a*v*cos(u)/((1+v*v)^2);\
+yv: 2*a;\
+zv: -4*a*v*sin(u)/((1+v*v)^2);\
+xn: -2*a*(2*a/(1+v*v)-R)*cos(u);\
+yn: -4*a*v*(R + 2*a + R*v*v)/((1+v*v)^3);\
+xn: -2*a*(2*a/(1+v*v)-R)*sin(u);\
+xuu : -cos(u) * (R + 2 * a * / (1 + v * v));\
+yuu : 0;\
+zuu : -sin(u) * (R + 2 * a * / (1 + v * v));\
+xuv : 4 * a *v *sin(u) / ((1 + v * v) ^ 2);\
+yuv : 0;\
+zuv : -4 * a *v *cos(u) / ((1 + v * v) ^ 2);\
+xvv : 4 * a * cos(u)*(4*v/(1 + v * v) - 1) / ((1 + v * v) ^ 2);\
+yvv: 0;\
 zvv: 4 * a * sin(u)*(4*v/(1 + v * v) - 1) / ((1 + v * v) ^ 2);";
 #endif
 

@@ -51,21 +51,21 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descDiniSurface =
-	"name: Dini Surface; \
-ut:c; vt:c; \
-us: 0; ue:pi: 4; \
-vs: 0.01: ve:pi: 1; \
-c1:a: 1.5; c2:b: 0.5; \
-x: a*cos(u)*sin(v); \
-y: a*sin(u)*sin(v); \
-z: a*(cos(v) + ln(tan(v/2))) + b*u; \
-xu: -a*sin(u)*sin(v); \
-yu: a*cos(u)*sin(v); \
-zu: b; \
-xv: a*cos(u)*cos(v); \
-yv: a*sin(u)*cos(v); \
-zv: a*(1/sin(v) - sin(v)); \
-xn: a*a*cos(u) - a*a*cos(u)*sin(v)^2 - a*b*cos(v)*sin(u); \
-yn: a*a*sin(u) - a*a*sin(u)*sin(v)^2 + a*b*cos(u)*cos(v); \
+	"name: Dini Surface;\
+ut:c; vt:c;\
+us: 0; ue:pi: 4;\
+vs: 0.01: ve:pi: 1;\
+c1:a: 1.5; c2:b: 0.5;\
+x: a*cos(u)*sin(v);\
+y: a*sin(u)*sin(v);\
+z: a*(cos(v) + ln(tan(v/2))) + b*u;\
+xu: -a*sin(u)*sin(v);\
+yu: a*cos(u)*sin(v);\
+zu: b;\
+xv: a*cos(u)*cos(v);\
+yv: a*sin(u)*cos(v);\
+zv: a*(1/sin(v) - sin(v));\
+xn: a*a*cos(u) - a*a*cos(u)*sin(v)^2 - a*b*cos(v)*sin(u);\
+yn: a*a*sin(u) - a*a*sin(u)*sin(v)^2 + a*b*cos(u)*cos(v);\
 zn: -a^2*cos(v)*sin(v); ";
 #endif

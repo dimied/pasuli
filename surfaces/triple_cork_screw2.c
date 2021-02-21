@@ -57,21 +57,21 @@ PASULI_CONST_COUNT(6),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descTripleCorkScrew2 =
-	"name: Triple Cork Screw 2; \
-ut:c; vt:c; \
-us: -1; ue: 1; \
-vs:pi: -1; ve:pi: 1; \
-c1:R: 1.5; c2:r: 0.5; c3:L: 1.0; \
-c4:N: 1.0; c5:a: 1.0; c6:b: 1.0; \
-a1:c: r*exp(-(b*b*u*u)); \
-a2:d: R*exp(-(a*a*u*u)); \
-x: c*cos(v) + d*cos(u*N*pi); \
-y: c*sin(v) + d*sin(u*N*pi); \
-z: L*u; \
-xu: -R*exp(-(a*a*u*u))*(2*a*a*u*cos(N*pi*u) + N*pi*sin(N*pi*u)) - 2*b*b*r*u*cos(v)*exp(-(b*b*u*u)); \
-yu: -R*exp(-(a*a*u*u))*(2*a*a*u*sin(N*pi*u) - N*pi*cos(N*pi*u)) - 2*b*b*r*u*sin(v)*exp(-(b*b*u*u)); \
-zu: L; \
-xv: -r*sin(v)*exp(-(b*b*u*u)); \
-yv: r*cos(v)*exp(-(b*b*u*u)); \
+	"name: Triple Cork Screw 2;\
+ut:c; vt:c;\
+us: -1; ue: 1;\
+vs:pi: -1; ve:pi: 1;\
+c1:R: 1.5; c2:r: 0.5; c3:L: 1.0;\
+c4:N: 1.0; c5:a: 1.0; c6:b: 1.0;\
+a1:c: r*exp(-(b*b*u*u));\
+a2:d: R*exp(-(a*a*u*u));\
+x: c*cos(v) + d*cos(u*N*pi);\
+y: c*sin(v) + d*sin(u*N*pi);\
+z: L*u;\
+xu: -R*exp(-(a*a*u*u))*(2*a*a*u*cos(N*pi*u) + N*pi*sin(N*pi*u)) - 2*b*b*r*u*cos(v)*exp(-(b*b*u*u));\
+yu: -R*exp(-(a*a*u*u))*(2*a*a*u*sin(N*pi*u) - N*pi*cos(N*pi*u)) - 2*b*b*r*u*sin(v)*exp(-(b*b*u*u));\
+zu: L;\
+xv: -r*sin(v)*exp(-(b*b*u*u));\
+yv: r*cos(v)*exp(-(b*b*u*u));\
 zv: 0;";
 #endif

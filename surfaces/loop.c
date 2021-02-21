@@ -57,29 +57,29 @@ PaSuLiDefDesc pslddLoop = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descLoop =
-	"name: Loop; \
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs:pi: -1; ve:pi: 1; \
-x: sin(v)*cos(u); \
-y: 2*cos(v); \
-z: 4*sin(v)*cos(v); \
-xu: -sin(u)*sin(v); \
-yu: 0; \
-zu: 0; \
-xv: cos(u)*cos(v); \
-yv: -2*sin(v); \
-zv: 4*(cos(v)^2 - sin(v)^2); \
-xn: 0; \
-yn: 4*(cos(v)^2*sin(u)*sin(v) - sin(u)*sin(v)^3); \
-zn: 2*sin(u)*sin(v)^2; \
-xuu: -cos(u)*sin(v); \
-yuu: 0; \
-zuu: 0; \
-xuv: -cos(v)*sin(u); \
-yuv: 0; \
-zuv: 0; \
-xvv: -cos(u)*sin(v); \
-yvv: -2*cos(v); \
+	"name: Loop;\
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs:pi: -1; ve:pi: 1;\
+x: sin(v)*cos(u);\
+y: 2*cos(v);\
+z: 4*sin(v)*cos(v);\
+xu: -sin(u)*sin(v);\
+yu: 0;\
+zu: 0;\
+xv: cos(u)*cos(v);\
+yv: -2*sin(v);\
+zv: 4*(cos(v)^2 - sin(v)^2);\
+xn: 0;\
+yn: 4*(cos(v)^2*sin(u)*sin(v) - sin(u)*sin(v)^3);\
+zn: 2*sin(u)*sin(v)^2;\
+xuu: -cos(u)*sin(v);\
+yuu: 0;\
+zuu: 0;\
+xuv: -cos(v)*sin(u);\
+yuv: 0;\
+zuv: 0;\
+xvv: -cos(u)*sin(v);\
+yvv: -2*cos(v);\
 zvv: -16*cos(v)*sin(v);";
 #endif

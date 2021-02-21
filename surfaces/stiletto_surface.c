@@ -51,17 +51,17 @@ PaSuLiDefDesc pslddStilettoSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descStilettoSurface =
-	"name: Stiletto Surface; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 1; \
-x: (2+cos(u))*cos(v)*cos(v)*cos(v)*sin(v); \
-y: (2+cos(u+2*pi/3))*cos(v+2*pi/3)*cos(v+2*pi/3)*sin(v+2*pi/3)*sin(v+2*pi/3); \
-z: -(2+cos(u-2*pi/3))*cos(v+2*pi/3)*cos(v+2*pi/3)*sin(v+2*pi/3)*sin(v+2*pi/3); \
-xu: -cos(v)^3*sin(u)*sin(v); \
-yu: -cos(v+pi/6)^2*sin(v+pi/6)^2*cos(u+pi/6); \
-zu: -cos(v+pi/6)^2*sin(v+pi/6)^2*sin(u+pi/3); \
-xv: -cos(v)^2*(-1+4*sin(v)^2)*(2+cos(u)); \
-yv: (sin(u + pi/6)-2)*(-cos(2*v) + sqrt(3)*sin(2*v))*cos(v+pi/6)*sin(v+pi/6); \
+	"name: Stiletto Surface;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 1;\
+x: (2+cos(u))*cos(v)*cos(v)*cos(v)*sin(v);\
+y: (2+cos(u+2*pi/3))*cos(v+2*pi/3)*cos(v+2*pi/3)*sin(v+2*pi/3)*sin(v+2*pi/3);\
+z: -(2+cos(u-2*pi/3))*cos(v+2*pi/3)*cos(v+2*pi/3)*sin(v+2*pi/3)*sin(v+2*pi/3);\
+xu: -cos(v)^3*sin(u)*sin(v);\
+yu: -cos(v+pi/6)^2*sin(v+pi/6)^2*cos(u+pi/6);\
+zu: -cos(v+pi/6)^2*sin(v+pi/6)^2*sin(u+pi/3);\
+xv: -cos(v)^2*(-1+4*sin(v)^2)*(2+cos(u));\
+yv: (sin(u + pi/6)-2)*(-cos(2*v) + sqrt(3)*sin(2*v))*cos(v+pi/6)*sin(v+pi/6);\
 zv: -(cos(u+pi/3) - 2)*(-cos(2*v) + sqrt(3)*sin(2*v))*cos(v+pi/6)*sin(v+pi/6);";
 #endif

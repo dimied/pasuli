@@ -58,27 +58,27 @@ PaSuLiDefDesc pslddBohemianDomeSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descBohemianDomeSurface =
-    "name: Bohemian Dome Surface; \
-ut:c; vt:c; \
-us: 0; ue:pi:2; vs:0; ve:pi:2; \
-c1:a:1; c2:b:1; c3:c:1; \
-x: a*cos(u); \
-y: b*cos(v) + a*sin(u); \
-z: c*sin(v); \
-xu: -a*sin(u); \
-yu: a*cos(u); \
-zu: 0; \
-xv: 0; \
-yv: -b*sin(v); \
-zv: c*cos(v); \
-xn: a*c*cos(u)*cos(v); \
-yn: a*c*sin(u)*cos(v); \
-zn: a*b*sin(u)*sin(v); \
-xuu: -a*cos(u); \
-yuu: -a*sin(u); \
-zuu: 0; \
-xuv: 0; yuv: 0; zuv: 0; \
-xvv: 0; \
-yvv: -b*cos(v); \
+    "name: Bohemian Dome Surface;\
+ut:c; vt:c;\
+us: 0; ue:pi:2; vs:0; ve:pi:2;\
+c1:a:1; c2:b:1; c3:c:1;\
+x: a*cos(u);\
+y: b*cos(v) + a*sin(u);\
+z: c*sin(v);\
+xu: -a*sin(u);\
+yu: a*cos(u);\
+zu: 0;\
+xv: 0;\
+yv: -b*sin(v);\
+zv: c*cos(v);\
+xn: a*c*cos(u)*cos(v);\
+yn: a*c*sin(u)*cos(v);\
+zn: a*b*sin(u)*sin(v);\
+xuu: -a*cos(u);\
+yuu: -a*sin(u);\
+zuu: 0;\
+xuv: 0; yuv: 0; zuv: 0;\
+xvv: 0;\
+yvv: -b*cos(v);\
 zvv: -c*sin(v);";
 #endif

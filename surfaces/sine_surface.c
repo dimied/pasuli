@@ -62,29 +62,29 @@ PaSuLiDefDesc pslddSineSurface = {
 
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSineSurface =
-    "name: Sine Surface; \
-ut:c; vt:c; \
-us:pi:-1; ue:pi:1; \
-vs:pi:-1; ve:pi:1; \
-x: sin(u); \
-y: sin(v); \
-z: sin(u+v); \
-xu: cos(u); \
-yu: 0; \
-zu: cos(u+v); \
-xv: 0; \
-yv: cos(v); \
-zv: cos(u+v); \
-xn: -cos(v)*cos(u+v); \
-yn: -cos(u)*cos(u+v); \
-zn: cos(u)*cos(v); \
-xuu: -sin(u); \
-yuu: 0; \
-zuu: -sin(u+v); \
-xuv: 0; \
-yuv: 0; \
-zuv: -sin(u+v); \
-xvv: 0; \
-yvv: -sin(v); \
+    "name: Sine Surface;\
+ut:c; vt:c;\
+us:pi:-1; ue:pi:1;\
+vs:pi:-1; ve:pi:1;\
+x: sin(u);\
+y: sin(v);\
+z: sin(u+v);\
+xu: cos(u);\
+yu: 0;\
+zu: cos(u+v);\
+xv: 0;\
+yv: cos(v);\
+zv: cos(u+v);\
+xn: -cos(v)*cos(u+v);\
+yn: -cos(u)*cos(u+v);\
+zn: cos(u)*cos(v);\
+xuu: -sin(u);\
+yuu: 0;\
+zuu: -sin(u+v);\
+xuv: 0;\
+yuv: 0;\
+zuv: -sin(u+v);\
+xvv: 0;\
+yvv: -sin(v);\
 zvv: -sin(u+v); ";
 #endif

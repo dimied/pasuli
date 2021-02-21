@@ -53,7 +53,7 @@ function createGeometry(scene) {\n\
   const geometry = new THREE.BufferGeometry();\n\
   // attributes\n\n\
   // 3 vertices per point\n\
-  const positions = new Float32Array( MAX_POINTS * 3 ); \n\
+  const positions = new Float32Array( MAX_POINTS * 3 );\n\
 geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );\n\
 \n\
 // draw range\n\

@@ -61,31 +61,31 @@ PaSuLiDefDesc pslddTorus = {
 #endif
 #if (COMPILE_DESC_TORUS != 0)
 char *descTorus =
-	"name: Torus; \
-cat: torus; \
-ut: c; vt: c; \
-us:0;  ue:pi:2; \
-vs:0; ve:pi:2; \
-c1:R:1.5; c2:r:0.5; \
-x: (R + r*cos(v))*cos(u); \
-y: (R + r*cos(v))*sin(u); \
-z: r*sin(v); \
-xu: -(R + r*cos(v))*sin(u) ; \
-yu: (R + r*cos(v))*cos(u); \
-zu: 0; \
-xv: -r*sin(v)*cos(u); \
-yv: -r*sin(v)*sin(u); \
-zv: r*cos(v); \
-xn: r*(R + r*cos(v))*cos(u)*cos(v); \
-yn: r*(R + r*cos(v))*sin(u)*cos(v); \
-zn: (R + r*cos(v))*r*sin(v); \
-xuu: -(R + r*cos(v))*cos(u); \
-yuu: -(R + r*cos(v))*sin(u); \
-zuu: 0; \
-xuv: r*sin(v)*sin(u); \
-yuv: -r*sin(v)*cos(u); \
-zuv: 0; \
-xvv: -r*cos(v)*cos(u); \
-yvv: -r*cos(v)*sin(u); \
+	"name: Torus;\
+cat: torus;\
+ut: c; vt: c;\
+us:0;  ue:pi:2;\
+vs:0; ve:pi:2;\
+c1:R:1.5; c2:r:0.5;\
+x: (R + r*cos(v))*cos(u);\
+y: (R + r*cos(v))*sin(u);\
+z: r*sin(v);\
+xu: -(R + r*cos(v))*sin(u) ;\
+yu: (R + r*cos(v))*cos(u);\
+zu: 0;\
+xv: -r*sin(v)*cos(u);\
+yv: -r*sin(v)*sin(u);\
+zv: r*cos(v);\
+xn: r*(R + r*cos(v))*cos(u)*cos(v);\
+yn: r*(R + r*cos(v))*sin(u)*cos(v);\
+zn: (R + r*cos(v))*r*sin(v);\
+xuu: -(R + r*cos(v))*cos(u);\
+yuu: -(R + r*cos(v))*sin(u);\
+zuu: 0;\
+xuv: r*sin(v)*sin(u);\
+yuv: -r*sin(v)*cos(u);\
+zuv: 0;\
+xvv: -r*cos(v)*cos(u);\
+yvv: -r*cos(v)*sin(u);\
 zvv: -r*sin(v);";
 #endif

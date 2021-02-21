@@ -62,31 +62,31 @@ PaSuLiDefDesc pslddEllipsoid = {
 
 #if (COMPILE_DESC_SPHERE != 0)
 char *descEllipsoid =
-	"name: ellipsoid; \
-cat: sphere; \
-ut: c; vt: c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 1; \
-c1:a: 1.5; c2:b: 1.0; c3:c: 1.0; \
-x: a*cos(u)*sin(v); \
-y: b*sin(u)*sin(v); \
-z: c*cos(v); \
-xu: -a*sin(u)*sin(v); \
-yu: b*cos(u)*sin(v); \
-zu: 0; \
-xv: a*cos(u)*cos(v); \
-yv: b*sin(u)*cos(v); \
-zv: -c*sin(v); \
-xn: -b*c*sin(v)*sin(v)*cos(u); \
-yn: -a*c*sin(v)*sin(v)*sin(u); \
-zn: -a*b*sin(v)*cos(v); \
-xuu: -a*cos(u)*sin(v); \
-yuu: -b*sin(u)*sin(v); \
-zuu: 0; \
-xuv: -a*sin(u)*cos(v); \
-yuv: b*cos(u)*cos(v); \
-zuv: 0; \
-xvv: -a*cos(u)*sin(v); \
-yvv: -b*sin(u)*sin(v); \
+	"name: ellipsoid;\
+cat: sphere;\
+ut: c; vt: c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 1;\
+c1:a: 1.5; c2:b: 1.0; c3:c: 1.0;\
+x: a*cos(u)*sin(v);\
+y: b*sin(u)*sin(v);\
+z: c*cos(v);\
+xu: -a*sin(u)*sin(v);\
+yu: b*cos(u)*sin(v);\
+zu: 0;\
+xv: a*cos(u)*cos(v);\
+yv: b*sin(u)*cos(v);\
+zv: -c*sin(v);\
+xn: -b*c*sin(v)*sin(v)*cos(u);\
+yn: -a*c*sin(v)*sin(v)*sin(u);\
+zn: -a*b*sin(v)*cos(v);\
+xuu: -a*cos(u)*sin(v);\
+yuu: -b*sin(u)*sin(v);\
+zuu: 0;\
+xuv: -a*sin(u)*cos(v);\
+yuv: b*cos(u)*cos(v);\
+zuv: 0;\
+xvv: -a*cos(u)*sin(v);\
+yvv: -b*sin(u)*sin(v);\
 zvv: -c*cos(v); ";
 #endif

@@ -45,17 +45,17 @@ PaSuLiDefDesc pslddTriaxialTeardrop = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descTriaxialTeardrop =
-	"name: Triaxial Teardrop; \
-ut:c; vt:c; \
-us: 0; ue:pi: 1; \
-vs: 0; ve:pi: 2; \
-x: (1 - cos(u))*cos(u + 2*pi/3)*cos(v + 2*pi/3)/2; \
-y: (1 - cos(u))*cos(u + 2*pi/3)*cos(v - 2*pi/3)/2; \
-z: cos(u - 2*pi/3); \
-xu: cos(v + 2*pi/3)*(cos(u)*sin(u + 2*pi/3) + cos(u + 2*pi/3)*sin(u) - sin(u + 2*pi/3))/2; \
-yu: cos(v - 2*pi/3)/2*(cos(u)*sin(u + 2*pi/3) + cos(u + 2*pi/3)*sin(u) - sin(u + 2*pi/3))/2; \
-zu: sin(2*pi-u); \
-xv: -(1 - cos(u))*cos(u + 2*pi/3)*sin(v + 2*pi/3); \
-yv: (1 - cos(u))*cos(u + 2*pi/3)*sin(2*pi/3-v); \
+	"name: Triaxial Teardrop;\
+ut:c; vt:c;\
+us: 0; ue:pi: 1;\
+vs: 0; ve:pi: 2;\
+x: (1 - cos(u))*cos(u + 2*pi/3)*cos(v + 2*pi/3)/2;\
+y: (1 - cos(u))*cos(u + 2*pi/3)*cos(v - 2*pi/3)/2;\
+z: cos(u - 2*pi/3);\
+xu: cos(v + 2*pi/3)*(cos(u)*sin(u + 2*pi/3) + cos(u + 2*pi/3)*sin(u) - sin(u + 2*pi/3))/2;\
+yu: cos(v - 2*pi/3)/2*(cos(u)*sin(u + 2*pi/3) + cos(u + 2*pi/3)*sin(u) - sin(u + 2*pi/3))/2;\
+zu: sin(2*pi-u);\
+xv: -(1 - cos(u))*cos(u + 2*pi/3)*sin(v + 2*pi/3);\
+yv: (1 - cos(u))*cos(u + 2*pi/3)*sin(2*pi/3-v);\
 zv: 0;";
 #endif

@@ -53,30 +53,30 @@ PaSuLiDefDesc pslddScherkSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descScherkSurface =
-    "name: Scherk Surface; \
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs:pi: -1; ve:pi: 1; \
-c1:c:!=0: 1.5; \
-x: u; \
-y: v; \
-z: log(cos(c*u)/cos(c*v))/c; \
-xu: 1; \
-yu: 0; \
-zu: -sin(c*u)/cos(c*u); \
-xv: 0; \
-yv: 1; \
-zv: sin(c*v)/cos(c*v); \
-xn: sin(c*u)/cos(c*u); \
-yn: -sin(c*v)/cos(c*v); \
-zn: 1; \
-xuu: 0; \
-yuu: 0; \
-zuu: -c/(cos(c*u)*cos(c*u)); \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
+    "name: Scherk Surface;\
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs:pi: -1; ve:pi: 1;\
+c1:c:!=0: 1.5;\
+x: u;\
+y: v;\
+z: log(cos(c*u)/cos(c*v))/c;\
+xu: 1;\
+yu: 0;\
+zu: -sin(c*u)/cos(c*u);\
+xv: 0;\
+yv: 1;\
+zv: sin(c*v)/cos(c*v);\
+xn: sin(c*u)/cos(c*u);\
+yn: -sin(c*v)/cos(c*v);\
+zn: 1;\
+xuu: 0;\
+yuu: 0;\
+zuu: -c/(cos(c*u)*cos(c*u));\
+xuv: 0;\
+yuv: 0;\
+zuv: 0;\
+xvv: 0;\
+yvv: 0;\
 zvv: c/(cos(c*v)*cos(c*v));";
 #endif

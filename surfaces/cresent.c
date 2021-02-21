@@ -50,18 +50,18 @@ PaSuLiDefDesc pslddCresent = {
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descCresent =
-    "name: Cresent; \
-ut:c; vt:c; \
-us: 0; ue:pi: 1; \
-vs: 0; ve:pi: 1; \
-c1:a: 1.5; c2:b: 0.5; c3:c: 1.0; \
-x: (a + sin(b*u)*sin(b*v))*sin(c*v); \
-y: (a + sin(b*u)*sin(b*v))*cos(c*v); \
-z: cos(b*u)*sin(b*v) + 4*v/pi - 2; \
-xu: b*cos(b*u)*sin(b*v)*sin(c*v); \
-yu: b*cos(b*u)*sin(b*v)*cos(c*v); \
-zu: -b*sin(b*u)*sin(b*v); \
-xv: a*c*cos(c*v) + b*cos(b*v)*sin(b*u)*sin(c*v) + c*cos(c*v)*sin(b*u)*sin(b*v); \
-yv: -a*c*sin(c*v) + b*cos(b*v)*sin(b*u)*cos(c*v) -  c*sin(c*v)*sin(b*u)*sin(b*v); \
+    "name: Cresent;\
+ut:c; vt:c;\
+us: 0; ue:pi: 1;\
+vs: 0; ve:pi: 1;\
+c1:a: 1.5; c2:b: 0.5; c3:c: 1.0;\
+x: (a + sin(b*u)*sin(b*v))*sin(c*v);\
+y: (a + sin(b*u)*sin(b*v))*cos(c*v);\
+z: cos(b*u)*sin(b*v) + 4*v/pi - 2;\
+xu: b*cos(b*u)*sin(b*v)*sin(c*v);\
+yu: b*cos(b*u)*sin(b*v)*cos(c*v);\
+zu: -b*sin(b*u)*sin(b*v);\
+xv: a*c*cos(c*v) + b*cos(b*v)*sin(b*u)*sin(c*v) + c*cos(c*v)*sin(b*u)*sin(b*v);\
+yv: -a*c*sin(c*v) + b*cos(b*v)*sin(b*u)*cos(c*v) -  c*sin(c*v)*sin(b*u)*sin(b*v);\
 zv: b*cos(b*u)*cos(b*v) + 4/PI; ";
 #endif

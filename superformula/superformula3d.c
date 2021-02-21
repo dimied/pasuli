@@ -14,31 +14,31 @@
 
 //u is rho
 //v is phi
-////u:rho; \
-////v:phi; \
+////u:rho;\
+////v:phi;\
 ///
 
 char* descSuperFormula3D= 
 "name: SuperFormula 3D;\
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs:pi: -0.5 ; ve:pi: 0.5; \
-c1:a1: ; \
-c2:b1: ; \
-c3:m1: ; \
-c4:n11: ; \
-c5:n12: ; \
-c6:n13: ; \
-c7:a2: ; \
-c8:b2: ; \
-c9:m2: ; \
-c10:n21: ; \
-c11:n22: ; \
-c12:n23: ; \
-f:1:R1: (abs(cos((m1*u)/4)/a1)^n12 + abs(sin((m1*u)/4)/b1)^n13)^(-1/n11); \
-f:2:R2: (abs(cos((m2*v)/4)/a2)^n22 + abs(sin((m2*v)/4)/b2)^n23)^(-1/n21); \
-x: R1*R2*cos(v)*cos(u); \
-y: R1*R2*cos(v)*sin(u); \
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs:pi: -0.5 ; ve:pi: 0.5;\
+c1:a1: ;\
+c2:b1: ;\
+c3:m1: ;\
+c4:n11: ;\
+c5:n12: ;\
+c6:n13: ;\
+c7:a2: ;\
+c8:b2: ;\
+c9:m2: ;\
+c10:n21: ;\
+c11:n22: ;\
+c12:n23: ;\
+f:1:R1: (abs(cos((m1*u)/4)/a1)^n12 + abs(sin((m1*u)/4)/b1)^n13)^(-1/n11);\
+f:2:R2: (abs(cos((m2*v)/4)/a2)^n22 + abs(sin((m2*v)/4)/b2)^n23)^(-1/n21);\
+x: R1*R2*cos(v)*cos(u);\
+y: R1*R2*cos(v)*sin(u);\
 z: R2*sin(v);";
 
 #pragma warning(disable: 4005)

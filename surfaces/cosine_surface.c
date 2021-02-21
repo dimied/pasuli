@@ -59,29 +59,29 @@ PaSuLiDefDesc pslddCosineSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descCosineSurface =
-    "name: Cosine Surface; \
-ut:c; vt:c; \
-us:pi:-1; ue:pi: 1; \
-vs:pi: -1; ve:pi: 1; \
-x: cos(u); \
-y: cos(v); \
-z: cos(u + v); \
-xu: -sin(u); \
-yu: 0; \
-zu: -sin(u+v); \
-xv: 0; \
-yv: -sin(v); \
-zv: -sin(u+v); \
-xn: -sin(v)*sin(u+v); \
-yn: -sin(u)*sin(u+v); \
-zn: sin(u)*sin(v); \
-xuu: -cos(u); \
-yuu: 0; \
-zuu: -cos(u+v); \
-xuv: 0; \
-yuv: 0; \
-zuv: -cos(u+v); \
-xvv: 0; \
-yvv: -cos(v); \
+    "name: Cosine Surface;\
+ut:c; vt:c;\
+us:pi:-1; ue:pi: 1;\
+vs:pi: -1; ve:pi: 1;\
+x: cos(u);\
+y: cos(v);\
+z: cos(u + v);\
+xu: -sin(u);\
+yu: 0;\
+zu: -sin(u+v);\
+xv: 0;\
+yv: -sin(v);\
+zv: -sin(u+v);\
+xn: -sin(v)*sin(u+v);\
+yn: -sin(u)*sin(u+v);\
+zn: sin(u)*sin(v);\
+xuu: -cos(u);\
+yuu: 0;\
+zuu: -cos(u+v);\
+xuv: 0;\
+yuv: 0;\
+zuv: -cos(u+v);\
+xvv: 0;\
+yvv: -cos(v);\
 zvv: -cos(u+v);";
 #endif

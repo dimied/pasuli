@@ -63,30 +63,30 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(3),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descWaves =
-	"name: Waves; \
-ut:c; vt:c; \
-us:pi: -2; ue:pi: 2; \
-vs:pi: -2; ve:pi: 2; \
-c1:a: 1.5; c2:b: 0.5; c3:c: 1.0; \
-x: u; \
-y: v; \
-z: a*cos(b*u)*cos(c*v); \
-xu: 1; \
-yu: 0; \
-zu: -a*b*sin(b*u)*cos(c*v); \
-xv: 0; \
-yv: 1; \
-zv: -a*c*cos(b*u)*sin(c*v); \
-xn: a*b*sin(b*u)*cos(c*v); \
-yn: a*c*cos(b*u)*sin(c*v); \
-zn: 1; \
-xuu: 0; \
-yuu: 0; \
-zuu: -a*b*b*cos(b*u)*cos(c*v); \
-xuv: 0; \
-yuv: 0; \
-zuv: a*b*c*sin(b*u)*sin(c*v); \
-xvv: 0; \
-yvv: 0; \
+	"name: Waves;\
+ut:c; vt:c;\
+us:pi: -2; ue:pi: 2;\
+vs:pi: -2; ve:pi: 2;\
+c1:a: 1.5; c2:b: 0.5; c3:c: 1.0;\
+x: u;\
+y: v;\
+z: a*cos(b*u)*cos(c*v);\
+xu: 1;\
+yu: 0;\
+zu: -a*b*sin(b*u)*cos(c*v);\
+xv: 0;\
+yv: 1;\
+zv: -a*c*cos(b*u)*sin(c*v);\
+xn: a*b*sin(b*u)*cos(c*v);\
+yn: a*c*cos(b*u)*sin(c*v);\
+zn: 1;\
+xuu: 0;\
+yuu: 0;\
+zuu: -a*b*b*cos(b*u)*cos(c*v);\
+xuv: 0;\
+yuv: 0;\
+zuv: a*b*c*sin(b*u)*sin(c*v);\
+xvv: 0;\
+yvv: 0;\
 zvv: -a*c*c*cos(b*u)*cos(c*v);";
 #endif

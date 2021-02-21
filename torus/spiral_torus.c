@@ -71,43 +71,43 @@ PaSuLiDefDesc pslddSpiralTorus = {
 #endif
 #if (COMPILE_DESC_TORUS != 0)
 char *descSpiralTorus =
-	"name: SpiralTorus; \
-cat: torus; \
-us: 0; ue:pi:2; \
-vs: 0; ve:pi:2; \
-c1:R1:1; c2:R2:1; c3:r:1; \
-a1:F: R1 + R2*cos(N*u) + r*cos(v); \
-x: F*cos(u); \
-y: r*sin(v) + R2*sin(N*u); \
+	"name: SpiralTorus;\
+cat: torus;\
+us: 0; ue:pi:2;\
+vs: 0; ve:pi:2;\
+c1:R1:1; c2:R2:1; c3:r:1;\
+a1:F: R1 + R2*cos(N*u) + r*cos(v);\
+x: F*cos(u);\
+y: r*sin(v) + R2*sin(N*u);\
 z: F*sin(u); "
 #if (COMPILE_DESC_DERIV_U_TORUS != 0)
-	"xu: -((R1 + R2*cos(n*u) + r*cos(v))*sin(u) + R2*n*cos(u)*sin(n*u)); \
-yu: R2*n*cos(n*u); \
+	"xu: -((R1 + R2*cos(n*u) + r*cos(v))*sin(u) + R2*n*cos(u)*sin(n*u));\
+yu: R2*n*cos(n*u);\
 zu: (R1 + R2*cos(n*u) + r*cos(v))*cos(u) - R2*n*sin(u)*sin(n*u); "
 #endif
 #if (COMPILE_DESC_DERIV_V_TORUS != 0)
-	"xv: -r*cos(u)*sin(v); \
-yv: r*cos(v); \
+	"xv: -r*cos(u)*sin(v);\
+yv: r*cos(v);\
 zv: -r*sin(u)*sin(v); "
 #endif
 #if (COMPILE_DESC_NORMAL_TORUS != 0)
-	"xn:X; \
-yn:X; \
+	"xn:X;\
+yn:X;\
 zn:X; "
 #endif
 #if (COMPILE_DESC_DERIV2_U_TORUS != 0)
-	"xuu: -cos(u)*(R1 + R2*cos(n*u)*(n*n+1) + r*cos(v)) + 2*R2*n*sin(u)*sin(n*u); \
-yuu: -R2*n*n*sin(n*u); \
+	"xuu: -cos(u)*(R1 + R2*cos(n*u)*(n*n+1) + r*cos(v)) + 2*R2*n*sin(u)*sin(n*u);\
+yuu: -R2*n*n*sin(n*u);\
 zuu: -sin(u)*(R1 + R2*cos(n*u)*(n*n+1) + r*cos(v)) - 2*R2*n*cos(u)*sin(n*u); "
 #endif
 #if (COMPILE_DESC_DERIV_UV_TORUS != 0)
-	"xuv: r*sin(u)*sin(v); \
-yuv: 0; \
+	"xuv: r*sin(u)*sin(v);\
+yuv: 0;\
 zuv: -r*cos(u)*sin(v); "
 #endif
 #if (COMPILE_DESC_DERIV2_V_TORUS != 0)
-	"xvv: -r*cos(u)*cos(v); \
-yvv: -r*sin(v); \
+	"xvv: -r*cos(u)*cos(v);\
+yvv: -r*sin(v);\
 zvv: -r*cos(v)*sin(u); "
 #endif
 	"";

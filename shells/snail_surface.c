@@ -59,30 +59,30 @@ PaSuLiDefDesc pslddSnailSurface = {
 #endif
 #if (COMPILE_DESC_SHELLS != 0)
 
-char *descSnailSurface = "name: Snail Surface; \
-cat: shells; \
-ut: c; vt: c; \
-us: 0; ue:pi:2; \
-vs:pi: -1; ve:pi: 1; \
-x: u*sin(u)*cos(v); \
-y: u*cos(u)*cos(v); \
-z: -u*sin(v); \
-xu: u*cos(u)*cos(v)+cos(v)*sin(u); \
-yu: -u*cos(v)*sin(u) + cos(u)*cos(v); \
-zu: -sin(v); \
-xv: -u*sin(u)*sin(v); \
-yv: -u*cos(u)*sin(v); \
-zv: -u*cos(v); \
-xn: u*u*cos(v)^2*sin(u) - u*cos(u); \
-yn: u*u*cos(v)^2*cos(u) + u*sin(u); \
-zn: -u*u*cos(v)*sin(v); \
-xuu: -u*cos(v)*sin(u) + 2*cos(u)*cos(v); \
-yuu: -u*cos(v)*cos(u) - 2*sin(u)*cos(v); \
-zuu: 0; \
-xuv: -u*cos(u)*sin(v) - sin(u)*sin(v); \
-yuv: u*sin(u)*sin(v) - cos(u)*sin(v); \
-zuv: -cos(v); \
-xvv: -u*cos(v)*sin(u); \
-yvv: -u*cos(v)*cos(u); \
+char *descSnailSurface = "name: Snail Surface;\
+cat: shells;\
+ut: c; vt: c;\
+us: 0; ue:pi:2;\
+vs:pi: -1; ve:pi: 1;\
+x: u*sin(u)*cos(v);\
+y: u*cos(u)*cos(v);\
+z: -u*sin(v);\
+xu: u*cos(u)*cos(v)+cos(v)*sin(u);\
+yu: -u*cos(v)*sin(u) + cos(u)*cos(v);\
+zu: -sin(v);\
+xv: -u*sin(u)*sin(v);\
+yv: -u*cos(u)*sin(v);\
+zv: -u*cos(v);\
+xn: u*u*cos(v)^2*sin(u) - u*cos(u);\
+yn: u*u*cos(v)^2*cos(u) + u*sin(u);\
+zn: -u*u*cos(v)*sin(v);\
+xuu: -u*cos(v)*sin(u) + 2*cos(u)*cos(v);\
+yuu: -u*cos(v)*cos(u) - 2*sin(u)*cos(v);\
+zuu: 0;\
+xuv: -u*cos(u)*sin(v) - sin(u)*sin(v);\
+yuv: u*sin(u)*sin(v) - cos(u)*sin(v);\
+zuv: -cos(v);\
+xvv: -u*cos(v)*sin(u);\
+yvv: -u*cos(v)*cos(u);\
 zvv: u*sin(v); ";
 #endif

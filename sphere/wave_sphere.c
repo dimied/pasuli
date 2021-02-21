@@ -67,30 +67,30 @@ PaSuLiDefDesc pslddWaveSphere = {
 #endif
 #if (COMPILE_DESC_SPHERE != 0)
 char *descWaveSphere =
-	"name: Wave sphere; \
-cat: sphere; \
-ut: c; vt: c; \
-us: 0; ue: 14; \
-vs: 0; ve:pi: 2; \
-x: u*cos(cos(u))*cos(v); \
-y: u*cos(cos(u))*sin(v); \
-z: u*sin(cos(u)); \
-xu: cos(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u))); \
-yu: sin(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u))); \
-zu: sin(cos(u)) - u*cos(cos(u))*sin(u); \
-xv: -u*cos(cos(u))*sin(v); \
-yv: u*cos(v)*cos(cos(u)); \
-zv: 0; \
-xn: u*cos(cos(u))*(u*cos(cos(u))*sin(u)-sin(cos(u)))*cos(v); \
-yn: u*cos(cos(u))*(u*cos(cos(u))*sin(u)-sin(cos(u)))*sin(v); \
-zn: u*cos(cos(u))*(cos(cos(u)) + u*sin(u)*sin(cos(u))); \
-xuu: cos(v)*(u*cos(u)*sin(cos(u)) - u*cos(cos(u))*sin(u)^2 + 2*sin(u)*sin(cos(u))); \
-yuu: sin(v)*(u*cos(u)*sin(cos(u)) - u*cos(cos(u))*sin(u)^2 + 2*sin(u)*sin(cos(u))); \
-zuu: -(cos(cos(u))*(2*sin(u) + u*cos(u)) + u*sin(cos(u))*sin(u)*sin(u)); \
-xuv: -sin(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u))); \
-yuv: cos(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u))); \
-zuv: 0; \
-xvv: -u*cos(cos(u))*cos(v); \
-yvv: -u*sin(v)*cos(cos(u)); \
+	"name: Wave sphere;\
+cat: sphere;\
+ut: c; vt: c;\
+us: 0; ue: 14;\
+vs: 0; ve:pi: 2;\
+x: u*cos(cos(u))*cos(v);\
+y: u*cos(cos(u))*sin(v);\
+z: u*sin(cos(u));\
+xu: cos(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u)));\
+yu: sin(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u)));\
+zu: sin(cos(u)) - u*cos(cos(u))*sin(u);\
+xv: -u*cos(cos(u))*sin(v);\
+yv: u*cos(v)*cos(cos(u));\
+zv: 0;\
+xn: u*cos(cos(u))*(u*cos(cos(u))*sin(u)-sin(cos(u)))*cos(v);\
+yn: u*cos(cos(u))*(u*cos(cos(u))*sin(u)-sin(cos(u)))*sin(v);\
+zn: u*cos(cos(u))*(cos(cos(u)) + u*sin(u)*sin(cos(u)));\
+xuu: cos(v)*(u*cos(u)*sin(cos(u)) - u*cos(cos(u))*sin(u)^2 + 2*sin(u)*sin(cos(u)));\
+yuu: sin(v)*(u*cos(u)*sin(cos(u)) - u*cos(cos(u))*sin(u)^2 + 2*sin(u)*sin(cos(u)));\
+zuu: -(cos(cos(u))*(2*sin(u) + u*cos(u)) + u*sin(cos(u))*sin(u)*sin(u));\
+xuv: -sin(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u)));\
+yuv: cos(v)*(cos(cos(u)) + u*sin(u)*sin(cos(u)));\
+zuv: 0;\
+xvv: -u*cos(cos(u))*cos(v);\
+yvv: -u*sin(v)*cos(cos(u));\
 zvv: 0; ";
 #endif

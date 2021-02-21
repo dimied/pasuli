@@ -58,30 +58,30 @@ PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSineCone =
-	"name: Sine Cone; \
-ut:c; vt:c; \
-us: -10; ue: 10; \
-vs:pi: -1; ve:pi: 1; \
-c1:k: 1.5; c2:N: 0.5; \
-x: u*cos(v); \
-y: u*sin(v); \
-z: k*u*cos(N*v); \
-xu: cos(v); \
-yu: sin(v); \
-zu: k*cos(N*v); \
-xv: -u*sin(v); \
-yv: u *cos(v); \
-zv: -k *N *u *sin(N *v); \
-xn: -k *u *(n *sin(v) * sin(N * v) - cos(v) * cos(N * v)); \
-yn: k *u *(n *cos(v) * sin(n * v) - sin(v) * cos(n * v)); \
-zn: u; \
-xuu:0; \
-yuu:0; \
-zuu:0; \
-xuv: -sin(v); \
-yuv: cos(v); \
-zuv: -k *N *sin(n *v); \
-xvv: -u *cos(v); \
-yvv: -u *sin(v); \
+	"name: Sine Cone;\
+ut:c; vt:c;\
+us: -10; ue: 10;\
+vs:pi: -1; ve:pi: 1;\
+c1:k: 1.5; c2:N: 0.5;\
+x: u*cos(v);\
+y: u*sin(v);\
+z: k*u*cos(N*v);\
+xu: cos(v);\
+yu: sin(v);\
+zu: k*cos(N*v);\
+xv: -u*sin(v);\
+yv: u *cos(v);\
+zv: -k *N *u *sin(N *v);\
+xn: -k *u *(n *sin(v) * sin(N * v) - cos(v) * cos(N * v));\
+yn: k *u *(n *cos(v) * sin(n * v) - sin(v) * cos(n * v));\
+zn: u;\
+xuu:0;\
+yuu:0;\
+zuu:0;\
+xuv: -sin(v);\
+yuv: cos(v);\
+zuv: -k *N *sin(n *v);\
+xvv: -u *cos(v);\
+yvv: -u *sin(v);\
 zvv: -k *N *N *u *cos(n *v);";
 #endif

@@ -56,19 +56,19 @@ PASULI_CONST_COUNT(3),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSpring2 =
-	"name: Spring 2; \
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs: 0; ve:pi: 5; \
-c1:R: 1.5; c2:r: 0.5; c3:h: 1.0; \
-a1:w: sqrt(R*R + r*r); \
-x: (R + r*cos(u))*cos(v) + r*h*sin(u)*sin(v)/w; \
-y: (R + r*cos(u))*sin(v) - r*h*sin(u)*cos(v)/w; \
-z: h*v + R*r*sin(u)/w; \
-xu: h*r*cos(u)*sin(v)/sqrt(R*R + r*r) - r*cos(v)*sin(u); \
-yu: -h*r*cos(u)*cos(v)/sqrt(R*R + r*r) - r*sin(v)*sin(u); \
-zu: r*R*cos(u)/sqrt(R*R + r*r); \
-xv: h*r*cos(v)*sin(u)/sqrt(R*R + r*r) - (r*cos(u) + R)*sin(v); \
-yv: h*r*sin(v)*sin(u)/sqrt(R*R + r*r) + (r*cos(u) + R)*cos(v); \
+	"name: Spring 2;\
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs: 0; ve:pi: 5;\
+c1:R: 1.5; c2:r: 0.5; c3:h: 1.0;\
+a1:w: sqrt(R*R + r*r);\
+x: (R + r*cos(u))*cos(v) + r*h*sin(u)*sin(v)/w;\
+y: (R + r*cos(u))*sin(v) - r*h*sin(u)*cos(v)/w;\
+z: h*v + R*r*sin(u)/w;\
+xu: h*r*cos(u)*sin(v)/sqrt(R*R + r*r) - r*cos(v)*sin(u);\
+yu: -h*r*cos(u)*cos(v)/sqrt(R*R + r*r) - r*sin(v)*sin(u);\
+zu: r*R*cos(u)/sqrt(R*R + r*r);\
+xv: h*r*cos(v)*sin(u)/sqrt(R*R + r*r) - (r*cos(u) + R)*sin(v);\
+yv: h*r*sin(v)*sin(u)/sqrt(R*R + r*r) + (r*cos(u) + R)*cos(v);\
 zv: h;";
 #endif

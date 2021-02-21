@@ -62,19 +62,19 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(3),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descFresnel =
-    "name: Fresnel; \
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs:pi: -0.5; ve:pi: 0.5; \
-c1:a: 1.5; c2:b: 0.5; c3:c: 1.0; \
-a1:d: (sin(v)^(2)+c*c*cos(v)^(2)*(cos(u)^(2)/a*a + sin(u)^(2)/b*b)); \
-x: (c*c/a)*(cos(u)^(2))/d; \
-y: (c*c/b)*(sin(u)*cos(v))/d; \
-z: c*(sin(v))/d; \
-xu: 2*c^2*sin(2*u)/(a*(-1 -c^2 - c^2*cos(2*v) + cos(2*v))); \
-yu: c^2*cos(u)*cos(v)/(b*(sin(v)^2 + c^2*cos(v)^2)^2); \
-zu: 0; \
-xv: 2*c^2*cos(u)^2*(c^2 - 1)*cos(v)*sin(v)/(a*(sin(v)^2 + c^2*cos(v)^2)^2); \
-yv: -c^2*()*sin(u)*sin(v)/(b*(sin(v)^2 + c^2*cos(v)^2)^2); \
+    "name: Fresnel;\
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs:pi: -0.5; ve:pi: 0.5;\
+c1:a: 1.5; c2:b: 0.5; c3:c: 1.0;\
+a1:d: (sin(v)^(2)+c*c*cos(v)^(2)*(cos(u)^(2)/a*a + sin(u)^(2)/b*b));\
+x: (c*c/a)*(cos(u)^(2))/d;\
+y: (c*c/b)*(sin(u)*cos(v))/d;\
+z: c*(sin(v))/d;\
+xu: 2*c^2*sin(2*u)/(a*(-1 -c^2 - c^2*cos(2*v) + cos(2*v)));\
+yu: c^2*cos(u)*cos(v)/(b*(sin(v)^2 + c^2*cos(v)^2)^2);\
+zu: 0;\
+xv: 2*c^2*cos(u)^2*(c^2 - 1)*cos(v)*sin(v)/(a*(sin(v)^2 + c^2*cos(v)^2)^2);\
+yv: -c^2*()*sin(u)*sin(v)/(b*(sin(v)^2 + c^2*cos(v)^2)^2);\
 zv: c*(c^2 - sin(v)^2 + c^2*sin(v)^2)*cos(v)/(sin(v)^2 + c^2*cos(v)^2)^2; ";
 #endif

@@ -53,30 +53,30 @@ PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descMilkBag =
-    "name: Milk Bag; \
-ut:c; vt:c; \
-us: -1; ue: 1; \
-vs:pi: -1; ve:pi: 1; \
-c1:k: 1.0; \
-x: k*(1 + u)*cos(v); \
-y: k*(1 - u)*sin(v); \
-z: u; \
-xu: k*cos(v); \
-yu: -k*sin(v); \
-zu: 1; \
-xv: -k*(1+u)*sin(v); \
-yv: k*(1-u)*cos(v); \
-zv: 0; \
-xn: -k*(1-u)*cos(v); \
-yn: -k*(1+u)*sin(v); \
-zn: -k^2*u + k^2*(cos(v)^2 - sin(v)^2); \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: -k*sin(v); \
-yuv: -k*cos(v); \
-zuv: 0; \
-xvv: -k*(1+u)*cos(v); \
-yvv: -k*(1 - u)*sin(v); \
+    "name: Milk Bag;\
+ut:c; vt:c;\
+us: -1; ue: 1;\
+vs:pi: -1; ve:pi: 1;\
+c1:k: 1.0;\
+x: k*(1 + u)*cos(v);\
+y: k*(1 - u)*sin(v);\
+z: u;\
+xu: k*cos(v);\
+yu: -k*sin(v);\
+zu: 1;\
+xv: -k*(1+u)*sin(v);\
+yv: k*(1-u)*cos(v);\
+zv: 0;\
+xn: -k*(1-u)*cos(v);\
+yn: -k*(1+u)*sin(v);\
+zn: -k^2*u + k^2*(cos(v)^2 - sin(v)^2);\
+xuu: 0;\
+yuu: 0;\
+zuu: 0;\
+xuv: -k*sin(v);\
+yuv: -k*cos(v);\
+zuv: 0;\
+xvv: -k*(1+u)*cos(v);\
+yvv: -k*(1 - u)*sin(v);\
 zvv: 0;  ";
 #endif

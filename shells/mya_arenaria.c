@@ -28,13 +28,13 @@ PaSuLiDefDesc pslddMyaArenaria = {
     -1, 0.52f, 0, 2, 0};
 #endif
 #if (COMPILE_DESC_SHELLS != 0)
-char *descMyaArenaria = "name: Mya Arenaria; \
-cat: shells; \
-kindof: Snails; \
-ut: c; vt: c; \
-us: -1; ue: 0.52; \
-c1:R: 1; c2:a: 0.85; \
-c3:b: 1.6; c4:c: 3; \
-c5:h: 0.9; c6:k: 0; \
+char *descMyaArenaria = "name: Mya Arenaria;\
+cat: shells;\
+kindof: Snails;\
+ut: c; vt: c;\
+us: -1; ue: 0.52;\
+c1:R: 1; c2:a: 0.85;\
+c3:b: 1.6; c4:c: 3;\
+c5:h: 0.9; c6:k: 0;\
 c7:w: 2.5;";
 #endif

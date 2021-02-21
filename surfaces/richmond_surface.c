@@ -49,17 +49,17 @@ PaSuLiDefDesc pslddRichmondSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descRichmondSurface =
-    "name: Richmond Surface; \
-ut:c; vt:c; \
-us: -1; ue: 1; \
-vs: -1; ve: 1; \
-x: (-3*u - u^(5) + 2*u^3*v^2 + 3*u*v^4)/(6*(u^2 + v^2)); \
-y: (-3*v - 3*u^4*v - 2*u^2*v^3 + v^(5))/(6*(u^2 + v^2)); \
-z: u; \
-xu: (u^2+v^6-u^6-v^2+u^2*v^4-u^4*v^2)/(2*(u^4+v^4+2*u^2*v^2)); \
-yu: u*v*(1-u^4-v^4-2*u^2*v^2)/(u^4+v^4+2*u^2*v^2); \
-zu: 1; \
-xv: u*v*(1+u^4+v^4+2*u^2*v^2)/(u^4+v^4+2*u^2*v^2); \
-yv: (v^2+v^6-u^2-u^6+u^2*v^4-u^4*v^2)/(2*(u^4+v^4+2*u^2*v^2)); \
+    "name: Richmond Surface;\
+ut:c; vt:c;\
+us: -1; ue: 1;\
+vs: -1; ve: 1;\
+x: (-3*u - u^(5) + 2*u^3*v^2 + 3*u*v^4)/(6*(u^2 + v^2));\
+y: (-3*v - 3*u^4*v - 2*u^2*v^3 + v^(5))/(6*(u^2 + v^2));\
+z: u;\
+xu: (u^2+v^6-u^6-v^2+u^2*v^4-u^4*v^2)/(2*(u^4+v^4+2*u^2*v^2));\
+yu: u*v*(1-u^4-v^4-2*u^2*v^2)/(u^4+v^4+2*u^2*v^2);\
+zu: 1;\
+xv: u*v*(1+u^4+v^4+2*u^2*v^2)/(u^4+v^4+2*u^2*v^2);\
+yv: (v^2+v^6-u^2-u^6+u^2*v^4-u^4*v^2)/(2*(u^4+v^4+2*u^2*v^2));\
 zv: 0;";
 #endif

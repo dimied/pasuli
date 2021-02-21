@@ -47,20 +47,20 @@ PaSuLiDefDesc pslddTractroid = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descTractroid =
-	"name: Tractroid; \
-ut:c; vt:c; \
-us: 0; ue: 4; \
-vs: 0; ve:pi: 2; \
-x: sech(u)*cos(v); \
-y: sech(u)*sin(v); \
-z: u - tanh(u); \
-xu: -cos(v)*sinh(u)/cosh(u)^2; \
-yu: -sin(v)*sinh(u)/cosh(u)^2; \
-zu: 1 - 1/cosh(u)^2; \
-xv: -sin(v)/cosh(u); \
-yv: cos(v)/cosh(u); \
-zv: 0; \
-xn: -cos(v)/cosh(u) + cos(v)/cosh(u)^3; \
-yn: -sin(v)/cosh(u) + sin(v)/cosh(u)^3; \
+	"name: Tractroid;\
+ut:c; vt:c;\
+us: 0; ue: 4;\
+vs: 0; ve:pi: 2;\
+x: sech(u)*cos(v);\
+y: sech(u)*sin(v);\
+z: u - tanh(u);\
+xu: -cos(v)*sinh(u)/cosh(u)^2;\
+yu: -sin(v)*sinh(u)/cosh(u)^2;\
+zu: 1 - 1/cosh(u)^2;\
+xv: -sin(v)/cosh(u);\
+yv: cos(v)/cosh(u);\
+zv: 0;\
+xn: -cos(v)/cosh(u) + cos(v)/cosh(u)^3;\
+yn: -sin(v)/cosh(u) + sin(v)/cosh(u)^3;\
 zn: -sinh(u)/cosh(u)^3;";
 #endif

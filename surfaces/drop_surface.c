@@ -60,30 +60,30 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descDropSurface =
-	"name: Drop Surface; \
-ut:c; vt:c; \
-us:pi: -0.5; ue:pi: 0.5; \
-vs: 0; ve:pi: 2; \
-c1:a: 1.5; \
-x: cos(v)*cos(u); \
-y: sin(v)*cos(u); \
-z: sin(u - a); \
-xu: -sin(u)*cos(v); \
-yu: -sin(u)*sin(v); \
-zu: cos(a-u); \
-xv: -cos(u)*sin(v); \
-yv: cos(u)*cos(v); \
-zv: 0; \
-xn: -cos(u)*cos(v)*cos(a-u); \
-yn: -cos(u)*cos(a-u)*sin(v); \
-zn: -cos(u)*sin(u); \
-xuu: -cos(u)*cos(v); \
-yuu: -cos(u)*sin(v); \
-zuu: -sin(u-a); \
-xuv: sin(u)*sin(v); \
-yuv: -sin(u)*cos(v); \
-zuv: 0; \
-xvv: -cos(u)*cos(v); \
-yvv: -cos(u)*sin(v); \
+	"name: Drop Surface;\
+ut:c; vt:c;\
+us:pi: -0.5; ue:pi: 0.5;\
+vs: 0; ve:pi: 2;\
+c1:a: 1.5;\
+x: cos(v)*cos(u);\
+y: sin(v)*cos(u);\
+z: sin(u - a);\
+xu: -sin(u)*cos(v);\
+yu: -sin(u)*sin(v);\
+zu: cos(a-u);\
+xv: -cos(u)*sin(v);\
+yv: cos(u)*cos(v);\
+zv: 0;\
+xn: -cos(u)*cos(v)*cos(a-u);\
+yn: -cos(u)*cos(a-u)*sin(v);\
+zn: -cos(u)*sin(u);\
+xuu: -cos(u)*cos(v);\
+yuu: -cos(u)*sin(v);\
+zuu: -sin(u-a);\
+xuv: sin(u)*sin(v);\
+yuv: -sin(u)*cos(v);\
+zuv: 0;\
+xvv: -cos(u)*cos(v);\
+yvv: -cos(u)*sin(v);\
 zvv: 0; ";
 #endif

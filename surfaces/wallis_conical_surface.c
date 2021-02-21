@@ -49,21 +49,21 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_FULL_IMPL|PASULI_CONST_COUNT(3),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descWallisConicalSurface =
-	"name: Wallis Conical Surface; \
-ut: c; vt:c; \
-us: -1; ue: 1; \
-vs: 0; ve: 1; \
-c1:a: 1.5; c2:b: 0.5; c3:c: 1.0; \
-x: v*cos(u); \
-y: v*sin(u); \
+	"name: Wallis Conical Surface;\
+ut: c; vt:c;\
+us: -1; ue: 1;\
+vs: 0; ve: 1;\
+c1:a: 1.5; c2:b: 0.5; c3:c: 1.0;\
+x: v*cos(u);\
+y: v*sin(u);\
 z: c*sqrt(a*a - b*b*cos(u)*cos(u));\
-xu: -v*sin(u); \
-yu: v*cos(u); \
+xu: -v*sin(u);\
+yu: v*cos(u);\
 zu: (b*b*c*cos(u)*sin(u))/(sqrt(a*a-b*b*cos(u)*cos(u)));\
 xv: cos(u);\
 yv: sin(u);\
 zv: 0;\
-xn: -(b*b*c*cos(u)*sin(u)*sin(u))/(sqrt(a*a-b*b*cos(u)*cos(u))); \
-yn: (b*b*c*cos(u)*cos(u)*sin(u))/(sqrt(a*a-b*b*cos(u)*cos(u))); \
+xn: -(b*b*c*cos(u)*sin(u)*sin(u))/(sqrt(a*a-b*b*cos(u)*cos(u)));\
+yn: (b*b*c*cos(u)*cos(u)*sin(u))/(sqrt(a*a-b*b*cos(u)*cos(u)));\
 zn: -v;";
 #endif

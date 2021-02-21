@@ -50,18 +50,18 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descHyperbolicHelicoid =
-    "name: Hyperbolic Helicoid; \
-ut:c; vt:c; \
-us: -4; ue: 4; \
-vs: -4; ve: 4; \
-c1:a: 0.5; \
+    "name: Hyperbolic Helicoid;\
+ut:c; vt:c;\
+us: -4; ue: 4;\
+vs: -4; ve: 4;\
+c1:a: 0.5;\
 x: sinh(v)*cos(a*u)/(1+cosh(u)*cosh(v));  \
-y: sinh(v)*sin(a*u)/(1+cosh(u)*cosh(v)); \
-z: cosh(v)*sinh(u)/(1+cosh(u)*cosh(v)); \
-xu: -(a*(1+cosh(u)*cosh(v))*sin(a*u) + cos(a*u)*cosh(v)*sinh(u))*sinh(v)/(1+cosh(u)*cosh(v))^2; \
-yu: (a*(1+cosh(u)*cosh(v))*cos(a*u) - sin(a*u)*cosh(v)*sinh(u))*sinh(v)/(1+cosh(u)*cosh(v))^2; \
-zu: (cosh(u) + cosh(v))*cosh(v)/(1+cosh(u)*cosh(v))^2; \
-xv: (cosh(u) + cosh(v))*cos(a*u)/(1+cosh(u)*cosh(v))^2; \
-yv: (cosh(u) + cosh(v))*sin(a*u)/(1+cosh(u)*cosh(v))^2; \
+y: sinh(v)*sin(a*u)/(1+cosh(u)*cosh(v));\
+z: cosh(v)*sinh(u)/(1+cosh(u)*cosh(v));\
+xu: -(a*(1+cosh(u)*cosh(v))*sin(a*u) + cos(a*u)*cosh(v)*sinh(u))*sinh(v)/(1+cosh(u)*cosh(v))^2;\
+yu: (a*(1+cosh(u)*cosh(v))*cos(a*u) - sin(a*u)*cosh(v)*sinh(u))*sinh(v)/(1+cosh(u)*cosh(v))^2;\
+zu: (cosh(u) + cosh(v))*cosh(v)/(1+cosh(u)*cosh(v))^2;\
+xv: (cosh(u) + cosh(v))*cos(a*u)/(1+cosh(u)*cosh(v))^2;\
+yv: (cosh(u) + cosh(v))*sin(a*u)/(1+cosh(u)*cosh(v))^2;\
 zv: sinh(u)*sinh(v)/(1+cosh(u)*cosh(v))^2; ";
 #endif

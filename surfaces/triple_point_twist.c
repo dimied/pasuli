@@ -54,30 +54,30 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descTriplePointTwist =
-	"name: Triple point Twist; \
-ut:c; vt:c; \
-us: -2; ue: 1.7; \
-vs: -1.5; ve: 1.5; \
-c1:c: 1.5; \
-x: u; \
-y: v^3+c*v; \
-z: u*v+v^5+c*v^3; \
-xu: 1; \
-yu: 0; \
-zu: v; \
-xv: 0; \
-yv: c+3*v*v; \
-zv: 3*c*v*v+u+5*v^4; \
-xn: -c*v-3*v^3; \
-yn: -3*c*v^2-u-5*v^4; \
-zn: c+3*v^2; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 1; \
-xvv: 0; \
-yvv: 6*v; \
+	"name: Triple point Twist;\
+ut:c; vt:c;\
+us: -2; ue: 1.7;\
+vs: -1.5; ve: 1.5;\
+c1:c: 1.5;\
+x: u;\
+y: v^3+c*v;\
+z: u*v+v^5+c*v^3;\
+xu: 1;\
+yu: 0;\
+zu: v;\
+xv: 0;\
+yv: c+3*v*v;\
+zv: 3*c*v*v+u+5*v^4;\
+xn: -c*v-3*v^3;\
+yn: -3*c*v^2-u-5*v^4;\
+zn: c+3*v^2;\
+xuu: 0;\
+yuu: 0;\
+zuu: 0;\
+xuv: 0;\
+yuv: 0;\
+zuv: 1;\
+xvv: 0;\
+yvv: 6*v;\
 zvv: 6*c*v+20*v^3;";
 #endif

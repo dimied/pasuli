@@ -46,17 +46,17 @@ PaSuLiDefDesc pslddTriaxialHexatorus = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descTriaxialHexatorus =
-    "name: Triaxial Hexatorus; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-x: sin(u + 2*pi/3)/(sqrt(2) + cos(v + 2*pi/3)); \
-y: cos(u - 2*pi/3)/(sqrt(2) + cos(v - 2*pi/3)); \
-z: sin(u)/(sqrt(2) + cos(v)); \
-xu: cos(u + 2*pi/3)/(sqrt(2) + cos(v + 2*pi/3)); \
-yu: -sin(u - 2*pi/3)/(sqrt(2) + cos(v - 2*pi/3)); \
-zu: cos(u)/(sqrt(2) + cos(v)); \
-xv: sin(u + 2*pi/3)*sin(v + 2*pi/3)/(sqrt(2) + cos(v + 2*pi/3))^2; \
-yv: -cos(u - 2*pi/3)*sin(2*pi/3-v)/(sqrt(2) + cos(v - 2*pi/3))^2; \
+    "name: Triaxial Hexatorus;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+x: sin(u + 2*pi/3)/(sqrt(2) + cos(v + 2*pi/3));\
+y: cos(u - 2*pi/3)/(sqrt(2) + cos(v - 2*pi/3));\
+z: sin(u)/(sqrt(2) + cos(v));\
+xu: cos(u + 2*pi/3)/(sqrt(2) + cos(v + 2*pi/3));\
+yu: -sin(u - 2*pi/3)/(sqrt(2) + cos(v - 2*pi/3));\
+zu: cos(u)/(sqrt(2) + cos(v));\
+xv: sin(u + 2*pi/3)*sin(v + 2*pi/3)/(sqrt(2) + cos(v + 2*pi/3))^2;\
+yv: -cos(u - 2*pi/3)*sin(2*pi/3-v)/(sqrt(2) + cos(v - 2*pi/3))^2;\
 zv: sin(u)*sin(v)/(sqrt(2) + cos(v))^2;";
 #endif

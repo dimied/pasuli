@@ -44,29 +44,29 @@ PaSuLiDefDesc pslddHyperbolicParaboloid = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descHyperbolicParaboloid =
-	"name: Hyperbolic Paraboloid; \
-ut: c; vt: c; \
-us: -1; ue: 1; \
-vs: -1; ve: 1; \
-x: u; \
-y: v; \
-z: u*v; \
-xu: 1; \
-yu: 0; \
-zu: v; \
-xv: 0; \
-yv: 1; \
-zv: u; \
-xn: -v; \
-yn: -u; \
-zn: 1; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: 0; \
-yuv: 0; \
-zuv: 1; \
-xvv: 0; \
-yvv: 0; \
+	"name: Hyperbolic Paraboloid;\
+ut: c; vt: c;\
+us: -1; ue: 1;\
+vs: -1; ve: 1;\
+x: u;\
+y: v;\
+z: u*v;\
+xu: 1;\
+yu: 0;\
+zu: v;\
+xv: 0;\
+yv: 1;\
+zv: u;\
+xn: -v;\
+yn: -u;\
+zn: 1;\
+xuu: 0;\
+yuu: 0;\
+zuu: 0;\
+xuv: 0;\
+yuv: 0;\
+zuv: 1;\
+xvv: 0;\
+yvv: 0;\
 zvv: 0;";
 #endif

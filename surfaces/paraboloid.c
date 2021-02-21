@@ -57,28 +57,28 @@ PASULI_U_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descParaboloid =
-	"name: Paraboloid; \
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs: 0; ve: 2; \
-c1:a: 1.5; c2:b: 0.5; \
-x: a*v*cos(u); \
-y: a*v*sin(u); \
-z: b*v*v; \
-xu: -a*v*sin(u); \
-yu: a*v*cos(u); \
-zu: 0; \
-xv: a*cos(u); \
-yv: a*sin(u); \
-zv: 2*b*v; \
-xn: 2*a*b*v*v*cos(u); \
-yn: 2*a*b*v*v*sin(u); \
-zn: -a*a*v; \
-xuu: -a*v*cos(u); \
-yuu: -a*v*sin(u); \
-zuu: 0; \
-xuv: -a*sin(u); \
-yuv: a*cos(u); \
-zuv: 0; \
+	"name: Paraboloid;\
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs: 0; ve: 2;\
+c1:a: 1.5; c2:b: 0.5;\
+x: a*v*cos(u);\
+y: a*v*sin(u);\
+z: b*v*v;\
+xu: -a*v*sin(u);\
+yu: a*v*cos(u);\
+zu: 0;\
+xv: a*cos(u);\
+yv: a*sin(u);\
+zv: 2*b*v;\
+xn: 2*a*b*v*v*cos(u);\
+yn: 2*a*b*v*v*sin(u);\
+zn: -a*a*v;\
+xuu: -a*v*cos(u);\
+yuu: -a*v*sin(u);\
+zuu: 0;\
+xuv: -a*sin(u);\
+yuv: a*cos(u);\
+zuv: 0;\
 xvv: 0; yvv: 0; zvv: 2*b;";
 #endif

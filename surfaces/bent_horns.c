@@ -47,17 +47,17 @@ PaSuLiDefDesc pslddBentHorns = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descBentHorns =
-    "name: Bent Horns; \
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs:pi: -2; ve:pi: 2; \
-x: (2 + cos(u))*(v/3 - sin(v)); \
-y: (2 + cos(u + 2*pi/3))*(cos(v) - 1); \
-z: (2 + cos(u - 2*pi/3))*(cos(v) - 1); \
-xu: sin(u)*(sin(v) - v/3); \
-yu: sin(u + 2*pi/3)*(1-cos(v)); \
-zu: sin(u - 2*pi/3)*(cos(v)-1); \
-xv: cos(u)/3 - cos(u)*cos(v) - 2*cos(v) + 2/3; \
-yv: -sin(v)*(2+cos(u + 2*pi/3)); \
+    "name: Bent Horns;\
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs:pi: -2; ve:pi: 2;\
+x: (2 + cos(u))*(v/3 - sin(v));\
+y: (2 + cos(u + 2*pi/3))*(cos(v) - 1);\
+z: (2 + cos(u - 2*pi/3))*(cos(v) - 1);\
+xu: sin(u)*(sin(v) - v/3);\
+yu: sin(u + 2*pi/3)*(1-cos(v));\
+zu: sin(u - 2*pi/3)*(cos(v)-1);\
+xv: cos(u)/3 - cos(u)*cos(v) - 2*cos(v) + 2/3;\
+yv: -sin(v)*(2+cos(u + 2*pi/3));\
 zv: -sin(v)*(2+cos(u - 2*pi/3)); ";
 #endif

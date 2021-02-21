@@ -54,25 +54,25 @@ PaSuLiDefDesc pslddFunnel = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descFunnel =
-	"name: Funnel; \
-ut:c; vt:c; \
-us: 0.1; ue: 2; \
-vs: 0; ve:pi: 2; \
-x: u*cos(v); \
-y: u*sin(v); \
-z: log(u); \
-xu: cos(v); yu: sin(v); zu: 1/u; \
-xv: -u*sin(v); yv: u*cos(v); zv: 0; \
-xn: -cos(v); \
-yn: -sin(v); \
-zn: u; \
-xuu: 0; \
-yuu: 0; \
-zuu: -1/(u*u); \
-xuv: -sin(v); \
-yuv: cos(v); \
-zuv: 0; \
-xvv: -u*cos(v); \
-yvv: -u*sin(v); \
+	"name: Funnel;\
+ut:c; vt:c;\
+us: 0.1; ue: 2;\
+vs: 0; ve:pi: 2;\
+x: u*cos(v);\
+y: u*sin(v);\
+z: log(u);\
+xu: cos(v); yu: sin(v); zu: 1/u;\
+xv: -u*sin(v); yv: u*cos(v); zv: 0;\
+xn: -cos(v);\
+yn: -sin(v);\
+zn: u;\
+xuu: 0;\
+yuu: 0;\
+zuu: -1/(u*u);\
+xuv: -sin(v);\
+yuv: cos(v);\
+zuv: 0;\
+xvv: -u*cos(v);\
+yvv: -u*sin(v);\
 zvv: 0; ";
 #endif

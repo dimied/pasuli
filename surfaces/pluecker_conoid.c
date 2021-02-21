@@ -52,29 +52,29 @@ PaSuLiDefDesc pslddPlueckerConoid = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descPlueckerConoid =
-    "name: Pluecker Conoid; \
-ut:c; vt:c; \
-us: -2; ue: 2; \
-vs: -1; ve: 1; \
-x: u*sqrt(1 - v*v); \
-y: u*v; \
-z: 1 - v*v; \
-xu: sqrt(1-v*v); \
-yu: v; \
-zu: 0; \
-xv: -u*v/(sqrt(1-v*v)); \
-yv: u; \
-zv: -2*v; \
-xn: -2*v*v; \
-yn: 2*v*(sqrt(1-v*v)); \
-zn: u/(sqrt(1-v*v)); \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: -v/(sqrt(1-v*v)); \
-yuv: 1; \
-zuv: 0; \
-xvv: -u/(sqrt(1-v*v)*(1-v*v)); \
-yvv: 0; \
+    "name: Pluecker Conoid;\
+ut:c; vt:c;\
+us: -2; ue: 2;\
+vs: -1; ve: 1;\
+x: u*sqrt(1 - v*v);\
+y: u*v;\
+z: 1 - v*v;\
+xu: sqrt(1-v*v);\
+yu: v;\
+zu: 0;\
+xv: -u*v/(sqrt(1-v*v));\
+yv: u;\
+zv: -2*v;\
+xn: -2*v*v;\
+yn: 2*v*(sqrt(1-v*v));\
+zn: u/(sqrt(1-v*v));\
+xuu: 0;\
+yuu: 0;\
+zuu: 0;\
+xuv: -v/(sqrt(1-v*v));\
+yuv: 1;\
+zuv: 0;\
+xvv: -u/(sqrt(1-v*v)*(1-v*v));\
+yvv: 0;\
 zvv: -2;";
 #endif

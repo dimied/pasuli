@@ -56,29 +56,29 @@ PaSuLiDefDesc pslddSteinbachScrew = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSteinbachScrew =
-    "name: Steinbach Screw; \
-ut:c; vt:c; \
-us: -4; ue: 4; \
-vs: 0; ve:pi: 2; \
-x: u*cos(v); \
-y: u*sin(v); \
-z: v*cos(u); \
-xu: cos(v); \
-yu: sin(v); \
-zu: -v*sin(u); \
-xv: -u*sin(v); \
-yv: u*cos(v); \
-zv: cos(u); \
-xn: u*v*cos(v)*sin(u) + cos(u)*sin(v); \
-yn: u*v*sin(u)*sin(v) - cos(u)*cos(v); \
-zn: u; \
-xuu: 0; \
-yuu: 0; \
-zuu: -v*cos(u); \
-xuv: -sin(v); \
-yuv: cos(v); \
-zuv: -sin(u); \
-xvv: -u*cos(v); \
-yvv: -u*sin(v); \
+    "name: Steinbach Screw;\
+ut:c; vt:c;\
+us: -4; ue: 4;\
+vs: 0; ve:pi: 2;\
+x: u*cos(v);\
+y: u*sin(v);\
+z: v*cos(u);\
+xu: cos(v);\
+yu: sin(v);\
+zu: -v*sin(u);\
+xv: -u*sin(v);\
+yv: u*cos(v);\
+zv: cos(u);\
+xn: u*v*cos(v)*sin(u) + cos(u)*sin(v);\
+yn: u*v*sin(u)*sin(v) - cos(u)*cos(v);\
+zn: u;\
+xuu: 0;\
+yuu: 0;\
+zuu: -v*cos(u);\
+xuv: -sin(v);\
+yuv: cos(v);\
+zuv: -sin(u);\
+xvv: -u*cos(v);\
+yvv: -u*sin(v);\
 zvv: 0;";
 #endif

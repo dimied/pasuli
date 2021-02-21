@@ -63,31 +63,31 @@ PaSuLiDefDesc pslddTwistedSphere = {
 #endif
 #if (COMPILE_DESC_SPHERE != 0)
 char *descTwistedSphere =
-    "name: twisted sphere; \
-cat: sphere; \
-ut: c; vt: c; \
-us: 0; ue:pi: 2; \
-vs:pi: -1; ve:pi: 1; \
-c1:a: 1; c2:b: 1; \
-x: a*cos(u)*cos(v); \
-y: a*sin(v) + b*u; \
-z: a*sin(u)*cos(v); \
-xu: -a*sin(u)*cos(v); \
-yu: b; \
-zu: a*cos(u)*cos(v); \
-xv: -a*cos(u)*sin(v); \
-yv: a*cos(v); \
-zv: -a*sin(u)*sin(v); \
-xn: -a*(a*cos(u)*cos(v)*cos(v) + b*sin(u)*sin(v)); \
-yn: -a*a*(cos(v)*sin(v)); \
-zn: a*(b*cos(u)*sin(v) - a*cos(v)*cos(v)*sin(u)); \
-xuu: -a*cos(u)*cos(v); \
-yuu: 0; \
-zuu: -a*cos(v)*sin(u); \
-xuv: a*sin(u)*sin(v); \
-yuv: 0; \
-zuv: -a*cos(u)*sin(v); \
-xvv: -a*cos(u)*cos(v); \
-yvv: -a*sin(v); \
+    "name: twisted sphere;\
+cat: sphere;\
+ut: c; vt: c;\
+us: 0; ue:pi: 2;\
+vs:pi: -1; ve:pi: 1;\
+c1:a: 1; c2:b: 1;\
+x: a*cos(u)*cos(v);\
+y: a*sin(v) + b*u;\
+z: a*sin(u)*cos(v);\
+xu: -a*sin(u)*cos(v);\
+yu: b;\
+zu: a*cos(u)*cos(v);\
+xv: -a*cos(u)*sin(v);\
+yv: a*cos(v);\
+zv: -a*sin(u)*sin(v);\
+xn: -a*(a*cos(u)*cos(v)*cos(v) + b*sin(u)*sin(v));\
+yn: -a*a*(cos(v)*sin(v));\
+zn: a*(b*cos(u)*sin(v) - a*cos(v)*cos(v)*sin(u));\
+xuu: -a*cos(u)*cos(v);\
+yuu: 0;\
+zuu: -a*cos(v)*sin(u);\
+xuv: a*sin(u)*sin(v);\
+yuv: 0;\
+zuv: -a*cos(u)*sin(v);\
+xvv: -a*cos(u)*cos(v);\
+yvv: -a*sin(v);\
 zvv: -a*cos(v)*sin(u); ";
 #endif

@@ -61,31 +61,31 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descBellPolar =
-    "name: Bell Polar; \
-ut: c; vt: c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve: 12; \
-c1:a: 1.5; c2:b: 0.5; \
-a1:r: sqrt(2*v*v); \
-x: v*cos(u); \
-y: v*sin(u); \
-z: b*exp(-(a*r)^(2)); \
-xu: -v*sin(u); \
-yu: v*cos(u); \
-zu: 0; \
-xv: cos(u); \
-yv: sin(u); \
-zv: -4*a^(2)*b*v*exp(-2*a*a*v*v); \
-xn: -4*a^(2)*b*v*v*cos(u)*exp(-2*a*a*v*v); \
-yn: -4*a^(2)*b*v*v*sin(u)*exp(-2*a*a*v*v); \
-zn: -v; \
-xuu: -v*cos(u); \
-yuu: -v*sin(u); \
-zuu: 0; \
-xuv: -sin(u); \
-yuv: cos(u); \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
+    "name: Bell Polar;\
+ut: c; vt: c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve: 12;\
+c1:a: 1.5; c2:b: 0.5;\
+a1:r: sqrt(2*v*v);\
+x: v*cos(u);\
+y: v*sin(u);\
+z: b*exp(-(a*r)^(2));\
+xu: -v*sin(u);\
+yu: v*cos(u);\
+zu: 0;\
+xv: cos(u);\
+yv: sin(u);\
+zv: -4*a^(2)*b*v*exp(-2*a*a*v*v);\
+xn: -4*a^(2)*b*v*v*cos(u)*exp(-2*a*a*v*v);\
+yn: -4*a^(2)*b*v*v*sin(u)*exp(-2*a*a*v*v);\
+zn: -v;\
+xuu: -v*cos(u);\
+yuu: -v*sin(u);\
+zuu: 0;\
+xuv: -sin(u);\
+yuv: cos(u);\
+zuv: 0;\
+xvv: 0;\
+yvv: 0;\
 zvv: 16*a^(4)*b*v^(2)*exp(-2*a*a*v*v) - 4*a^(2)*b*exp(-2*a*a*v*v)";
 #endif

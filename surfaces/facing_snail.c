@@ -59,30 +59,30 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descFacingSnail =
-	"name: Facing Snail; \
-ut:c; vt:c; \
-us:pi: -0.5; ue:pi: 0.5; \
-vs: 0; ve:pi: 6; \
-c1:a: 1.5; \
-x: cos(v)*cos(u); \
-y: sin(v)*cos(u); \
-z: (1 - a*v)*sin(u); \
-xu: -cos(v)*sin(u); \
-yu: -sin(v)*sin(u); \
-zu: (1-a*v)*cos(u); \
-xv: -cos(u)*sin(v); \
-yv: cos(u)*cos(v); \
-zv: -a*sin(u); \
-xn: (a*v - 1)*cos(u)^2*cos(v) + a*sin(u)^2*sin(v); \
-yn: (a*v - 1)*cos(u)^2*sin(v) - a*sin(u)^2*cos(v); \
-zn: -cos(u)*sin(u); \
-xuu: -cos(u)*cos(v); \
-yuu: -cos(u)*sin(v); \
-zuu: (a*v-1)*sin(u); \
-xuv: sin(u)*sin(v); \
-yuv: -sin(u)*cos(v); \
-zuv: -a*cos(u); \
-xvv: -cos(u)*cos(v); \
-yvv: -cos(u)*sin(v); \
+	"name: Facing Snail;\
+ut:c; vt:c;\
+us:pi: -0.5; ue:pi: 0.5;\
+vs: 0; ve:pi: 6;\
+c1:a: 1.5;\
+x: cos(v)*cos(u);\
+y: sin(v)*cos(u);\
+z: (1 - a*v)*sin(u);\
+xu: -cos(v)*sin(u);\
+yu: -sin(v)*sin(u);\
+zu: (1-a*v)*cos(u);\
+xv: -cos(u)*sin(v);\
+yv: cos(u)*cos(v);\
+zv: -a*sin(u);\
+xn: (a*v - 1)*cos(u)^2*cos(v) + a*sin(u)^2*sin(v);\
+yn: (a*v - 1)*cos(u)^2*sin(v) - a*sin(u)^2*cos(v);\
+zn: -cos(u)*sin(u);\
+xuu: -cos(u)*cos(v);\
+yuu: -cos(u)*sin(v);\
+zuu: (a*v-1)*sin(u);\
+xuv: sin(u)*sin(v);\
+yuv: -sin(u)*cos(v);\
+zuv: -a*cos(u);\
+xvv: -cos(u)*cos(v);\
+yvv: -cos(u)*sin(v);\
 zvv: 0; ";
 #endif

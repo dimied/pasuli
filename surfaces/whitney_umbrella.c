@@ -48,17 +48,17 @@ PaSuLiDefDesc pslddWhitneyUmbrella = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descWhitneyUmbrella =
-    "name: Whitney Umbrella; \
-ut:c; vt:c; \
-us: -1.5; ue: 1.5; \
-vs: -1.5; ve: 1.5; \
-x: u*v; \
-y: u; \
+    "name: Whitney Umbrella;\
+ut:c; vt:c;\
+us: -1.5; ue: 1.5;\
+vs: -1.5; ve: 1.5;\
+x: u*v;\
+y: u;\
 z: v*v;\
 xu: v; yu: 1; zu: 0;\
 xv: u; yv: 0; zv: 2*v;\
-xn: 2*v; \
-yn: -2*v*v; \
+xn: 2*v;\
+yn: -2*v*v;\
 zn: -u;\
 xuu: 0; yuu: 0; zuu: 0;\
 xuv: 1; yuv: 0; zuv: 0;\

@@ -28,13 +28,13 @@ PaSuLiDefDesc pslddAstroceras = {
 	-40, -1, 0, 2, 0};
 #endif
 #if (COMPILE_DESC_SHELLS != 0)
-char *descAstroceras = "name: Astroceras; \
-cat: shells; \
-kindof: Snails; \
-ut: c; vt: c; \
-us: -40; ue: -1; \
-c1:R: 1; c2:a: 1.25; \
-c3:b: 1.25; c4:c: 1; \
-c5:h: 3.5; c6:k: 0; \
+char *descAstroceras = "name: Astroceras;\
+cat: shells;\
+kindof: Snails;\
+ut: c; vt: c;\
+us: -40; ue: -1;\
+c1:R: 1; c2:a: 1.25;\
+c3:b: 1.25; c4:c: 1;\
+c5:h: 3.5; c6:k: 0;\
 c7:w: 0.12;";
 #endif

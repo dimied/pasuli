@@ -61,18 +61,18 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(4),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descTrefoilKnots2 =
-	"name: Trefoil Knots 2; \
-ut:c; vt:c; \
-us: 0; ue:pi: 4; \
-vs: 0; ve:pi: 2; \
-c1:R: 1.5; c2:r: 0.5; c3:a: 1.0; c4:N: 1.0; \
-x: r*cos(v)*cos(u) + R*cos(u)*(1 + a*cos(N*u)); \
-y: r*cos(v)*sin(u) + R*sin(u)*(1 + a*cos(N*u)); \
-z: r*sin(v) + a*sin(N*u); \
-xu: -sin(u)*(R*(a*cos(N*u) + 1) + r*cos(v)) - a*N*R*cos(u)*sin(N*u); \
-yu: cos(u)*(R*(a*cos(N*u) + 1) + r*cos(v)) - a*N*R*sin(u)*sin(N*u); \
-zu: a*N*cos(N*u); \
-xv: -r*cos(u)*sin(v); \
-yv: -r*sin(u)*sin(v); \
+	"name: Trefoil Knots 2;\
+ut:c; vt:c;\
+us: 0; ue:pi: 4;\
+vs: 0; ve:pi: 2;\
+c1:R: 1.5; c2:r: 0.5; c3:a: 1.0; c4:N: 1.0;\
+x: r*cos(v)*cos(u) + R*cos(u)*(1 + a*cos(N*u));\
+y: r*cos(v)*sin(u) + R*sin(u)*(1 + a*cos(N*u));\
+z: r*sin(v) + a*sin(N*u);\
+xu: -sin(u)*(R*(a*cos(N*u) + 1) + r*cos(v)) - a*N*R*cos(u)*sin(N*u);\
+yu: cos(u)*(R*(a*cos(N*u) + 1) + r*cos(v)) - a*N*R*sin(u)*sin(N*u);\
+zu: a*N*cos(N*u);\
+xv: -r*cos(u)*sin(v);\
+yv: -r*sin(u)*sin(v);\
 zv: r*cos(v);";
 #endif

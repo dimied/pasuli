@@ -70,42 +70,42 @@ PaSuLiDefDesc pslddPiriformTorus1 = {
 #endif
 #if (COMPILE_DESC_TORUS != 0)
 char *descPiriformTorus1 =
-	"name: Piriform Torus 1; \
-cat: torus; \
-us: 0; ue:pi:2; \
-vs: 0; ve:pi:2; \
-c1:R1:1; c2:R: 1; \
-x: (R + (r + sin(v)))*cos(u); \
-y: cos(v)*(r + sin(v)); \
+	"name: Piriform Torus 1;\
+cat: torus;\
+us: 0; ue:pi:2;\
+vs: 0; ve:pi:2;\
+c1:R1:1; c2:R: 1;\
+x: (R + (r + sin(v)))*cos(u);\
+y: cos(v)*(r + sin(v));\
 z: (R + (r + sin(v)))*sin(u); "
 #if (COMPILE_DESC_DERIV_U_TORUS != 0)
-	"xu: 0; \
-yu: 0; \
+	"xu: 0;\
+yu: 0;\
 zu: 0; "
 #endif
 #if (COMPILE_DESC_DERIV_V_TORUS != 0)
-	"xv: 0; \
-yv: 0; \
+	"xv: 0;\
+yv: 0;\
 zv: 0; "
 #endif
 #if (COMPILE_DESC_NORMAL_TORUS != 0)
-	"xn: 0; \
-yn: 0; \
+	"xn: 0;\
+yn: 0;\
 zn: 0; "
 #endif
 #if (COMPILE_DESC_DERIV2_U_TORUS != 0)
-	"xuu: 0; \
-yuu: 0; \
+	"xuu: 0;\
+yuu: 0;\
 zuu: 0; "
 #endif
 #if (COMPILE_DESC_DERIV_UV_TORUS != 0)
-	"xuv: 0; \
-yuv: 0; \
+	"xuv: 0;\
+yuv: 0;\
 zuv: 0; "
 #endif
 #if (COMPILE_DESC_DERIV2_V_TORUS != 0)
-	"xvv: 0; \
-yvv: 0; \
+	"xvv: 0;\
+yvv: 0;\
 zvv: 0; "
 #endif
 	"";

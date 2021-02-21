@@ -47,21 +47,21 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSineWave =
-    "name: Sine Wave; \
-ut:c; vt:c; \
-us: -5; ue: 5; \
-vs: -5; ve: 5; \
-c1:a: 1.5; c2:b: 0.5; \
-x: u; \
-y: v; \
-z: a*sin(b*sqrt(u*u + v*v)); \
-xu: 1; \
-yu: 0; \
-zu: a*b*u*cos(b*sqrt(u*u + v*v))/sqrt(u*u + v*v); \
-xv: 0; \
-yv: 1; \
-zv: a*b*v*cos(b*sqrt(u*u + v*v))/sqrt(u*u + v*v); \
-xn: a*b*u*cos(b*sqrt(u*u + v*v))/sqrt(u*u + v*v); \
-yn: a*b*v*cos(b*sqrt(u*u + v*v))/sqrt(u*u + v*v); \
+    "name: Sine Wave;\
+ut:c; vt:c;\
+us: -5; ue: 5;\
+vs: -5; ve: 5;\
+c1:a: 1.5; c2:b: 0.5;\
+x: u;\
+y: v;\
+z: a*sin(b*sqrt(u*u + v*v));\
+xu: 1;\
+yu: 0;\
+zu: a*b*u*cos(b*sqrt(u*u + v*v))/sqrt(u*u + v*v);\
+xv: 0;\
+yv: 1;\
+zv: a*b*v*cos(b*sqrt(u*u + v*v))/sqrt(u*u + v*v);\
+xn: a*b*u*cos(b*sqrt(u*u + v*v))/sqrt(u*u + v*v);\
+yn: a*b*v*cos(b*sqrt(u*u + v*v))/sqrt(u*u + v*v);\
 zn: 1;";
 #endif

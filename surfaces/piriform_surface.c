@@ -68,32 +68,32 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(3),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descPiriformSurface =
-	"name:piriform Surface; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs:pi: -0.5; ve:pi: 0.5; \
-c1:a: 1.5; c2:b: 0.5; c3:r: 1.0; \
-a1:c: (r + sin(v)); \
-a2:d: b*cos(v)*c; \
-x: d*cos(u); \
-y: d*sin(u); \
-z: a*c; \
-xu: -b*cos(v)*(r+sin(v))*sin(u); \
-yu: b*cos(v)*(r+sin(v))*cos(u); \
-zu: 0; \
-xv: -b*cos(u)*(r*sin(v) - (cos(v)^2 - sin(v)^2); \
-yv: -b*sin(u)*(r*sin(v) - (cos(v)^2 - sin(v)^2); \
-zv: a*cos(v); \
-xn: a*b*cos(u)*cos(v)^2*(r + sin(v)); \
-yn: a*b*sin(u)*cos(v)^2*(r + sin(v)); \
-zn: b^2*cos(v)*(2*r^2*sin(v) - 3*r*cos(2*v) + r*sin(v) - sin(3*v))/2; \
-xuu: -b*cos(v)*(r+sin(v))*cos(u); \
-yuu: -b*cos(v)*(r+sin(v))*sin(u); \
-zuu: 0; \
-xuv: b*sin(u)*(r*sin(v) - b*(cos(v)^2 - sin(v)^2)); \
-yuv: -b*cos(u)*(r*sin(v) - b*(cos(v)^2 - sin(v)^2)); \
-zuv: 0; \
-xvv: -b*cos(u)*(cos(v)*(r + 4*sin(v)); \
-yvv: -b*sin(u)*(cos(v)*(r + 4*sin(v)); \
+	"name:piriform Surface;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs:pi: -0.5; ve:pi: 0.5;\
+c1:a: 1.5; c2:b: 0.5; c3:r: 1.0;\
+a1:c: (r + sin(v));\
+a2:d: b*cos(v)*c;\
+x: d*cos(u);\
+y: d*sin(u);\
+z: a*c;\
+xu: -b*cos(v)*(r+sin(v))*sin(u);\
+yu: b*cos(v)*(r+sin(v))*cos(u);\
+zu: 0;\
+xv: -b*cos(u)*(r*sin(v) - (cos(v)^2 - sin(v)^2);\
+yv: -b*sin(u)*(r*sin(v) - (cos(v)^2 - sin(v)^2);\
+zv: a*cos(v);\
+xn: a*b*cos(u)*cos(v)^2*(r + sin(v));\
+yn: a*b*sin(u)*cos(v)^2*(r + sin(v));\
+zn: b^2*cos(v)*(2*r^2*sin(v) - 3*r*cos(2*v) + r*sin(v) - sin(3*v))/2;\
+xuu: -b*cos(v)*(r+sin(v))*cos(u);\
+yuu: -b*cos(v)*(r+sin(v))*sin(u);\
+zuu: 0;\
+xuv: b*sin(u)*(r*sin(v) - b*(cos(v)^2 - sin(v)^2));\
+yuv: -b*cos(u)*(r*sin(v) - b*(cos(v)^2 - sin(v)^2));\
+zuv: 0;\
+xvv: -b*cos(u)*(cos(v)*(r + 4*sin(v));\
+yvv: -b*sin(u)*(cos(v)*(r + 4*sin(v));\
 zvv: -a*sin(v);";
 #endif

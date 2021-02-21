@@ -53,30 +53,30 @@ PaSuLiDefDesc pslddGaussCylinder = {
 #endif
 #if (COMPILE_DESC_CYLINDER != 0)
 char *descGaussCylinder =
-	"name: Gauss-Cylinder; \
-ut: c; vt: o; \
-us:pi: -1; ue:pi: 1; \
-vs: 0; ve: 1; \
-c1:R: 1; c2:a: 1; c3:b: 1; \
-x: (R + b*exp(-(a*a*v*v)))*cos(u); \
-y: v; \
-z: (R + b*exp(-(a*a*v*v)))*sin(u); \
-xu: -sin(u)*(R+b*exp(-a*a*v*v)); \
-yu: 0; \
-zu: cos(u)*(R+b*exp(-a*a*v*v)); \
-xv: -2*a*a*b*v*exp(-a*a*v*v)*cos(u); \
-yv: 1; \
-zv: -2*a*a*b*v*exp(-a*a*v*v)*sin(u); \
-xn: -cos(u)*(R+b*exp(-a*a*v*v)); \
-yn: -2*a*a*b*v*exp(-2*a*a*v*v)*(b+R*exp(a*a*v*v)); \
-zn: -sin(u)*(R+b*exp(-a*a*v*v)); \
+	"name: Gauss-Cylinder;\
+ut: c; vt: o;\
+us:pi: -1; ue:pi: 1;\
+vs: 0; ve: 1;\
+c1:R: 1; c2:a: 1; c3:b: 1;\
+x: (R + b*exp(-(a*a*v*v)))*cos(u);\
+y: v;\
+z: (R + b*exp(-(a*a*v*v)))*sin(u);\
+xu: -sin(u)*(R+b*exp(-a*a*v*v));\
+yu: 0;\
+zu: cos(u)*(R+b*exp(-a*a*v*v));\
+xv: -2*a*a*b*v*exp(-a*a*v*v)*cos(u);\
+yv: 1;\
+zv: -2*a*a*b*v*exp(-a*a*v*v)*sin(u);\
+xn: -cos(u)*(R+b*exp(-a*a*v*v));\
+yn: -2*a*a*b*v*exp(-2*a*a*v*v)*(b+R*exp(a*a*v*v));\
+zn: -sin(u)*(R+b*exp(-a*a*v*v));\
 xuu: -cos(u)*(R+b*exp(-a*a*v*v));\
-yuu: 0; \
-zuu -sin(u)*(R+b*exp(-a*a*v*v)); \
-xuv: 2*a*a*b*v*exp(-a*a*v*v)*sin(u); \
-yuv: 0; \
-zuv: -2*a*a*b*v*exp(-a*a*v*v)*cos(u); \
-xvv: cos(u)*(2*a*a*b*exp(-a*a*v*v)*(2*a*a*v*v-1)); \
-yvv: 0; \
+yuu: 0;\
+zuu -sin(u)*(R+b*exp(-a*a*v*v));\
+xuv: 2*a*a*b*v*exp(-a*a*v*v)*sin(u);\
+yuv: 0;\
+zuv: -2*a*a*b*v*exp(-a*a*v*v)*cos(u);\
+xvv: cos(u)*(2*a*a*b*exp(-a*a*v*v)*(2*a*a*v*v-1));\
+yvv: 0;\
 zvv sin(u)*(2*a*a*b*exp(-a*a*v*v)*(2*a*a*v*v-1)); ";
 #endif

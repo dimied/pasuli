@@ -64,31 +64,31 @@ PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descKappaSurface =
-	"name: Kappa Surface; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0.25; ve:pi: 0.5; \
-c1:a: 1.5; \
-a1:r: a*cos(v); \
-x: r*cos(u); \
-y: r*sin(u); \
-z: -r/tan(v); \
-xu: -a*cos(v)*sin(u); \
-yu: a*cos(v)*cos(u); \
-zu: 0; \
-xv: -a*sin(v)*cos(u); \
-yv: -a*sin(v)*sin(u); \
-zv: a/(cos(v)*tan(v)^2) + a*sin(v)/tan(v); \
-xn: a^2*cos(u)*(cos(v)^2 + 1/tan(v)^2); \
-yn: a^2*sin(u)*(cos(v)^2 + 1/tan(v)^2); \
-zn: a^2*cos(v)*sin(v); \
-xuu: -a*cos(u)*cos(v); \
-yuu: -a*sin(u)*cos(v); \
-zuu: 0; \
-xuv: a*sin(u)*sin(v); \
-yuv: -a*cos(u)*sin(v); \
-zuv: 0; \
-xvv: -a*cos(u)*cos(v); \
-yvv: -a*sin(u)*cos(v); \
+	"name: Kappa Surface;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0.25; ve:pi: 0.5;\
+c1:a: 1.5;\
+a1:r: a*cos(v);\
+x: r*cos(u);\
+y: r*sin(u);\
+z: -r/tan(v);\
+xu: -a*cos(v)*sin(u);\
+yu: a*cos(v)*cos(u);\
+zu: 0;\
+xv: -a*sin(v)*cos(u);\
+yv: -a*sin(v)*sin(u);\
+zv: a/(cos(v)*tan(v)^2) + a*sin(v)/tan(v);\
+xn: a^2*cos(u)*(cos(v)^2 + 1/tan(v)^2);\
+yn: a^2*sin(u)*(cos(v)^2 + 1/tan(v)^2);\
+zn: a^2*cos(v)*sin(v);\
+xuu: -a*cos(u)*cos(v);\
+yuu: -a*sin(u)*cos(v);\
+zuu: 0;\
+xuv: a*sin(u)*sin(v);\
+yuv: -a*cos(u)*sin(v);\
+zuv: 0;\
+xvv: -a*cos(u)*cos(v);\
+yvv: -a*sin(u)*cos(v);\
 zvv: a*cos(v)/tan(v) - 2*a/sin(v)^3; ";
 #endif

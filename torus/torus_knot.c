@@ -73,45 +73,45 @@ PaSuLiDefDesc pslddTorusKnot = {
 #endif
 #if (COMPILE_DESC_TORUS != 0)
 char *descTorusKnot =
-	"name: Torus Knot; \
-cat: torus; \
-us: 0; ue:pi:2; \
-vs: 0; ve:pi:2; \
-c1:R1:1; c2:R2:1; c3:r:1; c4:p:1; c5:q:1; \
-a1:F: (R1 + R2*cos(p*u) + r*cos(v)); \
-x: F*cos(q*u); \
-y: r*sin(v) + R2*sin(p*u); \
+	"name: Torus Knot;\
+cat: torus;\
+us: 0; ue:pi:2;\
+vs: 0; ve:pi:2;\
+c1:R1:1; c2:R2:1; c3:r:1; c4:p:1; c5:q:1;\
+a1:F: (R1 + R2*cos(p*u) + r*cos(v));\
+x: F*cos(q*u);\
+y: r*sin(v) + R2*sin(p*u);\
 z: F*sin(q*u); "
 #if (COMPILE_DESC_DERIV_U_TORUS != 0)
-	"xu: -( q*sin(q*u)*(R1 +R2*cos(p*u) + r*cos(v)) + R2*p*cos(q*u)*sin(p*u) ); \
-yu: R2*p*cos(p*u); \
+	"xu: -( q*sin(q*u)*(R1 +R2*cos(p*u) + r*cos(v)) + R2*p*cos(q*u)*sin(p*u) );\
+yu: R2*p*cos(p*u);\
 zu: q*cos(q*u)*(R1 +R2*cos(p*u) + r*cos(v)) - R2*p*sin(q*u)*sin(p*u); "
 #endif
 #if (COMPILE_DESC_DERIV_V_TORUS != 0)
-	"xv: -r*cos(q*u)*sin(v); \
-yv: r*cos(v); \
+	"xv: -r*cos(q*u)*sin(v);\
+yv: r*cos(v);\
 zv: -r*sin(v)*sin(q*u); "
 #endif
 #if (COMPILE_DESC_NORMAL_TORUS != 0)
-	"xn:X; \
-yn:X; \
+	"xn:X;\
+yn:X;\
 zn:X; "
 #endif
 #if (COMPILE_DESC_DERIV2_U_TORUS != 0)
 	"xuu: -cos(q*u)*(q*q*(R1 + R2*cos(p*u) + r*cos(v)) - p*p*R2*cos(p*u) ) + \
-2*R2*p*q*sin(q*u)*sin(p*u) ; \
-yuu: -R2*p*p*sin(p*u); \
+2*R2*p*q*sin(q*u)*sin(p*u) ;\
+yuu: -R2*p*p*sin(p*u);\
 zuu: -sin(q*u)*(q*q*(R1 + R2*cos(p*u) + r*cos(v)) + p*p*R2*cos(p*u)) - \
 2*R2*p*q*cos(q*u)*sin(p*u); "
 #endif
 #if (COMPILE_DESC_DERIV_UV_TORUS != 0)
-	"xuv: q*r*sin(v)*sin(q*u); \
-yuv: 0; \
+	"xuv: q*r*sin(v)*sin(q*u);\
+yuv: 0;\
 zuv: -q*r*sin(v)*cos(q*u); "
 #endif
 #if (COMPILE_DESC_DERIV2_V_TORUS != 0)
-	"xvv: -r*cos(v)*cos(q*u); \
-yvv: -r*sin(v); \
+	"xvv: -r*cos(v)*cos(q*u);\
+yvv: -r*sin(v);\
 zvv: -r*cos(v)*sin(q*u); "
 #endif
 	"";

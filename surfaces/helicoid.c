@@ -52,30 +52,30 @@ PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descHelicoid =
-    "name: Helicoid; \
-ut: c; vt: c; \
-us:-2; ue:2; \
-vs: 0; ve:pi: 2; \
-c1:c: 1.5; \
-x: u*cos(v); \
-y: u*sin(v); \
-z: c*v; \
-xu: cos(v); \
-yu: sin(v); \
-zu: 0; \
-xv: -u*sin(v); \
-yv: u*cos(v); \
-zv: c; \
-xn: c*sin(v); \
-yn: -c*cos(v); \
-zn: u; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: -sin(v); \
-yuv: cos(v); \
-zuv: 0; \
-xvv: -u*cos(v); \
-yvv: -u*sin(v); \
+    "name: Helicoid;\
+ut: c; vt: c;\
+us:-2; ue:2;\
+vs: 0; ve:pi: 2;\
+c1:c: 1.5;\
+x: u*cos(v);\
+y: u*sin(v);\
+z: c*v;\
+xu: cos(v);\
+yu: sin(v);\
+zu: 0;\
+xv: -u*sin(v);\
+yv: u*cos(v);\
+zv: c;\
+xn: c*sin(v);\
+yn: -c*cos(v);\
+zn: u;\
+xuu: 0;\
+yuu: 0;\
+zuu: 0;\
+xuv: -sin(v);\
+yuv: cos(v);\
+zuv: 0;\
+xvv: -u*cos(v);\
+yvv: -u*sin(v);\
 zvv: 0; ";
 #endif

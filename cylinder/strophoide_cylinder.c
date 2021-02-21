@@ -48,22 +48,22 @@ void StrophoideCylinder(pasuli_vartype u,
 
 #if (COMPILE_DESC_CYLINDER != 0)
 char *descStrophoideCylinder =
-	"name: Strophoide-Cylinder; \
-ut: c; vt: o; \
-us:pi: -1; ue:pi: 1; \
-vs: -2; ve: 2; \
-c1:R: 1; c2:a: 1; \
-x: (R + a*(v*v - 1)/(v*v + 1))*cos(u); \
-y: a*v*(v*v - 1)/(v*v + 1); \
-z: (R + a*(v*v - 1)/(v*v + 1))*sin(u); \
-xu: sin(u)*(a*(1-v*v)/(1+v*v) -R); \
-yu: 0; \
-zu: cos(u)*(R+a*(v*v-1)/(1+v*v)); \
-xv: 2*a*v*cos(u)*( (1 - v*v)/(1+v*v) + 1 )/(1+v*v); \
-yv: a * (  2*(v*v - v*v*v*v)/(1+v*v) + 2*v*v   - 1)/(1+v*v); \
-zv: 2*a*v*sin(u)*( (1 - v*v)/(1+v*v) + 1 )/(1+v*v); \
-xn: ?; \
-yn: ?; \
+	"name: Strophoide-Cylinder;\
+ut: c; vt: o;\
+us:pi: -1; ue:pi: 1;\
+vs: -2; ve: 2;\
+c1:R: 1; c2:a: 1;\
+x: (R + a*(v*v - 1)/(v*v + 1))*cos(u);\
+y: a*v*(v*v - 1)/(v*v + 1);\
+z: (R + a*(v*v - 1)/(v*v + 1))*sin(u);\
+xu: sin(u)*(a*(1-v*v)/(1+v*v) -R);\
+yu: 0;\
+zu: cos(u)*(R+a*(v*v-1)/(1+v*v));\
+xv: 2*a*v*cos(u)*( (1 - v*v)/(1+v*v) + 1 )/(1+v*v);\
+yv: a * (  2*(v*v - v*v*v*v)/(1+v*v) + 2*v*v   - 1)/(1+v*v);\
+zv: 2*a*v*sin(u)*( (1 - v*v)/(1+v*v) + 1 )/(1+v*v);\
+xn: ?;\
+yn: ?;\
 zn: ?;";
 #endif
 

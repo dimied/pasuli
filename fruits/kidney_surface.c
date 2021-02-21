@@ -54,31 +54,31 @@ void KidneySurface(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DESC_FRUITS != 0)
 char *descKidneySurface =
-	"name: Kidney Surface; \
-cat: fruits; \
-ut: c; vt: c; \
-us: 0; ue:pi: 2; \
-vs:pi: -0.5; ve:pi: 0.5; \
-x: cos(u)*(3*cos(v) - cos(3*v)); \
-y: sin(u)*(3*cos(v) - cos(3*v)); \
-z: 3*sin(v) - sin(3*v); \
-xu: -sin(u)*(3*cos(v) - cos(3*v)); \
-yu: cos(u)*(3*cos(v) - cos(3*v)); \
-zu: 0; \
-xv: 3*cos(u)*(sin(3*v) - sin(v)); \
-yv: 3*sin(u)*(sin(3*v) - sin(v)); \
-zv: 3*cos(v) - 3*cos(3*v); \
-xn: cos(u)*(9*cos(v)^2 - 12*cos(v)*cos(3*v) + 3*cos(3*v)); \
-yn: sin(u)*(9*cos(v)^2 - 12*cos(v)*cos(3*v) + 3*cos(3*v)); \
-zn: 9*(cos(v)*sin(v) - cos(v)*sin(3*v)) + 3*(cos(3*v)*sin(3*v) - cos(3*v)*sin(v)); \
-xuu: -cos(u)*(3*cos(v) - cos(3*v)); \
-yuu: -sin(u)*(3*cos(v) - cos(3*v)); \
-zuu: 0; \
-xuv: sin(u)*(3*sin(v) - 3*sin(3*v)); \
-yuv: cos(u)*(3*sin(3*v) - 3*sin(v)); \
-zuv: 0; \
-xvv: cos(u)*(9*cos(3*v) -3*cos(v)); \
-yvv: sin(u)*(9*cos(3*v) -3*cos(v)); \
+	"name: Kidney Surface;\
+cat: fruits;\
+ut: c; vt: c;\
+us: 0; ue:pi: 2;\
+vs:pi: -0.5; ve:pi: 0.5;\
+x: cos(u)*(3*cos(v) - cos(3*v));\
+y: sin(u)*(3*cos(v) - cos(3*v));\
+z: 3*sin(v) - sin(3*v);\
+xu: -sin(u)*(3*cos(v) - cos(3*v));\
+yu: cos(u)*(3*cos(v) - cos(3*v));\
+zu: 0;\
+xv: 3*cos(u)*(sin(3*v) - sin(v));\
+yv: 3*sin(u)*(sin(3*v) - sin(v));\
+zv: 3*cos(v) - 3*cos(3*v);\
+xn: cos(u)*(9*cos(v)^2 - 12*cos(v)*cos(3*v) + 3*cos(3*v));\
+yn: sin(u)*(9*cos(v)^2 - 12*cos(v)*cos(3*v) + 3*cos(3*v));\
+zn: 9*(cos(v)*sin(v) - cos(v)*sin(3*v)) + 3*(cos(3*v)*sin(3*v) - cos(3*v)*sin(v));\
+xuu: -cos(u)*(3*cos(v) - cos(3*v));\
+yuu: -sin(u)*(3*cos(v) - cos(3*v));\
+zuu: 0;\
+xuv: sin(u)*(3*sin(v) - 3*sin(3*v));\
+yuv: cos(u)*(3*sin(3*v) - 3*sin(v));\
+zuv: 0;\
+xvv: cos(u)*(9*cos(3*v) -3*cos(v));\
+yvv: sin(u)*(9*cos(3*v) -3*cos(v));\
 zvv: 9*sin(3*v) - 3*sin(v); ";
 #endif
 

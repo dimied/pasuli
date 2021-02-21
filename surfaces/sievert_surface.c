@@ -41,15 +41,15 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSievertSurface =
-    "name: Sievert Surface; \
-ut:c; vt:c; \
-us:pi: -0.5; ue:pi: 0.5; \
-vs: 0.1; ve:pi: 3; \
-c1:C: 1.5; \
-a1:p: -u/sqrt(C + 1) + atan(tan(u)*sqrt(C + 1)); \
-a2:a: 2/(C + 1 - C*sin(v)*sin(v)*cos(u)*cos(u)); \
-a3:r: a*sqrt((C + 1)*(1 + C*sin(u)*sin(u)))*sin(v)/sqrt(C); \
-x: r*cos(p); \
-y: r*sin(p); \
+    "name: Sievert Surface;\
+ut:c; vt:c;\
+us:pi: -0.5; ue:pi: 0.5;\
+vs: 0.1; ve:pi: 3;\
+c1:C: 1.5;\
+a1:p: -u/sqrt(C + 1) + atan(tan(u)*sqrt(C + 1));\
+a2:a: 2/(C + 1 - C*sin(v)*sin(v)*cos(u)*cos(u));\
+a3:r: a*sqrt((C + 1)*(1 + C*sin(u)*sin(u)))*sin(v)/sqrt(C);\
+x: r*cos(p);\
+y: r*sin(p);\
 z: (ln(tan(v/2)) + a*(C + 1)*cos(v))/sqrt(C);";
 #endif

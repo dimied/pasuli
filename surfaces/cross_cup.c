@@ -48,17 +48,17 @@ PaSuLiDefDesc pslddCrossCup = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descCrossCup =
-    "name: Cross Cup; \
-ut: c; vt: c; \
-us:0; ue:1; vs:0; ve:pi:2; \
-u:cond:<:1; \
-x: 1 - u*u + u*u*sin(v)*sin(v); \
-y: u*u*sin(v)*sin(v) + 2*u*u*sin(v)*cos(v); \
-z: sqrt((1 - u*u)/2)*u*(sin(v) + cos(v)); \
-xu: -2*u+2*u*sin(v)^2; \
-yu: 4*u*cos(v)*sin(v) + 2*u*sin(v)^2; \
-zu: -u^2*cos(v)/(2*sqrt((1 - u*u)/2)) - u^2*sin(v)/sqrt((1 - u*u)/2) + sqrt((1 - u*u)/2)*cos(v) + sqrt((1 - u*u)/2)*sin(v); \
-xv: 2*u^2*cos(v)*sin(v); \
-yv: 2*u^2*cos(v)^2 + 2*u^2*cos(v)*sin(v) - 2*u^2*sin(v)^2; \
+    "name: Cross Cup;\
+ut: c; vt: c;\
+us:0; ue:1; vs:0; ve:pi:2;\
+u:cond:<:1;\
+x: 1 - u*u + u*u*sin(v)*sin(v);\
+y: u*u*sin(v)*sin(v) + 2*u*u*sin(v)*cos(v);\
+z: sqrt((1 - u*u)/2)*u*(sin(v) + cos(v));\
+xu: -2*u+2*u*sin(v)^2;\
+yu: 4*u*cos(v)*sin(v) + 2*u*sin(v)^2;\
+zu: -u^2*cos(v)/(2*sqrt((1 - u*u)/2)) - u^2*sin(v)/sqrt((1 - u*u)/2) + sqrt((1 - u*u)/2)*cos(v) + sqrt((1 - u*u)/2)*sin(v);\
+xv: 2*u^2*cos(v)*sin(v);\
+yv: 2*u^2*cos(v)^2 + 2*u^2*cos(v)*sin(v) - 2*u^2*sin(v)^2;\
 zv: u*sqrt((1 - u*u)/2)*(cos(v) - sin(v));";
 #endif

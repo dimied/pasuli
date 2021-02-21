@@ -47,20 +47,20 @@ PaSuLiDefDesc pslddRomanSurface = {
 
 #if (COMPILE_DESC_SURFACES != 0)
 char *descRomanSurface =
-    "name: Roman Surface; \
-ut:c; vt:c; \
-us: 0; ue: 1; \
-vs: 0; ve:pi: 2; \
-x: 2*u*cos(v)*sqrt(1 - u*u); \
-y: 2*u*sin(v)*sqrt(1 - u*u); \
-z: 1 - 2*u*u*cos(v)*cos(v); \
-xu: 2*(1-2*u*u)*cos(v)/(sqrt(1-u*u)); \
-yu: 2*(1-2*u*u)*sin(v)/(sqrt(1-u*u)); \
-zu: -4*u*cos(v)*cos(v); \
-xv: -2*u*sqrt(1-u*u)*sin(v); \
-yv: 2*u*sqrt(1-u*u)*cos(v); \
-zv: 4*u*u*cos(v)*sin(v); \
-xn: 8*(u*u*( (1-u^2) - u^2*sin(v)^2 ))*cos(v)/(sqrt(1-u*u)); \
-yn: 8*(u^4*cos(v)^2)*sin(v)/(sqrt(1-u*u)); \
+    "name: Roman Surface;\
+ut:c; vt:c;\
+us: 0; ue: 1;\
+vs: 0; ve:pi: 2;\
+x: 2*u*cos(v)*sqrt(1 - u*u);\
+y: 2*u*sin(v)*sqrt(1 - u*u);\
+z: 1 - 2*u*u*cos(v)*cos(v);\
+xu: 2*(1-2*u*u)*cos(v)/(sqrt(1-u*u));\
+yu: 2*(1-2*u*u)*sin(v)/(sqrt(1-u*u));\
+zu: -4*u*cos(v)*cos(v);\
+xv: -2*u*sqrt(1-u*u)*sin(v);\
+yv: 2*u*sqrt(1-u*u)*cos(v);\
+zv: 4*u*u*cos(v)*sin(v);\
+xn: 8*(u*u*( (1-u^2) - u^2*sin(v)^2 ))*cos(v)/(sqrt(1-u*u));\
+yn: 8*(u^4*cos(v)^2)*sin(v)/(sqrt(1-u*u));\
 zn: 4*u(1-2*u*u); ";
 #endif

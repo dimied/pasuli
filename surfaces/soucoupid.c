@@ -48,29 +48,29 @@ PaSuLiDefDesc pslddSoucoupoid = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSoucoupoid =
-	"name: Soucoupoid; \
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs: 0; ve:pi: 1; \
-x: cos(u)*cos(v); \
-y: cos(u)*sin(v); \
-z: (sin(u))^(3); \
-xu: -cos(v)*sin(u); \
-yu: -sin(v)*sin(u); \
-zu: 3*cos(u)*sin(u)^2; \
-xv: -cos(u)*sin(v); \
-yv: cos(u)*cos(v); \
-zv: 0; \
-xn: -3*cos(u)^2*cos(v)*sin(u)^2; \
-yn: -3*cos(u)^2*sin(v)*sin(u)^2; \
-zn: -cos(u)*sin(u); \
-xuu: -cos(u)*cos(v); \
-yuu: -cos(u)*sin(v); \
-zuu: 6*cos(u)^2*sin(u) - 3*sin(u)^3; \
-xuv: sin(u)*sin(v); \
-yuv: -sin(u)*cos(v); \
-zuv: 0; \
-xvv: -cos(u)*cos(v); \
-yvv: -cos(u)*sin(v); \
+	"name: Soucoupoid;\
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs: 0; ve:pi: 1;\
+x: cos(u)*cos(v);\
+y: cos(u)*sin(v);\
+z: (sin(u))^(3);\
+xu: -cos(v)*sin(u);\
+yu: -sin(v)*sin(u);\
+zu: 3*cos(u)*sin(u)^2;\
+xv: -cos(u)*sin(v);\
+yv: cos(u)*cos(v);\
+zv: 0;\
+xn: -3*cos(u)^2*cos(v)*sin(u)^2;\
+yn: -3*cos(u)^2*sin(v)*sin(u)^2;\
+zn: -cos(u)*sin(u);\
+xuu: -cos(u)*cos(v);\
+yuu: -cos(u)*sin(v);\
+zuu: 6*cos(u)^2*sin(u) - 3*sin(u)^3;\
+xuv: sin(u)*sin(v);\
+yuv: -sin(u)*cos(v);\
+zuv: 0;\
+xvv: -cos(u)*cos(v);\
+yvv: -cos(u)*sin(v);\
 zvv: 0;";
 #endif

@@ -36,13 +36,13 @@ PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descBonanJeenerKleinSurface =
-	"name: Bonan Jeener Klein Surface; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-c1:M: 1.5; c2:T: 0.5; \
-a1:W: sin((M - 1)*u) + T; \
-x: M*cos(u) - cos(M*u) - ((M - 1)/M)*W*sin((M + 1)*u/2)*cos(v); \
-y: W*sin(v); \
+	"name: Bonan Jeener Klein Surface;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+c1:M: 1.5; c2:T: 0.5;\
+a1:W: sin((M - 1)*u) + T;\
+x: M*cos(u) - cos(M*u) - ((M - 1)/M)*W*sin((M + 1)*u/2)*cos(v);\
+y: W*sin(v);\
 z: M*sin(u) - sin(M*u) + ((M - 1)/M)*W*cos((M + 1)*u/2)*cos(v);";
 #endif

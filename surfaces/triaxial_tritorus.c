@@ -43,17 +43,17 @@ PaSuLiDefDesc pslddTriaxialTritorus = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descTriaxialTritorus =
-	"name: Triaxial Tritorus; \
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs:pi: -1; ve:pi: 1; \
-x: sin(u + 2*pi/3)*(1 + cos(v + 2*pi/3)); \
-y: sin(u + 4*pi/3)*(1 + cos(v + 4*pi/3)); \
-z: sin(u)*(1 + cos(v)); \
-xu: cos(u + 2*pi/3)*(1 + cos(v + 2*pi/3)); \
-yu: cos(u + 4*pi/3)*(1 + cos(v + 4*pi/3)); \
-zu: cos(u)*(1 + cos(v)); \
-xv: -sin(u + 2*pi/3)*sin(v + 2*pi/3); \
-yv: -sin(u + 4*pi/3)*sin(v + 4*pi/3); \
+	"name: Triaxial Tritorus;\
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs:pi: -1; ve:pi: 1;\
+x: sin(u + 2*pi/3)*(1 + cos(v + 2*pi/3));\
+y: sin(u + 4*pi/3)*(1 + cos(v + 4*pi/3));\
+z: sin(u)*(1 + cos(v));\
+xu: cos(u + 2*pi/3)*(1 + cos(v + 2*pi/3));\
+yu: cos(u + 4*pi/3)*(1 + cos(v + 4*pi/3));\
+zu: cos(u)*(1 + cos(v));\
+xv: -sin(u + 2*pi/3)*sin(v + 2*pi/3);\
+yv: -sin(u + 4*pi/3)*sin(v + 4*pi/3);\
 zv: -sin(u)*sin(v);";
 #endif

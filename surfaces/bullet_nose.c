@@ -66,33 +66,33 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descBulletNose =
-    "name: Bullet Nose; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0.25; ve:pi: 0.5; \
-c1:a: 1.5; c2:b: 0.5; \
-x: a*cos(v)*cos(u); \
-y: a*cos(v)*sin(u); \
-z: -b/tan(v); \
-x: a*cos(v)*cos(u); \
-y: a*cos(v)*sin(u); \
-z: -b/tan(v); \
-xu: -a*cos(v)*sin(u); \
-yu: a*cos(v)*cos(u); \
-zu: 0; \
-xv: -a*sin(v)*cos(u); \
-yv: -a*sin(v)*sin(u); \
-zv: b/sin(v)^2; \
-xn: a*b*cos(u)/(cos(v)*tan(v)^2); \
-yn: a*b*sin(u)/(cos(v)*tan(v)^2); \
-zn: a*a*cos(v)*sin(v); \
-xuu: -a*cos(v)*cos(u); \
-yuu: -a*cos(v)*sin(u); \
-zuu: 0; \
-xuv: a*sin(v)*sin(u); \
-yuv: -a*sin(v)*cos(u); \
-zuv: 0; \
-xvv: -a*cos(v)*cos(u); \
-yvv: -a*cos(v)*sin(u); \
+    "name: Bullet Nose;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0.25; ve:pi: 0.5;\
+c1:a: 1.5; c2:b: 0.5;\
+x: a*cos(v)*cos(u);\
+y: a*cos(v)*sin(u);\
+z: -b/tan(v);\
+x: a*cos(v)*cos(u);\
+y: a*cos(v)*sin(u);\
+z: -b/tan(v);\
+xu: -a*cos(v)*sin(u);\
+yu: a*cos(v)*cos(u);\
+zu: 0;\
+xv: -a*sin(v)*cos(u);\
+yv: -a*sin(v)*sin(u);\
+zv: b/sin(v)^2;\
+xn: a*b*cos(u)/(cos(v)*tan(v)^2);\
+yn: a*b*sin(u)/(cos(v)*tan(v)^2);\
+zn: a*a*cos(v)*sin(v);\
+xuu: -a*cos(v)*cos(u);\
+yuu: -a*cos(v)*sin(u);\
+zuu: 0;\
+xuv: a*sin(v)*sin(u);\
+yuv: -a*sin(v)*cos(u);\
+zuv: 0;\
+xvv: -a*cos(v)*cos(u);\
+yvv: -a*cos(v)*sin(u);\
 zvv: 2*b*cos(v)/(cos(v)^2*sin(v)) - 2*b/(cos(v)*sin(v)^3);";
 #endif

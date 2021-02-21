@@ -47,9 +47,9 @@ void Bell(pasuli_vartype u, pasuli_vartype v,
     VVD_Y_CONST(0);
     VVD_Z(aa_2 * b * v * v - b);
     /*
-xuv: 0; \
-yuv: 0; \
-zuv: 4*exp(-(a*r)^(2))*a^4*b*u*v; \
+xuv: 0;\
+yuv: 0;\
+zuv: 4*exp(-(a*r)^(2))*a^4*b*u*v;\
 */
 }
 #endif
@@ -64,31 +64,31 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descBell =
-    "name: Bell; \
-ut:c; vt:c; \
-us: -5; ue: 5; \
-vs: -5; ve: 5; \
-c1:a: 1.5; c2:b: 0.5; \
-a1:r: sqrt(u*u + v*v); \
-x: u; \
-y: v; \
-z: b*exp(-(a*r)^(2)); \
-xu: 1; \
-yu: 0; \
-zu: -2*a*a*b*u*exp(-(a*r)^(2)); \
-xv: 0; \
-yv: 1; \
-zv: -2*a*a*b*v*exp(-(a*r)^(2)); \
-xn: 2*a*a*b*u*exp(-(a*r)^(2)); \
-yn: 2*a*a*b*v*exp(-(a*r)^(2)); \
-zn: 1; \
-xuu: 0; \
-yuu: 0; \
-zuu: 2*exp(-(a*r)^(2))*(2*a^4*b*u^2 - a^2*b); \
-xuv: 0; \
-yuv: 0; \
-zuv: 4*exp(-(a*r)^(2))*a^4*b*u*v; \
-xvv: 0; \
-yvv: 0; \
+    "name: Bell;\
+ut:c; vt:c;\
+us: -5; ue: 5;\
+vs: -5; ve: 5;\
+c1:a: 1.5; c2:b: 0.5;\
+a1:r: sqrt(u*u + v*v);\
+x: u;\
+y: v;\
+z: b*exp(-(a*r)^(2));\
+xu: 1;\
+yu: 0;\
+zu: -2*a*a*b*u*exp(-(a*r)^(2));\
+xv: 0;\
+yv: 1;\
+zv: -2*a*a*b*v*exp(-(a*r)^(2));\
+xn: 2*a*a*b*u*exp(-(a*r)^(2));\
+yn: 2*a*a*b*v*exp(-(a*r)^(2));\
+zn: 1;\
+xuu: 0;\
+yuu: 0;\
+zuu: 2*exp(-(a*r)^(2))*(2*a^4*b*u^2 - a^2*b);\
+xuv: 0;\
+yuv: 0;\
+zuv: 4*exp(-(a*r)^(2))*a^4*b*u*v;\
+xvv: 0;\
+yvv: 0;\
 zvv: 2*exp(-(a*r)^(2))*(2*a^4*b*v^2 - a^2*b); ";
 #endif

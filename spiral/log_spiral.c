@@ -56,27 +56,27 @@ PaSuLiDefDesc pslddLogSpiral = {
 #endif
 #if (COMPILE_DESC_SPIRAL != 0)
 char *descLogSpiral =
-	"name: Log Spiral; \
-cat: spiral; \
-ut: c; vt: o; \
-us: 0; ue: 25; \
-vs: 0; ve: 1; \
-c1:a: 1; c2:H: 1; \
-x: exp(a*u)*cos(u); \
-y: H*v; \
-z: exp(a*u)*sin(u); \
-xu: exp(a*u)*(a*cos(u)-sin(u)); \
-yu: 0; \
-zu: exp(a*u)*(a*sin(u)+cos(u)); \
-xv: 0; \
-yv: H; \
-zv: 0; \
-xn: -H*exp(a*u)*(a*sin(u)+cos(u)); \
-yn: 0; \
-zn: H*exp(a*u)*(a*cos(u)-sin(u)); \
-xuu: exp(a*u)*(-2*a*sin(u)-cos(u)+a*a*cos(u)); \
-yuu: 0; \
-zuu: exp(a*u)*(2*a*cos(u)-sin(u)+a*a*sin(u)); \
-xuv: 0; yuv: 0; zuv: 0; \
+	"name: Log Spiral;\
+cat: spiral;\
+ut: c; vt: o;\
+us: 0; ue: 25;\
+vs: 0; ve: 1;\
+c1:a: 1; c2:H: 1;\
+x: exp(a*u)*cos(u);\
+y: H*v;\
+z: exp(a*u)*sin(u);\
+xu: exp(a*u)*(a*cos(u)-sin(u));\
+yu: 0;\
+zu: exp(a*u)*(a*sin(u)+cos(u));\
+xv: 0;\
+yv: H;\
+zv: 0;\
+xn: -H*exp(a*u)*(a*sin(u)+cos(u));\
+yn: 0;\
+zn: H*exp(a*u)*(a*cos(u)-sin(u));\
+xuu: exp(a*u)*(-2*a*sin(u)-cos(u)+a*a*cos(u));\
+yuu: 0;\
+zuu: exp(a*u)*(2*a*cos(u)-sin(u)+a*a*sin(u));\
+xuv: 0; yuv: 0; zuv: 0;\
 xvv: 0; yvv: 0; zvv: 0; ";
 #endif

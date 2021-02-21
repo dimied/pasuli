@@ -50,11 +50,11 @@ PaSuLiDefDesc pslddBicornTorus2 = {
 #endif
 #if (COMPILE_DESC_TORUS != 0)
 char *descBicornTorus2 =
-	"name: Bicorn Torus 2; \
-cat: torus; \
-us: 0; ue:pi:2; \
-vs: 0; ve:pi:2; \
-c1:R:1; c2:r: 1; \
+	"name: Bicorn Torus 2;\
+cat: torus;\
+us: 0; ue:pi:2;\
+vs: 0; ve:pi:2;\
+c1:R:1; c2:r: 1;\
 x: (R + r*sin(v))*cos(u);\
 y: (R + r*sin(v))*sin(u);\
 z: r*cos(v)^2*(2 + cos(v))/(3 + sin(v)^2);\

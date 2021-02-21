@@ -51,33 +51,33 @@ void LemonSurface(pasuli_vartype u,
 #if (COMPILE_DESC_FRUITS != 0)
 //f means formula
 char *descLemonSurface =
-    "name: Lemon Surface; \
-cat: fruits; \
-ut: c; vt: c; \
-us:f: -sqrt(R*R-r*r); \
-ue:f: sqrt(R*R-r*r); \
-vs: 0; ve:pi: 2; \
-c1:R: 2; c2:r: 1; \
-x: (sqrt(R^2 - u^2) - r)*sin(v); \
-y: (sqrt(R^2 - u^2) - r)*cos(v); \
-z: u; \
-xu: -u*sin(v)/(sqrt(R*R-u*u)); \
-yu: -u*cos(v)/(sqrt(R*R-u*u)); \
-zu: 1; \
-xv: cos(v)*(sqrt(R*R-u*u)-r); \
-yv: -sin(v)*(sqrt(R*R-u*u)-r); \
-zv: 0; \
-xn: sin(v)*(sqrt(R*R-u*u)-r); \
-yn: cos(v)*(sqrt(R*R-u*u)-r); \
-zn: u-(r*u)/(sqrt(R*R-u*u)); \
-xuu: -R*R*sin(v)/(sqrt((R*R-u*u)^3)); \
-yuu: -R*R*cos(v)/(sqrt((R*R-u*u)^3)); \
-zuu: 0; \
-xuv: -u*cos(v)/(sqrt(R*R-u*u)); \
-yuv: u*sin(v)/(sqrt(R*R-u*u)); \
-zuv: 0; \
-xvv: -sin(v)*(sqrt(R*R-u*u) - r); \
-yvv: -cos(v)*(sqrt(R*R-u*u) - r); \
+    "name: Lemon Surface;\
+cat: fruits;\
+ut: c; vt: c;\
+us:f: -sqrt(R*R-r*r);\
+ue:f: sqrt(R*R-r*r);\
+vs: 0; ve:pi: 2;\
+c1:R: 2; c2:r: 1;\
+x: (sqrt(R^2 - u^2) - r)*sin(v);\
+y: (sqrt(R^2 - u^2) - r)*cos(v);\
+z: u;\
+xu: -u*sin(v)/(sqrt(R*R-u*u));\
+yu: -u*cos(v)/(sqrt(R*R-u*u));\
+zu: 1;\
+xv: cos(v)*(sqrt(R*R-u*u)-r);\
+yv: -sin(v)*(sqrt(R*R-u*u)-r);\
+zv: 0;\
+xn: sin(v)*(sqrt(R*R-u*u)-r);\
+yn: cos(v)*(sqrt(R*R-u*u)-r);\
+zn: u-(r*u)/(sqrt(R*R-u*u));\
+xuu: -R*R*sin(v)/(sqrt((R*R-u*u)^3));\
+yuu: -R*R*cos(v)/(sqrt((R*R-u*u)^3));\
+zuu: 0;\
+xuv: -u*cos(v)/(sqrt(R*R-u*u));\
+yuv: u*sin(v)/(sqrt(R*R-u*u));\
+zuv: 0;\
+xvv: -sin(v)*(sqrt(R*R-u*u) - r);\
+yvv: -cos(v)*(sqrt(R*R-u*u) - r);\
 zvv: 0; ";
 #endif
 /*

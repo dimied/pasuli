@@ -54,29 +54,29 @@ PaSuLiDefDesc pslddEnneperSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descEnneperSurface =
-	"name: Enneper Surface; \
-ut: c; vt: c; \
-us: -2; ue: 2; \
-vs: -2; ve: 2; \
-x: u - (u^3/3) + u*v*v; \
-y: v - (v^3/3) + v*u*u; \
-z: u*u - v*v; \
-xu: 1 - u*u + v*v; \
-yu: 2*u*v; \
-zu: 2*u; \
-xv: 2*u*v; \
-yv: 1 + u*u - v*v; \
-zv: -2*v; \
-xn: -2*u*(1+u*u+v*v); \
-yn: 2*v*(1+u*u+v*v); \
-zn: 1-((u*u + v*v)^2); \
-xuu: -2*u; \
-yuu: 2*v; \
-zuu: 2; \
-xuv: 2*v; \
-yuv: 2*u; \
-zuv: 0; \
-xvv: 2*u; \
-yvv: -2*v; \
+	"name: Enneper Surface;\
+ut: c; vt: c;\
+us: -2; ue: 2;\
+vs: -2; ve: 2;\
+x: u - (u^3/3) + u*v*v;\
+y: v - (v^3/3) + v*u*u;\
+z: u*u - v*v;\
+xu: 1 - u*u + v*v;\
+yu: 2*u*v;\
+zu: 2*u;\
+xv: 2*u*v;\
+yv: 1 + u*u - v*v;\
+zv: -2*v;\
+xn: -2*u*(1+u*u+v*v);\
+yn: 2*v*(1+u*u+v*v);\
+zn: 1-((u*u + v*v)^2);\
+xuu: -2*u;\
+yuu: 2*v;\
+zuu: 2;\
+xuv: 2*v;\
+yuv: 2*u;\
+zuv: 0;\
+xvv: 2*u;\
+yvv: -2*v;\
 zvv: -2; ";
 #endif

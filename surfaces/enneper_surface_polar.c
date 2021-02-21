@@ -44,19 +44,19 @@ PaSuLiDefDesc pslddEnneperSurfacePolar = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descEnneperSurfacePolar =
-	"name: Enneper Surface Polar; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve: 2.5; \
-a1:s: v*cos(u); \
-a2:t: v*sin(u); \
-x: s - s^(3)/3 + s*t*t; \
-y: t - t^(3)/3 + t*s*s; \
-z: s*s - t*t; \
-xu: v*(v*v*sin(3*u) - sin(u)); \
-yu: v*(v*v*cos(3*u) + cos(u)); \
-zu: -2*v^2*sin(2*u); \
-xv: -v^2*cos(3*u) + cos(u); \
-yv: v^2*sin(3*u) + sin(u); \
+	"name: Enneper Surface Polar;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve: 2.5;\
+a1:s: v*cos(u);\
+a2:t: v*sin(u);\
+x: s - s^(3)/3 + s*t*t;\
+y: t - t^(3)/3 + t*s*s;\
+z: s*s - t*t;\
+xu: v*(v*v*sin(3*u) - sin(u));\
+yu: v*(v*v*cos(3*u) + cos(u));\
+zu: -2*v^2*sin(2*u);\
+xv: -v^2*cos(3*u) + cos(u);\
+yv: v^2*sin(3*u) + sin(u);\
 zv: 2*v*cos(2*u);";
 #endif

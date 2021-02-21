@@ -59,21 +59,21 @@ PaSuLiDefDesc pslddTrefoilKnots = {
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descTrefoilKnots =
-    "name: Trefoil Knots; \
-ut:c; vt:c; \
-us: 0; ue:pi: 12; \
-vs: 0; ve:pi: 2; \
-c1:R: 1.5; c2:r: 0.5; \
-a1:Bx: (R + r*cos(u/2))*cos(u/3); \
-a2:By: (R + r*cos(u/2))*sin(u/3); \
-a3:Bz: r + sin(u/2); \
-x: Bx + r*cos(u/3)*cos(v-pi); \
-y: By + r*sin(u/3)*cos(v-pi); \
-z: Bz + r*sin(v-pi); \
-xu: r*(cos(v)*sin(u/3)/3 - cos(u/3)*sin(u/2)/2 - cos(u/2)*sin(u/3)/3) - R*sin(u/3)/3; \
-yu: r*(-cos(v)*cos(u/3)/3 - sin(u/3)*sin(u/2)/2 + cos(u/3)*cos(u/2)/3) + R*cos(u/3)/3; \
-zu: cos(u/2)/2; \
-xv: r*cos(u/3)*sin(v); \
-yv: r*sin(v)*sin(u/3); \
+    "name: Trefoil Knots;\
+ut:c; vt:c;\
+us: 0; ue:pi: 12;\
+vs: 0; ve:pi: 2;\
+c1:R: 1.5; c2:r: 0.5;\
+a1:Bx: (R + r*cos(u/2))*cos(u/3);\
+a2:By: (R + r*cos(u/2))*sin(u/3);\
+a3:Bz: r + sin(u/2);\
+x: Bx + r*cos(u/3)*cos(v-pi);\
+y: By + r*sin(u/3)*cos(v-pi);\
+z: Bz + r*sin(v-pi);\
+xu: r*(cos(v)*sin(u/3)/3 - cos(u/3)*sin(u/2)/2 - cos(u/2)*sin(u/3)/3) - R*sin(u/3)/3;\
+yu: r*(-cos(v)*cos(u/3)/3 - sin(u/3)*sin(u/2)/2 + cos(u/3)*cos(u/2)/3) + R*cos(u/3)/3;\
+zu: cos(u/2)/2;\
+xv: r*cos(u/3)*sin(v);\
+yv: r*sin(v)*sin(u/3);\
 zv: -r*cos(v);";
 #endif

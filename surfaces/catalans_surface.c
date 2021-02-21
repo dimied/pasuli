@@ -60,29 +60,29 @@ PaSuLiDefDesc pslddCatalansSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descCatalansSurface =
-    "name: Catalans Surface; \
-ut:c; vt:c; \
-us:pi: -2; ue:pi: 2; \
-vs: -1.4; ve: 1.4; \
-x: u - cosh(v)*sin(u); \
-y: 1 - cosh(v)*cos(u); \
-z: -4*sin(u/2)*sinh(v/2); \
-xu: 1 - cos(u)*cosh(v); \
-yu: cosh(v)*sin(u); \
-zu: -2*cos(u/2)*sinh(v/2); \
-xv: -sin(u)*sinh(v); \
-yv: -cos(u)*sinh(v); \
-zv: -2*cosh(v/2)*sin(u/2); \
-xn: -2*(cos(u)*cos(u/2)*sinh(v)*sinh(v/2) - sin(u)*sin(u/2)*cosh(v)*cosh(v/2) ); \
-yn: 2*(-cos(u)*sin(u/2)*cosh(v)*cosh(v/2) + cos(u/2)*sin(u)*sinh(v)*sinh(v/2) + cosh(v/2)*sin(u/2) ); \
-zn: sinh(v)*(cosh(v) - cos(u)); \
-xuu: cosh(v)*sin(u); \
-yuu: cosh(v)*cos(u); \
-zuu: sin(u/2)*sinh(v/2); \
-xuv: -sinh(v)*cos(u); \
-yuv: sinh(v)*sin(u); \
-zuv: -cos(u/2)*cosh(v/2); \
-xvv: -cosh(v)*sin(u); \
-yvv: -cosh(v)*cos(u); \
+    "name: Catalans Surface;\
+ut:c; vt:c;\
+us:pi: -2; ue:pi: 2;\
+vs: -1.4; ve: 1.4;\
+x: u - cosh(v)*sin(u);\
+y: 1 - cosh(v)*cos(u);\
+z: -4*sin(u/2)*sinh(v/2);\
+xu: 1 - cos(u)*cosh(v);\
+yu: cosh(v)*sin(u);\
+zu: -2*cos(u/2)*sinh(v/2);\
+xv: -sin(u)*sinh(v);\
+yv: -cos(u)*sinh(v);\
+zv: -2*cosh(v/2)*sin(u/2);\
+xn: -2*(cos(u)*cos(u/2)*sinh(v)*sinh(v/2) - sin(u)*sin(u/2)*cosh(v)*cosh(v/2) );\
+yn: 2*(-cos(u)*sin(u/2)*cosh(v)*cosh(v/2) + cos(u/2)*sin(u)*sinh(v)*sinh(v/2) + cosh(v/2)*sin(u/2) );\
+zn: sinh(v)*(cosh(v) - cos(u));\
+xuu: cosh(v)*sin(u);\
+yuu: cosh(v)*cos(u);\
+zuu: sin(u/2)*sinh(v/2);\
+xuv: -sinh(v)*cos(u);\
+yuv: sinh(v)*sin(u);\
+zuv: -cos(u/2)*cosh(v/2);\
+xvv: -cosh(v)*sin(u);\
+yvv: -cosh(v)*cos(u);\
 zvv: -sin(u/2)*sinh(v/2);";
 #endif

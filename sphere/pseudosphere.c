@@ -72,30 +72,30 @@ PaSuLiDefDesc pslddPseudoSphere = {
 #endif
 #if (COMPILE_DESC_SPHERE != 0)
 char *descPseudoSphere =
-	"name: Pseudo sphere; \
-cat: sphere; \
-ut: c; vt: c; \
-us:pi: -1; ue:pi: 1; \
-vs: 0.1; ve: 3.10; \
-x: cos(u)*sin(v); \
-y: sin(u)*sin(v); \
-z: cos(v) + log(tan(v/2)); \
-xu: -sin(v)*sin(u) ; \
-yu: sin(v)*cos(u); \
-zu: 0; \
-xv: cos(u)*cos(v); \
-yv: sin(u)*cos(v); \
-zv: -sin(v) + 1/(2*cos(0.5*v)*cos(0.5*v)*tan(0.5*v)); \
-xn: (-sin(v) + 1/(2*cos(0.5*v)*cos(0.5*v)*tan(0.5*v)))*cos(u)*sin(v); \
-yn: (-sin(v) + 1/(2*cos(0.5*v)*cos(0.5*v)*tan(0.5*v)))*sin(u)*sin(v); \
-zn: -cos(v)*sin(v); \
-xuu: -cos(u)*sin(v); \
-yuu: -sin(u)*sin(v); \
-zuu: 0; \
-xuv: -cos(v)*sin(u); \
-yuv: cos(u)*cos(v); \
-zuv: 0; \
-xvv: -cos(u)*sin(v); \
-yvv: -sin(u)*sin(v); \
+	"name: Pseudo sphere;\
+cat: sphere;\
+ut: c; vt: c;\
+us:pi: -1; ue:pi: 1;\
+vs: 0.1; ve: 3.10;\
+x: cos(u)*sin(v);\
+y: sin(u)*sin(v);\
+z: cos(v) + log(tan(v/2));\
+xu: -sin(v)*sin(u) ;\
+yu: sin(v)*cos(u);\
+zu: 0;\
+xv: cos(u)*cos(v);\
+yv: sin(u)*cos(v);\
+zv: -sin(v) + 1/(2*cos(0.5*v)*cos(0.5*v)*tan(0.5*v));\
+xn: (-sin(v) + 1/(2*cos(0.5*v)*cos(0.5*v)*tan(0.5*v)))*cos(u)*sin(v);\
+yn: (-sin(v) + 1/(2*cos(0.5*v)*cos(0.5*v)*tan(0.5*v)))*sin(u)*sin(v);\
+zn: -cos(v)*sin(v);\
+xuu: -cos(u)*sin(v);\
+yuu: -sin(u)*sin(v);\
+zuu: 0;\
+xuv: -cos(v)*sin(u);\
+yuv: cos(u)*cos(v);\
+zuv: 0;\
+xvv: -cos(u)*sin(v);\
+yvv: -sin(u)*sin(v);\
 zvv: -cos(v) - (1/(2*cos(0.5*v)*sin(0.5*v)))^2 + 1/(2*cos(0.5*v)*cos(0.5*v));";
 #endif

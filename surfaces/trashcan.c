@@ -57,30 +57,30 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descTrashcan =
-	"name: Trashcan; \
-ut: c; vt: c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve: 2; \
-c1:a: 1.5; c2:b: 0.5; \
-x: (b + v)*cos(u); \
-y: v*sin(u); \
-z: a*v*v; \
-xu: -(b+v)*sin(u); \
-yu: v*cos(u); \
-zu: 0; \
-xv: cos(u); \
-yv: sin(u); \
-zv: 2*a*v; \
-xn: 2*a*v*v*cos(u); \
-yn: 2*a*(b+v)*v*sin(u); \
-zn: -b*sin(u)^2 - v; \
-xuu: -(b+v)*cos(u); \
-yuu: -v*sin(u); \
-zuu: 0; \
-xuv: -sin(u); \
-yuv: cos(u); \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
+	"name: Trashcan;\
+ut: c; vt: c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve: 2;\
+c1:a: 1.5; c2:b: 0.5;\
+x: (b + v)*cos(u);\
+y: v*sin(u);\
+z: a*v*v;\
+xu: -(b+v)*sin(u);\
+yu: v*cos(u);\
+zu: 0;\
+xv: cos(u);\
+yv: sin(u);\
+zv: 2*a*v;\
+xn: 2*a*v*v*cos(u);\
+yn: 2*a*(b+v)*v*sin(u);\
+zn: -b*sin(u)^2 - v;\
+xuu: -(b+v)*cos(u);\
+yuu: -v*sin(u);\
+zuu: 0;\
+xuv: -sin(u);\
+yuv: cos(u);\
+zuv: 0;\
+xvv: 0;\
+yvv: 0;\
 zvv: 2*a;";
 #endif

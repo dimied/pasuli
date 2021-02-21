@@ -66,30 +66,30 @@ PASULI_CONST_COUNT(4)|PASULI_CALC_U_END,//MUL_BY_CONST(3),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSpring1 =
-	"name: Spring 1; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-c1:R: 1.5; c2:r: 0.5; c3:L: 1.0; c4:N: 1.0; \
-x: (R + r*cos(v))*cos(u); \
-y: (R + r*cos(v))*sin(u); \
-z: r*(sin(v) + L*u/pi); \
-xu: -(R + r*cos(v))*sin(u); \
-yu: (R + r*cos(v))*cos(u); \
-zu: L*r/pi; \
-xv: -r*cos(u)*sin(v); \
-yv: -r*sin(u)*sin(v); \
-zv: r*cos(v); \
-xn: L*r^2*sin(u)*sin(v)/pi + r*cos(u)*(cos(v)*(r*cos(v) + R)); \
-yn: -L*r^2*cos(u)*sin(v)/pi + r*sin(u)*(cos(v)*(r*cos(v) + R)); \
-zn: r*(sin(v)*(r*cos(v) + R)); \
-xuu: -(R + r*cos(v))*cos(u); \
-yuu: -(R + r*cos(v))*sin(u); \
-zuu: 0; \
-xuv: r*sin(u)*sin(v); \
-yuv: -r*cos(u)*sin(v); \
-zuv: 0; \
-xvv: -r*cos(u)*cos(v); \
-yvv: -r*sin(u)*cos(v); \
+	"name: Spring 1;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+c1:R: 1.5; c2:r: 0.5; c3:L: 1.0; c4:N: 1.0;\
+x: (R + r*cos(v))*cos(u);\
+y: (R + r*cos(v))*sin(u);\
+z: r*(sin(v) + L*u/pi);\
+xu: -(R + r*cos(v))*sin(u);\
+yu: (R + r*cos(v))*cos(u);\
+zu: L*r/pi;\
+xv: -r*cos(u)*sin(v);\
+yv: -r*sin(u)*sin(v);\
+zv: r*cos(v);\
+xn: L*r^2*sin(u)*sin(v)/pi + r*cos(u)*(cos(v)*(r*cos(v) + R));\
+yn: -L*r^2*cos(u)*sin(v)/pi + r*sin(u)*(cos(v)*(r*cos(v) + R));\
+zn: r*(sin(v)*(r*cos(v) + R));\
+xuu: -(R + r*cos(v))*cos(u);\
+yuu: -(R + r*cos(v))*sin(u);\
+zuu: 0;\
+xuv: r*sin(u)*sin(v);\
+yuv: -r*cos(u)*sin(v);\
+zuv: 0;\
+xvv: -r*cos(u)*cos(v);\
+yvv: -r*sin(u)*cos(v);\
 zvv: -r*sin(v);";
 #endif

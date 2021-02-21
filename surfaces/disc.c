@@ -50,27 +50,27 @@ PaSuLiDefDesc pslddDisc = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descDisc =
-    "name: Disc; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve: 1; \
-x: v*cos(u); \
-y: v*sin(u); \
-z: 0; \
-xu: -v*sin(u); \
-yu: v*cos(u); \
-zu: 0; \
-xv: cos(u); \
-yv: sin(u); \
-zv: 0; \
-xn: 0; \
-yn: 0; \
-zn: -v; \
-xuu: -v*cos(u); \
-yuu: -v*sin(u); \
-zuu: 0; \
-xuv: -sin(u); \
-yuv: cos(u); \
-zuv: 0; \
+    "name: Disc;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve: 1;\
+x: v*cos(u);\
+y: v*sin(u);\
+z: 0;\
+xu: -v*sin(u);\
+yu: v*cos(u);\
+zu: 0;\
+xv: cos(u);\
+yv: sin(u);\
+zv: 0;\
+xn: 0;\
+yn: 0;\
+zn: -v;\
+xuu: -v*cos(u);\
+yuu: -v*sin(u);\
+zuu: 0;\
+xuv: -sin(u);\
+yuv: cos(u);\
+zuv: 0;\
 xvv: 0; yvv: 0; zvv: 0;";
 #endif

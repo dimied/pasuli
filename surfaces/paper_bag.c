@@ -54,30 +54,30 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descPaperBag =
-	"name: Paper Bag; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve: 2; \
-c1:a: 1.5; c2:b: 0.5; \
-x: v*cos(u); \
-y: (v + b*u)*sin(u); \
-z: a*v*v; \
-xu: -v*sin(u); \
-yu: (v+b*u)*cos(u) + b*sin(u); \
-zu: 0; \
-xv: cos(u); \
-yv: sin(u); \
-zv: 2*a*v; \
-xn: 2*a*b*u*v*cos(u) + 2*a*b*v*sin(u) + 2*a*v*v*cos(u); \
-yn: 2*a*v*v*sin(u); \
-zn: -b*u*cos(u)^2 - b*cos(u)*sin(u) - v; \
-xuu: -v*cos(u); \
-yuu: -b*u*sin(u) + 2*b*cos(u) - v*sin(u); \
-zuu: 0; \
-xuv: -sin(u); \
-yuv: cos(u); \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
+	"name: Paper Bag;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve: 2;\
+c1:a: 1.5; c2:b: 0.5;\
+x: v*cos(u);\
+y: (v + b*u)*sin(u);\
+z: a*v*v;\
+xu: -v*sin(u);\
+yu: (v+b*u)*cos(u) + b*sin(u);\
+zu: 0;\
+xv: cos(u);\
+yv: sin(u);\
+zv: 2*a*v;\
+xn: 2*a*b*u*v*cos(u) + 2*a*b*v*sin(u) + 2*a*v*v*cos(u);\
+yn: 2*a*v*v*sin(u);\
+zn: -b*u*cos(u)^2 - b*cos(u)*sin(u) - v;\
+xuu: -v*cos(u);\
+yuu: -b*u*sin(u) + 2*b*cos(u) - v*sin(u);\
+zuu: 0;\
+xuv: -sin(u);\
+yuv: cos(u);\
+zuv: 0;\
+xvv: 0;\
+yvv: 0;\
 zvv: 2*a;  ";
 #endif

@@ -53,17 +53,17 @@ PaSuLiDefDesc pslddTranguloidTrefoil = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descTranguloidTrefoil =
-	"name: Tranguloid Trefoil; \
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs:pi: -1; ve:pi: 1; \
-x: 2*sin(3*u)/(2 + cos(v)); \
-y: 2*(sin(u) + 2*sin(2*u))/(2 + cos(v + 2*pi/3)); \
-z: (cos(u) - 2*cos(2*u))*(2 + cos(v))*(2 + cos(v + 2*pi/3))/4; \
-xu: 6*cos(3*u)/(2+cos(v)); \
-yu: -(2*cos(u) + 8*cos(2*u))/(sin(v+pi/6) - 2); \
-zu: (-2*cos(2*u) + cos(u))*(2*sin(v+pi/3) - sin(2*v)/2 + sqrt(3)*cos(2*v)/2) /4; \
-xv: 2*sin(v)*sin(3*u)/(2+cos(v))^2; \
-yv: 2*(1+4*cos(u))*cos(v+pi/6)*sin(u)/(sin(v+pi/6) - 2)^2; \
+	"name: Tranguloid Trefoil;\
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs:pi: -1; ve:pi: 1;\
+x: 2*sin(3*u)/(2 + cos(v));\
+y: 2*(sin(u) + 2*sin(2*u))/(2 + cos(v + 2*pi/3));\
+z: (cos(u) - 2*cos(2*u))*(2 + cos(v))*(2 + cos(v + 2*pi/3))/4;\
+xu: 6*cos(3*u)/(2+cos(v));\
+yu: -(2*cos(u) + 8*cos(2*u))/(sin(v+pi/6) - 2);\
+zu: (-2*cos(2*u) + cos(u))*(2*sin(v+pi/3) - sin(2*v)/2 + sqrt(3)*cos(2*v)/2) /4;\
+xv: 2*sin(v)*sin(3*u)/(2+cos(v))^2;\
+yv: 2*(1+4*cos(u))*cos(v+pi/6)*sin(u)/(sin(v+pi/6) - 2)^2;\
 zv: (-2+sin(v+pi/6))*(2+cos(v))*(-4*sin(2*u) + sin(u))/4;";
 #endif

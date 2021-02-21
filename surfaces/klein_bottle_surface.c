@@ -47,12 +47,12 @@ PASULI_CONST_COUNT(2),
 #if (COMPILE_DESC_SURFACES != 0)
 //TODO TODO TODO
 char *descKleinBottleSurface =
-    "name: Klein Bottle Surface; \
-ut:c; vt:c; \
+    "name: Klein Bottle Surface;\
+ut:c; vt:c;\
 us: 0; ue:pi: 2;  \
 vs: 0; ve:pi: 2;  \
-a1:r: (cos(u/2)*(sqrt(2)+cos(v)) + sin(u/2)*sin(v)*cos(v)); \
-x: cos(u)*r; \
-y: sin(u)*r; \
+a1:r: (cos(u/2)*(sqrt(2)+cos(v)) + sin(u/2)*sin(v)*cos(v));\
+x: cos(u)*r;\
+y: sin(u)*r;\
 z: -sin(u/2)*(sqrt(2)+cos(v)) + cos(u/2)*sin(v)*cos(v);";
 #endif

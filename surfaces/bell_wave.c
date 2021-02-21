@@ -51,22 +51,22 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descBellWave =
-	"name: Bell Wave; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve: 12; \
-c1:a: 1.5; c2:b: 0.5; c3:c: 1; \
-a1:r: sqrt(u*u + v*v); \
-x: u; \
-y: v; \
-z: cos(c*r)*b*exp(-(a*r)^(2)); \
-xu: 1; \
-yu: 0; \
-zu: -exp(-(a*r)^(2))*(2*a^2*b*u*cos(c*r) + b*c*u*sin(c*r)/r); \
-xv: 0; \
-yv: 1; \
-zv: -exp(-(a*r)^(2))*(2*a^2*b*v*cos(c*r) + b*c*v*sin(c*r)/r); \
-xn: exp(-(a*r)^(2))*(2*a^2*b*u*cos(c*r) + b*c*u*sin(c*r)/r); \
-yn: exp(-(a*r)^(2))*(2*a^2*b*v*cos(c*r) + b*c*v*sin(c*r)/r); \
+	"name: Bell Wave;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve: 12;\
+c1:a: 1.5; c2:b: 0.5; c3:c: 1;\
+a1:r: sqrt(u*u + v*v);\
+x: u;\
+y: v;\
+z: cos(c*r)*b*exp(-(a*r)^(2));\
+xu: 1;\
+yu: 0;\
+zu: -exp(-(a*r)^(2))*(2*a^2*b*u*cos(c*r) + b*c*u*sin(c*r)/r);\
+xv: 0;\
+yv: 1;\
+zv: -exp(-(a*r)^(2))*(2*a^2*b*v*cos(c*r) + b*c*v*sin(c*r)/r);\
+xn: exp(-(a*r)^(2))*(2*a^2*b*u*cos(c*r) + b*c*u*sin(c*r)/r);\
+yn: exp(-(a*r)^(2))*(2*a^2*b*v*cos(c*r) + b*c*v*sin(c*r)/r);\
 zn: 1; ";
 #endif

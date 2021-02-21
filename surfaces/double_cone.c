@@ -56,27 +56,27 @@ PaSuLiDefDesc pslddDoubleCone = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descDoubleCone =
-    "name: Double Cone; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: -1; ve: 1; \
-x: v*cos(u); \
-y: (v - 1)*cos(u + 2*pi/3); \
-z: (1 - v)*cos(u - 2*pi/3); \
-xu: -v*sin(u); \
-yu: (1-v)*sin(u + 2*pi/3); \
-zu: (1-v)*sin(2*pi/3 - u); \
-xv: cos(u); \
-yv: cos(u+2*pi/3); \
-zv: -cos(u - 2*pi/3); \
-xn: v*cos(2*pi/3 + u)*sin(2*pi/3 -u) + v*cos(2*pi/3 - u)*sin(2*pi/3 +u) - cos(2*pi/3 + u)*sin(2*pi/3 -u) - cos(2*pi/3 - u)*sin(2*pi/3 +u); \
-yn: -v*cos(u)*sin(2*pi/3-u) - v*cos(2*pi/3 - u)*sin(u) - cos(u)*sin(2*pi/3-u); \
-zn: v*cos(u)*sin(u + 2*pi/3) - v*cos(u + 2*pi/3)*sin(u) - cos(u)*sin(u + 2*pi/3); \
-xuu: -v*cos(u); \
-yuu: (1-v)*cos(2*pi/3 + u); \
-zuu: (v-1)*cos(u - 2*pi/3); \
-xuv: -sin(u); \
-yuv: -sin(2*pi/3 + u); \
-zuv: -sin(2*pi/3 - u); \
+    "name: Double Cone;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: -1; ve: 1;\
+x: v*cos(u);\
+y: (v - 1)*cos(u + 2*pi/3);\
+z: (1 - v)*cos(u - 2*pi/3);\
+xu: -v*sin(u);\
+yu: (1-v)*sin(u + 2*pi/3);\
+zu: (1-v)*sin(2*pi/3 - u);\
+xv: cos(u);\
+yv: cos(u+2*pi/3);\
+zv: -cos(u - 2*pi/3);\
+xn: v*cos(2*pi/3 + u)*sin(2*pi/3 -u) + v*cos(2*pi/3 - u)*sin(2*pi/3 +u) - cos(2*pi/3 + u)*sin(2*pi/3 -u) - cos(2*pi/3 - u)*sin(2*pi/3 +u);\
+yn: -v*cos(u)*sin(2*pi/3-u) - v*cos(2*pi/3 - u)*sin(u) - cos(u)*sin(2*pi/3-u);\
+zn: v*cos(u)*sin(u + 2*pi/3) - v*cos(u + 2*pi/3)*sin(u) - cos(u)*sin(u + 2*pi/3);\
+xuu: -v*cos(u);\
+yuu: (1-v)*cos(2*pi/3 + u);\
+zuu: (v-1)*cos(u - 2*pi/3);\
+xuv: -sin(u);\
+yuv: -sin(2*pi/3 + u);\
+zuv: -sin(2*pi/3 - u);\
 xvv: 0; yvv: 0; zvv: 0;";
 #endif

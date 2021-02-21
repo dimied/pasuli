@@ -46,21 +46,21 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(3),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSpiralWave =
-    "name: Spiral Wave; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve: 20; \
-c1:a: 1.5; c2:b: 0.5; c3:c: 1.0; \
-x: v*cos(u); \
-y: v*sin(u); \
-z: a*cos(b*u + c*v); \
-xu: -v*sin(u); \
-yu: v*cos(u); \
-zu: -a*b*sin(b*u + c*v); \
-xv: cos(u); \
-yv: sin(u); \
-zv: -a*c*sin(b*u + c*v); \
-xn: a*(b*sin(u) - c*v*cos(u))*sin(b*u+c*v); \
-yn: -a*(b*cos(u) + c*v*sin(u))*sin(b*u+c*v); \
+    "name: Spiral Wave;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve: 20;\
+c1:a: 1.5; c2:b: 0.5; c3:c: 1.0;\
+x: v*cos(u);\
+y: v*sin(u);\
+z: a*cos(b*u + c*v);\
+xu: -v*sin(u);\
+yu: v*cos(u);\
+zu: -a*b*sin(b*u + c*v);\
+xv: cos(u);\
+yv: sin(u);\
+zv: -a*c*sin(b*u + c*v);\
+xn: a*(b*sin(u) - c*v*cos(u))*sin(b*u+c*v);\
+yn: -a*(b*cos(u) + c*v*sin(u))*sin(b*u+c*v);\
 zn: -v;";
 #endif

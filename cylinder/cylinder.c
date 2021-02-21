@@ -57,27 +57,27 @@ PaSuLiDefDesc pslddCylinder = {
 #endif
 #if (COMPILE_DESC_CYLINDER != 0)
 char *descCylinder =
-	"name: Cylinder; \
-cat: cylinder; \
-ut: c; vt: o; \
-us:pi: -1; ue:pi: 1; \
-vs: 0; ve: 1; \
-c1:r: 1; \
-x: r*cos(u); \
-y: r*sin(u); \
-z: v; \
-xu: -r*sin(u); \
-yu: r*cos(u); \
-zu: 0; \
-xv: 0; \
-yv: 0; \
-zv: 1; \
-xn: r*cos(u); \
-yn: r*sin(u); \
-zn: 0; \
-xuu: -r*cos(u); \
-yuu: -r*sin(u); \
-zuu: 0; \
-xuv: 0; yuv: 0; zuv: 0; \
+	"name: Cylinder;\
+cat: cylinder;\
+ut: c; vt: o;\
+us:pi: -1; ue:pi: 1;\
+vs: 0; ve: 1;\
+c1:r: 1;\
+x: r*cos(u);\
+y: r*sin(u);\
+z: v;\
+xu: -r*sin(u);\
+yu: r*cos(u);\
+zu: 0;\
+xv: 0;\
+yv: 0;\
+zv: 1;\
+xn: r*cos(u);\
+yn: r*sin(u);\
+zn: 0;\
+xuu: -r*cos(u);\
+yuu: -r*sin(u);\
+zuu: 0;\
+xuv: 0; yuv: 0; zuv: 0;\
 xvv: 0; yvv: 0; zvv: 0; ";
 #endif

@@ -64,27 +64,27 @@ x = a h cos(n v pi) (1 + cos(u pi)) + c cos(n v pi)
 y = a h sin(n v pi) (1 + cos(u pi)) + c sin(n v pi)
 z = b 0.5 v + a h sin(u pi)
 */
-char *descSeashell = "name: Sea shell; \
-cat: shells; \
-ut: c; vt: c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve: 2; \
-c1:a: 1; c2:b: 1; \
-c3:c: 1; c4:n: 1; \
-a1:h: 1-0.5*v; \
-x: a*h*cos(n*v*pi)*(1 + cos(u)) + c*cos(n*v*pi); \
-y: a*h*sin(n*v*pi)*(1 + cos(u)) + c*sin(n*v*pi); \
-z: b*0.5*v + a*h*sin(u); \
-xu: -a*h*cos(n*pi*v)*sin(u); \
-yu: -a*h*sin(n*pi*v)*sin(u); \
-zu: -a*h*cos(u); \
-xv: sin(n*pi*v)*(0.5*a*n*pi*v - a*h*n*pi*cos(u) - a*n*pi - c*n*pi) - cos(n*pi*v)*(cos(u)+1)*a*0.5; \
-yv: cos(n*pi*v)*(-0.5*a*n*pi*v + a*h*n*pi*cos(u) + a*n*pi + c*n*pi) - sin(n*pi*v)*(cos(u)+1)*a*0.5; \
-zv: 0.5*b - 0.5*a*sin(u); \
-xuu: -a*h*cos(u)*cos(n*pi*v); \
-yuu: -a*h*cos(u)*sin(n*pi*v); \
-zuu: -a*h*sin(u); \
-xuv: a*h*n*sin(u)*sin(n*pi*v) + 0.5*a*cos(n*pi*v)*sin(u); \
-yuv: -a*h*n*sin(u)*cos(n*pi*v) + 0.5*a*sin(n*pi*v)*sin(u); \
+char *descSeashell = "name: Sea shell;\
+cat: shells;\
+ut: c; vt: c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve: 2;\
+c1:a: 1; c2:b: 1;\
+c3:c: 1; c4:n: 1;\
+a1:h: 1-0.5*v;\
+x: a*h*cos(n*v*pi)*(1 + cos(u)) + c*cos(n*v*pi);\
+y: a*h*sin(n*v*pi)*(1 + cos(u)) + c*sin(n*v*pi);\
+z: b*0.5*v + a*h*sin(u);\
+xu: -a*h*cos(n*pi*v)*sin(u);\
+yu: -a*h*sin(n*pi*v)*sin(u);\
+zu: -a*h*cos(u);\
+xv: sin(n*pi*v)*(0.5*a*n*pi*v - a*h*n*pi*cos(u) - a*n*pi - c*n*pi) - cos(n*pi*v)*(cos(u)+1)*a*0.5;\
+yv: cos(n*pi*v)*(-0.5*a*n*pi*v + a*h*n*pi*cos(u) + a*n*pi + c*n*pi) - sin(n*pi*v)*(cos(u)+1)*a*0.5;\
+zv: 0.5*b - 0.5*a*sin(u);\
+xuu: -a*h*cos(u)*cos(n*pi*v);\
+yuu: -a*h*cos(u)*sin(n*pi*v);\
+zuu: -a*h*sin(u);\
+xuv: a*h*n*sin(u)*sin(n*pi*v) + 0.5*a*cos(n*pi*v)*sin(u);\
+yuv: -a*h*n*sin(u)*cos(n*pi*v) + 0.5*a*sin(n*pi*v)*sin(u);\
 zuv: -0.5*a*cos(u);";
 #endif

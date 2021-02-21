@@ -53,22 +53,22 @@ PaSuLiDefDesc pslddTanhSpiral = {
 #endif
 #if (COMPILE_DESC_SPIRAL != 0)
 char *descTanhSpiral =
-	"name: Tanh Spiral; \
-cat: spiral; \
-ut: c; vt: o; \
-us: -1.5; ue: 1.5; \
-vs: 0; ve: 1; \
-c1:a: 1; c2:H: 1; \
-x: sinh(2*u)/(cos(2*a*u) + cosh(2*u)); \
-y: H*v; \
-z: sin(2*u)/(cos(2*a*u) + cosh(2*u)); \
-xu: 2*(a*sin(2*a*u)*sinh(2*u)+(cosh(2*u)^2)-(sinh(2*u)^2)+cos(2*a*u)*cosh(2*u))/((cos(2*a*u) + cosh(2*u))^2); \
-yu: 0; \
-zu: 2*(a*sin(2*a*u)*sin(2*u)+(cos(2*a*u)*cos(2*u))+cos(2*u)*cosh(2*u)-sin(2*u)*sinh(2*u))/((cos(2*a*u) + cosh(2*u))^2); \
-xv: 0; \
-yv: H; \
-zv: 0; \
-xn: -H*2*(a*sin(2*a*u)*sin(2*u)+(cos(2*a*u)*cos(2*u))+cos(2*u)*cosh(2*u)-sin(2*u)*sinh(2*u))/((cos(2*a*u) + cosh(2*u))^2); \
-yn: 0; \
+	"name: Tanh Spiral;\
+cat: spiral;\
+ut: c; vt: o;\
+us: -1.5; ue: 1.5;\
+vs: 0; ve: 1;\
+c1:a: 1; c2:H: 1;\
+x: sinh(2*u)/(cos(2*a*u) + cosh(2*u));\
+y: H*v;\
+z: sin(2*u)/(cos(2*a*u) + cosh(2*u));\
+xu: 2*(a*sin(2*a*u)*sinh(2*u)+(cosh(2*u)^2)-(sinh(2*u)^2)+cos(2*a*u)*cosh(2*u))/((cos(2*a*u) + cosh(2*u))^2);\
+yu: 0;\
+zu: 2*(a*sin(2*a*u)*sin(2*u)+(cos(2*a*u)*cos(2*u))+cos(2*u)*cosh(2*u)-sin(2*u)*sinh(2*u))/((cos(2*a*u) + cosh(2*u))^2);\
+xv: 0;\
+yv: H;\
+zv: 0;\
+xn: -H*2*(a*sin(2*a*u)*sin(2*u)+(cos(2*a*u)*cos(2*u))+cos(2*u)*cosh(2*u)-sin(2*u)*sinh(2*u))/((cos(2*a*u) + cosh(2*u))^2);\
+yn: 0;\
 zn: 2*H*(a*sin(2*a*u)*sinh(2*u)+(cosh(2*u)^2)-(sinh(2*u)^2)+cos(2*a*u)*cosh(2*u))/((cos(2*a*u) + cosh(2*u))^2); ";
 #endif

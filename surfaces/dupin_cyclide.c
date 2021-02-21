@@ -54,19 +54,19 @@ PASULI_CONST_COUNT(4),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descDupinCyclide =
-	"name: Dupin Cyclide; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-c1:a: 1.5; c2:b: 0.5; c3:c: 1.0; c4:d: 1.0; \
-a1:h: a - c*cos(u)*cos(v); \
-x: (d*(c - a*cos(u)*cos(v)) + b*b*cos(u))/h; \
-y: (b*sin(u)*(a - d*cos(v)))/h; \
-z: b*sin(v)*(c*cos(u) - d)/h; \
-xu: (-a*b^2 + d*a^2*cos(v) - d*c^2*cos(v))*sin(u)/h^2; \
-yu: b*(a - d*cos(v))*(a*cos(u) - c*cos(v))/h^2; \
-zu: b*c*(a-d*cos(v))*sin(u)*sin(v)/h^2; \
-xv: (d*a^2 - d*c^2 - c*b^2*cos(u))*cos(u)*sin(v)/h^2; \
-yv: a*b*(-d + c*cos(u))*sin(u)*sin(v)/h^2; \
+	"name: Dupin Cyclide;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+c1:a: 1.5; c2:b: 0.5; c3:c: 1.0; c4:d: 1.0;\
+a1:h: a - c*cos(u)*cos(v);\
+x: (d*(c - a*cos(u)*cos(v)) + b*b*cos(u))/h;\
+y: (b*sin(u)*(a - d*cos(v)))/h;\
+z: b*sin(v)*(c*cos(u) - d)/h;\
+xu: (-a*b^2 + d*a^2*cos(v) - d*c^2*cos(v))*sin(u)/h^2;\
+yu: b*(a - d*cos(v))*(a*cos(u) - c*cos(v))/h^2;\
+zu: b*c*(a-d*cos(v))*sin(u)*sin(v)/h^2;\
+xv: (d*a^2 - d*c^2 - c*b^2*cos(u))*cos(u)*sin(v)/h^2;\
+yv: a*b*(-d + c*cos(u))*sin(u)*sin(v)/h^2;\
 zv: b*(-d + c*cos(u))*(a*cos(v) - c*cos(u))/h^2;";
 #endif

@@ -83,43 +83,43 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 */
 #if(COMPILE_DESC_TORUS != 0)
 char* descUmbillicTorus =
-"name: Umbillic torus; \
-cat: torus; \
-ut: c; vt: c; \
-us:pi: -1; ue:pi: 1; \
-vs:pi: -1; ve:pi: 1; \
-c1:R: 1.5; c2:r: 0.5; \
+"name: Umbillic torus;\
+cat: torus;\
+ut: c; vt: c;\
+us:pi: -1; ue:pi: 1;\
+vs:pi: -1; ve:pi: 1;\
+c1:R: 1.5; c2:r: 0.5;\
 x: sin(u)*(7 + cos(u/3 - 2*v) + 2*cos(u/3 + v));  \
-y: cos(u)*(7 + cos(u/3 - 2*v) + 2*cos(u/3 + v)); \
+y: cos(u)*(7 + cos(u/3 - 2*v) + 2*cos(u/3 + v));\
 z: sin(u/3 - 2*v) + 2*sin(u/3 + v); "
 #if(COMPILE_DESC_DERIV_U_TORUS != 0)
-"xu: 0; \
-yu: 0; \
+"xu: 0;\
+yu: 0;\
 zu: 0; "
 #endif
 #if(COMPILE_DESC_DERIV_V_TORUS != 0)
-"xv: 0; \
-yv: 0; \
+"xv: 0;\
+yv: 0;\
 zv: 0; "
 #endif
 #if(COMPILE_DESC_NORMAL_TORUS != 0)
-"xn: 0; \
-yn: 0; \
+"xn: 0;\
+yn: 0;\
 zn: 0; "
 #endif
 #if(COMPILE_DESC_DERIV2_U_TORUS != 0)
-"xuu: 0; \
-yuu: 0; \
+"xuu: 0;\
+yuu: 0;\
 zuu: 0; "
 #endif
 #if(COMPILE_DESC_DERIV_UV_TORUS != 0)
-"xuv: 0; \
-yuv: 0; \
+"xuv: 0;\
+yuv: 0;\
 zuv: 0; "
 #endif
 #if(COMPILE_DESC_DERIV2_V_TORUS != 0)
-"xvv: 0; \
-yvv: 0; \
+"xvv: 0;\
+yvv: 0;\
 zvv: 0; "
 #endif
 "";

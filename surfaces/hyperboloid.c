@@ -62,30 +62,30 @@ PASULI_U_START_PI|PASULI_U_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descHyperboloid =
-    "name: Hyperboloid; \
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs: -2; ve: 2; \
-c1:a: 1.5; c2:b: 0.5; \
-x: a*cosh(v)*cos(u); \
-y: a*cosh(v)*sin(u); \
-z: b*sinh(v); \
-xu: -a*cosh(v)*sin(u); \
-yu: a*cos(u)*cosh(v); \
-zu: 0; \
-xv: a*cos(u)*sinh(v); \
-yv: a*sin(u)*sinh(v); \
-zv: b*cosh(v); \
-xn: a*b*cos(u)*cosh(v)*cosh(v); \
-yn: a*b*sin(u)*cosh(v)*cosh(v); \
-zn: -a*a*cosh(v)*sinh(v); \
-xuu: -a*cos(u)*cosh(v); \
-yuu: -a*sin(u)*cosh(v); \
-zuu: 0; \
-xuv: -a*sin(u)*sinh(v); \
-yuv: a*cos(u)*sinh(v); \
-zuv: 0; \
-xvv: a*cos(u)*cosh(v); \
-yvv: a*sin(u)*cosh(v); \
+    "name: Hyperboloid;\
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs: -2; ve: 2;\
+c1:a: 1.5; c2:b: 0.5;\
+x: a*cosh(v)*cos(u);\
+y: a*cosh(v)*sin(u);\
+z: b*sinh(v);\
+xu: -a*cosh(v)*sin(u);\
+yu: a*cos(u)*cosh(v);\
+zu: 0;\
+xv: a*cos(u)*sinh(v);\
+yv: a*sin(u)*sinh(v);\
+zv: b*cosh(v);\
+xn: a*b*cos(u)*cosh(v)*cosh(v);\
+yn: a*b*sin(u)*cosh(v)*cosh(v);\
+zn: -a*a*cosh(v)*sinh(v);\
+xuu: -a*cos(u)*cosh(v);\
+yuu: -a*sin(u)*cosh(v);\
+zuu: 0;\
+xuv: -a*sin(u)*sinh(v);\
+yuv: a*cos(u)*sinh(v);\
+zuv: 0;\
+xvv: a*cos(u)*cosh(v);\
+yvv: a*sin(u)*cosh(v);\
 zvv: b*sinh(v);";
 #endif

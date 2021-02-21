@@ -67,30 +67,30 @@ PaSuLiDefDesc pslddSphere = {
 
 #if (COMPILE_DESC_SPHERE != 0)
 char *descSphere =
-	"name: Sphere; \
-cat: sphere; \
-ut: c; vt: c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 1; \
-x: cos(u)*sin(v); \
-y: sin(u)*sin(v); \
-z: cos(v); \
-xu: -sin(u)*sin(v); \
-yu: cos(u)*sin(v); \
-zu: 0; \
-xv: cos(u)*cos(v); \
-yv: sin(u)*cos(v); \
-zv: -sin(v); \
-xn: -cos(u)*sin(v)*sin(v); \
-yn: -sin(u)*sin(v)*sin(v); \
-zn: -sin(v)*cos(v); \
-xuu: -cos(u)*sin(v); \
-yuu: -sin(u)*sin(v); \
-zuu:  0; \
-xuv: -sin(u)*cos(v); \
-yuv: cos(u)*cos(v); \
-zuv: 0; \
-xvv: -cos(u)*sin(v); \
-yvv: -sin(u)*sin(v); \
+	"name: Sphere;\
+cat: sphere;\
+ut: c; vt: c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 1;\
+x: cos(u)*sin(v);\
+y: sin(u)*sin(v);\
+z: cos(v);\
+xu: -sin(u)*sin(v);\
+yu: cos(u)*sin(v);\
+zu: 0;\
+xv: cos(u)*cos(v);\
+yv: sin(u)*cos(v);\
+zv: -sin(v);\
+xn: -cos(u)*sin(v)*sin(v);\
+yn: -sin(u)*sin(v)*sin(v);\
+zn: -sin(v)*cos(v);\
+xuu: -cos(u)*sin(v);\
+yuu: -sin(u)*sin(v);\
+zuu:  0;\
+xuv: -sin(u)*cos(v);\
+yuv: cos(u)*cos(v);\
+zuv: 0;\
+xvv: -cos(u)*sin(v);\
+yvv: -sin(u)*sin(v);\
 zvv:  -cos(v); ";
 #endif

@@ -50,29 +50,29 @@ PaSuLiDefDesc pslddHandkerchief = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descHandkerchief =
-    "name: Handkerchief; \
-ut: c; vt: c; \
-us: -1; ue: 1; \
-vs: -1; ve: 1; \
-x: u; \
-y: v; \
-z: u*u*u/3 + u*v*v + 2*(u*u - v*v); \
-xu: 1; \
-yu: 0; \
-zu: u*(4+u)+v*v; \
-xv: 0; \
-yv: 1; \
-zv: v*(2*u - 4); \
-xn: -u*(4+u) - v*v; \
-yn: 2*v*(2-u); \
-zn: 1; \
-xuu: 0; \
-yuu: 0; \
-zuu: 4+2*u; \
-xuv: 0; \
-yuv: 0; \
-zuv: 2*v; \
-xvv: 0; \
-yvv: 0; \
+    "name: Handkerchief;\
+ut: c; vt: c;\
+us: -1; ue: 1;\
+vs: -1; ve: 1;\
+x: u;\
+y: v;\
+z: u*u*u/3 + u*v*v + 2*(u*u - v*v);\
+xu: 1;\
+yu: 0;\
+zu: u*(4+u)+v*v;\
+xv: 0;\
+yv: 1;\
+zv: v*(2*u - 4);\
+xn: -u*(4+u) - v*v;\
+yn: 2*v*(2-u);\
+zn: 1;\
+xuu: 0;\
+yuu: 0;\
+zuu: 4+2*u;\
+xuv: 0;\
+yuv: 0;\
+zuv: 2*v;\
+xvv: 0;\
+yvv: 0;\
 zvv: 2*u-4;";
 #endif

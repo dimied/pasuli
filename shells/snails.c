@@ -71,22 +71,22 @@ R sollte nur die Werte -1 oder 1 annehmen.
 u \in  [u_min, u_max]
 v \in  [0, 2 pi]
 */
-char *descSnails = "name: Cornucopia; \
-cat: shells; \
-ut: c; vt: c; \
-us: 0; ue: 1; \
-vs: 0; ve:pi: 2; \
-c1:R: 1; c2:a: 1; \
-c3:b: 1; c4:c: 1; \
-c5:h: 1; c6:k: 1; \
-c7:w: 1; \
-x: e^(w*u)*(h+a*cos(v))*cos(c*u); \
-y: R*e^(w*u)*(h+a*cos(v))*sin(c*u); \
-z: e^(w*u)*(k + b*sin(v)); \
-xu: e^(u*w)*(-a*c*cos(v)*sin(c*u) + a*cos(v)*cos(c*u) - c*h*sin(c*u) + h*w*cos(c*u)); \
-yu: R*e^(u*w)*(a*c*cos(v)*cos(c*u) + a*cos(v)*sin(c*u) + c*h*cos(c*u) + h*w*sin(c*u)); \
-zu: e^(u*w)*(b*w*sin(v) + k*w); \
-xv: -e^(u*w)*a*cos(c*u)*sin(v); \
-yv: -e^(u*w)*a*sin(c*u)*R*sin(v); \
+char *descSnails = "name: Cornucopia;\
+cat: shells;\
+ut: c; vt: c;\
+us: 0; ue: 1;\
+vs: 0; ve:pi: 2;\
+c1:R: 1; c2:a: 1;\
+c3:b: 1; c4:c: 1;\
+c5:h: 1; c6:k: 1;\
+c7:w: 1;\
+x: e^(w*u)*(h+a*cos(v))*cos(c*u);\
+y: R*e^(w*u)*(h+a*cos(v))*sin(c*u);\
+z: e^(w*u)*(k + b*sin(v));\
+xu: e^(u*w)*(-a*c*cos(v)*sin(c*u) + a*cos(v)*cos(c*u) - c*h*sin(c*u) + h*w*cos(c*u));\
+yu: R*e^(u*w)*(a*c*cos(v)*cos(c*u) + a*cos(v)*sin(c*u) + c*h*cos(c*u) + h*w*sin(c*u));\
+zu: e^(u*w)*(b*w*sin(v) + k*w);\
+xv: -e^(u*w)*a*cos(c*u)*sin(v);\
+yv: -e^(u*w)*a*sin(c*u)*R*sin(v);\
 zv: e^(u*w)*b*cos(v); ";
 #endif

@@ -49,29 +49,29 @@ PaSuLiDefDesc pslddShoeSurface = {
 
 #if (COMPILE_DESC_SURFACES != 0)
 char *descShoeSurface =
-	"name: Shoe Surface; \
-ut:c; vt:c; \
-us: -2; ue: 2; \
-vs: -2; ve: 2; \
-x: u; \
-y: v; \
-z: u*u*u/3 - v*v/2; \
-xu: 1; \
-yu: 0; \
-zu: u*u; \
-xv: 0; \
-yv: 1; \
-zv: -v; \
-xn: -u*u; \
-yn: v; \
-zn: 1; \
-xuu: 0; \
-yuu: 0; \
-zuu: 2*u; \
-xuv: 0; \
-yuv: 0; \
-zuv: 0; \
-xvv: 0; \
-yvv: 0; \
+	"name: Shoe Surface;\
+ut:c; vt:c;\
+us: -2; ue: 2;\
+vs: -2; ve: 2;\
+x: u;\
+y: v;\
+z: u*u*u/3 - v*v/2;\
+xu: 1;\
+yu: 0;\
+zu: u*u;\
+xv: 0;\
+yv: 1;\
+zv: -v;\
+xn: -u*u;\
+yn: v;\
+zn: 1;\
+xuu: 0;\
+yuu: 0;\
+zuu: 2*u;\
+xuv: 0;\
+yuv: 0;\
+zuv: 0;\
+xvv: 0;\
+yvv: 0;\
 zvv: -1;";
 #endif

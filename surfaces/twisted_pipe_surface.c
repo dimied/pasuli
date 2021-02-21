@@ -31,12 +31,12 @@ PaSuLiDefDesc pslddTwistedPipeSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descTwistedPipeSurface =
-    "name: Twisted pipe Surface; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-a1:h: sqrt(1 + sin(v)*sin(v)); \
-x: sin(v - 2*pi/3)*(2 + cos(u - 2*pi/3))/h; \
-y: sin(v + 2*pi/3)*(2 + cos(u + 2*pi/3))/h; \
+    "name: Twisted pipe Surface;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+a1:h: sqrt(1 + sin(v)*sin(v));\
+x: sin(v - 2*pi/3)*(2 + cos(u - 2*pi/3))/h;\
+y: sin(v + 2*pi/3)*(2 + cos(u + 2*pi/3))/h;\
 z: cos(v)*(2 + cos(u))/h;";
 #endif

@@ -60,29 +60,29 @@ PaSuLiDefDesc pslddPseudoCrossCap = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descPseudoCrossCap =
-	"name: Pseudo Cross Cap; \
-ut:c; vt:c; \
-us: -1; ue: 1; \
-vs:pi: -1; ve:pi: 1; \
-x: (1 - u*u)*sin(v); \
-y: (1 - u*u)*sin(2*v); \
-z: u; \
-xu: -2*u*sin(v); \
-yu: -2*u*sin(2*v); \
-zu: 1; \
-xv: (1 - u*u)*cos(v); \
-yv: 2*(1 - u*u)*cos(2*v); \
-zv: 0; \
-xn: -2*(1-u^2)*cos(2*v); \
-yn: (1-u^2)*cos(v); \
-zn: 2*u*(1-u^2)*(cos(v)*sin(2*v) -2*cos(2*v)*sin(v)); \
-xuu: -2*sin(v); \
-yuu: -2*sin(2*v); \
-zuu: 0; \
-xuv: -2*u*cos(v); \
-yuv: -4*u*cos(2*v); \
-zuv: 0; \
-xvv: -(1-u^2)*sin(v); \
-yvv: -4*(1-u^2)*sin(2*v); \
+	"name: Pseudo Cross Cap;\
+ut:c; vt:c;\
+us: -1; ue: 1;\
+vs:pi: -1; ve:pi: 1;\
+x: (1 - u*u)*sin(v);\
+y: (1 - u*u)*sin(2*v);\
+z: u;\
+xu: -2*u*sin(v);\
+yu: -2*u*sin(2*v);\
+zu: 1;\
+xv: (1 - u*u)*cos(v);\
+yv: 2*(1 - u*u)*cos(2*v);\
+zv: 0;\
+xn: -2*(1-u^2)*cos(2*v);\
+yn: (1-u^2)*cos(v);\
+zn: 2*u*(1-u^2)*(cos(v)*sin(2*v) -2*cos(2*v)*sin(v));\
+xuu: -2*sin(v);\
+yuu: -2*sin(2*v);\
+zuu: 0;\
+xuv: -2*u*cos(v);\
+yuv: -4*u*cos(2*v);\
+zuv: 0;\
+xvv: -(1-u^2)*sin(v);\
+yvv: -4*(1-u^2)*sin(2*v);\
 zvv: 0;";
 #endif

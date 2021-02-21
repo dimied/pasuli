@@ -52,30 +52,30 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descMennsSurface =
-	"name: Menns Surface; \
-ut:c; vt:c; \
-us: -1; ue: 1; \
-vs: -1; ve: 1; \
-c1:a: 1.0; \
-x: u; \
-y: v; \
-z: a*u^(4) + u*u*v - v*v; \
-xu: 1; \
-yu: 0; \
-zu: 4*a*u^3 + 2*u*v; \
-xv: 0; \
-yv: 1; \
-zv: u^2 - 2*v; \
-xn: -4*a*u^3-2*u*v; \
-yn: -u^2 + 2*v; \
-zn: 1; \
-xuu: 0; \
-yuu: 0; \
-zuu: 12*a*u^2 + 2*v; \
-xuv: 0; \
-yuv: 0; \
-zuv: 2*u; \
-xvv: 0; \
-yvv: 0; \
+	"name: Menns Surface;\
+ut:c; vt:c;\
+us: -1; ue: 1;\
+vs: -1; ve: 1;\
+c1:a: 1.0;\
+x: u;\
+y: v;\
+z: a*u^(4) + u*u*v - v*v;\
+xu: 1;\
+yu: 0;\
+zu: 4*a*u^3 + 2*u*v;\
+xv: 0;\
+yv: 1;\
+zv: u^2 - 2*v;\
+xn: -4*a*u^3-2*u*v;\
+yn: -u^2 + 2*v;\
+zn: 1;\
+xuu: 0;\
+yuu: 0;\
+zuu: 12*a*u^2 + 2*v;\
+xuv: 0;\
+yuv: 0;\
+zuv: 2*u;\
+xvv: 0;\
+yvv: 0;\
 zvv: -2; ";
 #endif

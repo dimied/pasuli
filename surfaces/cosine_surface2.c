@@ -61,29 +61,29 @@ PaSuLiDefDesc pslddCosineSurface2 = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descCosineSurface2 =
-	"name: Cosine Surface 2; \
-ut:c; vt:c; \
-us:pi: -1; ue:pi: 1; \
-vs:pi: -1; ve:pi: 1; \
-x: cos(u); \
-y: cos(v); \
-z: -cos(u + v)^(2); \
-xu: -sin(u); \
-yu: 0; \
-zu: 2*cos(u+v)*sin(u+v); \
-xv: 0; \
-yv: -sin(v); \
-zv: 2*cos(u+v)*sin(u+v); \
-xn: 2*cos(u+v)*sin(u+v)*sin(v); \
-yn: 2*cos(u+v)*sin(u+v)*sin(u); \
-zn: sin(u)*sin(v); \
-xuu: -cos(u); \
-yuu: 0; \
-zuu: 2*cos(u+v)^2 - 2*sin(u+v)^2; \
-xuv: 0; \
-yuv: 0; \
-zuv: 2*cos(u+v)^2 - 2*sin(u+v)^2; \
-xvv: 0; \
-yvv: -cos_v; \
+	"name: Cosine Surface 2;\
+ut:c; vt:c;\
+us:pi: -1; ue:pi: 1;\
+vs:pi: -1; ve:pi: 1;\
+x: cos(u);\
+y: cos(v);\
+z: -cos(u + v)^(2);\
+xu: -sin(u);\
+yu: 0;\
+zu: 2*cos(u+v)*sin(u+v);\
+xv: 0;\
+yv: -sin(v);\
+zv: 2*cos(u+v)*sin(u+v);\
+xn: 2*cos(u+v)*sin(u+v)*sin(v);\
+yn: 2*cos(u+v)*sin(u+v)*sin(u);\
+zn: sin(u)*sin(v);\
+xuu: -cos(u);\
+yuu: 0;\
+zuu: 2*cos(u+v)^2 - 2*sin(u+v)^2;\
+xuv: 0;\
+yuv: 0;\
+zuv: 2*cos(u+v)^2 - 2*sin(u+v)^2;\
+xvv: 0;\
+yvv: -cos_v;\
 zvv: 2*cos(u+v)^2 - 2*sin(u+v)^2; ";
 #endif

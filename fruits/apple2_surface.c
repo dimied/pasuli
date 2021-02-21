@@ -50,31 +50,31 @@ void Apple2_Surface(pasuli_vartype u,
 
 #if (COMPILE_DESC_FRUITS != 0)
 char *descApple2_Surface =
-	"name: Apple Surface (V2); \
-ut: c; vt: c; \
-us:pi: -1; ue:pi: 1; \
-vs:pi: -1; ve:pi: 1; \
-c1:R: 1.5; c2:r: 0.5; \
-x: cos(u)*(R + r*cos(v)) + (v/pi)^(20); \
-y: sin(u)*(R + r*cos(v)) + 0.25*cos(5*u); \
-z: -2.3*log(1 - v*0.3157) + 6*sin(v) + 2*cos(v); \
-xu: -sin(u)*(R + r*cos(v)); \
-yu: cos(u)*(R + r*cos(v)) - 1.25*sin(5*u); \
-zu: 0; \
-xv: 20*(v^19)/(pi^20) - r*cos(u)*sin(v); \
-yv: -r*sin(u)*sin(v); \
-zv: 6*cos(v)-2*sin(v) + (0.72611)/(1-0.3157*v); \
-xn: ?; \
-yn: ?; \
-zn: ?; \
-xuu: -cos(u)*(R + cos(v)); \
-yuu: -sin(u)*(R+r*cos(v)) - 6.25*cos(5*u); \
-zuu: 0; \
-xuv: r*sin(u)*sin(v); \
-yuv: -r*cos(u)*sin(v); \
-zuv: 0; \
-xvv: -r*cos(u)*cos(v) + 380*(v^18)/(pi^20); \
-yvv: -r*cos(v)*sin(u); \
+	"name: Apple Surface (V2);\
+ut: c; vt: c;\
+us:pi: -1; ue:pi: 1;\
+vs:pi: -1; ve:pi: 1;\
+c1:R: 1.5; c2:r: 0.5;\
+x: cos(u)*(R + r*cos(v)) + (v/pi)^(20);\
+y: sin(u)*(R + r*cos(v)) + 0.25*cos(5*u);\
+z: -2.3*log(1 - v*0.3157) + 6*sin(v) + 2*cos(v);\
+xu: -sin(u)*(R + r*cos(v));\
+yu: cos(u)*(R + r*cos(v)) - 1.25*sin(5*u);\
+zu: 0;\
+xv: 20*(v^19)/(pi^20) - r*cos(u)*sin(v);\
+yv: -r*sin(u)*sin(v);\
+zv: 6*cos(v)-2*sin(v) + (0.72611)/(1-0.3157*v);\
+xn: ?;\
+yn: ?;\
+zn: ?;\
+xuu: -cos(u)*(R + cos(v));\
+yuu: -sin(u)*(R+r*cos(v)) - 6.25*cos(5*u);\
+zuu: 0;\
+xuv: r*sin(u)*sin(v);\
+yuv: -r*cos(u)*sin(v);\
+zuv: 0;\
+xvv: -r*cos(u)*cos(v) + 380*(v^18)/(pi^20);\
+yvv: -r*cos(v)*sin(u);\
 zvv: (0.229233)/((1-0.3157v)^2) - 6*sin(v) - 2*cos(v); ";
 
 #endif

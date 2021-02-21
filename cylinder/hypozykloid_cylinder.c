@@ -60,28 +60,28 @@ PaSuLiDefDesc pslddHypozykloidCylinder = {
 #endif
 #if (COMPILE_DESC_CYLINDER != 0)
 char *descHypozykloidCylinder =
-	"name: Hypozykloid-Cylinder; \
-ut: c; vt: o; \
-us:pi: -1; ue:pi: 1; \
-vs: 0; ve: 1; \
-c1:R: 1.5; c2:r: 1.0; \
-c3:h: 0.5; c4:H: 1.0; \
-cond:r:not:0; \
-x: (R - r)*cos(u) + h*cos(((R - r)/r)*u); \
-y: H*v; \
-z: (R - r)*sin(u) - h*sin(((R - r)/r)*u); \
-xu: h*(R - r)*sin((R - r)*u/r)/r -(R - r)*sin(u); \
-yu: 0; \
-zu: -h*(R - r)*cos((R - r)*u/r)/r + (R - r)*cos(u); \
-xv: 0; \
-yv: H; \
-zv: 0; \
-xn: H*(h*(R - r)*cos((R - r)*u/r)/r - (R - r)*cos(u)); \
-yn: 0; \
-zn: H*(h*(R - r)*sin((R - r)*u/r)/r -(R - r)*sin(u)); \
-xuu: 2*h*R*cos((R - r)*u/r)/r + 2*h*R*R*cos((R - r)*u/r)/(r*r) + h*cos((R - r)*u/r)/r - (R-r)*cos(u); \
-yuu: 0; \
-zuu: 2*h*R*sin((R - r)*u/r)/r + 2*h*R*R*sin((R - r)*u/r)/(r*r) + h*sin((R - r)*u/r)/r - (R-r)*sin(u); \
-xuv: 0; yuv: 0; zuv 0; \
+	"name: Hypozykloid-Cylinder;\
+ut: c; vt: o;\
+us:pi: -1; ue:pi: 1;\
+vs: 0; ve: 1;\
+c1:R: 1.5; c2:r: 1.0;\
+c3:h: 0.5; c4:H: 1.0;\
+cond:r:not:0;\
+x: (R - r)*cos(u) + h*cos(((R - r)/r)*u);\
+y: H*v;\
+z: (R - r)*sin(u) - h*sin(((R - r)/r)*u);\
+xu: h*(R - r)*sin((R - r)*u/r)/r -(R - r)*sin(u);\
+yu: 0;\
+zu: -h*(R - r)*cos((R - r)*u/r)/r + (R - r)*cos(u);\
+xv: 0;\
+yv: H;\
+zv: 0;\
+xn: H*(h*(R - r)*cos((R - r)*u/r)/r - (R - r)*cos(u));\
+yn: 0;\
+zn: H*(h*(R - r)*sin((R - r)*u/r)/r -(R - r)*sin(u));\
+xuu: 2*h*R*cos((R - r)*u/r)/r + 2*h*R*R*cos((R - r)*u/r)/(r*r) + h*cos((R - r)*u/r)/r - (R-r)*cos(u);\
+yuu: 0;\
+zuu: 2*h*R*sin((R - r)*u/r)/r + 2*h*R*R*sin((R - r)*u/r)/(r*r) + h*sin((R - r)*u/r)/r - (R-r)*sin(u);\
+xuv: 0; yuv: 0; zuv 0;\
 xvv: 0; yvv: 0; zvv 0; ";
 #endif

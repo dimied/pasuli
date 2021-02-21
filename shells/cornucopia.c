@@ -50,31 +50,31 @@ PaSuLiDefDesc pslddCornucopia = {
 #endif
 
 #if (COMPILE_DESC_SHELLS != 0)
-char *descCornucopia = "name: Cornucopia; \
-cat: shells; \
-ut: c; vt: c; \
-us:pi:-1; ue:pi:1; \
-vs: 0; ve:pi: 2; \
-c1:a: 1; c2:b: 1; \
-x: e^(b*v)*cos(v) + e^(a*v)*cos(u)*cos(v); \
-y: e^(b*v)*sin(v) + e^(a*v)*cos(u)*sin(v); \
-z: e^(a*v)*sin(u); \
-xu: -e^(a*v)*cos(v)*sin(u); \
-yu: -e^(a*v)*sin(v)*sin(u); \
-zu: e^(a*v)*cos(u); \
-xv: a*e^(a*v)*cos(u)*cos(v) + b*e^(b*v)*cos(v) - e^(b*v)*sin(v) - e^(a*v)*cos(u)*sin(v); \
-yv: a*e^(a*v)*cos(u)*sin(v) + b*e^(b*v)*sin(v) - e^(b*v)*cos(v) - e^(a*v)*cos(u)*cos(v); \
-zv: a*e^(a*v)*sin(u); \
-xn: -a*e^(2*a*v)*sin(v) - b*e^(a*v+b*v)*cos(u)*sin(v) - e^(a*v+b*v)*cos(u)*cos(v) - e^(2*a*v)*cos(u)^(2)*cos(v); \
-yn: a*e^(2*a*v)*cos(v) + b*e^(a*v+b*v)*cos(u)*cos(v) - e^(a*v+b*v)*cos(u)*sin(v) - e^(2*a*v)*cos(u)^(2)*sin(v); \
-zn: -e^(a*v+b*v)*sin(u) - e^(2*a*v)*cos(u)*sin(u); \
-xuu: -e^(a*v)*cos(u)*cos(v); \
-yuu: -e^(a*v)*cos(u)*sin(v); \
-zuu: -e^(a*v)*sin(u); \
-xuv: -a*e^(a*v)*cos(v)*sin(u) + e^(a*v)*sin(u)*sin(v); \
-yuv: -a*e^(a*v)*sin(v)*sin(u) - e^(a*v)*sin(u)*cos(v); \
-zuv: a*e^(a*v)*cos(u); \
-xvv: a*a*e^(a*v)*cos(u)*cos(v) - 2*a*e^(a*v)*cos(u)*sin(v) + b*b*e^(b*v)*cos(v) - 2*b*e^(b*v)*sin(v) - e^(b*v)*cos(v) - e^(a*v)*cos(u)*cos(v); \
-yvv: a*a*e^(a*v)*cos(u)*sin(v) + 2*a*e^(a*v)*cos(u)*cos(v) + b*b*e^(b*v)*sin(v) + 2*b*e^(b*v)*cos(v) - e^(b*v)*sin(v) - e^(a*v)*cos(u)*sin(v); \
+char *descCornucopia = "name: Cornucopia;\
+cat: shells;\
+ut: c; vt: c;\
+us:pi:-1; ue:pi:1;\
+vs: 0; ve:pi: 2;\
+c1:a: 1; c2:b: 1;\
+x: e^(b*v)*cos(v) + e^(a*v)*cos(u)*cos(v);\
+y: e^(b*v)*sin(v) + e^(a*v)*cos(u)*sin(v);\
+z: e^(a*v)*sin(u);\
+xu: -e^(a*v)*cos(v)*sin(u);\
+yu: -e^(a*v)*sin(v)*sin(u);\
+zu: e^(a*v)*cos(u);\
+xv: a*e^(a*v)*cos(u)*cos(v) + b*e^(b*v)*cos(v) - e^(b*v)*sin(v) - e^(a*v)*cos(u)*sin(v);\
+yv: a*e^(a*v)*cos(u)*sin(v) + b*e^(b*v)*sin(v) - e^(b*v)*cos(v) - e^(a*v)*cos(u)*cos(v);\
+zv: a*e^(a*v)*sin(u);\
+xn: -a*e^(2*a*v)*sin(v) - b*e^(a*v+b*v)*cos(u)*sin(v) - e^(a*v+b*v)*cos(u)*cos(v) - e^(2*a*v)*cos(u)^(2)*cos(v);\
+yn: a*e^(2*a*v)*cos(v) + b*e^(a*v+b*v)*cos(u)*cos(v) - e^(a*v+b*v)*cos(u)*sin(v) - e^(2*a*v)*cos(u)^(2)*sin(v);\
+zn: -e^(a*v+b*v)*sin(u) - e^(2*a*v)*cos(u)*sin(u);\
+xuu: -e^(a*v)*cos(u)*cos(v);\
+yuu: -e^(a*v)*cos(u)*sin(v);\
+zuu: -e^(a*v)*sin(u);\
+xuv: -a*e^(a*v)*cos(v)*sin(u) + e^(a*v)*sin(u)*sin(v);\
+yuv: -a*e^(a*v)*sin(v)*sin(u) - e^(a*v)*sin(u)*cos(v);\
+zuv: a*e^(a*v)*cos(u);\
+xvv: a*a*e^(a*v)*cos(u)*cos(v) - 2*a*e^(a*v)*cos(u)*sin(v) + b*b*e^(b*v)*cos(v) - 2*b*e^(b*v)*sin(v) - e^(b*v)*cos(v) - e^(a*v)*cos(u)*cos(v);\
+yvv: a*a*e^(a*v)*cos(u)*sin(v) + 2*a*e^(a*v)*cos(u)*cos(v) + b*b*e^(b*v)*sin(v) + 2*b*e^(b*v)*cos(v) - e^(b*v)*sin(v) - e^(a*v)*cos(u)*sin(v);\
 zvv: a*a*e^(a*v)*sin(u); ";
 #endif

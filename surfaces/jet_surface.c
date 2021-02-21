@@ -52,20 +52,20 @@ PaSuLiDefDesc pslddJetSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descJetSurface =
-    "name: Jet Surface; \
-ut:c; vt:c; \
-us: 0; ue:pi: 1; \
-vs: 0; ve:pi: 2; \
-x: (1 - cosh(u))*sin(u)*cos(v)/2; \
-y: (1 - cosh(u))*sin(u)*sin(v)/2; \
-z: cosh(u); \
-xu: -((cosh(u) -1)*cos(u) + sin(u)*sinh(u))*cos(v)/2; \
-yu: -((cosh(u) -1)*cos(u) + sin(u)*sinh(u))*sin(v)/2; \
-zu: sinh(u); \
-xv: -(1 - cosh(u))*sin(u)*sin(v)/2; \
-yv: (1 - cosh(u))*sin(u)*cos(v)/2; \
-zv: 0; \
-xn: (cosh(u)-1)*sin(u)*sinh(u)*cos(v)/2; \
-yn: (cosh(u)-1)*sin(u)*sinh(u)*sin(v)/2; \
+    "name: Jet Surface;\
+ut:c; vt:c;\
+us: 0; ue:pi: 1;\
+vs: 0; ve:pi: 2;\
+x: (1 - cosh(u))*sin(u)*cos(v)/2;\
+y: (1 - cosh(u))*sin(u)*sin(v)/2;\
+z: cosh(u);\
+xu: -((cosh(u) -1)*cos(u) + sin(u)*sinh(u))*cos(v)/2;\
+yu: -((cosh(u) -1)*cos(u) + sin(u)*sinh(u))*sin(v)/2;\
+zu: sinh(u);\
+xv: -(1 - cosh(u))*sin(u)*sin(v)/2;\
+yv: (1 - cosh(u))*sin(u)*cos(v)/2;\
+zv: 0;\
+xn: (cosh(u)-1)*sin(u)*sinh(u)*cos(v)/2;\
+yn: (cosh(u)-1)*sin(u)*sinh(u)*sin(v)/2;\
 zn: cos(u)*cosh(u)^2*sin(u)/4 - (cos(u)*cosh(u)*sin(u))/2 + (cos(u)*sin(u))/4 + (sin(u)^2*cosh(u)*sinh(u))/4 - (sin(u)^2*sinh(u))/4 ";
 #endif

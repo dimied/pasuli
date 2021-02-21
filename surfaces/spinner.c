@@ -46,17 +46,17 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descSpinner =
-    "name: Spinner; \
-ut:c; vt:c; \
-us: -1; ue: 1; \
-vs: 0; ve:pi: 2; \
-x: (|u| - 1)^(2)*cos(v); \
-y: (|u| - 1)^(2)*sin(v); \
-z: u; \
-xu: 2*u*(|u|-1)*cos(v)/|u|; \
-yu: 2*u*(|u|-1)*sin(v)/|u|; \
-zu: 1; \
-xv: -(|u| - 1)^(2)*sin(v); \
-yv: (|u| - 1)^(2)*cos(v); \
+    "name: Spinner;\
+ut:c; vt:c;\
+us: -1; ue: 1;\
+vs: 0; ve:pi: 2;\
+x: (|u| - 1)^(2)*cos(v);\
+y: (|u| - 1)^(2)*sin(v);\
+z: u;\
+xu: 2*u*(|u|-1)*cos(v)/|u|;\
+yu: 2*u*(|u|-1)*sin(v)/|u|;\
+zu: 1;\
+xv: -(|u| - 1)^(2)*sin(v);\
+yv: (|u| - 1)^(2)*cos(v);\
 zv: 0;";
 #endif

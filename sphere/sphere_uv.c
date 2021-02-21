@@ -67,21 +67,21 @@ PaSuLiDefDesc pslddSphereUV = {
 #endif
 #if (COMPILE_DESC_SPHERE != 0)
 char *descSphereUV =
-	"name: sphere uv; \
-cat: sphere; \
-ut: c; vt: c; \
-us: 0; ue: 10; \
-vs: -10; ve: 10; \
-x: 2*u*(1 - v*v)/((1 + u*u)*(1 + v*v)); \
-y: (1 - u*u)/(1 + u*u); \
-z: (4*u*v)/((1 + u*u)*(1 + v*v)); \
-xu: 2*(u^2*v^2 - u^2 - v^2 + 1) / ((1 + u*u)^2*(1 + v*v)); \
-yu: -4*u/(1+u*u)^2; \
-zu: 4*v*(1 - u*u)/((1 + u*u)^2*(1 + v*v)); \
-xv: -8*u*v/((1 + u*u)*(1 + v*v)^2); \
-yv: 0; \
-zv: 4*u*(1-v*v)/((1 + u*u)*(1 + v*v)^2); \
-xn: 16*u*u(v*v - 1)/((1 + u*u)^3*(1 + v*v)^2); \
-yn: 8*u*(u^2*v^2 + u^2 - v^2 - 1)/((1 + u*u)^3*(1 + v*v)^2); \
+	"name: sphere uv;\
+cat: sphere;\
+ut: c; vt: c;\
+us: 0; ue: 10;\
+vs: -10; ve: 10;\
+x: 2*u*(1 - v*v)/((1 + u*u)*(1 + v*v));\
+y: (1 - u*u)/(1 + u*u);\
+z: (4*u*v)/((1 + u*u)*(1 + v*v));\
+xu: 2*(u^2*v^2 - u^2 - v^2 + 1) / ((1 + u*u)^2*(1 + v*v));\
+yu: -4*u/(1+u*u)^2;\
+zu: 4*v*(1 - u*u)/((1 + u*u)^2*(1 + v*v));\
+xv: -8*u*v/((1 + u*u)*(1 + v*v)^2);\
+yv: 0;\
+zv: 4*u*(1-v*v)/((1 + u*u)*(1 + v*v)^2);\
+xn: 16*u*u(v*v - 1)/((1 + u*u)^3*(1 + v*v)^2);\
+yn: 8*u*(u^2*v^2 + u^2 - v^2 - 1)/((1 + u*u)^3*(1 + v*v)^2);\
 zn: -32*u*u*v/((1 + u*u)^3*(1 + v*v)^2); ";
 #endif

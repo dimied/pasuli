@@ -62,43 +62,43 @@ PASULI_V_END_PI,
 #endif
 #if(COMPILE_DESC_TORUS != 0)
 char* descSaddleTorus =
-"name: Saddle Torus; \
-cat: torus; \
-ut: c; vt: c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-a1:F: 1-cos(x)*cos(x) - cos(x + 2 pi/3)*cos(x + 2 pi/3); \
-x: (2 + cos(u))*cos(v); \
-y: (2 + cos(u + 2*pi/3))*cos(v + 2*pi/3); \
+"name: Saddle Torus;\
+cat: torus;\
+ut: c; vt: c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+a1:F: 1-cos(x)*cos(x) - cos(x + 2 pi/3)*cos(x + 2 pi/3);\
+x: (2 + cos(u))*cos(v);\
+y: (2 + cos(u + 2*pi/3))*cos(v + 2*pi/3);\
 z: (2 + sign(F(u))*sqrt(abs(F(u))))*sign(F(v))*sqrt(abs(F(v))); "
 #if(COMPILE_DESC_DERIV_U_TORUS != 0)
-"xu: 0; \
-yu: 0; \
+"xu: 0;\
+yu: 0;\
 zu: 0; "
 #endif
 #if(COMPILE_DESC_DERIV_V_TORUS != 0)
-"xv: 0; \
-yv: 0; \
+"xv: 0;\
+yv: 0;\
 zv: 0; "
 #endif
 #if(COMPILE_DESC_NORMAL_TORUS != 0)
-"xn: 0; \
-yn: 0; \
+"xn: 0;\
+yn: 0;\
 zn: 0; "
 #endif
 #if(COMPILE_DESC_DERIV2_U_TORUS != 0)
-"xuu: 0; \
-yuu: 0; \
+"xuu: 0;\
+yuu: 0;\
 zuu: 0; "
 #endif
 #if(COMPILE_DESC_DERIV_UV_TORUS != 0)
-"xuv: 0; \
-yuv: 0; \
+"xuv: 0;\
+yuv: 0;\
 zuv: 0; "
 #endif
 #if(COMPILE_DESC_DERIV2_V_TORUS != 0)
-"xvv: 0; \
-yvv: 0; \
+"xvv: 0;\
+yvv: 0;\
 zvv: 0; "
 #endif
 "";

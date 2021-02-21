@@ -10,16 +10,16 @@ PaSuLiDefDesc pslddPlane = {
     0, 1, 0, 1, 0};
 
 char *descPlane =
-    "name:plane; \
-ut:o; vt:o; \
-us: 0; ue: 1; vs: 0; ve: 1; \
-x: u; y: v; z: 0; \
-c1:z:0; \
-xu:1); yu:0);zu:0); \
-xv:0); yv:1); zv:0); \
-xn:0); yn:0); zn:1); \
-xuu:0); yuu:0); zuu: 0); \
-xuv:0); yuv:0); zuv: 0); \
+    "name:plane;\
+ut:o; vt:o;\
+us: 0; ue: 1; vs: 0; ve: 1;\
+x: u; y: v; z: 0;\
+c1:z:0;\
+xu:1); yu:0);zu:0);\
+xv:0); yv:1); zv:0);\
+xn:0); yn:0); zn:1);\
+xuu:0); yuu:0); zuu: 0);\
+xuv:0); yuv:0); zuv: 0);\
 xvv:0); yvv:0); zvv: 0);";
 
 #if (USE_PLANE != 0)

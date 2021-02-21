@@ -49,26 +49,26 @@ PaSuLiDefDesc pslddLemniskateCylinder = {
 #endif
 #if (COMPILE_DESC_CYLINDER != 0)
 char *descLemniskateCylinder =
-	"name: Lemniskate-Cylinder; \
-ut: c; vt: o; \
-us:pi: -1; ue:pi: 1; \
-vs: 0; ve: 1; \
-c1:r: 1.0; c2:H: 1.0; \
-x: r*cos(u)/(1 + sin(u)^2); \
-y: H*v; \
-z: r*sin(u)*cos(u)/(1 + sin(u)^2); \
-xu: -r*sin(u)*(1 + 2*cos(u)^2 / (sin(u)^2 + 1))/(sin(u)^2 + 1); \
-yu: 0; \
-zu: r*( cos(u)^(2)/(sin(u)^2 + 1) - sin(u)^(2)/(sin(u)^(2) + 1) - 2*cos(u)^(2)*sin(u)^(2)/(sin(u)^(2) + 1)^(2) ); \
-xv: 0; \
-yv: H; \
-zv: 0; \
-xn: -H* (r*( cos(u)^(2)/(sin(u)^2 + 1) - sin(u)^(2)/(sin(u)^(2) + 1) - 2*cos(u)^(2)*sin(u)^(2)/(sin(u)^(2) + 1)^(2) )); \
-yn: 0; \
-zn: H*(-r*sin(u)*(1 + 2*cos(u)^2 / (sin(u)^2 + 1))/(sin(u)^2 + 1)); \
-xuu : ?; \
-yuu : 0; \
-zuu : ?; \
-xuv : 0; yuv : 0; zuv 0; \
+	"name: Lemniskate-Cylinder;\
+ut: c; vt: o;\
+us:pi: -1; ue:pi: 1;\
+vs: 0; ve: 1;\
+c1:r: 1.0; c2:H: 1.0;\
+x: r*cos(u)/(1 + sin(u)^2);\
+y: H*v;\
+z: r*sin(u)*cos(u)/(1 + sin(u)^2);\
+xu: -r*sin(u)*(1 + 2*cos(u)^2 / (sin(u)^2 + 1))/(sin(u)^2 + 1);\
+yu: 0;\
+zu: r*( cos(u)^(2)/(sin(u)^2 + 1) - sin(u)^(2)/(sin(u)^(2) + 1) - 2*cos(u)^(2)*sin(u)^(2)/(sin(u)^(2) + 1)^(2) );\
+xv: 0;\
+yv: H;\
+zv: 0;\
+xn: -H* (r*( cos(u)^(2)/(sin(u)^2 + 1) - sin(u)^(2)/(sin(u)^(2) + 1) - 2*cos(u)^(2)*sin(u)^(2)/(sin(u)^(2) + 1)^(2) ));\
+yn: 0;\
+zn: H*(-r*sin(u)*(1 + 2*cos(u)^2 / (sin(u)^2 + 1))/(sin(u)^2 + 1));\
+xuu : ?;\
+yuu : 0;\
+zuu : ?;\
+xuv : 0; yuv : 0; zuv 0;\
 xvv : 0; yvv : 0; zvv 0;";
 #endif

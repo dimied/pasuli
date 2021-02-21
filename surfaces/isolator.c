@@ -71,30 +71,30 @@ PASULI_CONST_COUNT(3),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descIsolator =
-	"name: Isolator; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 2; \
-c1:a: 1.5; c2:b: 0.5; c3:c: 1.0; \
-x: (a + b*sin(c*u))*sin(v); \
-y: (a + b*sin(c*u))*cos(v); \
-z: u; \
-xu: b*c*sin(v)*cos(c*u); \
-yu: b*c*cos(v)*cos(c*u); \
-zu: 1; \
-xv: (a+b*c*sin(c*u))*cos(v); \
-yv: -(a+b*c*sin(c*u))*sin(v); \
-zv: 0; \
-xn: (a+b*sin(c*u))*sin(v); \
-yn: (a+b*sin(c*u))*cos(v); \
-zn: -b*c*cos(c*u)*(a + b*sin(c*u)); \
-xuu: -b*c*c*sin(v)*sin(c*u); \
-yuu: -b*c*c*cos(v)*sin(c*u); \
-zuu: 0; \
-xuv: b*c*cos(v)*cos(c*u); \
-yuv: -b*c*sin(v)*cos(c*u); \
-zuv: 0; \
-xvv: -(a+b*sin(c*u))*sin(v); \
-yvv: -(a+b*sin(c*u))*cos(v); \
+	"name: Isolator;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 2;\
+c1:a: 1.5; c2:b: 0.5; c3:c: 1.0;\
+x: (a + b*sin(c*u))*sin(v);\
+y: (a + b*sin(c*u))*cos(v);\
+z: u;\
+xu: b*c*sin(v)*cos(c*u);\
+yu: b*c*cos(v)*cos(c*u);\
+zu: 1;\
+xv: (a+b*c*sin(c*u))*cos(v);\
+yv: -(a+b*c*sin(c*u))*sin(v);\
+zv: 0;\
+xn: (a+b*sin(c*u))*sin(v);\
+yn: (a+b*sin(c*u))*cos(v);\
+zn: -b*c*cos(c*u)*(a + b*sin(c*u));\
+xuu: -b*c*c*sin(v)*sin(c*u);\
+yuu: -b*c*c*cos(v)*sin(c*u);\
+zuu: 0;\
+xuv: b*c*cos(v)*cos(c*u);\
+yuv: -b*c*sin(v)*cos(c*u);\
+zuv: 0;\
+xvv: -(a+b*sin(c*u))*sin(v);\
+yvv: -(a+b*sin(c*u))*cos(v);\
 zvv: 0; ";
 #endif

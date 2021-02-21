@@ -46,20 +46,20 @@ PaSuLiDefDesc pslddBicornSurface = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descBicornSurface =
-    "name: Bicorn Surface; \
-ut:c; vt:c; \
-us: 0; ue:pi: 2; \
-vs: 0; ve:pi: 1; \
-x: sin(v)*cos(u); \
-y: sin(v)*sin(u); \
-z: cos(v)*cos(v)*(2 + cos(v))/(3 + sin(v)*sin(v)); \
-xu: -sin(u)*sin(v); \
-yu: cos(u)*sin(v); \
-zu: 0; \
-xv: cos(u)*cos(v); \
-yv: sin(u)*cos(v); \
-zv: -(3*cos(v)^2*sin(v)/(sin(v)^2+3) + 4*cos(v)*sin(v)/(sin(v)^2+3) + 2*cos(v)^4*sin(v)/(sin(v)^2+3)^2 + 4*cos(v)^3*sin(v)/(sin(v)^2+3)^2); \
-xn: -cos(v)*sin(v)*(3*cos(u)*cos(v)*sin(v)/(sin(v)^2+3) + 4*cos(u)*sin(v)/(sin(v)^2+3) + 2*cos(u)*cos(v)^3*sin(v)/(sin(v)^2+3)^2 + 4*cos(u)*cos(v)^2*sin(v)/(sin(v)^2+3)^2); \
-yn: -cos(v)*sin(v)*(3*sin(u)*cos(v)*sin(v)/(sin(v)^2+3) + 4*sin(u)*sin(v)/(sin(v)^2+3) + 2*sin(u)*cos(v)^3*sin(v)/(sin(v)^2+3)^2 + 4*sin(u)*cos(v)^2*sin(v)/(sin(v)^2+3)^2); \
+    "name: Bicorn Surface;\
+ut:c; vt:c;\
+us: 0; ue:pi: 2;\
+vs: 0; ve:pi: 1;\
+x: sin(v)*cos(u);\
+y: sin(v)*sin(u);\
+z: cos(v)*cos(v)*(2 + cos(v))/(3 + sin(v)*sin(v));\
+xu: -sin(u)*sin(v);\
+yu: cos(u)*sin(v);\
+zu: 0;\
+xv: cos(u)*cos(v);\
+yv: sin(u)*cos(v);\
+zv: -(3*cos(v)^2*sin(v)/(sin(v)^2+3) + 4*cos(v)*sin(v)/(sin(v)^2+3) + 2*cos(v)^4*sin(v)/(sin(v)^2+3)^2 + 4*cos(v)^3*sin(v)/(sin(v)^2+3)^2);\
+xn: -cos(v)*sin(v)*(3*cos(u)*cos(v)*sin(v)/(sin(v)^2+3) + 4*cos(u)*sin(v)/(sin(v)^2+3) + 2*cos(u)*cos(v)^3*sin(v)/(sin(v)^2+3)^2 + 4*cos(u)*cos(v)^2*sin(v)/(sin(v)^2+3)^2);\
+yn: -cos(v)*sin(v)*(3*sin(u)*cos(v)*sin(v)/(sin(v)^2+3) + 4*sin(u)*sin(v)/(sin(v)^2+3) + 2*sin(u)*cos(v)^3*sin(v)/(sin(v)^2+3)^2 + 4*sin(u)*cos(v)^2*sin(v)/(sin(v)^2+3)^2);\
 zn: -cos(v)*sin(v); ";
 #endif

@@ -32,14 +32,14 @@ PaSuLiDefDesc pslddBoysSurface = {
 #if (COMPILE_DESC_SURFACES != 0)
 // See: https://mathcurve.com/surfaces.gb/boy/boy.shtml
 char *descBoysSurface =
-	"name: Boys Surface; \
-ut:c; \
-vt:c; \
-us:pi: -0.5; ue:pi: 0.5; \
-vs:0; ve:pi: 1; \
-a1:a: sqrt(2); \
-a2:b: a - sin(3*v)*sin(2*u); \
-x: cos(u)*(cos(u)*cos(2*v) + a*sin(u)*cos(v))/b; \
-y: cos(u)*(cos(u)*sin(2*v) - a*sin(u)*sin(v))/b; \
+	"name: Boys Surface;\
+ut:c;\
+vt:c;\
+us:pi: -0.5; ue:pi: 0.5;\
+vs:0; ve:pi: 1;\
+a1:a: sqrt(2);\
+a2:b: a - sin(3*v)*sin(2*u);\
+x: cos(u)*(cos(u)*cos(2*v) + a*sin(u)*cos(v))/b;\
+y: cos(u)*(cos(u)*sin(2*v) - a*sin(u)*sin(v))/b;\
 z: 3*cos(u)*cos(u)/b;";
 #endif

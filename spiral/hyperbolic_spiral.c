@@ -72,28 +72,28 @@ PaSuLiDefDesc pslddHyperbolicSpiral = {
 #endif
 #if (COMPILE_DESC_SPIRAL != 0)
 char *descHyperbolicSpiral =
-	"name: Hyperbolic Spiral; \
-cat: spiral; \
-ut: c; vt: o; \
-uc:not:0; \
-us: 0; ue: 23; \
-vs: 0; ve: 1; \
-c1:H: 1; \
-x: cos(u)/u; \
-y: H*v; \
-z: sin(u)/u; \
-xu: -(cos(u) + u*sin(u))/(u*u); \
-yu: 0; \
-zu: (u*cos(u)-sin(u))/(u*u); \
-xv: 0; \
-yv: H; \
-zv: 0; \
-xn: H*(sin(u)-u*cos(u))/(u*u); \
-yn: 0; \
-zn: -H*(cos(u) + u*sin(u))/(u*u); \
-xuu: (2*cos(u)+2*u*sin(u) - u*u*cos(u))/(u*u*u); \
-yuu: 0; \
-zuu: (2*sin(u) - 2*u*cos(u) - u*u*sin(u))/(u*u*u); \
-xuv: 0; yuv: 0; zuv: 0; \
+	"name: Hyperbolic Spiral;\
+cat: spiral;\
+ut: c; vt: o;\
+uc:not:0;\
+us: 0; ue: 23;\
+vs: 0; ve: 1;\
+c1:H: 1;\
+x: cos(u)/u;\
+y: H*v;\
+z: sin(u)/u;\
+xu: -(cos(u) + u*sin(u))/(u*u);\
+yu: 0;\
+zu: (u*cos(u)-sin(u))/(u*u);\
+xv: 0;\
+yv: H;\
+zv: 0;\
+xn: H*(sin(u)-u*cos(u))/(u*u);\
+yn: 0;\
+zn: -H*(cos(u) + u*sin(u))/(u*u);\
+xuu: (2*cos(u)+2*u*sin(u) - u*u*cos(u))/(u*u*u);\
+yuu: 0;\
+zuu: (2*sin(u) - 2*u*cos(u) - u*u*sin(u))/(u*u*u);\
+xuv: 0; yuv: 0; zuv: 0;\
 xvv: 0; yvv: 0; zvv: 0; ";
 #endif

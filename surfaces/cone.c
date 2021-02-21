@@ -72,30 +72,30 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descCone =
-	"name: Cone; \
-ut:c; vt:c; \
-us: 1; ue: 3; \
-vs: 0; ve:pi: 2; \
-c1:a: 1; \
-x: a*u*cos(v); \
-y: a*u*sin(v); \
-z: u; \
-xu: a*cos(v); \
-yu: a*sin(v); \
-zu: 1; \
-xv: -a*u*sin(v); \
-yv: a*u*cos(v); \
-zv: 0; \
-xn: -a*u*cos(v); \
-yn: -a*u*sin(v); \
-zn: a*a*u; \
-xuu: 0; \
-yuu: 0; \
-zuu: 0; \
-xuv: -a*sin(v); \
-yuv: a*cos(v); \
-zuv: 0; \
-xvv: -a*u*cos(v); \
-yvv: -a*u*sin(v); \
+	"name: Cone;\
+ut:c; vt:c;\
+us: 1; ue: 3;\
+vs: 0; ve:pi: 2;\
+c1:a: 1;\
+x: a*u*cos(v);\
+y: a*u*sin(v);\
+z: u;\
+xu: a*cos(v);\
+yu: a*sin(v);\
+zu: 1;\
+xv: -a*u*sin(v);\
+yv: a*u*cos(v);\
+zv: 0;\
+xn: -a*u*cos(v);\
+yn: -a*u*sin(v);\
+zn: a*a*u;\
+xuu: 0;\
+yuu: 0;\
+zuu: 0;\
+xuv: -a*sin(v);\
+yuv: a*cos(v);\
+zuv: 0;\
+xvv: -a*u*cos(v);\
+yvv: -a*u*sin(v);\
 zvv: 0;";
 #endif

@@ -66,29 +66,29 @@ PaSuLiDefDesc pslddHyperbolicOctahedron = {
 #endif
 #if (COMPILE_DESC_SURFACES != 0)
 char *descHyperbolicOctahedron =
-	"name: Hyperbolic Octahedron; \
-ut:c; vt:c; \
-us:pi: -0.5; ue:pi: 0.5; \
-vs:pi: -1; ve:pi: 1; \
-x: (cos(u)*cos(v))^(3); \
-y: (sin(u)*cos(v))^(3); \
-z: sin(v)^(3); \
-xu: -3*(cos(u)^2)*(cos(v)^3)*sin(u); \
-yu: 3*cos(u)*(cos(v)^3)*(sin(u)^2); \
-zu: 0; \
-xv: -3*(cos(u)^3)*(cos(v)^2)*sin(v); \
-yv: -3*(cos(v)^2)*(sin(u)^3)*sin(v); \
-zv: 3*cos(v)*sin(v)^2; \
-xn: 9*cos(u)*(cos(v)^4)*(sin(u)^2)*(sin(v)^2); \
-yn: 9*(cos(u)^2)*(cos(v)^4)*sin(u)*(sin(v)^2); \
-zn: 9*(cos(u)^2*sin(u)^2*cos(v)^5*sin(v)); \
-xuu: 3*cos(u)*(cos(v)^3)*(3*sin(u)^2 - 1); \
-yuu: 3*sin(u)*(cos(v)^3)*(2-3*sin(u)*sin(u)); \
-zuu: 0; \
-xuv: 9*((cos(u)*cos(v))^2)*sin(u)*sin(v); \
-yuv: -9*(cos(u)*(cos(v)^2)*(sin(u)^2)*sin(v); \
-zuv: 0; \
-xvv: 3*(cos(u)^3)*(3*sin(v)^2 - 1)*cos(v); \
-yvv: 3*(sin(u)^3)*(3*sin(v)^2 - 1)*cos(v); \
+	"name: Hyperbolic Octahedron;\
+ut:c; vt:c;\
+us:pi: -0.5; ue:pi: 0.5;\
+vs:pi: -1; ve:pi: 1;\
+x: (cos(u)*cos(v))^(3);\
+y: (sin(u)*cos(v))^(3);\
+z: sin(v)^(3);\
+xu: -3*(cos(u)^2)*(cos(v)^3)*sin(u);\
+yu: 3*cos(u)*(cos(v)^3)*(sin(u)^2);\
+zu: 0;\
+xv: -3*(cos(u)^3)*(cos(v)^2)*sin(v);\
+yv: -3*(cos(v)^2)*(sin(u)^3)*sin(v);\
+zv: 3*cos(v)*sin(v)^2;\
+xn: 9*cos(u)*(cos(v)^4)*(sin(u)^2)*(sin(v)^2);\
+yn: 9*(cos(u)^2)*(cos(v)^4)*sin(u)*(sin(v)^2);\
+zn: 9*(cos(u)^2*sin(u)^2*cos(v)^5*sin(v));\
+xuu: 3*cos(u)*(cos(v)^3)*(3*sin(u)^2 - 1);\
+yuu: 3*sin(u)*(cos(v)^3)*(2-3*sin(u)*sin(u));\
+zuu: 0;\
+xuv: 9*((cos(u)*cos(v))^2)*sin(u)*sin(v);\
+yuv: -9*(cos(u)*(cos(v)^2)*(sin(u)^2)*sin(v);\
+zuv: 0;\
+xvv: 3*(cos(u)^3)*(3*sin(v)^2 - 1)*cos(v);\
+yvv: 3*(sin(u)^3)*(3*sin(v)^2 - 1)*cos(v);\
 zvv: 3*sin(v)*(2-3*sin(v)*sin(v));";
 #endif
