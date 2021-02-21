@@ -15,54 +15,35 @@ void EpizykloidTorus1(pasuli_vartype u,
 	pasuli_consttype R = constants[1];
 	pasuli_consttype r = constants[2];
 	pasuli_consttype h = constants[3];
-	R += r;
 
-pasuli_calctype cos_u = cos(u);
+	pasuli_calctype cos_u = cos(u);
 	pasuli_calctype sin_u = sin(u);
 	pasuli_calctype cos_v = cos(v);
 	pasuli_calctype sin_v = sin(v);
+	pasuli_calctype R_plus_r = R + r;
 
-	pasuli_calctype rrr_cos_v = R1 + (R)*cos(v);
+	pasuli_calctype cos_R_plus_r = cos((R_plus_r * v) / r);
+	pasuli_calctype sin_R_plus_r = sin((R_plus_r * v) / r);
 
-	P_Y((R)*sin(v) - h * sin(((R)*v) / r));
-	v = h * cos(((R)*v) / r);
+	pasuli_calctype factor = h * cos_R_plus_r + R1 + R_plus_r * cos_v;
 
-	P_X(rrr_cos_v - cos(u) * v);
-	P_Z(rrr_cos_v - sin(u) * v);
+	P_X(factor * cos_u);
+	P_Y(factor * sin_u);
+	P_Z(R_plus_r * sin_v - h * sin_R_plus_r);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	
-#endif
-
-	UD_X(-sin_u);
-	UD_Y(-cos_u);
+	// Ignore scaling
+	factor = PASULI_CALC_SIGN(factor);
+	UD_X(-factor * sin_u);
+	UD_Y(factor * cos_u);
 	UD_Z(0);
 
-	VD_X(-r * sin_v * cos_u);
-	VD_Y(-r * sin_v * sin_u);
-	VD_Z(-r * cos_v);
+	factor = h * R_plus_r * sin_R_plus_r / r - R_plus_r * sin_v;
 
-#if (PARTICLE_N != 0)
-	pO->n[0] = cos_u * r * cos_v;
-	pO->n[1] = sin_u * r * sin_v;
-	pO->n[2] = r * sin_v;
-#endif
+	VD_X(factor * cos_u);
+	VD_Y(factor * sin_u);
+	VD_Z(R_plus_r * cos_v - h * R_plus_r * cos_R_plus_r / r);
 
-#if (PARTICLE_UUD != 0)
-	pO->uud[0] = cos(u);
-	pO->uud[1] = sin(u);
-	pO->uud[2] = 0;
-#endif
-#if (PARTICLE_UVD != 0)
-	pO->uvd[0] = r * sin_v * sin_u;
-	pO->uvd[1] = -r * sin_v * cos_u;
-	pO->uvd[2] = 0;
-#endif
-#if (PARTICLE_VVD != 0)
-	pO->vvd[0] = -r * cos_v * cos_u;
-	pO->vvd[1] = -r * cos_v * sin_u;
-	pO->vvd[2] = -r * sin_v;
-#endif
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -83,5 +64,11 @@ vs: 0; ve:pi:2;\
 c1:R1:1; c2:R: 1; c3:r:0.5; c4:h: 1;\
 x: (R1 + (R + r)*cos(v) - h*cos(((R + r)/r)*v))*cos(u);\
 y: (R1 + (R + r)*cos(v) - h*cos(((R + r)/r)*v))*sin(u);\
-z: (R + r)*sin(v) - h*sin(((R + r)/r)*v);";
+z: (R + r)*sin(v) - h*sin(((R + r)/r)*v);\
+xu: -(R1 + (R + r)*cos(v) - h*cos(((R + r)/r)*v))*sin(u);\
+yu: (R1 + (R + r)*cos(v) - h*cos(((R + r)/r)*v))*cos(u);\
+zu: 0;\
+xv: cos(u)*(h*(1+R/r)*sin(((R + r)/r)*v)-(R+r)*sin(v));\
+yv: sin(u)*(h*(1+R/r)*sin(((R + r)/r)*v)-(R+r)*sin(v));\
+zv: (R + r)*cos(v) - h*(1 + R/r)*cos*(((R + r)/r)*v);";
 #endif

@@ -3,6 +3,7 @@
 #include "torus_c_includes.h"
 
 #if (USE_GERONO_LEMNISKATE_TORUS_1 != 0)
+
 void GeronoLemniskateTorus1(pasuli_vartype u,
 							pasuli_vartype v,
 							pasuli_consttype *constants,
@@ -10,52 +11,39 @@ void GeronoLemniskateTorus1(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(GERONO_LEMNISKATE_TORUS_1)
 
-	pasuli_vartype R = constants[0];
-	pasuli_vartype r = constants[1];
+	pasuli_consttype R = constants[0];
+	pasuli_consttype r = constants[1];
 
-	pasuli_vartype r_sin_v = r * sin(v);
-	P_Y(r_sin_v * cos(v));
-	r_sin_v += R;
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_u = sin(u);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
 
-	P_X(r_sin_v * cos(u));
-	P_Z(r_sin_v * sin(u));
+	pasuli_calctype factor = r * sin_v;
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	pasuli_vartype cu = cos(u);
-	pasuli_vartype su = sin(u);
-	pasuli_vartype cv = cos(v);
-	pasuli_vartype sv = sin(v);
-#endif
+	P_Z(factor * cos_v);
+	factor += R;
 
-	UD_X(-su);
-	UD_Y(-cu);
+	P_X(factor * cos_u);
+	P_Y(factor * sin_u);
+
+	// Ignore scaling by (R + r*sin(v))
+	factor = PASULI_CALC_SIGN(factor);
+
+	UD_X(-factor * sin_u);
+	UD_Y(factor * cos_u);
 	UD_Z(0);
 
-	VD_X(-r * sv * cu);
-	VD_Y(-r * sv * su);
-	VD_Z(-r * cv);
+	// Ignore scaling by r
+	factor = PASULI_CALC_SIGN(r);
+	VD_X(factor * cos_v * cos_u);
+	VD_Y(factor * cos_v * sin_u);
 
-#if (PARTICLE_N != 0)
-	pO->n[0] = cu * r * cv;
-	pO->n[1] = su * r * sv;
-	pO->n[2] = r * sv;
-#endif
+	// Warning! we reuse cos_u
+	cos_u = PASULI_TRIG_CALC_SUM_DIFFERENCE(cos_v, sin_v);
+	VD_Z(factor * cos_u);
 
-#if (PARTICLE_UUD != 0)
-	pO->uud[0] = cos(u);
-	pO->uud[1] = sin(u);
-	pO->uud[2] = 0;
-#endif
-#if (PARTICLE_UVD != 0)
-	pO->uvd[0] = r * sv * su;
-	pO->uvd[1] = -r * sv * cu;
-	pO->uvd[2] = 0;
-#endif
-#if (PARTICLE_VVD != 0)
-	pO->vvd[0] = -r * cv * cu;
-	pO->vvd[1] = -r * cv * su;
-	pO->vvd[2] = -r * sv;
-#endif
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -76,39 +64,13 @@ cat: torus;\
 us: 0; ue:pi:2;\
 vs: 0; ve:pi:2;\
 c1:R:1; c2:r:1;\
-a1:F: r*sin(v);\
-x: (R + F)*cos(u);\
-y: F*cos(v);\
-z: (R + F)*sin(u); "
-#if (COMPILE_DESC_DERIV_U_TORUS != 0)
-	"xu: 0;\
-yu: 0;\
-zu: 0; "
-#endif
-#if (COMPILE_DESC_DERIV_V_TORUS != 0)
-	"xv: 0;\
-yv: 0;\
-zv: 0; "
-#endif
-#if (COMPILE_DESC_NORMAL_TORUS != 0)
-	"xn: 0;\
-yn: 0;\
-zn: 0; "
-#endif
-#if (COMPILE_DESC_DERIV2_U_TORUS != 0)
-	"xuu: 0;\
-yuu: 0;\
-zuu: 0; "
-#endif
-#if (COMPILE_DESC_DERIV_UV_TORUS != 0)
-	"xuv: 0;\
-yuv: 0;\
-zuv: 0; "
-#endif
-#if (COMPILE_DESC_DERIV2_V_TORUS != 0)
-	"xvv: 0;\
-yvv: 0;\
-zvv: 0; "
-#endif
-	"";
+x: (R + r*sin(v))*cos(u);\
+y: (R + r*sin(v))*sin(u);\
+z: r*sin(v)*cos(v);\
+xu: -(R + r*sin(v))*sin(u);\
+yu: (R + r*sin(v))*cos(u);\
+zu: 0;\
+xv: r*cos(u)*cos(v);\
+yv: r*sin(u)*cos(v);\
+zv: r*(cos(v)^2-sin(v)^2);";
 #endif

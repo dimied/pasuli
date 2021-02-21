@@ -2,60 +2,45 @@
 #include "lemniskate_torus2.h"
 #include "torus_c_includes.h"
 
-#if(USE_LEMNISKATE_TORUS_2 != 0)
-void LemniskateTorus2(pasuli_vartype u, pasuli_vartype v, 
-						pasuli_consttype* constants, PaSuLiObject* pO) {
-	PASULI_SET_TYPE_ID( LEMNISKATE_TORUS_2 )
+#if (USE_LEMNISKATE_TORUS_2 != 0)
+void LemniskateTorus2(pasuli_vartype u,
+					  pasuli_vartype v,
+					  pasuli_consttype *constants,
+					  PaSuLiObject *pO)
+{
+	PASULI_SET_TYPE_ID(LEMNISKATE_TORUS_2)
 
-	pasuli_vartype R = constants[0];
-	pasuli_vartype r = constants[1];
+	pasuli_consttype R = constants[0];
+	pasuli_consttype r = constants[1];
 
-	pasuli_vartype divisor = sin(v);
-	divisor *= divisor;
-	divisor += 1.0;
+	pasuli_vartype cos_u = cos(u);
+	pasuli_vartype sin_u = sin(u);
+	pasuli_vartype cos_v = cos(v);
+	pasuli_vartype sin_v = sin(v);
 
-	P_Y( (r*cos(v))/divisor );
-	v = R + r*cos(v)*sin(v);
+	pasuli_calctype factor = sin_v * sin_v + 1;
 
-	P_X( cos(u)*v/divisor );
-	P_Z( sin(u)*v/divisor );
+	P_Z(r * cos_v / factor);
+	factor = R + r * cos_v * sin_v / factor;
 
-#if((PARTICLE_UD != 0)||(PARTICLE_VD != 0)||(PARTICLE_UD != 0))
-	pasuli_vartype cu = cos(u);
-	pasuli_vartype su = sin(u);
-	pasuli_vartype cv = cos(v);
-	pasuli_vartype sv = sin(v);
-#endif
+	P_X(cos_u * factor);
+	P_Y(sin_u * factor);
 
-	UD_X( -su );
-	UD_Y( -cu );
-	UD_Z( 0 );
+	// Ignore scaling by (R + r*sin(v)*cos(v)/(1 + sin(v)*sin(v)))
+	factor = PASULI_CALC_SIGN(factor);
+	UD_X(-factor * sin_u);
+	UD_Y(factor * cos_u);
+	UD_Z(0);
 
-	VD_X( -r*sv*cu );
-	VD_Y( -r*sv*su );
-	VD_Z( -r*cv );
+	// Scale by (1+sin(v)^2)^2
+	// Ignore scaling by r
+	r = PASULI_CALC_SIGN(r);
+	factor = 3 * sin_v * sin_v - 1;
+	VD_X(-r * cos_u * factor);
+	VD_Y(-r * sin_u * factor);
+	VD_Z(-r * (2 + cos_v * cos_v));
 
-#if(PARTICLE_N != 0)
-	pO->n[0] = cu*r*cv;
-	pO->n[1] = su*r*sv;
-	pO->n[2] = r*sv;
-#endif
-
-#if(PARTICLE_UUD != 0)
-	pO->uud[0] = cos(u);
-	pO->uud[1] = sin(u);
-	pO->uud[2] = 0;
-#endif
-#if(PARTICLE_UVD != 0)
-	pO->uvd[0] = r*sv*su;
-	pO->uvd[1] = -r*sv*cu;
-	pO->uvd[2] = 0;
-#endif
-#if(PARTICLE_VVD != 0)
-	pO->vvd[0] = -r*cv*cu;
-	pO->vvd[1] = -r*cv*su;
-	pO->vvd[2] = -r*sv;
-#endif
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -68,45 +53,20 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 0 , 2 , 0 , 2 , torus_def_constants };
 #endif
 */
-#if(COMPILE_DESC_TORUS != 0)
-char* descLemniskateTorus2 =
-"name: Lemniskate Torus 2;\
+#if (COMPILE_DESC_TORUS != 0)
+char *descLemniskateTorus2 =
+	"name: Lemniskate Torus 2;\
 cat: torus;\
 us: 0; ue:pi:2;\
 vs: 0; ve:pi:2;\
 c1:R:1.5; c2:r:0.5;\
 x: (R + r*sin(v)*cos(v)/(1 + sin(v)*sin(v)))*cos(u);\
-y: r*cos(v)/(1 + sin(v)*sin(v));\
-z: (R + r*sin(v) cos(v)/(1 + sin(v)*sin(v)))*sin(u); "
-#if(COMPILE_DESC_DERIV_U_TORUS != 0)
-"xu: 0;\
-yu: 0;\
-zu: 0; "
-#endif
-#if(COMPILE_DESC_DERIV_V_TORUS != 0)
-"xv: 0;\
-yv: 0;\
-zv: 0; "
-#endif
-#if(COMPILE_DESC_NORMAL_TORUS != 0)
-"xn: 0;\
-yn: 0;\
-zn: 0; "
-#endif
-#if(COMPILE_DESC_DERIV2_U_TORUS != 0)
-"xuu: 0;\
-yuu: 0;\
-zuu: 0; "
-#endif
-#if(COMPILE_DESC_DERIV_UV_TORUS != 0)
-"xuv: 0;\
-yuv: 0;\
-zuv: 0; "
-#endif
-#if(COMPILE_DESC_DERIV2_V_TORUS != 0)
-"xvv: 0;\
-yvv: 0;\
-zvv: 0; "
-#endif
-"";
+y: (R + r*sin(v)*cos(v)/(1 + sin(v)*sin(v)))*sin(u);\
+z: r*cos(v)/(1 + sin(v)*sin(v));\
+xu: -(R + r*sin(v)*cos(v)/(1 + sin(v)*sin(v)))*sin(u);\
+yu: (R + r*sin(v)*cos(v)/(1 + sin(v)*sin(v)))*cos(u);\
+zu: 0;\
+xv: -cos(u)*r*(3*sin(v)^2-1)/(1+sin(v)^2)^2;\
+yv: -sin(u)*r*(3*sin(v)^2-1)/(1+sin(v)^2)^2;\
+zv: -r*(2+cos(v)^2)/(1+sin(v)^2)^2;";
 #endif

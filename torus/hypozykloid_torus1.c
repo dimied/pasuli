@@ -3,6 +3,7 @@
 #include "torus_c_includes.h"
 
 #if (USE_HYPOZYKLOID_TORUS_1 != 0)
+
 void HypozykloidTorus1(pasuli_vartype u,
 					   pasuli_vartype v,
 					   pasuli_consttype *constants,
@@ -10,54 +11,38 @@ void HypozykloidTorus1(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(HYPOZYKLOID_TORUS_1)
 
-	pasuli_vartype R1 = constants[0];
-	pasuli_vartype R = constants[1];
-	pasuli_vartype r = constants[2];
-	pasuli_vartype h = constants[3];
-	pasuli_vartype rrr_cos_v = R1 + (R + r) * cos(v);
+	pasuli_consttype R1 = constants[0];
+	pasuli_consttype R = constants[1];
+	pasuli_consttype r = constants[2];
+	pasuli_consttype h = constants[3];
 
-	P_Y((R + r) * sin(v) - h * sin(((R + r) * v) / r));
-	v = h * cos(((R + r) * v) / r);
+	pasuli_calctype R_minus_r = R - r;
+	pasuli_calctype R_plus_r = R + r;
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_u = sin(u);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
 
-	P_X(rrr_cos_v + cos(u) * v);
-	P_Z(rrr_cos_v + sin(u) * v);
+	pasuli_calctype factor = R1 + R_minus_r * cos_v - h * cos(R_minus_r * v / r);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	pasuli_vartype cu = cos(u);
-	pasuli_vartype su = sin(u);
-	pasuli_vartype cv = cos(v);
-	pasuli_vartype sv = sin(v);
-#endif
+	P_X(cos_u * factor);
+	P_Y(sin_u * factor);
 
-	UD_X(-su);
-	UD_Y(-cu);
+	P_Z(R_minus_r * sin_v - h * sin(R_plus_r * v / r));
+
+	// Ignore scaling by (R1 + (R - r)*cos(v) - h*cos(((R - r)/r)*v))
+	factor = PASULI_CALC_SIGN(factor);
+	UD_X(-factor * sin_u);
+	UD_Y(factor * cos_u);
 	UD_Z(0);
 
-	VD_X(-r * sv * cu);
-	VD_Y(-r * sv * su);
-	VD_Z(-r * cv);
+	factor = R_minus_r * h * sin(R_minus_r * v / r) / r - R_minus_r * sin_v;
 
-#if (PARTICLE_N != 0)
-	pO->n[0] = cu * r * cv;
-	pO->n[1] = su * r * sv;
-	pO->n[2] = r * sv;
-#endif
+	VD_X(cos_u * factor);
+	VD_Y(sin_u * factor);
+	VD_Z(R_minus_r * cos_v - h * (R_plus_r)*cos(R_plus_r * v / r) / r);
 
-#if (PARTICLE_UUD != 0)
-	pO->uud[0] = cos(u);
-	pO->uud[1] = sin(u);
-	pO->uud[2] = 0;
-#endif
-#if (PARTICLE_UVD != 0)
-	pO->uvd[0] = r * sv * su;
-	pO->uvd[1] = -r * sv * cu;
-	pO->uvd[2] = 0;
-#endif
-#if (PARTICLE_VVD != 0)
-	pO->vvd[0] = -r * cv * cu;
-	pO->vvd[1] = -r * cv * su;
-	pO->vvd[2] = -r * sv;
-#endif
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -71,43 +56,18 @@ PaSuLiDefDesc pslddHypozykloidTorus1 = {
 #endif
 #if (COMPILE_DESC_TORUS != 0)
 char *descHypozykloidTorus1 =
-	"name: HypozykloidTorus1;\
+	"name: Hypozykloid Torus 1;\
 cat: torus;\
 us: 0; ue:pi:2;\
 vs: 0; ve:pi:2;\
 c1:R1:1; c2:R: 1; c3:r:0.5; c4:h: 1;\
-x = (R1 + (R - r)*cos(v) - h*cos(((R - r)/r)*v))*cos(u);\
-y = (R - r)*sin(v) - h*sin(((R + r)/r)*v);\
-z = (R1 + (R - r)*cos(v) - h*cos(((R - r)/r)*v))*sin(u); "
-#if (COMPILE_DESC_DERIV_U_TORUS != 0)
-	"xu: 0;\
-yu: 0;\
-zu: 0; "
-#endif
-#if (COMPILE_DESC_DERIV_V_TORUS != 0)
-	"xv: 0;\
-yv: 0;\
-zv: 0; "
-#endif
-#if (COMPILE_DESC_NORMAL_TORUS != 0)
-	"xn: 0;\
-yn: 0;\
-zn: 0; "
-#endif
-#if (COMPILE_DESC_DERIV2_U_TORUS != 0)
-	"xuu: 0;\
-yuu: 0;\
-zuu: 0; "
-#endif
-#if (COMPILE_DESC_DERIV_UV_TORUS != 0)
-	"xuv: 0;\
-yuv: 0;\
-zuv: 0; "
-#endif
-#if (COMPILE_DESC_DERIV2_V_TORUS != 0)
-	"xvv: 0;\
-yvv: 0;\
-zvv: 0; "
-#endif
-	"";
+x: (R1 + (R - r)*cos(v) - h*cos(((R - r)/r)*v))*cos(u);\
+y: (R1 + (R - r)*cos(v) - h*cos(((R - r)/r)*v))*sin(u);\
+z: (R - r)*sin(v) - h*sin(((R + r)/r)*v);\
+xu: -(R1 + (R - r)*cos(v) - h*cos(((R - r)/r)*v))*sin(u);\
+yu: (R1 + (R - r)*cos(v) - h*cos(((R - r)/r)*v))*cos(u);\
+zu: 0;\
+xv: cos(u)*(((R - r)/r)*h*sin(((R - r)/r)*v)-(R-r)*sin(v));\
+yv: sin(u)*(((R - r)/r)*h*sin(((R - r)/r)*v)-(R-r)*sin(v));\
+zv: (R - r)*cos(v) - h*(1 + R/r)*cos(((R + r)/r)*v);";
 #endif
