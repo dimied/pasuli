@@ -10,52 +10,34 @@ void PiriformTorus2(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(PIRIFORM_TORUS_2)
 
-	pasuli_vartype R = constants[0];
-	pasuli_vartype r = constants[1];
+	pasuli_consttype R = constants[0];
+	pasuli_consttype r = constants[1];
 
-	pasuli_vartype y_v = r + sin(v);
-	v = R + cos(v) * y_v;
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_u = sin(u);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
 
-	P_X(v * cos(u));
-	P_Y(y_v);
-	P_Z(v * sin(u));
+	pasuli_calctype factor = r + sin_v;
+	P_Z(factor);
+	factor = R + cos_v * factor;
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	pasuli_vartype cu = cos(u);
-	pasuli_vartype su = sin(u);
-	pasuli_vartype cv = cos(v);
-	pasuli_vartype sv = sin(v);
-#endif
+	P_X(factor * cos_u);
+	P_Y(factor * sin_u);
 
-	UD_X(-su);
-	UD_Y(-cu);
+	// Ignore scaling by (R+cos(v)*(r+sin(v)))
+	factor = PASULI_CALC_SIGN(factor);
+	UD_X(-factor * sin_u);
+	UD_Y(factor * cos_u);
 	UD_Z(0);
 
-	VD_X(-r * sv * cu);
-	VD_Y(-r * sv * su);
-	VD_Z(-r * cv);
+	factor = PASULI_TRIG_CALC_SUM_DIFFERENCE(cos_v, sin_v);
+	factor -= r * sin_v;
+	VD_X(cos_u * factor);
+	VD_Y(sin_u * factor);
+	VD_Z(cos_v);
 
-#if (PARTICLE_N != 0)
-	pO->n[0] = cu * r * cv;
-	pO->n[1] = su * r * sv;
-	pO->n[2] = r * sv;
-#endif
-
-#if (PARTICLE_UUD != 0)
-	pO->uud[0] = cos(u);
-	pO->uud[1] = sin(u);
-	pO->uud[2] = 0;
-#endif
-#if (PARTICLE_UVD != 0)
-	pO->uvd[0] = r * sv * su;
-	pO->uvd[1] = -r * sv * cu;
-	pO->uvd[2] = 0;
-#endif
-#if (PARTICLE_VVD != 0)
-	pO->vvd[0] = -r * cv * cu;
-	pO->vvd[1] = -r * cv * su;
-	pO->vvd[2] = -r * sv;
-#endif
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
 
@@ -74,38 +56,13 @@ cat: torus;\
 us: 0; ue:pi:2;\
 vs: 0; ve:pi:2;\
 c1:R1:1; c2:R: 1;\
-x: (R + cos(v)*(r + sin(v)))*cos(u);\
-y: r + sin(v);\
-z: (R + cos(v)*(r + sin(v)))*sin(u); "
-#if (COMPILE_DESC_DERIV_U_TORUS != 0)
-	"xu: 0;\
-yu: 0;\
-zu: 0; "
-#endif
-#if (COMPILE_DESC_DERIV_V_TORUS != 0)
-	"xv: 0;\
-yv: 0;\
-zv: 0; "
-#endif
-#if (COMPILE_DESC_NORMAL_TORUS != 0)
-	"xn: 0;\
-yn: 0;\
-zn: 0; "
-#endif
-#if (COMPILE_DESC_DERIV2_U_TORUS != 0)
-	"xuu: 0;\
-yuu: 0;\
-zuu: 0; "
-#endif
-#if (COMPILE_DESC_DERIV_UV_TORUS != 0)
-	"xuv: 0;\
-yuv: 0;\
-zuv: 0; "
-#endif
-#if (COMPILE_DESC_DERIV2_V_TORUS != 0)
-	"xvv: 0;\
-yvv: 0;\
-zvv: 0; "
-#endif
-	"";
+x: (R+cos(v)*(r+sin(v)))*cos(u);\
+y: (R+cos(v)*(r+sin(v)))*sin(u);\
+z: r+sin(v);\
+xu: -(R+cos(v)*(r+sin(v)))*sin(u);\
+yu: (R+cos(v)*(r+sin(v)))*cos(u);\
+zu: 0;\
+xv: cos(u)*(cos(v)^2-sin(v)^2-r*sin(v));\
+yv: sin(u)*(cos(v)^2-sin(v)^2-r*sin(v));\
+zv: cos(v);";
 #endif

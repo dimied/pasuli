@@ -3,6 +3,7 @@
 #include "torus_c_includes.h"
 
 #if (USE_LIMPET_TORUS != 0)
+
 void LimpetTorus(pasuli_vartype u,
 				 pasuli_vartype v,
 				 pasuli_consttype *constants,
@@ -10,49 +11,37 @@ void LimpetTorus(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(LIMPET_TORUS)
 
-	pasuli_vartype sqrt2 = sqrt(2.0);
+	pasuli_calctype sqrt2 = sqrt(2.0);
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_u = sin(u);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
 
-	P_Y(1 / (sqrt2 + cos(v)));
-	v = sqrt2 + sin(v);
-	P_X(cos(u) / v);
-	P_Z(sin(u) / v);
+	pasuli_calctype sqrt2_plus_cos_v = sqrt2 + cos_v;
+	pasuli_calctype sqrt2_plus_sin_v = sqrt2 + sin_v;
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	pasuli_vartype cu = cos(u);
-	pasuli_vartype su = sin(u);
-	pasuli_vartype cv = cos(v);
-	pasuli_vartype sv = sin(v);
-#endif
+	P_X(cos_u / sqrt2_plus_sin_v);
+	P_Y(sin_u / sqrt2_plus_sin_v);
+	P_Z(1.0 / sqrt2_plus_cos_v);
 
-	UD_X(-su);
-	UD_Y(-cu);
+	// Multiplied by (sqrt(2) + sin(v)), it's always positive
+	UD_X(-sin_u);
+	UD_Y(cos_u);
 	UD_Z(0);
 
-	VD_X(-sv * cu);
-	VD_Y(-sv * su);
-	VD_Z(-cv);
+	// MUltiplied by (sqrt(2) + sin(v))^2*(sqrt(2) + cos(v))^2
+	pasuli_calctype factor = cos_v * sqrt2_plus_cos_v * sqrt2_plus_cos_v;
+	VD_X(-cos_u * factor);
+	VD_Y(-sin_u * factor);
 
-#if (PARTICLE_N != 0)
-	pO->n[0] = cu * cv;
-	pO->n[1] = su * sv;
-	pO->n[2] = sv;
-#endif
+	VD_Z(sin_v * sqrt2_plus_sin_v * sqrt2_plus_sin_v);
 
-#if (PARTICLE_UUD != 0)
-	pO->uud[0] = cos(u);
-	pO->uud[1] = sin(u);
-	pO->uud[2] = 0;
-#endif
-#if (PARTICLE_UVD != 0)
-	pO->uvd[0] = sv * su;
-	pO->uvd[1] = sv * cu;
-	pO->uvd[2] = 0;
-#endif
-#if (PARTICLE_VVD != 0)
-	pO->vvd[0] = cv * cu;
-	pO->vvd[1] = cv * su;
-	pO->vvd[2] = sv;
-#endif
+	//(sqrt(2) + sin(v))^3*(sqrt(2) + cos(v))^2
+	// Attention! cos_v reused
+	cos_v = sin_v * sqrt2_plus_sin_v * sqrt2_plus_sin_v;
+	N_X(cos_u * cos_v);
+	N_Y(sin_u * cos_v);
+	N_Z(factor);
 }
 #endif
 
@@ -72,6 +61,15 @@ ut: c; vt: c;\
 us: 0; ue:pi: 2;\
 vs: 0; ve:pi: 2;\
 x: cos(u)/(sqrt(2) + sin(v));\
-y: 1/(sqrt(2) + cos(v));\
-z: sin(u)/(sqrt(2) + sin(v)); ";
+y: sin(u)/(sqrt(2) + sin(v));\
+z: 1/(sqrt(2) + cos(v));\
+xu: -sin(u)/(sqrt(2) + sin(v));\
+yu: cos(u)/(sqrt(2) + sin(v));\
+zu: 0;\
+xv: -cos(u)*cos(v)/(sqrt(2) + sin(v))^2;\
+yv: -sin(u)*cos(v)/(sqrt(2) + sin(v))^2;\
+zv: sin(v)/(sqrt(2) + cos(v))^2;\
+xn: cos(u)*sin(v)/((sqrt(2) + cos(v))^2*(sqrt(2) + sin(v)));\
+yn: sin(u)*sin(v)/((sqrt(2) + cos(v))^2*(sqrt(2) + sin(v)));\
+zn: cos(v)/(sqrt(2) + sin(v))^3;";
 #endif

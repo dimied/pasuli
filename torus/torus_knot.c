@@ -3,6 +3,7 @@
 #include "torus_c_includes.h"
 
 #if (USE_TORUS_KNOT != 0)
+
 void TorusKnot(pasuli_vartype u,
 			   pasuli_vartype v,
 			   pasuli_consttype *constants,
@@ -10,58 +11,40 @@ void TorusKnot(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(TORUS_KNOT)
 
-	pasuli_vartype R1 = constants[0];
-	pasuli_vartype R2 = constants[1];
-	pasuli_vartype r = constants[2];
-	pasuli_vartype p = constants[3];
-	pasuli_vartype q = constants[4];
+	pasuli_consttype R1 = constants[0];
+	pasuli_consttype R2 = constants[1];
+	pasuli_consttype r = constants[2];
+	pasuli_consttype p = constants[3];
+	pasuli_consttype q = constants[4];
 
-	P_Y(r * sin(v) + R2 * sin(p * u));
-	v = R1 + R2 * cos(p * u) + r * sin(v);
+	pasuli_calctype cos_qu = cos(q * u);
+	pasuli_calctype cos_pu = cos(p * u);
 
-	P_X(v * cos(u));
-	P_Z(v * sin(u));
+	pasuli_calctype sin_qu = sin(q * u);
+	pasuli_calctype sin_pu = sin(p * u);
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	pasuli_vartype cu = cos(u);
-	pasuli_vartype su = sin(u);
-	pasuli_vartype cv = cos(v);
-	pasuli_vartype sv = sin(v);
-#endif
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
 
-	UD_X(-su);
-	UD_Y(-cu);
-	UD_Z(0);
+	pasuli_calctype factor = R1 + R2 * cos_pu + r * cos_v;
 
-	VD_X(-r * sv * cu);
-	VD_Y(-r * sv * su);
-	VD_Z(-r * cv);
+	P_X(factor * cos_qu);
+	P_Y(factor * sin_qu);
+	P_Z(r * sin_v + R2 * sin_pu);
 
-#if (PARTICLE_N != 0)
-	pO->n[0] = cu * r * cv;
-	pO->n[1] = su * r * sv;
-	pO->n[2] = r * sv;
-#endif
+	pasuli_calctype ud_factor = -p * R2 * sin_pu;
+	UD_X(ud_factor * cos_qu - sin_qu * q * factor);
+	UD_Y(ud_factor * sin_qu + cos_qu * q * factor);
+	UD_Z(p * R2 * cos_pu);
 
-#if (PARTICLE_UUD != 0)
-	pO->uud[0] = cos(u);
-	pO->uud[1] = sin(u);
-	pO->uud[2] = 0;
-#endif
-#if (PARTICLE_UVD != 0)
-	pO->uvd[0] = r * sv * su;
-	pO->uvd[1] = -r * sv * cu;
-	pO->uvd[2] = 0;
-#endif
-#if (PARTICLE_VVD != 0)
-	pO->vvd[0] = -r * cv * cu;
-	pO->vvd[1] = -r * cv * su;
-	pO->vvd[2] = -r * sv;
-#endif
+	r = PASULI_CALC_SIGN(r);
+	VD_X(-r * sin_v * cos_qu);
+	VD_Y(-r * sin_v * sin_qu);
+	VD_Z(r * cos_v);
+
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
-
-#include "torus_desc.h"
 
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddTorusKnot = {
@@ -80,39 +63,12 @@ vs: 0; ve:pi:2;\
 c1:R1:1; c2:R2:1; c3:r:1; c4:p:1; c5:q:1;\
 a1:F: (R1 + R2*cos(p*u) + r*cos(v));\
 x: F*cos(q*u);\
-y: r*sin(v) + R2*sin(p*u);\
-z: F*sin(q*u); "
-#if (COMPILE_DESC_DERIV_U_TORUS != 0)
-	"xu: -( q*sin(q*u)*(R1 +R2*cos(p*u) + r*cos(v)) + R2*p*cos(q*u)*sin(p*u) );\
-yu: R2*p*cos(p*u);\
-zu: q*cos(q*u)*(R1 +R2*cos(p*u) + r*cos(v)) - R2*p*sin(q*u)*sin(p*u); "
-#endif
-#if (COMPILE_DESC_DERIV_V_TORUS != 0)
-	"xv: -r*cos(q*u)*sin(v);\
-yv: r*cos(v);\
-zv: -r*sin(v)*sin(q*u); "
-#endif
-#if (COMPILE_DESC_NORMAL_TORUS != 0)
-	"xn:X;\
-yn:X;\
-zn:X; "
-#endif
-#if (COMPILE_DESC_DERIV2_U_TORUS != 0)
-	"xuu: -cos(q*u)*(q*q*(R1 + R2*cos(p*u) + r*cos(v)) - p*p*R2*cos(p*u) ) + \
-2*R2*p*q*sin(q*u)*sin(p*u) ;\
-yuu: -R2*p*p*sin(p*u);\
-zuu: -sin(q*u)*(q*q*(R1 + R2*cos(p*u) + r*cos(v)) + p*p*R2*cos(p*u)) - \
-2*R2*p*q*cos(q*u)*sin(p*u); "
-#endif
-#if (COMPILE_DESC_DERIV_UV_TORUS != 0)
-	"xuv: q*r*sin(v)*sin(q*u);\
-yuv: 0;\
-zuv: -q*r*sin(v)*cos(q*u); "
-#endif
-#if (COMPILE_DESC_DERIV2_V_TORUS != 0)
-	"xvv: -r*cos(v)*cos(q*u);\
-yvv: -r*sin(v);\
-zvv: -r*cos(v)*sin(q*u); "
-#endif
-	"";
+y: F*sin(q*u);\
+z: r*sin(v) + R2*sin(p*u);\
+xu: -p*R2*cos(q*u)*sin(p*u)-sin(q*u)*q*(r*cos(v)+R1+R2*cos(p*u));\
+yu: -p*R2*sin(q*u)*sin(p*u)+cos(q*u)*q*(r*cos(v)+R1+R2*cos(p*u));\
+zu: p*R2*cos(p*u);\
+xv: -r*cos(q*u)*sin(v);\
+yv: -r*sin(q*u)*sin(v);\
+zv: r*cos(v);";
 #endif

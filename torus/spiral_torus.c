@@ -1,8 +1,8 @@
-
 #include "spiral_torus.h"
 #include "torus_c_includes.h"
 
 #if (USE_SPIRAL_TORUS != 0)
+
 void SpiralTorus(pasuli_vartype u,
 				 pasuli_vartype v,
 				 pasuli_consttype *constants,
@@ -10,56 +10,39 @@ void SpiralTorus(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(SPIRAL_TORUS)
 
-	pasuli_vartype R1 = constants[0];
-	pasuli_vartype R2 = constants[1];
-	pasuli_vartype r = constants[2];
-	pasuli_vartype N = constants[3];
+	pasuli_consttype R1 = constants[0];
+	pasuli_consttype R2 = constants[1];
+	pasuli_consttype r = constants[2];
+	pasuli_consttype N = constants[3];
 
-	P_Y(r * sin(v) + R2 * sin(N * u));
-	v = R1 + R2 * cos(N * u) + r * cos(v);
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype cos_Nu = cos(N * u);
+	pasuli_calctype sin_u = sin(u);
+	pasuli_calctype sin_Nu = sin(N * u);
+	pasuli_calctype cos_v = cos(v);
+	pasuli_calctype sin_v = sin(v);
 
-	P_X(v * cos(u));
-	P_Z(v * sin(u));
+	pasuli_calctype factor = R1 + R2 * cos_Nu + r * cos_v;
 
-#if ((PARTICLE_UD != 0) || (PARTICLE_VD != 0) || (PARTICLE_UD != 0))
-	pasuli_vartype cu = cos(u);
-	pasuli_vartype su = sin(u);
-	pasuli_vartype cv = cos(v);
-	pasuli_vartype sv = sin(v);
-#endif
+	P_X(cos_u * factor);
+	P_Y(sin_u * factor);
+	P_Y(r * sin_v + R2 * sin_Nu);
 
-	UD_X(-su);
-	UD_Y(-cu);
-	UD_Z(0);
+	factor = r * cos_v + R1 + R2 * cos_Nu;
+	pasuli_calctype ud_factor = N * R2 * sin_Nu;
+	UD_X(-ud_factor * cos_u - sin_u * factor);
+	UD_Y(-ud_factor * sin_u + cos_u * factor);
+	UD_Z(N * R2 * cos_Nu);
 
-	VD_X(-r * sv * cu);
-	VD_Y(-r * sv * su);
-	VD_Z(-r * cv);
+	// Ignore scaling by r
+	r = PASULI_CALC_SIGN(r);
+	VD_X(-r * sin_v * cos_u);
+	VD_Y(-r * sin_v * sin_u);
+	VD_Z(r * cos_v);
 
-#if (PARTICLE_N != 0)
-	pO->n[0] = cu * r * cv;
-	pO->n[1] = su * r * sv;
-	pO->n[2] = r * sv;
-#endif
-
-#if (PARTICLE_UUD != 0)
-	pO->uud[0] = cos(u);
-	pO->uud[1] = sin(u);
-	pO->uud[2] = 0;
-#endif
-#if (PARTICLE_UVD != 0)
-	pO->uvd[0] = r * sv * su;
-	pO->uvd[1] = -r * sv * cu;
-	pO->uvd[2] = 0;
-#endif
-#if (PARTICLE_VVD != 0)
-	pO->vvd[0] = -r * cv * cu;
-	pO->vvd[1] = -r * cv * su;
-	pO->vvd[2] = -r * sv;
-#endif
+	PASULI_CALC_NORMAL_FROM_UD_VD
 }
 #endif
-
 
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddSpiralTorus = {
@@ -71,44 +54,19 @@ PaSuLiDefDesc pslddSpiralTorus = {
 #endif
 #if (COMPILE_DESC_TORUS != 0)
 char *descSpiralTorus =
-	"name: SpiralTorus;\
+	"name: Spiral Torus;\
 cat: torus;\
 us: 0; ue:pi:2;\
 vs: 0; ve:pi:2;\
 c1:R1:1; c2:R2:1; c3:r:1;\
-a1:F: R1 + R2*cos(N*u) + r*cos(v);\
+a1:F: R1+R2*cos(N*u)+r*cos(v);\
 x: F*cos(u);\
-y: r*sin(v) + R2*sin(N*u);\
-z: F*sin(u); "
-#if (COMPILE_DESC_DERIV_U_TORUS != 0)
-	"xu: -((R1 + R2*cos(n*u) + r*cos(v))*sin(u) + R2*n*cos(u)*sin(n*u));\
-yu: R2*n*cos(n*u);\
-zu: (R1 + R2*cos(n*u) + r*cos(v))*cos(u) - R2*n*sin(u)*sin(n*u); "
-#endif
-#if (COMPILE_DESC_DERIV_V_TORUS != 0)
-	"xv: -r*cos(u)*sin(v);\
-yv: r*cos(v);\
-zv: -r*sin(u)*sin(v); "
-#endif
-#if (COMPILE_DESC_NORMAL_TORUS != 0)
-	"xn:X;\
-yn:X;\
-zn:X; "
-#endif
-#if (COMPILE_DESC_DERIV2_U_TORUS != 0)
-	"xuu: -cos(u)*(R1 + R2*cos(n*u)*(n*n+1) + r*cos(v)) + 2*R2*n*sin(u)*sin(n*u);\
-yuu: -R2*n*n*sin(n*u);\
-zuu: -sin(u)*(R1 + R2*cos(n*u)*(n*n+1) + r*cos(v)) - 2*R2*n*cos(u)*sin(n*u); "
-#endif
-#if (COMPILE_DESC_DERIV_UV_TORUS != 0)
-	"xuv: r*sin(u)*sin(v);\
-yuv: 0;\
-zuv: -r*cos(u)*sin(v); "
-#endif
-#if (COMPILE_DESC_DERIV2_V_TORUS != 0)
-	"xvv: -r*cos(u)*cos(v);\
-yvv: -r*sin(v);\
-zvv: -r*cos(v)*sin(u); "
-#endif
-	"";
+y: F*sin(u);\
+z: r*sin(v)+R2*sin(N*u);\
+xu: -N*R2*cos(u)*sin(N*u) - sin(u)*(r*cos(v)+R1+R2*cos(N*u));\
+yu: -N*R2*sin(u)*sin(N*u) + cos(u)*(r*cos(v)+R1+R2*cos(N*u));\
+zu: N*R2*cos(N*u);\
+xv: -r*cos(u)*sin(v);\
+yv: -r*sin(u)*sin(v);\
+zv: r*cos(v);";
 #endif

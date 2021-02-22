@@ -199,8 +199,8 @@ descPlane		//0
 ,descTricuspoidTorus1
 ,descTricuspoidTorus2
 
-,descNethroidTorus1
-,descNethroidTorus2
+,descNephroidTorus1
+,descNephroidTorus2
 ,descLemniskateTorus1
 ,descLemniskateTorus2
 ,descEpizykloidTorus1
@@ -420,8 +420,8 @@ PASULI_PARSUR_STATIC PaSuLiDefDesc* parsur_def_desc_array[] = {
 ,&pslddTricuspoidTorus1
 ,&pslddTricuspoidTorus2
 
-,&pslddNethroidTorus1
-,&pslddNethroidTorus2
+,&pslddNephroidTorus1
+,&pslddNephroidTorus2
 ,&pslddLemniskateTorus1
 ,&pslddLemniskateTorus2
 ,&pslddEpizykloidTorus1

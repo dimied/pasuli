@@ -493,11 +493,11 @@ PaSuLiRepositoryItem repositoryItems[] = {
 #if (USE_TRICUSPOID_TORUS_2 != 0)
     DEFINE_SURFACE(TRICUSPOID_TORUS_2, &TricuspoidTorus2),
 #endif
-#if (USE_NETHROID_TORUS_1 != 0)
-    DEFINE_SURFACE(NETHROID_TORUS_1, &NethroidTorus1),
+#if (USE_NEPHROID_TORUS_1 != 0)
+    DEFINE_SURFACE(NEPHROID_TORUS_1, &NephroidTorus1),
 #endif
-#if (USE_NETHROID_TORUS_2 != 0)
-    DEFINE_SURFACE(NETHROID_TORUS_2, &NethroidTorus2),
+#if (USE_NEPHROID_TORUS_2 != 0)
+    DEFINE_SURFACE(NEPHROID_TORUS_2, &NephroidTorus2),
 #endif
 #if (USE_LEMNISKATE_TORUS_1 != 0)
     DEFINE_SURFACE(LEMNISKATE_TORUS_1, &LemniskateTorus1),
@@ -757,8 +757,8 @@ pasuli_name_type parsur_name_array[] = {
     PASULI_SET_NAME("Astroid Torus", ASTROID_TORUS),
     PASULI_SET_NAME("Tricuspoid Torus 1", TRICUSPOID_TORUS_1),
     PASULI_SET_NAME("Tricuspoid Torus 2", TRICUSPOID_TORUS_2),
-    PASULI_SET_NAME("Nethroid Torus 1", NETHROID_TORUS_1),
-    PASULI_SET_NAME("Nethroid Torus 2", NETHROID_TORUS_2),
+    PASULI_SET_NAME("Nephroid Torus 1", NEPHROID_TORUS_1),
+    PASULI_SET_NAME("Nephroid Torus 2", NEPHROID_TORUS_2),
     PASULI_SET_NAME("Lemniskate Torus 1", LEMNISKATE_TORUS_1),
     PASULI_SET_NAME("Lemniskate Torus 2", LEMNISKATE_TORUS_2),
     PASULI_SET_NAME("Epizykloid Torus 1", EPIZYKLOID_TORUS_1),
