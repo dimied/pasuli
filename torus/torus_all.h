@@ -12,6 +12,7 @@
 #include "cassinianoval_torus2.h"
 #include "curly_torus1.h"
 #include "curly_torus2.h"
+#include "eight_torus.h"
 #include "elliptic_torus.h"
 #include "epizykloid_torus1.h"
 #include "epizykloid_torus2.h"

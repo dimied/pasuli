@@ -33,4 +33,6 @@ int findDefaultConstants(unsigned int id, double *pConstants, int size);
 unsigned char getImplementationState(unsigned int id);
 
 void testDefaultConstants();
+
+void testImplementationPointers();
 #endif

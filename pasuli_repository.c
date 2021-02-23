@@ -455,7 +455,7 @@ PaSuLiRepositoryItem repositoryItems[] = {
     DEFINE_SURFACE(TORUS, &Torus),
 #endif
 #if (USE_EIGHT_TORUS != 0)
-    DEFINE_SURFACE(EIGHT_TORUS, &EightSurface),
+    DEFINE_SURFACE(EIGHT_TORUS, &EightTorus),
 #endif
 #if (USE_ELLIPTIC_TORUS != 0)
     DEFINE_SURFACE(ELLIPTIC_TORUS, &EllipticTorus),
@@ -583,6 +583,43 @@ parsurFunc findPasuliFunctionById(unsigned int id)
         }
     }
     return 0;
+}
+
+#include <string.h>
+#include <stdio.h>
+
+void testImplementationPointers()
+{
+    unsigned char *pStates = malloc(256);
+    memset(pStates, 0, 256);
+
+    for (size_t i = 0; i < numberOfPasuliRepositoryItems; i++)
+    {
+        unsigned char funcID = repositoryItems[i].id;
+
+        if (pStates[funcID] > 0)
+        {
+            printf("Function already pointed to at index = %ld\n", i);
+        }
+        pStates[funcID] += 1;
+    }
+
+    for (size_t i = 0; i < numberOfPasuliRepositoryItems; i++)
+    {
+        parsurFunc pFunc = repositoryItems[i].pFunc;
+        unsigned char ID = repositoryItems[i].id;
+
+        for (size_t j = i + 1; j < numberOfPasuliRepositoryItems; j++)
+        {
+            parsurFunc pFunc2 = repositoryItems[j].pFunc;
+            if (pFunc == pFunc2)
+            {
+                printf("Function pointer already in use. ID=%d.First occurence @%ld, second @%ld\n", ID, i, j);
+            }
+        }
+    }
+
+    free(pStates);
 }
 
 typedef struct _pasuli_name_type
@@ -838,15 +875,13 @@ void* getPaSuLiPointer(unsigned int uiSurfaceType, unsigned int uiInfo) {
 }
 */
 
-#define PASULI_PARSUR_STATIC	static
+#define PASULI_PARSUR_STATIC static
 //#define PASULI_PARSUR_STATIC
-
 
 //PASULI_PARSUR_STATIC
 
-
-PASULI_PARSUR_STATIC char* parsur_desc_array[] = {
-	/*
+PASULI_PARSUR_STATIC char *parsur_desc_array[] = {
+    /*
 descPlane		//0
 #if(COMPILE_DESC_SURFACES != 0)
 ,descBohemianDomeSurface
@@ -1064,10 +1099,8 @@ descPlane		//0
 */
 };
 
-
-
-PASULI_PARSUR_STATIC PaSuLiDefDesc* parsur_def_desc_array[] = {
-	/*
+PASULI_PARSUR_STATIC PaSuLiDefDesc *parsur_def_desc_array[] = {
+    /*
 &pslddPlane		//0
 #if(COMPILE_DEF_DESC_SURFACES != 0)
 ,&pslddBohemianDomeSurface		//1
@@ -1285,19 +1318,24 @@ PASULI_PARSUR_STATIC PaSuLiDefDesc* parsur_def_desc_array[] = {
 */
 };
 
-
 pasuli_funcnum_range_type pasuli_cat_func_ranges[PASULI_CATEGORY_COUNT] = {
-PASULI_CAT_SURFACES_COUNT	//entries for SURFACES
-,PASULI_CAT_CYLINDER_COUNT	//Cylinder
-,PASULI_CAT_FRUIT_COUNT		//Fruits
-,PASULI_CAT_SHELL_COUNT		//Shells
-,PASULI_CAT_SPHERE_COUNT	//Sphere
-,PASULI_CAT_SPIRAL_COUNT	//Spiral
-,PASULI_CAT_TORUS_COUNT		//Torus
+    PASULI_CAT_SURFACES_COUNT //entries for SURFACES
+    ,
+    PASULI_CAT_CYLINDER_COUNT //Cylinder
+    ,
+    PASULI_CAT_FRUIT_COUNT //Fruits
+    ,
+    PASULI_CAT_SHELL_COUNT //Shells
+    ,
+    PASULI_CAT_SPHERE_COUNT //Sphere
+    ,
+    PASULI_CAT_SPIRAL_COUNT //Spiral
+    ,
+    PASULI_CAT_TORUS_COUNT //Torus
 };
 
 pasuli_avail_info_type availablePaSuLiInfo[PASULI_CATEGORY_COUNT] = {
-	/*
+    /*
 PASULI_SET_AVAILABLE(COMPILE_SURFACES, COMPILE_DEF_DESC_SURFACES, 
 					COMPILE_DESC_SURFACES, COMPILE_NAMES_SURFACES)
 

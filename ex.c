@@ -31,6 +31,8 @@ int main() {
 
     testDefaultConstants();
 
+    testImplementationPointers();
+
     findDefaultConstants(1, constants, 10);
 
     getImplementationState(1);
