@@ -160,6 +160,7 @@
 
 //////////////////////////////////////////
 #define USE_PLANE 1
+#define USE_ASTROIDAL_ELLIPSOID 1
 #define USE_BOHEMIAN_DOME_SURFACE 1
 #define USE_BOYS_SURFACE 1
 #define USE_CROSS_CUP 1

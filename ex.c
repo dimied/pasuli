@@ -23,9 +23,13 @@ int main() {
     printf("Set... %.2lf \n", example.pos[0]);
     */
 
+   printf("#constants = %d\n\n", NUMB_OF_SURFACES);
+
     printf("#functions = %d\n\n", numberOfPasuliRepositoryItems);
 
     double constants[10];
+
+    testDefaultConstants();
 
     findDefaultConstants(1, constants, 10);
 

@@ -53,7 +53,7 @@ char *descParabolicHummingTop =
 ut:c; vt:c;\
 us: 0; ue:pi: 2;\
 vs: -h; ve: h;\
-c1:1:r: 1; c2:h: 1; c3:p: 1;\
+c1:h: 1; c2:p: 1;\
 x: (|v|-h)^2*cos(u)/(2*p);\
 y: (|v|-h)^2*sin(u)/(2*p);\
 z: v;";
@@ -228,7 +228,7 @@ z: -2*sin(v);";
 
 #if (COMPILE_DESC_SURFACES != 0)
 char *descLawsonBottle =
-    "name: LawsonBottle;\
+    "name: Lawson Bottle;\
 ut:c; vt:o;\
 us:0; ue:pi:2;\
 vs:0; ve:pi:2;\
@@ -323,6 +323,7 @@ char *descCrossCup3 =
 ut:c; vt:o;\
 us:0; ue:pi:2;\
 vs:0; ve:pi:0.5;\
+c1:a: 1;\
 x: a*sin(u)*sin(2*v)/2;\
 y: a*sin(2*u)*sin(v)^2;\
 z: a*cos(2*u)*sin(v)^2;";
@@ -334,6 +335,7 @@ char *descPseudodevelopableHelicoid =
 ut:c; vt:o;\
 us:-1.5; ue:0;\
 vs:0; ve:pi:4;\
+c1:a: 1; c2:b: 1;\
 x: a*cos(v)-u*sin(v);\
 y: a*sin(v)+u*cos(v);\
 z: b*v;";
@@ -345,6 +347,7 @@ char *descVirichCyclicSurface =
 ut:c; vt:o;\
 us:0; ue:pi:2;\
 vs:0; ve:pi:2;\
+c1:a: 1; c2:b: 1; c3:c: 1; c4:d: 1;\
 a1:f: a*b/sqrt(a^2*sin(v)^2+b^2*cos(v)^2);\
 x: (f*(1+cos(u))+(d^2-c^2)*(1-cos(u))/f)*cos(v)/2;\
 y: (f*(1+cos(u))+(d^2-c^2)*(1-cos(u))/f)*sin(v)/2;\
@@ -407,18 +410,6 @@ y: 3*sin(u)*sin(v);\
 z: cos(v);";
 #endif
 
-#if (COMPILE_DESC_SURFACES != 0)
-char *descRichmondSurface3 =
-    "name: Richmond Surface 3;\
-ut:c; vt:o;\
-us:0.5; ue:1;\
-vs:0; ve:pi:2;\
-c1:n:2;\
-x: -cos(v)/(2*u)-(u^(2*n+1)*cos(-(2*n+1)*v))/(4*n+2);\
-y: -sin(v)/(2*u)+(u^(2*n+1)*sin(-(2*n+1)*v))/(4*n+2);\
-z: u^n*cos(n*v)/n;";
-#endif
-
 
 #if (COMPILE_DESC_SURFACES != 0)
 char *descWavyEnneperSurface =
@@ -433,17 +424,6 @@ z: 2/s*u^s*cos(s*v);";
 #endif
 
 #if (COMPILE_DESC_SURFACES != 0)
-char *descEnneperSurface3 =
-    "name: Enneper Surface 3;\
-ut:c; vt:o;\
-us:pi:-1; ue:pi:1;\
-vs:pi:-1; ve:pi:1;\
-x: -u*(-6+u^2-3*v^2)/(6*sqrt(2));\
-y: v*(-6+v^2-3*u^2)/(6*sqrt(2));\
-z: (u^2-v^2)/2;";
-#endif
-
-#if (COMPILE_DESC_SURFACES != 0)
 char *descEnneperSurface2 =
     "name: Enneper Surface 2;\
 ut:c; vt:o;\
@@ -452,6 +432,17 @@ vs:pi:-1; ve:pi:1;\
 x: exp(u)*(3*cos(v)-exp(2*u)*cos(3*v))/6;\
 y: exp(u)*(-3*sin(v)-exp(2*u)*sin(3*v))/6;\
 z: exp(2*u)*cos(2*v)/2;";
+#endif
+
+#if (COMPILE_DESC_SURFACES != 0)
+char *descEnneperSurface3 =
+    "name: Enneper Surface 3;\
+ut:c; vt:o;\
+us:pi:-1; ue:pi:1;\
+vs:pi:-1; ve:pi:1;\
+x: -u*(-6+u^2-3*v^2)/(6*sqrt(2));\
+y: v*(-6+v^2-3*u^2)/(6*sqrt(2));\
+z: (u^2-v^2)/2;";
 #endif
 
 
@@ -464,6 +455,18 @@ vs:-1; ve:1;\
 x: u^3/3-u*v^2+u/(u^2+v^2);\
 y: v^3/3-v*u^2-v/(u^2+v^2);\
 z: 2*u;";
+#endif
+
+#if (COMPILE_DESC_SURFACES != 0)
+char *descRichmondSurface3 =
+    "name: Richmond Surface 3;\
+ut:c; vt:o;\
+us:0.5; ue:1;\
+vs:0; ve:pi:2;\
+c1:n:2;\
+x: -cos(v)/(2*u)-(u^(2*n+1)*cos(-(2*n+1)*v))/(4*n+2);\
+y: -sin(v)/(2*u)+(u^(2*n+1)*sin(-(2*n+1)*v))/(4*n+2);\
+z: u^n*cos(n*v)/n;";
 #endif
 
 #if (COMPILE_DESC_SURFACES != 0)
@@ -635,7 +638,6 @@ char *descPlueckersConoid2 =
 ut:u; vt:c;\
 us:0; ue:2;\
 vs:0; ve:pi:2;\
-c1:a: 1;\
 x: u*cos(v);\
 y: u*sin(v);\
 z: sin(2*v);";
@@ -677,14 +679,4 @@ y: v;\
 z: (2*a*u^2-b*v)*(c*v-d*u^2);";
 #endif
 
-#if (COMPILE_DESC_SURFACES != 0)
-char *descAstroidalEllipsoid =
-    "name: Astroidal Ellipsoid;\
-ut:c; vt:c;\
-us:pi:-0.5; ue:pi:0.5;\
-vs:pi:-1; ve:pi:1;\
-c1:a: 1; c2:b: 1; c3:c: 1;\
-x: a*cos(u)^3*cos(v)^3;\
-y: b*sin(u)^3*cos(v)^3;\
-z: c*sin(v)^3;";
-#endif
+

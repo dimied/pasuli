@@ -18,6 +18,7 @@
 #define LEMON_VALUES 123
 #define SPHERE_VALUES 124
 #define TORUS1_VALUES 125
+#define PLANAR_ENNEPER_VALUES 126
 
 #define ALL_ONES 255
 #define ALL_HALFES 254
@@ -38,6 +39,8 @@ unsigned char constants_multiplied[] = {
 	CONSTANT_TUPLE_10(15, 10, 10, 0, 0, 0),
 	// Torus 1
 	CONSTANT_TUPLE_10(10, 10, 5, 10, 10, 10),
+	// Planar Enneper Surface
+	CONSTANT_TUPLE_10(20, 4, 0, 0, 0, 0),
 };
 
 #undef CONSTANT_TUPLE_10
@@ -144,6 +147,8 @@ unsigned char id_and_length[][3] = {
 	ID_AND_LENGTH_C(WAVES, 3, STD1_VALUES),
 	ID_AND_LENGTH_C(SINE_WAVE, 2, STD1_VALUES),
 	//
+	ID_AND_LENGTH_C(DROP_SURFACE, 1, STD1_VALUES),
+	ID_AND_LENGTH_C(ASTROIDAL_ELLIPSOID, 3, ALL_ONES),
 	ID_AND_LENGTH_C(COSINE_WAVE, 2, STD1_VALUES),
 	ID_AND_LENGTH_C(SPIRAL_WAVE, 3, STD1_VALUES),
 	ID_AND_LENGTH_C(BELL, 2, STD1_VALUES),
@@ -266,18 +271,111 @@ unsigned char id_and_length[][3] = {
 	//
 	ID_AND_LENGTH_C(SPIRAL_TORUS, 4, ALL_ONES),
 	ID_AND_LENGTH_C(TORUS_KNOT, 5, ALL_ONES),
-	ID_AND_LENGTH_C(GEAR_TORUS, 4, ALL_ONES)
+	ID_AND_LENGTH_C(GEAR_TORUS, 4, ALL_ONES),
 	// END
+	// NEW ONES after Feb 22, 2021
+	ID_AND_LENGTH(PEANO_SURFACE, 0),
+	ID_AND_LENGTH_C(PEANO_SURFACE2, 4, ALL_ONES),
+	ID_AND_LENGTH_C(VASE_HEAD, 2, ALL_ONES),
+	ID_AND_LENGTH(PLUECKER_CONOID2, 0),
+	ID_AND_LENGTH_C(MONKEY_SADDLE2, 1, ALL_ONES),
+	ID_AND_LENGTH(BOYS_SURFACE2, 0),
+	ID_AND_LENGTH_C(SKIDAN_RULED_SURFACE, 3, ALL_ONES),
+	ID_AND_LENGTH(SCHERK_SURFACE2, 0),
+	ID_AND_LENGTH(CATALANS_SURFACE1, 0),
+	ID_AND_LENGTH_C(CATALANS_SURFACE2, 1, ALL_ONES),
+	ID_AND_LENGTH(WRINKLE_SPHERE, 0),
+	ID_AND_LENGTH_C(WRINKLE_SPHERE2, 1, 20),
+	ID_AND_LENGTH_C(SNAIL2, 1, ALL_ONES),
+	ID_AND_LENGTH(KLEIN_BOTTLE_SURFACE2, 0),
+	ID_AND_LENGTH(FOUR_INTERSECTING_DISCS, 0),
+	ID_AND_LENGTH_C(KAI_WING_FUNG_SURFACE1, 1, ALL_ONES),
+	ID_AND_LENGTH(KAI_WING_FUNG_SURFACE2, 0),
+	ID_AND_LENGTH(RICHMOND_SURFACE2, 0),
+	ID_AND_LENGTH_C(RICHMOND_SURFACE3, 1, 2),
+	ID_AND_LENGTH(ENNEPER_SURFACE2, 0),
+	ID_AND_LENGTH(ENNEPER_SURFACE3, 0),
+	ID_AND_LENGTH_C(WAVY_ENNEPER_SURFACE, 1, 2),
+	ID_AND_LENGTH(TWISTED_RIBBON, 0),
+	ID_AND_LENGTH_C(PLANAR_ENNEPER_SURFACE, 2, PLANAR_ENNEPER_VALUES),
+	ID_AND_LENGTH(CAYLEY_SURFACE, 0),
+	ID_AND_LENGTH(ROMAN_SURFACE2, 0),
+	ID_AND_LENGTH(MOEBIUS_BAND3, 0),
+	ID_AND_LENGTH_C(VIRICH_CYCLIC_SURFACE, 4, ALL_ONES),
+	ID_AND_LENGTH_C(PSEUDODEVELOPABLE_HELICOID, 2, ALL_ONES),
+	ID_AND_LENGTH(CROSS_CUP2, 0),
+	ID_AND_LENGTH_C(CROSS_CUP3, 1, ALL_ONES),
+	ID_AND_LENGTH(CUSPIDAL_BUTTERFLY, 0),
+	ID_AND_LENGTH(CUSPIDAL_LIPS, 0),
+	ID_AND_LENGTH(CUSPIDAL_EDGE, 0),
+	ID_AND_LENGTH(CUSPIDAL_BEAKS, 0),
+	ID_AND_LENGTH(DING_DONG_SURFACE, 0),
+	ID_AND_LENGTH(TOOTH_SURFACE, 0),
+	ID_AND_LENGTH(LAWSON_BOTTLE, 0),
+	ID_AND_LENGTH(GOBLET, 0),
+	ID_AND_LENGTH(BOWTIE, 0),
+	ID_AND_LENGTH_C(HORNLET_SURFACE, 3, ALL_ONES),
+	ID_AND_LENGTH_C(BALLS_CYLINDROID, 1, ALL_ONES),
+	ID_AND_LENGTH_C(EPITROCHOIDAL_SURFACE, 2, ALL_ONES),
+	ID_AND_LENGTH_C(MORIN_SURFACE, 2, ALL_ONES),
+	ID_AND_LENGTH_C(CROSSED_TROUGH_SURFACE, 1, ALL_ONES),
+	ID_AND_LENGTH_C(HECTOR_GUINARDS_SURFACE, 3, ALL_ONES),
+	ID_AND_LENGTH_C(AGNESI_CURL, 2, ALL_ONES),
+	ID_AND_LENGTH(SPINNING_TOP1, 0),
+	ID_AND_LENGTH(SPINNING_TOP2, 0),
+	ID_AND_LENGTH(KISS_SURFACE, 0),
+	ID_AND_LENGTH(NEOVIUS_SURFACE, 0),
+	ID_AND_LENGTH_C(RULED_ROTOR_CYLINDROID, 3, ALL_ONES),
+	ID_AND_LENGTH_C(PARABOLIC_HUMMING_TOP, 2, 1),
 };
 
 #include <stdio.h>
+#include <string.h>
+
+void testDefaultConstants()
+{
+	size_t numberOf = 256;
+
+	unsigned char *pStates = malloc(numberOf);
+
+	memset(pStates, 0, numberOf);
+
+	unsigned int alreadyDefined =
+		sizeof(id_and_length) / (3 * sizeof(char));
+
+	printf("#defined = %d\n", alreadyDefined);
+
+	for (int idx = 0; idx < alreadyDefined; idx++)
+	{
+		int id = id_and_length[idx][0];
+
+		if (((id <= 0) || (id > 255)))
+		{
+			printf("Invalid surface at index %d, value %d", idx, id);
+			continue;
+		}
+		if (pStates[id] > 0)
+		{
+			printf("Constants already defined for surface %d", id);
+		}
+		pStates[id] += 1;
+	}
+
+	for (int idx = 1; idx < NUMB_OF_SURFACES; idx++)
+	{
+		if (pStates[idx] == 0)
+		{
+			printf("Constants not yet defined for surface %d\n", idx);
+		}
+	}
+
+	free(pStates);
+}
 
 int findDefaultConstants(unsigned int id, double *pConstants, int size)
 {
 	unsigned int alreadyDefined =
 		sizeof(id_and_length) / (3 * sizeof(char));
-
-	printf("#defined = %d\n", alreadyDefined);
 
 	if (id >= 255)
 	{
@@ -285,12 +383,12 @@ int findDefaultConstants(unsigned int id, double *pConstants, int size)
 		return -1;
 	}
 
-	for (size_t i = 0; i < alreadyDefined; i++)
+	for (size_t idx = 0; idx < alreadyDefined; idx++)
 	{
-		int idInArray = id_and_length[i][0];
+		int idInArray = id_and_length[idx][0];
 		if (id == idInArray)
 		{
-			int length = id_and_length[i][1];
+			int length = id_and_length[idx][1];
 			if (length > 0)
 			{
 				if (length < size)
@@ -298,7 +396,7 @@ int findDefaultConstants(unsigned int id, double *pConstants, int size)
 					// Not enough space to store
 					return -2;
 				}
-				int typeOrValue = id_and_length[i][2];
+				int typeOrValue = id_and_length[idx][2];
 
 				if (typeOrValue == ALL_ONES || typeOrValue == ALL_HALFES)
 				{
@@ -370,7 +468,7 @@ int findDefaultConstants(unsigned int id, double *pConstants, int size)
 
 #define IMPL_MINUS(ALL_VAL, TO_SUBTRACT) (ALL_VAL - (TO_SUBTRACT))
 
-unsigned char implemented[][2] = {
+unsigned char implementationStates[][2] = {
 	// Cylinder
 	PASULI_IMPLEMENTED(CYLINDER, IMPL_ALL),
 	PASULI_IMPLEMENTED(EPIZYKLOID_CYLINDER, IMPL_ALL),
@@ -594,18 +692,25 @@ unsigned char implemented[][2] = {
 
 #undef PASULI_IMPLEMENTED
 
-int getImplementationState(unsigned int id)
+unsigned char getImplementationState(unsigned int id)
 {
 	unsigned int alreadyImplemented =
-		sizeof(implemented) / (2 * sizeof(char));
+		sizeof(implementationStates) / (2 * sizeof(char));
 
 	printf("#implemented/checked = %d\n", alreadyImplemented);
 
-	if (id >= 255)
+	if ((id <= 0) || (id > NUMB_OF_SURFACES))
 	{
-		// Not found
-		return -1;
+		return 0;
 	}
-	// TODO
+
+	for (int i = 0; i < alreadyImplemented; i++)
+	{
+		if (implementationStates[i][0] == id)
+		{
+			return implementationStates[i][1];
+		}
+	}
+
 	return 0;
 }

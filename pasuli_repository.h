@@ -20,7 +20,17 @@ parsurFunc findPasuliFunctionById(unsigned int id);
  * 
  * \param [in] id ID of the surface
  */
-int findDefaultConstants(unsigned int id, double* pConstants, int size);
+int findDefaultConstants(unsigned int id, double *pConstants, int size);
 
-int getImplementationState(unsigned int id);
+/**
+ * \brief Gives information about the implemetation state of the surface.
+ * 
+ * \param[in] id surface ID
+ * 
+ * \returns a value representing the implementation state of the function for
+ * the given surface ID
+ */
+unsigned char getImplementationState(unsigned int id);
+
+void testDefaultConstants();
 #endif
