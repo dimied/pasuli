@@ -6,5 +6,18 @@
 void PlueckerConoid2(pasuli_vartype u, 
                 pasuli_vartype v,
                 pasuli_consttype *constants,
-                PaSuLiObject *pO);
+                PaSuLiObject *pO) {
+
+                }
+#endif
+
+#if (COMPILE_DESC_SURFACES != 0)
+char *descPlueckersConoid2 =
+    "name: Pluecker's Conoid 2;\
+ut:u; vt:c;\
+us:0; ue:2;\
+vs:0; ve:pi:2;\
+x: u*cos(v);\
+y: u*sin(v);\
+z: sin(2*v);";
 #endif

@@ -19,8 +19,6 @@
 #include "cuspidal_lips.h"
 #include "ding_dong_surface.h"
 
-#include "double_sphere.h"
-
 #include "enneper_surface2.h"
 #include "enneper_surface3.h"
 #include "epitrochoidal_surface.h"

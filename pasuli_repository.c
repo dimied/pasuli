@@ -562,116 +562,39 @@ PaSuLiRepositoryItem repositoryItems[] = {
 #if (USE_GEAR_TORUS != 0)
     DEFINE_SURFACE(GEAR_TORUS, &GearTorus),
 #endif
+
+#if (USE_AGNESI_CURL != 0)
+    DEFINE_SURFACE(AGNESI_CURL, &AgnesiCurl),
+#endif
 #if (USE_ASTROIDAL_ELLIPSOID != 0)
     DEFINE_SURFACE(ASTROIDAL_ELLIPSOID, &AstroidalEllipsoid),
 #endif
-    /*
-#if (USE_PEANO_SURFACE != 0)
-    DEFINE_SURFACE(PEANO_SURFACE, &PeanoSurface),
+#if (USE_BALLS_CYLINDROID != 0)
+    DEFINE_SURFACE(BALLS_CYLINDROID, &BallsCylindroid),
 #endif
-#if (USE_PEANO_SURFACE2 != 0)
-    DEFINE_SURFACE(PEANO_SURFACE2, &PeanoSurface2),
-#endif
-
-#if (USE_VASE_HEAD != 0)
-    DEFINE_SURFACE(VASE_HEAD, &VaseHead),
-#endif
-#if (USE_PLUECKER_CONOID2 != 0)
-    DEFINE_SURFACE(PLUECKER_CONOID2, &PlueckerConoid2),
-#endif
-#if (USE_MONKEY_SADDLE2 != 0)
-    DEFINE_SURFACE(MONKEY_SADDLE2, &MonkeySaddle2),
-#endif
-*/
-
-    /*
 #if (USE_BOYS_SURFACE2 != 0)
     DEFINE_SURFACE(BOYS_SURFACE2, &BoysSurface2),
 #endif
-#if (USE_SKIDAN_RULED_SURFACE != 0)
-    DEFINE_SURFACE(SKIDAN_RULED_SURFACE, &SkidanRuledSurface),
+#if (USE_BOWTIE != 0)
+    DEFINE_SURFACE(BOWTIE, &Bowtie),
 #endif
-#if (USE_SCHERK_SURFACE2 != 0)
-    DEFINE_SURFACE(SCHERK_SURFACE2, &ScherkSurface2),
-#endif
-
 #if (USE_CATALANS_SURFACE1 != 0)
     DEFINE_SURFACE(CATALANS_SURFACE1, &CatalansSurface1),
 #endif
 #if (USE_CATALANS_SURFACE2 != 0)
     DEFINE_SURFACE(CATALANS_SURFACE2, &CatalansSurface2),
 #endif
-#if (USE_WRINKLE_SPHERE != 0)
-    DEFINE_SURFACE(WRINKLE_SPHERE, &WrinkelSphere),
-#endif
-#if (USE_WRINKLE_SPHERE2 != 0)
-    DEFINE_SURFACE(WRINKLE_SPHERE2, &WrinkelSphere2),
-#endif
-#if (USE_SNAIL2 != 0)
-    DEFINE_SURFACE(SNAIL2, &Snail2),
-#endif
-*/
-/*
-#if (USE_KLEIN_BOTTLE_SURFACE2 != 0)
-    DEFINE_SURFACE(KLEIN_BOTTLE_SURFACE2, &KleinBottleSurface2),
-#endif
-#if (USE_FOUR_INTERSECTING_DISCS != 0)
-    DEFINE_SURFACE(FOUR_INTERSECTING_DISCS, &FourIntersectingDiscs),
-#endif
-#if (USE_KAI_WING_FUNG_SURFACE1 != 0)
-    DEFINE_SURFACE(KAI_WING_FUNG_SURFACE1, &KaiWingFungSurface1),
-#endif
-#if (USE_KAI_WING_FUNG_SURFACE2 != 0)
-    DEFINE_SURFACE(KAI_WING_FUNG_SURFACE2, &KaiWingFungSurface2),
-#endif
-
-#if (USE_RICHMOND_SURFACE2 != 0)
-    DEFINE_SURFACE(RICHMOND_SURFACE2, &RichmondSurface2),
-#endif
-#if (USE_RICHMOND_SURFACE3 != 0)
-    DEFINE_SURFACE(RICHMOND_SURFACE3, &RichmondSurface3),
-#endif
-#if (USE_ENNEPER_SURFACE2 != 0)
-    DEFINE_SURFACE(ENNEPER_SURFACE2, &EnneperSurface2),
-#endif
-#if (USE_ENNEPER_SURFACE3 != 0)
-    DEFINE_SURFACE(ENNEPER_SURFACE3, &EnneperSurface3),
-#endif
-#if (USE_WAVY_ENNEPER_SURFACE != 0)
-    DEFINE_SURFACE(WAVY_ENNEPER_SURFACE, &WavyEnneperSurface),
-#endif
-
-#if (USE_TWISTED_RIBBON != 0)
-    DEFINE_SURFACE(TWISTED_RIBBON, &TwistedRibbon),
-#endif
-#if (USE_PLANAR_ENNEPER_SURFACE != 0)
-    DEFINE_SURFACE(PLANAR_ENNEPER_SURFACE, &PlanarEnneperSurface),
-#endif
 #if (USE_CAYLEY_SURFACE != 0)
     DEFINE_SURFACE(CAYLEY_SURFACE, &CayleySurface),
 #endif
-*/
-
-/*
-#if (USE_ROMAN_SURFACE2 != 0)
-    DEFINE_SURFACE(ROMAN_SURFACE2, &RomanSurface2),
-#endif
-#if (USE_MOEBIUS_BAND3 != 0)
-    DEFINE_SURFACE(MOEBIUS_BAND3, &MoebiusBand3),
-#endif
-#if (USE_VIRICH_CYCLIC_SURFACE != 0)
-    DEFINE_SURFACE(VIRICH_CYCLIC_SURFACE, &VirichCyclicSurface),
-#endif
-#if (USE_PSEUDODEVELOPABLE_HELICOID != 0)
-    DEFINE_SURFACE(PSEUDODEVELOPABLE_HELICOID, &PseudodevelopableHelicoid),
-#endif
-
-
 #if (USE_CROSS_CUP2 != 0)
     DEFINE_SURFACE(CROSS_CUP2, &CrossCup2),
 #endif
 #if (USE_CROSS_CUP3 != 0)
     DEFINE_SURFACE(CROSS_CUP3, &CrossCup3),
+#endif
+#if (USE_CUSPIDAL_BEAKS != 0)
+    DEFINE_SURFACE(CUSPIDAL_BEAKS, &CuspidalBeaks),
 #endif
 #if (USE_CUSPIDAL_BUTTERFLY != 0)
     DEFINE_SURFACE(CUSPIDAL_BUTTERFLY, &CuspidalButterfly),
@@ -682,55 +605,98 @@ PaSuLiRepositoryItem repositoryItems[] = {
 #if (USE_CUSPIDAL_LIPS != 0)
     DEFINE_SURFACE(CUSPIDAL_LIPS, &CuspidalLips),
 #endif
-
-#if (USE_CUSPIDAL_BEAKS != 0)
-    DEFINE_SURFACE(CUSPIDAL_BEAKS, &CuspidalBeaks),
+#if (USE_CROSSED_TROUGH_SURFACE != 0)
+    DEFINE_SURFACE(CROSSED_TROUGH_SURFACE, &CrossedTroughSurface),
 #endif
-*/
-
-/*
 #if (USE_DING_DONG_SURFACE != 0)
     DEFINE_SURFACE(DING_DONG_SURFACE, &DingDongSurface),
 #endif
-
-#if (USE_TOOTH_SURFACE != 0)
-    DEFINE_SURFACE(TOOTH_SURFACE, &ToothSurface),
+#if (USE_ENNEPER_SURFACE2 != 0)
+    DEFINE_SURFACE(ENNEPER_SURFACE2, &EnneperSurface2),
 #endif
-#if (USE_LAWSON_BOTTLE != 0)
-    DEFINE_SURFACE(LAWSON_BOTTLE, &LawsonBottle),
+#if (USE_ENNEPER_SURFACE3 != 0)
+    DEFINE_SURFACE(ENNEPER_SURFACE3, &EnneperSurface3),
+#endif
+#if (USE_EPITROCHOIDAL_SURFACE != 0)
+    DEFINE_SURFACE(EPITROCHOIDAL_SURFACE, &EpitrochoidalSurface),
+#endif
+#if (USE_FOUR_INTERSECTING_DISCS != 0)
+    DEFINE_SURFACE(FOUR_INTERSECTING_DISCS, &FourIntersectingDiscs),
 #endif
 #if (USE_GOBLET != 0)
     DEFINE_SURFACE(GOBLET, &Goblet),
 #endif
-#if (USE_BOWTIE != 0)
-    DEFINE_SURFACE(BOWTIE, &Bowtie),
-#endif
-
-#if (USE_HORNLET_SURFACE != 0)
-    DEFINE_SURFACE(HORNLET_SURFACE, &HornletSurface),
-#endif
-
-#if (USE_BALLS_CYLINDROID != 0)
-    DEFINE_SURFACE(BALLS_CYLINDROID, &BallsCylindroid),
-#endif
-
-#if (USE_EPITROCHOIDAL_SURFACE != 0)
-    DEFINE_SURFACE(EPITROCHOIDAL_SURFACE, &EpitrochoidalSurface),
-#endif
-
-#if (USE_MORIN_SURFACE != 0)
-    DEFINE_SURFACE(MORIN_SURFACE, &MorinSurface),
-#endif
-
-
-#if (USE_CROSSED_TROUGH_SURFACE != 0)
-    DEFINE_SURFACE(CROSSED_TROUGH_SURFACE, &CrossedTroughSurface),
-#endif
 #if (USE_HECTOR_GUINARDS_SURFACE != 0)
     DEFINE_SURFACE(HECTOR_GUINARDS_SURFACE, &HectorGuinardsSurface),
 #endif
-#if (USE_AGNESI_CURL != 0)
-    DEFINE_SURFACE(AGNESI_CURL, &AgnesiCurl),
+#if (USE_HORNLET_SURFACE != 0)
+    DEFINE_SURFACE(HORNLET_SURFACE, &HornletSurface),
+#endif
+#if (USE_KAI_WING_FUNG_SURFACE1 != 0)
+    DEFINE_SURFACE(KAI_WING_FUNG_SURFACE1, &KaiWingFungSurface1),
+#endif
+#if (USE_KAI_WING_FUNG_SURFACE2 != 0)
+    DEFINE_SURFACE(KAI_WING_FUNG_SURFACE2, &KaiWingFungSurface2),
+#endif
+#if (USE_KISS_SURFACE != 0)
+    DEFINE_SURFACE(KISS_SURFACE, &KissSurface),
+#endif
+#if (USE_KLEIN_BOTTLE_SURFACE2 != 0)
+    DEFINE_SURFACE(KLEIN_BOTTLE_SURFACE2, &KleinBottleSurface2),
+#endif
+#if (USE_LAWSON_BOTTLE != 0)
+    DEFINE_SURFACE(LAWSON_BOTTLE, &LawsonBottle),
+#endif
+#if (USE_MOEBIUS_BAND3 != 0)
+    DEFINE_SURFACE(MOEBIUS_BAND3, &MoebiusBand3),
+#endif
+#if (USE_MONKEY_SADDLE2 != 0)
+    DEFINE_SURFACE(MONKEY_SADDLE2, &MonkeySaddle2),
+#endif
+#if (USE_MORIN_SURFACE != 0)
+    DEFINE_SURFACE(MORIN_SURFACE, &MorinSurface),
+#endif
+#if (USE_NEOVIUS_SURFACE != 0)
+    DEFINE_SURFACE(NEOVIUS_SURFACE, &NeoviusSurface),
+#endif
+#if (USE_PARABOLIC_HUMMING_TOP != 0)
+    DEFINE_SURFACE(PARABOLIC_HUMMING_TOP, &ParabolicHummingTop),
+#endif
+#if (USE_PEANO_SURFACE != 0)
+    DEFINE_SURFACE(PEANO_SURFACE, &PeanoSurface),
+#endif
+#if (USE_PEANO_SURFACE2 != 0)
+    DEFINE_SURFACE(PEANO_SURFACE2, &PeanoSurface2),
+#endif
+#if (USE_PLANAR_ENNEPER_SURFACE != 0)
+    DEFINE_SURFACE(PLANAR_ENNEPER_SURFACE, &PlanarEnneperSurface),
+#endif
+#if (USE_PLUECKER_CONOID2 != 0)
+    DEFINE_SURFACE(PLUECKER_CONOID2, &PlueckerConoid2),
+#endif
+#if (USE_PSEUDODEVELOPABLE_HELICOID != 0)
+    DEFINE_SURFACE(PSEUDODEVELOPABLE_HELICOID, &PseudodevelopableHelicoid),
+#endif
+#if (USE_RICHMOND_SURFACE2 != 0)
+    DEFINE_SURFACE(RICHMOND_SURFACE2, &RichmondSurface2),
+#endif
+#if (USE_RICHMOND_SURFACE3 != 0)
+    DEFINE_SURFACE(RICHMOND_SURFACE3, &RichmondSurface3),
+#endif
+#if (USE_ROMAN_SURFACE2 != 0)
+    DEFINE_SURFACE(ROMAN_SURFACE2, &RomanSurface2),
+#endif
+#if (USE_RULED_ROTOR_CYLINDROID != 0)
+    DEFINE_SURFACE(RULED_ROTOR_CYLINDROID, &RuledRotorCylindroid),
+#endif
+#if (USE_SCHERK_SURFACE2 != 0)
+    DEFINE_SURFACE(SCHERK_SURFACE2, &ScherkSurface2),
+#endif
+#if (USE_SKIDAN_RULED_SURFACE != 0)
+    DEFINE_SURFACE(SKIDAN_RULED_SURFACE, &SkidanRuledSurface),
+#endif
+#if (USE_SNAIL2 != 0)
+    DEFINE_SURFACE(SNAIL2, &Snail2),
 #endif
 #if (USE_SPINNING_TOP1 != 0)
     DEFINE_SURFACE(SPINNING_TOP1, &SpinningTop1),
@@ -738,21 +704,27 @@ PaSuLiRepositoryItem repositoryItems[] = {
 #if (USE_SPINNING_TOP2 != 0)
     DEFINE_SURFACE(SPINNING_TOP2, &SpinningTop2),
 #endif
-
-
-#if (USE_KISS_SURFACE != 0)
-    DEFINE_SURFACE(KISS_SURFACE, &KissSurface),
+#if (USE_TOOTH_SURFACE != 0)
+    DEFINE_SURFACE(TOOTH_SURFACE, &ToothSurface),
 #endif
-#if (USE_NEOVIUS_SURFACE != 0)
-    DEFINE_SURFACE(NEOVIUS_SURFACE, &NeoviusSurface),
+#if (USE_TWISTED_RIBBON != 0)
+    DEFINE_SURFACE(TWISTED_RIBBON, &TwistedRibbon),
 #endif
-#if (USE_RULED_ROTOR_CYLINDROID != 0)
-    DEFINE_SURFACE(RULED_ROTOR_CYLINDROID, &RuledRotorCylindroid),
+#if (USE_VASE_HEAD != 0)
+    DEFINE_SURFACE(VASE_HEAD, &VaseHead),
 #endif
-#if (USE_PARABOLIC_HUMMING_TOP != 0)
-    DEFINE_SURFACE(PARABOLIC_HUMMING_TOP, &ParabolicHummingTop),
+#if (USE_VIRICH_CYCLIC_SURFACE != 0)
+    DEFINE_SURFACE(VIRICH_CYCLIC_SURFACE, &VirichCyclicSurface),
 #endif
-*/
+#if (USE_WAVY_ENNEPER_SURFACE != 0)
+    DEFINE_SURFACE(WAVY_ENNEPER_SURFACE, &WavyEnneperSurface),
+#endif
+#if (USE_WRINKLE_SPHERE != 0)
+    DEFINE_SURFACE(WRINKLE_SPHERE, &WrinkleSphere),
+#endif
+#if (USE_WRINKLE_SPHERE2 != 0)
+    DEFINE_SURFACE(WRINKLE_SPHERE2, &WrinkleSphere2),
+#endif
     //DEFINE_SURFACE(255, &NoneSurface)
 };
 
