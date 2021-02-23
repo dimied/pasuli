@@ -1,6 +1,6 @@
 
 #include "double_sphere.h"
-#include "sphere_c_includes.h"
+#include "surfaces_c_includes.h"
 
 #if (USE_DOUBLE_CONE != 0)
 void SomeSurface(pasuli_vartype u, pasuli_vartype v,

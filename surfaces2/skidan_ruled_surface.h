@@ -1,11 +1,11 @@
-#ifndef __PASULI_ASTROIDAL_ELLIPSOID__
-#define __PASULI_ASTROIDAL_ELLIPSOID__
+#ifndef __PASULI_SKIDAN_RULED_SURFACE__
+#define __PASULI_SKIDAN_RULED_SURFACE__
 
 #include "../pasuli_cfg.h"
 #include "../pasuli_defs.h"
 
-#if (USE_ASTROIDAL_ELLIPSOID != 0)
-void AstroidalEllipsoid(pasuli_vartype u, 
+#if (USE_SKIDAN_RULED_SURFACE != 0)
+void SkidanRuledSurface(pasuli_vartype u, 
                 pasuli_vartype v,
                 pasuli_consttype *constants,
                 PaSuLiObject *pO);

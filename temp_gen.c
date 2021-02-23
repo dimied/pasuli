@@ -18,7 +18,7 @@ void clearBuffer(char *buffer, int size)
 
 char *readMode = "r";
 char *writeMode = "w";
-char *commonInclude = "spiral_c_includes.h";
+char *commonInclude = "surfaces_c_includes.h";
 char *include = "#include";
 
 int createCFile(char *path, char *headerName)

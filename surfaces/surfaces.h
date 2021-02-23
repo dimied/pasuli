@@ -107,6 +107,8 @@
 #include "sievert_surface.h"
 #include "cosine_surface2.h"
 
+#include "../surfaces2/surfaces2.h"
+
 extern char *descTractroid;
 extern char *descCatalansSurface;
 extern char *descHyperboloid;
