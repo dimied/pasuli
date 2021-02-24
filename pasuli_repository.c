@@ -578,9 +578,6 @@ PaSuLiRepositoryItem repositoryItems[] = {
 #if (USE_BOWTIE != 0)
     DEFINE_SURFACE(BOWTIE, &Bowtie),
 #endif
-#if (USE_CATALANS_SURFACE1 != 0)
-    DEFINE_SURFACE(CATALANS_SURFACE1, &CatalansSurface1),
-#endif
 #if (USE_CATALANS_SURFACE2 != 0)
     DEFINE_SURFACE(CATALANS_SURFACE2, &CatalansSurface2),
 #endif

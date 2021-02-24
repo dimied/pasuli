@@ -7,7 +7,6 @@
 #include "balls_cylindroid.h"
 #include "bowtie.h"
 #include "boys_surface2.h"
-#include "catalans_surface1.h"
 #include "catalans_surface2.h"
 #include "cayley_surface.h"
 #include "cross_cup2.h"
