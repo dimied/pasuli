@@ -16,6 +16,11 @@
 // Or 2*cos(v)^2-1
 #define PASULI_TRIG_CALC_SUM_DIFFERENCE(C, S) (C * C - S * S)
 
+//1/4 (3 cos x + cos 3x)
+#define PASULI_TRIG_COS_POW3(COS_VALUE, V)	((3*COS_VALUE + cos(3*V))*0.25)
+//1/4 (3 sin x - sin 3x)
+#define PASULI_TRIG_SIN_POW3(SIN_VALUE, V)	((3*SIN_VALUE - sin(3*V))*0.25)
+
 // Position macros
 #if (PASULIOBJECT_POS != 0)
 #define P_X(V) pO->pos[0] = V
