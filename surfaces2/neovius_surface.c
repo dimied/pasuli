@@ -6,9 +6,19 @@
 void NeoviusSurface(pasuli_vartype u,
                     pasuli_vartype v,
                     pasuli_consttype *constants,
-                    PaSuLiObject *pO) {
+                    PaSuLiObject *pO)
+{
+    PASULI_SET_TYPE_ID(NEOVIUS_SURFACE)
 
-                    }
+    pasuli_calctype cos_u = cos(u);
+    pasuli_calctype sin_u = sin(u);
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype sin_v = sin(v);
+
+    P_X(u);
+    P_Y(v);
+    P_Z(acos(-3 * (cos_u + cos_v) / (3 + 4 * cos_u * cos_v)));
+}
 #endif
 
 #if (COMPILE_DESC_SURFACES != 0)

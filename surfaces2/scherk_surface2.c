@@ -6,9 +6,20 @@
 void ScherkSurface2(pasuli_vartype u,
                     pasuli_vartype v,
                     pasuli_consttype *constants,
-                    PaSuLiObject *pO) {
+                    PaSuLiObject *pO)
+{
+    PASULI_SET_TYPE_ID(SCHERK_SURFACE2)
 
-                    }
+    pasuli_calctype u2 = u * u;
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype sin_v = sin(v);
+    pasuli_calctype a = 1 + u2 + 2 * u * cos_v;
+    pasuli_calctype b = 1 + u2 - 2 * u * cos_v;
+
+    P_X(log(a / b));
+    P_Y(log(b / a));
+    P_Z(2 * atan(2 * u2 * sin(2 * v) / (u2 - 1)));
+}
 #endif
 
 #if (COMPILE_DESC_SURFACES != 0)

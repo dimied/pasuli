@@ -6,9 +6,31 @@
 void KaiWingFungSurface1(pasuli_vartype u,
                          pasuli_vartype v,
                          pasuli_consttype *constants,
-                         PaSuLiObject *pO) {
+                         PaSuLiObject *pO)
+{
+    PASULI_SET_TYPE_ID(KAI_WING_FUNG_SURFACE1)
 
-                         }
+    pasuli_consttype n = constants[0];
+
+    pasuli_calctype cos_u = cos(u);
+    pasuli_calctype sin_u = sin(u);
+    pasuli_calctype cosh_u = cosh(u);
+    pasuli_calctype cosh_u_pow_2 = cosh_u * cosh_u;
+    pasuli_calctype sinh_u = sinh(u);
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype sin_v = sin(v);
+
+    pasuli_calctype a = sin(MY_PI / n);
+    pasuli_calctype b = cos(MY_PI / n);
+
+    pasuli_calctype C = cosh(u) + sinh(u);
+    pasuli_calctype D = sin_v * cosh_u * sinh_u;
+    pasuli_calctype E = cos_v * cosh_u * sinh_u;
+
+    P_X((-b * cos_v * cosh_u_pow_2 - b * E + a * sin_v * cosh_u_pow_2 + a * D - a * sin_v) / C);
+    P_Y((-a * cos_v * cosh_u_pow_2 + a * E - a * cos_v + b * sin_v * cosh_u_pow_2 + b * D) / C);
+    P_Z(b * u - a * v);
+}
 #endif
 
 #if (COMPILE_DESC_SURFACES != 0)
