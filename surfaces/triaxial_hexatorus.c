@@ -39,7 +39,7 @@ void TriaxialHexatorus(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddTriaxialHexatorus = {
-    PSLDD_ID(TRIAXIAL_HEXATORUS)
+    TRIAXIAL_HEXATORUS,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_V_END_PI | PASULI_U_END_PI,
     0, 2, 0, 2, 0};

@@ -40,12 +40,15 @@ void WhitneyUmbrella(pasuli_vartype u,
 #endif
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
-PaSuLiDefDesc pslddWhitneyUmbrella = {
-    PSLDD_ID(WHITNEY_UMBRELLA)
-            PASULI_U_CLOSED |
+#include "../pasuli_const.h"
+
+PaSuLiDefDesc pslddWhitneyUmbrella = DEFINE_DEF_DESC(
+    WHITNEY_UMBRELLA,
+    PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_FULL_IMPL,
-    -1.5, 1.5, -1.5, 1.5, 0};
+    -1.5, 1.5, -1.5, 1.5, 0);
 #endif
+
 #if (COMPILE_DESC_SURFACES != 0)
 char *descWhitneyUmbrella =
     "name: Whitney Umbrella;\

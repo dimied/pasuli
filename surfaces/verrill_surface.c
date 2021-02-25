@@ -39,7 +39,7 @@ void VerrillSurface(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddVerrillSurface = {
-	PSLDD_ID(VERRILL_SURFACE)
+	VERRILL_SURFACE,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_V_END_PI,
 	0.5, 1, 0, 2, 0};

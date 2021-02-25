@@ -1,7 +1,6 @@
 
 #include "bohemian_dome_surface.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_BOHEMIAN_DOME_SURFACE != 0)
 
@@ -50,7 +49,7 @@ void BohemianDomeSurface(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddBohemianDomeSurface = {
-    PSLDD_ID(BOHEMIAN_DOME_SURFACE)
+    BOHEMIAN_DOME_SURFACE,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_U_END_PI | PASULI_V_END_PI |
         PASULI_FULL_IMPL | PASULI_CONST_COUNT(3),

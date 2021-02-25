@@ -69,6 +69,22 @@ typedef float pasulidefdesc_ct;			 //const type
 typedef float pasulidefdesc_vt;			 //variable type
 typedef unsigned short pasulidefdesc_pt; //property type
 
+typedef struct _PaSuLiDefDesc
+{
+	unsigned short ID;
+	pasulidefdesc_pt properties;
+	pasulidefdesc_vt u_start;
+	pasulidefdesc_vt u_end;
+	pasulidefdesc_vt v_start;
+	pasulidefdesc_vt v_end;
+	pasulidefdesc_ct *constants;
+} PaSuLiDefDesc;
+
+#define DEFINE_DEF_DESC(ID, PROPS, U_START, U_END, V_START, V_END, C_PTR) \
+	{                                                                     \
+		ID, PROPS, U_START, U_END, V_START, V_END, C_PTR                  \
+	}
+
 #define PASULI_U_CLOSED 0x1
 #define PASULI_V_CLOSED 0x2
 #define PASULI_U_PI 0x4
@@ -96,25 +112,11 @@ typedef unsigned short pasulidefdesc_pt; //property type
 #define PASULI_DEF_CONSTANTS_3 (PASULI_DEF_CONSTANTS_1 + PASULI_DEF_CONSTANTS_2)
 
 //4 bits( = 15 valid values) should be enough, except for SuperFormula
-#define PASULI_CONST_COUNT(X) (X << 12) 
-										
+#define PASULI_CONST_COUNT(X) (X << 12)
 
 #define GET_PASULI_CONST_COUNT(X) ((X >> 12) & 0xF)
 #define PASULI_ARE_CONSTANTS_CONST(X) (X & PASULI_CONST_CONSTANTS)
 #define PASULI_IS_FULL_IMPLEMENTED(X) (X & PASULI_FULL_IMPL)
-
-typedef struct _PaSuLiDefDesc
-{
-#if (USE_ID_IN_PSLDD != 0)
-	unsigned short _ID;
-#endif
-	pasulidefdesc_pt properties;
-	pasulidefdesc_vt u_start;
-	pasulidefdesc_vt u_end;
-	pasulidefdesc_vt v_start;
-	pasulidefdesc_vt v_end;
-	pasulidefdesc_ct *constants;
-} PaSuLiDefDesc;
 
 //Following two macros should be ORed
 #define COPY_DEFDESC_RANGE_TYPE(X) (X)

@@ -1,7 +1,6 @@
 
 #include "swallow_surface.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_SWALLOW_SURFACE != 0)
 void SwallowSurface(pasuli_vartype u, pasuli_vartype v,
@@ -44,7 +43,7 @@ void SwallowSurface(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddSwallowSurface = {
-    PSLDD_ID(SWALLOW_SURFACE)
+    SWALLOW_SURFACE,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_FULL_IMPL,
     -2, 2, -0.75, 0.75, 0};

@@ -53,7 +53,7 @@ void CosineSurface2(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddCosineSurface2 = {
-	PSLDD_ID(COSINE_SURFACE2)
+	COSINE_SURFACE2,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_START_PI | PASULI_U_END_PI |
 		PASULI_V_START_PI | PASULI_V_END_PI,

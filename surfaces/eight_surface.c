@@ -1,7 +1,6 @@
 
 #include "eight_surface.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_EIGHT_SURFACE != 0)
 void EightSurface(pasuli_vartype u, pasuli_vartype v,
@@ -50,7 +49,7 @@ void EightSurface(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddEightSurface = {
-    PSLDD_ID(EIGHT_SURFACE)
+    EIGHT_SURFACE,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_U_END_PI |
         PASULI_V_START_PI | PASULI_V_END_PI | PASULI_FULL_IMPL,

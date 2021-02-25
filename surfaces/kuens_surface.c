@@ -23,7 +23,7 @@ void KuensSurface(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddKuensSurface = {
-	PSLDD_ID(KUENS_SURFACE)
+	KUENS_SURFACE,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED,
 	-4.3f, 4.3f, 0.03f, 3.11f, 0};

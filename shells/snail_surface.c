@@ -51,7 +51,7 @@ void SnailSurface(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SHELLS != 0)
 PaSuLiDefDesc pslddSnailSurface = {
-	PSLDD_ID(SNAIL_SURFACE)
+	SNAIL_SURFACE,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI |
 		PASULI_V_START_PI | PASULI_V_END_PI | PASULI_CONST_COUNT(0),

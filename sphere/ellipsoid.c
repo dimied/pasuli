@@ -50,16 +50,16 @@ void Ellipsoid(pasuli_vartype u,
 	VVD_Z(-c * cos_v);
 }
 #endif
-
+/*
 #if (COMPILE_DEF_DESC_SPHERE != 0)
 PaSuLiDefDesc pslddEllipsoid = {
-	PSLDD_ID(ELLIPSOID)
+	ELLIPSOID,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI | PASULI_V_END_PI |
 		PASULI_FULL_IMPL | PASULI_CONST_COUNT(3),
 	0, 2, 0, 1, sphere_def_constants};
 #endif
-
+*/
 #if (COMPILE_DESC_SPHERE != 0)
 char *descEllipsoid =
 	"name: ellipsoid;\

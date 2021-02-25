@@ -14,8 +14,6 @@ void Fresnel(pasuli_vartype u, pasuli_vartype v,
     pasuli_consttype c = constants[2];
 
     pasuli_calctype c_squared = c * c;
-    pasuli_calctype c2_div_a = c_squared / a;
-    pasuli_calctype c2_div_b = c_squared / b;
 
     pasuli_calctype cos_u = cos(u);
     pasuli_calctype cos_u_sq = cos_u * cos_u;
@@ -25,7 +23,7 @@ void Fresnel(pasuli_vartype u, pasuli_vartype v,
     pasuli_calctype sin_v = sin(v);
     pasuli_calctype divisor = sin_v * sin_v + c_squared * cos_v * cos_v * (cos_u * cos_u / (a * a) + sin_u * sin_u / (b * b));
 
-    P_X(cos_u_sq * c_squared / (b * divisor));
+    P_X(cos_u_sq * c_squared / (a * divisor));
     P_Y((sin_u * cos_v * c_squared) / (b * divisor));
     P_Z(c * sin_v / divisor);
 

@@ -20,8 +20,8 @@ void SphereUV(pasuli_vartype u,
 	P_Y((1.0 - u_squared) / (u_squared_plus_1));
 	P_Z((4.0 * u * v) / (u_squared_plus_1 * v_squared_plus_1));
 
-	pasuli_calctype uqp1q = u_squared_plus_1 * u_squared_plus_1;
-	pasuli_calctype divisor = v_squared_plus_1 * uqp1q;
+	//pasuli_calctype uqp1q = u_squared_plus_1 * u_squared_plus_1;
+	//pasuli_calctype divisor = v_squared_plus_1 * uqp1q;
 
 	// No division by common factor (1+u*u)^2
 	UD_X(2 * (u_squared * v_squared - u_squared - v_squared + 1) / v_squared_plus_1);
@@ -37,30 +37,12 @@ void SphereUV(pasuli_vartype u,
 	N_X(2 * u_squared * (v_squared - 1));
 	N_Y(u * (u_squared * v_squared + u_squared - v_squared - 1));
 	N_Z(4 * u_squared * v);
-
-	/* Not validated yet
-	divisor = uqp1q * uqp1 * vqp1;
-
-	UUD_X(4 * u * (3 * (vq - 1) + uq * (1 - vq)) / divisor);
-	UUD_Y(4 * (-1 + uq * (-1 + uq * (5 + uq * (20 + uq * (25 + uq * (14 + 3 * uq)))))) / (uqp1q * uqp1q * uqp1q * uqp1q));
-	UUD_Z(8 * u * v * (uq - 3) / divisor);
-
-	divisor = vqp1q * uqp1q;
-	UVD_X(8 * v * (uq - 1) / divisor);
-	UVD_Y_CONST(0);
-	UVD_Z(4 * (1 - vq - uq + uq * vq) / divisor);
-
-	divisor = uqp1 * vqp1q * vqp1;
-	VVD_X(8 * u * (-1 + vq * (-5 + vq * (-4 + vq * (28 + vq * (98 + vq * (154 + vq * (140 + vq * (76 + vq * (23 + vq * 3))))))))) / (divisor * vqp1q * vqp1q * vqp1q * vqp1q));
-	VVD_Y_CONST(0);
-	VVD_Z(8 * u * v * (vq - 3) / divisor);
-	*/
 }
 #endif
 
 #if (COMPILE_DEF_DESC_SPHERE != 0)
 PaSuLiDefDesc pslddSphereUV = {
-	PSLDD_ID(SPHERE_UV)
+	SPHERE_UV,
 			PASULI_FULL_IMPL |
 		PASULI_U_CLOSED | PASULI_V_CLOSED,
 	0, 10, -10, 10, 0};

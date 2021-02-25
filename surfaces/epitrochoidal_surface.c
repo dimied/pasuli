@@ -16,7 +16,6 @@ void EpitrochoidalSurface(pasuli_vartype u,
     pasuli_calctype cos_u = cos(u);
     pasuli_calctype sin_u = sin(u);
     pasuli_calctype cos_v = cos(v);
-    pasuli_calctype sin_v = sin(v);
     pasuli_calctype sin_2v = sin(2 * v);
 
     pasuli_calctype R = a * (1 + m * cos_u);

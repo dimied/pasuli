@@ -1,7 +1,6 @@
 
 #include "richmond_surface.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_RICHMOND_SURFACE != 0)
 void RichmondSurface(pasuli_vartype u, pasuli_vartype v,
@@ -42,7 +41,7 @@ void RichmondSurface(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddRichmondSurface = {
-    PSLDD_ID(RICHMOND_SURFACE)
+    RICHMOND_SURFACE,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED,
     -1, 1, -1, 1, 0};

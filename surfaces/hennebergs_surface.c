@@ -1,7 +1,6 @@
 
 #include "hennebergs_surface.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_HENNEBERGS_SURFACE != 0)
 void HennebergsSurface(pasuli_vartype u, pasuli_vartype v,
@@ -44,7 +43,7 @@ void HennebergsSurface(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddHennebergsSurface = {
-    PSLDD_ID(HENNEBERGS_SURFACE)
+    HENNEBERGS_SURFACE,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_V_START_PI | PASULI_V_END_PI,
     -1, 1, -0.5, 0.5, 0};

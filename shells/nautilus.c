@@ -21,7 +21,7 @@ void Nautilus(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SHELLS != 0)
 PaSuLiDefDesc pslddNautilus = {
-	PSLDD_ID(NAUTILUS)
+	NAUTILUS,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED |
 		PASULI_V_END_PI | PASULI_CONST_CONSTANTS | PASULI_CONST_COUNT(2) |

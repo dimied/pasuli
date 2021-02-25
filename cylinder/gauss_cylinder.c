@@ -45,7 +45,7 @@ void GaussCylinder(pasuli_vartype u, pasuli_vartype v,
 #if (COMPILE_DEF_DESC_CYLINDER != 0)
 //pasulidefdesc_ct gc_constants[] = {1.0, 1.0, 1.0};
 PaSuLiDefDesc pslddGaussCylinder = {
-	PSLDD_ID(GAUSS_CYLINDER)
+	GAUSS_CYLINDER,
 			PASULI_U_CLOSED |
 		PASULI_U_START_PI | PASULI_U_END_PI |
 		PASULI_FULL_IMPL | PASULI_CONST_COUNT(3),

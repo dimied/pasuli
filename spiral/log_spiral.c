@@ -49,7 +49,7 @@ void LogSpiral(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SPIRAL != 0)
 PaSuLiDefDesc pslddLogSpiral = {
-	PSLDD_ID(LOG_SPIRAL)
+	LOG_SPIRAL,
 			PASULI_U_CLOSED |
 		PASULI_FULL_IMPL | PASULI_CONST_COUNT(2),
 	0, 25, 0, 1, 0};

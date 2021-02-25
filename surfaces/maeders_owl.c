@@ -1,7 +1,6 @@
 
 #include "maeders_owl.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_MAEDERS_OWL != 0)
 void MaedersOwl(pasuli_vartype u, pasuli_vartype v,
@@ -34,7 +33,7 @@ void MaedersOwl(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddMaedersOwl = {
-	PSLDD_ID(MAEDERS_OWL)
+	MAEDERS_OWL,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI,
 	0, 4, 0.001f, 1, 0};

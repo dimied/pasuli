@@ -50,15 +50,17 @@ void EpizykloidCylinder(pasuli_vartype u,
 }
 #endif
 
+/*
 #if (COMPILE_DEF_DESC_CYLINDER != 0)
 pasulidefdesc_ct ec_constants[] = {1.5, 1.0, 0.5, 1.0};
 PaSuLiDefDesc pslddEpizykloidCylinder = {
-	PSLDD_ID(EPIZYKLOID_CYLINDER)
+	EPIZYKLOID_CYLINDER,
 			PASULI_U_CLOSED |
 		PASULI_U_START_PI | PASULI_U_END_PI |
 		PASULI_FULL_IMPL | PASULI_CONST_COUNT(4),
 	-1, 1, 0, 1, ec_constants};
 #endif
+*/
 #if (COMPILE_DESC_CYLINDER != 0)
 char *descEpizykloidCylinder =
 	"name: Epizykloid-Cylinder;\

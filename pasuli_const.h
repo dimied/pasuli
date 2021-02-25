@@ -40,8 +40,6 @@ enum PaSuLiInfo
 	PASULI_INFO_NAME_PTR
 };
 
-void *getPaSuLiPointer(unsigned int uiSurfaceType, unsigned int uiInfo);
-
 #define PASULI_CAT_SURFACES 0
 #define PASULI_CAT_CYLINDER 1
 #define PASULI_CAT_FRUITS 2
@@ -51,11 +49,6 @@ void *getPaSuLiPointer(unsigned int uiSurfaceType, unsigned int uiInfo);
 #define PASULI_CAT_TORUS 6
 #define PASULI_CAT_INVALID_TYPE 7
 #define PASULI_CATEGORY_COUNT 7
-
-typedef unsigned char pasuli_funcnum_range_type;
-typedef unsigned char pasuli_avail_info_type;
-extern pasuli_funcnum_range_type pasuli_cat_func_ranges[PASULI_CATEGORY_COUNT];
-extern pasuli_avail_info_type availablePaSuLiInfo[PASULI_CATEGORY_COUNT];
 
 //These constants define unique IDs for surfaces/surface types
 enum SurfaceType
@@ -351,4 +344,10 @@ enum SurfaceType
 #define PASULI_IS_DESC_PART_AVAILABLE(X) (X & (0x1 << 2))
 #define PASULI_IS_NAME_PART_AVAILABLE(X) (X & (0x1 << 3))
 
+/*
+typedef unsigned char pasuli_funcnum_range_type;
+typedef unsigned char pasuli_avail_info_type;
+extern pasuli_funcnum_range_type pasuli_cat_func_ranges[PASULI_CATEGORY_COUNT];
+extern pasuli_avail_info_type availablePaSuLiInfo[PASULI_CATEGORY_COUNT];
+*/
 #endif

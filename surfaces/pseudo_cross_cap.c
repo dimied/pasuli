@@ -53,7 +53,7 @@ void PseudoCrossCap(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddPseudoCrossCap = {
-	PSLDD_ID(PSEUDO_CROSS_CAP)
+	PSEUDO_CROSS_CAP,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_V_START_PI | PASULI_V_END_PI,
 	-1, 1, -1, 1, 0};

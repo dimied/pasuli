@@ -12,7 +12,6 @@ void ScherkSurface2(pasuli_vartype u,
 
     pasuli_calctype u2 = u * u;
     pasuli_calctype cos_v = cos(v);
-    pasuli_calctype sin_v = sin(v);
     pasuli_calctype a = 1 + u2 + 2 * u * cos_v;
     pasuli_calctype b = 1 + u2 - 2 * u * cos_v;
 

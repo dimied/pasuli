@@ -63,7 +63,7 @@ void PseudoSphere(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SPHERE != 0)
 PaSuLiDefDesc pslddPseudoSphere = {
-	PSLDD_ID(PSEUDOSPHERE)
+	PSEUDOSPHERE,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED |
 		PASULI_U_START_PI | PASULI_U_END_PI |

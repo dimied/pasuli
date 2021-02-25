@@ -42,7 +42,7 @@ void Cornucopia(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SHELLS != 0)
 PaSuLiDefDesc pslddCornucopia = {
-	PSLDD_ID(CORNUCOPIA)
+	CORNUCOPIA,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_START_PI | PASULI_U_END_PI |
 		PASULI_V_END_PI | PASULI_CONST_COUNT(2),

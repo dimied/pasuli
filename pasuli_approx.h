@@ -3,7 +3,6 @@
 
 #include "pasuli_defs.h"
 
-
 #define PASULI_APPROX_DIFFERENCE		0.0001
 
 typedef double pasuli_approx_type;

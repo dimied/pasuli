@@ -59,7 +59,7 @@ void Torus(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddTorus = {
-	PSLDD_ID(TORUS)
+	TORUS,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED |
 		PASULI_U_END_PI | PASULI_V_END_PI | PASULI_FULL_IMPL | PASULI_CONST_COUNT(2),

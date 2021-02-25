@@ -53,7 +53,7 @@ void HoleDisc(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddHoleDisc = {
-    PSLDD_ID(HOLE_DISC)
+    HOLE_DISC,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_U_END_PI,
     0, 2, 3, 4.5, 0};

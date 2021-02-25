@@ -53,14 +53,16 @@ void WaveTorus(pasuli_vartype u,
 #include "torus_desc.h"
 #include "torus_const.h"
 
+/*
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddWaveTorus = {
-	PSLDD_ID(WAVE_TORUS)
+	WAVE_TORUS,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI |
 		PASULI_V_END_PI | PASULI_CONST_COUNT(4),
 	0, 2, 0, 2, torus_def_constants};
 #endif
+*/
 
 #if (COMPILE_DESC_TORUS != 0)
 char *descWaveTorus =

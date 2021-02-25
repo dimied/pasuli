@@ -21,7 +21,6 @@ void KleinBottleSurface(pasuli_vartype u, pasuli_vartype v,
 }
 #endif
 /*
-/**
  * This formula is not implemented
 r = 4 (1 - cos(u)/2)
 

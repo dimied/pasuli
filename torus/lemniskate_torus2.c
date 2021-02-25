@@ -47,7 +47,7 @@ void LemniskateTorus2(pasuli_vartype u,
 /*
 #if(COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddLemniskateTorus2 = {
-PSLDD_ID(LEMNISKATE_TORUS_2)
+LEMNISKATE_TORUS_2,
 PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|\
 PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 0 , 2 , 0 , 2 , torus_def_constants };

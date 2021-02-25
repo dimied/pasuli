@@ -72,7 +72,7 @@ zvv: pi^2*(1 - (cos(v) + cos(v)*sin(v) + sin(v)^2/(10 - pi*v)^2\
 
 #if (COMPILE_DEF_DESC_FRUITS != 0)
 PaSuLiDefDesc pslddAppleSurface = {
-    PSLDD_ID(APPLE_SURFACE)
+    APPLE_SURFACE,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_U_END_PI |
         PASULI_V_START_PI | PASULI_V_END_PI | PASULI_FULL_IMPL,

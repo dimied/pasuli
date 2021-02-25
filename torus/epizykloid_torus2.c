@@ -49,7 +49,7 @@ void EpizykloidTorus2(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddEpizykloidTorus2 = {
-	PSLDD_ID(EPIZYKLOID_TORUS_2)
+	EPIZYKLOID_TORUS_2,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI |
 		PASULI_V_END_PI | PASULI_CONST_COUNT(4),

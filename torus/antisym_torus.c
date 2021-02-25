@@ -28,7 +28,6 @@ void AntisymmetricTorus(pasuli_vartype u,
 	P_Y(posxy * sin_u);
 	P_Z(sin_v * r_a_sin_u);
 
-	pasuli_calctype udxy = r * cos_v * cos_u;
 	UD_X(r * cos_v * cos_u * cos_u - (R + cos_v * r_a_sin_u) * sin_u);
 	UD_Y((R + cos_v * (a + 2 * sin_u) * r) * cos_u);
 	UD_Z(r * sin_v * cos_u);
@@ -44,16 +43,17 @@ void AntisymmetricTorus(pasuli_vartype u,
 
 #endif
 
+/*
 #if (COMPILE_DEF_DESC_TORUS != 0)
 #include "torus_const.h"
 PaSuLiDefDesc pslddAntisymmetricTorus = {
-	PSLDD_ID(ANTISYMMETRIC_TORUS)
+	ANTISYMMETRIC_TORUS,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED |
 		PASULI_U_END_PI | PASULI_V_END_PI | PASULI_CONST_COUNT(2),
 	0, 2, 0, 2, torus_def_constants};
 #endif
-
+*/
 #if (COMPILE_DESC_TORUS != 0)
 char *descAntisymmetricTorus =
 	"name: Antisymmetric Torus;\

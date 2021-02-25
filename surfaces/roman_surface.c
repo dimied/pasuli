@@ -1,7 +1,6 @@
 
 #include "roman_surface.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_ROMAN_SURFACE != 0)
 void RomanSurface(pasuli_vartype u,
@@ -39,7 +38,7 @@ void RomanSurface(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddRomanSurface = {
-    PSLDD_ID(ROMAN_SURFACE)
+    ROMAN_SURFACE,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_V_END_PI | PASULI_FULL_IMPL,
     0, 1, 0, 2, 0};

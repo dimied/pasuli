@@ -1,7 +1,6 @@
 
 #include "monkey_saddle.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_MONKEY_SADDLE != 0)
 void MonkeySaddle(pasuli_vartype u, pasuli_vartype v,
@@ -42,7 +41,7 @@ void MonkeySaddle(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddMonkeySaddle = {
-    PSLDD_ID(MONKEY_SADDLE)
+    MONKEY_SADDLE,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_FULL_IMPL,
     -1, 1, -1, 1, 0};

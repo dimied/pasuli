@@ -37,7 +37,7 @@ void EnneperSurfacePolar(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddEnneperSurfacePolar = {
-	PSLDD_ID(ENNEPER_SURFACE_POLAR)
+	ENNEPER_SURFACE_POLAR,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI,
 	0, 2, 0, 2.5f, 0};

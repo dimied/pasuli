@@ -40,7 +40,7 @@ void Tractroid(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddTractroid = {
-	PSLDD_ID(TRACTROID)
+	TRACTROID,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_V_END_PI,
 	0, 4, 0, 2, 0};

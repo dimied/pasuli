@@ -41,7 +41,7 @@ void Folium(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddFolium = {
-	PSLDD_ID(FOLIUM)
+	FOLIUM,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_START_PI | PASULI_U_END_PI |
 		PASULI_V_START_PI | PASULI_V_END_PI,

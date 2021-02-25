@@ -43,7 +43,7 @@ void Disc(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddDisc = {
-    PSLDD_ID(DISC)
+    DISC,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_U_END_PI,
     0, 2, 0, 1, 0};

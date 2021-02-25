@@ -50,7 +50,7 @@ void TrefoilKnots(pasuli_vartype u, pasuli_vartype v,
 /*
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddTrefoilKnots = {
-    PSLDD_ID(TREFOIL_KNOTS)
+    TREFOIL_KNOTS,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_U_END_PI | PASULI_V_END_PI |
         PASULI_CONST_COUNT(2),

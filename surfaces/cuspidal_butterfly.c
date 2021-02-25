@@ -10,7 +10,6 @@ void CuspidalButterfly(pasuli_vartype u,
 {
     PASULI_SET_TYPE_ID(CUSPIDAL_BUTTERFLY)
 
-    pasuli_calctype u2 = u * u;
     pasuli_calctype v2 = v * v;
 
     P_X(u);

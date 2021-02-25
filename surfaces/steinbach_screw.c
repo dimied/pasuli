@@ -1,7 +1,6 @@
 
 #include "steinbach_screw.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_STEINBACH_SCREW != 0)
 
@@ -49,7 +48,7 @@ void SteinbachScrew(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddSteinbachScrew = {
-    PSLDD_ID(STEINBACH_SCREW)
+    STEINBACH_SCREW,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_V_END_PI | PASULI_FULL_IMPL,
     -4, 4, 0, 2, 0};

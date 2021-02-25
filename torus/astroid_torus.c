@@ -42,7 +42,7 @@ void AstroidTorus(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddAstroidTorus = {
-	PSLDD_ID(ASTROID_TORUS)
+	ASTROID_TORUS,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI |
 		PASULI_V_END_PI | PASULI_CONST_COUNT(2),

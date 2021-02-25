@@ -11,9 +11,7 @@ void NeoviusSurface(pasuli_vartype u,
     PASULI_SET_TYPE_ID(NEOVIUS_SURFACE)
 
     pasuli_calctype cos_u = cos(u);
-    pasuli_calctype sin_u = sin(u);
     pasuli_calctype cos_v = cos(v);
-    pasuli_calctype sin_v = sin(v);
 
     P_X(u);
     P_Y(v);

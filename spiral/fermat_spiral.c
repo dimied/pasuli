@@ -50,7 +50,7 @@ void FermatSpiral(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SPIRAL != 0)
 PaSuLiDefDesc pslddFermatSpiral = {
-	PSLDD_ID(FERMAT_SPIRAL)
+	FERMAT_SPIRAL,
 			PASULI_U_CLOSED |
 		PASULI_FULL_IMPL | PASULI_CONST_COUNT(1),
 	0, 10, 0, 1, 0};

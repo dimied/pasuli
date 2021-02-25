@@ -49,15 +49,17 @@ void HypozykloidCylinder(pasuli_vartype u, pasuli_vartype v,
 }
 #endif
 
+/*
 #if (COMPILE_DEF_DESC_CYLINDER != 0)
 pasulidefdesc_ct hc_constants[] = {1.5, 1.0, 0.5, 1.0};
 PaSuLiDefDesc pslddHypozykloidCylinder = {
-	PSLDD_ID(HYPOZYKLOID_CYLINDER)
+	HYPOZYKLOID_CYLINDER,
 			PASULI_U_CLOSED |
 		PASULI_U_START_PI | PASULI_U_END_PI |
 		PASULI_FULL_IMPL | PASULI_CONST_COUNT(4),
 	-1, 1, 0, 1, hc_constants};
 #endif
+*/
 #if (COMPILE_DESC_CYLINDER != 0)
 char *descHypozykloidCylinder =
 	"name: Hypozykloid-Cylinder;\

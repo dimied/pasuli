@@ -12,8 +12,6 @@ void KaiWingFungSurface1(pasuli_vartype u,
 
     pasuli_consttype n = constants[0];
 
-    pasuli_calctype cos_u = cos(u);
-    pasuli_calctype sin_u = sin(u);
     pasuli_calctype cosh_u = cosh(u);
     pasuli_calctype cosh_u_pow_2 = cosh_u * cosh_u;
     pasuli_calctype sinh_u = sinh(u);

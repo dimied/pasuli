@@ -61,9 +61,10 @@ int extractRangeValue(char *pRangeText)
         }
 
         memset(nameBuffer, 0, 32);
-        char *pAfter = copyTrimmed(pRangeText,
-                                   rangeTextLength,
-                                   nameBuffer, 0);
+        //char *pAfter =
+        copyTrimmed(pRangeText,
+                    rangeTextLength,
+                    nameBuffer, 0);
 
         char *pAfterPoints = strstr(nameBuffer, ":");
         int copied = 0;
@@ -212,7 +213,7 @@ void extractText(char *pBuffer, PaSuLiFunctionDescription *pResult)
     if (nameBuffer[0] == 'a')
     {
         int idx = atoi(nameBuffer + 1);
-        
+
         if (idx < 0)
         {
             printf("Error: failed to parse abbreviation: %s\n", nameBuffer);

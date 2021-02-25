@@ -46,7 +46,7 @@ void CurlyTorus2(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddCurlyTorus2 = {
-	PSLDD_ID(CURLY_TORUS_2)
+	CURLY_TORUS_2,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI |
 		PASULI_V_END_PI | PASULI_CONST_COUNT(4),

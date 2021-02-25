@@ -70,7 +70,7 @@ zn: ?;";
 #if (COMPILE_DEF_DESC_CYLINDER != 0)
 //pasulidefdesc_ct sc_constants[] = {1.0, 1.0};
 PaSuLiDefDesc pslddStrophoideCylinder = {
-	PSLDD_ID(STROPHOIDE_CYLINDER)
+	STROPHOIDE_CYLINDER,
 			PASULI_U_CLOSED |
 		PASULI_U_START_PI | PASULI_U_END_PI |
 		PASULI_FULL_IMPL | PASULI_CONST_COUNT(2),

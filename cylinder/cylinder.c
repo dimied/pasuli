@@ -14,29 +14,29 @@ void Cylinder(pasuli_vartype u,
 
 	pasuli_consttype r = constants[0];
 
-	//PREPARE_POS_X(r * cos(u));
-	//PREPARE_POS_Y(r * sin(u));
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_u = sin(u);
 
-	P_X(r * cos(u));
-	P_Y(r * sin(u));
+	P_X(r * cos_u);
+	P_Y(r * sin_u);
 	P_Z(v);
 
-	UD_X(-PASULI_COND_COPY_POS_Y(r * sin(u)));
-	UD_Y(PASULI_COND_COPY_POS_X(r * cos(u)));
+	UD_X(-PASULI_COND_COPY_POS_Y(r * sin_u));
+	UD_Y(PASULI_COND_COPY_POS_X(r * cos_u));
 	UD_Z_CONST(0);
 
 	VD_X_CONST(0);
 	VD_Y_CONST(0);
 	VD_Z_CONST(1);
 
-	N_X(PASULI_COND_COPY_POS_X(r * cos(u)));
-	N_Y(PASULI_COND_COPY_POS_Y(r * sin(u)));
+	N_X(PASULI_COND_COPY_POS_X(r * cos_u));
+	N_Y(PASULI_COND_COPY_POS_Y(r * sin_u));
 	N_Z_CONST(0);
 
 	PASULI_2ND_DERIVATIVES_START
 
-	UUD_X(-PASULI_COND_COPY_POS_X(r * cos(u)));
-	UUD_Y(-PASULI_COND_COPY_POS_X(r * sin(u)));
+	UUD_X(-PASULI_COND_COPY_POS_X(r * cos_u));
+	UUD_Y(-PASULI_COND_COPY_POS_X(r * sin_u));
 	UUD_Z(0);
 
 	UVD_ALL(0);
@@ -46,15 +46,17 @@ void Cylinder(pasuli_vartype u,
 }
 #endif
 
+/*
 #if (COMPILE_DEF_DESC_CYLINDER != 0)
 //pasulidefdesc_ct c_constants[] = {1};
 PaSuLiDefDesc pslddCylinder = {
-	PSLDD_ID(CYLINDER)
+	CYLINDER,
 			PASULI_U_CLOSED |
 		PASULI_U_START_PI | PASULI_U_END_PI |
 		PASULI_FULL_IMPL | PASULI_CONST_COUNT(1),
 	-1, 1, 0, 1, (pasulidefdesc_ct *)0}; //c_constants};
 #endif
+*/
 #if (COMPILE_DESC_CYLINDER != 0)
 char *descCylinder =
 	"name: Cylinder;\

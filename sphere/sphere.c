@@ -58,7 +58,7 @@ pasulidefdesc_ct sphere_def_constants[] = {1.5, 1.0, 1.0};
 
 #if (COMPILE_DEF_DESC_SPHERE != 0)
 PaSuLiDefDesc pslddSphere = {
-	PSLDD_ID(SPHERE)
+	SPHERE,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI | PASULI_V_END_PI |
 		PASULI_FULL_IMPL | PASULI_CONST_COUNT(0),

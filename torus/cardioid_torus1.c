@@ -45,7 +45,7 @@ void CardioidTorus1(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddCardioidTorus1 = {
-	PSLDD_ID(CARDIOID_TORUS_1)
+	CARDIOID_TORUS_1,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI |
 		PASULI_V_END_PI | PASULI_CONST_COUNT(2),

@@ -43,7 +43,7 @@ void Seashell(pasuli_vartype u,
 #endif
 #if (COMPILE_DEF_DESC_SHELLS != 0)
 PaSuLiDefDesc pslddSeashell = {
-	PSLDD_ID(SEASHELL)
+	SEASHELL,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED |
 		PASULI_CONST_COUNT(4),

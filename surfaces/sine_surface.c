@@ -1,8 +1,6 @@
 
 #include "sine_surface.h"
-
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_SINE_SURFACE != 0)
 
@@ -53,7 +51,7 @@ void SineSurface(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddSineSurface = {
-    PSLDD_ID(SINE_SURFACE)
+    SINE_SURFACE,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_U_START_PI | PASULI_U_END_PI |
         PASULI_V_START_PI | PASULI_V_END_PI | PASULI_FULL_IMPL,

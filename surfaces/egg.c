@@ -45,7 +45,7 @@ void Egg(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0) //TODO TODO
 PaSuLiDefDesc pslddEgg = {
-	PSLDD_ID(EGG)
+	EGG,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_V_END_PI | PASULI_CONST_COUNT(3) |
 		PASULI_CALC_U_END,

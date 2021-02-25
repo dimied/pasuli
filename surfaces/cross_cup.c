@@ -1,7 +1,6 @@
 
 #include "cross_cup.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_CROSS_CUP != 0)
 
@@ -41,7 +40,7 @@ void CrossCup(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddCrossCup = {
-    PSLDD_ID(CROSS_CUP)
+    CROSS_CUP,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_V_END_PI,
     0, 1, 0, 2, 0};

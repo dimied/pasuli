@@ -169,7 +169,6 @@ int contains_only(char* szSrcString, int srcLength,
 		return 0;
 	}
 
-	int i2 = 0;
 	while( ( secondLength > 0) && (i < srcLength) ) {
 		if( *szSrcString !=  *szStringToBeIn ) {
 			break;
@@ -241,9 +240,9 @@ void parsePaSuLiDesc(char* szDescString, PaSuLiTextDesc *pPSLD) {
 	//parse 
 	//loop till end;
 
-	char* start = szDescString;
+	//char* start = szDescString;
 	char* curPos = szDescString;
-	char* endPos;
+	//char* endPos;
 	char* starts[MAX_SEPARATORS];
 	int curSepCount = 1;
 	// TODO
@@ -273,7 +272,7 @@ void parsePaSuLiDesc(char* szDescString, PaSuLiTextDesc *pPSLD) {
 			curPos++;
 			
 		}
-		endPos = curPos;
+		//endPos = curPos;
 		//LINE PARSED
 		//INTERPRET
 		int elemID = 0;

@@ -54,7 +54,7 @@ void TwistedSphere(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SPHERE != 0)
 PaSuLiDefDesc pslddTwistedSphere = {
-    PSLDD_ID(TWISTED_SPHERE)
+    TWISTED_SPHERE,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_U_END_PI |
         PASULI_V_START_PI | PASULI_V_END_PI |

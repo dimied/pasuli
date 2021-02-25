@@ -59,7 +59,7 @@ void WaveSphere(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SPHERE != 0)
 PaSuLiDefDesc pslddWaveSphere = {
-	PSLDD_ID(WAVE_SPHERE)
+	WAVE_SPHERE,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_V_END_PI |
 		PASULI_FULL_IMPL,

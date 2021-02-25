@@ -14,7 +14,6 @@ void Spring1(pasuli_vartype u,
 	pasuli_consttype R = constants[0];
 	pasuli_consttype r = constants[1];
 	pasuli_consttype L = constants[2];
-	pasuli_consttype N = constants[3];
 
 	pasuli_calctype cos_u = cos(u);
 	pasuli_calctype sin_u = sin(u);
@@ -70,7 +69,7 @@ char *descSpring1 =
 ut:c; vt:c;\
 us: 0; ue:pi: 2;\
 vs: 0; ve:pi: 2;\
-c1:R: 1.5; c2:r: 0.5; c3:L: 1.0; c4:N: 1.0;\
+c1:R: 1.5; c2:r: 0.5; c3:L: 1.0;\
 x: (R + r*cos(v))*cos(u);\
 y: (R + r*cos(v))*sin(u);\
 z: r*(sin(v) + L*u/pi);\

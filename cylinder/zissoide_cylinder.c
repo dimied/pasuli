@@ -75,7 +75,7 @@ zvv: 2*a*cos(u)*(4*v^4*/(v*v + 1)^2 - 5*v*v/(v*v + 1) +1) /(v*v + 1); ";
 #if (COMPILE_DEF_DESC_CYLINDER != 0)
 //pasulidefdesc_ct zc_constants[] = {1.0, 1.0};
 PaSuLiDefDesc pslddZissoideCylinder = {
-	PSLDD_ID(ZISSOIDE_CYLINDER)
+	ZISSOIDE_CYLINDER,
 			PASULI_U_CLOSED |
 		PASULI_U_START_PI | PASULI_U_END_PI |
 		PASULI_FULL_IMPL | PASULI_CONST_COUNT(2),

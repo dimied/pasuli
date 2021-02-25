@@ -14,11 +14,6 @@ void PlanarEnneperSurface(pasuli_vartype u,
     pasuli_consttype A = constants[1];
     pasuli_consttype a = constants[2];
 
-    pasuli_calctype cos_u = cos(u);
-    pasuli_calctype sin_u = sin(u);
-    pasuli_calctype cos_v = cos(v);
-    pasuli_calctype sin_v = sin(v);
-
     pasuli_calctype exp_2au = exp(2 * a * u);
     pasuli_calctype exp_minus_nu = exp(-(n + 1) * u);
     pasuli_calctype exp_plus_nu = exp((n + 1) * u);

@@ -44,7 +44,7 @@ void BraidedTorus(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddBraidedTorus = {
-	PSLDD_ID(BRAIDED_TORUS)
+	BRAIDED_TORUS,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI |
 		PASULI_V_END_PI | PASULI_CONST_COUNT(4),

@@ -1,7 +1,6 @@
 
 #include "enneper_surface.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_ENNEPER_SURFACE != 0)
 void EnneperSurface(pasuli_vartype u, pasuli_vartype v,
@@ -47,7 +46,7 @@ void EnneperSurface(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddEnneperSurface = {
-	PSLDD_ID(ENNEPER_SURFACE)
+	ENNEPER_SURFACE,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_FULL_IMPL,
 	-2, 2, -2, 2, 0};

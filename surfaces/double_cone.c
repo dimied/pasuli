@@ -49,7 +49,7 @@ void DoubleCone(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddDoubleCone = {
-    PSLDD_ID(DOUBLE_CONE)
+    DOUBLE_CONE,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_U_END_PI,
     0, 2, -1, 1, 0};

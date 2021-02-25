@@ -45,12 +45,13 @@ void SpiralTorus(pasuli_vartype u,
 #endif
 
 #if (COMPILE_DEF_DESC_TORUS != 0)
-PaSuLiDefDesc pslddSpiralTorus = {
-	PSLDD_ID(SPIRAL_TORUS)
-			PASULI_U_CLOSED |
+#include "../pasuli_const.h"
+PaSuLiDefDesc pslddSpiralTorus = DEFINE_DEF_DESC(
+	SPIRAL_TORUS,
+	PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI |
 		PASULI_V_END_PI | PASULI_CONST_COUNT(3),
-	0, 2, 0, 2, 0};
+	0, 2, 0, 2, 0);
 #endif
 #if (COMPILE_DESC_TORUS != 0)
 char *descSpiralTorus =

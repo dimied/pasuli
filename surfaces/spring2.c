@@ -31,8 +31,6 @@ void Spring2(pasuli_vartype u,
 	P_Y(R_r_cos_u * sin_v - r_h_sin_u_w * cos_v);
 	P_Z(h * v + R_r_sin_u_w);
 
-	pasuli_calctype R_r_sin_u = R + r * sin_u;
-
 	UD_X(h * r * cos_u * sin_v / w - r * cos_v * sin_u);
 	UD_Y(-h * r * cos_u * cos_v / w - r * sin_v * sin_u);
 	UD_Z(r * R * cos_u / w);

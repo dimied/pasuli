@@ -20,7 +20,7 @@ void Bellerophina(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SHELLS != 0)
 PaSuLiDefDesc pslddBellerophina = {
-    PSLDD_ID(BELLEROPHINA)
+    BELLEROPHINA,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED |
         PASULI_V_END_PI | PASULI_CONST_CONSTANTS | PASULI_CONST_COUNT(9) |

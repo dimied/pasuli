@@ -1,11 +1,9 @@
 
 #include "plane.h"
-#include "../pasuli_const.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 PaSuLiDefDesc pslddPlane = {
-    PSLDD_ID(0)
+    0,
         PASULI_FULL_IMPL,
     0, 1, 0, 1, 0};
 

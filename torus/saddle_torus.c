@@ -32,12 +32,13 @@ void SaddleTorus(pasuli_vartype u,
 #endif
 
 #if (COMPILE_DEF_DESC_TORUS != 0)
-PaSuLiDefDesc pslddSaddleTorus = {
-	PSLDD_ID(SADDLE_TORUS)
-			PASULI_U_CLOSED |
+#include "../pasuli_const.h"
+PaSuLiDefDesc pslddSaddleTorus = DEFINE_DEF_DESC(
+	SADDLE_TORUS,
+	PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI |
 		PASULI_V_END_PI,
-	0, 2, 0, 2, 0};
+	0, 2, 0, 2, 0);
 #endif
 #if (COMPILE_DESC_TORUS != 0)
 char *descSaddleTorus =

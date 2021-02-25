@@ -20,12 +20,6 @@
 /////////////////////////
 /////////////////////////
 
-#if (USE_ID_IN_PSLDD != 0)
-#define PSLDD_ID(X) X,
-#else
-#define PSLDD_ID(X)
-#endif
-
 #if (USE_ID_IN_PASULI_FUNCTION != 0)
 #define PASULI_SET_TYPE_ID(X) pO->_ID = X;
 #else

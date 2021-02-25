@@ -7,7 +7,7 @@ all: clean doall # doopt
 
 
 doall:
-	gcc -o ex ex.c ${FILES1} ${FILES2} ${FILES3} -lm
+	gcc -Wall -o ex ex.c ${FILES1} ${FILES2} ${FILES3} -lm
 	#gcc -o ex *.o surfaces/*.o -lm
 
 do99:

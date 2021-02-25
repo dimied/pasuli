@@ -1,7 +1,6 @@
 
 #include "handkerchief.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_HANDKERCHIEF != 0)
 void Handkerchief(pasuli_vartype u, pasuli_vartype v, pasuli_consttype *constants, PaSuLiObject *pO)
@@ -43,7 +42,7 @@ void Handkerchief(pasuli_vartype u, pasuli_vartype v, pasuli_consttype *constant
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddHandkerchief = {
-    PSLDD_ID(HANDKERCHIEF)
+    HANDKERCHIEF,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_FULL_IMPL,
     -1, 1, -1, 1, 0};

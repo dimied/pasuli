@@ -1,7 +1,6 @@
 
 #include "pluecker_conoid.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_PLUECKER_CONOID != 0)
 void PlueckerConoid(pasuli_vartype u, pasuli_vartype v,
@@ -45,7 +44,7 @@ void PlueckerConoid(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddPlueckerConoid = {
-    PSLDD_ID(PLUECKER_CONOID)
+    PLUECKER_CONOID,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_FULL_IMPL,
     -2, 2, -1, 1, 0};

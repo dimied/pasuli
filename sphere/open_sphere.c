@@ -73,7 +73,7 @@ void OpenSphere(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SPHERE != 0)
 PaSuLiDefDesc pslddOpenSphere = {
-	PSLDD_ID(OPEN_SPHERE)
+	OPEN_SPHERE,
 			PASULI_FULL_IMPL |
 		PASULI_U_CLOSED | PASULI_V_CLOSED,
 	-10, 10, -10, 10, 0};

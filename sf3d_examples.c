@@ -2,7 +2,7 @@
 
 #include "sf3d_examples.h"
 
-#pragma warning(once: 4309)			//VC specific
+//#pragma warning(once: 4309)			//VC specific
 
 #define RN(X,Y)					SF3D_RATIONAL(X,Y)
 #define NRN(X,Y)				SF3D_NEG_RATIONAL(X,Y)

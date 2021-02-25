@@ -41,7 +41,7 @@ void ShoeSurface(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddShoeSurface = {
-	PSLDD_ID(SHOE_SURFACE)
+	SHOE_SURFACE,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_FULL_IMPL,
 	-2, 2, -2, 2, 0};

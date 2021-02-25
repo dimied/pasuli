@@ -37,7 +37,7 @@ void HyperbolicParaboloid(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddHyperbolicParaboloid = {
-	PSLDD_ID(HYPERBOLIC_PARABOLOID)
+	HYPERBOLIC_PARABOLOID,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED,
 	-1, 1, -1, 1, 0};

@@ -1,7 +1,6 @@
 
 #include "catalans_surface.h"
-#include "../pasuli_macros.h"
-#include <math.h>
+#include "surfaces_c_includes.h"
 
 #if (USE_CATALANS_SURFACE != 0)
 void CatalansSurface(pasuli_vartype u, pasuli_vartype v,
@@ -53,7 +52,7 @@ void CatalansSurface(pasuli_vartype u, pasuli_vartype v,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddCatalansSurface = {
-    PSLDD_ID(CATALANS_SURFACE)
+    CATALANS_SURFACE,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED,
     -2, 2, -1.4f, 1.4f, 0};

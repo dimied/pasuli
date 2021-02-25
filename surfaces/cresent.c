@@ -42,7 +42,7 @@ void Cresent(pasuli_vartype u, pasuli_vartype v,
 /*
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddCresent = {
-    PSLDD_ID(CRESENT)
+    CRESENT,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_CONST_COUNT(3),
     0, 1, 0, 1, psldd_15_05_constants};

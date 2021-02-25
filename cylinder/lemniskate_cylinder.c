@@ -41,7 +41,7 @@ void LemniskateCylinder(pasuli_vartype u, pasuli_vartype v,
 #if (COMPILE_DEF_DESC_CYLINDER != 0)
 //pasulidefdesc_ct lc_constants[] = {1.0, 1.0};
 PaSuLiDefDesc pslddLemniskateCylinder = {
-	PSLDD_ID(LEMNISKATE_CYLINDER)
+	LEMNISKATE_CYLINDER,
 			PASULI_U_CLOSED |
 		PASULI_U_START_PI | PASULI_U_END_PI |
 		PASULI_FULL_IMPL | PASULI_CONST_COUNT(2),

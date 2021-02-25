@@ -21,7 +21,7 @@ void NaticaStellata(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SHELLS != 0)
 PaSuLiDefDesc pslddNaticaStellata = {
-	PSLDD_ID(NATICA_STELLATA)
+	NATICA_STELLATA,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED |
 		PASULI_V_END_PI | PASULI_CONST_CONSTANTS | PASULI_CONST_COUNT(9) |

@@ -38,7 +38,7 @@ void TriaxialTeardrop(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddTriaxialTeardrop = {
-	PSLDD_ID(TRIAXIAL_TEARDROP)
+	TRIAXIAL_TEARDROP,
 			PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI | PASULI_V_END_PI,
 	0, 1, 0, 2, 0};

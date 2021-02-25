@@ -26,7 +26,7 @@ void TwistedHeart(pasuli_vartype u,
 
 #if (COMPILE_DEF_DESC_SURFACES != 0)
 PaSuLiDefDesc pslddTwistedHeart = {
-    PSLDD_ID(TWISTED_HEART)
+    TWISTED_HEART,
             PASULI_U_CLOSED |
         PASULI_V_CLOSED | PASULI_U_END_PI |
         PASULI_V_START_PI | PASULI_V_END_PI,
