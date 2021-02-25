@@ -295,6 +295,9 @@ PaSuLiRepositoryItem repositoryItems[] = {
 #if (USE_ENNEPER_SURFACE_POLAR != 0)
     DEFINE_SURFACE(ENNEPER_SURFACE_POLAR, &EnneperSurfacePolar),
 #endif
+#if (USE_SINE_CONE != 0)
+    DEFINE_SURFACE(SINE_CONE, &SineCone),
+#endif
 #if (USE_SPINNER != 0)
     DEFINE_SURFACE(SPINNER, &Spinner),
 #endif
@@ -783,7 +786,7 @@ void testImplementationPointers()
         }
     }
 
-#if 0
+#if 1
     for (int idx = 1; idx < NUMB_OF_SURFACES; idx++)
     {
         if (pStates[idx] == 0)
