@@ -14,6 +14,7 @@ void TorusWithSuperFormula(PaSuLiObject *pParticle,
 						   pasuli_sf2d_param_type radius,
 						   SF_2D *p2DSuperFormula)
 {
+	/*
 	pasuli_sf2d_calc_type a = p2DSuperFormula->a;
 	pasuli_sf2d_calc_type b = p2DSuperFormula->b;
 	pasuli_sf2d_calc_type m = p2DSuperFormula->m;
@@ -155,4 +156,5 @@ void TorusWithSuperFormula(PaSuLiObject *pParticle,
 	//pParticle->vvd[1] = t2 * ((t1 * cosrho - R1 * sinrho) + (cosrho * t1 + sinrho * t11));
 	pParticle->vvd[2] = 0.0; //zero
 #endif
+*/
 }

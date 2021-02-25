@@ -1,5 +1,5 @@
-#ifndef __PASULI_SUPERFORMULA_3D_PARAMETRIC_SURFACE_
-#define __PASULI_SUPERFORMULA_3D_PARAMETRIC_SURFACE_
+#ifndef __PASULI_SUPERFORMULA_3D__
+#define __PASULI_SUPERFORMULA_3D__
 
 #include "../pasuli_defs.h"
 
@@ -16,6 +16,7 @@ typedef float pasuli_sf3d_consttype;
 #define PASULI_SF3D_OBJECT_N 1
 /**
 * Only first derivatives and normal are available
+* See: http://paulbourke.net/geometry/supershape/
 */
 void SuperFormula3D(pasuli_sf3d_vartype rho,
 					pasuli_sf3d_vartype phi,
