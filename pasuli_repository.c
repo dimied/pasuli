@@ -39,6 +39,9 @@ PaSuLiRepositoryItem repositoryItems[] = {
 #if (USE_BOHEMIAN_DOME_SURFACE != 0)
     DEFINE_SURFACE(BOHEMIAN_DOME_SURFACE, &BohemianDomeSurface),
 #endif
+#if (USE_BOURS_MINIMAL_SURFACE != 0)
+    DEFINE_SURFACE(BOURS_MINIMAL_SURFACE, &BoursMinimalSurface),
+#endif
 #if (USE_BOYS_SURFACE != 0)
     DEFINE_SURFACE(BOYS_SURFACE, &BoysSurface),
 #endif
@@ -228,6 +231,9 @@ PaSuLiRepositoryItem repositoryItems[] = {
 #if (USE_EGG != 0)
     DEFINE_SURFACE(EGG, &Egg),
 #endif
+#if (USE_EGG_SURFACE != 0)
+    DEFINE_SURFACE(EGG_SURFACE, &EggSurface),
+#endif
 #if (USE_ISOLATOR != 0)
     DEFINE_SURFACE(ISOLATOR, &Isolator),
 #endif
@@ -302,6 +308,9 @@ PaSuLiRepositoryItem repositoryItems[] = {
 #endif
 #if (USE_SINE_CONE != 0)
     DEFINE_SURFACE(SINE_CONE, &SineCone),
+#endif
+#if (USE_SINE_CUBE != 0)
+    DEFINE_SURFACE(SINE_CUBE, &SineCube),
 #endif
 #if (USE_SPINNER != 0)
     DEFINE_SURFACE(SPINNER, &Spinner),
@@ -715,6 +724,9 @@ PaSuLiRepositoryItem repositoryItems[] = {
 #if (USE_TWISTED_RIBBON != 0)
     DEFINE_SURFACE(TWISTED_RIBBON, &TwistedRibbon),
 #endif
+#if (USE_UMBRELLA_SURFACE != 0)
+    DEFINE_SURFACE(UMBRELLA_SURFACE, &UmbrellaSurface),
+#endif
 #if (USE_VASE_HEAD != 0)
     DEFINE_SURFACE(VASE_HEAD, &VaseHead),
 #endif
@@ -723,6 +735,9 @@ PaSuLiRepositoryItem repositoryItems[] = {
 #endif
 #if (USE_WAVY_ENNEPER_SURFACE != 0)
     DEFINE_SURFACE(WAVY_ENNEPER_SURFACE, &WavyEnneperSurface),
+#endif
+#if (USE_WREATH != 0)
+    DEFINE_SURFACE(WREATH, &Wreath),
 #endif
 #if (USE_WRINKLE_SPHERE != 0)
     DEFINE_SURFACE(WRINKLE_SPHERE, &WrinkleSphere),
@@ -800,58 +815,3 @@ void testImplementationPointers()
 
     free(pStates);
 }
-
-/*
-void* getPaSuLiPointer(unsigned int uiSurfaceType, unsigned int uiInfo) {
-
-	////if((!(uiInfo < PASULI_MAX_INFO_DESCRIPTIONS))||
-	////	(!(uiSurfaceType < NUMB_OF_SURFACES))) {	//De Morgan ==>
-	if(!((uiInfo < PASULI_MAX_INFO_DESCRIPTIONS) &&
-		(uiSurfaceType < NUMB_OF_SURFACES))) {
-		return 0;		//NOT SAVED INFORMATION ANYWAY
-	}
-	//bool not_available = false;
-	int cat = -1;
-	int curImpl = 0, fullImpl = 0;
-	int i = 0;
-	//search in pasuli_cat_func_ranges - array first
-	int iSurfaceType = (int) uiSurfaceType;
-	for(; i < 7; i++) {
-
-		fullImpl += pasuli_cat_func_ranges[i];
-		//Is info available
-		if(PASULI_GET_AVAILABLE(availablePaSuLiInfo[i], uiInfo)) {
-			curImpl += pasuli_cat_func_ranges[i];
-		}
-		
-		if(iSurfaceType <= fullImpl) {
-			cat = i;
-			//calculate real index 
-			iSurfaceType = curImpl - (fullImpl - iSurfaceType);
-			break;
-		}
-	}
-	uiSurfaceType = iSurfaceType;
-	if(cat == -1) {
-		return 0;		//NOT FOUND, i.e. NOT COMPILED IN THIS VERSION
-	}
-
-	switch( uiInfo ) {
-		case PASULI_INFO_FUNC_PTR:
-						return (void*)parsur_array[uiSurfaceType];
-
-		case PASULI_INFO_DESC_PTR:
-						return (void*)parsur_desc_array[uiSurfaceType];
-
-		case PASULI_INFO_DEF_DESC_PTR:
-						return (void*)parsur_def_desc_array[uiSurfaceType];
-
-		case PASULI_INFO_NAME_PTR:
-		return (void*)PASULI_NAME_CHAR_PTR(parsur_name_array[uiSurfaceType] );
-
-		default:	return 0;
-	}
-
-	return 0;
-}
-*/

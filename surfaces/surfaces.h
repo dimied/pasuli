@@ -5,6 +5,7 @@
 
 #include "plane.h"
 #include "bohemian_dome_surface.h"
+#include "bours_minimal_surface.h"
 #include "boys_surface.h"
 #include "cross_cup.h"
 #include "dini_surface.h"
@@ -68,6 +69,7 @@
 #include "spring2.h"
 #include "cone.h"
 #include "egg.h"
+#include "egg_surface.h"
 #include "isolator.h"
 #include "hyperbolic_paraboloid.h"
 #include "facing_snail.h"
@@ -93,6 +95,7 @@
 #include "soucoupid.h"
 #include "enneper_surface_polar.h"
 #include "sine_cone.h"
+#include "sine_cube.h"
 #include "spinner.h"
 #include "fresnel.h"
 #include "trefoil_knots2.h"
@@ -150,15 +153,18 @@
 #include "roman_surface2.h"
 #include "ruled_rotor_cylindroid.h"
 #include "scherk_surface2.h"
+
 #include "skidan_ruled_surface.h"
 #include "snail2.h"
 #include "spinning_top1.h"
 #include "spinning_top2.h"
 #include "tooth_surface.h"
 #include "twisted_ribbon.h"
+#include "umbrella_surface.h"
 #include "vase_head.h"
 #include "virich_cyclic_surface.h"
 #include "wavy_enneper_surface.h"
+#include "wreath.h"
 
 extern char *descTractroid;
 extern char *descCatalansSurface;
