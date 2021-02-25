@@ -54,5 +54,3 @@
 #include "vase_head.h"
 #include "virich_cyclic_surface.h"
 #include "wavy_enneper_surface.h"
-#include "wrinkle_sphere.h"
-#include "wrinkle_sphere2.h"

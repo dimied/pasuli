@@ -5,7 +5,7 @@
 #include "cylinder/cylinder_all.h"
 #include "fruits/fruits.h"
 #include "shells/shells.h"
-#include "sphere/sphere.h"
+#include "sphere/sphere_all.h"
 #include "spiral/spiral.h"
 //
 #include "surfaces/surfaces.h"
