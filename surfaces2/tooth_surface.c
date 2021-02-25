@@ -6,9 +6,26 @@
 void ToothSurface(pasuli_vartype u,
                   pasuli_vartype v,
                   pasuli_consttype *constants,
-                  PaSuLiObject *pO) {
+                  PaSuLiObject *pO)
+{
+    PASULI_SET_TYPE_ID(TOOTH_SURFACE)
 
-                  }
+    pasuli_calctype cos_u = cos(u);
+    pasuli_calctype sin_u = sin(u);
+    pasuli_calctype cos_v = cos(v);
+    pasuli_calctype sin_v = sin(v);
+
+    pasuli_calctype cos_u_pow_4 = PASULI_TRIG_CALC_COS_POW_4(cos_u, u);
+    pasuli_calctype sin_u_pow_4 = PASULI_TRIG_CALC_SIN_POW_4(sin_u, u);
+    pasuli_calctype cos_v_pow_4 = PASULI_TRIG_CALC_COS_POW_4(cos_v, v);
+    pasuli_calctype sin_v_pow_4 = PASULI_TRIG_CALC_SIN_POW_4(sin_v, v);
+
+    pasuli_calctype R = sqrt(1.0 / ((sin_u_pow_4 + cos_u_pow_4) * cos_v_pow_4 + sin_v_pow_4));
+
+    P_X(R * cos_v * cos_u);
+    P_Y(R * cos_v * sin_u);
+    P_Z(R * sin_v);
+}
 #endif
 
 #if (COMPILE_DESC_SURFACES != 0)

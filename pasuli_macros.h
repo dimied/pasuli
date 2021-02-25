@@ -16,10 +16,15 @@
 // Or 2*cos(v)^2-1
 #define PASULI_TRIG_CALC_SUM_DIFFERENCE(C, S) (C * C - S * S)
 
+//cos(x)^4 = 1/8 (cos 4x + 4 cos 2x + 3)
+#define PASULI_TRIG_CALC_COS_POW_4(COS_VALUE, VAL) (pow(COS_VALUE, 4))
+//sin(x)^4 = 1/8 (cos 4x - 4 cos 2x + 3)
+#define PASULI_TRIG_CALC_SIN_POW_4(SIN_VALUE, VAL) (pow(SIN_VALUE, 4))
+
 //1/4 (3 cos x + cos 3x)
-#define PASULI_TRIG_COS_POW3(COS_VALUE, V)	((3*COS_VALUE + cos(3*V))*0.25)
+#define PASULI_TRIG_COS_POW3(COS_VALUE, V) ((3 * COS_VALUE + cos(3 * V)) * 0.25)
 //1/4 (3 sin x - sin 3x)
-#define PASULI_TRIG_SIN_POW3(SIN_VALUE, V)	((3*SIN_VALUE - sin(3*V))*0.25)
+#define PASULI_TRIG_SIN_POW3(SIN_VALUE, V) ((3 * SIN_VALUE - sin(3 * V)) * 0.25)
 
 // Position macros
 #if (PASULIOBJECT_POS != 0)
@@ -37,13 +42,13 @@
 // Macros for derivative with respect to U
 #if (PASULIOBJECT_UD != 0)
 #define UD_X(V)               \
-	pasuli_calctype xu = (V);\
+	pasuli_calctype xu = (V); \
 	pO->ud[0] = xu
 #define UD_Y(V)               \
-	pasuli_calctype yu = (V);\
+	pasuli_calctype yu = (V); \
 	pO->ud[1] = yu
 #define UD_Z(V)               \
-	pasuli_calctype zu = (V);\
+	pasuli_calctype zu = (V); \
 	pO->ud[2] = zu
 #define UD_OP(O) O
 #else
@@ -66,13 +71,13 @@
 // Macros for derivative for V
 #if (PASULIOBJECT_VD != 0)
 #define VD_X(V)              \
-	pasuli_vartype xv = (V);\
+	pasuli_vartype xv = (V); \
 	pO->vd[0] = xv
 #define VD_Y(V)              \
-	pasuli_vartype yv = (V);\
+	pasuli_vartype yv = (V); \
 	pO->vd[1] = yv
 #define VD_Z(V)              \
-	pasuli_vartype zv = (V);\
+	pasuli_vartype zv = (V); \
 	pO->vd[2] = zv
 #define VD_OP(O) O
 #else
@@ -113,8 +118,8 @@
 #define UUD_Y(V) pO->uud[1] = V
 #define UUD_Z(V) pO->uud[2] = V
 #define UUD_ALL(V)  \
-	pO->uud[0] = V;\
-	pO->uud[1] = V;\
+	pO->uud[0] = V; \
+	pO->uud[1] = V; \
 	pO->uud[2] = V
 #define UUD_OP(O) O
 #else
@@ -131,8 +136,8 @@
 #define UVD_Y(V) pO->uvd[1] = V
 #define UVD_Z(V) pO->uvd[2] = V
 #define UVD_ALL(V)  \
-	pO->uvd[0] = V;\
-	pO->uvd[1] = V;\
+	pO->uvd[0] = V; \
+	pO->uvd[1] = V; \
 	pO->uvd[2] = V;
 #define UVD_OP(O) O
 #else
@@ -149,8 +154,8 @@
 #define VVD_Y(V) pO->vvd[1] = V
 #define VVD_Z(V) pO->vvd[2] = V
 #define VVD_ALL(V)  \
-	pO->vvd[0] = V;\
-	pO->vvd[1] = V;\
+	pO->vvd[0] = V; \
+	pO->vvd[1] = V; \
 	pO->vvd[2] = V;
 #define VVD_OP(O) O
 #else
@@ -335,8 +340,8 @@
 #endif
 
 #define PASULI_NORMAL      \
-	N_X(yu *zv - zu * yv);\
-	N_Y(xu *zv - zu * xv);\
+	N_X(yu *zv - zu * yv); \
+	N_Y(xu *zv - zu * xv); \
 	N_Z(xu *yv - yu * xv);
 
 #define PASULI_CALC_NORMAL_FROM_UD_VD \
