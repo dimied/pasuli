@@ -59,8 +59,8 @@ char *descLogSpiral =
 	"name: Log Spiral;\
 cat: spiral;\
 ut: c; vt: o;\
-us: 0; ue: 25;\
-vs: 0; ve: 1;\
+us:0; ue: 25;\
+vs:0; ve: 1;\
 c1:a: 1; c2:H: 1;\
 x: exp(a*u)*cos(u);\
 y: H*v;\

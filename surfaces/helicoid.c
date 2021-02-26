@@ -55,7 +55,7 @@ char *descHelicoid =
     "name: Helicoid;\
 ut: c; vt: c;\
 us:-2; ue:2;\
-vs: 0; ve:pi: 2;\
+vs:0; ve:pi:2;\
 c1:c: 1.5;\
 x: u*cos(v);\
 y: u*sin(v);\

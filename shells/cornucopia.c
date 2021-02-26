@@ -54,7 +54,7 @@ char *descCornucopia = "name: Cornucopia;\
 cat: shells;\
 ut: c; vt: c;\
 us:pi:-1; ue:pi:1;\
-vs: 0; ve:pi: 2;\
+vs:0; ve:pi:2;\
 c1:a: 1; c2:b: 1;\
 x: e^(b*v)*cos(v) + e^(a*v)*cos(u)*cos(v);\
 y: e^(b*v)*sin(v) + e^(a*v)*cos(u)*sin(v);\

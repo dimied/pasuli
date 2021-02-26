@@ -49,8 +49,8 @@ PaSuLiDefDesc pslddTractroid = {
 char *descTractroid =
 	"name: Tractroid;\
 ut:c; vt:c;\
-us: 0; ue: 4;\
-vs: 0; ve:pi: 2;\
+us:0; ue: 4;\
+vs:0; ve:pi:2;\
 x: sech(u)*cos(v);\
 y: sech(u)*sin(v);\
 z: u - tanh(u);\

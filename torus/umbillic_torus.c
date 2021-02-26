@@ -59,8 +59,8 @@ char *descUmbillicTorus =
 	"name: Umbillic torus;\
 cat: torus;\
 ut: c; vt: c;\
-us:pi: -1; ue:pi: 1;\
-vs:pi: -1; ve:pi: 1;\
+us:pi: -1; ue:pi:1;\
+vs:pi: -1; ve:pi:1;\
 c1:R: 1.5; c2:r: 0.5;\
 x: sin(u)*(7+cos(u/3-2*v)+2*cos(u/3+v));  \
 y: cos(u)*(7+cos(u/3-2*v)+2*cos(u/3+v));\

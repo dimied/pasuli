@@ -58,8 +58,8 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 char *descLemniskateTorus1 =
 	"name: Lemniskate Torus 1;\
 cat: torus;\
-us: 0; ue:pi:2;\
-vs: 0; ve:pi:2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:R:1.5; c2:r:0.5;\
 a1:F: r*cos(v)/(1 + sin(v)*sin(v));\
 x: (R + F)*cos(u);\

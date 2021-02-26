@@ -51,8 +51,8 @@ PaSuLiDefDesc pslddFolium = {
 char *descFolium =
 	"name: Folium;\
 ut:c; vt:c;\
-us:pi: -1; ue:pi: 1;\
-vs:pi: -1; ve:pi: 1;\
+us:pi: -1; ue:pi:1;\
+vs:pi: -1; ve:pi:1;\
 x: cos(u)*(2*v/pi - tanh(v));\
 y: cos(u + 2*pi/3)/cosh(v);\
 z: cos(u - 2*pi/3)/cosh(v);\

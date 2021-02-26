@@ -67,8 +67,8 @@ PASULI_CONST_COUNT(2),
 char *descHoleDiscus =
     "name: Hole Discus;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:a: 1.5; c2:b: 0.5;\
 x: sin(u)/(a + sin(v));\
 y: cos(u)/(a + sin(v));\

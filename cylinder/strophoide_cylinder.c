@@ -50,7 +50,7 @@ void StrophoideCylinder(pasuli_vartype u,
 char *descStrophoideCylinder =
 	"name: Strophoide-Cylinder;\
 ut: c; vt: o;\
-us:pi: -1; ue:pi: 1;\
+us:pi: -1; ue:pi:1;\
 vs: -2; ve: 2;\
 c1:R: 1; c2:a: 1;\
 x: (R + a*(v*v - 1)/(v*v + 1))*cos(u);\

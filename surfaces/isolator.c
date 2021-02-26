@@ -73,8 +73,8 @@ PASULI_CONST_COUNT(3),
 char *descIsolator =
 	"name: Isolator;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:a: 1.5; c2:b: 0.5; c3:c: 1.0;\
 x: (a + b*sin(c*u))*sin(v);\
 y: (a + b*sin(c*u))*cos(v);\

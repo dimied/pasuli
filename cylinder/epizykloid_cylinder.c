@@ -66,7 +66,7 @@ char *descEpizykloidCylinder =
 	"name: Epizykloid-Cylinder;\
 ut: c; vt: o;\
 us:pi: -1; ue:pi:1;\
-vs: 0; ve: 1;\
+vs:0; ve: 1;\
 c1:R: 1.5; c2:r: 1.0;\
 c3:h: 0.5; c4:H: 1.0;\
 cond:r:not:0;\

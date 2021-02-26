@@ -58,7 +58,7 @@ PaSuLiDefDesc pslddDoubleCone = {
 char *descDoubleCone =
     "name: Double Cone;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
+us:0; ue:pi:2;\
 vs: -1; ve: 1;\
 x: v*cos(u);\
 y: (v - 1)*cos(u + 2*pi/3);\

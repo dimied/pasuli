@@ -49,8 +49,8 @@ PaSuLiDefDesc pslddCrown = {
 char *descCrown =
 	"name: Crown;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 x: cos(u + 4)/3;\
 y: cos(u)*sin(v)*cos(v)*sin(u)*cos(v) + 0.5*cos(u);\
 z: cos(v)*sin(u)*cos(u)*sin(v);\

@@ -75,7 +75,7 @@ char *descPseudoSphere =
 	"name: Pseudo sphere;\
 cat: sphere;\
 ut: c; vt: c;\
-us:pi: -1; ue:pi: 1;\
+us:pi: -1; ue:pi:1;\
 vs: 0.1; ve: 3.10;\
 x: cos(u)*sin(v);\
 y: sin(u)*sin(v);\

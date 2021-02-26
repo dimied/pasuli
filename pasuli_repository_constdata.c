@@ -5,8 +5,20 @@
 #include "pasuli_cfg.h"
 #include "pasuli_repository.h"
 #include "cylinder/cylinder_all.h"
+
 #include "sphere/sphere_all.h"
+
 #include "torus/torus_all.h"
+
+#include "fruits/fruits.h"
+
+#include "shells/shells.h"
+
+#include "sphere/sphere.h"
+
+#include "spiral/spiral.h"
+
+#include "surfaces/surfaces.h"
 
 #define PASULI_PARSUR_STATIC static
 //#define PASULI_PARSUR_STATIC
@@ -1169,7 +1181,7 @@ void testDescriptionPointers()
 				int compareResult = strcmp(pText1, pText2);
 				if (compareResult == 0)
 				{
-					printf("Same descriptions @indices %x and %x with names\
+					printf("Same descriptions @indices %ld and %ld with names\
 					'%s' and '%s'\n",
 						   idxForText,
 						   idxForText2,

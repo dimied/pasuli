@@ -70,7 +70,7 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(3),
 char *descPiriformSurface =
 	"name:piriform Surface;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
+us:0; ue:pi:2;\
 vs:pi: -0.5; ve:pi: 0.5;\
 c1:a: 1.5; c2:b: 0.5; c3:r: 1.0;\
 a1:c: (r + sin(v));\

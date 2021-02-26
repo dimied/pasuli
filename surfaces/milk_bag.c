@@ -56,7 +56,7 @@ char *descMilkBag =
     "name: Milk Bag;\
 ut:c; vt:c;\
 us: -1; ue: 1;\
-vs:pi: -1; ve:pi: 1;\
+vs:pi: -1; ve:pi:1;\
 c1:k: 1.0;\
 x: k*(1 + u)*cos(v);\
 y: k*(1 - u)*sin(v);\

@@ -42,7 +42,7 @@ void ParabolicHummingTop(pasuli_vartype u,
 char *descParabolicHummingTop =
     "name: Parabolic Humming Top;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
+us:0; ue:pi:2;\
 vs: -h; ve: h;\
 c1:h: 1; c2:p: 1;\
 x: (abs(v)-h)^2*cos(u)/(2*p);\

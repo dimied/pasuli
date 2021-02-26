@@ -40,8 +40,8 @@ void SineCube(pasuli_vartype u,
 char *descSineCube =
     "name: Sine Cube;\
 ut:c; vt:c;\
-us:0; ue:pi: 2;\
-vs:0; ve:pi: 1;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:1;\
 x: sin(u)*sin(v);\
 y: cos(u)*sin(v);\
 z: cos(u)*cos(v);\

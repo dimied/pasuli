@@ -135,11 +135,6 @@ void copyDefDesc(PaSuLiDefDesc *pDD, int iSurfaceType,
  */
 typedef struct _PaSuLiTextDesc
 {
-	//unsigned short memSize;
-	//char* memPtr;
-	//unsigned char ucConstCount;
-	//unsigned char ucAbrCount;
-
 	char szName[32];
 	char szCat[16];
 	char szTypeU; //o : open, c : closed, u : unknown, \0 : unknown
@@ -175,10 +170,6 @@ typedef struct _PaSuLiTextDesc
 	char szZvv[MAX_DESC_LENGTH];
 	*/
 } PaSuLiTextDesc;
-
-//void clearDesc(PaSuLiDesc* p);
-void parsePaSuLiDesc(char *szDescString, PaSuLiTextDesc *pPSLD);
-void clearPaSuLiTextDesc(PaSuLiTextDesc *pTD);
 
 void initConstAll(PaSuLiObject *pO, pasuli_consttype value);
 //void initConstDefault(PaSuLiObject* pO, pasuli_consttype* constants);

@@ -41,8 +41,8 @@ PaSuLiDefDesc pslddCassinianOvalTorus1 = {
 char *descCassinianOvalTorus1 =
 	"name: Cassinian Oval Torus 1;\
 cat: torus;\
-us: 0; ue:pi:2;\
-vs: 0; ve:pi:2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:R:1; c2:a:1; c3:b:1;\
 a1:M: 2*a*a*cos(2*v) + 2*sqrt((-a^4 + b^4) + a^4*cos(2*v)^2);\
 x: (R + sqrt(M/2)*cos(v))*cos(u);\

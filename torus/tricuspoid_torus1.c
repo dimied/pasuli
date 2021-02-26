@@ -57,8 +57,8 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 char *descTricuspoidTorus1 =
 	"name: Tricuspoid Torus 1;\
 cat: torus;\
-us: 0; ue:pi:2;\
-vs: 0; ve: pi:2;\
+us:0; ue:pi:2;\
+vs:0; ve: pi:2;\
 c1:R:1.5; c2:r:0.5;\
 x: (R+r*(2*cos(v)+cos(2*v)))*cos(u);\
 y: (R+r*(2*cos(v)+cos(2*v)))*sin(u);\

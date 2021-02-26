@@ -39,8 +39,8 @@ void BoursMinimalSurface(pasuli_vartype u,
 char *descBoursMinimalSurface =
     "name: Bour's Minimal surface;\
 ut:c; vt:c;\
-us:pi: -1; ue:pi: 1;\
-vs:pi: -2; ve:pi: 2;\
+us:pi: -1; ue:pi:1;\
+vs:pi: -2; ve:pi:2;\
 x: u*cos(v)-u^2*cos(2*v)/2;\
 y: -u*sin(v)-u^2*sin(2*v)/2;\
 z: 4*u^(3/2)*cos(3*u/2)/3;\

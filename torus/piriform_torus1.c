@@ -54,8 +54,8 @@ PaSuLiDefDesc pslddPiriformTorus1 = {
 char *descPiriformTorus1 =
 	"name: Piriform Torus 1;\
 cat: torus;\
-us: 0; ue:pi:2;\
-vs: 0; ve:pi:2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:R1:1; c2:R: 1;\
 x: (R+(r+sin(v)))*cos(u);\
 y: (R+(r+sin(v)))*sin(u);\

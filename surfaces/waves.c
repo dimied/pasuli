@@ -65,8 +65,8 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(3),
 char *descWaves =
 	"name: Waves;\
 ut:c; vt:c;\
-us:pi: -2; ue:pi: 2;\
-vs:pi: -2; ve:pi: 2;\
+us:pi: -2; ue:pi:2;\
+vs:pi: -2; ve:pi:2;\
 c1:a: 1.5; c2:b: 0.5; c3:c: 1.0;\
 x: u;\
 y: v;\

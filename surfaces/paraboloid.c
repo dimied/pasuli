@@ -59,8 +59,8 @@ PASULI_U_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 char *descParaboloid =
 	"name: Paraboloid;\
 ut:c; vt:c;\
-us:pi: -1; ue:pi: 1;\
-vs: 0; ve: 2;\
+us:pi: -1; ue:pi:1;\
+vs:0; ve: 2;\
 c1:a: 1.5; c2:b: 0.5;\
 x: a*v*cos(u);\
 y: a*v*sin(u);\

@@ -59,8 +59,8 @@ PaSuLiDefDesc pslddLoop = {
 char *descLoop =
 	"name: Loop;\
 ut:c; vt:c;\
-us:pi: -1; ue:pi: 1;\
-vs:pi: -1; ve:pi: 1;\
+us:pi: -1; ue:pi:1;\
+vs:pi: -1; ve:pi:1;\
 x: sin(v)*cos(u);\
 y: 2*cos(v);\
 z: 4*sin(v)*cos(v);\

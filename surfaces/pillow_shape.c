@@ -58,8 +58,8 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(1),
 char *descPillowShape =
     "name: Pillow Shape;\
 ut:c; vt:c;\
-us: 0; ue:pi: 1;\
-vs:pi: -1; ve:pi: 1;\
+us:0; ue:pi:1;\
+vs:pi: -1; ve:pi:1;\
 c1:a: 1.5;\
 x: cos(u);\
 y: cos(v);\

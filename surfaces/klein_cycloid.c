@@ -42,8 +42,8 @@ PaSuLiDefDesc pslddKleinCycloid = { //TODO TODO
 char *descKleinCycloid =
     "name: Klein Cycloid;\
 ut: c; vt: c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 4;\
+us:0; ue:pi:2;\
+vs:0; ve:pi: 4;\
 c1:a: 1.5; c2:b: 0.5; c3:c: 1.0;\
 x: cos(u/c)*cos(u/b)*(a + cos(v)) + sin(u/b)*sin(v)*cos(v);\
 y: sin(u/c)*cos(u/b)*(a + cos(v)) + sin(u/b)*sin(v)*cos(v);\

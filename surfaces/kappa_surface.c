@@ -66,7 +66,7 @@ PASULI_CONST_COUNT(1),
 char *descKappaSurface =
 	"name: Kappa Surface;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
+us:0; ue:pi:2;\
 vs: 0.25; ve:pi: 0.5;\
 c1:a: 1.5;\
 a1:r: a*cos(v);\

@@ -55,14 +55,14 @@ char *descBraidedTorus =
 	"name: Braided Torus;\
 cat: torus;\
 ut: c; vt: c;\
-us: 0; ue:pi: 8;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi: 8;\
+vs:0; ve:pi:2;\
 c1:a: 1; c2:R: 1; c3:r: 1; c4:n: 1;\
-x: r*cos(v)*cos(u) + cos(u)*R*(1 + a*cos(n*u));\
+x: r*cos(v)*cos(u)+cos(u)*R*(1 + a*cos(n*u));\
 y: r*cos(v)*sin(u) + sin(u)*R*(1 + a*cos(n*u));\
 z: 2.5*(r*sin(v) + a*sin(n*u));\
 xu: -r*cos(v)*sin(u) - sin(u)*R*(1 + a*(cos(n*u) + n*sin(n*u)));\
-yu: r*cos(v)*cos(u) + cos(u)*R*(1 + a*cos(n*u)) -a*R*n*sin(u)*sin(n*u);\
+yu: r*cos(v)*cos(u)+cos(u)*R*(1 + a*cos(n*u)) -a*R*n*sin(u)*sin(n*u);\
 zu: 2.5*a*n*cos(n*u);\
 xv: -r*cos(u)*sin(v);\
 yv: -r*sin(u)*sin(v);\

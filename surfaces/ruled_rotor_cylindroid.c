@@ -44,8 +44,8 @@ void RuledRotorCylindroid(pasuli_vartype u,
 char *descRuledRotorCylindroid =
     "name: Ruled Rotor Cylindroid;\
 ut:c; vt:o;\
-us: 0; ue:pi: 2;\
-vs: 0; ve: 2;\
+us:0; ue:pi:2;\
+vs:0; ve: 2;\
 c1:1:a: 1; c2:b: 1; c3:n: 1;\
 x: (a+b*sin(n*u))*cos(u)-v*sin(u);\
 y: (a+b*sin(n*u))*sin(u)+v*cos(u);\

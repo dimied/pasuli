@@ -52,8 +52,8 @@ PaSuLiDefDesc pslddDisc = {
 char *descDisc =
     "name: Disc;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve: 1;\
+us:0; ue:pi:2;\
+vs:0; ve: 1;\
 x: v*cos(u);\
 y: v*sin(u);\
 z: 0;\

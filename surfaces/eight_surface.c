@@ -59,7 +59,7 @@ PaSuLiDefDesc pslddEightSurface = {
 char *descEightSurface =
     "name: Eight Surface;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
+us:0; ue:pi:2;\
 vs:pi: -0.5; ve:pi: 0.5;\
 x: cos(u)*sin(2*v);\
 y: sin(u)*sin(2*v);\

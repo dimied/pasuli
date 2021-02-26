@@ -53,8 +53,8 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 char *descBellWave =
 	"name: Bell Wave;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve: 12;\
+us:0; ue:pi:2;\
+vs:0; ve: 12;\
 c1:a: 1.5; c2:b: 0.5; c3:c: 1;\
 a1:r: sqrt(u*u + v*v);\
 x: u;\

@@ -64,8 +64,8 @@ PASULI_CONST_COUNT(3),
 char *descHorn =
 	"name: Horn;\
 ut:c; vt:c;\
-us: 0; ue: 1;\
-vs:pi: -1; ve:pi: 1;\
+us:0; ue: 1;\
+vs:pi: -1; ve:pi:1;\
 c1:a: 1.5; c2:b: 0.5; c3:c: 1.0;\
 x: (a + u*cos(v))*sin(b*pi*u);\
 y: (a + u*cos(v))*cos(b*pi*u) + c*u;\

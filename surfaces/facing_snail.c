@@ -62,7 +62,7 @@ char *descFacingSnail =
 	"name: Facing Snail;\
 ut:c; vt:c;\
 us:pi: -0.5; ue:pi: 0.5;\
-vs: 0; ve:pi: 6;\
+vs:0; ve:pi: 6;\
 c1:a: 1.5;\
 x: cos(v)*cos(u);\
 y: sin(v)*cos(u);\

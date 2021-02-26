@@ -67,8 +67,8 @@ PASULI_CONST_COUNT(4)|PASULI_CALC_U_END,//MUL_BY_CONST(3),
 char *descSpring1 =
 	"name: Spring 1;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:R: 1.5; c2:r: 0.5; c3:L: 1.0;\
 x: (R + r*cos(v))*cos(u);\
 y: (R + r*cos(v))*sin(u);\

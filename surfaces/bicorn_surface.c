@@ -48,8 +48,8 @@ PaSuLiDefDesc pslddBicornSurface = {
 char *descBicornSurface =
     "name: Bicorn Surface;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 1;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:1;\
 x: sin(v)*cos(u);\
 y: sin(v)*sin(u);\
 z: cos(v)*cos(v)*(2 + cos(v))/(3 + sin(v)*sin(v));\

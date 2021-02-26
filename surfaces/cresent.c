@@ -52,8 +52,8 @@ PaSuLiDefDesc pslddCresent = {
 char *descCresent =
     "name: Cresent;\
 ut:c; vt:c;\
-us: 0; ue:pi: 1;\
-vs: 0; ve:pi: 1;\
+us:0; ue:pi:1;\
+vs:0; ve:pi:1;\
 c1:a: 1.5; c2:b: 0.5; c3:c: 1.0;\
 x: (a + sin(b*u)*sin(b*v))*sin(c*v);\
 y: (a + sin(b*u)*sin(b*v))*cos(c*v);\

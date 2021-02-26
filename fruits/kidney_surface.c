@@ -57,7 +57,7 @@ char *descKidneySurface =
 	"name: Kidney Surface;\
 cat: fruits;\
 ut: c; vt: c;\
-us: 0; ue:pi: 2;\
+us:0; ue:pi:2;\
 vs:pi: -0.5; ve:pi: 0.5;\
 x: cos(u)*(3*cos(v) - cos(3*v));\
 y: sin(u)*(3*cos(v) - cos(3*v));\

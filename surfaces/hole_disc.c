@@ -62,7 +62,7 @@ PaSuLiDefDesc pslddHoleDisc = {
 char *descHoleDisc =
     "name: Hole Disc;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
+us:0; ue:pi:2;\
 vs: 3; ve: 4.5;\
 x: sin(u)/(sqrt(2) + sin(v));\
 y: cos(u)/(sqrt(2) + sin(v));\

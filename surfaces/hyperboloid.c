@@ -64,7 +64,7 @@ PASULI_U_START_PI|PASULI_U_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 char *descHyperboloid =
     "name: Hyperboloid;\
 ut:c; vt:c;\
-us:pi: -1; ue:pi: 1;\
+us:pi: -1; ue:pi:1;\
 vs: -2; ve: 2;\
 c1:a: 1.5; c2:b: 0.5;\
 x: a*cosh(v)*cos(u);\

@@ -62,8 +62,8 @@ PaSuLiDefDesc pslddGearTorus = {
 char *descGearTorus =
 	"name: GearTorus;\
 cat: torus;\
-us: 0; ue:pi:2;\
-vs: 0; ve:pi:2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:R:1; c2:a:1; c3:b:1; c4:N:1;\
 a1:r: a+tanh(b*sin(n*v))/b;\
 x: (R + r*cos(v))*cos(u);\

@@ -61,8 +61,8 @@ PaSuLiDefDesc pslddTorusKnot = DEFINE_DEF_DESC(
 char *descTorusKnot =
 	"name: Torus Knot;\
 cat: torus;\
-us: 0; ue:pi:2;\
-vs: 0; ve:pi:2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:R1:1; c2:R2:1; c3:r:1; c4:p:1; c5:q:1;\
 a1:F: (R1 + R2*cos(p*u) + r*cos(v));\
 x: F*cos(q*u);\

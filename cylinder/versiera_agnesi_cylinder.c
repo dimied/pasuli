@@ -46,7 +46,7 @@ void VersieraAgnesiCylinder(pasuli_vartype u,
 char *descVersieraAgnesiCylinder =
 	"name: Versiera-Agnesi-Cylinder;\
 ut: c; vt: o;\
-us:pi: -1; ue:pi: 1;\
+us:pi: -1; ue:pi:1;\
 vs: -3; ve: 3;\
 c1:R: 1; c2:a: 1;\
 x: (R + 2*a/(1 + v*v))*cos(u);\

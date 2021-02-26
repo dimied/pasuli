@@ -53,13 +53,13 @@ PaSuLiDefDesc pslddJetSurface = {
 char *descJetSurface =
     "name: Jet Surface;\
 ut:c; vt:c;\
-us: 0; ue:pi: 1;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:1;\
+vs:0; ve:pi:2;\
 x: (1 - cosh(u))*sin(u)*cos(v)/2;\
 y: (1 - cosh(u))*sin(u)*sin(v)/2;\
 z: cosh(u);\
-xu: -((cosh(u) -1)*cos(u) + sin(u)*sinh(u))*cos(v)/2;\
-yu: -((cosh(u) -1)*cos(u) + sin(u)*sinh(u))*sin(v)/2;\
+xu: -((cosh(u) -1)*cos(u)+sin(u)*sinh(u))*cos(v)/2;\
+yu: -((cosh(u) -1)*cos(u)+sin(u)*sinh(u))*sin(v)/2;\
 zu: sinh(u);\
 xv: -(1 - cosh(u))*sin(u)*sin(v)/2;\
 yv: (1 - cosh(u))*sin(u)*cos(v)/2;\

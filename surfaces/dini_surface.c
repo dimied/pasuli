@@ -53,8 +53,8 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 char *descDiniSurface =
 	"name: Dini Surface;\
 ut:c; vt:c;\
-us: 0; ue:pi: 4;\
-vs: 0.01: ve:pi: 1;\
+us:0; ue:pi: 4;\
+vs: 0.01: ve:pi:1;\
 c1:a: 1.5; c2:b: 0.5;\
 x: a*cos(u)*sin(v);\
 y: a*sin(u)*sin(v);\

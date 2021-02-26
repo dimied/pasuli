@@ -59,7 +59,7 @@ PaSuLiDefDesc pslddBohemianDomeSurface = {
 char *descBohemianDomeSurface =
     "name: Bohemian Dome Surface;\
 ut:c; vt:c;\
-us: 0; ue:pi:2; vs:0; ve:pi:2;\
+us:0; ue:pi:2; vs:0; ve:pi:2;\
 c1:a:1; c2:b:1; c3:c:1;\
 x: a*cos(u);\
 y: b*cos(v) + a*sin(u);\

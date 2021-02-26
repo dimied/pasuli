@@ -48,8 +48,8 @@ PaSuLiDefDesc pslddRomanSurface = {
 char *descRomanSurface =
     "name: Roman Surface;\
 ut:c; vt:c;\
-us: 0; ue: 1;\
-vs: 0; ve:pi: 2;\
+us:0; ue: 1;\
+vs:0; ve:pi:2;\
 x: 2*u*cos(v)*sqrt(1 - u*u);\
 y: 2*u*sin(v)*sqrt(1 - u*u);\
 z: 1 - 2*u*u*cos(v)*cos(v);\

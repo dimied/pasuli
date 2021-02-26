@@ -19,7 +19,7 @@ void BellPolar(pasuli_vartype u, pasuli_vartype v,
 
     P_X(v * cos_u);
     P_Y(v * sin_u);
-    //v = sqrt(v*cos(u)*v*cos(u) + v*sin(u)*v*sin(u)) = sqrt(v*v) = v
+    //v = sqrt(v*cos(u)*v*cos(u)+v*sin(u)*v*sin(u)) = sqrt(v*v) = v
     P_Z(b_exp_av);
 
     UD_X(-PASULI_COND_COPY_POS_Y(v * sin_u));
@@ -63,8 +63,8 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 char *descBellPolar =
     "name: Bell Polar;\
 ut: c; vt: c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve: 12;\
+us:0; ue:pi:2;\
+vs:0; ve: 12;\
 c1:a: 1.5; c2:b: 0.5;\
 a1:r: sqrt(2*v*v);\
 x: v*cos(u);\

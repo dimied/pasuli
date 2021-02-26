@@ -59,8 +59,8 @@ PaSuLiDefDesc pslddEpizykloidTorus2 = {
 char *descEpizykloidTorus2 =
 	"name: Epizykloid Torus 2;\
 cat: torus;\
-us: 0; ue:pi:2;\
-vs: 0; ve:pi:2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:R1:1; c2:R: 1; c3:r:0.5; c4:h: 1;\
 x: (R1 + (R + r)*sin(v) - h*sin(((R + r)/r)*v))*cos(u);\
 y: (R1 + (R + r)*sin(v) - h*sin(((R + r)/r)*v))*sin(u);\

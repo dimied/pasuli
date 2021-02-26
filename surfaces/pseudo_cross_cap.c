@@ -63,7 +63,7 @@ char *descPseudoCrossCap =
 	"name: Pseudo Cross Cap;\
 ut:c; vt:c;\
 us: -1; ue: 1;\
-vs:pi: -1; ve:pi: 1;\
+vs:pi: -1; ve:pi:1;\
 x: (1 - u*u)*sin(v);\
 y: (1 - u*u)*sin(2*v);\
 z: u;\

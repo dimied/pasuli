@@ -39,8 +39,8 @@ PaSuLiDefDesc pslddPisotTriaxial = {
 char *descPisotTriaxial =
     "name: Pisot Triaxial;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 x: 0.655866*cos(1.03002 + u)*(2 + cos(v));\
 y: 0.74878*cos(1.40772 - u)*(2 + 0.868837*cos(2.43773 + v));\
 z: 0.868837*cos(2.43773 + u)*(2 + 0.495098*cos(0.377696 - v));\

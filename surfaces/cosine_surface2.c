@@ -63,8 +63,8 @@ PaSuLiDefDesc pslddCosineSurface2 = {
 char *descCosineSurface2 =
 	"name: Cosine Surface 2;\
 ut:c; vt:c;\
-us:pi: -1; ue:pi: 1;\
-vs:pi: -1; ve:pi: 1;\
+us:pi: -1; ue:pi:1;\
+vs:pi: -1; ve:pi:1;\
 x: cos(u);\
 y: cos(v);\
 z: -cos(u + v)^(2);\

@@ -4,6 +4,7 @@
 #include "ellipsoid.h"
 #include "open_sphere.h"
 #include "pseudosphere.h"
+#include "sphere.h"
 #include "sphere_v.h"
 #include "sphere_uv.h"
 #include "twisted_sphere.h"

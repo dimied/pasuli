@@ -52,7 +52,7 @@ char *descWallisConicalSurface =
 	"name: Wallis Conical Surface;\
 ut: c; vt:c;\
 us: -1; ue: 1;\
-vs: 0; ve: 1;\
+vs:0; ve: 1;\
 c1:a: 1.5; c2:b: 0.5; c3:c: 1.0;\
 x: v*cos(u);\
 y: v*sin(u);\

@@ -58,8 +58,8 @@ char *descLimpetTorus =
 	"name: Limpet Torus;\
 cat: torus;\
 ut: c; vt: c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 x: cos(u)/(sqrt(2) + sin(v));\
 y: sin(u)/(sqrt(2) + sin(v));\
 z: 1/(sqrt(2) + cos(v));\

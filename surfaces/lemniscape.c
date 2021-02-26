@@ -41,8 +41,8 @@ PaSuLiDefDesc pslddLemniscape = {
 char *descLemniscape =
 	"name: Lemniscape;\
 ut:c; vt:c;\
-us: 0; ue:pi: 1;\
-vs: 0; ve:pi: 1;\
+us:0; ue:pi:1;\
+vs:0; ve:pi:1;\
 x: cos(v)*sqrt(abs(sin(2*u)))*cos(u);\
 y: cos(v)*sqrt(abs(sin(2*u)))*sin(u);\
 z: x*x - y*y + 2*x*y*tan(v)^(2);";

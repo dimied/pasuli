@@ -48,7 +48,7 @@ char *descMoebiusBand2 =
     "name: Moebius Band 2;\
 ut: c; vt: c;\
 us: -0.4; ue: 0.4;\
-vs: 0; ve:pi: 2;\
+vs:0; ve:pi:2;\
 c1:a: 1; c2:b: 1; c3:m: 1;\
 x: (a + u*sin(m*v/2))*cos(v);\
 y: (b + u*sin(m*v/2))*sin(v);\

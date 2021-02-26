@@ -57,8 +57,8 @@ PASULI_V_END_PI|PASULI_CONST_COUNT(2),
 char *descNephroidTorus2 =
 	"name: Nephroid Torus 2;\
 cat: torus;\
-us: 0; ue:pi:2;\
-vs: 0; ve:pi:2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:R:1.5; c2:r:0.5;\
 x: (R+r*(3*sin(v)-sin(3*v)))*cos(u);\
 y: (R+r*(3*sin(v)-sin(3*v)))*sin(u);\

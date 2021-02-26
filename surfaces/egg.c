@@ -55,8 +55,8 @@ PaSuLiDefDesc pslddEgg = {
 char *descEgg =
 	"name: Egg;\
 ut: c; vt: c;\
-us: 0; ue: c1: 1;\
-vs: 0; ve:pi: 2;\
+us:0; ue: c1: 1;\
+vs:0; ve:pi:2;\
 c1:a: 0.5; c2:b: 0.5; c3:c: 1.0;\
 cond:a:<=:c;\
 x: c*sqrt(u*(u - a)*(u - b))*sin(v);\

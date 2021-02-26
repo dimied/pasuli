@@ -17,7 +17,7 @@ void HypozykloidCylinder(pasuli_vartype u, pasuli_vartype v,
 	pasuli_calctype cosRdiff = cos(Rdiff * u / r);
 	pasuli_calctype sinRdiff = sin(Rdiff * u / r);
 
-	P_X(Rdiff * cos(u) + h * cosRdiff);
+	P_X(Rdiff * cos(u)+h * cosRdiff);
 	P_Y(H * v);
 	P_Z(Rdiff * sin(u) - h * sinRdiff);
 
@@ -64,12 +64,12 @@ PaSuLiDefDesc pslddHypozykloidCylinder = {
 char *descHypozykloidCylinder =
 	"name: Hypozykloid-Cylinder;\
 ut: c; vt: o;\
-us:pi: -1; ue:pi: 1;\
-vs: 0; ve: 1;\
+us:pi: -1; ue:pi:1;\
+vs:0; ve: 1;\
 c1:R: 1.5; c2:r: 1.0;\
 c3:h: 0.5; c4:H: 1.0;\
 cond:r:not:0;\
-x: (R - r)*cos(u) + h*cos(((R - r)/r)*u);\
+x: (R - r)*cos(u)+h*cos(((R - r)/r)*u);\
 y: H*v;\
 z: (R - r)*sin(u) - h*sin(((R - r)/r)*u);\
 xu: h*(R - r)*sin((R - r)*u/r)/r -(R - r)*sin(u);\

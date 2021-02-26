@@ -57,7 +57,7 @@ char *descTanhSpiral =
 cat: spiral;\
 ut: c; vt: o;\
 us: -1.5; ue: 1.5;\
-vs: 0; ve: 1;\
+vs:0; ve: 1;\
 c1:a: 1; c2:H: 1;\
 x: sinh(2*u)/(cos(2*a*u) + cosh(2*u));\
 y: H*v;\

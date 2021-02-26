@@ -42,7 +42,7 @@ PaSuLiDefDesc pslddMaedersOwl = {
 char *descMaedersOwl =
 	"name: Maeders Owl;\
 ut:c; vt:c;\
-us: 0; ue:pi: 4;\
+us:0; ue:pi: 4;\
 vs: 0.001; ve: 1;\
 x: v*cos(u) - 0.5*v*v*cos(2*u);\
 y: -v*sin(u) - 0.5*v*v*sin(2*u);\

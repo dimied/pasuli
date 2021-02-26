@@ -58,7 +58,7 @@ char *descSteinbachScrew =
     "name: Steinbach Screw;\
 ut:c; vt:c;\
 us: -4; ue: 4;\
-vs: 0; ve:pi: 2;\
+vs:0; ve:pi:2;\
 x: u*cos(v);\
 y: u*sin(v);\
 z: v*cos(u);\

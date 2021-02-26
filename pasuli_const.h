@@ -1,40 +1,6 @@
 #ifndef __PARAMETRIC_SURFACE_CONSTANTS__
 #define __PARAMETRIC_SURFACE_CONSTANTS__
 
-#include "pasuli_cfg.h"
-//#include "pasuli_defs.h"
-#include "pasuli_approx.h"
-
-#include "cylinder/cylinder.h"
-
-#include "fruits/fruits.h"
-
-#include "shells/shells.h"
-
-#include "sphere/sphere.h"
-
-#include "spiral/spiral.h"
-
-#include "torus/torus.h"
-
-#include "surfaces/surfaces.h"
-
-#if (PASULI_DEBUG_MODE != 0)
-
-
-#define PASULI_NAME_CHAR_PTR(X) ((char *)X.szName)
-#else
-#define PASULI_NAME_CHAR_PTR(X) ((char *)X)
-#endif
-
-enum PaSuLiInfo
-{
-	PASULI_INFO_FUNC_PTR = 0,
-	PASULI_INFO_DEF_DESC_PTR,
-	PASULI_INFO_DESC_PTR,
-	PASULI_INFO_NAME_PTR
-};
-
 #define PASULI_CAT_SURFACES 0
 #define PASULI_CAT_CYLINDER 1
 #define PASULI_CAT_FRUITS 2
@@ -210,7 +176,6 @@ enum SurfaceType
 	WHITNEY_UMBRELLA,
 	WREATH,
 	ZINDLERS_CONOID,
-
 	PASULI_CAT_SURFACES_LAST = ZINDLERS_CONOID,
 	// Cylinder
 	PASULI_CAT_CYLINDER_FIRST,
@@ -327,22 +292,10 @@ enum SurfaceType
 #define PASULI_CAT_TORUS_COUNT \
 	(PASULI_CAT_TORUS_LAST - PASULI_CAT_TORUS_FIRST)
 
-#define PASULI_MAX_INFO_DESCRIPTIONS 4
-
 #define PASULI_SET_AVAILABLE(PSL_FUNC, PSL_DEFDESC, PSL_DESC, PSL_NAME) \
 	((PSL_FUNC) | (PSL_DEFDESC << 1) | (PSL_DESC << 2) | (PSL_NAME << 3))
 
 #define PASULI_GET_AVAILABLE(X, OFFSET) (X & (0x1 << OFFSET))
 
-#define PASULI_IS_FUNC_PART_AVAILABLE(X) (X & (0x1))
-#define PASULI_IS_DEFDESC_PART_AVAILABLE(X) (X & (0x1 << 1))
-#define PASULI_IS_DESC_PART_AVAILABLE(X) (X & (0x1 << 2))
-#define PASULI_IS_NAME_PART_AVAILABLE(X) (X & (0x1 << 3))
 
-/*
-typedef unsigned char pasuli_funcnum_range_type;
-typedef unsigned char pasuli_avail_info_type;
-extern pasuli_funcnum_range_type pasuli_cat_func_ranges[PASULI_CATEGORY_COUNT];
-extern pasuli_avail_info_type availablePaSuLiInfo[PASULI_CATEGORY_COUNT];
-*/
 #endif

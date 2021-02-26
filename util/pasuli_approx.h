@@ -1,7 +1,7 @@
 #ifndef __PASULI_APPROXIMATION_PART_INCLUDED__
 #define __PASULI_APPROXIMATION_PART_INCLUDED__
 
-#include "pasuli_defs.h"
+#include "../pasuli_defs.h"
 
 #define PASULI_APPROX_DIFFERENCE		0.0001
 

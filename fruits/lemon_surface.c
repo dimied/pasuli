@@ -56,7 +56,7 @@ cat: fruits;\
 ut: c; vt: c;\
 us:f: -sqrt(R*R-r*r);\
 ue:f: sqrt(R*R-r*r);\
-vs: 0; ve:pi: 2;\
+vs:0; ve:pi:2;\
 c1:R: 2; c2:r: 1;\
 x: (sqrt(R^2 - u^2) - r)*sin(v);\
 y: (sqrt(R^2 - u^2) - r)*cos(v);\

@@ -47,8 +47,8 @@ PaSuLiDefDesc pslddTriaxialTeardrop = {
 char *descTriaxialTeardrop =
 	"name: Triaxial Teardrop;\
 ut:c; vt:c;\
-us: 0; ue:pi: 1;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:1;\
+vs:0; ve:pi:2;\
 x: (1 - cos(u))*cos(u + 2*pi/3)*cos(v + 2*pi/3)/2;\
 y: (1 - cos(u))*cos(u + 2*pi/3)*cos(v - 2*pi/3)/2;\
 z: cos(u - 2*pi/3);\

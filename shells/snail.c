@@ -57,8 +57,8 @@ PaSuLiDefDesc pslddSnail = {
 char *descSnail = "name: Snail;\
 cat: shells;\
 ut: c; vt: c;\
-us: 0; ue:pi: 6;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi: 6;\
+vs:0; ve:pi:2;\
 c1:a: 1; c2:b: 1;\
 a1:h: e^(u/(6*pi));\
 x: a*(1-h)*cos(u)*cos(0.5*v)*cos(0.5*v);\

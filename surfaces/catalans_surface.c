@@ -61,7 +61,7 @@ PaSuLiDefDesc pslddCatalansSurface = {
 char *descCatalansSurface =
     "name: Catalans Surface;\
 ut:c; vt:c;\
-us:pi: -2; ue:pi: 2;\
+us:pi: -2; ue:pi:2;\
 vs: -1.4; ve: 1.4;\
 x: u - cosh(v)*sin(u);\
 y: 1 - cosh(v)*cos(u);\

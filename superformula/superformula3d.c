@@ -15,7 +15,7 @@
 char *descSuperFormula3D =
 	"name: SuperFormula 3D;\
 ut:c; vt:c;\
-us:pi: -1; ue:pi: 1;\
+us:pi: -1; ue:pi:1;\
 vs:pi: -0.5 ; ve:pi: 0.5;\
 c1:a1: ;\
 c2:b1: ;\

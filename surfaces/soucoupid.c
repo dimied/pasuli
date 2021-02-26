@@ -50,8 +50,8 @@ PaSuLiDefDesc pslddSoucoupoid = {
 char *descSoucoupoid =
 	"name: Soucoupoid;\
 ut:c; vt:c;\
-us:pi: -1; ue:pi: 1;\
-vs: 0; ve:pi: 1;\
+us:pi: -1; ue:pi:1;\
+vs:0; ve:pi:1;\
 x: cos(u)*cos(v);\
 y: cos(u)*sin(v);\
 z: (sin(u))^(3);\

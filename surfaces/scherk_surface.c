@@ -54,8 +54,8 @@ PaSuLiDefDesc pslddScherkSurface = {
 char *descScherkSurface =
     "name: Scherk Surface;\
 ut:c; vt:c;\
-us:pi: -1; ue:pi: 1;\
-vs:pi: -1; ve:pi: 1;\
+us:pi: -1; ue:pi:1;\
+vs:pi: -1; ve:pi:1;\
 c1:c:!=0: 1.5;\
 x: u;\
 y: v;\

@@ -75,7 +75,7 @@ char *descCone =
 	"name: Cone;\
 ut:c; vt:c;\
 us: 1; ue: 3;\
-vs: 0; ve:pi: 2;\
+vs:0; ve:pi:2;\
 c1:a: 1;\
 x: a*u*cos(v);\
 y: a*u*sin(v);\

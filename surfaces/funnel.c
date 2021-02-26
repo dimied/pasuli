@@ -56,7 +56,7 @@ char *descFunnel =
 	"name: Funnel;\
 ut:c; vt:c;\
 us: 0.1; ue: 2;\
-vs: 0; ve:pi: 2;\
+vs:0; ve:pi:2;\
 x: u*cos(v);\
 y: u*sin(v);\
 z: log(u);\

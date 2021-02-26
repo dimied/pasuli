@@ -59,8 +59,8 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_U_END_PI|PASULI_CONST_COUNT(2),
 char *descTrashcan =
 	"name: Trashcan;\
 ut: c; vt: c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve: 2;\
+us:0; ue:pi:2;\
+vs:0; ve: 2;\
 c1:a: 1.5; c2:b: 0.5;\
 x: (b + v)*cos(u);\
 y: v*sin(u);\

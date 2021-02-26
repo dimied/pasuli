@@ -46,8 +46,8 @@ PaSuLiDefDesc pslddEnneperSurfacePolar = {
 char *descEnneperSurfacePolar =
 	"name: Enneper Surface Polar;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve: 2.5;\
+us:0; ue:pi:2;\
+vs:0; ve: 2.5;\
 a1:s: v*cos(u);\
 a2:t: v*sin(u);\
 x: s - s^(3)/3 + s*t*t;\

@@ -52,7 +52,7 @@ char *descSphereUV =
 	"name: sphere uv;\
 cat: sphere;\
 ut: c; vt: c;\
-us: 0; ue: 10;\
+us:0; ue: 10;\
 vs: -10; ve: 10;\
 x: 2*u*(1 - v*v)/((1 + u*u)*(1 + v*v));\
 y: (1 - u*u)/(1 + u*u);\

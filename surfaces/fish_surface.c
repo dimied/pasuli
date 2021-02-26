@@ -43,8 +43,8 @@ PaSuLiDefDesc pslddFishSurface = {
 char *descFishSurface =
     "name: Fish Surface;\
 ut:c; vt:c;\
-us: 0; ue:pi: 1;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:1;\
+vs:0; ve:pi:2;\
 x: (cos(u) - cos(2*u))*cos(v)/4;\
 y: (sin(u) - sin(2*u))*sin(v)/4;\
 z: cos(u);\

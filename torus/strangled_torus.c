@@ -56,8 +56,8 @@ char *descStrangledTorus =
 	"name: Strangled Torus;\
 cat: torus;\
 ut: c; vt: c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:R: 1; c2:r: 1; c3:n: 1;\
 x: (R + r*sin(v))*cos(u);\
 y: (R + r*sin(v))*sin(u);\

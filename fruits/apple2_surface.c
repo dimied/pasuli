@@ -52,8 +52,8 @@ void Apple2_Surface(pasuli_vartype u,
 char *descAppleSurface2 =
 	"name: Apple Surface (V2);\
 ut: c; vt: c;\
-us:pi: -1; ue:pi: 1;\
-vs:pi: -1; ve:pi: 1;\
+us:pi: -1; ue:pi:1;\
+vs:pi: -1; ve:pi:1;\
 c1:R: 1.5; c2:r: 0.5;\
 x: cos(u)*(R + r*cos(v)) + (v/pi)^(20);\
 y: sin(u)*(R + r*cos(v)) + 0.25*cos(5*u);\

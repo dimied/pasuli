@@ -52,8 +52,8 @@ char *descEllipticTorus =
 	"name: Elliptic Torus;\
 cat: torus;\
 ut: c; vt: c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:a: 1;\
 x: (a + cos(v))*cos(u);\
 y: (a + cos(v))*sin(u);\

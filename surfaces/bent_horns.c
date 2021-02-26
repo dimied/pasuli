@@ -49,8 +49,8 @@ PaSuLiDefDesc pslddBentHorns = {
 char *descBentHorns =
     "name: Bent Horns;\
 ut:c; vt:c;\
-us:pi: -1; ue:pi: 1;\
-vs:pi: -2; ve:pi: 2;\
+us:pi: -1; ue:pi:1;\
+vs:pi: -2; ve:pi:2;\
 x: (2 + cos(u))*(v/3 - sin(v));\
 y: (2 + cos(u + 2*pi/3))*(cos(v) - 1);\
 z: (2 + cos(u - 2*pi/3))*(cos(v) - 1);\

@@ -49,7 +49,7 @@ char *descSpinner =
     "name: Spinner;\
 ut:c; vt:c;\
 us: -1; ue: 1;\
-vs: 0; ve:pi: 2;\
+vs:0; ve:pi:2;\
 x: (|u| - 1)^(2)*cos(v);\
 y: (|u| - 1)^(2)*sin(v);\
 z: u;\

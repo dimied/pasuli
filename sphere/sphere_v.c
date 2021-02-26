@@ -63,8 +63,8 @@ char *descSphereV =
 	"name: Sphere v;\
 cat: sphere;\
 ut: c; vt: c;\
-us: 0; ue:pi: 1;\
-vs:pi: -1; ve:pi: 1;\
+us:0; ue:pi:1;\
+vs:pi: -1; ve:pi:1;\
 x: cos(u)*cos(v);\
 y: sin(v);\
 z: sin(u)*cos(v);\

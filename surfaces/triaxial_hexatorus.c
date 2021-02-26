@@ -48,8 +48,8 @@ PaSuLiDefDesc pslddTriaxialHexatorus = {
 char *descTriaxialHexatorus =
     "name: Triaxial Hexatorus;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 x: sin(u + 2*pi/3)/(sqrt(2) + cos(v + 2*pi/3));\
 y: cos(u - 2*pi/3)/(sqrt(2) + cos(v - 2*pi/3));\
 z: sin(u)/(sqrt(2) + cos(v));\

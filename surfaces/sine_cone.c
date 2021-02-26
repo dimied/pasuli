@@ -61,7 +61,7 @@ char *descSineCone =
 	"name: Sine Cone;\
 ut:c; vt:c;\
 us: -10; ue: 10;\
-vs:pi: -1; ve:pi: 1;\
+vs:pi: -1; ve:pi:1;\
 c1:k: 1.5; c2:N: 0.5;\
 x: u*cos(v);\
 y: u*sin(v);\

@@ -62,8 +62,8 @@ PaSuLiDefDesc pslddSnailSurface = {
 char *descSnailSurface = "name: Snail Surface;\
 cat: shells;\
 ut: c; vt: c;\
-us: 0; ue:pi:2;\
-vs:pi: -1; ve:pi: 1;\
+us:0; ue:pi:2;\
+vs:pi: -1; ve:pi:1;\
 x: u*sin(u)*cos(v);\
 y: u*cos(u)*cos(v);\
 z: -u*sin(v);\
@@ -74,7 +74,7 @@ xv: -u*sin(u)*sin(v);\
 yv: -u*cos(u)*sin(v);\
 zv: -u*cos(v);\
 xn: u*u*cos(v)^2*sin(u) - u*cos(u);\
-yn: u*u*cos(v)^2*cos(u) + u*sin(u);\
+yn: u*u*cos(v)^2*cos(u)+u*sin(u);\
 zn: -u*u*cos(v)*sin(v);\
 xuu: -u*cos(v)*sin(u) + 2*cos(u)*cos(v);\
 yuu: -u*cos(v)*cos(u) - 2*sin(u)*cos(v);\

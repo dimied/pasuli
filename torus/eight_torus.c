@@ -59,14 +59,14 @@ char *descEightTorus =
 	"name: Eight Torus;\
 cat: torus;\
 ut: c; vt: c;\
-us: pi: -1; ue:pi: 1;\
-vs: pi: -1; ve:pi: 1;\
+us: pi: -1; ue:pi:1;\
+vs: pi: -1; ve:pi:1;\
 c1:c: 1;\
 x: cos(u)*(c + sin(v)*cos(u) - sin(2*v)*sin(u)/2);\
 y: sin(u)*(c + sin(v)*cos(u) - sin(2*v)*sin(u)/2);\
 z: sin(u)*sin(v) + cos(u)*sin(2*v)/2;\
 xu: -(c*sin(u) + sin(2*v)*(cos(u)^2 - sin(u)^2)/2 + 2*cos(u)*sin(u)*sin(v));\
-yu: c*cos(u) + sin(v)*(cos(u)^2 - sin(u)^2) - cos(u)*sin(u)*sin(2*v);\
+yu: c*cos(u)+sin(v)*(cos(u)^2 - sin(u)^2) - cos(u)*sin(u)*sin(2*v);\
 zu: cos(u)*sin(v) - sin(u)*sin(2*v)/2;\
 xv: cos(u)^2*cos(v) - cos(u)*cos(2*v)*sin(u);\
 yv: cos(u)*cos(v)*sin(u) - cos(2*v)*sin(u)^2;\

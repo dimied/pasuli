@@ -22,7 +22,7 @@ void Drop(pasuli_vartype u, pasuli_vartype v,
 	P_Y(ab_cos_u_sin_u * sin_v);
 	P_Z(cos_u);
 
-	pasuli_calctype ud_common = b * cos(u) + 1 - 2 * cos(2 * u);
+	pasuli_calctype ud_common = b * cos(u)+1 - 2 * cos(2 * u);
 	UD_X(a * cos_v * ud_common);
 	UD_Y(a * sin_v * ud_common);
 	UD_Z(-sin_u);
@@ -71,15 +71,15 @@ PASULI_V_END_PI|PASULI_FULL_IMPL|PASULI_CONST_COUNT(2),
 char *descDrop =
 	"name: Drop;\
 ut:c; vt:c;\
-us: 0; ue:pi: 1;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:1;\
+vs:0; ve:pi:2;\
 c1:a: 1.5;\
 c2:b: 0.5;\
 x: a*(b - cos(u))*sin(u)*cos(v);\
 y: a*(b - cos(u))*sin(u)*sin(v);\
 z: cos(u);\
-xu: a*cos(v)*(b*cos(u) - cos(u)*cos(u) + sin(u)*sin(u));\
-yu: a*sin(v)*(b*cos(u) - cos(u)*cos(u) + sin(u)*sin(u));\
+xu: a*cos(v)*(b*cos(u) - cos(u)*cos(u)+sin(u)*sin(u));\
+yu: a*sin(v)*(b*cos(u) - cos(u)*cos(u)+sin(u)*sin(u));\
 zu: -sin(u);\
 xv: sin(u)*sin(v)*a*(cos(u)-b);\
 yv: sin(u)*cos(v)*a*(b - cos(u));\

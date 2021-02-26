@@ -67,12 +67,12 @@ PASULI_U_CLOSED|PASULI_V_CLOSED|PASULI_CONST_COUNT(1),
 char *descBowCurve =
     "name: Bow Curve;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:T: 1.5;\
 x: (2 + T*sin(u))*sin(2*v);\
 y: (2 + T*sin(u))*cos(2*v);\
-z: T*cos(u) + 3*cos(v);\
+z: T*cos(u)+3*cos(v);\
 xu: T*cos(u)*sin(2*v);\
 yu: T*cos(u)*cos(2*v);\
 zu: -T*sin(u);\

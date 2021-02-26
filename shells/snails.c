@@ -74,8 +74,8 @@ v \in  [0, 2 pi]
 char *descSnails = "name: Cornucopia;\
 cat: shells;\
 ut: c; vt: c;\
-us: 0; ue: 1;\
-vs: 0; ve:pi: 2;\
+us:0; ue: 1;\
+vs:0; ve:pi:2;\
 c1:R: 1; c2:a: 1;\
 c3:b: 1; c4:c: 1;\
 c5:h: 1; c6:k: 1;\

@@ -53,8 +53,8 @@ PaSuLiDefDesc pslddStilettoSurface = {
 char *descStilettoSurface =
 	"name: Stiletto Surface;\
 ut:c; vt:c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 1;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:1;\
 x: (2+cos(u))*cos(v)*cos(v)*cos(v)*sin(v);\
 y: (2+cos(u+2*pi/3))*cos(v+2*pi/3)*cos(v+2*pi/3)*sin(v+2*pi/3)*sin(v+2*pi/3);\
 z: -(2+cos(u-2*pi/3))*cos(v+2*pi/3)*cos(v+2*pi/3)*sin(v+2*pi/3)*sin(v+2*pi/3);\

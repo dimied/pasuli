@@ -51,8 +51,8 @@ PaSuLiDefDesc pslddLemniskateCylinder = {
 char *descLemniskateCylinder =
 	"name: Lemniskate-Cylinder;\
 ut: c; vt: o;\
-us:pi: -1; ue:pi: 1;\
-vs: 0; ve: 1;\
+us:pi: -1; ue:pi:1;\
+vs:0; ve: 1;\
 c1:r: 1.0; c2:H: 1.0;\
 x: r*cos(u)/(1 + sin(u)^2);\
 y: H*v;\

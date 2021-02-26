@@ -62,8 +62,8 @@ char *descCylinder =
 	"name: Cylinder;\
 cat: cylinder;\
 ut: c; vt: o;\
-us:pi: -1; ue:pi: 1;\
-vs: 0; ve: 1;\
+us:pi: -1; ue:pi:1;\
+vs:0; ve: 1;\
 c1:r: 1;\
 x: r*cos(u);\
 y: r*sin(u);\

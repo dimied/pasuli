@@ -50,7 +50,7 @@ char *descMoebiusBand =
     "name: Moebius Band;\
 ut: c; vt: c;\
 us: -1; ue: 1;\
-vs: 0; ve:pi: 2;\
+vs:0; ve:pi:2;\
 c1:r: 1.5;\
 x: (r + u*cos(v/2))*cos(v);\
 y: (r + u*cos(v/2))*sin(v);\

@@ -55,8 +55,8 @@ PaSuLiDefDesc pslddGaussCylinder = {
 char *descGaussCylinder =
 	"name: Gauss-Cylinder;\
 ut: c; vt: o;\
-us:pi: -1; ue:pi: 1;\
-vs: 0; ve: 1;\
+us:pi: -1; ue:pi:1;\
+vs:0; ve: 1;\
 c1:R: 1; c2:a: 1; c3:b: 1;\
 x: (R + b*exp(-(a*a*v*v)))*cos(u);\
 y: v;\

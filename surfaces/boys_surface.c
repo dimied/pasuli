@@ -35,7 +35,7 @@ char *descBoysSurface =
 ut:c;\
 vt:c;\
 us:pi: -0.5; ue:pi: 0.5;\
-vs:0; ve:pi: 1;\
+vs:0; ve:pi:1;\
 a1:a: sqrt(2);\
 a2:b: a - sin(3*v)*sin(2*u);\
 x: cos(u)*(cos(u)*cos(2*v) + a*sin(u)*cos(v))/b;\

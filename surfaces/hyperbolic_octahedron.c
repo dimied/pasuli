@@ -69,7 +69,7 @@ char *descHyperbolicOctahedron =
 	"name: Hyperbolic Octahedron;\
 ut:c; vt:c;\
 us:pi: -0.5; ue:pi: 0.5;\
-vs:pi: -1; ve:pi: 1;\
+vs:pi: -1; ve:pi:1;\
 x: (cos(u)*cos(v))^(3);\
 y: (sin(u)*cos(v))^(3);\
 z: sin(v)^(3);\

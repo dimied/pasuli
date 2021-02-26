@@ -63,8 +63,8 @@ char *descTwistedEightTorus =
 	"name: Twisted Torus;\
 cat: torus;\
 ut: c; vt: c;\
-us: 0; ue:pi: 2;\
-vs: 0; ve:pi: 2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:R: 1.5; c2:r: 0.5;\
 x: (R+r*(cos(u/2)*sin(v)-sin(u/2)*sin(2*v)))*cos(u);\
 y: (R+r*(cos(u/2)*sin(v)-sin(u/2)*sin(2*v)))*sin(u);\

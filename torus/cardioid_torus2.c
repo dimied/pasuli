@@ -56,8 +56,8 @@ PaSuLiDefDesc pslddCardioidTorus2 = {
 char *descCardioidTorus2 =
 	"name: Cardioid Torus 2;\
 cat: torus;\
-us: 0; ue:pi:2;\
-vs: 0; ve:pi:2;\
+us:0; ue:pi:2;\
+vs:0; ve:pi:2;\
 c1:R:1; c2:r: 1;\
 x: (R + r*(2*sin(v) - sin(2*v)))*cos(u);\
 y: (R + r*(2*sin(v) - sin(2*v)))*sin(u);\
