@@ -10,4 +10,8 @@ void StrophoideCylinder(pasuli_vartype u, pasuli_vartype v,
 						PaSuLiObject *pO);
 #endif
 
+#if (COMPILE_DESC_CYLINDER != 0)
+HEADER_DESC_PTR(descStrophoideCylinder)
+#endif
+
 #endif

@@ -11,4 +11,8 @@ void TanhSpiral(pasuli_vartype u,
 				PaSuLiObject *pO);
 #endif
 
+#if (COMPILE_DESC_SPIRAL != 0)
+HEADER_DESC_PTR(descTanhSpiral)
+#endif
+
 #endif

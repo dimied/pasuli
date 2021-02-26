@@ -8,14 +8,6 @@
 
 extern pasulidefdesc_ct def_fruits_constants[2];
 
-#if (COMPILE_DESC_FRUITS != 0)
-
-extern char *descKidneySurface;
-extern char *descAppleSurface;
-extern char *descApple2_Surface;
-extern char *descLemonSurface;
-#endif
-
 #if (COMPILE_DEF_DESC_FRUITS != 0)
 
 extern PaSuLiDefDesc pslddKidneySurface;

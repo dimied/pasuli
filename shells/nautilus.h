@@ -11,4 +11,8 @@ void Nautilus(pasuli_vartype u,
 			  PaSuLiObject *pO);
 #endif
 
+#if (COMPILE_DESC_SHELLS != 0)
+HEADER_DESC_PTR(descNautilus)
+#endif
+
 #endif

@@ -4,8 +4,6 @@
 #include "../pasuli_cfg.h"
 #include "../pasuli_defs.h"
 
-extern char *descCassinianOvalTorus1;
-
 #if (USE_CASSINIAN_OVAL_TORUS_1 != 0)
 void CassinianOvalTorus1(pasuli_vartype u,
 					pasuli_vartype v,
@@ -13,4 +11,7 @@ void CassinianOvalTorus1(pasuli_vartype u,
 					PaSuLiObject *pO);
 #endif
 
+#if (COMPILE_DESC_TORUS != 0)
+HEADER_DESC_PTR(descCassinianOvalTorus1)
+#endif
 #endif

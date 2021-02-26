@@ -11,4 +11,8 @@ void SphereV(pasuli_vartype u,
 			   PaSuLiObject *pO);
 #endif
 
+#if (COMPILE_DESC_SPHERE != 0)
+HEADER_DESC_PTR(descSphereV)
+#endif
+
 #endif

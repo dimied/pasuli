@@ -11,4 +11,8 @@ void LemonSurface(pasuli_vartype u,
                   PaSuLiObject *pO);
 #endif
 
+#if (COMPILE_DESC_FRUITS != 0)
+HEADER_DESC_PTR(descLemonSurface)
+#endif
+
 #endif

@@ -39,6 +39,45 @@
 #include "umbillic_torus.h"
 #include "wave_torus.h"
 
+#if(COMPILE_DEF_DESC_TORUS != 0)
+extern PaSuLiDefDesc pslddTorus;
+extern PaSuLiDefDesc pslddAntisymmetricTorus;
+extern PaSuLiDefDesc pslddEightTorus;
+extern PaSuLiDefDesc pslddTwistedEightTorus;
+extern PaSuLiDefDesc pslddUmbillicTorus;
+extern PaSuLiDefDesc pslddWaveTorus;
+extern PaSuLiDefDesc pslddEllipticTorus;
+extern PaSuLiDefDesc pslddSaddleTorus;	//?!?
+extern PaSuLiDefDesc pslddBraidedTorus;
+extern PaSuLiDefDesc pslddLimpetTorus;
+extern PaSuLiDefDesc pslddStrangledTorus;
+extern PaSuLiDefDesc pslddAstroidTorus;
+extern PaSuLiDefDesc pslddTricuspoidTorus1;
+extern PaSuLiDefDesc pslddTricuspoidTorus2;
+extern PaSuLiDefDesc pslddNephroidTorus1;
+extern PaSuLiDefDesc pslddNephroidTorus2;
+extern PaSuLiDefDesc pslddLemniskateTorus1;
+extern PaSuLiDefDesc pslddLemniskateTorus2;
+extern PaSuLiDefDesc pslddEpizykloidTorus1;
+extern PaSuLiDefDesc pslddEpizykloidTorus2;
+extern PaSuLiDefDesc pslddHypozykloidTorus1;
+extern PaSuLiDefDesc pslddHypozykloidTorus2;
+extern PaSuLiDefDesc pslddPiriformTorus1;
+extern PaSuLiDefDesc pslddPiriformTorus2;
+extern PaSuLiDefDesc pslddBicornTorus1;
+extern PaSuLiDefDesc pslddBicornTorus2;
+extern PaSuLiDefDesc pslddCardioidTorus1;
+extern PaSuLiDefDesc pslddCardioidTorus2;
+extern PaSuLiDefDesc pslddCassinianOvalTorus1;
+extern PaSuLiDefDesc pslddCassinianOvalTorus2;
+extern PaSuLiDefDesc pslddGeronoLemniskateTorus1;
+extern PaSuLiDefDesc pslddGeronoLemniskateTorus2;
+extern PaSuLiDefDesc pslddCurlyTorus1;
+extern PaSuLiDefDesc pslddCurlyTorus2;
+extern PaSuLiDefDesc pslddSpiralTorus;
+extern PaSuLiDefDesc pslddTorusKnot;
+extern PaSuLiDefDesc pslddGearTorus;
+#endif
 
 #endif
 

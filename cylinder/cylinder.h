@@ -11,14 +11,7 @@ void Cylinder(pasuli_vartype u, pasuli_vartype v,
 #endif
 
 #if (COMPILE_DESC_CYLINDER != 0)
-extern char *descCylinder;
-extern char *descEpizykloidCylinder;
-extern char *descHypozykloidCylinder;
-extern char *descLemniskateCylinder;
-extern char *descStrophoideCylinder;
-extern char *descZissoideCylinder;
-extern char *descVersieraAgnesiCylinder;
-extern char *descGaussCylinder;
+HEADER_DESC_PTR(descCylinder)
 #endif
 
 #if (COMPILE_DEF_DESC_CYLINDER != 0)

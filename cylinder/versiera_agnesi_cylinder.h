@@ -11,4 +11,8 @@ void VersieraAgnesiCylinder(pasuli_vartype u,
 							PaSuLiObject *pO);
 #endif
 
+#if (COMPILE_DESC_CYLINDER != 0)
+HEADER_DESC_PTR(descVersieraAgnesiCylinder)
+#endif
+
 #endif

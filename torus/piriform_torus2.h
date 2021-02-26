@@ -4,13 +4,15 @@
 #include "../pasuli_cfg.h"
 #include "../pasuli_defs.h"
 
-extern char *descPiriformTorus2;
-
 #if (USE_PIRIFORM_TORUS_2 != 0)
 void PiriformTorus2(pasuli_vartype u,
 					pasuli_vartype v,
 					pasuli_consttype *constants,
 					PaSuLiObject *pO);
+#endif
+
+#if (COMPILE_DESC_SURFACES != 0)
+HEADER_DESC_PTR(descPiriformTorus2)
 #endif
 
 #endif

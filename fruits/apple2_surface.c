@@ -49,7 +49,7 @@ void Apple2_Surface(pasuli_vartype u,
 #endif
 
 #if (COMPILE_DESC_FRUITS != 0)
-char *descApple2_Surface =
+char *descAppleSurface2 =
 	"name: Apple Surface (V2);\
 ut: c; vt: c;\
 us:pi: -1; ue:pi: 1;\

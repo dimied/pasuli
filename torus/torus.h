@@ -12,7 +12,7 @@ void Torus(pasuli_vartype u,
 #endif
 
 #if (COMPILE_DESC_TORUS != 0)
-extern char *descTorus;
+HEADER_DESC_PTR(descTorus)
 #endif
 
 #endif

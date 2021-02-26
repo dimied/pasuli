@@ -14,12 +14,12 @@ Evaluation of SuperFormula (first defined by Paul Bourke) is also possible.
 ----
 
 ## Roadmap:
-February 2021: 
+March 2021: 
 - Fixing and extending some evaluations.
 - Code generation for other programming languages (especially JavaScript)
 - Release of the first stable version 
 
-March 2021:
+April 2021:
 - Evaluation of Bezier surfaces and NURBS
 - Code generation for OpenCL
 - "On the fly" code generation of executable code for x86/x64

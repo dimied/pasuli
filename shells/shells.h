@@ -17,23 +17,6 @@
 #include "snail_surface.h"
 #include "snails.h"
 
-
-#if (COMPILE_DESC_SHELLS != 0)
-
-extern char *descCornucopia;
-extern char *descSnail;
-extern char *descSeashell;
-extern char *descSnailSurface;
-extern char *descSnails;
-extern char *descPseudohelicerasSubcatenatum;
-extern char *descAstroceras;
-extern char *descBellerophina;
-extern char *descEuhoplites;
-extern char *descNautilus;
-extern char *descNaticaStellata;
-extern char *descMyaArenaria;
-#endif
-
 #if (COMPILE_DEF_DESC_SHELLS != 0)
 extern PaSuLiDefDesc pslddCornucopia;
 extern PaSuLiDefDesc pslddSnail;
