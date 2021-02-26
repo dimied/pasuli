@@ -40,8 +40,6 @@ void CurlyTorus1(pasuli_vartype u,
 }
 #endif
 
-#include "torus_desc.h"
-
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddCurlyTorus1 = {
 	CURLY_TORUS_1,

@@ -49,8 +49,6 @@ void GearTorus(pasuli_vartype u,
 }
 #endif
 
-#include "torus_desc.h"
-
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddGearTorus = {
 	GEAR_TORUS,
@@ -59,6 +57,7 @@ PaSuLiDefDesc pslddGearTorus = {
 		PASULI_V_END_PI | PASULI_FULL_IMPL | PASULI_CONST_COUNT(4),
 	0, 2, 0, 2, 0};
 #endif
+
 #if (COMPILE_DESC_TORUS != 0)
 char *descGearTorus =
 	"name: GearTorus;\

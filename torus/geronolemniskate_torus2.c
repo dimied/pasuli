@@ -45,8 +45,6 @@ void GeronoLemniskateTorus2(pasuli_vartype u,
 }
 #endif
 
-#include "torus_desc.h"
-
 #if (COMPILE_DEF_DESC_TORUS != 0)
 PaSuLiDefDesc pslddGeronoLemniskateTorus2 = {
 	GERONO_LEMNISKATE_TORUS_2,

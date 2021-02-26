@@ -1115,7 +1115,7 @@ void testDescriptionPointers()
 	size_t numberOf = 256;
 
 	unsigned char *pStates = malloc(numberOf);
-	unsigned char **pTexts = malloc(numberOf * sizeof(unsigned char *));
+	char **pTexts = malloc(numberOf * sizeof(unsigned char *));
 
 	memset(pStates, 0, numberOf);
 	memset(pTexts, 0, numberOf * sizeof(unsigned char *));
@@ -1169,7 +1169,7 @@ void testDescriptionPointers()
 				int compareResult = strcmp(pText1, pText2);
 				if (compareResult == 0)
 				{
-					printf("Same descriptions @indices %d and %d with names\
+					printf("Same descriptions @indices %x and %x with names\
 					'%s' and '%s'\n",
 						   idxForText,
 						   idxForText2,
