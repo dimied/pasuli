@@ -801,12 +801,6 @@ unsigned char getImplementationState(unsigned int id)
 	return 0;
 }
 
-typedef struct _pasuli_name_type
-{
-	char *szName;
-	int _ID;
-} pasuli_name_type;
-
 #define PASULI_STORE_NAME 1
 #define PASULI_STORE_DESC 1
 
@@ -839,7 +833,7 @@ typedef struct
 PaSuLiTextDescType parsur_desc_array[] = {
 #if (COMPILE_NAMES_SURFACES != 0)
 	PASULI_SET_DESC("Plane", PLANE, descPlane),
-	PASULI_SET_DESC("Agnesi Curl", BOHEMIAN_DOME_SURFACE, descBohemianDomeSurface),
+	PASULI_SET_DESC("Agnesi Curl", AGNESI_CURL, descAgnesiCurl),
 	PASULI_SET_DESC("Astroidal Ellipsoid", ASTROIDAL_ELLIPSOID, descAstroidalEllipsoid),
 	PASULI_SET_DESC("Balls Cylindroid", BALLS_CYLINDROID, descBallsCylindroid),
 	PASULI_SET_DESC("Bell", BELL, descBell),
@@ -856,7 +850,7 @@ PaSuLiTextDescType parsur_desc_array[] = {
 	PASULI_SET_DESC("Boys Surface 2", BOYS_SURFACE2, descBoysSurface2),
 	PASULI_SET_DESC("Bullet Nose", BULLET_NOSE, descBulletNose),
 	PASULI_SET_DESC("Catalans Surface", CATALANS_SURFACE, descCatalansSurface),
-	PASULI_SET_DESC("Catalans Surface 2", CATALANS_SURFACE, descCatalansSurface2),
+	PASULI_SET_DESC("Catalans Surface 2", CATALANS_SURFACE2, descCatalansSurface2),
 	PASULI_SET_DESC("Catenoid", CATENOID, descCatenoid),
 	PASULI_SET_DESC("Cayley Surface", CAYLEY_SURFACE, descCayleySurface),
 	PASULI_SET_DESC("Cone", CONE, descCone),
@@ -1068,7 +1062,7 @@ PaSuLiTextDescType parsur_desc_array[] = {
 	PASULI_SET_DESC("Gerono-Lemniskate Torus 1", GERONO_LEMNISKATE_TORUS_1, descGeronoLemniskateTorus1),
 	PASULI_SET_DESC("Gerono-Lemniskate Torus 2", GERONO_LEMNISKATE_TORUS_2, descGeronoLemniskateTorus2),
 	PASULI_SET_DESC("Hypozykloid Torus 1", HYPOZYKLOID_TORUS_1, descHypozykloidTorus1),
-	PASULI_SET_DESC("Hypozykloid Torus 2", HYPOZYKLOID_TORUS_2, descHypozykloidTorus1),
+	PASULI_SET_DESC("Hypozykloid Torus 2", HYPOZYKLOID_TORUS_2, descHypozykloidTorus2),
 	PASULI_SET_DESC("Lemniskate Torus 1", LEMNISKATE_TORUS_1, descLemniskateTorus1),
 	PASULI_SET_DESC("Lemniskate Torus 2", LEMNISKATE_TORUS_2, descLemniskateTorus2),
 	PASULI_SET_DESC("Limpet Torus", LIMPET_TORUS, descLimpetTorus),
@@ -1117,7 +1111,77 @@ char *findDescriptionTextByID(unsigned char ID)
 void testDescriptionPointers()
 {
 	const size_t numberOfEntries = sizeof(parsur_desc_array) / sizeof(PaSuLiTextDescType);
+
+	size_t numberOf = 256;
+
+	unsigned char *pStates = malloc(numberOf);
+	unsigned char **pTexts = malloc(numberOf * sizeof(unsigned char *));
+
+	memset(pStates, 0, numberOf);
+	memset(pTexts, 0, numberOf * sizeof(unsigned char *));
+
 	printf("#descriptions = %ld\n", numberOfEntries);
+
+	for (size_t idx = 0; idx < numberOfEntries; idx++)
+	{
+		int id = parsur_desc_array[idx].ID;
+
+		if (pStates[id] > 0)
+		{
+			printf("Already defined for ID=%d, found new at %ld|Name: %s\n",
+				   id,
+				   idx,
+				   parsur_desc_array[idx].pszName);
+		}
+		pStates[id] += 1;
+
+		if (pTexts[id] != 0)
+		{
+			printf("Text for ID=%d already defined as \n%s\n", id, pTexts[id]);
+		}
+		if (parsur_desc_array[idx].pszDesc == 0)
+		{
+			printf("Found invalid text pointer @index=%ld", idx);
+		}
+		else
+		{
+			char *pszText = *parsur_desc_array[idx].pszDesc;
+			if (pszText == 0)
+			{
+				printf("Found invalid text pointer value @index=%ld", idx);
+			}
+			else
+			{
+				pTexts[id] = pszText;
+			}
+		}
+	}
+
+	// Compare texts
+	for (size_t idxForText = 0; idxForText < numberOfEntries; idxForText++)
+	{
+		char *pText1 = *parsur_desc_array[idxForText].pszDesc;
+		for (size_t idxForText2 = 0; idxForText2 < idxForText; idxForText2++)
+		{
+			char *pText2 = *parsur_desc_array[idxForText2].pszDesc;
+			if (pText1 != 0 && pText2 != 0)
+			{
+				int compareResult = strcmp(pText1, pText2);
+				if (compareResult == 0)
+				{
+					printf("Same descriptions @indices %d and %d with names\
+					'%s' and '%s'\n",
+						   idxForText,
+						   idxForText2,
+						   parsur_desc_array[idxForText].pszName,
+						   parsur_desc_array[idxForText2].pszName);
+				}
+			}
+		}
+	}
+
+	free(pStates);
+	free(pTexts);
 }
 
 PASULI_PARSUR_STATIC PaSuLiDefDesc *parsur_def_desc_array[] = {
