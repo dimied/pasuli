@@ -5,6 +5,10 @@
 #include "pasuli_cfg.h"
 #include "pasuli_repository.h"
 
+#define PASULI_PARSUR_STATIC static
+//#define PASULI_PARSUR_STATIC
+//PASULI_PARSUR_STATIC
+
 #define ID_AND_LENGTH(ID, L) \
 	{                        \
 		ID, L, 0             \
@@ -800,202 +804,8 @@ typedef struct _pasuli_name_type
 	int _ID;
 } pasuli_name_type;
 
-pasuli_name_type parsur_name_array[] = {
-#if (COMPILE_NAMES_SURFACES != 0)
-	PASULI_SET_NAME("Plane", PLANE),
-	PASULI_SET_NAME("Bohemian Dome Surface", BOHEMIAN_DOME_SURFACE),
-	PASULI_SET_NAME("Boys Surface", BOYS_SURFACE),
-	PASULI_SET_NAME("Cross Cup", CROSS_CUP),
-	PASULI_SET_NAME("Dini Surface", DINI_SURFACE),
-	PASULI_SET_NAME("Enneper Surface", ENNEPER_SURFACE),
-	PASULI_SET_NAME("Handkerchief", HANDKERCHIEF),
-	PASULI_SET_NAME("Klein Bottle Surface", KLEIN_BOTTLE_SURFACE),
-	PASULI_SET_NAME("Moebius Band", MOEBIUS_BAND),
-	PASULI_SET_NAME("Monkey Saddle", MONKEY_SADDLE),
-	PASULI_SET_NAME("Pluecker Conoid", PLUECKER_CONOID),
-	PASULI_SET_NAME("Roman Surface", ROMAN_SURFACE),
-	PASULI_SET_NAME("Shoe Surface", SHOE_SURFACE),
-	PASULI_SET_NAME("Sine Surface", SINE_SURFACE),
-	PASULI_SET_NAME("Steinbach Screw", STEINBACH_SCREW),
-	PASULI_SET_NAME("Whitney Umbrella", WHITNEY_UMBRELLA),
-	PASULI_SET_NAME("Catenoid", CATENOID),
-	PASULI_SET_NAME("Helicoid", HELICOID),
-	PASULI_SET_NAME("Paraboloid", PARABOLOID),
-	PASULI_SET_NAME("Hyperbolic Helicoid", HYPERBOLIC_HELICOID),
-	PASULI_SET_NAME("Funnel", FUNNEL),
-	PASULI_SET_NAME("Tractroid", TRACTROID),
-	PASULI_SET_NAME("Catalans Surface", CATALANS_SURFACE),
-	PASULI_SET_NAME("Hyperboloid", HYPERBOLOID),
-	PASULI_SET_NAME("Hennebergs Surface", HENNEBERGS_SURFACE),
-	PASULI_SET_NAME("Swallow Surface", SWALLOW_SURFACE),
-	PASULI_SET_NAME("Wallis Conical Surface", WALLIS_CONICAL_SURFACE),
-	PASULI_SET_NAME("Maeders Owl", MAEDERS_OWL),
-	PASULI_SET_NAME("Richmond Surface", RICHMOND_SURFACE),
-	PASULI_SET_NAME("Scherk Surface", SCHERK_SURFACE),
-	PASULI_SET_NAME("Cosine Surface", COSINE_SURFACE),
-	PASULI_SET_NAME("Eight Surface", EIGHT_SURFACE),
-	PASULI_SET_NAME("Jet Surface", JET_SURFACE),
-	PASULI_SET_NAME("Drop", DROP),
-	PASULI_SET_NAME("Triaxial Teardrop", TRIAXIAL_TEARDROP),
-	PASULI_SET_NAME("Pillow Shape", PILLOW_SHAPE),
-	PASULI_SET_NAME("Fish Surface", FISH_SURFACE),
-	PASULI_SET_NAME("Horn", HORN),
-	PASULI_SET_NAME("Bent Horns", BENT_HORNS),
-	PASULI_SET_NAME("Hyperbolic Octahedron", HYPERBOLIC_OCTAHEDRON),
-	PASULI_SET_NAME("Pseudo Cross Cap", PSEUDO_CROSS_CAP),
-	PASULI_SET_NAME("Cresent", CRESENT),
-	PASULI_SET_NAME("Stiletto Surface", STILETTO_SURFACE),
-	PASULI_SET_NAME("Kuens Surface", KUENS_SURFACE),
-	PASULI_SET_NAME("Trefoil Knots", TREFOIL_KNOTS),
-	PASULI_SET_NAME("Tranguloid Trefoil", TRANGULOID_TREFOIL),
-	PASULI_SET_NAME("Crown", CROWN),
-	PASULI_SET_NAME("Twisted Pipe Surface", TWISTED_PIPE_SURFACE),
-	PASULI_SET_NAME("Loop", LOOP),
-	PASULI_SET_NAME("Dupin Cyclide", DUPIN_CYCLIDE),
-	PASULI_SET_NAME("Guimard Surface", GUIMARD_SURFACE),
-	PASULI_SET_NAME("Menns Surface", MENNS_SURFACE),
-	PASULI_SET_NAME("MilkBag", MILK_BAG),
-	PASULI_SET_NAME("Triaxial Tritorus", TRIAXIAL_TRITORUS),
-	PASULI_SET_NAME("Verrill Surface", VERRILL_SURFACE),
-	PASULI_SET_NAME("Zindlers Conoid", ZINDLERS_CONOID),
-	PASULI_SET_NAME("Folium", FOLIUM),
-	PASULI_SET_NAME("Lemniscape", LEMNISCAPE),
-	PASULI_SET_NAME("Triple Point Twist", TRIPLE_POINT_TWIST),
-	PASULI_SET_NAME("Trashcan", TRASHCAN),
-	PASULI_SET_NAME("Spring1", SPRING1),
-	PASULI_SET_NAME("Spring2", SPRING2),
-	PASULI_SET_NAME("Cone", CONE),
-	PASULI_SET_NAME("Egg", EGG),
-	PASULI_SET_NAME("Isolator", ISOLATOR),
-	PASULI_SET_NAME("Hyperbolic Paraboloid", HYPERBOLIC_PARABOLOID),
-	PASULI_SET_NAME("Drop Surface", DROP_SURFACE),
-	PASULI_SET_NAME("Facing Snail", FACING_SNAIL),
-	PASULI_SET_NAME("Paper Bag", PAPER_BAG),
-	PASULI_SET_NAME("Jeener Klein Surface", JEENER_KLEIN_SURFACE),
-	PASULI_SET_NAME("Bonan Jeener Klein Surface", BONAN_JEENER_KLEIN_SURFACE),
-	PASULI_SET_NAME("Klein Cycloid", KLEIN_CYCLOID),
-	PASULI_SET_NAME("Double Cone", DOUBLE_CONE),
-	PASULI_SET_NAME("Hole Disc", HOLE_DISC),
-	PASULI_SET_NAME("Pisot Triaxial", PISOT_TRIAXIAL),
-	PASULI_SET_NAME("Triaxial Hexatorus", TRIAXIAL_HEXATORUS),
-	PASULI_SET_NAME("Twisted Heart", TWISTED_HEART),
-	PASULI_SET_NAME("Hole Discus", HOLE_DISCUS),
-	PASULI_SET_NAME("Disc", DISC),
-	PASULI_SET_NAME("Waves", WAVES),
-	PASULI_SET_NAME("Sine Wave", SINE_WAVE),
-	PASULI_SET_NAME("Cosine Wave", COSINE_WAVE),
-	PASULI_SET_NAME("Spiral Wave", SPIRAL_WAVE),
-	PASULI_SET_NAME("Bell", BELL),
-	PASULI_SET_NAME("Bell Polar", BELL_POLAR),
-	PASULI_SET_NAME("Bell Wave", BELL_WAVE),
-	PASULI_SET_NAME("Soucoupoid", SOUCOUPOID),
-	PASULI_SET_NAME("Enneper Surface Polar", ENNEPER_SURFACE_POLAR),
-	PASULI_SET_NAME("Spinner", SPINNER),
-	PASULI_SET_NAME("Fresnel", FRESNEL),
-	PASULI_SET_NAME("Trefoil Knots2", TREFOIL_KNOTS2),
-	PASULI_SET_NAME("Bow Curve", BOW_CURVE),
-	PASULI_SET_NAME("Triple Cork Screw 1", TRIPLE_CORK_SCREW1),
-	PASULI_SET_NAME("Triple Cork Screw 2", TRIPLE_CORK_SCREW2),
-	PASULI_SET_NAME("Triple Cork Screw 3", TRIPLE_CORK_SCREW3),
-	PASULI_SET_NAME("Bicorn Surface", BICORN_SURFACE),
-	PASULI_SET_NAME("Piriform Surface", PIRIFORM_SURFACE),
-	PASULI_SET_NAME("Kappa Surface", KAPPA_SURFACE),
-	PASULI_SET_NAME("Bullet Nose", BULLET_NOSE),
-	PASULI_SET_NAME("Sievert Surface", SIEVERT_SURFACE),
-	PASULI_SET_NAME("Cosine Surface2", COSINE_SURFACE2),
-#endif
-#if (COMPILE_NAMES_CYLINDER != 0)
-	PASULI_SET_NAME("Cylinder", CYLINDER),
-	PASULI_SET_NAME("Epizykloid Cylinder", EPIZYKLOID_CYLINDER),
-	PASULI_SET_NAME("Hypozykloid Cylinder", HYPOZYKLOID_CYLINDER),
-	PASULI_SET_NAME("Lemniskate Cylinder", LEMNISKATE_CYLINDER),
-	PASULI_SET_NAME("Strophoide Cylinder", STROPHOIDE_CYLINDER),
-	PASULI_SET_NAME("Zissoide Cylinder", ZISSOIDE_CYLINDER),
-	PASULI_SET_NAME("Versiera Agnesi Cylinder", VERSIERA_AGNESI_CYLINDER),
-	PASULI_SET_NAME("Gauss Cylinder", GAUSS_CYLINDER),
-#endif
-#if (COMPILE_NAMES_FRUITS != 0)
-	PASULI_SET_NAME("Kidney Surface", KIDNEY_SURFACE),
-	PASULI_SET_NAME("Apple Surface", APPLE_SURFACE),
-	PASULI_SET_NAME("Apple Surface (2.nd Version)", APPLE2_SURFACE),
-	PASULI_SET_NAME("Lemon Surface", LEMON_SURFACE),
-#endif
-#if (COMPILE_NAMES_SHELLS != 0)
-	PASULI_SET_NAME("Cornucopia", CORNUCOPIA),
-	PASULI_SET_NAME("Snail", SNAIL),
-	PASULI_SET_NAME("Seashell", SEASHELL),
-	PASULI_SET_NAME("Snail surface", SNAIL_SURFACE),
-	PASULI_SET_NAME("Snails", SNAILS),
-	PASULI_SET_NAME("Pseudoheliceras Subcatenatum", PSEUDOHELICERAS_SUBCATENATUM),
-	PASULI_SET_NAME("Astroceras", ASTROCERAS),
-	PASULI_SET_NAME("Bellerophina", BELLEROPHINA),
-	PASULI_SET_NAME("Euhoplites", EUHOPLITES),
-	PASULI_SET_NAME("Nautilus", NAUTILUS),
-	PASULI_SET_NAME("Natica Stellata", NATICA_STELLATA),
-	PASULI_SET_NAME("Mya Arenaria", MYA_ARENARIA),
-#endif
-#if (COMPILE_NAMES_SPHERE != 0)
-	PASULI_SET_NAME("Sphere", SPHERE),
-	PASULI_SET_NAME("Ellipsoid", ELLIPSOID),
-	PASULI_SET_NAME("SphereV", SPHERE_V),
-	PASULI_SET_NAME("SphereUV", SPHERE_UV),
-	PASULI_SET_NAME("Pseudo-Sphere", PSEUDOSPHERE),
-	PASULI_SET_NAME("Twisted Sphere", TWISTED_SPHERE),
-	PASULI_SET_NAME("Open Sphere", OPEN_SPHERE),
-	PASULI_SET_NAME("Wave Sphere", WAVE_SPHERE),
-#endif
-#if (COMPILE_NAMES_SPIRAL != 0)
-	PASULI_SET_NAME("Archimedic Spiral", ARCHIMEDIC_SPIRAL),
-	PASULI_SET_NAME("Hyperbolic Spiral", HYPERBOLIC_SPIRAL),
-	PASULI_SET_NAME("Fermat Spiral", FERMAT_SPIRAL),
-	PASULI_SET_NAME("Tanh Spiral", TANH_SPIRAL),
-	PASULI_SET_NAME("Logarithmic Spiral", LOG_SPIRAL),
-#endif
-#if (COMPILE_NAMES_TORUS != 0)
-	PASULI_SET_NAME("Torus", TORUS),
-	PASULI_SET_NAME("Eight Torus", EIGHT_TORUS),
-	PASULI_SET_NAME("Elliptic Torus", ELLIPTIC_TORUS),
-	PASULI_SET_NAME("Saddle Torus", SADDLE_TORUS),
-	PASULI_SET_NAME("Antisymmetric Torus", ANTISYMMETRIC_TORUS),
-	PASULI_SET_NAME("Twisted Eight Torus", TWISTED_EIGHT_TORUS),
-	PASULI_SET_NAME("Umbillic Torus", UMBILLIC_TORUS),
-	PASULI_SET_NAME("Wave Torus", WAVE_TORUS),
-	PASULI_SET_NAME("Braided Torus", BRAIDED_TORUS),
-	PASULI_SET_NAME("Limpet Torus", LIMPET_TORUS),
-	PASULI_SET_NAME("Strangled Torus", STRANGLED_TORUS),
-	PASULI_SET_NAME("Astroid Torus", ASTROID_TORUS),
-	PASULI_SET_NAME("Tricuspoid Torus 1", TRICUSPOID_TORUS_1),
-	PASULI_SET_NAME("Tricuspoid Torus 2", TRICUSPOID_TORUS_2),
-	PASULI_SET_NAME("Nephroid Torus 1", NEPHROID_TORUS_1),
-	PASULI_SET_NAME("Nephroid Torus 2", NEPHROID_TORUS_2),
-	PASULI_SET_NAME("Lemniskate Torus 1", LEMNISKATE_TORUS_1),
-	PASULI_SET_NAME("Lemniskate Torus 2", LEMNISKATE_TORUS_2),
-	PASULI_SET_NAME("Epizykloid Torus 1", EPIZYKLOID_TORUS_1),
-	PASULI_SET_NAME("Epizykloid Torus 2", EPIZYKLOID_TORUS_2),
-	PASULI_SET_NAME("Hypozykloid Torus 1", HYPOZYKLOID_TORUS_1),
-	PASULI_SET_NAME("Hypozykloid Torus 2", HYPOZYKLOID_TORUS_2),
-	PASULI_SET_NAME("Piriform Torus 1", PIRIFORM_TORUS_1),
-	PASULI_SET_NAME("Piriform Torus 2", PIRIFORM_TORUS_2),
-	PASULI_SET_NAME("Bicorn Torus 1", BICORN_TORUS_1),
-	PASULI_SET_NAME("Bicorn Torus 2", BICORN_TORUS_2),
-	PASULI_SET_NAME("Cardioid Torus 1", CARDIOID_TORUS_1),
-	PASULI_SET_NAME("Cardioid Torus 2", CARDIOID_TORUS_2),
-	PASULI_SET_NAME("Cassinian Oval Torus 1", CASSINIAN_OVAL_TORUS_1),
-	PASULI_SET_NAME("Cassinian Oval Torus 2", CASSINIAN_OVAL_TORUS_2),
-	PASULI_SET_NAME("Gerono-Lemniskate Torus 1", GERONO_LEMNISKATE_TORUS_1),
-	PASULI_SET_NAME("Gerono-Lemniskate Torus 2", GERONO_LEMNISKATE_TORUS_2),
-	PASULI_SET_NAME("Curly Torus 1", CURLY_TORUS_1),
-	PASULI_SET_NAME("Curly Torus 2", CURLY_TORUS_2),
-	PASULI_SET_NAME("Spiral Torus", SPIRAL_TORUS),
-	PASULI_SET_NAME("Torus Knot", TORUS_KNOT),
-	PASULI_SET_NAME("Gear Torus", GEAR_TORUS)
-#endif
-};
-
-#define PASULI_PARSUR_STATIC static
-//#define PASULI_PARSUR_STATIC
-
-//PASULI_PARSUR_STATIC
+#define PASULI_STORE_NAME 1
+#define PASULI_STORE_DESC 1
 
 typedef struct
 {
@@ -1003,19 +813,280 @@ typedef struct
 	 * Surfaces ID
 	 */
 	unsigned char ID;
+#if (PASULI_STORE_NAME != 0)
+	char *pszName;
+#endif
 	/**
 	 * Pointer to text description
 	 */
-	char *pszDesc;
+#if (PASULI_STORE_DESC != 0)
+	char **pszDesc;
+#endif
 } PaSuLiTextDescType;
 
-#define PASULI_SET_TEXT_DESC(ID, PTR) \
-	{                                 \
-		ID, PTR                       \
+#if ((PASULI_STORE_NAME != 0) && (PASULI_STORE_DESC != 0))
+
+#define PASULI_SET_DESC(NAME, _ID, PTR) \
+	{                                   \
+		_ID, NAME, &PTR                 \
 	}
 
-PASULI_PARSUR_STATIC PaSuLiTextDescType parsur_desc_array[] = {
+#endif
+
+PaSuLiTextDescType parsur_desc_array[] = {
+#if (COMPILE_NAMES_SURFACES != 0)
+	PASULI_SET_DESC("Plane", PLANE, descPlane),
+	PASULI_SET_DESC("Agnesi Curl", BOHEMIAN_DOME_SURFACE, descBohemianDomeSurface),
+	PASULI_SET_DESC("Astroidal Ellipsoid", ASTROIDAL_ELLIPSOID, descAstroidalEllipsoid),
+	PASULI_SET_DESC("Balls Cylindroid", BALLS_CYLINDROID, descBallsCylindroid),
+	PASULI_SET_DESC("Bell", BELL, descBell),
+	PASULI_SET_DESC("Bell Polar", BELL_POLAR, descBellPolar),
+	PASULI_SET_DESC("Bell Wave", BELL_WAVE, descBellWave),
+	PASULI_SET_DESC("Bent Horns", BENT_HORNS, descBentHorns),
+	PASULI_SET_DESC("Bicorn Surface", BICORN_SURFACE, descBicornSurface),
+	PASULI_SET_DESC("Bohemian Dome Surface", BOHEMIAN_DOME_SURFACE, descBohemianDomeSurface),
+	PASULI_SET_DESC("Bonan Jeener Klein Surface", BONAN_JEENER_KLEIN_SURFACE, descBonanJeenerKleinSurface),
+	PASULI_SET_DESC("Bour's Minimal Surface", BOURS_MINIMAL_SURFACE, descBoursMinimalSurface),
+	PASULI_SET_DESC("Bow Curve", BOW_CURVE, descBowCurve),
+	PASULI_SET_DESC("Bowtie", BOWTIE, descBowtie),
+	PASULI_SET_DESC("Boys Surface", BOYS_SURFACE, descBoysSurface),
+	PASULI_SET_DESC("Boys Surface 2", BOYS_SURFACE2, descBoysSurface2),
+	PASULI_SET_DESC("Bullet Nose", BULLET_NOSE, descBulletNose),
+	PASULI_SET_DESC("Catalans Surface", CATALANS_SURFACE, descCatalansSurface),
+	PASULI_SET_DESC("Catalans Surface 2", CATALANS_SURFACE, descCatalansSurface2),
+	PASULI_SET_DESC("Catenoid", CATENOID, descCatenoid),
+	PASULI_SET_DESC("Cayley Surface", CAYLEY_SURFACE, descCayleySurface),
+	PASULI_SET_DESC("Cone", CONE, descCone),
+	PASULI_SET_DESC("Cosine Surface", COSINE_SURFACE, descCosineSurface),
+	PASULI_SET_DESC("Cosine Surface 2", COSINE_SURFACE2, descCosineSurface2),
+	PASULI_SET_DESC("Cosine Wave", COSINE_WAVE, descCosineWave),
+	PASULI_SET_DESC("Cresent", CRESENT, descCresent),
+	PASULI_SET_DESC("Cross Cup", CROSS_CUP, descCrossCup),
+	PASULI_SET_DESC("Cross Cup 2", CROSS_CUP2, descCrossCup2),
+	PASULI_SET_DESC("Cross Cup 3", CROSS_CUP3, descCrossCup3),
+	PASULI_SET_DESC("Crossed Trough Surface", CROSSED_TROUGH_SURFACE, descCrossedTroughSurface),
+	PASULI_SET_DESC("Crown", CROWN, descCrown),
+	PASULI_SET_DESC("Cuspidal Beaks", CUSPIDAL_BEAKS, descCuspidalBeaks),
+	PASULI_SET_DESC("Curspidal Butterfly", CUSPIDAL_BUTTERFLY, descCuspidalButterfly),
+	PASULI_SET_DESC("Cuspidal Edge", CUSPIDAL_EDGE, descCuspidalEdge),
+	PASULI_SET_DESC("Cuspidal Lips", CUSPIDAL_LIPS, descCuspidalLips),
+	PASULI_SET_DESC("Ding Dong Surface", DING_DONG_SURFACE, descDingDongSurface),
+	PASULI_SET_DESC("Dini Surface", DINI_SURFACE, descDiniSurface),
+	PASULI_SET_DESC("Disc", DISC, descDisc),
+	PASULI_SET_DESC("Double Cone", DOUBLE_CONE, descDoubleCone),
+	PASULI_SET_DESC("Drop", DROP, descDrop),
+	PASULI_SET_DESC("Drop Surface", DROP_SURFACE, descDropSurface),
+	PASULI_SET_DESC("Dupin Cyclide", DUPIN_CYCLIDE, descDupinCyclide),
+	PASULI_SET_DESC("Egg", EGG, descEgg),
+	PASULI_SET_DESC("Egg Surface", EGG_SURFACE, descEggSurface),
+	PASULI_SET_DESC("Eight Surface", EIGHT_SURFACE, descEightSurface),
+	PASULI_SET_DESC("Enneper Surface", ENNEPER_SURFACE, descEnneperSurface),
+	PASULI_SET_DESC("Enneper Surface 2", ENNEPER_SURFACE2, descEnneperSurface2),
+	PASULI_SET_DESC("Enneper Surface 3", ENNEPER_SURFACE3, descEnneperSurface3),
+	PASULI_SET_DESC("Enneper Surface Polar", ENNEPER_SURFACE_POLAR, descEnneperSurfacePolar),
+	PASULI_SET_DESC("Epitrochoidal Surface", EPITROCHOIDAL_SURFACE, descEpitrochoidalSurface),
+	PASULI_SET_DESC("Facing Snail", FACING_SNAIL, descFacingSnail),
+	PASULI_SET_DESC("Fish Surface", FISH_SURFACE, descFishSurface),
+	PASULI_SET_DESC("Folium", FOLIUM, descFolium),
+	PASULI_SET_DESC("Four Intersecting Discs", FOUR_INTERSECTING_DISCS, descFourIntersectingDiscs),
+	PASULI_SET_DESC("Fresnel", FRESNEL, descFresnel),
+	PASULI_SET_DESC("Funnel", FUNNEL, descFunnel),
+	PASULI_SET_DESC("Goblet", GOBLET, descGoblet),
+	PASULI_SET_DESC("Guimard Surface", GUIMARD_SURFACE, descGuimardSurface),
+	PASULI_SET_DESC("Handkerchief", HANDKERCHIEF, descHandkerchief),
+	PASULI_SET_DESC("Hector Guinards Surface", HECTOR_GUINARDS_SURFACE, descHectorGuinardsSurface),
+	PASULI_SET_DESC("Helicoid", HELICOID, descHelicoid),
+	PASULI_SET_DESC("Hennebergs Surface", HENNEBERGS_SURFACE, descHennebergsSurface),
+	PASULI_SET_DESC("Hole Disc", HOLE_DISC, descHoleDisc),
+	PASULI_SET_DESC("Hole Discus", HOLE_DISCUS, descHoleDiscus),
+	PASULI_SET_DESC("Horn", HORN, descHorn),
+	PASULI_SET_DESC("Hornlet Surface", HORNLET_SURFACE, descHornletSurface),
+	PASULI_SET_DESC("Hyperbolic Helicoid", HYPERBOLIC_HELICOID, descHyperbolicHelicoid),
+	PASULI_SET_DESC("Hyperbolic Octahedron", HYPERBOLIC_OCTAHEDRON, descHyperbolicOctahedron),
+	PASULI_SET_DESC("Hyperbolic Paraboloid", HYPERBOLIC_PARABOLOID, descHyperbolicParaboloid),
+	PASULI_SET_DESC("Hyperboloid", HYPERBOLOID, descHyperboloid),
+	PASULI_SET_DESC("Isolator", ISOLATOR, descIsolator),
+	PASULI_SET_DESC("Jeener Klein Surface", JEENER_KLEIN_SURFACE, descJeenerKleinSurface),
+	PASULI_SET_DESC("Jet Surface", JET_SURFACE, descJetSurface),
+	PASULI_SET_DESC("Kai Wing Fung Surface 1", KAI_WING_FUNG_SURFACE1, descKaiWingFungSurface1),
+	PASULI_SET_DESC("Kai Wing Fung Surface 2", KAI_WING_FUNG_SURFACE2, descKaiWingFungSurface2),
+	PASULI_SET_DESC("Kappa Surface", KAPPA_SURFACE, descKappaSurface),
+	PASULI_SET_DESC("Kiss Surface", KISS_SURFACE, descKissSurface),
+	PASULI_SET_DESC("Klein Bottle Surface", KLEIN_BOTTLE_SURFACE, descKleinBottleSurface),
+	PASULI_SET_DESC("Klein Bottle Surface 2", KLEIN_BOTTLE_SURFACE2, descKleinBottleSurface2),
+	PASULI_SET_DESC("Klein Cycloid", KLEIN_CYCLOID, descKleinCycloid),
+	PASULI_SET_DESC("Kuens Surface", KUENS_SURFACE, descKuensSurface),
+	PASULI_SET_DESC("Lawson Bottle", LAWSON_BOTTLE, descLawsonBottle),
+	PASULI_SET_DESC("Lemniscape", LEMNISCAPE, descLemniscape),
+	PASULI_SET_DESC("Loop", LOOP, descLoop),
+	PASULI_SET_DESC("Maeders Owl", MAEDERS_OWL, descMaedersOwl),
+	PASULI_SET_DESC("Menns Surface", MENNS_SURFACE, descMennsSurface),
+	PASULI_SET_DESC("Milk Bag", MILK_BAG, descMilkBag),
+	PASULI_SET_DESC("Moebius Band", MOEBIUS_BAND, descMoebiusBand),
+	PASULI_SET_DESC("Moebius Band 2", MOEBIUS_BAND2, descMoebiusBand2),
+	PASULI_SET_DESC("Moebius Band 3", MOEBIUS_BAND3, descMoebiusBand3),
+	PASULI_SET_DESC("Monkey Saddle", MONKEY_SADDLE, descMonkeySaddle),
+	PASULI_SET_DESC("Monkey Saddle 2", MONKEY_SADDLE2, descMonkeySaddle2),
+	PASULI_SET_DESC("Morin Surface", MORIN_SURFACE, descMorinSurface),
+	PASULI_SET_DESC("Neovius Surface", NEOVIUS_SURFACE, descNeoviusSurface),
+	PASULI_SET_DESC("Paper Bag", PAPER_BAG, descPaperBag),
+	PASULI_SET_DESC("Parabolic Humming Top", PARABOLIC_HUMMING_TOP, descParabolicHummingTop),
+	PASULI_SET_DESC("Paraboloid", PARABOLOID, descParaboloid),
+	PASULI_SET_DESC("Peano Surface", PEANO_SURFACE, descPeanoSurface),
+	PASULI_SET_DESC("Peano Surface 2", PEANO_SURFACE2, descPeanoSurface2),
+	PASULI_SET_DESC("Pillow Shape", PILLOW_SHAPE, descPillowShape),
+	PASULI_SET_DESC("Piriform Surface", PIRIFORM_SURFACE, descPiriformSurface),
+	PASULI_SET_DESC("Pisot Triaxial", PISOT_TRIAXIAL, descPisotTriaxial),
+	PASULI_SET_DESC("Planar Enneper Surface", PLANAR_ENNEPER_SURFACE, descPlanarEnneperSurface),
+	PASULI_SET_DESC("Pluecker Conoid", PLUECKER_CONOID, descPlueckerConoid),
+	PASULI_SET_DESC("Pluecker Conoid 2", PLUECKER_CONOID2, descPlueckerConoid2),
+	PASULI_SET_DESC("Pseudo Cross Cap", PSEUDO_CROSS_CAP, descPseudoCrossCap),
+	PASULI_SET_DESC("Pseudodevelopable Helicoid", PSEUDODEVELOPABLE_HELICOID, descPseudodevelopableHelicoid),
+	PASULI_SET_DESC("Richmond Surface", RICHMOND_SURFACE, descRichmondSurface),
+	PASULI_SET_DESC("Richmond Surface 2", RICHMOND_SURFACE2, descRichmondSurface2),
+	PASULI_SET_DESC("Richmond Surface 3", RICHMOND_SURFACE3, descRichmondSurface3),
+	PASULI_SET_DESC("Roman Surface", ROMAN_SURFACE, descRomanSurface),
+	PASULI_SET_DESC("Roman Surface 2", ROMAN_SURFACE2, descRomanSurface2),
+	PASULI_SET_DESC("Ruled Rotor Cylindroid", RULED_ROTOR_CYLINDROID, descRuledRotorCylindroid),
+	PASULI_SET_DESC("Scherk Surface", SCHERK_SURFACE, descScherkSurface),
+	PASULI_SET_DESC("Scherk Surface 2", SCHERK_SURFACE2, descScherkSurface2),
+	PASULI_SET_DESC("Shoe Surface", SHOE_SURFACE, descShoeSurface),
+	PASULI_SET_DESC("Sievert Surface", SIEVERT_SURFACE, descSievertSurface),
+	PASULI_SET_DESC("Sine Cone", SINE_CONE, descSineCone),
+	PASULI_SET_DESC("Sine Cube", SINE_CUBE, descSineCube),
+	PASULI_SET_DESC("Sine Surface", SINE_SURFACE, descSineSurface),
+	PASULI_SET_DESC("Sine Wave", SINE_WAVE, descSineWave),
+	PASULI_SET_DESC("Skidan Ruled Surface", SKIDAN_RULED_SURFACE, descSkidanRuledSurface),
+	PASULI_SET_DESC("Snail 2", SNAIL2, descSnail2),
+	PASULI_SET_DESC("Soucoupoid", SOUCOUPOID, descSoucoupoid),
+	PASULI_SET_DESC("Spinner", SPINNER, descSpinner),
+	PASULI_SET_DESC("Spinning Top 1", SPINNING_TOP1, descSpinningTop1),
+	PASULI_SET_DESC("Spinning Top 2", SPINNING_TOP2, descSpinningTop2),
+	PASULI_SET_DESC("Spiral Wave", SPIRAL_WAVE,descSpiralWave),	
+	PASULI_SET_DESC("Spring1", SPRING1,descSpring1),
+	PASULI_SET_DESC("Spring2", SPRING2,descSpring2),
+	PASULI_SET_DESC("Steinbach Screw", STEINBACH_SCREW,descSteinbachScrew),
+	PASULI_SET_DESC("Stiletto Surface", STILETTO_SURFACE,descStilettoSurface),
+	PASULI_SET_DESC("Swallow Surface", SWALLOW_SURFACE,descSwallowSurface),
+	PASULI_SET_DESC("Tooth Surface", TOOTH_SURFACE,descToothSurface),
+	PASULI_SET_DESC("Tractroid", TRACTROID,descTractroid),	
+	PASULI_SET_DESC("Tranguloid Trefoil", TRANGULOID_TREFOIL,descTranguloidTrefoil),
+	PASULI_SET_DESC("Trashcan", TRASHCAN,descTrashcan),
+	PASULI_SET_DESC("Trefoil Knots", TREFOIL_KNOTS,descTrefoilKnots),
+	PASULI_SET_DESC("Trefoil Knots 2", TREFOIL_KNOTS2,descTrefoilKnots2),	
+	PASULI_SET_DESC("Triaxial Hexatorus", TRIAXIAL_HEXATORUS,descTriaxialHexatorus),
+	PASULI_SET_DESC("Triaxial Teardrop", TRIAXIAL_TEARDROP,descTriaxialTeardrop),	
+	PASULI_SET_DESC("Triaxial Tritorus", TRIAXIAL_TRITORUS,descTriaxialTritorus),
+	PASULI_SET_DESC("Triple Cork Screw 1", TRIPLE_CORK_SCREW1,descTripleCorkScrew1),
+	PASULI_SET_DESC("Triple Cork Screw 2", TRIPLE_CORK_SCREW2,descTripleCorkScrew2),
+	PASULI_SET_DESC("Triple Cork Screw 3", TRIPLE_CORK_SCREW3,descTripleCorkScrew3),
+	PASULI_SET_DESC("Triple Point Twist", TRIPLE_POINT_TWIST,descTriplePointTwist),
+	PASULI_SET_DESC("Twisted Heart", TWISTED_HEART,descTwistedHeart),	
+	PASULI_SET_DESC("Twisted Pipe Surface", TWISTED_PIPE_SURFACE,descTwistedPipeSurface),	
+	PASULI_SET_DESC("Twisted Ribbon", TWISTED_RIBBON,descTwistedRibbon),
+	PASULI_SET_DESC("Umbrella Surface", UMBRELLA_SURFACE,descUmbrellaSurface),
+	PASULI_SET_DESC("Vase Head", VASE_HEAD,descVaseHead),
+	PASULI_SET_DESC("Verrill Surface", VERRILL_SURFACE,descVerrillSurface),
+	PASULI_SET_DESC("Virich Cyclic Surface", VIRICH_CYCLIC_SURFACE,descVirichCyclicSurface),
+	PASULI_SET_DESC("Wallis Conical Surface", WALLIS_CONICAL_SURFACE,descWallisConicalSurface),
+	PASULI_SET_DESC("Waves", WAVES,descWaves),
+	PASULI_SET_DESC("Wavy Enneper Surface", WAVY_ENNEPER_SURFACE,descWavyEnneperSurface),
+	PASULI_SET_DESC("Whitney Umbrella", WHITNEY_UMBRELLA,descWhitneyUmbrella),
+	PASULI_SET_DESC("Wreath",  WREATH,descWreath),	
+	PASULI_SET_DESC("Zindlers Conoid", ZINDLERS_CONOID,descZindlersConoid),	
+#endif
 	/*
+#if (COMPILE_NAMES_CYLINDER != 0)
+	PASULI_SET_DESC("Cylinder", CYLINDER),
+	PASULI_SET_DESC("Epizykloid Cylinder", EPIZYKLOID_CYLINDER),
+	PASULI_SET_DESC("Hypozykloid Cylinder", HYPOZYKLOID_CYLINDER),
+	PASULI_SET_DESC("Lemniskate Cylinder", LEMNISKATE_CYLINDER),
+	PASULI_SET_DESC("Strophoide Cylinder", STROPHOIDE_CYLINDER),
+	PASULI_SET_DESC("Zissoide Cylinder", ZISSOIDE_CYLINDER),
+	PASULI_SET_DESC("Versiera Agnesi Cylinder", VERSIERA_AGNESI_CYLINDER),
+	PASULI_SET_DESC("Gauss Cylinder", GAUSS_CYLINDER),
+#endif
+#if (COMPILE_NAMES_FRUITS != 0)
+	PASULI_SET_DESC("Kidney Surface", KIDNEY_SURFACE),
+	PASULI_SET_DESC("Apple Surface", APPLE_SURFACE),
+	PASULI_SET_DESC("Apple Surface (2.nd Version)", APPLE2_SURFACE),
+	PASULI_SET_DESC("Lemon Surface", LEMON_SURFACE),
+#endif
+#if (COMPILE_NAMES_SHELLS != 0)
+	PASULI_SET_DESC("Cornucopia", CORNUCOPIA),
+	PASULI_SET_DESC("Snail", SNAIL),
+	PASULI_SET_DESC("Seashell", SEASHELL),
+	PASULI_SET_DESC("Snail surface", SNAIL_SURFACE),
+	PASULI_SET_DESC("Snails", SNAILS),
+	PASULI_SET_DESC("Pseudoheliceras Subcatenatum", PSEUDOHELICERAS_SUBCATENATUM),
+	PASULI_SET_DESC("Astroceras", ASTROCERAS),
+	PASULI_SET_DESC("Bellerophina", BELLEROPHINA),
+	PASULI_SET_DESC("Euhoplites", EUHOPLITES),
+	PASULI_SET_DESC("Nautilus", NAUTILUS),
+	PASULI_SET_DESC("Natica Stellata", NATICA_STELLATA),
+	PASULI_SET_DESC("Mya Arenaria", MYA_ARENARIA),
+#endif
+#if (COMPILE_NAMES_SPHERE != 0)
+	PASULI_SET_DESC("Sphere", SPHERE),
+	PASULI_SET_DESC("Ellipsoid", ELLIPSOID),
+	PASULI_SET_DESC("SphereV", SPHERE_V),
+	PASULI_SET_DESC("SphereUV", SPHERE_UV),
+	PASULI_SET_DESC("Pseudo-Sphere", PSEUDOSPHERE),
+	PASULI_SET_DESC("Twisted Sphere", TWISTED_SPHERE),
+	PASULI_SET_DESC("Open Sphere", OPEN_SPHERE),
+	PASULI_SET_DESC("Wave Sphere", WAVE_SPHERE),
+#endif
+#if (COMPILE_NAMES_SPIRAL != 0)
+	PASULI_SET_DESC("Archimedic Spiral", ARCHIMEDIC_SPIRAL),
+	PASULI_SET_DESC("Hyperbolic Spiral", HYPERBOLIC_SPIRAL),
+	PASULI_SET_DESC("Fermat Spiral", FERMAT_SPIRAL),
+	PASULI_SET_DESC("Tanh Spiral", TANH_SPIRAL),
+	PASULI_SET_DESC("Logarithmic Spiral", LOG_SPIRAL),
+#endif
+#if (COMPILE_NAMES_TORUS != 0)
+	PASULI_SET_DESC("Torus", TORUS),
+	PASULI_SET_DESC("Eight Torus", EIGHT_TORUS),
+	PASULI_SET_DESC("Elliptic Torus", ELLIPTIC_TORUS),
+	PASULI_SET_DESC("Saddle Torus", SADDLE_TORUS),
+	PASULI_SET_DESC("Antisymmetric Torus", ANTISYMMETRIC_TORUS),
+	PASULI_SET_DESC("Twisted Eight Torus", TWISTED_EIGHT_TORUS),
+	PASULI_SET_DESC("Umbillic Torus", UMBILLIC_TORUS),
+	PASULI_SET_DESC("Wave Torus", WAVE_TORUS),
+	PASULI_SET_DESC("Braided Torus", BRAIDED_TORUS),
+	PASULI_SET_DESC("Limpet Torus", LIMPET_TORUS),
+	PASULI_SET_DESC("Strangled Torus", STRANGLED_TORUS),
+	PASULI_SET_DESC("Astroid Torus", ASTROID_TORUS),
+	PASULI_SET_DESC("Tricuspoid Torus 1", TRICUSPOID_TORUS_1),
+	PASULI_SET_DESC("Tricuspoid Torus 2", TRICUSPOID_TORUS_2),
+	PASULI_SET_DESC("Nephroid Torus 1", NEPHROID_TORUS_1),
+	PASULI_SET_DESC("Nephroid Torus 2", NEPHROID_TORUS_2),
+	PASULI_SET_DESC("Lemniskate Torus 1", LEMNISKATE_TORUS_1),
+	PASULI_SET_DESC("Lemniskate Torus 2", LEMNISKATE_TORUS_2),
+	PASULI_SET_DESC("Epizykloid Torus 1", EPIZYKLOID_TORUS_1),
+	PASULI_SET_DESC("Epizykloid Torus 2", EPIZYKLOID_TORUS_2),
+	PASULI_SET_DESC("Hypozykloid Torus 1", HYPOZYKLOID_TORUS_1),
+	PASULI_SET_DESC("Hypozykloid Torus 2", HYPOZYKLOID_TORUS_2),
+	PASULI_SET_DESC("Piriform Torus 1", PIRIFORM_TORUS_1),
+	PASULI_SET_DESC("Piriform Torus 2", PIRIFORM_TORUS_2),
+	PASULI_SET_DESC("Bicorn Torus 1", BICORN_TORUS_1),
+	PASULI_SET_DESC("Bicorn Torus 2", BICORN_TORUS_2),
+	PASULI_SET_DESC("Cardioid Torus 1", CARDIOID_TORUS_1),
+	PASULI_SET_DESC("Cardioid Torus 2", CARDIOID_TORUS_2),
+	PASULI_SET_DESC("Cassinian Oval Torus 1", CASSINIAN_OVAL_TORUS_1),
+	PASULI_SET_DESC("Cassinian Oval Torus 2", CASSINIAN_OVAL_TORUS_2),
+	PASULI_SET_DESC("Gerono-Lemniskate Torus 1", GERONO_LEMNISKATE_TORUS_1),
+	PASULI_SET_DESC("Gerono-Lemniskate Torus 2", GERONO_LEMNISKATE_TORUS_2),
+	PASULI_SET_DESC("Curly Torus 1", CURLY_TORUS_1),
+	PASULI_SET_DESC("Curly Torus 2", CURLY_TORUS_2),
+	PASULI_SET_DESC("Spiral Torus", SPIRAL_TORUS),
+	PASULI_SET_DESC("Torus Knot", TORUS_KNOT),
+	PASULI_SET_DESC("Gear Torus", GEAR_TORUS)
+#endif
+*/
+};
+/*
+PASULI_PARSUR_STATIC PaSuLiTextDescType parsur_desc_array2[] = {
+	
 descPlane		//0
 #if(COMPILE_DESC_SURFACES != 0)
 ,descBohemianDomeSurface
@@ -1230,8 +1301,8 @@ descPlane		//0
 ,descTorusKnot
 ,descGearTorus
 #endif
-*/
 };
+*/
 
 #undef PASULI_SET_TEXT_DESC
 
@@ -1247,10 +1318,21 @@ char *findDescriptionTextByID(unsigned char ID)
 	{
 		if (parsur_desc_array[idx].ID == ID)
 		{
-			return parsur_desc_array[idx].pszDesc;
+			char **ptr = parsur_desc_array[idx].pszDesc;
+
+			if (ptr != 0)
+			{
+				return *ptr;
+			}
 		}
 	}
 	return 0;
+}
+
+void testDescriptionPointers()
+{
+	const size_t numberOfEntries = sizeof(parsur_desc_array) / sizeof(PaSuLiTextDescType);
+	printf("#descriptions = %ld\n", numberOfEntries);
 }
 
 PASULI_PARSUR_STATIC PaSuLiDefDesc *parsur_def_desc_array[] = {

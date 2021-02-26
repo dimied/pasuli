@@ -24,10 +24,11 @@ int partialStep = 3;
 int useNormal = 1;
 int showLines = 0;
 int showNormal = 0;
+
 int showSurfaces = 1;
 
-int numUvalues = 20;
-int numVvalues = 20;
+int numUvalues = 10;
+int numVvalues = 10;
 unsigned int numAllObject = 0;
 unsigned int numAllTriangles = 0;
 unsigned int memoryAllocated = 0;
@@ -75,6 +76,7 @@ void releaseMemory()
 #include "torus/torus.h"
 #include "torus/umbillic_torus.h"
 #include "torus/wave_torus.h"
+#include "splines/splines.h"
 
 double torusConstants[] = {4, 2};
 double waveTorusConstants[] = {1.5, 0.5, 1, 1};
@@ -94,9 +96,13 @@ void initGeometry(int verbose)
   size_t memSize = numObjects * sizeof(PaSuLiObject);
 
   parsurFunc pCurrentFunc = &Torus; //&UmbillicTorus;
+  uStart = 0.5;
+  uEnd = 3.0;
+  pCurrentFunc = &eval_BSpline;
+
   double *pConstants = torusConstants;
 
-  int approximateNormal = 0;
+  int approximateNormal = 1;
 
   pObjects = malloc(memSize);
 
@@ -149,6 +155,7 @@ void initGeometry(int verbose)
 
   pCurrentObjects = pObjects;
 
+  int k = 0;
   // create vertices
   for (int i = 0; i < numUvalues; i++)
   {
@@ -164,7 +171,6 @@ void initGeometry(int verbose)
 
       //pCurrentObjects->pos[0] = uValue;
       //pCurrentObjects->pos[1] = vValue;
-      
 
       pCurrentFunc(uValue, vValue, pConstants, pCurrentObjects);
 
@@ -194,8 +200,14 @@ void initGeometry(int verbose)
 
       if (verbose > 0)
       {
-        printf("V @ (%x,%x) = (%.2lf, %.2lf, 0)\n", i, j, uValue, vValue);
+        printf("V|%d| @ (%x,%x) = (%.2lf, %.2lf) => (%.2lf, %.2lf, %.2lf)\n",
+               k, i, j,
+               uValue, vValue,
+               pCurrentObjects->pos[0],
+               pCurrentObjects->pos[1],
+               pCurrentObjects->pos[2]);
       }
+      k++;
 
       pCurrentObjects++;
     }
@@ -351,21 +363,21 @@ void drawGeometry(void)
       glColor3f(0.0, 0.0, 1.0);
       glVertex3dv(&pCurrentObject1->pos[0]);
       glVertex3d(
-        pCurrentObject1->pos[0] + pCurrentObject1->n[0], 
-        pCurrentObject1->pos[1] + pCurrentObject1->n[1], 
-        pCurrentObject1->pos[2] + pCurrentObject1->n[2]);
+          pCurrentObject1->pos[0] + pCurrentObject1->n[0],
+          pCurrentObject1->pos[1] + pCurrentObject1->n[1],
+          pCurrentObject1->pos[2] + pCurrentObject1->n[2]);
 
       glVertex3dv(&pCurrentObject2->pos[0]);
       glVertex3d(
-        pCurrentObject2->pos[0] + pCurrentObject2->n[0], 
-        pCurrentObject2->pos[1] + pCurrentObject2->n[1], 
-        pCurrentObject2->pos[2] + pCurrentObject2->n[2]);
+          pCurrentObject2->pos[0] + pCurrentObject2->n[0],
+          pCurrentObject2->pos[1] + pCurrentObject2->n[1],
+          pCurrentObject2->pos[2] + pCurrentObject2->n[2]);
 
       glVertex3dv(&pCurrentObject3->pos[0]);
       glVertex3d(
-        pCurrentObject3->pos[0] + pCurrentObject3->n[0], 
-        pCurrentObject3->pos[1] + pCurrentObject3->n[1], 
-        pCurrentObject3->pos[2] + pCurrentObject3->n[2]);
+          pCurrentObject3->pos[0] + pCurrentObject3->n[0],
+          pCurrentObject3->pos[1] + pCurrentObject3->n[1],
+          pCurrentObject3->pos[2] + pCurrentObject3->n[2]);
 
       glEnd();
     }
@@ -451,8 +463,9 @@ void init(void)
             0.0, 1.0, 0.); /* up is in positive Y direction */
 
   //glTranslatef(0.0, 0.0, -1.0);
-  //glRotatef(45, 1.0, 0.0, 0.0);
+  glRotatef(-45, 1.0, 0.0, 0.0);
   //glRotatef(-20, 0.0, 0.0, 1.0);
+  glRotatef(-15, 0.0, 1.0, 0.0);
 }
 
 int sizes[][2] = {
@@ -460,9 +473,13 @@ int sizes[][2] = {
     {1280, 720},
     {1600, 900}};
 
+#include <mcheck.h>
+
 int main(int argc, char **argv)
 {
+  mtrace();  
   initGeometry(verboseInit);
+  showSurfaces = 0;
 
   unsigned int inKB = (memoryAllocated + 1024) / 1024;
   unsigned int inMB = inKB / 1024;

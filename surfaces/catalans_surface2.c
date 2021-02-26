@@ -43,7 +43,7 @@ void CatalansSurface2(pasuli_vartype u,
 #endif
 
 #if (COMPILE_DESC_SURFACES != 0)
-char *descCatalanSurface2 =
+char *descCatalansSurface2 =
     "name: Catalan Surface 2;\
 ut:c; vt:o;\
 us:-1; ue:1;\

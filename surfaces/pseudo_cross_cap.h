@@ -10,4 +10,8 @@ void PseudoCrossCap(pasuli_vartype u, pasuli_vartype v,
 					PaSuLiObject *pO);
 #endif
 
+#if (COMPILE_DESC_SURFACES != 0)
+HEADER_DESC_PTR(descPseudoCrossCap)
+#endif
+
 #endif

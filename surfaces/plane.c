@@ -3,14 +3,15 @@
 #include "surfaces_c_includes.h"
 
 PaSuLiDefDesc pslddPlane = {
-    0,
-        PASULI_FULL_IMPL,
+    PLANE,
+    PASULI_FULL_IMPL,
     0, 1, 0, 1, 0};
 
 char *descPlane =
-    "name:plane;\
+    "name: Plane;\
 ut:o; vt:o;\
-us: 0; ue: 1; vs: 0; ve: 1;\
+us: 0; ue: 1;\
+vs: 0; ve: 1;\
 x: u; y: v; z: 0;\
 c1:z:0;\
 xu:1); yu:0);zu:0);\

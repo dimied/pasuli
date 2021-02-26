@@ -11,4 +11,8 @@ void KleinBottleSurface2(pasuli_vartype u,
                          PaSuLiObject *pO);
 #endif
 
+#if (COMPILE_DESC_SURFACES != 0)
+HEADER_DESC_PTR(descKleinBottleSurface2)
+#endif
+
 #endif

@@ -9,4 +9,8 @@ void RichmondSurface(pasuli_vartype u, pasuli_vartype v,
 					double* constants, PaSuLiObject* pO);
 #endif
 
+#if (COMPILE_DESC_SURFACES != 0)
+HEADER_DESC_PTR(descRichmondSurface)
+#endif
+
 #endif

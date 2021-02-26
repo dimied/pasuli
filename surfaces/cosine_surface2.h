@@ -10,4 +10,8 @@ void CosineSurface2(pasuli_vartype u, pasuli_vartype v,
                     PaSuLiObject *pO);
 #endif
 
+#if (COMPILE_DESC_SURFACES != 0)
+HEADER_DESC_PTR(descCosineSurface2)
+#endif
+
 #endif

@@ -11,4 +11,8 @@ void EnneperSurface2(pasuli_vartype u,
                      PaSuLiObject *pO);
 #endif
 
+#if (COMPILE_DESC_SURFACES != 0)
+HEADER_DESC_PTR(descEnneperSurface2)
+#endif
+
 #endif

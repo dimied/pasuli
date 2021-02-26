@@ -35,4 +35,6 @@ unsigned char getImplementationState(unsigned int id);
 void testDefaultConstants();
 
 void testImplementationPointers();
+
+void testDescriptionPointers();
 #endif

@@ -5,9 +5,14 @@
 #include "../pasuli_defs.h"
 
 #if (USE_ZINDLERS_CONOID != 0)
-void ZindlersConoid(pasuli_vartype u, pasuli_vartype v,
+void ZindlersConoid(pasuli_vartype u,
+                    pasuli_vartype v,
                     pasuli_consttype *constants,
                     PaSuLiObject *pO);
+#endif
+
+#if (COMPILE_DESC_SURFACES != 0)
+HEADER_DESC_PTR(descZindlersConoid)
 #endif
 
 #endif

@@ -11,4 +11,8 @@ void WavyEnneperSurface(pasuli_vartype u,
                         PaSuLiObject *pO);
 #endif
 
+#if (COMPILE_DESC_SURFACES != 0)
+HEADER_DESC_PTR(descWavyEnneperSurface)
+#endif
+
 #endif

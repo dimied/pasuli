@@ -27,7 +27,7 @@ void KleinBottleSurface2(pasuli_vartype u,
 #endif
 
 #if (COMPILE_DESC_SURFACES != 0)
-char *descKleinBottle2 =
+char *descKleinBottleSurface2 =
     "name: Klein Bottle 2;\
 ut:c; vt:o;\
 us:0; ue:pi:1;\

@@ -26,6 +26,8 @@ int main()
 
     testImplementationPointers();
 
+    testDescriptionPointers();
+
     findDefaultConstants(1, constants, 10);
 
     getImplementationState(1);

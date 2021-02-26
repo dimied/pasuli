@@ -21,14 +21,9 @@
 
 #if (PASULI_DEBUG_MODE != 0)
 
-#define PASULI_SET_NAME(TEXT, _ID) \
-	{                              \
-		TEXT, _ID                  \
-	}
+
 #define PASULI_NAME_CHAR_PTR(X) ((char *)X.szName)
 #else
-typedef char *pasuli_name_type;
-#define PASULI_SET_NAME(TEXT, _ID) TEXT
 #define PASULI_NAME_CHAR_PTR(X) ((char *)X)
 #endif
 
@@ -68,10 +63,10 @@ enum SurfaceType
 	BOHEMIAN_DOME_SURFACE,
 	BONAN_JEENER_KLEIN_SURFACE,
 	BOURS_MINIMAL_SURFACE,
-	BOYS_SURFACE,
-	BOYS_SURFACE2,
 	BOW_CURVE,
 	BOWTIE,
+	BOYS_SURFACE,
+	BOYS_SURFACE2,
 	BULLET_NOSE,
 	CATALANS_SURFACE,
 	CATALANS_SURFACE2,

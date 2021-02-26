@@ -30,7 +30,7 @@ void BoysSurface2(pasuli_vartype u,
 #endif
 
 #if (COMPILE_DESC_SURFACES != 0)
-char *descBoySurface2 =
+char *descBoysSurface2 =
     "name: Boy Surface 2;\
 ut:c; vt:o;\
 us:0; ue:pi:1;\

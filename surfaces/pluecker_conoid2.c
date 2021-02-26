@@ -34,7 +34,7 @@ void PlueckerConoid2(pasuli_vartype u,
 #endif
 
 #if (COMPILE_DESC_SURFACES != 0)
-char *descPlueckersConoid2 =
+char *descPlueckerConoid2 =
     "name: Pluecker's Conoid 2;\
 ut:u; vt:c;\
 us:0; ue:2;\
