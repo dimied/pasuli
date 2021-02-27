@@ -2,13 +2,17 @@
 #include <GL/glut.h>
 #include <stdio.h>
 #include <math.h>
+#include <mcheck.h>
+#include "glut_helpers.h"
 //
-#include "pasuli_defs.h"
-#include "pasuli_approx.h"
+#include "../pasuli_defs.h"
+#include "../util/pasuli_approx.h"
+#include "../torus/torus.h"
+#include "../torus/umbillic_torus.h"
+#include "../torus/wave_torus.h"
+#include "../splines/splines.h"
 
-GLfloat light_diffuse[] = {.7, 0.0, 0.5, 1.0};
-// Infinite light position
-GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
+extern double gRot[3];
 
 PaSuLiObject *pObjects = 0;
 unsigned int *pTriangleIndices = 0;
@@ -32,9 +36,6 @@ int numVvalues = 10;
 unsigned int numAllObject = 0;
 unsigned int numAllTriangles = 0;
 unsigned int memoryAllocated = 0;
-
-float lmodel_twoside[] = {GL_TRUE};
-float lmodel_oneside[] = {GL_FALSE};
 
 void printTriangleInformationToConsole(
     unsigned int verticeIdx1,
@@ -72,11 +73,6 @@ void releaseMemory()
     free(pTriangleIndices);
   }
 }
-
-#include "torus/torus.h"
-#include "torus/umbillic_torus.h"
-#include "torus/wave_torus.h"
-#include "splines/splines.h"
 
 double torusConstants[] = {4, 2};
 double waveTorusConstants[] = {1.5, 0.5, 1, 1};
@@ -330,6 +326,7 @@ void renderSurface(unsigned int pointIdx1,
   glEnd();
 }
 
+
 void drawGeometry(void)
 {
   PaSuLiObject *pCurrentObject;
@@ -429,43 +426,19 @@ void drawGeometry(void)
       glEnd();
     }
   }
+
+  drawAxes();  
 }
 
 void display(void)
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  glRotatef(gRot[0], 1.0, 0.0, 0.0);
+  glRotatef(gRot[1], 0.0, 1.0, 0.0);
+
   drawGeometry();
   glutSwapBuffers();
-}
-
-void init(void)
-{
-  // Single OpenGL light
-  glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
-  glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-  glEnable(GL_LIGHT0);
-  glEnable(GL_LIGHTING);
-
-  // Depth buffering to eliminate hidden surfaces
-  glEnable(GL_DEPTH_TEST);
-
-  glLightModelfv(GL_LIGHT_MODEL_TWO_SIDE, lmodel_twoside);
-
-  /* Setup the view of the cube. */
-  glMatrixMode(GL_PROJECTION);
-  gluPerspective(/* field of view in degree */ 60.0,
-                 /* aspect ratio */ 1.0,
-                 /* Z near */ 1.0, /* Z far */ 50.0);
-
-  glMatrixMode(GL_MODELVIEW);
-  gluLookAt(.0, .0, 16.0,  /* eye is at (0,0,-7) */
-            0.0, 0.0, 0.0, /* center is at (0,0,0) */
-            0.0, 1.0, 0.); /* up is in positive Y direction */
-
-  //glTranslatef(0.0, 0.0, -1.0);
-  glRotatef(-45, 1.0, 0.0, 0.0);
-  //glRotatef(-20, 0.0, 0.0, 1.0);
-  glRotatef(-15, 0.0, 1.0, 0.0);
 }
 
 int sizes[][2] = {
@@ -473,11 +446,9 @@ int sizes[][2] = {
     {1280, 720},
     {1600, 900}};
 
-#include <mcheck.h>
-
 int main(int argc, char **argv)
 {
-  mtrace();  
+  mtrace();
   initGeometry(verboseInit);
   showSurfaces = 0;
 
@@ -502,6 +473,10 @@ int main(int argc, char **argv)
   glutCreateWindow("Example");
 
   glutDisplayFunc(display);
+
+  glutMotionFunc(glutMotion);
+
+  glutMouseFunc(glutMouse);
 
   init();
 

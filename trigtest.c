@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <math.h>
 
+typedef double (*funcSingleParam)(double x);
+
 typedef double (*func2Params)(double x, double y);
+
+void testSingleParameter(int limit, funcSingleParam pFunc, char *pszType);
+
 void testNested2Parameters(int limitX, int limitY, func2Params pFunc, char *pszType);
 
 void testCosSquaredPlusSinSquared(int limit);
@@ -14,69 +19,53 @@ int main()
 
     testCosSquaredPlusSinSquared(200 * 1000);
 
-    testAndSubtractXY(4 * 1000, 4 * 1000);
+    //testAndSubtractXY(4 * 1000, 4 * 1000);
 
     printf("Finished\n");
     return 0;
 }
 
+double cosXsquaredPlusSinXsquared(double x)
+{
+    double cos_x = cos(x);
+    double sin_x = sin(x);
+    return 1 - (cos_x * cos_x + sin_x * sin_x);
+}
+
+double sin2X(double x)
+{
+    double sin_2x = sin(2 * x);
+    return sin_2x - 2 * sin(x) * cos(x);
+}
+
+double cos2X(double x)
+{
+    double cos_x = cos(x);
+    double sin_x = sin(x);
+    double cos_2x = cos(2 * x);
+    return cos_2x - (cos_x * cos_x - sin_x * sin_x);
+}
+
+double cos2X_2(double x)
+{
+    double cos_x = cos(x);
+    double cos_2x = cos(2 * x);
+    return cos_2x - (2 * cos_x * cos_x - 1);
+}
+
 void testCosSquaredPlusSinSquared(int limit)
 {
-    double start = 0;
-    double end = 2 * M_PI;
-    int numDifferences = 0;
-    double maxPositiveDeviation = 0;
-    double maxNegativeDeviation = 0;
+    char *pszSquareSum = "1=cos(x)^2 + sin(x)^2";
+    testSingleParameter(limit, cosXsquaredPlusSinXsquared, pszSquareSum);
 
-    if (limit <= 0)
-    {
-        printf("Invalid parameter for the limit\n");
-    }
+    char *pszSin2X = "sin(2*x) = 2*sin(x)*cos(x)";
+    testSingleParameter(limit, sin2X, pszSin2X);
 
-    for (int i = 0; i <= limit; i++)
-    {
-        double value;
-        if (i == 0)
-        {
-            value = 0;
-        }
-        else if (i == limit)
-        {
-            value = M_PI;
-        }
-        else
-        {
-            value = M_PI * i / (double)limit;
-        }
+    char *pszCos2X = "cos(2*x) = cos(x)^2 - sin(x)^2";
+    testSingleParameter(limit, cos2X, pszCos2X);
 
-        double cos_value = cos(value);
-        double sin_value = sin(value);
-        double result = cos_value * cos_value + sin_value * sin_value;
-        double difference = 1 - result;
-        if (difference != 0)
-        {
-            //printf("Difference: %e\n", difference);
-
-            numDifferences++;
-            if (maxPositiveDeviation < difference)
-            {
-                maxPositiveDeviation = difference;
-            }
-            if (maxNegativeDeviation > difference)
-            {
-                maxNegativeDeviation = difference;
-            }
-        }
-    }
-
-    printf("-------------------------------------\n");
-    printf("Type: cos(x)^2 + sin(x)^2 = 1\n");
-    printf("Range 0-2*PI:subdivisions:%d\n", limit);
-    printf("#differences(number): %d\n", numDifferences);
-    printf("#differences(percent): %.2lf\n", numDifferences * 100.0 / limit);
-    printf("#max pos. dev. %e\n", maxPositiveDeviation);
-    printf("#max neg. dev. %e\n", maxNegativeDeviation);
-    printf("-------------------------------------\n");
+    char *pszCos2X_2 = "cos(2*x) = 2*cos(x)^2 - 1";
+    testSingleParameter(limit, cos2X_2, pszCos2X_2);
 }
 
 double sinXplusY(double x, double y)
@@ -109,26 +98,75 @@ double cosXminusY(double x, double y)
 
 void testAndSubtractXY(int limitX, int limitY)
 {
-    /*
-sin( x ± y ) = sin x · cos y ± cos x · sin y
-cos( x+y ) = cos x · cos y - sin x · sin y
-cos( x-y ) = cos x · cos y + sin x · sin y
-tan( x+y ) = (tan x + tan y) / (1 - tan x · tan y)
-tan( x-y ) = (tan x - tan y) / (1 + tan x · tan y)
-cot( x+y ) = (cot x · cot y - 1) / (cot x + cot y)
-cot( x-y ) = (cot x · cot y + 1) / (cot x - cot y)
-*/
+    //sin( x ± y ) = sin x · cos y ± cos x · sin y
     char *pszSinXplusY = "sin(x+y) = sin(x)*cos(y)+cos(x)*sin(y)";
     testNested2Parameters(limitX, limitY, &sinXplusY, pszSinXplusY);
 
     char *pszSinXminusY = "sin(x-y) = sin(x)*cos(y)-cos(x)*sin(y)";
     testNested2Parameters(limitX, limitY, &sinXminusY, pszSinXminusY);
-
+    //cos( x+y ) = cos x · cos y - sin x · sin y
     char *pszCosXplusY = "cos(x+y) = cos(x)*cos(y)-sin(x)*sin(y)";
     testNested2Parameters(limitX, limitY, &cosXplusY, pszCosXplusY);
-
+    //cos( x-y ) = cos x · cos y + sin x · sin y
     char *pszCosXminusY = "cos(x-y) = cos(x)*cos(y)+sin(x)*sin(y)";
     testNested2Parameters(limitX, limitY, &cosXminusY, pszCosXminusY);
+}
+
+void testSingleParameter(int limit, funcSingleParam pFunc, char *pszType)
+{
+    double start = 0;
+    double end = 2 * M_PI;
+    int numDifferences = 0;
+    double maxPositiveDeviation = 0;
+    double maxNegativeDeviation = 0;
+
+    if (limit <= 0)
+    {
+        printf("Invalid parameter for the limit\n");
+    }
+
+    for (int i = 0; i <= limit; i++)
+    {
+        double value;
+        if (i == 0)
+        {
+            value = 0;
+        }
+        else if (i == limit)
+        {
+            value = 2 * M_PI;
+        }
+        else
+        {
+            value = 2 * M_PI * i / (double)limit;
+        }
+
+        double difference = pFunc(value);
+
+        if (difference != 0)
+        {
+            //printf("Difference: %e\n", difference);
+
+            numDifferences++;
+            if (maxPositiveDeviation < difference)
+            {
+                maxPositiveDeviation = difference;
+            }
+            if (maxNegativeDeviation > difference)
+            {
+                maxNegativeDeviation = difference;
+            }
+        }
+    }
+
+    printf("-------------------------------------\n");
+    printf("Type: %s\n", pszType);
+    printf("Range 0-2*PI:subdivisions:%d\n", limit);
+    printf("#differences(number): %d\n", numDifferences);
+    printf("#differences(percent): %.2lf\n", numDifferences * 100.0 / limit);
+    printf("#max pos. dev. %e\n", maxPositiveDeviation);
+    printf("#max neg. dev. %e\n", maxNegativeDeviation);
+    printf("-------------------------------------\n");
 }
 
 void testNested2Parameters(int limitX, int limitY, func2Params pFunc, char *pszType)
