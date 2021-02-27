@@ -5,24 +5,12 @@
 #include "pasuli_cfg.h"
 #include "pasuli_repository.h"
 #include "cylinder/cylinder_all.h"
-
-#include "sphere/sphere_all.h"
-
-#include "torus/torus_all.h"
-
 #include "fruits/fruits.h"
-
 #include "shells/shells.h"
-
-#include "sphere/sphere.h"
-
+#include "sphere/sphere_all.h"
 #include "spiral/spiral.h"
-
 #include "surfaces/surfaces.h"
-
-#define PASULI_PARSUR_STATIC static
-//#define PASULI_PARSUR_STATIC
-//PASULI_PARSUR_STATIC
+#include "torus/torus_all.h"
 
 #define ID_AND_LENGTH(ID, L) \
 	{                        \
@@ -1196,7 +1184,7 @@ void testDescriptionPointers()
 	free(pTexts);
 }
 
-PASULI_PARSUR_STATIC PaSuLiDefDesc *parsur_def_desc_array[] = {
+PaSuLiDefDesc *parsur_def_desc_array[] = {
 	/*
 &pslddPlane		//0
 #if(COMPILE_DEF_DESC_SURFACES != 0)

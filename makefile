@@ -5,6 +5,7 @@ FILES3 = superformula/*.c surfaces/*.c torus/*.c splines/*.c sf3d_examples.c pas
 
 all: clean doall # doopt
 
+.PHONY: doall trigtest
 
 doall:
 	gcc -Wall -o ex ex.c ${FILES1} ${FILES2} ${FILES3} -lm
@@ -18,6 +19,10 @@ doopt:
 
 filegen:
 	gcc -Os -o gen_files temp_gen.c
+
+trigtest:
+	rm -f trigtest
+	gcc -Os -o trigtest trigtest.c -lm
 
 genhtml:
 	gcc -Os -o gen_html gen_html.c ${FILES1} ${FILES2} ${FILES3} -lm
