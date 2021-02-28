@@ -6,11 +6,11 @@
 #include "glut_helpers.h"
 //
 #include "../pasuli_defs.h"
-#include "../util/pasuli_approx.h"
+//#include "../util/pasuli_approx.h"
 #include "../torus/torus.h"
-#include "../torus/umbillic_torus.h"
-#include "../torus/wave_torus.h"
-#include "../splines/splines.h"
+//#include "../torus/umbillic_torus.h"
+//#include "../torus/wave_torus.h"
+//#include "../splines/splines.h"
 
 #include "pasuli_mesh.h"
 #include "pasuli_mesh_opengl.h"
@@ -80,32 +80,7 @@ int sizes[][2] = {
     {1280, 720},
     {1600, 900}};
 
-char* pYes = "yes";
-char* pNo = "no";
 
-void showMeshInfo(PaSuLiMesh *pMesh)
-{
-  if (pMesh == 0)
-  {
-    return;
-  }
-  printf("Mesh-ID:%d\n", pMesh->meshID);
-  printf("Surface-ID:%d\n", pMesh->surfaceID);
-  printf("Options:%d\n", pMesh->options);
-  printf("u:from:%.2lf\n", pMesh->uStart);
-  printf("u:to:%.2lf\n", pMesh->uEnd);
-  printf("v:from:%.2lf\n", pMesh->vStart);
-  printf("v:to:%.2lf\n", pMesh->vEnd);
-  printf("u:sampling:%d\n", pMesh->uSampling);
-  printf("v:sampling:%d\n", pMesh->vSampling);
-  printf("#objects:%d\n", pMesh->numObjects);
-  printf("#faces:%d\n", pMesh->numFaces);
-  printf("#faces:indices:%d\n", pMesh->numIndices);
-  char* pStr = pMesh->pObjects != 0 ? pYes : pNo;
-  printf("objects:data:%s\n", pStr);
-  pStr = pMesh->pIndices != 0 ? pYes : pNo;
-  printf("indices:data:%s\n", pStr);
-}
 int main(int argc, char **argv)
 {
   mtrace();

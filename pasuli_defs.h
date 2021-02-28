@@ -1,6 +1,8 @@
 #ifndef __PARAMETRIC_SURFACE_LIBRARY_VERSION_DEFS__
 #define __PARAMETRIC_SURFACE_LIBRARY_VERSION_DEFS__
 
+#include "pasuli_cfg.h"
+
 #define HEADER_DESC_PTR(PTR)		extern char* PTR;
 
 #define PASULI_FLOAT 0x1
@@ -10,18 +12,37 @@
 #define MY_PI 3.14159265358979323846f
 #define MY_PI_HALF MY_PI * 0.5f
 
+#ifndef PASULIOBJECT_POS
 #define PASULIOBJECT_POS 1
+#endif
+
+#ifndef PASULIOBJECT_UD
 #define PASULIOBJECT_UD 1
+#endif
+
+#ifndef PASULIOBJECT_VD
 #define PASULIOBJECT_VD 1
+#endif
+
+#ifndef PASULIOBJECT_N
 #define PASULIOBJECT_N 1
+#endif
+
+#ifndef PASULIOBJECT_UUD
 #define PASULIOBJECT_UUD 1
+#endif
+
+#ifndef PASULIOBJECT_UVD
 #define PASULIOBJECT_UVD 1
+#endif
+
+#ifndef PASULIOBJECT_VVD
 #define PASULIOBJECT_VVD 1
+#endif
 
 #define pasuli_vartype double
 #define pasuli_consttype double
 #define pasuli_calctype double
-#define CoordType double
 
 typedef struct
 {
@@ -38,19 +59,19 @@ typedef struct
 #endif
 
 #if (PASULIOBJECT_N != 0)
-	CoordType n[3]; //normal
+	pasuli_vartype n[3]; //normal
 #endif
 
 #if (PASULIOBJECT_UUD != 0)
-	CoordType uud[3]; //derivative in u-direction & u-direction
+	pasuli_vartype uud[3]; //derivative in u-direction & u-direction
 #endif
 
 #if (PASULIOBJECT_UVD != 0)
-	CoordType uvd[3]; //derivative in u-direction & v-direction
+	pasuli_vartype uvd[3]; //derivative in u-direction & v-direction
 #endif
 
 #if (PASULIOBJECT_VVD != 0)
-	CoordType vvd[3]; //derivative in v-direction two times
+	pasuli_vartype vvd[3]; //derivative in v-direction two times
 #endif
 } PaSuLiObject;
 
@@ -125,9 +146,6 @@ typedef struct _PaSuLiDefDesc
 #define COPY_DEFDESC_CONST_TYPE(X) (X << PASULI_TYPE_DEF_BIT_LENGTH)
 #define COPY_DEFDESC_TYPES(R, C) ((R) | ((C << PASULI_TYPE_DEF_BIT_LENGTH)))
 
-void copyDefDesc(PaSuLiDefDesc *pDD, int iSurfaceType,
-				 unsigned int dstType, void *pRange, void *pConstants);
-
 #define MAX_DESC_LENGTH 512
 
 /**
@@ -171,8 +189,6 @@ typedef struct _PaSuLiTextDesc
 	*/
 } PaSuLiTextDesc;
 
-void initConstAll(PaSuLiObject *pO, pasuli_consttype value);
-//void initConstDefault(PaSuLiObject* pO, pasuli_consttype* constants);
 
 #include "pasuli_custom_defs.h"
 

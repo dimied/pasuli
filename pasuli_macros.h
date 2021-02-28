@@ -9,15 +9,9 @@
 #define PASULI_SET_TYPE_ID(X)
 #endif
 
-//#pragma warning(disable: 4244)
-
 #define PASULI_USE_NORMAL_BY_CROSS_PRODUCT 1
 
 #define PASULI_CALC_SIGN(F) ((F < 0) ? -1 : (F > 0 ? 1 : 0))
-
-#define PASULI_CALC_FACTOR(F, CALC) \
-	F = (CALC);                     \
-	F = (F < 0) ? -1 : (F > 0 ? 1 : 0)
 
 // Or 2*cos(v)^2-1
 #define PASULI_TRIG_CALC_SUM_DIFFERENCE(C, S) (C * C - S * S)
@@ -63,7 +57,7 @@
 #define UD_X(V) pasuli_calctype xu = (V)
 #define UD_Y(V) pasuli_calctype yu = (V)
 #define UD_Z(V) pasuli_calctype zu = (V)
-
+#define UD_OP(O) O
 #else
 
 #define UD_X(V)
@@ -77,13 +71,13 @@
 // Macros for derivative for V
 #if (PASULIOBJECT_VD != 0)
 #define VD_X(V)              \
-	pasuli_vartype xv = (V); \
+	pasuli_calctype xv = (V); \
 	pO->vd[0] = xv
 #define VD_Y(V)              \
-	pasuli_vartype yv = (V); \
+	pasuli_calctype yv = (V); \
 	pO->vd[1] = yv
 #define VD_Z(V)              \
-	pasuli_vartype zv = (V); \
+	pasuli_calctype zv = (V); \
 	pO->vd[2] = zv
 #define VD_OP(O) O
 #else
@@ -91,7 +85,7 @@
 #define VD_X(V) pasuli_calctype xv = (V)
 #define VD_Y(V) pasuli_calctype yv = (V)
 #define VD_Z(V) pasuli_calctype zv = (V)
-
+#define VD_OP(O) O
 #else
 #define VD_X(V)
 #define VD_Y(V)
@@ -257,24 +251,6 @@
 #define VVD_CONST_ALL(V)
 #endif
 
-#define USE_PREPARED_POS 1
-
-#if (USE_PREPARED_POS != 0)
-#define PREPARE_POS_X(D) double tempX = D
-#define ASSIGN_PREP_POS_X(D) tempX
-#define PREPARE_POS_Y(D) double tempY = D
-#define ASSIGN_PREP_POS_Y(D) tempY
-#define PREPARE_POS_Z(D) double tempZ = D
-#define ASSIGN_PREP_POS_Z(D) tempZ
-#else
-#define PREPARE_POS_X(D)
-#define ASSIGN_PREP_POS_X(D) D
-#define PREPARE_POS_Y(D)
-#define ASSIGN_PREP_POS_Y(D) D
-#define PREPARE_POS_Z(D)
-#define ASSIGN_PREP_POS_Z(D) D
-#endif
-
 #if (PASULIOBJECT_POS != 0)
 #define PASULI_COND_COPY_POS_X(D) (pO->pos[0])
 #define PASULI_COND_COPY_POS_Y(D) (pO->pos[1])
@@ -345,17 +321,10 @@
 #define PASULI_COND_COPY_VVD_Z(D) (D)
 #endif
 
-#define PASULI_NORMAL      \
-	N_X(yu *zv - zu * yv); \
-	N_Y(xu *zv - zu * xv); \
-	N_Z(xu *yv - yu * xv);
-
 #define PASULI_CALC_NORMAL_FROM_UD_VD \
 	N_X(yu *zv - zu * yv);            \
 	N_Y(xu *zv - zu * xv);            \
 	N_Z(xu *yv - yu * xv);
-//PASULI_NORMAL_VARS_DEF
-//PASULI_NORMAL
 
 #define PASULI_2ND_DERIVATIVES_START \
 	if (1 == 1)                      \

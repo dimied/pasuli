@@ -1,7 +1,7 @@
 #ifndef __PARAMETRIC_SURFACE_LIBRARY_SUPERFORMULA_3D_EXAMPLES__
 #define __PARAMETRIC_SURFACE_LIBRARY_SUPERFORMULA_3D_EXAMPLES__
 
-#include "pasuli_defs.h"
+#include "../pasuli_defs.h"
 
 void getSF3DExamplesConstants(unsigned int exampleNum, pasuli_consttype* pC);
 

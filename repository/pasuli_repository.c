@@ -4,21 +4,15 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "cylinder/cylinder_all.h"
-#include "fruits/fruits.h"
-#include "shells/shells.h"
-#include "sphere/sphere_all.h"
-#include "spiral/spiral.h"
+#include "../cylinder/cylinder_all.h"
+#include "../fruits/fruits.h"
+#include "../shells/shells.h"
+#include "../sphere/sphere_all.h"
+#include "../spiral/spiral.h"
 //
-#include "surfaces/surfaces.h"
+#include "../surfaces/surfaces.h"
 //
-#include "torus/torus_all.h"
-
-typedef struct
-{
-    unsigned char id;
-    parsurFunc pFunc;
-} PaSuLiRepositoryItem;
+#include "../torus/torus_all.h"
 
 #define DEFINE_SURFACE(ID, FUNC_PTR) \
     {                                \
@@ -766,52 +760,4 @@ parsurFunc findPasuliFunctionById(unsigned int id)
         }
     }
     return 0;
-}
-
-void testImplementationPointers()
-{
-    unsigned char *pStates = malloc(256);
-    memset(pStates, 0, 256);
-
-    for (size_t i = 0; i < numberOfPasuliRepositoryItems; i++)
-    {
-        unsigned char funcID = repositoryItems[i].id;
-
-        if (pStates[funcID] > 0)
-        {
-            printf("Function already pointed to at index = %ld\n", i);
-        }
-
-        if (repositoryItems[i].pFunc != 0)
-        {
-            pStates[funcID] += 1;
-        }
-    }
-
-    for (size_t i = 0; i < numberOfPasuliRepositoryItems; i++)
-    {
-        parsurFunc pFunc = repositoryItems[i].pFunc;
-        unsigned char ID = repositoryItems[i].id;
-
-        for (size_t j = i + 1; j < numberOfPasuliRepositoryItems; j++)
-        {
-            parsurFunc pFunc2 = repositoryItems[j].pFunc;
-            if (pFunc == pFunc2)
-            {
-                printf("Function pointer already in use. ID=%d.First occurence @%ld, second @%ld\n", ID, i, j);
-            }
-        }
-    }
-
-#if 1
-    for (int idx = 1; idx < NUMB_OF_SURFACES; idx++)
-    {
-        if (pStates[idx] == 0)
-        {
-            printf("No function pointer for surface ID = %d\n", idx);
-        }
-    }
-#endif
-
-    free(pStates);
 }

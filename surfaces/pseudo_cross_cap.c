@@ -30,8 +30,7 @@ void PseudoCrossCap(pasuli_vartype u,
 	VD_Y(2 * one_minus_usq * cos_2v);
 	VD_Z(0);
 
-	pasuli_calctype factor;
-	PASULI_CALC_FACTOR(factor, one_minus_usq);
+	pasuli_calctype factor = PASULI_CALC_SIGN(one_minus_usq);
 
 	N_X(-2 * factor * cos_2v);
 	N_Y(factor * cos_v);

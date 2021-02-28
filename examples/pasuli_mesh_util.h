@@ -5,4 +5,6 @@
 
 void printMemoryUsage(PaSuLiMesh* pMesh, int numMeshes);
 
+void showMeshInfo(PaSuLiMesh *pMesh);
+
 #endif

@@ -29,8 +29,8 @@ void Soucoupoid(pasuli_vartype u, pasuli_vartype v,
 	VD_Z(0);
 
 	// we divide by cos(u)*sin(u)
-	pasuli_calctype factor;
-	PASULI_CALC_FACTOR(factor, cos_u * sin_u);
+	pasuli_calctype factor = cos_u * sin_u;
+	factor = PASULI_CALC_SIGN(factor);
 
 	N_X(-factor * 3 * cos_v * cos_u * sin_u);
 	N_Y(-factor * 3 * sin_v * cos_u * sin_u);

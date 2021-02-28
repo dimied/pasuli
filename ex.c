@@ -2,16 +2,20 @@
 #include <stdio.h> // printf
 #include "pasuli_defs.h"
 #include "pasuli_macros.h"
-#include "pasuli_repository.h"
+#include "repository/pasuli_repository.h"
+#include "repository/pasuli_repository_tests.h"
 
-//PaSuLiObject example;
+extern unsigned int numberOfPasuliRepositoryItems;
+extern unsigned short number_of_implementation_state_entries;
+extern unsigned short id_and_constants_entries;
 
 int main()
 {
+    printf("#constants = %d\n", NUMB_OF_SURFACES);
 
-    printf("#constants = %d\n\n", NUMB_OF_SURFACES);
+    printf("#functions = %d\n", numberOfPasuliRepositoryItems);
 
-    printf("#functions = %d\n\n", numberOfPasuliRepositoryItems);
+    printf("#constants defined = %d\n", id_and_constants_entries);
 
     double constants[10];
 
@@ -22,6 +26,8 @@ int main()
     testDescriptionPointers();
 
     findDefaultConstants(1, constants, 10);
+
+    printf("#implemented/checked = %d\n", number_of_implementation_state_entries);
 
     getImplementationState(1);
 

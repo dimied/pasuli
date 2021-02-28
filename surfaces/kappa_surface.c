@@ -32,8 +32,8 @@ void KappaSurface(pasuli_vartype u, pasuli_vartype v,
 	VD_Y(-a_sin_v * sin_u);
 	VD_Z(a / (cos_v * tan_v * tan_v) + a * cos_v);
 
-	pasuli_calctype factor;
-	PASULI_CALC_FACTOR(factor, (a * a));
+	pasuli_calctype factor = a*a;
+	factor = PASULI_CALC_SIGN(a * a);
 	pasuli_calctype common_factor = cos_v * cos_v + atan(v) * atan(v);
 	N_X(factor * cos_u * common_factor);
 	N_Y(factor * sin_u * common_factor);
