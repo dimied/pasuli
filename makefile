@@ -30,7 +30,7 @@ genhtml:
 
 # For Ubuntu: You need to install freeglut3 package
 opengl:
-	gcc -Wall -o ex_ogl  examples/opengl_sample.c  ${EX_FILES} ${FILES1} ${FILES2} ${FILES3} -lm -lGL -lGLU -lglut
+	gcc -Wall -Os -o ex_ogl  examples/opengl_sample.c  ${EX_FILES} ${FILES1} ${FILES2} ${FILES3} -lm -lGL -lGLU -lglut
 
 clean:
 	rm -f *.o 

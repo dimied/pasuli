@@ -111,20 +111,21 @@ int main(int argc, char **argv)
   mtrace();
 
   clearMesh(&mesh);
-  mesh.options = PASULI_MESH_OPTIONS_APPROXIMATE_NORMAL;
+  mesh.options = 0;// PASULI_MESH_OPTIONS_APPROXIMATE_NORMAL;
   mesh.uStart = -M_PI;
   mesh.uEnd = M_PI;
   mesh.vStart = -M_PI;
   mesh.vEnd = M_PI;
-  mesh.uSampling = 180;
-  mesh.vSampling = 60;
+  mesh.uSampling = 40;
+  mesh.vSampling = 40;
   mesh.pConstants = torusConstants;
   mesh.pSurfaceFunction = &Torus;
+
   int error = createTriangleMesh(&mesh);
   printf("Mesh error %d\n\n", error);
 
   showMeshInfo(&mesh);
-  meshOptions = 0;//PASULI_MESH_OPENGL_SURFACES_DEFAULT;
+  meshOptions = 0;//PASULI_MESH_OPENGL_NORMAL;//PASULI_MESH_OPENGL_SURFACES_DEFAULT;
 
   printMemoryUsage(&mesh, 1);
   glutInit(&argc, argv);

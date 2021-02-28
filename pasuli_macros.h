@@ -3,6 +3,12 @@
 
 #include "pasuli_cfg.h"
 
+#if (USE_ID_IN_PASULI_FUNCTION != 0)
+#define PASULI_SET_TYPE_ID(X) pO->_ID = X;
+#else
+#define PASULI_SET_TYPE_ID(X)
+#endif
+
 //#pragma warning(disable: 4244)
 
 #define PASULI_USE_NORMAL_BY_CROSS_PRODUCT 1

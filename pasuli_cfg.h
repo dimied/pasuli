@@ -6,25 +6,25 @@
 // For GCC compiler collection
 #define PASULI_COMPILER_GCC 2
 
+#include "pasuli_custom_cfg.h"
+
 // Used compiler
+#ifndef PASULI_COMPILER
 #define PASULI_COMPILER PASULI_COMPILER_GCC
+#endif
 
 //Debuging
+#ifndef PASULI_DEBUG_MODE
 #define PASULI_DEBUG_MODE 1
-// ??
-#define USE_ID_IN_PSLDD 0
-// If not 0, then the ID will be assigned in the evaluation function
-#define USE_ID_IN_PASULI_FUNCTION 0
-
-/////////////////////////
-/////////////////////////
-/////////////////////////
-
-#if (USE_ID_IN_PASULI_FUNCTION != 0)
-#define PASULI_SET_TYPE_ID(X) pO->_ID = X;
-#else
-#define PASULI_SET_TYPE_ID(X)
 #endif
+
+// If not 0, then the ID will be assigned in the evaluation function
+#ifndef USE_ID_IN_PASULI_FUNCTION
+#define USE_ID_IN_PASULI_FUNCTION 0
+#endif
+
+/////////////////////////
+/////////////////////////
 
 //#define COMPILE_SURFACES				1
 #define COMPILE_DEF_DESC_SURFACES 1
@@ -316,5 +316,7 @@
 #define USE_NEOVIUS_SURFACE 1
 #define USE_RULED_ROTOR_CYLINDROID 1
 #define USE_PARABOLIC_HUMMING_TOP 1
+
+
 
 #endif

@@ -80,7 +80,7 @@ void glutMouse(int button, int state, int x, int y)
         oldMouseRotateX = x;
         oldMouseRotateY = y;
         mouseRotateState = DOWN;
-        printf("Left mouse down @ (%d,%d)\n", x, y);
+        //printf("Left mouse down @ (%d,%d)\n", x, y);
       }
 
       break;
@@ -100,7 +100,7 @@ void glutMouse(int button, int state, int x, int y)
     {
     case GLUT_LEFT_BUTTON:
       mouseRotateState = UP;
-      printf("Left mouse up @ (%d,%d)\n", x, y);
+      //printf("Left mouse up @ (%d,%d)\n", x, y);
       mouseMode = 0;
       break;
     case GLUT_RIGHT_BUTTON:
@@ -133,7 +133,7 @@ void clampAnglesTo360(double *triple)
   }
 }
 
-double mouseRotationSensitivity = 0.01;
+double mouseRotationSensitivity = 0.005;
 /**
 * Called when the mouse moves in the window. 
 */
