@@ -117,6 +117,8 @@ void clampAnglesTo360(double *triple)
   {
     if (triple[i] > 360 || triple[i] < -360)
     {
+      triple[i] = 0;
+      continue;
       double times = ceil(fabs(triple[i] / 360.0));
 
       if (triple[i] < 0)
@@ -145,8 +147,6 @@ void glutMotion(int x, int y)
     clampAnglesTo360(gRot);
 
     glutPostRedisplay();
-
-    //printf("Rotate by %.2lf, %.2lf\n", gRot[0], gRot[1]);
 
     oldMouseRotateX = x;
     oldMouseRotateY = y;

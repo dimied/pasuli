@@ -12,27 +12,16 @@
 #include "../torus/wave_torus.h"
 #include "../splines/splines.h"
 
+#include "pasuli_mesh.h"
+#include "pasuli_mesh_opengl.h"
+#include "pasuli_mesh_util.h"
+
 extern double gRot[3];
 
-PaSuLiObject *pObjects = 0;
-unsigned int *pTriangleIndices = 0;
+PaSuLiMesh mesh;
 
-float uStart = -2;
-float uEnd = 2;
-float vStart = -2;
-float vEnd = 2;
+int meshOptions = 0;
 
-int verboseInit = 0;
-int partial = 0;
-int partialStep = 3;
-int useNormal = 1;
-int showLines = 0;
-int showNormal = 0;
-
-int showSurfaces = 1;
-
-int numUvalues = 10;
-int numVvalues = 10;
 unsigned int numAllObject = 0;
 unsigned int numAllTriangles = 0;
 unsigned int memoryAllocated = 0;
@@ -61,383 +50,28 @@ void printTriangleInformationToConsole(
          pSomeObjects[verticeIdx3].pos[2]);
 }
 
-void releaseMemory()
-{
-  if (pObjects != 0)
-  {
-    free(pObjects);
-  }
-
-  if (pTriangleIndices != 0)
-  {
-    free(pTriangleIndices);
-  }
-}
-
 double torusConstants[] = {4, 2};
 double waveTorusConstants[] = {1.5, 0.5, 1, 1};
 
-void initGeometry(int verbose)
-{
-  uStart = -M_PI;
-  uEnd = M_PI;
-  vStart = -M_PI;
-  vEnd = M_PI;
-
-  float uDiff = uEnd - uStart;
-  float vDiff = vEnd - vStart;
-
-  unsigned int numObjects = numUvalues * numVvalues;
-  numAllObject = numObjects;
-  size_t memSize = numObjects * sizeof(PaSuLiObject);
-
-  parsurFunc pCurrentFunc = &Torus; //&UmbillicTorus;
-  uStart = 0.5;
-  uEnd = 3.0;
-  pCurrentFunc = &eval_BSpline;
-
-  double *pConstants = torusConstants;
-
-  int approximateNormal = 1;
-
-  pObjects = malloc(memSize);
-
-  if (pObjects == 0)
-  {
-    printf("Failed to allocate memory for objects");
-    return;
-  }
-
-  memoryAllocated += memSize;
-
-  numAllTriangles = (numUvalues - 1) * (numVvalues - 1) * 2;
-
-  memSize = numAllTriangles * sizeof(unsigned int) * 3;
-  // 3 vertices per triangle
-  pTriangleIndices = malloc(memSize);
-
-  if (pTriangleIndices == 0)
-  {
-    free(pObjects);
-    pObjects = 0;
-    memoryAllocated = 0;
-    printf("Failed to allocate memory for faces");
-    return;
-  }
-
-  memoryAllocated += memSize;
-
-  PaSuLiObject *pCurrentObjects = pObjects;
-  unsigned int *pCurrentFaces = pTriangleIndices;
-
-  for (unsigned int i = 0; i < numObjects; i++)
-  {
-    pCurrentObjects->pos[0] = 0;
-    pCurrentObjects->pos[1] = 0;
-    pCurrentObjects->pos[2] = 0;
-
-    pCurrentObjects->n[0] = 0;
-    pCurrentObjects->n[1] = 0;
-    pCurrentObjects->n[2] = -1;
-
-    pCurrentObjects++;
-  }
-
-  for (unsigned int i = 0; i < numAllTriangles * 3; i++)
-  {
-    pCurrentFaces = 0;
-    pCurrentFaces++;
-  }
-
-  pCurrentObjects = pObjects;
-
-  int k = 0;
-  // create vertices
-  for (int i = 0; i < numUvalues; i++)
-  {
-    float uValue = (i < numUvalues - 1)
-                       ? uStart + uDiff * i / (numUvalues - 1)
-                       : uEnd;
-
-    for (int j = 0; j < numVvalues; j++)
-    {
-      float vValue = (j < numVvalues - 1)
-                         ? vStart + vDiff * j / (numVvalues - 1)
-                         : vEnd;
-
-      //pCurrentObjects->pos[0] = uValue;
-      //pCurrentObjects->pos[1] = vValue;
-
-      pCurrentFunc(uValue, vValue, pConstants, pCurrentObjects);
-
-      if (approximateNormal > 0)
-      {
-        approximatePaSuLi(
-            PASULI_APPROXIMATE_N,
-            uValue,
-            vValue,
-            pConstants,
-            pCurrentObjects,
-            pCurrentFunc);
-      }
-
-      // Normalize
-      double normalLength = pCurrentObjects->n[0] * pCurrentObjects->n[0];
-      normalLength += pCurrentObjects->n[1] * pCurrentObjects->n[1];
-      normalLength += pCurrentObjects->n[2] * pCurrentObjects->n[2];
-      normalLength = sqrt(normalLength);
-
-      if (normalLength > 0)
-      {
-        pCurrentObjects->n[0] /= normalLength;
-        pCurrentObjects->n[1] /= normalLength;
-        pCurrentObjects->n[2] /= normalLength;
-      }
-
-      if (verbose > 0)
-      {
-        printf("V|%d| @ (%x,%x) = (%.2lf, %.2lf) => (%.2lf, %.2lf, %.2lf)\n",
-               k, i, j,
-               uValue, vValue,
-               pCurrentObjects->pos[0],
-               pCurrentObjects->pos[1],
-               pCurrentObjects->pos[2]);
-      }
-      k++;
-
-      pCurrentObjects++;
-    }
-  }
-
-  pCurrentObjects = pObjects;
-  pCurrentFaces = pTriangleIndices;
-  unsigned int numFacesDone = 0;
-
-  // Set values for triangles
-
-  for (int i = 0; i < numUvalues - 1; i++)
-  {
-    unsigned int forCurrentI = (i * numVvalues);
-    unsigned int forNextI = ((i + 1) * numVvalues);
-
-    for (int j = 0; j < numVvalues - 1; j++)
-    {
-      unsigned int verticeIdx1 = forCurrentI + j;
-      unsigned int verticeIdx2 = forCurrentI + j + 1;
-      unsigned int verticeIdx3 = forNextI + j;
-      unsigned int verticeIdx4 = forNextI + j + 1;
-
-      if (verbose > 0)
-      {
-        printTriangleInformationToConsole(
-            verticeIdx1,
-            verticeIdx2,
-            verticeIdx3,
-            pObjects);
-
-        printTriangleInformationToConsole(
-            verticeIdx3,
-            verticeIdx2,
-            verticeIdx4,
-            pObjects);
-      }
-
-      // 1.st triangle
-      *pCurrentFaces = verticeIdx1;
-      pCurrentFaces++;
-      *pCurrentFaces = verticeIdx2;
-      pCurrentFaces++;
-      *pCurrentFaces = verticeIdx3;
-      pCurrentFaces++;
-
-      // 2.end triangle
-      *pCurrentFaces = verticeIdx3;
-      pCurrentFaces++;
-      *pCurrentFaces = verticeIdx2;
-      pCurrentFaces++;
-      *pCurrentFaces = verticeIdx4;
-      pCurrentFaces++;
-
-      numFacesDone += 6;
-    }
-  }
-  printf("#Faces = %d | Expected = %d\n",
-         numFacesDone,
-         numAllTriangles * 3);
-}
-
-void renderSurface(unsigned int pointIdx1,
-                   unsigned int pointIdx2,
-                   unsigned int pointIdx3,
-                   int fill)
-{
-  PaSuLiObject *pCurrentObject = &pObjects[pointIdx1];
-
-  if (fill > 0)
-  {
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-  }
-  else
-  {
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-  }
-
-  glBegin(GL_TRIANGLES);
-
-  if (useNormal > 0)
-  {
-    glNormal3dv(&pCurrentObject->n[0]);
-  }
-
-  glColor3f(0.0, 0.0, 1.0); /* blue */
-
-  glVertex3dv(&pCurrentObject->pos[0]);
-
-  pCurrentObject = &pObjects[pointIdx2];
-
-  if (useNormal > 0)
-  {
-    glNormal3dv(&pCurrentObject->n[0]);
-  }
-  glColor3f(0.0, 1.0, 0.0); /* green */
-
-  glVertex3dv(&pCurrentObject->pos[0]);
-
-  pCurrentObject = &pObjects[pointIdx3];
-
-  if (useNormal > 0)
-  {
-    glNormal3dv(&pCurrentObject->n[0]);
-  }
-  glColor3f(1.0, 0.0, 0.0); /* red */
-
-  glVertex3dv(&pCurrentObject->pos[0]);
-
-  pCurrentObject = &pObjects[pointIdx1];
-
-  if (useNormal > 0)
-  {
-    glNormal3dv(&pCurrentObject->n[0]);
-  }
-  glColor3f(0.0, 0.0, 1.0); /* blue */
-
-  glVertex3dv(&pCurrentObject->pos[0]);
-
-  glEnd();
-}
-
-
 void drawGeometry(void)
 {
-  PaSuLiObject *pCurrentObject;
-
-  for (unsigned int i = 0; i < numAllTriangles; i++)
-  {
-    if (partial > 0 && i % partialStep == 0)
-    {
-      continue;
-    }
-
-    unsigned int *pSomeFace = pTriangleIndices + i * 3;
-    unsigned int pointIdx1 = pSomeFace[2];
-    unsigned int pointIdx2 = pSomeFace[1];
-    unsigned int pointIdx3 = pSomeFace[0];
-
-    renderSurface(pointIdx1, pointIdx2, pointIdx3, showSurfaces);
-
-    PaSuLiObject *pCurrentObject1 = &pObjects[pointIdx1];
-    PaSuLiObject *pCurrentObject2 = &pObjects[pointIdx2];
-    PaSuLiObject *pCurrentObject3 = &pObjects[pointIdx3];
-
-    if (showNormal > 0)
-    {
-      glLineWidth(4);
-
-      // "Inside"
-      glBegin(GL_LINES);
-
-      /* blue */
-      glColor3f(0.0, 0.0, 1.0);
-      glVertex3dv(&pCurrentObject1->pos[0]);
-      glVertex3d(
-          pCurrentObject1->pos[0] + pCurrentObject1->n[0],
-          pCurrentObject1->pos[1] + pCurrentObject1->n[1],
-          pCurrentObject1->pos[2] + pCurrentObject1->n[2]);
-
-      glVertex3dv(&pCurrentObject2->pos[0]);
-      glVertex3d(
-          pCurrentObject2->pos[0] + pCurrentObject2->n[0],
-          pCurrentObject2->pos[1] + pCurrentObject2->n[1],
-          pCurrentObject2->pos[2] + pCurrentObject2->n[2]);
-
-      glVertex3dv(&pCurrentObject3->pos[0]);
-      glVertex3d(
-          pCurrentObject3->pos[0] + pCurrentObject3->n[0],
-          pCurrentObject3->pos[1] + pCurrentObject3->n[1],
-          pCurrentObject3->pos[2] + pCurrentObject3->n[2]);
-
-      glEnd();
-    }
-
-    if (showLines > 0)
-    {
-
-      glLineWidth(4);
-
-      // "Inside"
-      glBegin(GL_LINES);
-
-      /* blue */
-      glColor3f(0.0, 1.0, 0.0);
-      glVertex3dv(&pCurrentObject1->pos[0]);
-      glVertex3d(0, 0, 0);
-
-      glVertex3dv(&pCurrentObject2->pos[0]);
-      glVertex3d(0, 0, 0);
-
-      glVertex3dv(&pCurrentObject3->pos[0]);
-      glVertex3d(0, 0, 0);
-
-      glEnd();
-
-      float scale = 2;
-
-      // "Outside"
-      glBegin(GL_LINES);
-
-      /* blue */
-      glColor3f(.80, 1.0, 0.0);
-
-      glVertex3dv(&pCurrentObject1->pos[0]);
-      glVertex3d(pCurrentObject1->pos[0] * scale,
-                 pCurrentObject1->pos[1] * scale,
-                 pCurrentObject1->pos[2] * scale);
-
-      glVertex3dv(&pCurrentObject2->pos[0]);
-      glVertex3d(pCurrentObject2->pos[0] * scale,
-                 pCurrentObject2->pos[1] * scale,
-                 pCurrentObject2->pos[2] * scale);
-
-      glVertex3dv(&pCurrentObject3->pos[0]);
-      glVertex3d(pCurrentObject3->pos[0] * scale,
-                 pCurrentObject3->pos[1] * scale,
-                 pCurrentObject3->pos[2] * scale);
-
-      glEnd();
-    }
+  renderMesh(&mesh, meshOptions);
   }
-
-  drawAxes();  
-}
 
 void display(void)
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+  //glMatrixMode (GL_MODELVIEW);
+  //glLoadIdentity ();
+
   glRotatef(gRot[0], 1.0, 0.0, 0.0);
   glRotatef(gRot[1], 0.0, 1.0, 0.0);
 
+  drawAxes();
+
   drawGeometry();
+
   glutSwapBuffers();
 }
 
@@ -446,20 +80,53 @@ int sizes[][2] = {
     {1280, 720},
     {1600, 900}};
 
+char* pYes = "yes";
+char* pNo = "no";
+
+void showMeshInfo(PaSuLiMesh *pMesh)
+{
+  if (pMesh == 0)
+  {
+    return;
+  }
+  printf("Mesh-ID:%d\n", pMesh->meshID);
+  printf("Surface-ID:%d\n", pMesh->surfaceID);
+  printf("Options:%d\n", pMesh->options);
+  printf("u:from:%.2lf\n", pMesh->uStart);
+  printf("u:to:%.2lf\n", pMesh->uEnd);
+  printf("v:from:%.2lf\n", pMesh->vStart);
+  printf("v:to:%.2lf\n", pMesh->vEnd);
+  printf("u:sampling:%d\n", pMesh->uSampling);
+  printf("v:sampling:%d\n", pMesh->vSampling);
+  printf("#objects:%d\n", pMesh->numObjects);
+  printf("#faces:%d\n", pMesh->numFaces);
+  printf("#faces:indices:%d\n", pMesh->numIndices);
+  char* pStr = pMesh->pObjects != 0 ? pYes : pNo;
+  printf("objects:data:%s\n", pStr);
+  pStr = pMesh->pIndices != 0 ? pYes : pNo;
+  printf("indices:data:%s\n", pStr);
+}
 int main(int argc, char **argv)
 {
   mtrace();
-  initGeometry(verboseInit);
-  showSurfaces = 0;
 
-  unsigned int inKB = (memoryAllocated + 1024) / 1024;
-  unsigned int inMB = inKB / 1024;
+  clearMesh(&mesh);
+  mesh.options = PASULI_MESH_OPTIONS_APPROXIMATE_NORMAL;
+  mesh.uStart = -M_PI;
+  mesh.uEnd = M_PI;
+  mesh.vStart = -M_PI;
+  mesh.vEnd = M_PI;
+  mesh.uSampling = 180;
+  mesh.vSampling = 60;
+  mesh.pConstants = torusConstants;
+  mesh.pSurfaceFunction = &Torus;
+  int error = createTriangleMesh(&mesh);
+  printf("Mesh error %d\n\n", error);
 
-  printf("Memory allocated bytes/KB/MB = %d / %d / %d \n\n",
-         memoryAllocated,
-         inKB,
-         inMB);
+  showMeshInfo(&mesh);
+  meshOptions = 0;//PASULI_MESH_OPENGL_SURFACES_DEFAULT;
 
+  printMemoryUsage(&mesh, 1);
   glutInit(&argc, argv);
 
   int sizeIdx = 2;
@@ -482,7 +149,7 @@ int main(int argc, char **argv)
 
   glutMainLoop();
 
-  releaseMemory();
+  releaseMesh(&mesh);
 
   return 0;
 }
