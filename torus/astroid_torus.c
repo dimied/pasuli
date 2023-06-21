@@ -22,7 +22,7 @@ void AstroidTorus(pasuli_vartype u,
 
 	P_X(cos_u * factor);
 	P_Y(sin_u * factor);
-	P_Y(r * sin_v * sin_v * sin_v);
+	P_Z(r * sin_v * sin_v * sin_v);
 
 	pasuli_calctype sign_value = PASULI_CALC_SIGN(factor);
 	// Don't scale (R + r*cos(v)^3)
