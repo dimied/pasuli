@@ -43,6 +43,66 @@ void AntisymmetricTorus(pasuli_vartype u,
 
 #endif
 
+#if (USE_ANTISYMMETRIC_TORUS != 0)
+void AntisymmetricTorusArr(
+	pasuli_vartype *pU,
+	pasuli_size_t uCount,
+	pasuli_vartype *pV,
+	pasuli_size_t vCount,
+	pasuli_consttype *pConstants,
+	PaSuLiObject *pO)
+{
+	//PASULI_SET_TYPE_ID(ANTISYMMETRIC_TORUS)
+
+	pasuli_consttype R = pConstants[0];
+	pasuli_consttype r = pConstants[1];
+	pasuli_consttype a = pConstants[2];
+
+	pasuli_vartype *pVTempEnd = pV + vCount;
+
+	while (uCount > 0)
+	{
+		pasuli_vartype u = *pU;
+		pasuli_calctype cos_u = cos(u);
+		pasuli_calctype sin_u = sin(u);
+
+		pasuli_vartype r_a_sin_u = (a + sin_u) * r;
+		pasuli_calctype factor = PASULI_CALC_SIGN(r_a_sin_u);
+
+		++pU;
+		--uCount;
+		pasuli_vartype *pVTemp = pV;
+
+		while (pVTemp != pVTempEnd)
+		{
+			pasuli_vartype v = *pVTemp;
+			pasuli_calctype sin_v = sin(v);
+			pasuli_calctype cos_v = cos(v);
+			++pVTemp;
+
+#if (PASULIOBJECT_POS != 0)
+			pasuli_calctype posxy = cos_v * r_a_sin_u + R;
+			P_X(posxy * cos_u);
+			P_Y(posxy * sin_u);
+			P_Z(sin_v * r_a_sin_u);
+#endif
+
+			UD_X(r * cos_v * cos_u * cos_u - (R + cos_v * r_a_sin_u) * sin_u);
+			UD_Y((R + cos_v * (a + 2 * sin_u) * r) * cos_u);
+			UD_Z(r * sin_v * cos_u);
+
+			// Ignore scaling by r*(a + sin(u))
+			VD_X(factor * sin_v * cos_u);
+			VD_Y(factor * sin_v * sin_u);
+			VD_Z(cos_v * factor);
+
+			PASULI_CALC_NORMAL_FROM_UD_VD
+			++pO;
+		}
+	}
+}
+#endif
+
 /*
 #if (COMPILE_DEF_DESC_TORUS != 0)
 #include "torus_const.h"

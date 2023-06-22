@@ -33,7 +33,7 @@ void Torus(pasuli_vartype u,
 	VD_Y(-r * sin_v * sin_u);
 	VD_Z(r * cos_v);
 
-	pasuli_calctype factor2 = factor*r;
+	pasuli_calctype factor2 = factor * r;
 	factor2 = PASULI_CALC_SIGN(factor2);
 	// Ignore scaling by r*(R + r*cos(v))
 	N_X(factor2 * cos_u * cos_v);
@@ -51,6 +51,141 @@ void Torus(pasuli_vartype u,
 	VVD_X(-r * cos_v * cos_u);
 	VVD_Y(-r * cos_v * sin_u);
 	VVD_Z(-r * sin_v);
+}
+#endif
+
+#if (USE_TORUS_MESH != 0)
+void TorusMesh(
+	pasuli_vartype *pU,
+	pasuli_size_t uCount,
+	pasuli_vartype *pV,
+	pasuli_size_t vCount,
+	pasuli_consttype *pConstants,
+	PaSuLiObject *pO)
+{
+	// PASULI_SET_TYPE_ID(TORUS)
+
+	pasuli_consttype R = pConstants[0];
+	pasuli_consttype r = pConstants[1];
+
+	pasuli_vartype *pVTempEnd = pV + vCount;
+
+	while (uCount > 0)
+	{
+		pasuli_vartype u = *pU;
+
+		pasuli_calctype cos_u = cos(u);
+		pasuli_calctype sin_u = sin(u);
+
+		++pU;
+		--uCount;
+		pasuli_vartype *pVTemp = pV;
+
+		while (pVTemp != pVTempEnd)
+		{
+			pasuli_vartype v = *pVTemp;
+			pasuli_calctype cos_v = cos(v);
+			pasuli_calctype sin_v = sin(v);
+			pasuli_calctype r_cos_v = cos_v;
+			pasuli_calctype r_sin_v = sin_v;
+			++pVTemp;
+
+			pasuli_calctype factor = R + r_cos_v;
+			P_X(factor * cos_u);
+			P_Y(factor * sin_u);
+			P_Z(r_sin_v);
+
+			// Ignore scaling by (R + r*cos(v))
+			factor = PASULI_CALC_SIGN(factor);
+			UD_X(-factor * sin_u);
+			UD_Y(factor * cos_u);
+			UD_Z_CONST(0);
+
+			VD_X(-r_sin_v * cos_u);
+			VD_Y(-r_sin_v * sin_u);
+			VD_Z(r_cos_v);
+
+			pasuli_calctype factor2 = factor * r;
+			factor2 = PASULI_CALC_SIGN(factor2);
+			// Ignore scaling by r*(R + r*cos(v))
+			N_X(factor2 * cos_u * cos_v);
+			N_Y(factor2 * sin_u * cos_v);
+			N_Z(factor2 * sin_v);
+
+			UUD_X(-factor * cos_u);
+			UUD_Y(-factor * sin_u);
+			UUD_Z(0);
+
+			UVD_X(r_sin_v * sin_u);
+			UVD_Y(-r_sin_v * cos_u);
+			UVD_Z(0);
+
+			VVD_X(-r_cos_v * cos_u);
+			VVD_Y(-r_cos_v * sin_u);
+			VVD_Z(-r_sin_v);
+			++pO;
+		}
+	}
+}
+#endif
+
+#if (USE_TORUS_SAMPLE != 0)
+void TorusSample(pasuli_vartype *pUV,
+				 pasuli_size_t uvCount,
+				 pasuli_consttype *pConstants,
+				 PaSuLiObject *pO)
+{
+	pasuli_consttype R = pConstants[0];
+	pasuli_consttype r = pConstants[1];
+
+	while (0 < uvCount)
+	{
+		--uvCount;
+		pasuli_vartype u = *pUV;
+		++pUV;
+		pasuli_vartype v = *pUV;
+		++pUV;
+
+		pasuli_calctype cos_u = cos(u);
+		pasuli_calctype sin_u = sin(u);
+		pasuli_calctype cos_v = cos(v);
+		pasuli_calctype sin_v = sin(v);
+		pasuli_calctype factor = R + r * cos_v;
+
+		P_X(factor * cos_u);
+		P_Y(factor * sin_u);
+		P_Z(r * sin_v);
+
+		// Ignore scaling by (R + r*cos(v))
+		factor = PASULI_CALC_SIGN(factor);
+		UD_X(-factor * sin_u);
+		UD_Y(factor * cos_u);
+		UD_Z_CONST(0);
+
+		VD_X(-r * sin_v * cos_u);
+		VD_Y(-r * sin_v * sin_u);
+		VD_Z(r * cos_v);
+
+		pasuli_calctype factor2 = factor * r;
+		factor2 = PASULI_CALC_SIGN(factor2);
+		// Ignore scaling by r*(R + r*cos(v))
+		N_X(factor2 * cos_u * cos_v);
+		N_Y(factor2 * sin_u * cos_v);
+		N_Z(factor2 * sin_v);
+
+		UUD_X(-factor * cos_u);
+		UUD_Y(-factor * sin_u);
+		UUD_Z(0);
+
+		UVD_X(r * sin_v * sin_u);
+		UVD_Y(-r * sin_v * cos_u);
+		UVD_Z(0);
+
+		VVD_X(-r * cos_v * cos_u);
+		VVD_Y(-r * cos_v * sin_u);
+		VVD_Z(-r * sin_v);
+		++pO;
+	}
 }
 #endif
 

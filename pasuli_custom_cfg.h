@@ -10,4 +10,11 @@
 
 #define USE_TORUS 1
 
+#define USE_TORUS_MESH 1
+
+#define USE_TORUS_SAMPLE 1
+
+#define USE_ANTISYMMETRIC_TORUS 1
+#define USE_ANTISYMMETRIC_TORUS_ARR 1
+
 #endif

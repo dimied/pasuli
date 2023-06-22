@@ -1,9 +1,10 @@
 #ifndef __PARAMETRIC_SURFACE_LIBRARY_VERSION_DEFS__
 #define __PARAMETRIC_SURFACE_LIBRARY_VERSION_DEFS__
 
+#include <stdint.h>
 #include "pasuli_cfg.h"
 
-#define HEADER_DESC_PTR(PTR)		extern char* PTR;
+#define HEADER_DESC_PTR(PTR) extern char *PTR;
 
 #define PASULI_FLOAT 0x1
 #define PASULI_DOUBLE 0x2
@@ -44,6 +45,8 @@
 #define pasuli_consttype double
 #define pasuli_calctype double
 
+#define pasuli_size_t int32_t
+
 typedef struct
 {
 #if (PASULIOBJECT_POS != 0)
@@ -51,32 +54,34 @@ typedef struct
 #endif
 
 #if (PASULIOBJECT_UD != 0)
-	pasuli_vartype ud[3]; //derivative in u-direction
+	pasuli_vartype ud[3]; // derivative in u-direction
 #endif
 
 #if (PASULIOBJECT_VD != 0)
-	pasuli_vartype vd[3]; //derivative in v-direction
+	pasuli_vartype vd[3]; // derivative in v-direction
 #endif
 
 #if (PASULIOBJECT_N != 0)
-	pasuli_vartype n[3]; //normal
+	pasuli_vartype n[3]; // normal
 #endif
 
 #if (PASULIOBJECT_UUD != 0)
-	pasuli_vartype uud[3]; //derivative in u-direction & u-direction
+	pasuli_vartype uud[3]; // derivative in u-direction & u-direction
 #endif
 
 #if (PASULIOBJECT_UVD != 0)
-	pasuli_vartype uvd[3]; //derivative in u-direction & v-direction
+	pasuli_vartype uvd[3]; // derivative in u-direction & v-direction
 #endif
 
 #if (PASULIOBJECT_VVD != 0)
-	pasuli_vartype vvd[3]; //derivative in v-direction two times
+	pasuli_vartype vvd[3]; // derivative in v-direction two times
 #endif
 } PaSuLiObject;
 
-typedef void (*parsurFunc)(pasuli_vartype u, pasuli_vartype v,
-						   pasuli_consttype *constants, PaSuLiObject *pO);
+typedef void (*parsurFunc)(pasuli_vartype u,
+						   pasuli_vartype v,
+						   pasuli_consttype *constants,
+						   PaSuLiObject *pO);
 
 #define USE_INITCONST 0
 
@@ -88,9 +93,9 @@ typedef void (*parsurFunc)(pasuli_vartype u, pasuli_vartype v,
 #define PARTICLE_UVD 1
 #define PARTICLE_VVD 1
 
-typedef float pasulidefdesc_ct;			 //const type
-typedef float pasulidefdesc_vt;			 //variable type
-typedef unsigned short pasulidefdesc_pt; //property type
+typedef float pasulidefdesc_ct;			 // const type
+typedef float pasulidefdesc_vt;			 // variable type
+typedef unsigned short pasulidefdesc_pt; // property type
 
 typedef struct _PaSuLiDefDesc
 {
@@ -131,17 +136,17 @@ typedef struct _PaSuLiDefDesc
 #define PASULI_CONST_CONSTANTS 0x200
 
 #define PASULI_DEF_CONSTANTS_1 0x400
-//#define PASULI_DEF_CONSTANTS_2  0x800
+// #define PASULI_DEF_CONSTANTS_2  0x800
 #define PASULI_DEF_CONSTANTS_3 (PASULI_DEF_CONSTANTS_1 + PASULI_DEF_CONSTANTS_2)
 
-//4 bits( = 15 valid values) should be enough, except for SuperFormula
+// 4 bits( = 15 valid values) should be enough, except for SuperFormula
 #define PASULI_CONST_COUNT(X) (X << 12)
 
 #define GET_PASULI_CONST_COUNT(X) ((X >> 12) & 0xF)
 #define PASULI_ARE_CONSTANTS_CONST(X) (X & PASULI_CONST_CONSTANTS)
 #define PASULI_IS_FULL_IMPLEMENTED(X) (X & PASULI_FULL_IMPL)
 
-//Following two macros should be ORed
+// Following two macros should be ORed
 #define COPY_DEFDESC_RANGE_TYPE(X) (X)
 #define COPY_DEFDESC_CONST_TYPE(X) (X << PASULI_TYPE_DEF_BIT_LENGTH)
 #define COPY_DEFDESC_TYPES(R, C) ((R) | ((C << PASULI_TYPE_DEF_BIT_LENGTH)))
@@ -155,8 +160,8 @@ typedef struct _PaSuLiTextDesc
 {
 	char szName[32];
 	char szCat[16];
-	char szTypeU; //o : open, c : closed, u : unknown, \0 : unknown
-	char szTypeV; //o : open, c : closed, u : unknown, \0 : unknown
+	char szTypeU; // o : open, c : closed, u : unknown, \0 : unknown
+	char szTypeV; // o : open, c : closed, u : unknown, \0 : unknown
 	char szStartU[8];
 	char szEndU[8];
 	char szStartV[8];
@@ -188,7 +193,6 @@ typedef struct _PaSuLiTextDesc
 	char szZvv[MAX_DESC_LENGTH];
 	*/
 } PaSuLiTextDesc;
-
 
 #include "pasuli_custom_defs.h"
 

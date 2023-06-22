@@ -11,3 +11,9 @@
 | StrophoideCylinder | ? |
 | VersieraAgnesiCylinder | ? |
 | ZissoideCylinder | ? |
+
+## Torus
+
+| Name | Base | Mesh | Sample |
+|----|----|----|----|
+|Torus| OK | OK | OK |
