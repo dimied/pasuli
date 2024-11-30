@@ -203,16 +203,16 @@ PaSuLiDefDesc pslddTorus = {
 */
 #if (COMPILE_DESC_TORUS != 0)
 char *descTorus =
-	"name: Torus;\
-cat: torus;\
-ut: c; vt: c;\
-us:0;  ue:pi:2;\
+	"name:Torus;\
+cat:torus;\
+ut:c; vt:c;\
+us:0; ue:pi:2;\
 vs:0; ve:pi:2;\
 c1:R:1.5; c2:r:0.5;\
 x: (R+r*cos(v))*cos(u);\
 y: (R+r*cos(v))*sin(u);\
 z: r*sin(v);\
-xu: -(R + r*cos(v))*sin(u) ;\
+xu: -(R + r*cos(v))*sin(u);\
 yu: (R + r*cos(v))*cos(u);\
 zu: 0;\
 xv: -r*sin(v)*cos(u);\
