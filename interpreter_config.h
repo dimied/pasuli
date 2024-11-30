@@ -1,0 +1,6 @@
+#ifndef __CODE_INTEPRETER_CONFIG__
+#define __CODE_INTEPRETER_CONFIG__
+
+#define PARSE_CODE_TEXT 1
+
+#endif

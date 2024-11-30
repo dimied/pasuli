@@ -37,7 +37,7 @@ opengl:
 	gcc -Wall -pedantic -Os -o ex_ogl  examples/opengl_sample.c  ${EX_FILES} ${FILES_UTIL} ${FILES2} ${FILES3} -lm -lGL -lGLU -lglut
 	strip --strip-all ex_ogl
 
-interpreter: interpreter_example.c interpreter.c intertest
+interpreter: interpreter_example.c interpreter.c
 	rm -f ./intertest
 	gcc -Wall -Os -B -lm -o ./intertest interpreter_example.c interpreter.c
 
