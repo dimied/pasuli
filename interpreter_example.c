@@ -1,7 +1,6 @@
 #include <stdio.h> // printf
 #include <stdlib.h>
-#include <math.h>
-
+//#include <math.h>
 
 #include "interpreter.h"
 
@@ -13,8 +12,8 @@ float circleParams[] = {1};
 
 float uParams[] = {0, PI * 0.5, PI};
 float vParams[] = {0, PI, 2 * PI};
-int nParamsU = 2;
-int nParamsV = 2;
+int nParamsU = 3;
+int nParamsV = 3;
 
 /*
 reg1 = r
@@ -63,8 +62,8 @@ unsigned char circleProgs[CIRCLE_PROG_BYTES] = {
     COMMAND(CMD_MUL_BY_REG, REG(1)),
     COMMAND(CMD_SAVE_ACCUM_TO_REG, REG(4)),
     COMMAND(CMD_SETUP_END, CMD_SETUP_U),
-
-
+    //
+    //
     COMMAND(CMD_SETUP_START, CMD_SETUP_V),
     //x
     COMMAND(CMD_COS, REG(3)),
@@ -82,8 +81,13 @@ int main()
 {
     printf("Interpreter test %i\n",  CMD_SETUP_LOAD_PARAMS(1));
 
-    float *pResults = malloc(3 * 3 * 3 * sizeof(float));
+    float *pResults = (float*)malloc(3 * 3 * 3 * sizeof(float));
+    for(int i=0; i < 3*3*3; i++) {
+        pResults[i] = 0;
+    }
     float *pRes = pResults;
+
+    parseCodeText(CIRCLE_PROG_BYTES, circleProgs);   
 
     parseCode(
         uParams,
@@ -97,17 +101,16 @@ int main()
         circleProgs,
         pResults);
 
+
     for (int i = 0; i < nParamsU; i++)
     {
         for (int j = 0; j < nParamsV; j++)
         {
-            printf("(%f %f) => (%f %f %f)\n", uParams[i], vParams[j], pRes[0], pRes[1], pRes[2]);
+            printf("(%.4f %.4f) -> (%.8f %.8f %.8f)\n", uParams[i], vParams[j], pRes[0], pRes[1], pRes[2]);
             pRes += 3;
         }
     }
-    free(pResults);
-
-    parseCodeText(CIRCLE_PROG_BYTES, circleProgs);
+    free(pResults);    
 
     return 0;
 }

@@ -4,17 +4,13 @@
 #include "interpreter_config.h"
 
 #define DEFINE_STEPS(U, V) (U | V << 4)
-#define GET_STEP_U(VAL)    (VAL & 0xF)
-#define GET_STEP_V(VAL)    ((VAL >> 4) U & 0xF)
+#define GET_STEP_U(VAL) (VAL & 0xF)
+#define GET_STEP_V(VAL) ((VAL >> 4) & 0xF)
 
-#define GET_CMD(VAL)       ((VAL >> 4) & 0xF)
-#define GET_PARAM(VAL)     (VAL & 0xF)
+#define GET_CMD(VAL) ((VAL >> 4) & 0xF)
+#define GET_PARAM(VAL) (VAL & 0xF)
 
-#define COMMAND(CMD, PARAM)     ((CMD<<4) + PARAM)
-#define CMD_SETUP_START 0
-#define CMD_SETUP_END 0
 #define CMD_SETUP_INIT 0
-
 #define CMD_SETUP_U 1
 #define CMD_SETUP_V 2
 
@@ -28,24 +24,48 @@
 
 #define CMD_SETUP_SET_U_SIZE_VAL 0x5
 #define CMD_SETUP_SET_V_SIZE_VAL 0x6
+#define CMD_SETUP_RESERVED 0x7
 
-//010?? ????
-#define CMD_SETUP_LOAD_PARAMS(NUM_PARAMS)  ((CMD_SETUP_LOAD_PARAMS_VAL<<CMD_SETUP_SHIFT) | NUM_PARAMS)
-#define CMD_SETUP_SET_PARAM_REGS(REG_START)  ((CMD_SETUP_SET_PARAM_REGS_VAL<<CMD_SETUP_SHIFT) | REG_START)
-#define CMD_SETUP_SET_RESULT_REGS(REG_START)  ((CMD_SETUP_SET_RESULT_REGS_VAL<<CMD_SETUP_SHIFT) | REG_START)
+// 010? ????
+#define CMD_SETUP_LOAD_PARAMS(NUM_PARAMS) ((CMD_SETUP_LOAD_PARAMS_VAL << CMD_SETUP_SHIFT) | NUM_PARAMS)
+#define CMD_SETUP_SET_PARAM_REGS(REG_START) ((CMD_SETUP_SET_PARAM_REGS_VAL << CMD_SETUP_SHIFT) | REG_START)
+#define CMD_SETUP_SET_RESULT_REGS(REG_START) ((CMD_SETUP_SET_RESULT_REGS_VAL << CMD_SETUP_SHIFT) | REG_START)
 
-#define CMD_SETUP_SET_U_SIZE(SZ)  ((CMD_SETUP_SET_U_SIZE_VAL<<CMD_SETUP_SHIFT) | SZ)
-#define CMD_SETUP_SET_V_SIZE(SZ)  ((CMD_SETUP_SET_V_SIZE_VAL<<CMD_SETUP_SHIFT) | SZ)
+#define CMD_SETUP_SET_U_SIZE(SZ) ((CMD_SETUP_SET_U_SIZE_VAL << CMD_SETUP_SHIFT) | SZ)
+#define CMD_SETUP_SET_V_SIZE(SZ) ((CMD_SETUP_SET_V_SIZE_VAL << CMD_SETUP_SHIFT) | SZ)
 
+#define COMMAND(CMD, PARAM) ((CMD << 4) + PARAM)
+#define COMMAND16(CMD, PARAM) (CMD, PARAM)
+/**
+ * COMMANDS
+ */
+#define CMD_SETUP_START 0
+#define CMD_SETUP_END 0
 #define CMD_SAVE_ACCUM_TO_REG 1
 #define CMD_LOAD_ACCUM_FROM_REG 2
-#define CMD_MUL_BY_REG 6
+/**
+ * Palette 0 is default
+ * Palette 1 means switch to 16 bits command-param pairs
+ */
+#define CMD_SWITCH_TO_PALETTE 3
 
-#define CMD_COS 12
-#define CMD_SIN 13
+#define CMD_ADD 4
+#define CMD_SUB 5
+#define CMD_MUL_BY_REG 6
+#define CMD_DIV_BY_REG 7
+
+#define CMD_PUSH 8
+#define CMD_POP 9
+#define CMD_NEGATE_REG 10
+#define CMD_POW 11
+
+#define CMD_SQRT 12
+#define CMD_LOG_REG 13
+#define CMD_COS 14
+#define CMD_SIN 15
 
 #define REG_ACCUM 0
-#define REG(X)  (X)
+#define REG(X) (X)
 
 /**
  * @param pSamplesU pointer to U samples

@@ -39,7 +39,7 @@ opengl:
 
 interpreter: interpreter_example.c interpreter.c
 	rm -f ./intertest
-	gcc -Wall -Os -B -lm -o ./intertest interpreter_example.c interpreter.c
+	g++ -Wall -Os -B -lm -lc interpreter_example.c interpreter.c -o intertest
 
 clean:
 	rm -f *.o 

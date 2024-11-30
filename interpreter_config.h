@@ -3,4 +3,6 @@
 
 #define PARSE_CODE_TEXT 1
 
+#define PARSE_CODE_VERBOSE 1
+
 #endif
