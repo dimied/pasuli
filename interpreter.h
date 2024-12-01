@@ -1,71 +1,43 @@
 #ifndef __CODE_INTEPRETER__
 #define __CODE_INTEPRETER__
 
+#include <stdlib.h>
 #include "interpreter_config.h"
+#include "interpreter_commands.h"
 
-#define DEFINE_STEPS(U, V) (U | V << 4)
+#define TIME_MILLI(V) (V.tv_sec * 1000 + V.tv_usec / 1000)
+#define TIME_MICRO(V) (V.tv_sec * 1000 * 1000 + V.tv_usec)
+
+#define PI (float)3.14159265358979323846f
+
+#define DEFINE_STEPS(U, V) (U | (V << 4))
 #define GET_STEP_U(VAL) (VAL & 0xF)
 #define GET_STEP_V(VAL) ((VAL >> 4) & 0xF)
 
 #define GET_CMD(VAL) ((VAL >> 4) & 0xF)
 #define GET_PARAM(VAL) (VAL & 0xF)
 
-#define CMD_SETUP_INIT 0
-#define CMD_SETUP_U 1
-#define CMD_SETUP_V 2
 
-#define CMD_DEFAULT_SHIFT 4
-#define CMD_SETUP_SHIFT 5
+#define TOTAL_NUM_COMMANDS 16
 
-//
-#define CMD_SETUP_LOAD_PARAMS_VAL 0x2
-#define CMD_SETUP_SET_PARAM_REGS_VAL 0x3
-#define CMD_SETUP_SET_RESULT_REGS_VAL 0x4
+#define MODE_UNKNOWN 0
+#define MODE_SETUP_START 1
+#define MODE_SETUP_RUNNING 2
 
-#define CMD_SETUP_SET_U_SIZE_VAL 0x5
-#define CMD_SETUP_SET_V_SIZE_VAL 0x6
-#define CMD_SETUP_RESERVED 0x7
+#ifdef NEED_COMMANDS
+extern const char *Commands[TOTAL_NUM_COMMANDS];
+#endif
 
-// 010? ????
-#define CMD_SETUP_LOAD_PARAMS(NUM_PARAMS) ((CMD_SETUP_LOAD_PARAMS_VAL << CMD_SETUP_SHIFT) | NUM_PARAMS)
-#define CMD_SETUP_SET_PARAM_REGS(REG_START) ((CMD_SETUP_SET_PARAM_REGS_VAL << CMD_SETUP_SHIFT) | REG_START)
-#define CMD_SETUP_SET_RESULT_REGS(REG_START) ((CMD_SETUP_SET_RESULT_REGS_VAL << CMD_SETUP_SHIFT) | REG_START)
+typedef struct OverflowInfo {
+    int indexU;
+    int indexV;
+    int mode;
+}OverflowInfo;
 
-#define CMD_SETUP_SET_U_SIZE(SZ) ((CMD_SETUP_SET_U_SIZE_VAL << CMD_SETUP_SHIFT) | SZ)
-#define CMD_SETUP_SET_V_SIZE(SZ) ((CMD_SETUP_SET_V_SIZE_VAL << CMD_SETUP_SHIFT) | SZ)
-
-#define COMMAND(CMD, PARAM) ((CMD << 4) + PARAM)
-#define COMMAND16(CMD, PARAM) (CMD, PARAM)
-/**
- * COMMANDS
- */
-#define CMD_SETUP_START 0
-#define CMD_SETUP_END 0
-#define CMD_SAVE_ACCUM_TO_REG 1
-#define CMD_LOAD_ACCUM_FROM_REG 2
-/**
- * Palette 0 is default
- * Palette 1 means switch to 16 bits command-param pairs
- */
-#define CMD_SWITCH_TO_PALETTE 3
-
-#define CMD_ADD 4
-#define CMD_SUB 5
-#define CMD_MUL_BY_REG 6
-#define CMD_DIV_BY_REG 7
-
-#define CMD_PUSH 8
-#define CMD_POP 9
-#define CMD_NEGATE_REG 10
-#define CMD_POW 11
-
-#define CMD_SQRT 12
-#define CMD_LOG_REG 13
-#define CMD_COS 14
-#define CMD_SIN 15
-
-#define REG_ACCUM 0
-#define REG(X) (X)
+#define INVALID_ACCESS_U 1
+#define INVALID_ACCESS_V 2
+#define INVALID_ACCESS_RESULT 3
+#define INVALID_COMMAND 4
 
 /**
  * @param pSamplesU pointer to U samples
@@ -78,10 +50,15 @@
  * @param nProgBytes number of prog bytes
  * @param pProgs pointer to prog bytes
  */
-void parseCode(float *pSamplesU, int nSamplesU, float *pSamplesV, int nSamplesV,
+int parseCode(float *pSamplesU, int nSamplesU, float *pSamplesV, int nSamplesV,
                int sampleSteps, float *pConstants, float *pProgParams,
                int nProgBytes, unsigned char *pProgs, float *pResults);
 
+void setParseCodeOptions(int opts);
+void getOverflowInfo(OverflowInfo* pInfo);
+
+void nullify(float *pData, size_t size);
+void zeroWithinLimit(float* pResults, float limit, size_t size);
 #ifdef PARSE_CODE_TEXT
 /**
  * For debuging
