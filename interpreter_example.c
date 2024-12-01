@@ -6,6 +6,8 @@
 #include "interpreter.h"
 #include "interpreter_progs.h"
 
+#include "prime_compressor.h"
+
 float constants[] = {PI};
 
 float circleParams[] = {1};
@@ -216,6 +218,12 @@ int main()
         durationX2 = 1;
     }
     printf("X|Time: 1/2 = %llu, 2/1 = %llu\n", durationX / durationX2, durationX2 / durationX);
+
+    unsigned char* pCompressorRes = (unsigned char*)malloc(CIRCLE_PROG_BYTES);
+
+    compress(circleProgs, CIRCLE_PROG_BYTES, pCompressorRes, CIRCLE_PROG_BYTES);
+
+    //compress(0, circleProgs, CIRCLE_PROG_BYTES, pCompressorRes, CIRCLE_PROG_BYTES);
 
     return 0;
 }
