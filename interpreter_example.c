@@ -80,6 +80,53 @@ void printResult(float *pRes, float *pRes2)
     }
 }
 
+void clear(void *pData, unsigned int size)
+{
+    if (pData != NULL)
+    {
+        unsigned char *pChars = (unsigned char *)pData;
+        unsigned char *pCharsEnd = pChars + size;
+        while (pChars != pCharsEnd)
+        {
+            *pChars = 0;
+            ++pChars;
+        }
+    }
+}
+
+void testInts()
+{
+    printf("Start tests\n");
+    MYINT test1;
+    MYINT test2;
+    MYINT result;
+
+    int res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
+
+    printf("Allocated! %i\n", res);   
+
+    unsigned int *pUInt = (unsigned int*)test1.pBytes;
+    test1.used_size = 1;
+    *pUInt = 1;
+
+    unsigned int s = 0x1210;
+    pUInt = (unsigned int*)test2.pBytes;
+    test2.used_size = 2;
+    *pUInt = s;
+
+    res = myintOp(INT_OP_ADD, &test1, &test2, &result);
+    pUInt = (unsigned int*)result.pBytes;
+    printf("%i|ADD %i|%x + %i|%x = %i|%x\n", res, 1,1, s, s, *pUInt, *pUInt);
+
+
+
+    //res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
+
+    printf("Clear ...\n");
+    myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
+    printf("Clear done\n");
+}
+
 int main()
 {
     // printf("Interpreter test %i\n", CMD_SETUP_LOAD_PARAMS(1));
@@ -142,7 +189,7 @@ int main()
     pResults2 = pRes2;
 
     ////
-    size_t nU = 10, nV = 10;
+    size_t nU = 1000, nV = 1000;
 
     float *pU = (float *)malloc(nU * sizeof(float));
     float *pV = (float *)malloc(nV * sizeof(float));
@@ -198,8 +245,8 @@ int main()
 
     free(pResults);
     free(pResults2);
-    printf("1|Time: %llu\n", duration);
-    printf("2|Time: %llu\n", duration2);
+    printf("1|Time(micro): %llu\n", duration);
+    printf("2|Time(micro): %llu\n", duration2);
     if (duration2 < 1)
     {
         duration2 = 1;
@@ -207,8 +254,8 @@ int main()
     printf("X|Time: 1/2 = %llu\n", duration / duration2);
 
     printf("(%li, %li)=>%li\n", nU, nV, nU * nV);
-    printf("1|Time: %llu\n", durationX);
-    printf("2|Time: %llu\n", durationX2);
+    printf("1|Time(micro): %llu\n", durationX);
+    printf("2|Time(micro): %llu\n", durationX2);
     if (durationX < 1)
     {
         durationX = 1;
@@ -219,11 +266,21 @@ int main()
     }
     printf("X|Time: 1/2 = %llu, 2/1 = %llu\n", durationX / durationX2, durationX2 / durationX);
 
-    unsigned char* pCompressorRes = (unsigned char*)malloc(CIRCLE_PROG_BYTES);
+    unsigned char *pCompressorRes = (unsigned char *)malloc(CIRCLE_PROG_BYTES);
 
     compress(circleProgs, CIRCLE_PROG_BYTES, pCompressorRes, CIRCLE_PROG_BYTES);
 
-    //compress(0, circleProgs, CIRCLE_PROG_BYTES, pCompressorRes, CIRCLE_PROG_BYTES);
+    /*
+    unsigned char val[4];
+    unsigned int valI = 0x01020305;
+    unsigned int* pVX = (unsigned int*)&val[0];
+    *pVX = valI;
+    printf("V: %i %i %i %i\n", val[0], val[1], val[2], val[3]);
+    */
+
+    testInts();
+
+    // compress(0, circleProgs, CIRCLE_PROG_BYTES, pCompressorRes, CIRCLE_PROG_BYTES);
 
     return 0;
 }

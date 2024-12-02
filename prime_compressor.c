@@ -2037,20 +2037,185 @@ int complement_lint(LINT*a)
 }
 */
 
-typedef struct _MYINT
-{
-    unsigned char *byte_data;
-    unsigned long long size;      // allocated size, measured in blocks of 32 bits
-    unsigned long long used_size; // actual space occupied by the number, measured in blocks of 32 bits
-} MYINT;
-
-int compressType = 0;
+int compressType = 1;
 
 #define NUM_PRIMES 256 * 2
 #define BYTE_LIMIT 256
 
 #define COMPRESS_INIT_STEP 0
 #define COMPRESS_CHECK_DIVISIBALITY_STEP 1
+
+void clear2(void *pData, unsigned int size)
+{
+    if (pData != NULL)
+    {
+        unsigned char *pChars = (unsigned char *)pData;
+        unsigned char *pCharsEnd = pChars + size;
+        while (pChars != pCharsEnd)
+        {
+            *pChars = 0;
+            ++pChars;
+        }
+    }
+}
+
+int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
+{
+    int res, initOrClear = op & INT_OP_INIT_ALL;
+    if (initOrClear != 0)
+    {
+        if (initOrClear & INT_OP_INIT_RESULT)
+        {
+            printf("INIT RES\n");
+            res = myintOp(INT_OP_INIT_SRC, pResult, pSrc2, pResult);
+            if (res)
+            {
+                return res;
+            }
+        }
+
+        if (initOrClear & INT_OP_INIT_SRC2)
+        {
+            printf("INIT SRC2\n");
+            myintOp(INT_OP_INIT_SRC, pSrc2, pSrc2, pResult);
+            if (res)
+            {
+                return res;
+            }
+        }
+
+        if (initOrClear & INT_OP_INIT_SRC)
+        {
+            printf("INIT SRC\n");
+            clear2(pSrc, sizeof(MYINT));
+            pSrc->pBytes = (unsigned char *)malloc(INITIAL_INIT_SIZE);
+            if (pSrc == NULL)
+            {
+                return 1;
+            }
+            clear2(pSrc->pBytes, INITIAL_INIT_SIZE);
+            pSrc->size = INITIAL_INIT_SIZE;
+            pSrc->used_size = 0;
+        }
+        return 0;
+    }
+
+    initOrClear = op & INT_OP_CLEAR_ALL;
+    if (initOrClear != 0 && op <= INT_OP_CLEAR_ALL)
+    {
+        if (initOrClear & INT_OP_CLEAR_RESULT)
+        {
+            myintOp(INT_OP_CLEAR_SRC, pResult, pSrc2, pResult);
+        }
+
+        if (initOrClear & INT_OP_CLEAR_SRC2)
+        {
+            myintOp(INT_OP_CLEAR_SRC, pSrc2, pSrc2, pResult);
+        }
+
+        if (initOrClear & INT_OP_CLEAR_SRC)
+        {
+            if (pSrc->pBytes != NULL)
+            {
+                free(pSrc->pBytes);
+                pSrc->pBytes = NULL;
+            }
+            if (pSrc->pBuffer != NULL)
+            {
+                free(pSrc->pBuffer);
+                pSrc->pBuffer = NULL;
+            }
+            pSrc->size = 0;
+            pSrc->buffer_size = 0;
+        }
+        return 0;
+    }
+
+    unsigned int sizeVal;
+    unsigned int resultValue = 0;
+
+    unsigned int i;
+    switch (op)
+    {
+    case INT_OP_ZERO:
+        clear2(pSrc->pBytes, pSrc->size);
+        return 0;
+    case INT_OP_ONE:
+        res = myintOp(INT_OP_ZERO, pSrc, NULL, NULL);
+        if (res == 0)
+        {
+            pSrc->pBytes[0] = 1;
+            return 0;
+        }
+        return res;
+
+    case INT_OP_ADD:
+    printf("ADD!\n");
+        sizeVal = pSrc->used_size;
+        if (sizeVal < pSrc2->used_size)
+        {
+            sizeVal = pSrc2->used_size;
+        }
+        if (sizeVal > pResult->size)
+        {
+            void *p = malloc(sizeVal);
+            if (p == NULL)
+            {
+                return INT_ALLOCATION_ERROR;
+            }
+            if (pResult->size > 0)
+            {
+                memcpy(p, pResult->pBytes, pResult->size);
+            }
+            if (pResult->pBytes)
+            {
+                free(pResult->pBytes);
+            }
+
+            pResult->pBytes = (unsigned char *)p;
+            pResult->size = sizeVal;
+        }
+        pResult->used_size = 0;
+
+        for (i = 0; i < sizeVal; i++)
+        {
+            if (i < pSrc->used_size)
+            {
+                resultValue += pSrc->pBytes[i];
+            }
+            if (i < pSrc2->used_size)
+            {
+                resultValue += pSrc2->pBytes[i];
+            }
+            printf("SUM = %i\n", resultValue);
+            pResult->pBytes[i] = resultValue & 0xFF;
+            ++pResult->used_size;
+            resultValue >>= 8;
+        }
+        if (resultValue > 0)
+        {
+            if (i >= pResult->size)
+            {
+                void *p = malloc(i + 1);
+                if (p == NULL)
+                {
+                    return INT_ALLOCATION_ERROR;
+                }
+                memcpy(p, pResult->pBytes, pResult->size);
+                if (pResult->pBytes)
+                {
+                    free(pResult->pBytes);
+                }
+                pResult->pBytes = (unsigned char *)p;
+                pResult->size = i + 1;
+            }
+            pResult->pBytes[i] = resultValue & 0xFF;
+            ++pResult->used_size;
+        }
+        return 0;
+    }
+    return INT_COMMAND_ERROR;
+}
 
 void compress(void *pData, int size, void *pResultData, int resultSize)
 {
@@ -2059,9 +2224,10 @@ void compress(void *pData, int size, void *pResultData, int resultSize)
     unsigned char *pCurrentData = (unsigned char *)malloc(size * sizeof(char));
     memcpy(pCurrentData, pData, size);
     primes[0] = 2;
-    int i = 0, primeIdx = 1;
+    int i = 0, primeIdx = 1, mode = 0;
     unsigned int p = 3;
-    unsigned char *pUC = (unsigned char *)pResultData;
+    // unsigned char *pUC = (unsigned char *)pResultData;
+    // unsigned char *pSrcUC = (unsigned char *)pData;
 
     while (primeIdx < NUM_PRIMES)
     {
@@ -2084,7 +2250,7 @@ void compress(void *pData, int size, void *pResultData, int resultSize)
     if (compressType == 0)
     {
 
-        int i = 0, mode = 0;
+        i = 0;
         int numTries = 256 * 16;
 
         while (numTries > 0)
