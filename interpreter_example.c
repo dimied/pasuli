@@ -103,38 +103,103 @@ void testInts()
 
     int res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
 
-    printf("Allocated! %i\n", res);   
+    printf("Allocated! %i\n", res);
 
     unsigned int f = 1;
-    unsigned int *pUInt = (unsigned int*)test1.pBytes;
+    unsigned int *pUInt = (unsigned int *)test1.pBytes;
     test1.used_size = 1;
     *pUInt = f;
 
     unsigned int s = 0x1210;
-    pUInt = (unsigned int*)test2.pBytes;
+    pUInt = (unsigned int *)test2.pBytes;
     test2.used_size = 2;
     *pUInt = s;
 
     res = myintOp(INT_OP_ADD, &test1, &test2, &result);
-    pUInt = (unsigned int*)result.pBytes;
-    //unsigned short *pUShort = (unsigned short *)result.pBytes;
-    printf("%i|ADD %i|%x + %i|%x = %i|%x\n", res, f,f, s, s, *pUInt, *pUInt);
+    pUInt = (unsigned int *)result.pBytes;
+    // unsigned short *pUShort = (unsigned short *)result.pBytes;
+    printf("%i|ADD %i|%x + %i|%x = %i|%x\n", res, f, f, s, s, *pUInt, *pUInt);
 
-    f = 213;
-    s = 113;
-    pUInt = (unsigned int*)test1.pBytes;
-    *pUInt = f;
-
-    pUInt = (unsigned int*)test2.pBytes;
-    test2.used_size = 1;
-    *pUInt = s;
+    unsigned short *pUShort1 = 0, *pUShort2 = 0;
+    pUShort1 = (unsigned short *)test1.pBytes;
+    pUShort2 = (unsigned short *)test2.pBytes;
+    f = 256;
+    s = 1;
+    *pUShort1 = f;
+    test1.used_size = 2;
+    *pUShort2 = s;
 
     res = myintOp(INT_OP_MUL, &test1, &test2, &result);
-    pUInt = (unsigned int*)result.pBytes;
-    printf("%i|MUL %i|%x + %i|%x = %i|%x\n", res, f,f, s, s, *pUInt, *pUInt);
+    pUInt = (unsigned int *)result.pBytes;
+    printf("%i|MUL %i|%x + %i|%x = %i|%x\n", res, f, f, s, s, *pUInt, *pUInt);
+    
+    int okTests = 0, failedTests = 0;
+    
+    printf("MUL-TEST!");
 
+    unsigned char adds[] = {1, 2, 3, 5, 7, 11, 13, 17};
+    int idxF = 0, idxS = 0, hasFailed = 0;
+    unsigned int expectedUInt = 0, testIdx = 0;
+    f = 0;
 
-    //res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
+    while (1 == 1 && f < 0x10000)
+    {
+        pUShort1 = (unsigned short *)test1.pBytes;
+        *pUShort1 = f;
+        s = 0;
+        while (s < 0x10000)
+        {
+            pUShort2 = (unsigned short *)test2.pBytes;
+            *pUShort2 = s;
+
+            expectedUInt = f * s;
+            hasFailed = 0;
+            res = myintOp(INT_OP_MUL, &test1, &test2, &result);
+            pUInt = (unsigned int *)result.pBytes;
+            if (res == 0)
+            {
+                if (expectedUInt != *pUInt)
+                {
+                    ++failedTests;
+                    hasFailed = 1;
+                } else {
+                    ++okTests;
+                }
+            }
+            else
+            {
+                ++failedTests;
+                hasFailed = 1;
+            }
+            if (hasFailed > 0 && failedTests < 20)
+            {
+                printf("Failed: %i * %i = %i|%x <> Ex=%i|%x\n",
+                       *pUShort1, *pUShort2, *pUInt, *pUInt, expectedUInt, expectedUInt);
+            }
+            if (failedTests > 30)
+            {
+                break;
+            }
+
+            s += adds[idxS % 8];
+            testIdx++;
+            if (testIdx % 1000000 == 0)
+            {
+                printf("Test %i\n", testIdx);
+            }
+            idxS++;
+        }
+        f += adds[idxF % 8];
+        idxF++;
+        if (failedTests > 30)
+        {
+            break;
+        }
+    }
+    
+    printf("MUL-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
+
+    // res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
 
     printf("Clear ...\n");
     myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);

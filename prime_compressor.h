@@ -22,7 +22,7 @@ typedef struct _LINT
 
 int myDataOp(int op, unsigned char **pData, unsigned int size, unsigned int oldSize);
 
-#define INITIAL_INIT_SIZE 4
+#define INITIAL_INIT_SIZE 2
 
 #define INT_OP_CLEAR_SRC 1
 #define INT_OP_CLEAR_SRC2 2

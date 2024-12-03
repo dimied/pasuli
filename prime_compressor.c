@@ -2168,6 +2168,17 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     unsigned int resultValue = 0;
 
     unsigned int i;
+    unsigned char *pSrc1Chars, *pSrc2Chars;
+
+    if (pSrc->pBytes)
+    {
+        pSrc1Chars = pSrc->pBytes;
+    }
+    if (pSrc2->pBytes)
+    {
+        pSrc2Chars = pSrc2->pBytes;
+    }
+
     switch (op)
     {
     case INT_OP_ZERO:
@@ -2232,7 +2243,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         }
         return 0;
     case INT_OP_MUL:
-        printf("MUL!\n");
+        // printf("MUL!\n");
         sizeVal = pSrc->used_size + pSrc2->used_size;
         if (sizeVal > pResult->size)
         {
@@ -2242,27 +2253,38 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             }
             pResult->size = sizeVal;
         }
+        clear2(pResult->pBytes, pResult->size);
+
         resultValue = 0;
-        unsigned int idx2 = 0;
+        unsigned int idx2 = 0, resIdx = 0, resIdx2 = 0;
         for (i = 0; i < pSrc->used_size; i++)
         {
-            resultValue += pSrc->pBytes[i];
-            //printf("MUL %i BY ", pSrc->pBytes[i]);
+            resIdx = i;
+
+            pSrc2Chars = pSrc2->pBytes;
+
             for (idx2 = 0; idx2 < pSrc2->used_size; idx2++)
             {
-                resultValue *= pSrc2->pBytes[idx2];
-                pResult->pBytes[i + idx2] = resultValue & 0xFF;
-                //printf(" %i = %i|%x => %i \n", pSrc2->pBytes[idx2], resultValue, resultValue, resultValue & 0xFF);
+                resultValue = (*pSrc1Chars) * (*pSrc2Chars);
+                resultValue = pResult->pBytes[resIdx] + resultValue;
+
+                pResult->pBytes[resIdx++] = resultValue & 0xFF;
+                resIdx2 = resIdx;
                 resultValue >>= 8;
-                //printf(">> %i\n", resultValue);
+                while (resultValue > 0)
+                {
+                    resultValue = pResult->pBytes[resIdx2] + resultValue;
+                    pResult->pBytes[resIdx2++] = resultValue & 0xFF;
+                    resultValue >>= 8;
+                }
+                ++pSrc2Chars;
             }
+            ++pSrc1Chars;
         }
-        if (resultValue > 0)
-        {
-            pResult->pBytes[i + idx2 - 1] = resultValue & 0xFF;
-            resultValue >>= 8;
-        }
-        //printf("RES: %i\n", resultValue);
+        pResult->used_size = resIdx2;
+
+        return 0;
+        // printf("RES: %i\n", resultValue);
     }
     return INT_COMMAND_ERROR;
 }
