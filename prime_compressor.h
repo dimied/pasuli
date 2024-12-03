@@ -14,17 +14,29 @@ typedef struct _LINT
 	unsigned char sign;//0=positive,anything else=negative
 }LINT;
 */
-#define INITIAL_INIT_SIZE 8
+
+#define REALLOC_ALLOC 2
+#define REALLOC_FREE 4
+
+#define REALLOC_REALLOC 0x10
+
+int myDataOp(int op, unsigned char **pData, unsigned int size, unsigned int oldSize);
+
+#define INITIAL_INIT_SIZE 4
 
 #define INT_OP_CLEAR_SRC 1
 #define INT_OP_CLEAR_SRC2 2
 #define INT_OP_CLEAR_RESULT 4
 #define INT_OP_CLEAR_ALL (INT_OP_CLEAR_SRC|INT_OP_CLEAR_SRC2|INT_OP_CLEAR_RESULT)
+
+#define INT_INTERNAL_CHECK_CLEAR(OP, VAL)    ((OP&VAL) == VAL)
 //
 #define INT_OP_INIT_SRC 0x10
 #define INT_OP_INIT_SRC2 0x20
 #define INT_OP_INIT_RESULT 0x40
 #define INT_OP_INIT_ALL (INT_OP_INIT_SRC|INT_OP_INIT_SRC2|INT_OP_INIT_RESULT)
+
+#define INT_INTERNAL_CHECK_INIT(OP, VAL)    ((OP&VAL) == VAL)
 //
 #define INT_OP_ZERO 0x80
 #define INT_OP_ONE 0x81

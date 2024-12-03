@@ -105,9 +105,10 @@ void testInts()
 
     printf("Allocated! %i\n", res);   
 
+    unsigned int f = 1;
     unsigned int *pUInt = (unsigned int*)test1.pBytes;
     test1.used_size = 1;
-    *pUInt = 1;
+    *pUInt = f;
 
     unsigned int s = 0x1210;
     pUInt = (unsigned int*)test2.pBytes;
@@ -116,8 +117,21 @@ void testInts()
 
     res = myintOp(INT_OP_ADD, &test1, &test2, &result);
     pUInt = (unsigned int*)result.pBytes;
-    printf("%i|ADD %i|%x + %i|%x = %i|%x\n", res, 1,1, s, s, *pUInt, *pUInt);
+    //unsigned short *pUShort = (unsigned short *)result.pBytes;
+    printf("%i|ADD %i|%x + %i|%x = %i|%x\n", res, f,f, s, s, *pUInt, *pUInt);
 
+    f = 213;
+    s = 113;
+    pUInt = (unsigned int*)test1.pBytes;
+    *pUInt = f;
+
+    pUInt = (unsigned int*)test2.pBytes;
+    test2.used_size = 1;
+    *pUInt = s;
+
+    res = myintOp(INT_OP_MUL, &test1, &test2, &result);
+    pUInt = (unsigned int*)result.pBytes;
+    printf("%i|MUL %i|%x + %i|%x = %i|%x\n", res, f,f, s, s, *pUInt, *pUInt);
 
 
     //res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
@@ -130,7 +144,7 @@ void testInts()
 int main()
 {
     // printf("Interpreter test %i\n", CMD_SETUP_LOAD_PARAMS(1));
-
+#if 0
     size_t allocSize = nParamsV * nParamsU * 3;
     float *pResults = (float *)malloc(allocSize * sizeof(float));
     float *pResults2 = (float *)malloc(allocSize * sizeof(float));
@@ -265,7 +279,7 @@ int main()
         durationX2 = 1;
     }
     printf("X|Time: 1/2 = %llu, 2/1 = %llu\n", durationX / durationX2, durationX2 / durationX);
-
+#endif
     unsigned char *pCompressorRes = (unsigned char *)malloc(CIRCLE_PROG_BYTES);
 
     compress(circleProgs, CIRCLE_PROG_BYTES, pCompressorRes, CIRCLE_PROG_BYTES);

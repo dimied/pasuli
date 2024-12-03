@@ -2059,12 +2059,52 @@ void clear2(void *pData, unsigned int size)
     }
 }
 
+int myDataOp(int op, unsigned char **pData, unsigned int size, unsigned int oldSize)
+{
+    void *pMem;
+    switch (op)
+    {
+    case REALLOC_ALLOC:
+        printf("TRY ALLOC %i for %p\n", size, pData);
+        pMem = malloc(size);
+        if (pMem != NULL)
+        {
+            *pData = (unsigned char *)pMem;
+            return 0;
+        }
+        break;
+    case REALLOC_FREE:
+        if (*pData != NULL)
+        {
+            free(*pData);
+            *pData = NULL;
+            return 0;
+        }
+        break;
+    case REALLOC_REALLOC:
+        printf("TRY REALLOC %i for %p\n", size, pData);
+        pMem = malloc(size);
+        if (pMem != NULL)
+        {
+            if (*pData != NULL)
+            {
+                memcpy(pMem, *pData, oldSize);
+                myDataOp(REALLOC_FREE, pData, 0, 0);
+            }
+            *pData = (unsigned char *)pMem;
+            return 0;
+        }
+        break;
+    }
+    return 1;
+}
+
 int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 {
     int res, initOrClear = op & INT_OP_INIT_ALL;
-    if (initOrClear != 0)
+    if (initOrClear != 0 && op >= INT_OP_INIT_SRC && op <= INT_OP_INIT_ALL)
     {
-        if (initOrClear & INT_OP_INIT_RESULT)
+        if (INT_INTERNAL_CHECK_INIT(initOrClear, INT_OP_INIT_RESULT))
         {
             printf("INIT RES\n");
             res = myintOp(INT_OP_INIT_SRC, pResult, pSrc2, pResult);
@@ -2074,7 +2114,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             }
         }
 
-        if (initOrClear & INT_OP_INIT_SRC2)
+        if (INT_INTERNAL_CHECK_INIT(initOrClear, INT_OP_INIT_SRC2))
         {
             printf("INIT SRC2\n");
             myintOp(INT_OP_INIT_SRC, pSrc2, pSrc2, pResult);
@@ -2084,12 +2124,11 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             }
         }
 
-        if (initOrClear & INT_OP_INIT_SRC)
+        if (INT_INTERNAL_CHECK_INIT(initOrClear, INT_OP_INIT_SRC))
         {
             printf("INIT SRC\n");
             clear2(pSrc, sizeof(MYINT));
-            pSrc->pBytes = (unsigned char *)malloc(INITIAL_INIT_SIZE);
-            if (pSrc == NULL)
+            if (myDataOp(REALLOC_ALLOC, (unsigned char **)&pSrc->pBytes, INITIAL_INIT_SIZE, 0))
             {
                 return 1;
             }
@@ -2103,29 +2142,23 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     initOrClear = op & INT_OP_CLEAR_ALL;
     if (initOrClear != 0 && op <= INT_OP_CLEAR_ALL)
     {
-        if (initOrClear & INT_OP_CLEAR_RESULT)
+
+        if (INT_INTERNAL_CHECK_CLEAR(initOrClear, INT_OP_CLEAR_RESULT))
         {
             myintOp(INT_OP_CLEAR_SRC, pResult, pSrc2, pResult);
         }
 
-        if (initOrClear & INT_OP_CLEAR_SRC2)
+        if (INT_INTERNAL_CHECK_CLEAR(initOrClear, INT_OP_CLEAR_SRC2))
         {
             myintOp(INT_OP_CLEAR_SRC, pSrc2, pSrc2, pResult);
         }
 
-        if (initOrClear & INT_OP_CLEAR_SRC)
+        if (INT_INTERNAL_CHECK_CLEAR(initOrClear, INT_OP_CLEAR_SRC))
         {
-            if (pSrc->pBytes != NULL)
-            {
-                free(pSrc->pBytes);
-                pSrc->pBytes = NULL;
-            }
-            if (pSrc->pBuffer != NULL)
-            {
-                free(pSrc->pBuffer);
-                pSrc->pBuffer = NULL;
-            }
+            myDataOp(REALLOC_FREE, (unsigned char **)&pSrc->pBytes, 0, 0);
+            myDataOp(REALLOC_FREE, (unsigned char **)&pSrc->pBuffer, 0, 0);
             pSrc->size = 0;
+            pSrc->used_size = 0;
             pSrc->buffer_size = 0;
         }
         return 0;
@@ -2145,12 +2178,13 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         if (res == 0)
         {
             pSrc->pBytes[0] = 1;
+            pSrc->used_size = 1;
             return 0;
         }
         return res;
 
     case INT_OP_ADD:
-    printf("ADD!\n");
+        printf("ADD!\n");
         sizeVal = pSrc->used_size;
         if (sizeVal < pSrc2->used_size)
         {
@@ -2158,21 +2192,10 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         }
         if (sizeVal > pResult->size)
         {
-            void *p = malloc(sizeVal);
-            if (p == NULL)
+            if (myDataOp(REALLOC_REALLOC, (unsigned char **)&pResult->pBytes, sizeVal, pResult->size))
             {
                 return INT_ALLOCATION_ERROR;
             }
-            if (pResult->size > 0)
-            {
-                memcpy(p, pResult->pBytes, pResult->size);
-            }
-            if (pResult->pBytes)
-            {
-                free(pResult->pBytes);
-            }
-
-            pResult->pBytes = (unsigned char *)p;
             pResult->size = sizeVal;
         }
         pResult->used_size = 0;
@@ -2187,7 +2210,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             {
                 resultValue += pSrc2->pBytes[i];
             }
-            printf("SUM = %i\n", resultValue);
+            printf("SUM = %i|%x\n", resultValue, resultValue);
             pResult->pBytes[i] = resultValue & 0xFF;
             ++pResult->used_size;
             resultValue >>= 8;
@@ -2196,23 +2219,50 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         {
             if (i >= pResult->size)
             {
-                void *p = malloc(i + 1);
-                if (p == NULL)
+                sizeVal = i + 1;
+
+                if (myDataOp(REALLOC_REALLOC, (unsigned char **)&pResult->pBytes, sizeVal, pResult->size))
                 {
                     return INT_ALLOCATION_ERROR;
                 }
-                memcpy(p, pResult->pBytes, pResult->size);
-                if (pResult->pBytes)
-                {
-                    free(pResult->pBytes);
-                }
-                pResult->pBytes = (unsigned char *)p;
-                pResult->size = i + 1;
+                pResult->size = sizeVal;
             }
             pResult->pBytes[i] = resultValue & 0xFF;
-            ++pResult->used_size;
+            pResult->used_size = i;
         }
         return 0;
+    case INT_OP_MUL:
+        printf("MUL!\n");
+        sizeVal = pSrc->used_size + pSrc2->used_size;
+        if (sizeVal > pResult->size)
+        {
+            if (myDataOp(REALLOC_REALLOC, (unsigned char **)&pResult->pBytes, sizeVal, pResult->size))
+            {
+                return INT_ALLOCATION_ERROR;
+            }
+            pResult->size = sizeVal;
+        }
+        resultValue = 0;
+        unsigned int idx2 = 0;
+        for (i = 0; i < pSrc->used_size; i++)
+        {
+            resultValue += pSrc->pBytes[i];
+            //printf("MUL %i BY ", pSrc->pBytes[i]);
+            for (idx2 = 0; idx2 < pSrc2->used_size; idx2++)
+            {
+                resultValue *= pSrc2->pBytes[idx2];
+                pResult->pBytes[i + idx2] = resultValue & 0xFF;
+                //printf(" %i = %i|%x => %i \n", pSrc2->pBytes[idx2], resultValue, resultValue, resultValue & 0xFF);
+                resultValue >>= 8;
+                //printf(">> %i\n", resultValue);
+            }
+        }
+        if (resultValue > 0)
+        {
+            pResult->pBytes[i + idx2 - 1] = resultValue & 0xFF;
+            resultValue >>= 8;
+        }
+        //printf("RES: %i\n", resultValue);
     }
     return INT_COMMAND_ERROR;
 }
