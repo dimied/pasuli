@@ -223,6 +223,8 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     return INT_COMMAND_ERROR;
 }
 
+int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int resultLength);
+
 int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)
 {
     if (pSrc == NULL)
@@ -247,7 +249,11 @@ int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)
         *pResult = '0' + (*p);
         return 0;
     }
+    return printBytes(p, pSrc->used_size, pResult, resultLength);
+}
 
+int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int resultLength)
+{
     unsigned int i = 0;
 #if 0
     unsigned long long int res = 0;
@@ -264,10 +270,10 @@ int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)
     }
 #endif
 
-#define VALUE(V)   ((V)&0xF)
-#define EXP_VALUE(V)   ((V)>>4)
+#define VALUE(V) ((V) & 0xF)
+#define EXP_VALUE(V) ((V) >> 4)
     // start from the end and move it later to the beginning
-    unsigned char* pResultUC = (unsigned char*)pResult;
+    unsigned char *pResultUC = (unsigned char *)pResult;
     unsigned char *pLastCurrent, *pLast = pResultUC + (resultLength - 2);
     // lowest 4 bits is result, highest 4 bits is number to add
     *pLast = ((*p) & 0x7) | (0x4 << 4);
@@ -309,11 +315,10 @@ int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)
                         resCurrent = (last << 4) | VALUE(resCurrent);
                         *pLastCurrent = resCurrent;
                         --pLastCurrent;
-                        
                     }
-                    //b = EXP_VALUE(*pLast) + EXP_VALUE(*(pLast - 1)) * 10 + EXP_VALUE(*(pLast - 2)) * 100 + EXP_VALUE(*(pLast - 3)) * 1000;
-                    //printf("BIT-E^ %i|%u (%u)\n", currentByteShift, b, numShifts);
-                    
+                    // b = EXP_VALUE(*pLast) + EXP_VALUE(*(pLast - 1)) * 10 + EXP_VALUE(*(pLast - 2)) * 100 + EXP_VALUE(*(pLast - 3)) * 1000;
+                    // printf("BIT-E^ %i|%u (%u)\n", currentByteShift, b, numShifts);
+
                     if (pLastCurrent == pResultUC)
                     {
                         resCurrent = *pLastCurrent;
@@ -335,15 +340,16 @@ int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)
                     // 2^n can't fit, i.e. also the result of addition won't fit
                     break;
                 }
-                //b = EXP_VALUE(*pLast) + EXP_VALUE(*(pLast - 1)) * 10 + EXP_VALUE(*(pLast - 2)) * 100 + EXP_VALUE(*(pLast - 3)) * 1000;
-                //printf("BIT~ %i|%u\n", currentByteShift, b);
+                // b = EXP_VALUE(*pLast) + EXP_VALUE(*(pLast - 1)) * 10 + EXP_VALUE(*(pLast - 2)) * 100 + EXP_VALUE(*(pLast - 3)) * 1000;
+                // printf("BIT~ %i|%u\n", currentByteShift, b);
                 overflow = 0;
                 pLastCurrent = pLast;
-                unsigned char* pResultFrontUC = pResultUC;
-                //Find non-zero in result
+                unsigned char *pResultFrontUC = pResultUC;
+                // Find non-zero in result
                 while (pResultFrontUC != pLast)
                 {
-                    if(VALUE(*pResultFrontUC) != 0) {
+                    if (VALUE(*pResultFrontUC) != 0)
+                    {
                         break;
                     }
                     ++pResultFrontUC;
@@ -369,8 +375,9 @@ int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)
                         break;
                     }
                     *pLastCurrent = (resCurrent & 0xF0) | last;
-                } else {
-
+                }
+                else
+                {
                 }
 #if 0
                 b = VALUE(*pLast) + VALUE(*(pLast - 1)) * 10 + VALUE(*(pLast - 2)) * 100 + VALUE(*(pLast - 3)) * 1000;
@@ -393,7 +400,7 @@ int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)
         }
         currentByteShift = 0;
         ++i;
-    } while (i < pSrc->used_size);
+    } while (i < size);
 
     if (currentByteShift > 8)
     {

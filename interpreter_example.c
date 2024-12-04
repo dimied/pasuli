@@ -240,7 +240,7 @@ void testInts()
         0xA3,
         0x18
     };
-    char* expectedStr = "2146440093795495460279912293993145927611445";
+    const char* expectedStr = "2146440093795495460279912293993145927611445";
     //unsigned char vals2[sizeof(vals)];
     size_t sss = sizeof(vals);
     printf("S: %li\n", sss);
