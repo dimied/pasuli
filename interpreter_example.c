@@ -6,6 +6,7 @@
 #include "interpreter.h"
 #include "interpreter_progs.h"
 
+#include "myint.h"
 #include "prime_compressor.h"
 
 float constants[] = {PI};
@@ -106,23 +107,23 @@ void testInts()
     printf("Allocated! %i\n", res);
 
     unsigned int f = 1;
-    unsigned int *pUInt = (unsigned int *)test1.pBytes;
+    unsigned int *pUInt = (unsigned int *)test1.data.pBytes;
     test1.used_size = 1;
     *pUInt = f;
 
     unsigned int s = 0x1210;
-    pUInt = (unsigned int *)test2.pBytes;
+    pUInt = (unsigned int *)test2.data.pBytes;
     test2.used_size = 2;
     *pUInt = s;
 
     res = myintOp(INT_OP_ADD, &test1, &test2, &result);
-    pUInt = (unsigned int *)result.pBytes;
+    pUInt = (unsigned int *)result.data.pBytes;
     // unsigned short *pUShort = (unsigned short *)result.pBytes;
     printf("%i|ADD %i|%x + %i|%x = %i|%x\n", res, f, f, s, s, *pUInt, *pUInt);
 
     unsigned short *pUShort1 = 0, *pUShort2 = 0;
-    pUShort1 = (unsigned short *)test1.pBytes;
-    pUShort2 = (unsigned short *)test2.pBytes;
+    pUShort1 = (unsigned short *)test1.data.pBytes;
+    pUShort2 = (unsigned short *)test2.data.pBytes;
     f = 256;
     s = 1;
     *pUShort1 = f;
@@ -130,7 +131,7 @@ void testInts()
     *pUShort2 = s;
 
     res = myintOp(INT_OP_MUL, &test1, &test2, &result);
-    pUInt = (unsigned int *)result.pBytes;
+    pUInt = (unsigned int *)result.data.pBytes;
     printf("%i|MUL %i|%x + %i|%x = %i|%x\n", res, f, f, s, s, *pUInt, *pUInt);
     
     int okTests = 0, failedTests = 0;
@@ -140,31 +141,31 @@ void testInts()
     unsigned char adds[] = {1, 2, 3, 5, 7, 11, 13, 17};
     int idxF = 0, idxS = 0, hasFailed = 0;
     unsigned int expectedUInt = 0, testIdx = 0;
+    //unsigned long long int expectedULong = 0;
     f = 0;
+
+    MYINT add1;
+    MYINT add2;
+
+    myintOp(INT_OP_INIT_SRC|INT_OP_INIT_SRC2, &add1, &add2, &result);
 
     while (1 == 1 && f < 0x10000)
     {
-        pUShort1 = (unsigned short *)test1.pBytes;
+        pUShort1 = (unsigned short *)test1.data.pBytes;
         *pUShort1 = f;
         s = 0;
         while (s < 0x10000)
         {
-            pUShort2 = (unsigned short *)test2.pBytes;
+            pUShort2 = (unsigned short *)test2.data.pBytes;
             *pUShort2 = s;
 
             expectedUInt = f * s;
             hasFailed = 0;
             res = myintOp(INT_OP_MUL, &test1, &test2, &result);
-            pUInt = (unsigned int *)result.pBytes;
-            if (res == 0)
+            pUInt = (unsigned int *)result.data.pBytes;
+            if (res == 0 && (expectedUInt == *pUInt))
             {
-                if (expectedUInt != *pUInt)
-                {
-                    ++failedTests;
-                    hasFailed = 1;
-                } else {
-                    ++okTests;
-                }
+                ++okTests;
             }
             else
             {
@@ -358,6 +359,9 @@ int main()
     */
 
     testInts();
+
+
+    printf("PTR-SIZE: %li\n", sizeof(unsigned char *));
 
     // compress(0, circleProgs, CIRCLE_PROG_BYTES, pCompressorRes, CIRCLE_PROG_BYTES);
 
