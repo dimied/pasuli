@@ -56,4 +56,6 @@ typedef struct _MYINT
 
 int myintOp(int op, MYINT* pSrc, MYINT* pSrc2,MYINT* pResult);
 
+int printMyInt(MYINT* pSrc, char* pResult, unsigned int resultLength);
+
 #endif

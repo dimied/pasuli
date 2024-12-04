@@ -149,12 +149,14 @@ void testInts()
 
     myintOp(INT_OP_INIT_SRC|INT_OP_INIT_SRC2, &add1, &add2, &result);
 
-    while (1 == 1 && f < 0x10000)
+    unsigned int fLimit = 0x1000, sLimit = 0x1000;
+
+    while (1 == 1 && f < fLimit)
     {
         pUShort1 = (unsigned short *)test1.data.pBytes;
         *pUShort1 = f;
         s = 0;
-        while (s < 0x10000)
+        while (s < sLimit)
         {
             pUShort2 = (unsigned short *)test2.data.pBytes;
             *pUShort2 = s;
@@ -199,8 +201,63 @@ void testInts()
     }
     
     printf("MUL-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
+    printf("Last: %i|%x * %i|%x => %i|%x\n", *pUShort1, *pUShort1, *pUShort2, *pUShort2, *pUInt, *pUInt);
 
+#define NUM_TEST_CHARS 48
     // res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
+    char printChars[NUM_TEST_CHARS];
+
+    printf("---\n");
+    res = printMyInt(&test1, printChars, NUM_TEST_CHARS);
+    printf("%i|SRC:%s\n",res, printChars);
+    
+    res = printMyInt(&test2, printChars, NUM_TEST_CHARS);
+    printf("%i|SRC2:%s\n",res, printChars);
+    res = printMyInt(&result, printChars, NUM_TEST_CHARS);
+    printf("%i|RES:%s\n",res, printChars);
+
+
+    unsigned char vals[] ={
+        0x35,
+        0x34,
+        0x0A,
+        0xfE,
+
+        0x37,
+        0x56,
+        0x01,
+        0x54,
+
+        0x3,
+        0x0,
+        0x30,
+        0x2,
+
+        0x23,
+        0xC,
+        0xD,
+        0xD2,
+        0xA3,
+        0x18
+    };
+    char* expectedStr = "2146440093795495460279912293993145927611445";
+    //unsigned char vals2[sizeof(vals)];
+    size_t sss = sizeof(vals);
+    printf("S: %li\n", sss);
+    
+    for(size_t i=0; i < sss; i++) {
+        unsigned char vvv = vals[sss-i-1];
+        printf("%x%x", vvv>>4, vvv&0xF);
+    }
+    printf("\n");
+    MYINT testVal;
+    testVal.data.pBytes = vals;
+    testVal.used_size = sss;
+    res = printMyInt(&testVal, printChars, NUM_TEST_CHARS);
+    
+    printf("%i|TEST: \n%s\n%s\n",res, printChars, expectedStr);
+    
+    printf("---\n");
 
     printf("Clear ...\n");
     myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
@@ -209,6 +266,8 @@ void testInts()
 
 int main()
 {
+    //Verwirrend
+    //char a = *(pResult++);
     // printf("Interpreter test %i\n", CMD_SETUP_LOAD_PARAMS(1));
 #if 0
     size_t allocSize = nParamsV * nParamsU * 3;
