@@ -235,25 +235,45 @@ int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)
     {
         return 1; // Not enough space, needs to be null-terminated
     }
-    clear2(pResult, resultLength);
 
     if (pSrc->used_size == 0)
     {
+        clear2(pResult, resultLength);
         *pResult = '0';
         return 0;
     }
 
-    unsigned char *p = pSrc->data.pBytes;
-    if (pSrc->used_size == 1 && (*p) < 10)
-    {
-        *pResult = '0' + (*p);
-        return 0;
-    }
-    return printBytes(p, pSrc->used_size, pResult, resultLength);
+    return printBytes(pSrc->data.pBytes, pSrc->used_size, pResult, resultLength);
 }
 
 int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int resultLength)
 {
+    if (resultLength < 2)
+    {
+        return 1; // Not enough space, needs to be null-terminated
+    }
+    //
+    clear2(pResult, resultLength);
+
+    if (size == 1 && (*p) < 100)
+    {
+        if (*p < 10)
+        {
+            *pResult = '0' + (*p);
+        }
+        else
+        {
+            if (resultLength == 2)
+            {
+                return 1;
+            }
+            *pResult = '0' + ((*p) / 10);
+            ++pResult;
+            *pResult = '0' + (*p);
+        }
+        return 0;
+    }
+
     unsigned int i = 0;
 #if 0
     unsigned long long int res = 0;
@@ -285,7 +305,7 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
     do
     {
         unsigned int valCurrent, resCurrent, val = p[i];
-        printf("@%i = %i|%x\n", i, val, val);
+        //printf("@%i = %i|%x\n", i, val, val);
 
         while (currentByteShift < 8)
         {
@@ -316,9 +336,10 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
                         *pLastCurrent = resCurrent;
                         --pLastCurrent;
                     }
+#if 0
                     // b = EXP_VALUE(*pLast) + EXP_VALUE(*(pLast - 1)) * 10 + EXP_VALUE(*(pLast - 2)) * 100 + EXP_VALUE(*(pLast - 3)) * 1000;
                     // printf("BIT-E^ %i|%u (%u)\n", currentByteShift, b, numShifts);
-
+#endif
                     if (pLastCurrent == pResultUC)
                     {
                         resCurrent = *pLastCurrent;
@@ -340,8 +361,10 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
                     // 2^n can't fit, i.e. also the result of addition won't fit
                     break;
                 }
+#if 0
                 // b = EXP_VALUE(*pLast) + EXP_VALUE(*(pLast - 1)) * 10 + EXP_VALUE(*(pLast - 2)) * 100 + EXP_VALUE(*(pLast - 3)) * 1000;
                 // printf("BIT~ %i|%u\n", currentByteShift, b);
+#endif
                 overflow = 0;
                 pLastCurrent = pLast;
                 unsigned char *pResultFrontUC = pResultUC;
@@ -417,7 +440,7 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
         ++pLastCurrent;
         a++;
     }
-    printf("FOUND AFTER: %i | %i  | %p %p\n", a, *pLastCurrent, pLastCurrent, pLast);
+    //printf("FOUND AFTER: %i | %i  | %p %p\n", a, *pLastCurrent, pLastCurrent, pLast);
     if (pLastCurrent != pLast)
     {
         a = 0;
@@ -428,7 +451,7 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
             ++pLastCurrent;
             a++;
         }
-        printf("MOVED %i\n", a);
+        //printf("MOVED %i\n", a);
         a = 0;
         while (pResultUC != pLast)
         {
@@ -436,7 +459,7 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
             ++pResultUC;
             a++;
         }
-        printf("ZERO %i\n", a);
+        //printf("ZERO %i\n", a);
     }
     else
     {
