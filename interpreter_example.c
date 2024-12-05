@@ -7,6 +7,7 @@
 #include "interpreter_progs.h"
 
 #include "myint.h"
+#include "log_stack.h"
 #include "prime_compressor.h"
 
 float constants[] = {PI};
@@ -151,7 +152,7 @@ void testInts()
 
     unsigned int fLimit = 0x1000, sLimit = 0x1000;
 
-    while (1 == 1 && f < fLimit)
+    while (f < fLimit)
     {
         pUShort1 = (unsigned short *)test1.data.pBytes;
         *pUShort1 = f;
@@ -257,6 +258,68 @@ void testInts()
     
     printf("%i|TEST: \n%s\n%s\n",res, printChars, expectedStr);
     
+    printf("---\n");
+
+    okTests = 0;
+    failedTests = 0;
+    f = 0;
+    
+    while (f < fLimit)
+    {
+        pUShort1 = (unsigned short *)test1.data.pBytes;
+        *pUShort1 = f;
+        s = 0;
+        while (s < sLimit)
+        {
+            clearStack();
+            pUShort2 = (unsigned short *)test2.data.pBytes;
+            *pUShort2 = s;
+
+            int expectedInt = f - s;
+            hasFailed = 0;
+            res = myintOp(INT_OP_SUB, &test1, &test2, &result);
+            unsigned short *pUShort3 = (unsigned short *)result.data.pBytes;
+            int value = *pUShort3;
+            if(result.sign) {
+                value = -value;
+            }
+            if (res == 0 && (expectedInt == value))
+            {
+                ++okTests;
+            }
+            else
+            {
+                ++failedTests;
+                hasFailed = 1;
+            }
+            if (hasFailed > 0 && failedTests < 20)
+            {
+                printf("%i|Failed: %i - %i = %i|%x <> Ex=%i|%x\n",res,
+                       *pUShort1, *pUShort2, value, value, expectedInt, expectedInt);
+
+                printStack();
+            }
+            if (failedTests > 30)
+            {
+                break;
+            }
+
+            s += adds[idxS % 8];
+            testIdx++;
+            if (testIdx % 1000000 == 0)
+            {
+                printf("Test %i\n", testIdx);
+            }
+            idxS++;
+        }
+        f += adds[idxF % 8];
+        idxF++;
+        if (failedTests > 30)
+        {
+            break;
+        }
+    }
+    printf("SUB-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
     printf("---\n");
 
     printf("Clear ...\n");
