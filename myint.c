@@ -88,7 +88,6 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     unsigned int sizeVal, resultValue = 0, i, a, b;
     unsigned char *pSrc1Chars = pSrc->data.pBytes, *pSrc2Chars = pSrc2->data.pBytes;
     unsigned char *pFrom, *pFromStart, *pFromEnd, *pSub, *pFromCurrent;
-    int cIdx = 0;
 
     switch (op)
     {
@@ -225,10 +224,10 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 
         while (pFrom != pFromStart)
         {
+            int diff = (int)(*pFrom) - (int)(*pSub);
+#if INT_DEBUG_SHOW_SUB
             int x = pResult->data.pBytes[0] + (pResult->data.pBytes[1] << 8);
             int y = pSrc2Chars[0] + (pSrc2Chars[1] << 8);
-
-            int diff = (int)(*pFrom) - (int)(*pSub);
 
             logStack = getLine();
             if (logStack != NULL)
@@ -236,7 +235,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                 snprintf(logStack, STACK_LINE_SIZE - 1, "... %i - %i = %i (%i - %i = %i)@%i\n", x, y, x - y,
                          (int)(*pFrom), (int)(*pSub), diff, cIdx);
             }
-
+#endif
             if (diff < 0)
             {
                 pFromCurrent = pFrom;
@@ -247,17 +246,21 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                     diff = (int)(*pFromCurrent) - diff;
                     if (diff < 0)
                     {
+#if INT_DEBUG_SHOW_SUB
                         logStack = getLine();
                         if (logStack != NULL)
                         {
                             snprintf(logStack, STACK_LINE_SIZE - 1, "NEG? diff = %i|%x\n", diff, diff);
                         }
+#endif
                         diff += 0x100;
+#if INT_DEBUG_SHOW_SUB
                         logStack = getLine();
                         if (logStack != NULL)
                         {
                             snprintf(logStack, STACK_LINE_SIZE - 1, "NEG! diff = %i|%x\n", diff, diff);
                         }
+#endif
                         *pFromCurrent = (unsigned char)(diff);
                         diff = 1;
                     }
@@ -280,11 +283,13 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                 }
                 if (diff > 0)
                 {
+                    #if INT_DEBUG_SHOW_SUB
                     logStack = getLine();
                     if (logStack != NULL)
                     {
                         snprintf(logStack, STACK_LINE_SIZE - 1, "ERROR: diff = %i\n", diff);
                     }
+                    #endif
                     return 1;
                 }
                 // TODO sub from next higher
@@ -292,18 +297,19 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             else
             {
                 *pFrom = (unsigned char)diff;
+                #if INT_DEBUG_SHOW_SUB
                 logStack = getLine();
                 if (logStack != NULL)
                 {
                     snprintf(logStack, STACK_LINE_SIZE - 1, "POS+ diff = %i\n", diff);
                 }
+                #endif
             }
             ++cIdx;
 
             --pSub;
             --pFrom;
         }
-        // printf("C=%i\n", cIdx);
 
         return 0;
         // break;

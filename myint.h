@@ -38,6 +38,8 @@
 
 #define  INT_PTR_SIZE sizeof(unsigned char *)
 
+#define INT_DEBUG_SHOW_SUB 0
+
 typedef struct _MYINT
 {
 	union {
