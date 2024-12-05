@@ -194,16 +194,20 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         {
             clear2(pResult->data.pBytes, pResult->size);
             pResult->used_size = 0;
+#if INT_DEBUG_SHOW_SUB
             logStack = getLine();
             if (logStack != NULL)
             {
                 snprintf(logStack, STACK_LINE_SIZE - 1, "EQUAL\n");
             }
+#endif
             return 0;
         }
         if (a > pResult->size)
         {
+#if INT_DEBUG_SHOW_SUB
             printf("ALLOC RESULT!\n");
+#endif
             res = myDataOp(REALLOC_REALLOC, (unsigned char **)&pResult->data.pBytes,
                            a, pResult->size);
             if (res != 0)
@@ -266,16 +270,14 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                     }
                     else
                     {
+#if INT_DEBUG_SHOW_SUB
                         logStack = getLine();
                         if (logStack != NULL)
                         {
                             snprintf(logStack, STACK_LINE_SIZE - 1, "POS diff = %i\n", diff);
                         }
-                        if (*pFromCurrent != (unsigned char)diff)
-                        {
-                            *pFromCurrent = (unsigned char)diff;
-                        }
-
+#endif
+                        *pFromCurrent = (unsigned char)diff;
                         diff = 0;
                         break;
                     }
@@ -283,13 +285,13 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                 }
                 if (diff > 0)
                 {
-                    #if INT_DEBUG_SHOW_SUB
+#if INT_DEBUG_SHOW_SUB
                     logStack = getLine();
                     if (logStack != NULL)
                     {
                         snprintf(logStack, STACK_LINE_SIZE - 1, "ERROR: diff = %i\n", diff);
                     }
-                    #endif
+#endif
                     return 1;
                 }
                 // TODO sub from next higher
@@ -297,15 +299,14 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             else
             {
                 *pFrom = (unsigned char)diff;
-                #if INT_DEBUG_SHOW_SUB
+#if INT_DEBUG_SHOW_SUB
                 logStack = getLine();
                 if (logStack != NULL)
                 {
                     snprintf(logStack, STACK_LINE_SIZE - 1, "POS+ diff = %i\n", diff);
                 }
-                #endif
+#endif
             }
-            ++cIdx;
 
             --pSub;
             --pFrom;
