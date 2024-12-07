@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "prime_compressor.h"
+#include "myint.h"
 
 /*
 ///Functions
@@ -2039,12 +2040,11 @@ int complement_lint(LINT*a)
 
 int compressType = 1;
 
-#define NUM_PRIMES 256 * 2
+#define NUM_PRIMES 256
 #define BYTE_LIMIT 256
 
 #define COMPRESS_INIT_STEP 0
 #define COMPRESS_CHECK_DIVISIBALITY_STEP 1
-
 
 void compress(void *pData, int size, void *pResultData, int resultSize)
 {
@@ -2053,7 +2053,7 @@ void compress(void *pData, int size, void *pResultData, int resultSize)
     unsigned char *pCurrentData = (unsigned char *)malloc(size * sizeof(char));
     memcpy(pCurrentData, pData, size);
     primes[0] = 2;
-    int i = 0, primeIdx = 1, mode = 0;
+    int i = 0, primeIdx = 1; //, mode = 0;
     unsigned int p = 3;
     // unsigned char *pUC = (unsigned char *)pResultData;
     // unsigned char *pSrcUC = (unsigned char *)pData;
@@ -2071,26 +2071,51 @@ void compress(void *pData, int size, void *pResultData, int resultSize)
         }
         if (i == primeIdx)
         {
-            primes[primeIdx] = p;
-            primeIdx++;
+            primes[primeIdx++] = p;
         }
         p += 2;
     }
+#define PRINT_CHARS_SIZE 30
+
+    char printChars[PRINT_CHARS_SIZE];
+
     if (compressType == 0)
     {
-
         i = 0;
         int numTries = 256 * 16;
+        MYINT testedNumber;
+        MYINT divisor;
+        MYINT adder;
+        MYINT result;
+        nullifyMyInt(&testedNumber);
+        nullifyMyInt(&divisor);
+        nullifyMyInt(&adder);
+        nullifyMyInt(&result);
+
+        int res = myDataOp(REALLOC_ALLOC, &testedNumber.data.pBytes, size, 0);
+        if (res != 0)
+        {
+            printf("ALLOC FAILED!\n");
+            return;
+        }
+        testedNumber.size = size;
+        memcpy(testedNumber.data.pBytes, pCurrentData, size);
+        testedNumber.used_size = size;
+
+        res = myintOp(INT_OP_INIT_ALL, &divisor, &adder, &result);
+        if (res != 0)
+        {
+            printf("INIT FAILED!\n");
+            return;
+        }
 
         while (numTries > 0)
         {
+#if 0
             switch (mode)
             {
             case COMPRESS_INIT_STEP: // INIT
-                for (int i = 0; i < NUM_PRIMES; i++)
-                {
-                    primesCounters[i] = 0;
-                }
+
                 numTries++;
                 mode = COMPRESS_CHECK_DIVISIBALITY_STEP;
                 break;
@@ -2098,7 +2123,57 @@ void compress(void *pData, int size, void *pResultData, int resultSize)
 
                 break;
             }
+#endif
+            for (int i = 0; i < NUM_PRIMES; i++)
+            {
+                primesCounters[i] = 0;
+            }
+            memcpy(testedNumber.data.pBytes, pCurrentData, size);
+
+            int restValue = 0;
+            unsigned short *pUShort = (unsigned short *)divisor.data.pBytes;
+            divisor.used_size = 1;
+
+            for (int primeIdx = 0; primeIdx < NUM_PRIMES;)
+            {
+                int prime = primes[primeIdx];
+                if (prime < 256)
+                {
+                    divisor.data.pBytes[0] = (unsigned char)prime;
+                }
+                else
+                {
+                    *pUShort = (unsigned short)prime;
+                    divisor.used_size = 2;
+                }
+                res = myintOp(INT_OP_DIV, &testedNumber, &divisor, &result);
+                if (res != 0)
+                {
+                    printf("DIV FAILED!\n");
+                    break;
+                }
+                restValue - 1;
+                MYINT *pRest = result.rest;
+                if (pRest != NULL)
+                {
+                    restValue = 0;
+                    for (unsigned int j = 0; j < pRest->used_size; j++)
+                    {
+                        restValue <<= 8;
+                        restValue |= pRest->data.pBytes[j];
+                    }
+                }
+                printMyInt(&result, printChars, PRINT_CHARS_SIZE);
+                printf("%i|%s => %i\n", prime, printChars, restValue);
+                ++primeIdx;
+            }
             numTries--;
+        }
+        res = myintOp(INT_OP_CLEAR_ALL, &divisor, &adder, &result);
+        if (res != 0)
+        {
+            printf("CLEAR FAILED!\n");
+            return;
         }
     }
     else

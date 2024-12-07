@@ -53,6 +53,11 @@ void reverseUCharArray(unsigned char *pArray, unsigned int size)
     }
 }
 
+void nullifyMyInt(MYINT* pMyInt) {
+    if(pMyInt != NULL) {
+        clear2(pMyInt, sizeof(MYINT));
+    }
+}
 int checkOrRealloc(MYINT *pResult, unsigned int sizeVal)
 {
     if (sizeVal > pResult->size)
@@ -591,7 +596,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     return INT_COMMAND_ERROR;
 }
 
-int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int resultLength);
+
 
 int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)
 {
@@ -796,7 +801,7 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
     if (currentByteShift > 8)
     {
         clear2(pResult, resultLength);
-        return 1;
+        return 2;
     }
     // move characters to the front
     pLast = pResultUC + (resultLength - 1);

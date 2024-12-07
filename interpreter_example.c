@@ -347,32 +347,37 @@ void testInts()
             {
                 if (expected == value && result.rest != NULL)
                 {
-                    if(result.rest->used_size == 0) {
-                        if(expectedRest==0) {
+                    if (result.rest->used_size == 0)
+                    {
+                        if (expectedRest == 0)
+                        {
                             okTests++;
-                        } else {
+                        }
+                        else
+                        {
                             hasFailed++;
                         }
-                    } else {
-                    unsigned short *pUShort4 = (unsigned short *)result.rest->data.pBytes;
-                    if (pUShort4 != NULL)
+                    }
+                    else
                     {
-                        rest = *pUShort4;
-                        if (rest == expectedRest)
+                        unsigned short *pUShort4 = (unsigned short *)result.rest->data.pBytes;
+                        if (pUShort4 != NULL)
                         {
-                            ++okTests;
+                            rest = *pUShort4;
+                            if (rest == expectedRest)
+                            {
+                                ++okTests;
+                            }
+                            else
+                            {
+                                hasFailed = 1;
+                            }
                         }
                         else
                         {
                             hasFailed = 1;
                         }
                     }
-                    else
-                    {
-                        hasFailed = 1;
-                    }    
-                    }
-                    
                 }
                 else
                 {
@@ -427,7 +432,7 @@ void testInts()
     pUShort2 = (unsigned short *)test2.data.pBytes;
     *pUShort2 = 1018;
     test2.used_size = 2;
-    const char *expectedDivResult ="2108487321999504381414452155199553956396";
+    const char *expectedDivResult = "2108487321999504381414452155199553956396";
     const char *expectedDivRest = "317";
     res = myintOp(INT_OP_DIV, &test1, &test2, &result);
     test1.data.pBytes = pChars;
@@ -435,21 +440,21 @@ void testInts()
 
     clear2(printChars, NUM_TEST_CHARS);
     int resI = printMyInt(&result, printChars, NUM_TEST_CHARS);
-    printf("%i!%s\n",resI, printChars);
+    printf("%i!%s\n", resI, printChars);
     printf("%i?%s\n", resI, expectedDivResult);
 
     clear2(printChars, NUM_TEST_CHARS);
     resI = printMyInt(result.rest, printChars, NUM_TEST_CHARS);
     printf("%i!%s\n", resI, printChars);
     printf("%i?%s\n", resI, expectedDivRest);
-    
 
-    
     printf("Clear ...\n");
     myintCleanup();
     myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
     printf("Clear done\n");
 }
+
+void testCompress();
 
 int main()
 {
@@ -604,11 +609,35 @@ int main()
     printf("V: %i %i %i %i\n", val[0], val[1], val[2], val[3]);
     */
 
-    testInts();
+    // testInts();
+    testCompress();
 
     printf("PTR-SIZE: %li\n", sizeof(unsigned char *));
 
     // compress(0, circleProgs, CIRCLE_PROG_BYTES, pCompressorRes, CIRCLE_PROG_BYTES);
 
     return 0;
+}
+
+void testCompress()
+{
+    printf("COMPRESS?\n");
+    unsigned char testData[] = {
+        0xFE,
+        0xA,
+        0xBA,
+        0x01,
+        0x10,
+        0x23,
+        0x54,
+        0x74,
+        0x43,
+        0x56};
+    char pResult2[80] = {0};
+    int res = printBytes(testData, sizeof(testData), pResult2, 20);
+    printf("%i|%s\n", res, pResult2);
+    unsigned char pResult[20] = {0};
+    compressType = 0;
+    compress(testData, sizeof(testData), pResult, 20);
+    printf("COMPRESS!\n");
 }

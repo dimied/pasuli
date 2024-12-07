@@ -61,10 +61,14 @@ typedef struct _MYINT
 
 uint64_t fromBytes(unsigned char*pBytes, unsigned int size);
 
+void nullifyMyInt(MYINT* pMyInt);
+
 int myintOp(int op, MYINT* pSrc, MYINT* pSrc2,MYINT* pResult);
 
 void myintCleanup();
 
 int printMyInt(MYINT* pSrc, char* pResult, unsigned int resultLength);
+
+int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int resultLength);
 
 #endif
