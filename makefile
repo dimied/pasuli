@@ -37,9 +37,9 @@ opengl:
 	gcc -Wall -pedantic -Os -o ex_ogl  examples/opengl_sample.c  ${EX_FILES} ${FILES_UTIL} ${FILES2} ${FILES3} -lm -lGL -lGLU -lglut
 	strip --strip-all ex_ogl
 
-interpreter: interpreter_example.c interpreter.c interpreter_text.c interpreter_progs.c prime_compressor.c memory.c myint.c log_stack.c myint_test_data.c
+interpreter: interpreter_example.c interpreter.c interpreter_text.c interpreter_progs.c prime_compressor.c memory.c myint.c log_stack.c myint_test_data.c myint_test.c
 	rm -f ./intertest
-	g++ -Wall -g -Os -B -lm -lc interpreter_example.c interpreter.c interpreter_text.c interpreter_progs.c prime_compressor.c memory.c myint.c log_stack.c myint_test_data.c -o intertest
+	g++ -Wall -g -Os -B -lm -lc interpreter_example.c interpreter.c interpreter_text.c interpreter_progs.c prime_compressor.c memory.c myint.c log_stack.c myint_test_data.c myint_test.c -o intertest
 
 showsizes:
 	nm --size-sort intertest | tail -15

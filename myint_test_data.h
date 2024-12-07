@@ -1,6 +1,8 @@
 #ifndef __MYINT_TEST_DATA__
 #define __MYINT_TEST_DATA__
 
+#define NUM_MYINT_TESTS 2000
+
 typedef struct {
     const char* ptrA;
     const char* ptrB;
@@ -18,5 +20,10 @@ typedef struct {
     unsigned char rBytes[20];
     int numBytesR;
 } IntTest;
+
+extern IntTest addTests[NUM_MYINT_TESTS];
+extern IntTest subTests[NUM_MYINT_TESTS];
+extern IntTest mulTests[NUM_MYINT_TESTS];
+extern IntTest divTests[NUM_MYINT_TESTS];
 
 #endif
