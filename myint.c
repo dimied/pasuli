@@ -39,13 +39,16 @@ void myintCleanup()
     tempMemorySize = 0;
 }
 
-void reverseUCharArray(unsigned char* pArray, unsigned int size) {
-    if(pArray != NULL && size>0) {
-        for(unsigned int i=0; i < size; i++) {
+void reverseUCharArray(unsigned char *pArray, unsigned int size)
+{
+    if (pArray != NULL && size > 0)
+    {
+        for (unsigned int i = 0; i < size; i++)
+        {
             unsigned char t = pArray[i];
-            pArray[i] = pArray[size-1];
-            pArray[size-1] = t;
             --size;
+            pArray[i] = pArray[size];
+            pArray[size] = t;
         }
     }
 }
@@ -538,10 +541,10 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                 return INT_ALLOCATION_ERROR;
             }
 
-            //void *CopyRes = 
+            // void *CopyRes =
             memcpy(pTemp, pSrc1Chars, pSrc->used_size);
             b = pSrc2->used_size;
-            pFromEnd = pTemp + (pSrc->used_size - b - 1);
+            pFromEnd = pTemp + (pSrc->used_size - b);
             divFrom64 = fromBytes(pFromEnd, b);
             i = 0;
             while (pFromEnd != pTemp)
@@ -566,13 +569,15 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             result64 = divFrom64 / div64;
             rest64 = divFrom64 % div64;
             pResult->data.pBytes[i] = (unsigned char)result64;
+            ++i;
             reverseUCharArray(pResult->data.pBytes, i);
             pResult->used_size = i;
-            i=0;
-            while(rest64>0) {
-                pRest->data.pBytes[i] = (unsigned char)rest64&0xFF;
+            i = 0;
+            while (rest64 > 0)
+            {
+                pRest->data.pBytes[i] = (unsigned char)rest64 & 0xFF;
                 ++i;
-                rest64>>=8;
+                rest64 >>= 8;
             }
             pRest->used_size = i;
             return 0;
@@ -632,7 +637,7 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
             }
             *pResult = '0' + ((*p) / 10);
             ++pResult;
-            *pResult = '0' + ((*p)%10);
+            *pResult = '0' + ((*p) % 10);
         }
         return 0;
     }
