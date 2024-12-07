@@ -1,9 +1,54 @@
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 #include "memory.h"
 #include "myint.h"
 #include "log_stack.h"
+
+unsigned char *tempMemory = NULL;
+unsigned int tempMemorySize = 0;
+
+unsigned char *getTempMemory(unsigned int size)
+{
+    if (size <= tempMemorySize)
+    {
+        clear2(tempMemory, size);
+        return tempMemory;
+    }
+    unsigned char *pMem = (unsigned char *)malloc(size);
+    if (pMem == NULL)
+    {
+        return NULL;
+    }
+    free(tempMemory);
+    tempMemory = pMem;
+    tempMemorySize = size;
+    clear2(pMem, size);
+    return pMem;
+}
+
+void myintCleanup()
+{
+    if (tempMemory != NULL)
+    {
+        free(tempMemory);
+        tempMemory = NULL;
+    }
+    tempMemorySize = 0;
+}
+
+void reverseUCharArray(unsigned char* pArray, unsigned int size) {
+    if(pArray != NULL && size>0) {
+        for(unsigned int i=0; i < size; i++) {
+            unsigned char t = pArray[i];
+            pArray[i] = pArray[size-1];
+            pArray[size-1] = t;
+            --size;
+        }
+    }
+}
 
 int checkOrRealloc(MYINT *pResult, unsigned int sizeVal)
 {
@@ -16,6 +61,27 @@ int checkOrRealloc(MYINT *pResult, unsigned int sizeVal)
         pResult->size = sizeVal;
     }
     return 0;
+}
+
+void adjust(MYINT *pData)
+{
+    if (pData != NULL)
+    {
+        unsigned char *pChars = pData->data.pBytes;
+        if (pChars != NULL)
+        {
+            --pChars;
+            unsigned int s = pData->size;
+            unsigned char *pEnd = pChars + s;
+
+            while (s > 0 && pChars != pEnd && *pEnd == 0)
+            {
+                --s;
+                --pEnd;
+            }
+            pData->used_size = s;
+        }
+    }
 }
 
 int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
@@ -88,6 +154,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     unsigned int sizeVal, resultValue = 0, i, a, b, t;
     unsigned char *pSrc1Chars = pSrc->data.pBytes, *pSrc2Chars = pSrc2->data.pBytes;
     unsigned char *pFrom, *pFromEnd, *pSub;
+    unsigned int resIdx = 0, resIdx2 = 0;
     int diff;
 
     switch (op)
@@ -183,7 +250,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 
         return 0;
     case INT_OP_SUB:
-        // printf("ADD!\n");
+        // printf("SUB!\n");
         a = pSrc->used_size;
         b = pSrc2->used_size;
         res = myintOp(INT_OP_CMP_ABS, pSrc, pSrc2, NULL);
@@ -315,7 +382,6 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         clear2(pResult->data.pBytes, pResult->size);
 
         resultValue = 0;
-        unsigned int resIdx = 0, resIdx2 = 0;
 
         for (i = 0; i < a; i++)
         {
@@ -345,7 +411,177 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         pResult->used_size = resIdx2;
 
         return 0;
-        // printf("RES: %i\n", resultValue);
+    // printf("RES: %i\n", resultValue);
+    case INT_OP_DIV:
+        adjust(pSrc);
+        adjust(pSrc2);
+        a = pSrc->used_size;
+        b = pSrc2->used_size;
+        res = myintOp(INT_OP_CMP_ABS, pSrc, pSrc2, NULL);
+        pResult->sign = 0;
+#if INT_DEBUG_SHOW_DIV
+        char *logStack;
+#endif
+        MYINT *pRest = pResult->rest;
+        if (pRest == NULL)
+        {
+            pRest = (MYINT *)malloc(sizeof(MYINT));
+            if (pRest == NULL)
+            {
+                return INT_ALLOCATION_ERROR;
+            }
+            clear2(pRest, sizeof(MYINT));
+            pResult->rest = pRest;
+        }
+        if (pRest->data.pBytes != NULL)
+        {
+            clear2(pRest->data.pBytes, pRest->size);
+        }
+#if INT_DEBUG_SHOW_DIV
+        logStack = getLine();
+        if (logStack != NULL)
+        {
+            snprintf(logStack, STACK_LINE_SIZE - 1, "SRC: %i|SRC2: %i\n", a, b);
+        }
+#endif
+        // printf("SRC: %i|SRC2: %i\n", a, b);
+
+        // Division by zero
+#if 1
+        if (0 == b || ((b == 1) && pSrc2Chars[0] == 0))
+        {
+            return 1;
+        }
+#endif
+        if (res == INT_RESULT_CMP_LESS)
+        {
+            // printf("REALLOC?\n");
+            clear2(pResult->data.pBytes, pResult->size);
+            pResult->used_size = 0;
+
+            res = checkOrRealloc(pResult->rest, a);
+            if (res != 0)
+            {
+#if INT_DEBUG_SHOW_DIV
+                logStack = getLine();
+                if (logStack != NULL)
+                {
+                    snprintf(logStack, STACK_LINE_SIZE - 1, "LESS(REST):%i\n", res);
+                }
+#endif
+                return INT_ALLOCATION_ERROR;
+            }
+            // printf("REALLOC!%i %p %i\n", res, pRest->data.pBytes, a);
+            if (a > 0)
+            {
+                memcpy(pRest->data.pBytes, pSrc1Chars, a);
+            }
+            pRest->used_size = a;
+            return 0;
+        }
+        if (res == INT_RESULT_CMP_EQUAL)
+        {
+            clear2(pResult->data.pBytes, pResult->size);
+            pResult->data.pBytes[0] = 1;
+            pResult->used_size = 1;
+            if (pRest->size > 0)
+            {
+                clear2(pRest->data.pBytes, pRest->size);
+            }
+            pRest->used_size = 0;
+
+            return 0;
+        }
+#if 1
+        uint64_t div64 = 0, divFrom64 = 0, rest64, result64;
+        // Divisor can fit into 8 bytes?
+        if (8 >= pSrc2->used_size)
+        {
+            // printf("64BIT!\n");
+            div64 = fromBytes(pSrc2Chars, pSrc2->used_size);
+
+            // printf("STORED: %lu\n", div64);
+            // Dividend can fit into 8 bytes?
+            if (8 >= pSrc->used_size)
+            {
+                divFrom64 = fromBytes(pSrc1Chars, pSrc->used_size);
+
+                rest64 = divFrom64 % div64;
+                result64 = divFrom64 / div64;
+
+                // printf("STORED:1: %lu/%lu = %lu (->%lu)\n", divFrom64, div64, result64, rest64);
+                if (0 != checkOrRealloc(pResult, 8))
+                {
+                    return INT_ALLOCATION_ERROR;
+                }
+                if (0 != checkOrRealloc(pRest, 8))
+                {
+                    return INT_ALLOCATION_ERROR;
+                }
+                *((uint64_t *)pRest->data.pBytes) = rest64;
+                *((uint64_t *)pResult->data.pBytes) = result64;
+                adjust(pRest);
+                adjust(pResult);
+                return 0;
+            }
+            if (0 != checkOrRealloc(pRest, pSrc2->used_size))
+            {
+                return INT_ALLOCATION_ERROR;
+            }
+            if (0 != checkOrRealloc(pResult, pSrc->used_size - pSrc2->used_size + 1))
+            {
+                return INT_ALLOCATION_ERROR;
+            }
+            unsigned char *pTemp = getTempMemory(pSrc->used_size);
+            if (pTemp == NULL)
+            {
+                return INT_ALLOCATION_ERROR;
+            }
+
+            //void *CopyRes = 
+            memcpy(pTemp, pSrc1Chars, pSrc->used_size);
+            b = pSrc2->used_size;
+            pFromEnd = pTemp + (pSrc->used_size - b - 1);
+            divFrom64 = fromBytes(pFromEnd, b);
+            i = 0;
+            while (pFromEnd != pTemp)
+            {
+                if (i > 0)
+                {
+                    divFrom64 <<= 8;
+                    divFrom64 |= (*pFromEnd);
+                }
+                result64 = divFrom64 / div64;
+                rest64 = divFrom64 % div64;
+                pResult->data.pBytes[i] = (unsigned char)result64;
+                divFrom64 = rest64;
+                ++i;
+                --pFromEnd;
+            }
+            if (i > 0)
+            {
+                divFrom64 <<= 8;
+                divFrom64 |= (*pFromEnd);
+            }
+            result64 = divFrom64 / div64;
+            rest64 = divFrom64 % div64;
+            pResult->data.pBytes[i] = (unsigned char)result64;
+            reverseUCharArray(pResult->data.pBytes, i);
+            pResult->used_size = i;
+            i=0;
+            while(rest64>0) {
+                pRest->data.pBytes[i] = (unsigned char)rest64&0xFF;
+                ++i;
+                rest64>>=8;
+            }
+            pRest->used_size = i;
+            return 0;
+            // printf("N: %x\n", divFrom64);
+
+            // free(pTemp);
+        }
+
+#endif
     }
     return INT_COMMAND_ERROR;
 }
@@ -396,7 +632,7 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
             }
             *pResult = '0' + ((*p) / 10);
             ++pResult;
-            *pResult = '0' + (*p);
+            *pResult = '0' + ((*p)%10);
         }
         return 0;
     }
@@ -598,4 +834,22 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
     }
 
     return 0;
+}
+
+uint64_t fromBytes(unsigned char *pBytes, unsigned int size)
+{
+
+    if (size == 8)
+    {
+        return *((uint64_t *)pBytes);
+    }
+    uint64_t result = 0;
+    unsigned int i = 0;
+    while (i < size)
+    {
+        result |= (*pBytes) << (i * 8);
+        ++pBytes;
+        ++i;
+    }
+    return result;
 }

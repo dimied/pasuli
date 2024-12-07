@@ -1,6 +1,8 @@
 #ifndef __MY_INT__
 #define __MY_INT__
 
+#include <stdint.h>
+
 
 #define INITIAL_INIT_SIZE 2
 
@@ -39,6 +41,7 @@
 #define  INT_PTR_SIZE sizeof(unsigned char *)
 
 #define INT_DEBUG_SHOW_SUB 0
+#define INT_DEBUG_SHOW_DIV 1
 
 typedef struct _MYINT
 {
@@ -56,7 +59,11 @@ typedef struct _MYINT
 	struct _MYINT *rest; //rest for 
 } MYINT;
 
+uint64_t fromBytes(unsigned char*pBytes, unsigned int size);
+
 int myintOp(int op, MYINT* pSrc, MYINT* pSrc2,MYINT* pResult);
+
+void myintCleanup();
 
 int printMyInt(MYINT* pSrc, char* pResult, unsigned int resultLength);
 
