@@ -638,6 +638,6 @@ void testCompress()
     printf("%i|%s\n", res, pResult2);
     unsigned char pResult[20] = {0};
     compressType = 0;
-    compress(testData, sizeof(testData), pResult, 20);
+    //compress(testData, sizeof(testData), pResult, 20);
     printf("COMPRESS!\n");
 }
