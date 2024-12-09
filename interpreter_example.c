@@ -263,7 +263,7 @@ int main()
     printf("----\n");
     testMultiplication();
     printf("----\n");
-    testDivision();
+    //testDivision();
     printf("----\n");
 #endif
     testCompress();

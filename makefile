@@ -41,9 +41,15 @@ interpreter: interpreter_example.c interpreter.c interpreter_text.c interpreter_
 	rm -f ./intertest
 	g++ -Wall -g -Os -B -lm -lc interpreter_example.c interpreter.c interpreter_text.c interpreter_progs.c prime_compressor.c memory.c myint.c log_stack.c myint_test_data.c myint_test.c -o intertest
 
-showsizes:
+showsizes15:
 	nm --size-sort intertest | tail -15
-	
+
+showsizes30:
+	nm --size-sort intertest | tail -30
+
+showsizes50:
+	nm --size-sort intertest | tail -50
+
 clean:
 	rm -f *.o 
 	rm -f */*.o

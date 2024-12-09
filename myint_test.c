@@ -29,7 +29,7 @@ void testBasics()
 {
     printf("Test Basics?\n");
 
-int okTests=0, failedTests = 0;
+    int okTests = 0, failedTests = 0;
     unsigned char testChars[8] = {0};
     unsigned char init = 0;
     while (init < 10)
@@ -49,7 +49,9 @@ int okTests=0, failedTests = 0;
             {
                 printf("FAIL:(E!=C)(%i) %lu|%lx != %lu|%lx\n", byteCount, testValue, testValue, testResult, testResult);
                 ++failedTests;
-            } else {
+            }
+            else
+            {
                 ++okTests;
             }
             ++byteCount;

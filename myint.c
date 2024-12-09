@@ -952,18 +952,33 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
 
 uint64_t fromBytes(void *pData, unsigned int size)
 {
+    if (size > 8)
+    {
+        return 0;
+    }
     if (size == 8)
     {
         return *((uint64_t *)pData);
     }
     uint64_t result = 0;
     unsigned int i = 0;
-    unsigned char* pBytes = (unsigned char*)pData;
-    while (i < size)
+    unsigned char *pBytes = (unsigned char *)pData;
+    if (size >= 4)
     {
-        result |= ((uint64_t)(*pBytes)) << (i * 8);
+        result = *((uint32_t *)pBytes);
+        i = 32;
+        pBytes += 4;
+    }
+    if(size|0x2) {
+        result |= ((uint64_t)(*pBytes)) << i;
         ++pBytes;
-        ++i;
+        i+=8;
+        result |= ((uint64_t)(*pBytes)) << i;
+        ++pBytes;
+        i+=8;
+    }
+    if(size|0x1) {
+        result |= ((uint64_t)(*pBytes)) << i;
     }
     return result;
 }
