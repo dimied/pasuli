@@ -259,8 +259,10 @@ int main()
     printf("----\n");
     testSubtraction();
     printf("----\n");
-    //testMultiplication();
+    testMultiplication();
+    printf("----\n");
     //testDivision();
+    printf("----\n");
 #endif
     //testInts();
     testCompress();

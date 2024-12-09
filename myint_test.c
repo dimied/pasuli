@@ -12,172 +12,6 @@ char printChars[NUM_TEST_CHARS];
 
 unsigned char adds[] = {1, 2, 3, 5, 7, 11, 13, 17};
 
-void testInts()
-{
-    printf("Start tests\n");
-    MYINT test1;
-    MYINT test2;
-    MYINT result;
-
-    int res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
-
-    printf("Allocated! %i\n", res);
-
-    unsigned int f = 1;
-    unsigned int *pUInt = (unsigned int *)test1.data.pBytes;
-    test1.used_size = 1;
-    *pUInt = f;
-
-    unsigned int s = 0x1210;
-    pUInt = (unsigned int *)test2.data.pBytes;
-    test2.used_size = 2;
-    *pUInt = s;
-
-    res = myintOp(INT_OP_ADD, &test1, &test2, &result);
-    pUInt = (unsigned int *)result.data.pBytes;
-    // unsigned short *pUShort = (unsigned short *)result.pBytes;
-    printf("%i|ADD %i|%x + %i|%x = %i|%x\n", res, f, f, s, s, *pUInt, *pUInt);
-
-    unsigned short *pUShort1 = 0, *pUShort2 = 0;
-    pUShort1 = (unsigned short *)test1.data.pBytes;
-    pUShort2 = (unsigned short *)test2.data.pBytes;
-    f = 256;
-    s = 1;
-    *pUShort1 = f;
-    test1.used_size = 2;
-    *pUShort2 = s;
-
-    res = myintOp(INT_OP_MUL, &test1, &test2, &result);
-    pUInt = (unsigned int *)result.data.pBytes;
-    printf("%i|MUL %i|%x + %i|%x = %i|%x\n", res, f, f, s, s, *pUInt, *pUInt);
-
-    int okTests = 0, failedTests = 0;
-
-    printf("MUL-TEST!");
-
-    unsigned char adds[] = {1, 2, 3, 5, 7, 11, 13, 17};
-    int idxF = 0, idxS = 0, hasFailed = 0;
-    unsigned int expectedUInt = 0, testIdx = 0;
-    // unsigned long long int expectedULong = 0;
-    f = 0;
-
-    MYINT add1;
-    MYINT add2;
-
-    myintOp(INT_OP_INIT_SRC | INT_OP_INIT_SRC2, &add1, &add2, &result);
-
-    unsigned int fLimit = 0x1000, sLimit = 0x1000;
-
-    while (f < fLimit)
-    {
-        pUShort1 = (unsigned short *)test1.data.pBytes;
-        *pUShort1 = f;
-        s = 0;
-        while (s < sLimit)
-        {
-            pUShort2 = (unsigned short *)test2.data.pBytes;
-            *pUShort2 = s;
-
-            expectedUInt = f * s;
-            hasFailed = 0;
-            res = myintOp(INT_OP_MUL, &test1, &test2, &result);
-            pUInt = (unsigned int *)result.data.pBytes;
-            if (res == 0 && (expectedUInt == *pUInt))
-            {
-                ++okTests;
-            }
-            else
-            {
-                ++failedTests;
-                hasFailed = 1;
-            }
-            if (hasFailed > 0 && failedTests < 20)
-            {
-                printf("Failed: %i * %i = %i|%x <> Ex=%i|%x\n",
-                       *pUShort1, *pUShort2, *pUInt, *pUInt, expectedUInt, expectedUInt);
-            }
-            if (failedTests > 30)
-            {
-                break;
-            }
-
-            s += adds[idxS % 8];
-            testIdx++;
-            if (testIdx % 1000000 == 0)
-            {
-                printf("Test %i\n", testIdx);
-            }
-            idxS++;
-        }
-        f += adds[idxF % 8];
-        idxF++;
-        if (failedTests > 30)
-        {
-            break;
-        }
-    }
-
-    printf("MUL-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
-    printf("Last: %i|%x * %i|%x => %i|%x\n", *pUShort1, *pUShort1, *pUShort2, *pUShort2, *pUInt, *pUInt);
-
-    printf("---\n");
-    res = printMyInt(&test1, printChars, NUM_TEST_CHARS);
-    printf("%i|SRC:%s\n", res, printChars);
-
-    res = printMyInt(&test2, printChars, NUM_TEST_CHARS);
-    printf("%i|SRC2:%s\n", res, printChars);
-    res = printMyInt(&result, printChars, NUM_TEST_CHARS);
-    printf("%i|RES:%s\n", res, printChars);
-
-    unsigned char vals[] = {
-        0x35,
-        0x34,
-        0x0A,
-        0xfE,
-
-        0x37,
-        0x56,
-        0x01,
-        0x54,
-
-        0x3,
-        0x0,
-        0x30,
-        0x2,
-
-        0x23,
-        0xC,
-        0xD,
-        0xD2,
-        0xA3,
-        0x18};
-    const char *expectedStr = "2146440093795495460279912293993145927611445";
-    // unsigned char vals2[sizeof(vals)];
-    size_t sss = sizeof(vals);
-    printf("S: %li\n", sss);
-
-    for (size_t i = 0; i < sss; i++)
-    {
-        unsigned char vvv = vals[sss - i - 1];
-        printf("%x%x", vvv >> 4, vvv & 0xF);
-    }
-    printf("\n");
-    MYINT testVal;
-    testVal.data.pBytes = vals;
-    testVal.used_size = sss;
-    res = printMyInt(&testVal, printChars, NUM_TEST_CHARS);
-
-    printf("%i|TEST: \n%s\n%s\n", res, printChars, expectedStr);
-
-    printf("---\n");
-
-    printf("---\n");
-
-    printf("Clear ...\n");
-    myintCleanup();
-    myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
-    printf("Clear done\n");
-}
 
 #define TEST_CHARS_SIZE 60
 char testChars[TEST_CHARS_SIZE];
@@ -268,6 +102,10 @@ void testAddition()
     int res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
 
     printf("Allocated! %i\n", res);
+    if (res)
+    {
+        printf("Aborted!\n");
+    }
 
     int okTests = 0, failedTests = 0;
 
@@ -348,18 +186,21 @@ void testSubtraction()
     int res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
 
     printf("Allocated! %i\n", res);
+    if (res)
+    {
+        printf("Aborted!\n");
+    }
 
     int okTests = 0, failedTests = 0;
-    int idxF = 0, idxS = 0, hasFailed = 0;
-    unsigned int testIdx = 0;
+    int idxF = 0, idxS = 0, hasFailed = 0, value;
     unsigned int f = 0, s = 0;
-    unsigned short *pUShort1 = 0, *pUShort2 = 0;
+    unsigned short *pUShort1, *pUShort2, *pUShort3;
 
     unsigned int fLimit = 0x1000, sLimit = 0x1000;
 
     while (f < fLimit)
     {
-        pUShort1 = (unsigned short *)test1.data.pBytes;
+        pUShort1 = test1.data.pShorts;
         *pUShort1 = f;
         test1.used_size = f < 0x100 ? 1 : 2;
         s = 0;
@@ -367,14 +208,14 @@ void testSubtraction()
         {
             clearStack();
             test2.used_size = s < 0x100 ? 1 : 2;
-            pUShort2 = (unsigned short *)test2.data.pBytes;
+            pUShort2 = test2.data.pShorts;
             *pUShort2 = s;
 
             int expectedInt = f - s;
             hasFailed = 0;
             res = myintOp(INT_OP_SUB, &test1, &test2, &result);
-            unsigned short *pUShort3 = (unsigned short *)result.data.pBytes;
-            int value = *pUShort3;
+            pUShort3 = result.data.pShorts;
+            value = *pUShort3;
             if (result.sign)
             {
                 value = -value;
@@ -399,25 +240,85 @@ void testSubtraction()
             {
                 break;
             }
-
             s += adds[idxS % 8];
-#if 0
-            testIdx++;
-            if (testIdx % 1000000 == 0)
-            {
-                printf("Test %i\n", testIdx);
-            }
-#endif
             idxS++;
         }
-        f += adds[idxF % 8];
-        idxF++;
         if (failedTests > 30)
         {
             break;
         }
+        f += adds[idxF % 8];
+        idxF++;
     }
     printf("SUB-TEST: #ok=%i, #failed=%i\n", okTests, failedTests);
+
+    IntTest *pTests = subTests;
+    unsigned char *p1 = test1.data.pBytes, *p2 = test2.data.pBytes;
+
+    okTests = 0;
+    failedTests = 0;
+
+    for (int testIdx = 0; testIdx < NUM_MYINT_TESTS; testIdx++)
+    {
+        test1.data.pBytes = pTests->aBytes;
+        test1.used_size = pTests->numBytesA;
+        test1.size = test1.used_size;
+        test2.data.pBytes = pTests->bBytes;
+        test2.used_size = pTests->numBytesB;
+        test2.size = test2.used_size;
+
+        res = myintOp(INT_OP_SUB, &test1, &test2, &result);
+        if (res == 0)
+        {
+            char *pTestChars = testChars;
+            printMyInt(&result, testChars + 1, NUM_TEST_CHARS - 1);
+            if (result.sign)
+            {
+                *pTestChars = '-';
+            }
+            else
+            {
+                ++pTestChars;
+            }
+
+            res = strcmp(pTestChars, pTests->ptrC);
+            if (res != 0)
+            {
+                printf("A: %s - %s\n", pTests->ptrA, pTests->ptrB);
+                printf("C: %s\n", pTestChars);
+                printf("E: %s\n", pTests->ptrC);
+                ++failedTests;
+            }
+            else
+            {
+                if (pTests->numBytesC == result.used_size)
+                {
+                    res = memcmp(pTests->cBytes, result.data.pBytes, result.used_size);
+                    if (res == 0)
+                    {
+                        ++okTests;
+                    }
+                    else
+                    {
+                        ++failedTests;
+                    }
+                }
+                else
+                {
+                    ++failedTests;
+                }
+            }
+        }
+        else
+        {
+            ++failedTests;
+        }
+
+        ++pTests;
+    }
+    test1.data.pBytes = p1;
+    test2.data.pBytes = p2;
+    printf("SUB-TEST:2: #ok=%i, #failed=%i\n", okTests, failedTests);
 
     res = myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
 
@@ -427,6 +328,153 @@ void testSubtraction()
 void testMultiplication()
 {
     printf("Test MUL?\n");
+    MYINT test1;
+    MYINT test2;
+    MYINT result;
+
+    int res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
+
+    printf("Allocated! %i\n", res);
+    if (res)
+    {
+        printf("Aborted!\n");
+    }
+
+    int okTests = 0, failedTests = 0;
+    unsigned short *pUShort1 = 0, *pUShort2 = 0;
+
+    int idxF = 0, idxS = 0, hasFailed = 0;
+    unsigned int expectedUInt = 0, testIdx = 0;
+    // unsigned long long int expectedULong = 0;
+    unsigned int f = 0, s;
+    unsigned int resultUInt = 0,ii;
+
+    unsigned int fLimit = 0x1000, sLimit = 0x1000;
+
+    while (f < fLimit)
+    {
+        test1.used_size = f < 0x100 ? 1 : 2;
+        pUShort1 = (unsigned short *)test1.data.pBytes;
+        *pUShort1 = f;
+
+        s = 0;
+        while (s < sLimit)
+        {
+            test2.used_size = s < 0x100 ? 1 : 2;
+            pUShort2 = (unsigned short *)test2.data.pBytes;
+            *pUShort2 = s;
+
+            expectedUInt = f * s;
+            hasFailed = 0;
+            res = myintOp(INT_OP_MUL, &test1, &test2, &result);
+            resultUInt = 0;
+            ii = 0;
+            while (ii < result.used_size)
+            {
+                resultUInt |= (result.data.pBytes[ii]) << (ii * 8);
+                ++ii;
+            }
+
+            if (res == 0 && (expectedUInt == resultUInt))
+            {
+                ++okTests;
+            }
+            else
+            {
+                ++failedTests;
+                hasFailed = 1;
+            }
+            if (hasFailed > 0 && failedTests < 20)
+            {
+                printf("Failed: %i * %i = %i|%x <> Ex=%i|%x\n",
+                       *pUShort1, *pUShort2, resultUInt, resultUInt, expectedUInt, expectedUInt);
+            }
+            if (failedTests > 30)
+            {
+                break;
+            }
+
+            s += adds[idxS % 8];
+            testIdx++;
+            idxS++;
+        }
+        f += adds[idxF % 8];
+        idxF++;
+        if (failedTests > 30)
+        {
+            break;
+        }
+    }
+
+    printf("MUL-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
+    if(failedTests>0) {
+        printf("Last: %i|%x * %i|%x => %i|%x\n", *pUShort1, *pUShort1, *pUShort2, *pUShort2, resultUInt,resultUInt);
+    }
+    
+
+    IntTest *pTests = mulTests;
+    unsigned char *p1 = test1.data.pBytes, *p2 = test2.data.pBytes;
+
+    okTests = 0;
+    failedTests = 0;
+
+    for (int testIdx = 0; testIdx < NUM_MYINT_TESTS; testIdx++)
+    {
+        test1.data.pBytes = pTests->aBytes;
+        test1.used_size = pTests->numBytesA;
+        test1.size = test1.used_size;
+        test2.data.pBytes = pTests->bBytes;
+        test2.used_size = pTests->numBytesB;
+        test2.size = test2.used_size;
+
+        res = myintOp(INT_OP_MUL, &test1, &test2, &result);
+        if (res == 0)
+        {
+            char *pTestChars = testChars;
+            printMyInt(&result, testChars, NUM_TEST_CHARS);
+
+            res = strcmp(pTestChars, pTests->ptrC);
+            if (res != 0)
+            {
+                printf("A: %s * %s\n", pTests->ptrA, pTests->ptrB);
+                printf("C: %s\n", pTestChars);
+                printf("E: %s\n", pTests->ptrC);
+                ++failedTests;
+            }
+            else
+            {
+                if (pTests->numBytesC == result.used_size)
+                {
+                    res = memcmp(pTests->cBytes, result.data.pBytes, result.used_size);
+                    if (res == 0)
+                    {
+                        ++okTests;
+                    }
+                    else
+                    {
+                        ++failedTests;
+                    }
+                }
+                else
+                {
+                    ++failedTests;
+                }
+            }
+        }
+        else
+        {
+            ++failedTests;
+        }
+
+        ++pTests;
+    }
+    test1.data.pBytes = p1;
+    test2.data.pBytes = p2;
+    printf("MUL-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
+
+    res = myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
+
+    printf("Cleared! %i\n", res);
 
     printf("Test MUL!\n");
 }
@@ -600,4 +648,90 @@ void testDivision()
     printf("%i!%s\n", resI, printChars);
     printf("%i?%s\n", resI, expectedDivRest);
     printf("Test DIV!\n");
+}
+
+
+void testInts()
+{
+    printf("Start tests\n");
+    MYINT test1;
+    MYINT test2;
+    MYINT result;
+
+    int res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
+
+    printf("Allocated! %i\n", res);
+
+    unsigned int f = 1;
+    unsigned int *pUInt = (unsigned int *)test1.data.pBytes;
+    test1.used_size = 1;
+    *pUInt = f;
+
+    unsigned int s = 0x1210;
+    pUInt = (unsigned int *)test2.data.pBytes;
+    test2.used_size = 2;
+    *pUInt = s;
+
+    res = myintOp(INT_OP_ADD, &test1, &test2, &result);
+    pUInt = (unsigned int *)result.data.pBytes;
+    // unsigned short *pUShort = (unsigned short *)result.pBytes;
+    printf("%i|ADD %i|%x + %i|%x = %i|%x\n", res, f, f, s, s, *pUInt, *pUInt);
+
+    printf("---\n");
+    res = printMyInt(&test1, printChars, NUM_TEST_CHARS);
+    printf("%i|SRC:%s\n", res, printChars);
+
+    res = printMyInt(&test2, printChars, NUM_TEST_CHARS);
+    printf("%i|SRC2:%s\n", res, printChars);
+    res = printMyInt(&result, printChars, NUM_TEST_CHARS);
+    printf("%i|RES:%s\n", res, printChars);
+
+    unsigned char vals[] = {
+        0x35,
+        0x34,
+        0x0A,
+        0xfE,
+
+        0x37,
+        0x56,
+        0x01,
+        0x54,
+
+        0x3,
+        0x0,
+        0x30,
+        0x2,
+
+        0x23,
+        0xC,
+        0xD,
+        0xD2,
+        0xA3,
+        0x18};
+    const char *expectedStr = "2146440093795495460279912293993145927611445";
+    // unsigned char vals2[sizeof(vals)];
+    size_t sss = sizeof(vals);
+    printf("S: %li\n", sss);
+
+    for (size_t i = 0; i < sss; i++)
+    {
+        unsigned char vvv = vals[sss - i - 1];
+        printf("%x%x", vvv >> 4, vvv & 0xF);
+    }
+    printf("\n");
+    MYINT testVal;
+    testVal.data.pBytes = vals;
+    testVal.used_size = sss;
+    res = printMyInt(&testVal, printChars, NUM_TEST_CHARS);
+
+    printf("%i|TEST: \n%s\n%s\n", res, printChars, expectedStr);
+
+    printf("---\n");
+
+    printf("---\n");
+
+    printf("Clear ...\n");
+    myintCleanup();
+    myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
+    printf("Clear done\n");
 }
