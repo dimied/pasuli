@@ -401,11 +401,13 @@ void testSubtraction()
             }
 
             s += adds[idxS % 8];
+#if 0
             testIdx++;
             if (testIdx % 1000000 == 0)
             {
                 printf("Test %i\n", testIdx);
             }
+#endif
             idxS++;
         }
         f += adds[idxF % 8];
