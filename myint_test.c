@@ -12,9 +12,18 @@ char printChars[NUM_TEST_CHARS];
 
 unsigned char adds[] = {1, 2, 3, 5, 7, 11, 13, 17};
 
-
 #define TEST_CHARS_SIZE 60
 char testChars[TEST_CHARS_SIZE];
+char testRestChars[TEST_CHARS_SIZE];
+
+void printHex(unsigned char *vals, size_t sss)
+{
+    for (size_t i = 0; i < sss; i++)
+    {
+        unsigned char vvv = vals[sss - i - 1];
+        printf("%x%x", vvv >> 4, vvv & 0xF);
+    }
+}
 
 void testPrint()
 {
@@ -347,7 +356,7 @@ void testMultiplication()
     unsigned int expectedUInt = 0, testIdx = 0;
     // unsigned long long int expectedULong = 0;
     unsigned int f = 0, s;
-    unsigned int resultUInt = 0,ii;
+    unsigned int resultUInt = 0, ii;
 
     unsigned int fLimit = 0x1000, sLimit = 0x1000;
 
@@ -407,10 +416,10 @@ void testMultiplication()
     }
 
     printf("MUL-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
-    if(failedTests>0) {
-        printf("Last: %i|%x * %i|%x => %i|%x\n", *pUShort1, *pUShort1, *pUShort2, *pUShort2, resultUInt,resultUInt);
+    if (failedTests > 0)
+    {
+        printf("Last: %i|%x * %i|%x => %i|%x\n", *pUShort1, *pUShort1, *pUShort2, *pUShort2, resultUInt, resultUInt);
     }
-    
 
     IntTest *pTests = mulTests;
     unsigned char *p1 = test1.data.pBytes, *p2 = test2.data.pBytes;
@@ -485,7 +494,7 @@ void testDivision()
     MYINT test2;
     MYINT result;
 
-    int res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
+    int restRes, res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
 
     printf("Allocated! %i\n", res);
 
@@ -501,28 +510,6 @@ void testDivision()
 
     unsigned short *pUShort1, *pUShort2;
 
-    unsigned char vals[] = {
-        0x35,
-        0x34,
-        0x0A,
-        0xfE,
-
-        0x37,
-        0x56,
-        0x01,
-        0x54,
-
-        0x3,
-        0x0,
-        0x30,
-        0x2,
-
-        0x23,
-        0xC,
-        0xD,
-        0xD2,
-        0xA3,
-        0x18};
     // const char *expectedStr = "2146440093795495460279912293993145927611445";
 
     while (f < fLimit)
@@ -625,67 +612,6 @@ void testDivision()
 
     printf("DIV-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
     printf("---\n");
-    unsigned char *pChars = test1.data.pBytes;
-    test1.data.pBytes = vals;
-    test1.size = 18;
-    test1.used_size = 18;
-    pUShort2 = (unsigned short *)test2.data.pBytes;
-    *pUShort2 = 1018;
-    test2.used_size = 2;
-    const char *expectedDivResult = "2108487321999504381414452155199553956396";
-    const char *expectedDivRest = "317";
-    res = myintOp(INT_OP_DIV, &test1, &test2, &result);
-    test1.data.pBytes = pChars;
-    printf("DIV => %i\n", res);
-
-    clear2(printChars, NUM_TEST_CHARS);
-    int resI = printMyInt(&result, printChars, NUM_TEST_CHARS);
-    printf("%i!%s\n", resI, printChars);
-    printf("%i?%s\n", resI, expectedDivResult);
-
-    clear2(printChars, NUM_TEST_CHARS);
-    resI = printMyInt(result.rest, printChars, NUM_TEST_CHARS);
-    printf("%i!%s\n", resI, printChars);
-    printf("%i?%s\n", resI, expectedDivRest);
-    printf("Test DIV!\n");
-}
-
-
-void testInts()
-{
-    printf("Start tests\n");
-    MYINT test1;
-    MYINT test2;
-    MYINT result;
-
-    int res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
-
-    printf("Allocated! %i\n", res);
-
-    unsigned int f = 1;
-    unsigned int *pUInt = (unsigned int *)test1.data.pBytes;
-    test1.used_size = 1;
-    *pUInt = f;
-
-    unsigned int s = 0x1210;
-    pUInt = (unsigned int *)test2.data.pBytes;
-    test2.used_size = 2;
-    *pUInt = s;
-
-    res = myintOp(INT_OP_ADD, &test1, &test2, &result);
-    pUInt = (unsigned int *)result.data.pBytes;
-    // unsigned short *pUShort = (unsigned short *)result.pBytes;
-    printf("%i|ADD %i|%x + %i|%x = %i|%x\n", res, f, f, s, s, *pUInt, *pUInt);
-
-    printf("---\n");
-    res = printMyInt(&test1, printChars, NUM_TEST_CHARS);
-    printf("%i|SRC:%s\n", res, printChars);
-
-    res = printMyInt(&test2, printChars, NUM_TEST_CHARS);
-    printf("%i|SRC2:%s\n", res, printChars);
-    res = printMyInt(&result, printChars, NUM_TEST_CHARS);
-    printf("%i|RES:%s\n", res, printChars);
-
     unsigned char vals[] = {
         0x35,
         0x34,
@@ -708,30 +634,106 @@ void testInts()
         0xD2,
         0xA3,
         0x18};
-    const char *expectedStr = "2146440093795495460279912293993145927611445";
-    // unsigned char vals2[sizeof(vals)];
-    size_t sss = sizeof(vals);
-    printf("S: %li\n", sss);
+    unsigned char *pChars = test1.data.pBytes;
+    test1.data.pBytes = vals;
+    test1.size = 18;
+    test1.used_size = 18;
+    pUShort2 = (unsigned short *)test2.data.pBytes;
+    *pUShort2 = 1018;
+    test2.used_size = 2;
+    const char *expectedDivResult = "2108487321999504381414452155199553956396";
+    const char *expectedDivRest = "317";
+    res = myintOp(INT_OP_DIV, &test1, &test2, &result);
+    test1.data.pBytes = pChars;
+    printf("DIV => %i\n", res);
 
-    for (size_t i = 0; i < sss; i++)
+    clear2(printChars, NUM_TEST_CHARS);
+    int resI = printMyInt(&result, printChars, NUM_TEST_CHARS);
+    if (0 != strcmp(printChars, expectedDivResult))
     {
-        unsigned char vvv = vals[sss - i - 1];
-        printf("%x%x", vvv >> 4, vvv & 0xF);
+        printf("%i!%s\n", resI, printChars);
+        printf("%i?%s\n", resI, expectedDivResult);
     }
-    printf("\n");
-    MYINT testVal;
-    testVal.data.pBytes = vals;
-    testVal.used_size = sss;
-    res = printMyInt(&testVal, printChars, NUM_TEST_CHARS);
 
-    printf("%i|TEST: \n%s\n%s\n", res, printChars, expectedStr);
+    clear2(printChars, NUM_TEST_CHARS);
+    resI = printMyInt(result.rest, printChars, NUM_TEST_CHARS);
+    if (0 != strcmp(printChars, expectedDivRest))
+    {
+        printf("%i!%s\n", resI, printChars);
+        printf("%i?%s\n", resI, expectedDivRest);
+    }
 
-    printf("---\n");
+    IntTest *pTests = divTests;
+    unsigned char *p1 = test1.data.pBytes, *p2 = test2.data.pBytes;
 
-    printf("---\n");
+    okTests = 0;
+    failedTests = 0;
 
-    printf("Clear ...\n");
-    myintCleanup();
-    myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
-    printf("Clear done\n");
+    for (int testIdx = 0; testIdx < NUM_MYINT_TESTS; testIdx++)
+    {
+        test1.data.pBytes = pTests->aBytes;
+        test1.used_size = pTests->numBytesA;
+        test1.size = test1.used_size;
+        test2.data.pBytes = pTests->bBytes;
+        test2.used_size = pTests->numBytesB;
+        test2.size = test2.used_size;
+
+        res = myintOp(INT_OP_DIV, &test1, &test2, &result);
+        if (res == 0)
+        {
+            clear2(testChars, NUM_TEST_CHARS);
+            clear2(testRestChars, NUM_TEST_CHARS);
+            printMyInt(&result, testChars, NUM_TEST_CHARS);
+            if(result.rest != NULL) {
+                printMyInt(result.rest, testRestChars, NUM_TEST_CHARS);
+            }
+
+            res = strcmp(testChars, pTests->ptrC);
+            restRes = strcmp(testRestChars, pTests->ptrR);
+
+            if (res != 0 || restRes != 0)
+            {
+                printf("A: %s / %s\n", pTests->ptrA, pTests->ptrB);
+                printf("C: %s\n", testChars);
+                printf("E: %s\n", pTests->ptrC);
+                printf("CR: %s\n", testRestChars);
+                printf("ER: %s\n", pTests->ptrR);
+                ++failedTests;
+            }
+            else
+            {
+                if (pTests->numBytesC == result.used_size)
+                {
+                    res = memcmp(pTests->cBytes, result.data.pBytes, result.used_size);
+                    if (res == 0)
+                    {
+                        ++okTests;
+                    }
+                    else
+                    {
+                        ++failedTests;
+                    }
+                }
+                else
+                {
+                    ++failedTests;
+                }
+            }
+        }
+        else
+        {
+            ++failedTests;
+        }
+
+        ++pTests;
+    }
+    test1.data.pBytes = p1;
+    test2.data.pBytes = p2;
+    printf("DIV-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
+
+    res = myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
+
+    printf("Cleared! %i\n", res);
+
+    printf("Test DIV!\n");
 }

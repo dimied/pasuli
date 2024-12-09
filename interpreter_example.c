@@ -261,10 +261,9 @@ int main()
     printf("----\n");
     testMultiplication();
     printf("----\n");
-    //testDivision();
+    testDivision();
     printf("----\n");
 #endif
-    //testInts();
     testCompress();
 
     printf("PTR-SIZE: %li\n", sizeof(unsigned char *));
