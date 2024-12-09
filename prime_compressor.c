@@ -2152,7 +2152,7 @@ void compress(void *pData, int size, void *pResultData, int resultSize)
                     printf("DIV FAILED!\n");
                     break;
                 }
-                restValue - 1;
+                restValue =- 1;
                 MYINT *pRest = result.rest;
                 if (pRest != NULL)
                 {

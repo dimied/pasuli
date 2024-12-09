@@ -53,8 +53,10 @@ void reverseUCharArray(unsigned char *pArray, unsigned int size)
     }
 }
 
-void nullifyMyInt(MYINT* pMyInt) {
-    if(pMyInt != NULL) {
+void nullifyMyInt(MYINT *pMyInt)
+{
+    if (pMyInt != NULL)
+    {
         clear2(pMyInt, sizeof(MYINT));
     }
 }
@@ -92,14 +94,19 @@ void adjust(MYINT *pData)
     }
 }
 
+int intOps = 0;
+
 int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 {
+    if (intOps > 0)
+    {
+        printf("OP: %x\n", op);
+    }
     int res, initOrClear = op & INT_OP_INIT_ALL;
     if (initOrClear != 0 && op >= INT_OP_INIT_SRC && op <= INT_OP_INIT_ALL)
     {
         if (INT_INTERNAL_CHECK_INIT(initOrClear, INT_OP_INIT_RESULT))
         {
-            // printf("INIT RES\n");
             res = myintOp(INT_OP_INIT_SRC, pResult, pSrc2, pResult);
             if (res)
             {
@@ -109,8 +116,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 
         if (INT_INTERNAL_CHECK_INIT(initOrClear, INT_OP_INIT_SRC2))
         {
-            // printf("INIT SRC2\n");
-            myintOp(INT_OP_INIT_SRC, pSrc2, pSrc2, pResult);
+            res = myintOp(INT_OP_INIT_SRC, pSrc2, pSrc2, pResult);
             if (res)
             {
                 return res;
@@ -119,11 +125,11 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 
         if (INT_INTERNAL_CHECK_INIT(initOrClear, INT_OP_INIT_SRC))
         {
-            // printf("INIT SRC\n");
-            clear2(pSrc, sizeof(MYINT));
-            if (myDataOp(REALLOC_ALLOC, (unsigned char **)&pSrc->data.pBytes, INITIAL_INIT_SIZE, 0))
+            nullifyMyInt(pSrc);
+            res = myDataOp(REALLOC_ALLOC, (unsigned char **)&pSrc->data.pBytes, INITIAL_INIT_SIZE, 0);
+            if (res)
             {
-                return 1;
+                return res;
             }
             clear2(pSrc->data.pBytes, INITIAL_INIT_SIZE);
             pSrc->size = INITIAL_INIT_SIZE;
@@ -135,28 +141,32 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     initOrClear = op & INT_OP_CLEAR_ALL;
     if (initOrClear != 0 && op <= INT_OP_CLEAR_ALL)
     {
+        res = 1;
         if (INT_INTERNAL_CHECK_CLEAR(initOrClear, INT_OP_CLEAR_RESULT))
         {
-            myintOp(INT_OP_CLEAR_SRC, pResult, pSrc2, pResult);
+            res = myintOp(INT_OP_CLEAR_SRC, pResult, pSrc2, pResult);
         }
 
         if (INT_INTERNAL_CHECK_CLEAR(initOrClear, INT_OP_CLEAR_SRC2))
         {
-            myintOp(INT_OP_CLEAR_SRC, pSrc2, pSrc2, pResult);
+            res = myintOp(INT_OP_CLEAR_SRC, pSrc2, pSrc2, pResult);
         }
 
         if (INT_INTERNAL_CHECK_CLEAR(initOrClear, INT_OP_CLEAR_SRC))
         {
-            myDataOp(REALLOC_FREE, (unsigned char **)&pSrc->data.pBytes, 0, 0);
-            pSrc->size = 0;
-            pSrc->used_size = 0;
-
-            if (pSrc->rest != NULL)
+            res = myDataOp(REALLOC_FREE, (unsigned char **)&pSrc->data.pBytes, 0, 0);
+            if (res == 0)
             {
-                myintOp(INT_OP_CLEAR_SRC, pSrc->rest, NULL, NULL);
+                pSrc->size = 0;
+                pSrc->used_size = 0;
+
+                if (pSrc->rest != NULL)
+                {
+                    res = myintOp(INT_OP_CLEAR_SRC, pSrc->rest, NULL, NULL);
+                }
             }
         }
-        return 0;
+        return res;
     }
 
     unsigned int sizeVal, resultValue = 0, i, a, b, t;
@@ -164,6 +174,9 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     unsigned char *pFrom, *pFromEnd, *pSub;
     unsigned int resIdx = 0, resIdx2 = 0;
     int diff;
+    #if INT_DEBUG_SHOW_SUB
+        char *logStack;
+#endif
 
     switch (op)
     {
@@ -181,6 +194,13 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     case INT_OP_CMP_ABS:
         a = pSrc->used_size;
         b = pSrc2->used_size;
+#if INT_DEBUG_SHOW_SUB
+        logStack = getLine();
+        if (logStack != NULL)
+        {
+            snprintf(logStack, STACK_LINE_SIZE - 1, "a=%u|b=%u\n", a, b);
+        }
+#endif
         if (a < b)
         {
             return INT_RESULT_CMP_LESS;
@@ -213,15 +233,15 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 
     case INT_OP_ADD:
         // printf("ADD!\n");
-        sizeVal = pSrc->used_size < pSrc2->used_size ? pSrc2->used_size : pSrc->used_size;
+        a = pSrc->used_size;
+        b = pSrc2->used_size;
+        sizeVal = a < b ? b : a;
 
-        res = checkOrRealloc(pResult, sizeVal);
+        res = checkOrRealloc(pResult, sizeVal + 1);
         if (res)
         {
             return res;
         }
-        a = pSrc->used_size;
-        b = pSrc2->used_size;
 
         pFrom = pResult->data.pBytes;
 
@@ -235,26 +255,24 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             {
                 resultValue += *pSrc2Chars;
             }
-            // printf("SUM = %i|%x\n", resultValue, resultValue);
-            // pResult->data.pBytes[i] = resultValue & 0xFF;
             *pFrom = resultValue & 0xFF;
-            ++pFrom;
             resultValue >>= 8;
+            ++pFrom;
             ++pSrc1Chars;
             ++pSrc2Chars;
         }
 
-        pResult->used_size = i;
-
         if (resultValue > 0)
         {
-            res = checkOrRealloc(pResult, i + 1);
+            i++;
+            res = checkOrRealloc(pResult, i);
             if (res)
             {
                 return res;
             }
-            pResult->data.pBytes[i] = resultValue & 0xFF;
+            *pFrom = resultValue & 0xFF;
         }
+        pResult->used_size = i;
 
         return 0;
     case INT_OP_SUB:
@@ -263,9 +281,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         b = pSrc2->used_size;
         res = myintOp(INT_OP_CMP_ABS, pSrc, pSrc2, NULL);
         pResult->sign = 0;
-#if INT_DEBUG_SHOW_SUB
-        char *logStack;
-#endif
+
         if (res == INT_RESULT_CMP_LESS)
         {
             pSrc1Chars = pSrc2->data.pBytes;
@@ -427,9 +443,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         b = pSrc2->used_size;
         res = myintOp(INT_OP_CMP_ABS, pSrc, pSrc2, NULL);
         pResult->sign = 0;
-#if INT_DEBUG_SHOW_DIV
-        char *logStack;
-#endif
+
         MYINT *pRest = pResult->rest;
         if (pRest == NULL)
         {
@@ -595,8 +609,6 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     }
     return INT_COMMAND_ERROR;
 }
-
-
 
 int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)
 {

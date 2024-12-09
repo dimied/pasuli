@@ -13,12 +13,12 @@ typedef struct {
     unsigned char aBytes[20];
     unsigned char bBytes[20];
     unsigned char cBytes[20];
-    int numBytesA;
-    int numBytesB;
-    int numBytesC;
+    unsigned int numBytesA;
+    unsigned int numBytesB;
+    unsigned int numBytesC;
     const char* ptrR;
     unsigned char rBytes[20];
-    int numBytesR;
+    unsigned int numBytesR;
 } IntTest;
 
 extern IntTest addTests[NUM_MYINT_TESTS];

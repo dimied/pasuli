@@ -254,10 +254,13 @@ int main()
     */
 #if 1
     testPrint();
+    printf("----\n");
     testAddition();
+    printf("----\n");
     testSubtraction();
-    testMultiplication();
-    testDivision();
+    printf("----\n");
+    //testMultiplication();
+    //testDivision();
 #endif
     //testInts();
     testCompress();
@@ -286,7 +289,8 @@ void testCompress()
     char pResult2[80] = {0};
     int res = printBytes(testData, sizeof(testData), pResult2, 20);
     printf("%i|%s\n", res, pResult2);
-    unsigned char pResult[20] = {0};
+    
+    //unsigned char pResult[20] = {0};
     compressType = 0;
     //compress(testData, sizeof(testData), pResult, 20);
     printf("COMPRESS!\n");

@@ -40,7 +40,8 @@
 
 #define  INT_PTR_SIZE sizeof(unsigned char *)
 
-#define INT_DEBUG_SHOW_SUB 0
+#define INT_DEBUG_SHOW_CMP 1
+#define INT_DEBUG_SHOW_SUB 1
 #define INT_DEBUG_SHOW_DIV 1
 
 typedef struct _MYINT
@@ -58,6 +59,8 @@ typedef struct _MYINT
 	unsigned char options;
 	struct _MYINT *rest; //rest for 
 } MYINT;
+
+extern int intOps;
 
 uint64_t fromBytes(unsigned char*pBytes, unsigned int size);
 

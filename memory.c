@@ -36,7 +36,7 @@ int myDataOp(int op, unsigned char **pData, unsigned int size, unsigned int oldS
     case REALLOC_FREE:
         if (*pData != NULL)
         {
-            printf("FREE?\n");
+            printf("FREE?");
             free(*pData);
             *pData = NULL;
             printf("FREE!\n");
