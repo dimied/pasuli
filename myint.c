@@ -435,7 +435,6 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         pResult->used_size = resIdx2;
 
         return 0;
-    // printf("RES: %i\n", resultValue);
     case INT_OP_DIV:
         adjust(pSrc);
         adjust(pSrc2);
@@ -452,13 +451,14 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             {
                 return INT_ALLOCATION_ERROR;
             }
-            clear2(pRest, sizeof(MYINT));
+            nullifyMyInt(pRest);
             pResult->rest = pRest;
         }
         if (pRest->data.pBytes != NULL)
         {
             clear2(pRest->data.pBytes, pRest->size);
         }
+        pRest->used_size = 0;
 #if INT_DEBUG_SHOW_DIV
         logStack = getLine();
         if (logStack != NULL)
