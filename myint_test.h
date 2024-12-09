@@ -3,6 +3,8 @@
 
 #include "myint.h"
 
+void testBasics();
+
 void testPrint();
 
 void testAddition();

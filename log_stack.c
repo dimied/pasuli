@@ -11,7 +11,7 @@ void clearStack()
 {
     for (int i = 0; i < used; i++)
     {
-        memset(&stack[i][0], STACK_LINE_SIZE, 1);
+        memset(&stack[i][0], 0, STACK_LINE_SIZE);
     }
     used = 0;
 }

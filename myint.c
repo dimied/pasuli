@@ -96,6 +96,25 @@ void adjust(MYINT *pData)
 
 int intOps = 0;
 
+void sprintHex(unsigned char *vals, size_t sss, char *pResult, unsigned int size)
+{
+
+    if (vals != NULL && pResult != NULL)
+    {
+        unsigned int j = 0;
+        for (size_t i = 0; i < sss; i++)
+        {
+            unsigned char vvv = vals[sss - i - 1];
+            if (j + 1 < size)
+            {
+                snprintf(pResult + j, size - j, "%x%x", vvv >> 4, vvv & 0xF);
+            }
+
+            j += 2;
+        }
+    }
+}
+
 int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 {
     if (intOps > 0)
@@ -174,8 +193,9 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     unsigned char *pFrom, *pFromEnd, *pSub;
     unsigned int resIdx = 0, resIdx2 = 0;
     int diff;
-    #if INT_DEBUG_SHOW_SUB
-        char *logStack;
+
+#if INT_DEBUG_SHOW_CMP || INT_DEBUG_SHOW_SUB || INT_DEBUG_SHOW_DIV
+    char *logStack;
 #endif
 
     switch (op)
@@ -466,18 +486,14 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             snprintf(logStack, STACK_LINE_SIZE - 1, "SRC: %i|SRC2: %i\n", a, b);
         }
 #endif
-        // printf("SRC: %i|SRC2: %i\n", a, b);
-
-        // Division by zero
-#if 1
+        // Division by zero?
         if (0 == b || ((b == 1) && pSrc2Chars[0] == 0))
         {
             return 1;
         }
-#endif
+
         if (res == INT_RESULT_CMP_LESS)
         {
-            // printf("REALLOC?\n");
             clear2(pResult->data.pBytes, pResult->size);
             pResult->used_size = 0;
 
@@ -493,7 +509,6 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 #endif
                 return INT_ALLOCATION_ERROR;
             }
-            // printf("REALLOC!%i %p %i\n", res, pRest->data.pBytes, a);
             if (a > 0)
             {
                 memcpy(pRest->data.pBytes, pSrc1Chars, a);
@@ -503,6 +518,14 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         }
         if (res == INT_RESULT_CMP_EQUAL)
         {
+            if (pResult->data.pBytes == NULL)
+            {
+                res = myDataOp(REALLOC_ALLOC, (unsigned char **)&pResult->data.pBytes, 2, 0);
+                if (res)
+                {
+                    return res;
+                }
+            }
             clear2(pResult->data.pBytes, pResult->size);
             pResult->data.pBytes[0] = 1;
             pResult->used_size = 1;
@@ -514,56 +537,107 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 
             return 0;
         }
+        unsigned char *pTemp;
 #if 1
         uint64_t div64 = 0, divFrom64 = 0, rest64, result64;
         // Divisor can fit into 8 bytes?
-        if (8 >= pSrc2->used_size)
+        if (8 > b)
         {
-            // printf("64BIT!\n");
-            div64 = fromBytes(pSrc2Chars, pSrc2->used_size);
+            div64 = fromBytes(pSrc2Chars, b);
 
-            // printf("STORED: %lu\n", div64);
-            // Dividend can fit into 8 bytes?
-            if (8 >= pSrc->used_size)
+            clear2(pResult->data.pBytes, pResult->size);
+            clear2(pRest->data.pBytes, pRest->size);
+
+            if (0 != checkOrRealloc(pRest, 8))
             {
-                divFrom64 = fromBytes(pSrc1Chars, pSrc->used_size);
+                return INT_ALLOCATION_ERROR;
+            }
 
-                rest64 = divFrom64 % div64;
+#if INT_DEBUG_SHOW_DIV
+            logStack = getLine();
+            if (logStack != NULL)
+            {
+                *logStack = '<';
+                logStack++;
+                *logStack = '1';
+                logStack++;
+                *logStack = ':';
+                logStack++;
+                printBytes(pSrc1Chars, a, logStack, STACK_LINE_SIZE - 3);
+                // sprintHex(pSrc1Chars, a, logStack, STACK_LINE_SIZE - 3);
+            }
+            logStack = getLine();
+            if (logStack != NULL)
+            {
+                *logStack = '\n';
+            }
+#endif
+
+#if INT_DEBUG_SHOW_DIV && 0
+            logStack = getLine();
+            if (logStack != NULL)
+            {
+                *logStack = '<';
+                logStack++;
+                *logStack = '1';
+                logStack++;
+                *logStack = ':';
+                logStack++;
+                sprintHex(pSrc1Chars, a, logStack, STACK_LINE_SIZE - 3);
+            }
+            logStack = getLine();
+            if (logStack != NULL)
+            {
+                *logStack = '\n';
+            }
+#endif
+
+            // Dividend can fit into 8 bytes?
+            if (8 >= a)
+            {
+                divFrom64 = fromBytes(pSrc1Chars, a);
+
                 result64 = divFrom64 / div64;
+                rest64 = divFrom64 % div64;
 
-                // printf("STORED:1: %lu/%lu = %lu (->%lu)\n", divFrom64, div64, result64, rest64);
                 if (0 != checkOrRealloc(pResult, 8))
                 {
                     return INT_ALLOCATION_ERROR;
                 }
-                if (0 != checkOrRealloc(pRest, 8))
-                {
-                    return INT_ALLOCATION_ERROR;
-                }
+
                 *((uint64_t *)pRest->data.pBytes) = rest64;
                 *((uint64_t *)pResult->data.pBytes) = result64;
                 adjust(pRest);
                 adjust(pResult);
+#if INT_DEBUG_SHOW_DIV
+                logStack = getLine();
+                if (logStack != NULL)
+                {
+                    snprintf(logStack, STACK_LINE_SIZE, "(=)%lu / %lu = %lu (%lu)\n",
+                             divFrom64, div64, result64, rest64);
+                }
+#endif
                 return 0;
             }
-            if (0 != checkOrRealloc(pRest, pSrc2->used_size))
+            if (0 != checkOrRealloc(pResult, a - b + 1))
             {
                 return INT_ALLOCATION_ERROR;
             }
-            if (0 != checkOrRealloc(pResult, pSrc->used_size - pSrc2->used_size + 1))
-            {
-                return INT_ALLOCATION_ERROR;
-            }
-            unsigned char *pTemp = getTempMemory(pSrc->used_size);
+
+            clear2(pResult->data.pBytes, pResult->size);
+            clear2(pRest->data.pBytes, pRest->size);
+
+            pTemp = getTempMemory(pSrc->used_size);
             if (pTemp == NULL)
             {
                 return INT_ALLOCATION_ERROR;
             }
 
-            // void *CopyRes =
-            memcpy(pTemp, pSrc1Chars, pSrc->used_size);
-            b = pSrc2->used_size;
-            pFromEnd = pTemp + (pSrc->used_size - b);
+            // b = pSrc2->used_size;
+            //  void *CopyRes =
+            // memcpy(pTemp, pSrc1Chars, a);
+            pTemp = pSrc1Chars;
+            pFromEnd = pTemp + (a - b);
             divFrom64 = fromBytes(pFromEnd, b);
             i = 0;
             while (pFromEnd != pTemp)
@@ -575,7 +649,16 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                 }
                 result64 = divFrom64 / div64;
                 rest64 = divFrom64 % div64;
-                pResult->data.pBytes[i] = (unsigned char)result64;
+
+#if INT_DEBUG_SHOW_DIV
+                logStack = getLine();
+                if (logStack != NULL)
+                {
+                    snprintf(logStack, STACK_LINE_SIZE, "(S)%lu / %lu = %lu (%lu)\n",
+                             divFrom64, div64, result64, rest64);
+                }
+#endif
+                pResult->data.pBytes[i] = (unsigned char)result64 & 0xFF;
                 divFrom64 = rest64;
                 ++i;
                 --pFromEnd;
@@ -587,18 +670,27 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             }
             result64 = divFrom64 / div64;
             rest64 = divFrom64 % div64;
-            pResult->data.pBytes[i] = (unsigned char)result64;
+
+#if INT_DEBUG_SHOW_DIV
+            logStack = getLine();
+            if (logStack != NULL)
+            {
+                snprintf(logStack, STACK_LINE_SIZE, "(E)%lu / %lu = %lu (%lu)\n",
+                         divFrom64, div64, result64, rest64);
+            }
+#endif
+            if (result64 >= 0x100)
+            {
+                pResult->data.pBytes[i] = (unsigned char)((result64 >> 8) & 0xFF);
+                ++i;
+            }
+            pResult->data.pBytes[i] = (unsigned char)result64 & 0xFF;
             ++i;
             reverseUCharArray(pResult->data.pBytes, i);
             pResult->used_size = i;
-            i = 0;
-            while (rest64 > 0)
-            {
-                pRest->data.pBytes[i] = (unsigned char)rest64 & 0xFF;
-                ++i;
-                rest64 >>= 8;
-            }
-            pRest->used_size = i;
+            *((uint64_t *)pRest->data.pBytes) = rest64;
+            adjust(pRest);
+            adjust(pResult);
             return 0;
             // printf("N: %x\n", divFrom64);
 
@@ -858,18 +950,18 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
     return 0;
 }
 
-uint64_t fromBytes(unsigned char *pBytes, unsigned int size)
+uint64_t fromBytes(void *pData, unsigned int size)
 {
-
     if (size == 8)
     {
-        return *((uint64_t *)pBytes);
+        return *((uint64_t *)pData);
     }
     uint64_t result = 0;
     unsigned int i = 0;
+    unsigned char* pBytes = (unsigned char*)pData;
     while (i < size)
     {
-        result |= (*pBytes) << (i * 8);
+        result |= ((uint64_t)(*pBytes)) << (i * 8);
         ++pBytes;
         ++i;
     }

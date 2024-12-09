@@ -253,6 +253,8 @@ int main()
     printf("V: %i %i %i %i\n", val[0], val[1], val[2], val[3]);
     */
 #if 1
+    testBasics();
+    printf("----\n");
     testPrint();
     printf("----\n");
     testAddition();

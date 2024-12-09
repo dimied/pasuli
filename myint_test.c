@@ -25,6 +25,42 @@ void printHex(unsigned char *vals, size_t sss)
     }
 }
 
+void testBasics()
+{
+    printf("Test Basics?\n");
+
+int okTests=0, failedTests = 0;
+    unsigned char testChars[8] = {0};
+    unsigned char init = 0;
+    while (init < 10)
+    {
+        uint64_t testValue = init;
+        unsigned int byteCount = 1;
+        while (byteCount <= 8)
+        {
+            if (byteCount > 1)
+            {
+                testValue = testValue << 8 | ((testValue & 0xFF) + 1);
+            }
+            *((uint64_t *)testChars) = testValue;
+
+            uint64_t testResult = fromBytes(testChars, byteCount);
+            if (testResult != testValue)
+            {
+                printf("FAIL:(E!=C)(%i) %lu|%lx != %lu|%lx\n", byteCount, testValue, testValue, testResult, testResult);
+                ++failedTests;
+            } else {
+                ++okTests;
+            }
+            ++byteCount;
+        }
+
+        ++init;
+    }
+    printf("Basics-TEST: #ok=%i, #failed=%i\n", okTests, failedTests);
+    printf("Test Basics!\n");
+}
+
 void testPrint()
 {
     IntTest *pTests;
@@ -677,6 +713,7 @@ void testDivision()
         test2.data.pBytes = pTests->bBytes;
         test2.used_size = pTests->numBytesB;
         test2.size = test2.used_size;
+        clearStack();
 
         res = myintOp(INT_OP_DIV, &test1, &test2, &result);
         if (res == 0)
@@ -684,7 +721,8 @@ void testDivision()
             clear2(testChars, NUM_TEST_CHARS);
             clear2(testRestChars, NUM_TEST_CHARS);
             printMyInt(&result, testChars, NUM_TEST_CHARS);
-            if(result.rest != NULL) {
+            if (result.rest != NULL)
+            {
                 printMyInt(result.rest, testRestChars, NUM_TEST_CHARS);
             }
 
@@ -693,11 +731,13 @@ void testDivision()
 
             if (res != 0 || restRes != 0)
             {
-                printf("A: %s / %s\n", pTests->ptrA, pTests->ptrB);
-                printf("C: %s\n", testChars);
-                printf("E: %s\n", pTests->ptrC);
-                printf("CR: %s\n", testRestChars);
-                printf("ER: %s\n", pTests->ptrR);
+                printf("%i|A: %s / %s\n", testIdx, pTests->ptrA, pTests->ptrB);
+                printf("%i|C: %s\n", testIdx, testChars);
+                printf("%i|E: %s\n", testIdx, pTests->ptrC);
+                printf("%i|CR: %s\n", testIdx, testRestChars);
+                printf("%i|ER: %s\n", testIdx, pTests->ptrR);
+
+                printStack();
                 ++failedTests;
             }
             else
@@ -723,6 +763,10 @@ void testDivision()
         else
         {
             ++failedTests;
+        }
+        if (failedTests > 30)
+        {
+            break;
         }
 
         ++pTests;

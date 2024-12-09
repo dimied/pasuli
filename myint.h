@@ -40,7 +40,7 @@
 #define INT_PTR_SIZE sizeof(unsigned char *)
 
 #define INT_DEBUG_SHOW_CMP 1
-#define INT_DEBUG_SHOW_SUB 1
+#define INT_DEBUG_SHOW_SUB 0
 #define INT_DEBUG_SHOW_DIV 1
 
 typedef struct _MYINT
@@ -64,7 +64,7 @@ typedef struct _MYINT
 
 extern int intOps;
 
-uint64_t fromBytes(unsigned char *pBytes, unsigned int size);
+uint64_t fromBytes(void *pBytes, unsigned int size);
 
 void nullifyMyInt(MYINT *pMyInt);
 
