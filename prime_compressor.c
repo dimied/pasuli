@@ -2075,14 +2075,14 @@ void compress(void *pData, int size, void *pResultData, int resultSize)
         }
         p += 2;
     }
-#define PRINT_CHARS_SIZE 30
+#define PRINT_CHARS_SIZE 40
 
     char printChars[PRINT_CHARS_SIZE];
 
     if (compressType == 0)
     {
         i = 0;
-        int numTries = 256 * 16;
+        int numTries = 1;//256 * 16;
         MYINT testedNumber;
         MYINT divisor;
         MYINT adder;
@@ -2102,6 +2102,9 @@ void compress(void *pData, int size, void *pResultData, int resultSize)
         memcpy(testedNumber.data.pBytes, pCurrentData, size);
         testedNumber.used_size = size;
 
+        printMyInt(&testedNumber, printChars, PRINT_CHARS_SIZE);
+        printf("|%s|\n", printChars);
+
         res = myintOp(INT_OP_INIT_ALL, &divisor, &adder, &result);
         if (res != 0)
         {
@@ -2109,21 +2112,10 @@ void compress(void *pData, int size, void *pResultData, int resultSize)
             return;
         }
 
+        unsigned char* pTemp = testedNumber.data.pBytes;
+
         while (numTries > 0)
         {
-#if 0
-            switch (mode)
-            {
-            case COMPRESS_INIT_STEP: // INIT
-
-                numTries++;
-                mode = COMPRESS_CHECK_DIVISIBALITY_STEP;
-                break;
-            case COMPRESS_CHECK_DIVISIBALITY_STEP:
-
-                break;
-            }
-#endif
             for (int i = 0; i < NUM_PRIMES; i++)
             {
                 primesCounters[i] = 0;
@@ -2136,7 +2128,7 @@ void compress(void *pData, int size, void *pResultData, int resultSize)
 
             for (int primeIdx = 0; primeIdx < NUM_PRIMES;)
             {
-                int prime = primes[primeIdx];
+                unsigned int prime = primes[primeIdx];
                 if (prime < 256)
                 {
                     divisor.data.pBytes[0] = (unsigned char)prime;
@@ -2159,14 +2151,39 @@ void compress(void *pData, int size, void *pResultData, int resultSize)
                     restValue = 0;
                     for (unsigned int j = 0; j < pRest->used_size; j++)
                     {
-                        restValue <<= 8;
-                        restValue |= pRest->data.pBytes[j];
+                        restValue |= (pRest->data.pBytes[j] << (8*j));
                     }
                 }
                 printMyInt(&result, printChars, PRINT_CHARS_SIZE);
-                printf("%i|%s => %i\n", prime, printChars, restValue);
-                ++primeIdx;
+                //printf("%i|%s => %i\n", prime, printChars, restValue);
+                if(restValue == 0) {
+                    primesCounters[primeIdx]++;
+                    testedNumber.data.pBytes= result.data.pBytes;
+                    testedNumber.used_size = result.used_size;
+                    testedNumber.size = result.size;
+
+                    result.data.pBytes = NULL;
+                    result.used_size = 0;
+                    result.size = 0;
+                } else {
+                    ++primeIdx;
+                }
+                if(testedNumber.used_size < 2) {
+                    break;
+                }
             }
+            unsigned int ps=0;
+            printf("C:\n");
+            for(int primeIdx=0; primeIdx < NUM_PRIMES; primeIdx++) {
+                if(primesCounters[primeIdx]) {
+                    printf("%i : %i\n", primes[primeIdx], primesCounters[primeIdx]);
+                    ps++;
+                }
+            }
+            ps *= 2;
+            unsigned int resSize = ps + testedNumber.used_size;
+
+            printf(">PS+RS: %u +%u = %u ? %u\n", ps, testedNumber.used_size, resSize, size);
             numTries--;
         }
         res = myintOp(INT_OP_CLEAR_ALL, &divisor, &adder, &result);

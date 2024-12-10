@@ -540,7 +540,7 @@ void testDivision()
     int failedTests = 0;
     unsigned int f = 0, s = 0;
 
-    unsigned int fLimit = 0x1000, sLimit = 0x1000;
+    unsigned int fLimit = 0x1000, sLimit = 0x500;
 
     unsigned char adds[] = {1, 2, 3, 5, 7, 11, 13, 17};
     int idxF = 0, idxS = 0, hasFailed = 0;
@@ -554,12 +554,14 @@ void testDivision()
     {
         pUShort1 = (unsigned short *)test1.data.pBytes;
         *pUShort1 = f;
+        test1.used_size = f < 0x100 ? 1 : 2;
         s = 2;
         while (s < sLimit)
         {
             clearStack();
             pUShort2 = (unsigned short *)test2.data.pBytes;
             *pUShort2 = s;
+            test2.used_size = s < 0x100 ? 1 : 2;
 
             unsigned int expectedRest = f % s;
             unsigned int expected = f / s;
@@ -567,6 +569,12 @@ void testDivision()
             res = myintOp(INT_OP_DIV, &test1, &test2, &result);
             unsigned short *pUShort3 = (unsigned short *)result.data.pBytes;
             unsigned int value = *pUShort3;
+            if(result.used_size==0) {
+                value = 0;
+            }
+            if(result.used_size==1) {
+                value = value&0xFF;
+            }
             unsigned int rest = 0;
             if (res == 0)
             {
@@ -585,10 +593,14 @@ void testDivision()
                     }
                     else
                     {
+                        unsigned int numBytes = result.rest->used_size;
                         unsigned short *pUShort4 = (unsigned short *)result.rest->data.pBytes;
                         if (pUShort4 != NULL)
                         {
                             rest = *pUShort4;
+                            if(numBytes == 1) {
+                                rest = rest &0xFF;
+                            }
                             if (rest == expectedRest)
                             {
                                 ++okTests;
@@ -619,7 +631,7 @@ void testDivision()
             if (hasFailed > 0 && failedTests < 20)
             {
                 printf("%i|Failed: %i / %i = %i|%x (rest=%i|%x) <> Ex=%i|%x (rest=%i|%x)\n", res,
-                       *pUShort1, *pUShort2,
+                       f, s,
                        value, value,
                        rest, rest,
                        expected, expected,

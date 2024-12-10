@@ -2,6 +2,7 @@
 #define __MY_INT__
 
 #include <stdint.h>
+#include "output.h"
 
 #define INITIAL_INIT_SIZE 2
 
@@ -22,13 +23,14 @@
 #define INT_OP_ZERO 0x80
 #define INT_OP_ONE 0x81
 //
-#define INT_OP_ADD 0x82
-#define INT_OP_SUB 0x83
-#define INT_OP_MUL 0x84
-#define INT_OP_DIV 0x85
-
 #define INT_OP_CMP_ABS 0x90
 #define INT_OP_CMP 0x91
+//
+#define INT_OP_ADD 0x92
+#define INT_OP_SUB 0x93
+#define INT_OP_MUL 0x94
+#define INT_OP_DIV 0x95
+
 
 #define INT_RESULT_CMP_EQUAL 0
 #define INT_RESULT_CMP_LESS 1
@@ -39,9 +41,9 @@
 
 #define INT_PTR_SIZE sizeof(unsigned char *)
 
-#define INT_DEBUG_SHOW_CMP 1
+#define INT_DEBUG_SHOW_CMP 0
 #define INT_DEBUG_SHOW_SUB 0
-#define INT_DEBUG_SHOW_DIV 1
+#define INT_DEBUG_SHOW_DIV 0
 
 typedef struct _MYINT
 {
@@ -68,12 +70,13 @@ uint64_t fromBytes(void *pBytes, unsigned int size);
 
 void nullifyMyInt(MYINT *pMyInt);
 
+// 10.12 = 0x703
 int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult);
 
 void myintCleanup();
 
 int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength);
 
-int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int resultLength);
+
 
 #endif

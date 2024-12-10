@@ -241,9 +241,9 @@ int main()
     }
     printf("X|Time: 1/2 = %llu, 2/1 = %llu\n", durationX / durationX2, durationX2 / durationX);
 #endif
-    unsigned char *pCompressorRes = (unsigned char *)malloc(CIRCLE_PROG_BYTES);
+    //unsigned char *pCompressorRes = (unsigned char *)malloc(CIRCLE_PROG_BYTES);
 
-    compress(circleProgs, CIRCLE_PROG_BYTES, pCompressorRes, CIRCLE_PROG_BYTES);
+    //compress(circleProgs, CIRCLE_PROG_BYTES, pCompressorRes, CIRCLE_PROG_BYTES);
 
     /*
     unsigned char val[4];
@@ -263,14 +263,12 @@ int main()
     printf("----\n");
     testMultiplication();
     printf("----\n");
-    //testDivision();
+    testDivision();
     printf("----\n");
 #endif
     testCompress();
 
     printf("PTR-SIZE: %li\n", sizeof(unsigned char *));
-
-    // compress(0, circleProgs, CIRCLE_PROG_BYTES, pCompressorRes, CIRCLE_PROG_BYTES);
 
     return 0;
 }
@@ -288,13 +286,28 @@ void testCompress()
         0x54,
         0x74,
         0x43,
-        0x56};
+        0x56,
+        0x4,
+        0x1,
+        0x12,
+        0x32,
+        0x56,
+        0x91,
+        0x81,
+        0x53,
+        0x19,
+        0xA3,
+        0x00,
+        0x12,
+        0x39,
+        0x95
+        };
     char pResult2[80] = {0};
-    int res = printBytes(testData, sizeof(testData), pResult2, 20);
+    int res = printBytes(testData, sizeof(testData), pResult2, 40);
     printf("%i|%s\n", res, pResult2);
     
-    //unsigned char pResult[20] = {0};
+    unsigned char pResult[20] = {0};
     compressType = 0;
-    //compress(testData, sizeof(testData), pResult, 20);
+    compress(testData, sizeof(testData), pResult, 20);
     printf("COMPRESS!\n");
 }

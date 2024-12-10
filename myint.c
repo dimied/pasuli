@@ -115,6 +115,8 @@ void sprintHex(unsigned char *vals, size_t sss, char *pResult, unsigned int size
     }
 }
 
+unsigned char zero = 0;
+
 int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 {
     if (intOps > 0)
@@ -188,11 +190,12 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         return res;
     }
 
-    unsigned int sizeVal, resultValue = 0, i, a, b, t;
+    unsigned int sizeVal, resultValue = 0, resIdx = 0, i, a, b, t;
     unsigned char *pSrc1Chars = pSrc->data.pBytes, *pSrc2Chars = pSrc2->data.pBytes;
-    unsigned char *pFrom, *pFromEnd, *pSub;
-    unsigned int resIdx = 0, resIdx2 = 0;
+    unsigned char *pFrom, *pFromEnd, *pSub, *pTo, *pTemp;
+    // unsigned int resIdx = 0;//, resIdx2 = 0;
     int diff;
+    int tempI;
 
 #if INT_DEBUG_SHOW_CMP || INT_DEBUG_SHOW_SUB || INT_DEBUG_SHOW_DIV
     char *logStack;
@@ -202,7 +205,9 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     {
     case INT_OP_ZERO:
         clear2(pSrc->data.pBytes, pSrc->size);
+        pSrc->used_size = 0;
         return 0;
+#if 0
     case INT_OP_ONE:
         res = myintOp(INT_OP_ZERO, pSrc, NULL, NULL);
         if (res == 0)
@@ -211,6 +216,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             pSrc->used_size = 1;
         }
         return res;
+#endif
     case INT_OP_CMP_ABS:
         a = pSrc->used_size;
         b = pSrc2->used_size;
@@ -229,74 +235,70 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         {
             return INT_RESULT_CMP_GREATER;
         }
-        i = a;
-        pSrc1Chars += (a - 1);
-        pSrc2Chars += (a - 1);
-        /// if a and b have the same degree check each degree individually
-        while (i > 0)
+        if (a != 0)
         {
-            a = *pSrc1Chars;
-            b = *pSrc2Chars;
-            if (a < b)
+            --a;
+            pSrc1Chars += a;
+            pSrc2Chars += a;
+            ++a;
+            /// if a and b have the same degree check each degree individually
+            do
             {
-                return INT_RESULT_CMP_LESS;
-            }
-            if (a > b)
-            {
-                return INT_RESULT_CMP_GREATER;
-            }
-            --pSrc1Chars;
-            --pSrc2Chars;
-            --i;
+                tempI = (int)(*pSrc1Chars) - (int)(*pSrc2Chars);
+                // b = *pSrc2Chars;
+                if (tempI < 0)
+                {
+                    return INT_RESULT_CMP_LESS;
+                }
+                else if (tempI > 0)
+                {
+                    return INT_RESULT_CMP_GREATER;
+                }
+                --pSrc1Chars;
+                --pSrc2Chars;
+                --a;
+            } while (a > 0);
         }
+
         return INT_RESULT_CMP_EQUAL;
 
     case INT_OP_ADD:
-        // printf("ADD!\n");
         a = pSrc->used_size;
         b = pSrc2->used_size;
         sizeVal = a < b ? b : a;
+        ++sizeVal;
 
-        res = checkOrRealloc(pResult, sizeVal + 1);
+        res = checkOrRealloc(pResult, sizeVal);
         if (res)
         {
             return res;
         }
 
         pFrom = pResult->data.pBytes;
+        clear2(pFrom, sizeVal);
+        memcpy(pFrom, pSrc1Chars, a);
 
-        for (i = 0; i < sizeVal; i++)
+        for (i = 0; i < b; i++)
         {
-            if (i < a)
-            {
-                resultValue += *pSrc1Chars;
-            }
-            if (i < b)
-            {
-                resultValue += *pSrc2Chars;
-            }
-            *pFrom = resultValue & 0xFF;
+            resultValue += (unsigned int)(*pFrom) + (unsigned int)(*pSrc2Chars);
+
+            *pFrom = (unsigned char)(resultValue & 0xFF);
             resultValue >>= 8;
             ++pFrom;
-            ++pSrc1Chars;
             ++pSrc2Chars;
         }
 
-        if (resultValue > 0)
+        while (resultValue > 0)
         {
-            i++;
-            res = checkOrRealloc(pResult, i);
-            if (res)
-            {
-                return res;
-            }
-            *pFrom = resultValue & 0xFF;
+            resultValue = (unsigned int)(*pFrom) + (resultValue & 0xFF);
+            *pFrom = (unsigned char)(resultValue & 0xFF);
+            resultValue >>= 8;
+            ++pFrom;
         }
-        pResult->used_size = i;
 
+        adjust(pResult);
         return 0;
     case INT_OP_SUB:
-        // printf("SUB!\n");
         a = pSrc->used_size;
         b = pSrc2->used_size;
         res = myintOp(INT_OP_CMP_ABS, pSrc, pSrc2, NULL);
@@ -317,8 +319,9 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         }
         else if (res == INT_RESULT_CMP_EQUAL)
         {
-            clear2(pResult->data.pBytes, pResult->size);
-            pResult->used_size = 0;
+            return myintOp(INT_OP_ZERO, pResult, pSrc, NULL);
+            // clear2(pResult->data.pBytes, pResult->size);
+            // pResult->used_size = 0;
 #if INT_DEBUG_SHOW_SUB
             logStack = getLine();
             if (logStack != NULL)
@@ -326,20 +329,16 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                 snprintf(logStack, STACK_LINE_SIZE - 1, "EQUAL\n");
             }
 #endif
-            return 0;
+            // return 0;
         }
-        if (a > pResult->size)
-        {
+
 #if INT_DEBUG_SHOW_SUB
-            printf("ALLOC RESULT!\n");
+        printf("ALLOC RESULT!\n");
 #endif
-            res = myDataOp(REALLOC_REALLOC, (unsigned char **)&pResult->data.pBytes,
-                           a, pResult->size);
-            if (res != 0)
-            {
-                return res;
-            }
-            pResult->size = a;
+        res = checkOrRealloc(pResult, a);
+        if (res)
+        {
+            return res;
         }
 
         pFrom = pResult->data.pBytes;
@@ -352,17 +351,15 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             --a;
         }
         pResult->used_size = a;
-        int tempI;
 
         pSub = pSrc2Chars;
         diff = 0;
         while (b > 0)
         {
-            tempI = (int)(*pSub);
 #if INT_DEBUG_SHOW_SUB
             int aaa = diff;
 #endif
-            diff = (int)(*pFrom) - tempI - diff;
+            diff = (int)(*pFrom) - (int)(*pSub) - diff;
 #if INT_DEBUG_SHOW_SUB
             logStack = getLine();
             if (logStack != NULL)
@@ -381,80 +378,80 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             --b;
             --a;
         }
-        if (diff > 0)
+
+        while (a > 0 && diff > 0)
         {
-            while (a > 0 && diff > 0)
+            diff = (*pFrom) - diff;
+            if (diff < 0)
             {
-                diff = (*pFrom) - diff;
-                if (diff < 0)
-                {
-                    diff += 0x200;
-                }
-                *pFrom = diff & 0xFF;
-                diff >>= 8;
-                ++pFrom;
-                --a;
+                diff += 0x200;
             }
-            if (diff > 0)
-            {
-                clear2(pResult->data.pBytes, pResult->size);
-                pResult->used_size = 0;
-                return 1;
-            }
-        }
-        a = pResult->used_size;
-        pFrom = pResult->data.pBytes;
-        pFromEnd = pFrom + a - 1;
-        while (*pFromEnd == 0 && pFrom != pFromEnd)
-        {
-            --pFromEnd;
+            *pFrom = diff & 0xFF;
+            diff >>= 8;
+            ++pFrom;
             --a;
         }
-        pResult->used_size = a;
+        pFrom = pResult->data.pBytes;
+        if (diff > 0)
+        {
+            // myintOp(INT_OP_ZERO, pResult, pSrc, NULL);
+            clear2(pFrom, pResult->size);
+            pResult->used_size = 0;
+            return 1;
+        }
 
+        adjust(pResult);
         return 0;
-        // break;
+
     case INT_OP_MUL:
         // printf("MUL!\n");
         a = pSrc->used_size;
-        sizeVal = a + pSrc2->used_size;
+        b = pSrc2->used_size;
+        sizeVal = a + b;
         res = checkOrRealloc(pResult, sizeVal);
         if (res)
         {
             return res;
         }
-        clear2(pResult->data.pBytes, pResult->size);
-
-        resultValue = 0;
+        pFrom = pResult->data.pBytes;
+        clear2(pFrom, pResult->size);
+        if (b == 0)
+        {
+            pResult->used_size = 0;
+            return 0;
+        }
 
         for (i = 0; i < a; i++)
         {
             resIdx = i;
 
-            pSrc2Chars = pSrc2->data.pBytes;
-            b = pSrc2->used_size;
+            pSub = pSrc2Chars;
+            t = b;
+            sizeVal = (*pSrc1Chars);
 
-            while (b > 0)
+            while (t > 0)
             {
-                resultValue = (*pSrc1Chars) * (*pSrc2Chars);
-                resIdx2 = resIdx;
+                resultValue = (*pSub) * sizeVal;
+                pFromEnd = pFrom + resIdx;
 
                 do
                 {
-                    resultValue = pResult->data.pBytes[resIdx2] + resultValue;
-                    pResult->data.pBytes[resIdx2++] = resultValue & 0xFF;
+                    resultValue += (*pFromEnd);
+                    *pFromEnd = (unsigned char)(resultValue & 0xFF);
                     resultValue >>= 8;
+                    ++pFromEnd;
                 } while (resultValue > 0);
                 ++resIdx;
-                ++pSrc2Chars;
-                --b;
+                ++pSub;
+                --t;
             }
 
             ++pSrc1Chars;
         }
-        pResult->used_size = resIdx2;
 
+        adjust(pResult);
         return 0;
+
     case INT_OP_DIV:
         adjust(pSrc);
         adjust(pSrc2);
@@ -474,10 +471,9 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             nullifyMyInt(pRest);
             pResult->rest = pRest;
         }
-        if (pRest->data.pBytes != NULL)
-        {
-            clear2(pRest->data.pBytes, pRest->size);
-        }
+
+        pFrom = pRest->data.pBytes;
+        clear2(pFrom, pRest->size);
         pRest->used_size = 0;
 #if INT_DEBUG_SHOW_DIV
         logStack = getLine();
@@ -487,17 +483,19 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         }
 #endif
         // Division by zero?
-        if (0 == b || ((b == 1) && pSrc2Chars[0] == 0))
+        if (0 == b || ((b == 1) && (*pSrc2Chars) == 0))
         {
             return 1;
         }
 
+        pTo = pResult->data.pBytes;
+
         if (res == INT_RESULT_CMP_LESS)
         {
-            clear2(pResult->data.pBytes, pResult->size);
+            clear2(pTo, pResult->size);
             pResult->used_size = 0;
 
-            res = checkOrRealloc(pResult->rest, a);
+            res = checkOrRealloc(pRest, a);
             if (res != 0)
             {
 #if INT_DEBUG_SHOW_DIV
@@ -509,18 +507,20 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 #endif
                 return INT_ALLOCATION_ERROR;
             }
-            if (a > 0)
+            pFrom = pRest->data.pBytes;
+            if (pFrom != NULL)
             {
-                memcpy(pRest->data.pBytes, pSrc1Chars, a);
+                memcpy(pFrom, pSrc1Chars, a);
             }
+
             pRest->used_size = a;
             return 0;
         }
         if (res == INT_RESULT_CMP_EQUAL)
         {
-            if (pResult->data.pBytes == NULL)
+            if (pTo == NULL)
             {
-                res = myDataOp(REALLOC_ALLOC, (unsigned char **)&pResult->data.pBytes, 2, 0);
+                res = myDataOp(REALLOC_ALLOC, (unsigned char **)&pResult->data.pBytes, 4, 0);
                 if (res)
                 {
                     return res;
@@ -529,29 +529,28 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             clear2(pResult->data.pBytes, pResult->size);
             pResult->data.pBytes[0] = 1;
             pResult->used_size = 1;
-            if (pRest->size > 0)
-            {
-                clear2(pRest->data.pBytes, pRest->size);
-            }
-            pRest->used_size = 0;
+            // clear2(pFrom, pRest->size);
+            // pRest->used_size = 0;
 
             return 0;
         }
-        unsigned char *pTemp;
+
 #if 1
         uint64_t div64 = 0, divFrom64 = 0, rest64, result64;
         // Divisor can fit into 8 bytes?
         if (8 > b)
         {
             div64 = fromBytes(pSrc2Chars, b);
+            pTo = pResult->data.pBytes;
 
-            clear2(pResult->data.pBytes, pResult->size);
-            clear2(pRest->data.pBytes, pRest->size);
+            clear2(pTo, pResult->size);
+            // clear2(pRest->data.pBytes, pRest->size);
 
             if (0 != checkOrRealloc(pRest, 8))
             {
                 return INT_ALLOCATION_ERROR;
             }
+            pFrom = pRest->data.pBytes;
 
 #if INT_DEBUG_SHOW_DIV
             logStack = getLine();
@@ -605,7 +604,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                     return INT_ALLOCATION_ERROR;
                 }
 
-                *((uint64_t *)pRest->data.pBytes) = rest64;
+                *((uint64_t *)pFrom) = rest64;
                 *((uint64_t *)pResult->data.pBytes) = result64;
                 adjust(pRest);
                 adjust(pResult);
@@ -623,19 +622,17 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             {
                 return INT_ALLOCATION_ERROR;
             }
+            pTo = pResult->data.pBytes;
 
-            clear2(pResult->data.pBytes, pResult->size);
-            clear2(pRest->data.pBytes, pRest->size);
-
+            clear2(pTo, pResult->size);
+            clear2(pFrom, pRest->size);
+#if 0
             pTemp = getTempMemory(pSrc->used_size);
             if (pTemp == NULL)
             {
                 return INT_ALLOCATION_ERROR;
             }
-
-            // b = pSrc2->used_size;
-            //  void *CopyRes =
-            // memcpy(pTemp, pSrc1Chars, a);
+#endif
             pTemp = pSrc1Chars;
             pFromEnd = pTemp + (a - b);
             divFrom64 = fromBytes(pFromEnd, b);
@@ -658,8 +655,9 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                              divFrom64, div64, result64, rest64);
                 }
 #endif
-                pResult->data.pBytes[i] = (unsigned char)result64 & 0xFF;
+                *pTo = (unsigned char)result64 & 0xFF;
                 divFrom64 = rest64;
+                ++pTo;
                 ++i;
                 --pFromEnd;
             }
@@ -681,13 +679,17 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 #endif
             if (result64 >= 0x100)
             {
-                pResult->data.pBytes[i] = (unsigned char)((result64 >> 8) & 0xFF);
+                // pResult->data.pBytes[i]
+                *pTo = (unsigned char)((result64 >> 8) & 0xFF);
+                ++pTo;
                 ++i;
             }
-            pResult->data.pBytes[i] = (unsigned char)result64 & 0xFF;
+            // pResult->data.pBytes[i]
+            *pTo = (unsigned char)result64 & 0xFF;
+            ++pTo;
             ++i;
             reverseUCharArray(pResult->data.pBytes, i);
-            pResult->used_size = i;
+            //pResult->used_size = i;
             *((uint64_t *)pRest->data.pBytes) = rest64;
             adjust(pRest);
             adjust(pResult);
@@ -723,242 +725,11 @@ int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)
     return printBytes(pSrc->data.pBytes, pSrc->used_size, pResult, resultLength);
 }
 
-int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int resultLength)
-{
-    if (resultLength < 2)
-    {
-        return 1; // Not enough space, needs to be null-terminated
-    }
-    //
-    clear2(pResult, resultLength);
-
-    if (size == 1 && (*p) < 100)
-    {
-        if (*p < 10)
-        {
-            *pResult = '0' + (*p);
-        }
-        else
-        {
-            if (resultLength == 2)
-            {
-                return 1;
-            }
-            *pResult = '0' + ((*p) / 10);
-            ++pResult;
-            *pResult = '0' + ((*p) % 10);
-        }
-        return 0;
-    }
-
-    unsigned int i = 0;
-#if 0
-    unsigned long long int res = 0;
-    if (pSrc->used_size <= sizeof(res) && resultLength > 20)
-    {
-        while (i < pSrc->used_size)
-        {
-            res |= (*p) << (8 * i);
-            ++p;
-            ++i;
-        }
-        sprintf(pResult, "%llu", res);
-        return 0;
-    }
-#endif
-
-#define VALUE(V) ((V) & 0xF)
-#define EXP_VALUE(V) ((V) >> 4)
-    // start from the end and move it later to the beginning
-    unsigned char *pResultUC = (unsigned char *)pResult;
-    unsigned char *pLastCurrent, *pLast = pResultUC + (resultLength - 2);
-    // lowest 4 bits is result, highest 4 bits is number to add
-    *pLast = ((*p) & 0x7) | (0x4 << 4);
-    i = 0;
-    unsigned int last, overflow = 0, currentByteShift = 3;
-    int numShifts = 1;
-
-    // shift > 8  means abort
-    do
-    {
-        unsigned int valCurrent, resCurrent, val = p[i];
-        // printf("@%i = %i|%x\n", i, val, val);
-
-        while (currentByteShift < 8)
-        {
-            valCurrent = val >> currentByteShift;
-            if (valCurrent & 0x1)
-            {
-                pLastCurrent = pLast;
-#if 0
-                int b = VALUE(*pLast) + VALUE(*(pLast - 1)) * 10 + VALUE(*(pLast - 2)) * 100 + VALUE(*(pLast - 3)) * 1000;
-                printf("BIT< %i|%i | <<%i\n", currentByteShift, b, numShifts);
-                b = EXP_VALUE(*pLast) + EXP_VALUE(*(pLast - 1)) * 10 + EXP_VALUE(*(pLast - 2)) * 100 + EXP_VALUE(*(pLast - 3)) * 1000;
-                printf("BIT-E< %i|%u\n", currentByteShift, b);
-#endif
-                // generate 2^n value
-                while (numShifts > 0)
-                {
-                    overflow = 0;
-                    pLastCurrent = pLast;
-                    // Multiply
-                    while (pLastCurrent != pResultUC)
-                    {
-                        resCurrent = *pLastCurrent;
-                        last = EXP_VALUE(resCurrent);
-                        last = 2 * last + overflow;
-                        overflow = last / 10;
-                        last = last % 10;
-                        resCurrent = (last << 4) | VALUE(resCurrent);
-                        *pLastCurrent = resCurrent;
-                        --pLastCurrent;
-                    }
-#if 0
-                    // b = EXP_VALUE(*pLast) + EXP_VALUE(*(pLast - 1)) * 10 + EXP_VALUE(*(pLast - 2)) * 100 + EXP_VALUE(*(pLast - 3)) * 1000;
-                    // printf("BIT-E^ %i|%u (%u)\n", currentByteShift, b, numShifts);
-#endif
-                    if (pLastCurrent == pResultUC)
-                    {
-                        resCurrent = *pLastCurrent;
-                        last = EXP_VALUE(resCurrent);
-                        last = last * 2 + overflow;
-                        // can't fit?
-                        if (last > 9)
-                        {
-                            currentByteShift = 9;
-                            break;
-                        }
-                        resCurrent = (last << 4) | VALUE(resCurrent);
-                        *pLastCurrent = resCurrent;
-                    }
-                    --numShifts;
-                }
-                if (currentByteShift > 8)
-                {
-                    // 2^n can't fit, i.e. also the result of addition won't fit
-                    break;
-                }
-#if 0
-                // b = EXP_VALUE(*pLast) + EXP_VALUE(*(pLast - 1)) * 10 + EXP_VALUE(*(pLast - 2)) * 100 + EXP_VALUE(*(pLast - 3)) * 1000;
-                // printf("BIT~ %i|%u\n", currentByteShift, b);
-#endif
-                overflow = 0;
-                pLastCurrent = pLast;
-                unsigned char *pResultFrontUC = pResultUC;
-                // Find non-zero in result
-                while (pResultFrontUC != pLast)
-                {
-                    if (VALUE(*pResultFrontUC) != 0)
-                    {
-                        break;
-                    }
-                    ++pResultFrontUC;
-                }
-                // Start: stored + 2^n
-                while (pLastCurrent != pResultUC)
-                {
-                    resCurrent = *pLastCurrent;
-                    last = VALUE(resCurrent) + EXP_VALUE(resCurrent) + overflow;
-                    overflow = last / 10;
-                    last = last % 10;
-
-                    *pLastCurrent = (resCurrent & 0xF0) | last;
-                    pLastCurrent--;
-                }
-                if (pLastCurrent == pResultUC)
-                {
-                    resCurrent = *pLastCurrent;
-                    last = VALUE(resCurrent) + EXP_VALUE(resCurrent) + overflow;
-                    if (last > 9)
-                    {
-                        currentByteShift = 9;
-                        break;
-                    }
-                    *pLastCurrent = (resCurrent & 0xF0) | last;
-                }
-                else
-                {
-                }
-#if 0
-                b = VALUE(*pLast) + VALUE(*(pLast - 1)) * 10 + VALUE(*(pLast - 2)) * 100 + VALUE(*(pLast - 3)) * 1000;
-                printf("BIT> %i|%u\n", currentByteShift, b);
-                b = EXP_VALUE(*pLast) + EXP_VALUE(*(pLast - 1)) * 10 + EXP_VALUE(*(pLast - 2)) * 100 + EXP_VALUE(*(pLast - 3)) * 1000;
-                printf("BIT-E> %i|%u\n", currentByteShift, b);
-#endif
-            }
-            if (currentByteShift > 8)
-            {
-                break;
-            }
-            ++numShifts;
-            // else nothing
-            ++currentByteShift;
-        }
-        if (currentByteShift > 8)
-        {
-            break;
-        }
-        currentByteShift = 0;
-        ++i;
-    } while (i < size);
-
-    if (currentByteShift > 8)
-    {
-        clear2(pResult, resultLength);
-        return 2;
-    }
-    // move characters to the front
-    pLast = pResultUC + (resultLength - 1);
-    pLastCurrent = pResultUC;
-    int a = 0;
-    // find first non zero
-    while (pLastCurrent != pLast && ((*pLastCurrent & 0xF) == 0))
-    {
-        ++pLastCurrent;
-        a++;
-    }
-    // printf("FOUND AFTER: %i | %i  | %p %p\n", a, *pLastCurrent, pLastCurrent, pLast);
-    if (pLastCurrent != pLast)
-    {
-        a = 0;
-        while (pLastCurrent != pLast)
-        {
-            *pResultUC = ((*pLastCurrent) & 0xF) + '0';
-            ++pResultUC;
-            ++pLastCurrent;
-            a++;
-        }
-        // printf("MOVED %i\n", a);
-        a = 0;
-        while (pResultUC != pLast)
-        {
-            *pResultUC = 0;
-            ++pResultUC;
-            a++;
-        }
-        // printf("ZERO %i\n", a);
-    }
-    else
-    {
-        while (pResultUC != pLast)
-        {
-            *pResultUC = ((*pResultUC) & 0xF) + '0';
-            ++pResultUC;
-        }
-    }
-
-    return 0;
-}
-
 uint64_t fromBytes(void *pData, unsigned int size)
 {
     if (size > 8)
     {
-        return 0;
-    }
-    if (size == 8)
-    {
-        return *((uint64_t *)pData);
+        size = 8;
     }
     uint64_t result = 0;
     unsigned int i = 0;
@@ -969,16 +740,12 @@ uint64_t fromBytes(void *pData, unsigned int size)
         i = 32;
         pBytes += 4;
     }
-    if(size|0x2) {
+    size <<= 3;
+    while (i < size)
+    {
         result |= ((uint64_t)(*pBytes)) << i;
         ++pBytes;
-        i+=8;
-        result |= ((uint64_t)(*pBytes)) << i;
-        ++pBytes;
-        i+=8;
-    }
-    if(size|0x1) {
-        result |= ((uint64_t)(*pBytes)) << i;
+        i += 8;
     }
     return result;
 }
