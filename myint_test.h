@@ -14,4 +14,6 @@ void testSubtraction();
 void testMultiplication();
 
 void testDivision();
+
+void printTestResults();
 #endif

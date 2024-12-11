@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "log_stack.h"
 #include "memory.h"
 #include "myint_test.h"
@@ -15,6 +16,21 @@ unsigned char adds[] = {1, 2, 3, 5, 7, 11, 13, 17};
 #define TEST_CHARS_SIZE 60
 char testChars[TEST_CHARS_SIZE];
 char testRestChars[TEST_CHARS_SIZE];
+
+int testIdx = 0;
+char *testResults[10] = {NULL};
+
+char *getTestPrintChars()
+{
+    if (testIdx < 10)
+    {
+        char *pMem = (char *)malloc(TEST_CHARS_SIZE);
+        testResults[testIdx] = pMem;
+        testIdx++;
+        return pMem;
+    }
+    return NULL;
+}
 
 void printHex(unsigned char *vals, size_t sss)
 {
@@ -59,7 +75,9 @@ void testBasics()
 
         ++init;
     }
-    printf("Basics-TEST: #ok=%i, #failed=%i\n", okTests, failedTests);
+    char *pText = getTestPrintChars();
+    snprintf(pText, TEST_CHARS_SIZE, "Basics-TEST: #ok=%i, #failed=%i\n", okTests, failedTests);
+    printf("%s", pText);
     printf("Test Basics!\n");
 }
 
@@ -216,7 +234,9 @@ void testAddition()
         result.data.pBytes = p3;
     }
 
-    printf("ADD-TEST: #ok=%i, #failed=%i\n", okTests, failedTests);
+    char *pText = getTestPrintChars();
+    snprintf(pText, TEST_CHARS_SIZE, "ADD-TEST: #ok=%i, #failed=%i\n", okTests, failedTests);
+    printf("%s", pText);
 
     res = myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
     intOps = 0;
@@ -297,7 +317,9 @@ void testSubtraction()
         f += adds[idxF % 8];
         idxF++;
     }
-    printf("SUB-TEST: #ok=%i, #failed=%i\n", okTests, failedTests);
+    char *pText = getTestPrintChars();
+    snprintf(pText, TEST_CHARS_SIZE, "SUB-TEST: #ok=%i, #failed=%i\n", okTests, failedTests);
+    printf("%s", pText);
 
     IntTest *pTests = subTests;
     unsigned char *p1 = test1.data.pBytes, *p2 = test2.data.pBytes;
@@ -365,7 +387,10 @@ void testSubtraction()
     }
     test1.data.pBytes = p1;
     test2.data.pBytes = p2;
-    printf("SUB-TEST:2: #ok=%i, #failed=%i\n", okTests, failedTests);
+
+    pText = getTestPrintChars();
+    snprintf(pText, TEST_CHARS_SIZE, "SUB-TEST:2: #ok=%i, #failed=%i\n", okTests, failedTests);
+    printf("%s", pText);
 
     res = myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
 
@@ -453,7 +478,10 @@ void testMultiplication()
         }
     }
 
-    printf("MUL-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
+    char *pText = getTestPrintChars();
+    snprintf(pText, TEST_CHARS_SIZE, "MUL-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
+    printf("%s", pText);
+
     if (failedTests > 0)
     {
         printf("Last: %i|%x * %i|%x => %i|%x\n", *pUShort1, *pUShort1, *pUShort2, *pUShort2, resultUInt, resultUInt);
@@ -517,7 +545,10 @@ void testMultiplication()
     }
     test1.data.pBytes = p1;
     test2.data.pBytes = p2;
-    printf("MUL-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
+
+    pText = getTestPrintChars();
+    snprintf(pText, TEST_CHARS_SIZE, "MUL-TEST-END:2: #ok=%i, #failed=%i\n", okTests, failedTests);
+    printf("%s", pText);
 
     res = myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
 
@@ -569,11 +600,13 @@ void testDivision()
             res = myintOp(INT_OP_DIV, &test1, &test2, &result);
             unsigned short *pUShort3 = (unsigned short *)result.data.pBytes;
             unsigned int value = *pUShort3;
-            if(result.used_size==0) {
+            if (result.used_size == 0)
+            {
                 value = 0;
             }
-            if(result.used_size==1) {
-                value = value&0xFF;
+            if (result.used_size == 1)
+            {
+                value = value & 0xFF;
             }
             unsigned int rest = 0;
             if (res == 0)
@@ -598,8 +631,9 @@ void testDivision()
                         if (pUShort4 != NULL)
                         {
                             rest = *pUShort4;
-                            if(numBytes == 1) {
-                                rest = rest &0xFF;
+                            if (numBytes == 1)
+                            {
+                                rest = rest & 0xFF;
                             }
                             if (rest == expectedRest)
                             {
@@ -660,7 +694,9 @@ void testDivision()
         }
     }
 
-    printf("DIV-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
+    char *pText = getTestPrintChars();
+    snprintf(pText, TEST_CHARS_SIZE, "DIV-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
+    printf("%s", pText);
     printf("---\n");
     unsigned char vals[] = {
         0x35,
@@ -787,11 +823,22 @@ void testDivision()
     }
     test1.data.pBytes = p1;
     test2.data.pBytes = p2;
-    printf("DIV-TEST-END: #ok=%i, #failed=%i\n", okTests, failedTests);
+    pText = getTestPrintChars();
+    snprintf(pText, TEST_CHARS_SIZE, "DIV-TEST-END:2: #ok=%i, #failed=%i\n", okTests, failedTests);
+    printf("%s", pText);
 
     res = myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
 
     printf("Cleared! %i\n", res);
 
     printf("Test DIV!\n");
+}
+
+void printTestResults()
+{
+    for (int i = 0; i < testIdx; i++)
+    {
+        printf("%s", testResults[i]);
+    }
+    // testResults[testIdx]
 }

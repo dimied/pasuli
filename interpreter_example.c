@@ -266,6 +266,7 @@ int main()
     testDivision();
     printf("----\n");
 #endif
+    printTestResults();
     testCompress();
 
     printf("PTR-SIZE: %li\n", sizeof(unsigned char *));
