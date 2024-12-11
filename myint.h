@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "output.h"
 
-#define INITIAL_INIT_SIZE 2
+#define INITIAL_INIT_SIZE 4
 
 #define INT_OP_CLEAR_SRC 1
 #define INT_OP_CLEAR_SRC2 2
@@ -45,6 +45,12 @@
 #define INT_DEBUG_SHOW_SUB 0
 #define INT_DEBUG_SHOW_DIV 0
 
+#ifndef USE_TEMP_MEMORY
+#define USE_TEMP_MEMORY 0
+#endif
+
+#define USE_AB_INIT 1
+
 typedef struct _MYINT
 {
 	union
@@ -70,7 +76,9 @@ uint64_t fromBytes(void *pBytes, unsigned int size);
 
 void nullifyMyInt(MYINT *pMyInt);
 
-// 10.12 = 0x703
+void adjust(MYINT *pData);
+
+// 10.12 = 0x652
 int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult);
 
 void myintCleanup();

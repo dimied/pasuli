@@ -60,8 +60,13 @@ int myDataOp(int op, unsigned char **pData, unsigned int size, unsigned int oldS
 #endif
     int res = DATA_OP_RESULT_INVALID;
 
-    switch (op)
+    switch (op & REALLOC_NULLIFY_MASK)
     {
+    case REALLOC_ALLOC_IF_NEEDED:
+        if (pMem != NULL)
+        {
+            return DATA_OP_RESULT_OK;
+        }
     case REALLOC_ALLOC:
         pMem = (unsigned char *)malloc(size);
         if (pMem != NULL)
@@ -133,6 +138,10 @@ int myDataOp(int op, unsigned char **pData, unsigned int size, unsigned int oldS
         }
         break;
 #endif
+    }
+    if (res == 0 && ((op & REALLOC_NULLIFY) != 0))
+    {
+        clear2(*pData, size);
     }
     return res;
     // return DATA_OP_RESULT_INVALID;

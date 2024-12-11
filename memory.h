@@ -5,6 +5,7 @@
 #define USE_REALLOC_NO_COPY 0
 #endif
 
+#define REALLOC_ALLOC_IF_NEEDED 1
 #define REALLOC_ALLOC 2
 #define REALLOC_FREE 4
 
@@ -21,6 +22,9 @@
 #endif
 
 #define REALLOC_INVERT 0x20
+
+#define REALLOC_NULLIFY 0x40
+#define REALLOC_NULLIFY_MASK (0x3F)
 
 // #define USE_MY_DATA_OP_DEBUG 1
 
