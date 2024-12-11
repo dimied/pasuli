@@ -10,6 +10,7 @@
 #include "interpreter.h"
 #include "interpreter_debug.h"
 #include "interpreter_cmd_config.h"
+#include "../util/util_macros.h"
 
 #if PARSE_CODE_VERBOSE
 
@@ -70,14 +71,9 @@ int parseCode(
     unsigned char *pProgs,
     float *pResults)
 {
-#if PARSE_CODE_VERBOSE
-
-#endif
     int mode = 0, cmd = 0, paramValue = 0, cmdRun = 0, currentLine = 0;
     int uRegIndex = 1, vRegIndex = 2, regIndex = 1, resultRegisterIdx = 13;
     int shift = CMD_DEFAULT_SHIFT;
-    // unsigned char *pMyProgs = pProgs;
-
     float *pInitSamplesV = pSamplesV;
 
 #if PARSE_CODE_PTR_CHECK
@@ -140,8 +136,7 @@ int parseCode(
 #if PARSE_CODE_VERBOSE
             if (opts > 0)
             {
-                printf("(START):");
-                printf("PROG %i", paramValue);
+                printf("(START):PROG %i", paramValue);
             }
 
 #endif
@@ -232,14 +227,16 @@ int parseCode(
                 }
             }
             break;
-        default:
 #if PARSE_CODE_VERBOSE
+        default:
+
             if (opts > 0)
             {
                 printf("UNKNOWN COMMAND => ERROR");
             }
-#endif
+
             break;
+#endif
         }
         //
 #if PARSE_CODE_VERBOSE

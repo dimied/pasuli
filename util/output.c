@@ -1,4 +1,5 @@
 
+#include <stdio.h>
 #include "output.h"
 #include "memory.h"
 
@@ -228,4 +229,9 @@ int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int 
     }
 
     return 0;
+}
+
+void printResultLine(int t, float u, float v, float *pRes)
+{
+    printf("%i| (%.4f %.4f) -> (%.8f %.8f %.8f)\n", t, u, v, pRes[0], pRes[1], pRes[2]);
 }

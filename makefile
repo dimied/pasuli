@@ -7,6 +7,13 @@ FILES_REPO = repository/*.c
 FILES_UTIL = util/*.c
 EX_FILES = examples/glut_helpers.c examples/pasuli_mesh.c examples/pasuli_mesh_util.c examples/pasuli_mesh_opengl.c
 
+MYINT_FILES = myint/*.c
+UTIL_INTERPRETER_FILES = util/memory.c util/output.c util/log_stack.c
+INTERPRETER_FILES = interpreter/*.c
+INTERPRETER_TEST_FILES = interpreter_example.c interpreter_example_tests.c
+#
+#
+#
 all: clean doall # doopt
 
 .PHONY: doall trigtest
@@ -37,9 +44,10 @@ opengl:
 	gcc -Wall -pedantic -Os -o ex_ogl  examples/opengl_sample.c  ${EX_FILES} ${FILES_UTIL} ${FILES2} ${FILES3} -lm -lGL -lGLU -lglut
 	strip --strip-all ex_ogl
 
-interpreter: interpreter_example.c interpreter.c interpreter_text.c interpreter_progs.c prime_compressor.c memory.c myint.c log_stack.c myint_test_data.c myint_test.c output.c
+#interpreter_example.c interpreter.c interpreter_text.c interpreter_progs.c prime_compressor.c memory.c myint.c log_stack.c myint_test_data.c myint_test.c 
+interpreter: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
 	rm -f ./intertest
-	g++ -Wall -g -Os -B -lm -lc interpreter_example.c interpreter.c interpreter_text.c interpreter_progs.c prime_compressor.c memory.c myint.c log_stack.c myint_test_data.c myint_test.c output.c -o intertest
+	g++ -Wall -g -Os -B -lm -lc ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} -o intertest
 
 showsizes15:
 	nm --size-sort intertest | tail -15

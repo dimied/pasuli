@@ -2,8 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "log_stack.h"
-#include "memory.h"
+#include "../util/log_stack.h"
+#include "../util/memory.h"
+#include "../util/output.h"
 #include "myint_test.h"
 #include "myint_test_data.h"
 

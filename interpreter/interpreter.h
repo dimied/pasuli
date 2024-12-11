@@ -5,8 +5,6 @@
 #include "interpreter_config.h"
 #include "interpreter_commands.h"
 
-#define TIME_MILLI(V) (V.tv_sec * 1000 + V.tv_usec / 1000)
-#define TIME_MICRO(V) (V.tv_sec * 1000 * 1000 + V.tv_usec)
 
 #define PI (float)3.14159265358979323846f
 

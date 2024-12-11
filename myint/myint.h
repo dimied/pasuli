@@ -2,7 +2,6 @@
 #define __MY_INT__
 
 #include <stdint.h>
-#include "output.h"
 
 #define INITIAL_INIT_SIZE 4
 
@@ -13,9 +12,9 @@
 
 #define INT_INTERNAL_CHECK_CLEAR(OP, VAL) ((OP & VAL) == VAL)
 //
-#define INT_OP_INIT_SRC 0x10
-#define INT_OP_INIT_SRC2 0x20
-#define INT_OP_INIT_RESULT 0x40
+#define INT_OP_INIT_SRC 0x8
+#define INT_OP_INIT_SRC2 0x10
+#define INT_OP_INIT_RESULT 0x20
 #define INT_OP_INIT_ALL (INT_OP_INIT_SRC | INT_OP_INIT_SRC2 | INT_OP_INIT_RESULT)
 
 #define INT_INTERNAL_CHECK_INIT(OP, VAL) ((OP & VAL) == VAL)
@@ -30,7 +29,6 @@
 #define INT_OP_SUB 0x93
 #define INT_OP_MUL 0x94
 #define INT_OP_DIV 0x95
-
 
 #define INT_RESULT_CMP_EQUAL 0
 #define INT_RESULT_CMP_LESS 1
@@ -60,11 +58,9 @@ typedef struct _MYINT
 		unsigned int *pUInts;
 		unsigned char raw[INT_PTR_SIZE];
 	} data;
-	// unsigned char *pBuffer;
 
 	unsigned int size;		// allocated size in bytes
 	unsigned int used_size; // actual space occupied by the number in bytes
-	// unsigned int buffer_size;
 	unsigned char sign; // stores sign
 	unsigned char options;
 	struct _MYINT *rest; // rest for
@@ -81,7 +77,9 @@ void adjust(MYINT *pData);
 // 10.12 = 0x652
 int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult);
 
+#if USE_TEMP_MEMORY
 void myintCleanup();
+#endif
 
 int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength);
 

@@ -3,9 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
-#include "memory.h"
+#include "../util/memory.h"
+#include "../util/output.h"
 #include "myint.h"
-#include "log_stack.h"
+#include "../util/log_stack.h"
 
 #if USE_TEMP_MEMORY
 
@@ -32,17 +33,17 @@ unsigned char *getTempMemory(unsigned int size)
 }
 #endif
 
+#if USE_TEMP_MEMORY
 void myintCleanup()
 {
-#if USE_TEMP_MEMORY
     if (tempMemory != NULL)
     {
         free(tempMemory);
         tempMemory = NULL;
     }
     tempMemorySize = 0;
-#endif
 }
+#endif
 
 void reverseUCharArray(unsigned char *pArray, unsigned int size)
 {
@@ -698,7 +699,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                              divFrom64, div64, result64, rest64);
                 }
 #endif
-                *pTo = (unsigned char)result64 & 0xFF;
+                *pTo = (unsigned char)(result64 & 0xFF);
                 divFrom64 = rest64;
                 ++pTo;
                 ++i;
@@ -733,8 +734,8 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             ++i;
             reverseUCharArray(pResult->data.pBytes, i);
             // pResult->used_size = i;
-            //*((uint64_t *)pRest->data.pBytes) = rest64;
-            *((uint64_t *)pFrom) = rest64;
+            *((uint64_t *)pRest->data.pBytes) = rest64;
+            //*((uint64_t *)pFrom) = rest64;
             res = 0;
             break;
             //adjust(pRest);
