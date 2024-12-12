@@ -582,9 +582,6 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             div64 = fromBytes(pSrc2Chars, b);
 
             pTo = myintClearBytes(pResult);
-            // pTo = pResult->data.pBytes;
-            // clear2(pTo, pResult->size);
-            //  clear2(pRest->data.pBytes, pRest->size);
 
             if (0 != checkOrRealloc(pRest, 8))
             {
@@ -660,7 +657,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                 //return 0;
                 break;
             }
-            if (0 != checkOrRealloc(pResult, a - b + 1))
+            if (0 != checkOrRealloc(pResult, a - b + 2))
             {
                 return INT_ALLOCATION_ERROR;
             }

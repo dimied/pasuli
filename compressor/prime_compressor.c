@@ -167,7 +167,7 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
 
         numTries = 4;
 
-        unsigned char *pTemp = testedNumber.data.pBytes;
+        //unsigned char *pTemp = testedNumber.data.pBytes;
         unsigned char *pDiv = divisor.data.pBytes;
         unsigned short *pUShort;
         int lastPrimesIdx = NUM_PRIMES_TO_CHECK;
@@ -179,7 +179,7 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
             {
                 primesCounters[i] = 0;
             }
-            if (testedNumber.data.pBytes != pTemp)
+            if (testedNumber.data.pBytes != NULL)
             {
                 printf("FREE!\n");
                 free(testedNumber.data.pBytes);
@@ -228,6 +228,8 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
             pUShort = divisor.data.pShorts;
             
             primeIdx = 0;
+            //unsigned int ds=0;
+            clear2(pUShort, divisor.size);
 
             printf("DIVs?%i\n", primeIdx);
             for (; primeIdx < NUM_PRIMES;)
@@ -243,12 +245,15 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
                     *pUShort = (unsigned short)prime;
                     divisor.used_size = 2;
                 }
+                
 
                 clear2(printCompressChars3, 20);
                 printMyInt(&divisor, printCompressChars3, 20);
+#if 0
+                ds = divisor.used_size;
                 printf("DIV| %s | %u/%u\n", 
                 printCompressChars3, divisor.used_size, divisor.size);
-
+#endif
                 MYINT *pRest = result.rest;
                 if (pRest != NULL)
                 {
@@ -273,12 +278,14 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
                     {
                         restValue |= (pRest->data.pBytes[resUInt] << (8 * resUInt));
                     }
-                    
-                    printf("REST: %u | %i | %u ? %u| %x %x\n", 
+#if 0
+                    printf("REST: %u | %i | %u ? %u ? %u| %x %x | %x %x\n", 
                     prime, restValue, 
-                    divisor.used_size, pRest->used_size,
+                    divisor.used_size, ds, pRest->used_size,
+                    divisor.data.pBytes[0], divisor.data.pBytes[1],
                     pRest->data.pBytes[0], pRest->data.pBytes[1]
                     );
+#endif
                     clear2(pRest->data.pBytes, pRest->size);
                     pRest->used_size = 0;
                 }
@@ -320,11 +327,15 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
                 if (primesCounters[primeIdx])
                 {
                     printf("%i : %i\n", primes[primeIdx], primesCounters[primeIdx]);
-                    resUInt++;
+                    if(primes[primeIdx] < 256) {
+                        resUInt+=2;
+                    }  else {
+                        resUInt+=3;
+                    }
+                    
                     lastPrimesIdx = primeIdx;
                 }
             }
-            resUInt *= 2;
             unsigned int resSize = resUInt + testedNumber.used_size;
 
             printf(">PS+RS: %u +%u = %u ? %u | @%i\n", resUInt, testedNumber.used_size, resSize, size, lastPrimesIdx);
