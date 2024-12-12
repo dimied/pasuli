@@ -76,12 +76,15 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
             primes[primeIdx] = p;
             primesSq[primeIdx++] = (uint64_t)p * (uint64_t)p;
             ps = 1;
-            if(p > 0xFF) {
+            if (p > 0xFF)
+            {
                 ++ps;
-                if(p > 0xFFFF) {
+                if (p > 0xFFFF)
+                {
                     ++ps;
                 }
-                if(p > 0xFFFFFF) {
+                if (p > 0xFFFFFF)
+                {
                     ++ps;
                 }
             }
@@ -132,10 +135,12 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
         MYINT divisor;
         MYINT adder;
         MYINT result;
+        MYINT rest;
         nullifyMyInt(&testedNumber);
         nullifyMyInt(&divisor);
         nullifyMyInt(&adder);
         nullifyMyInt(&result);
+        nullifyMyInt(&rest);
 
         int res = myDataOp(REALLOC_ALLOC, &testedNumber.data.pBytes, size, 0);
         if (res != 0)
@@ -153,7 +158,8 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
         res = strlen(printCompressChars);
         printf("|%s|%i|%u\n", printCompressChars, res, size);
 
-        res = myintOp(INT_OP_INIT_ALL, &divisor, &adder, &result);
+        INT_INIT_CALL3(res, &divisor, &adder, &result);
+        // res = myintInit(&divisor);
         if (res != 0)
         {
             printf("INIT FAILED!\n");
@@ -182,8 +188,8 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
         numTries = 3;
 
         unsigned char *pTemp = testedNumber.data.pBytes;
-        //unsigned char *pDiv = divisor.data.pBytes;
-        //unsigned short *pUShort;
+        // unsigned char *pDiv = divisor.data.pBytes;
+        // unsigned short *pUShort;
         int lastPrimesIdx = NUM_PRIMES_TO_CHECK;
         MYINT *pRest;
         unsigned char *pRestUchars;
@@ -197,7 +203,7 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
             }
             if (testedNumber.data.pBytes != NULL)
             {
-                //printf("FREE!\n");
+                // printf("FREE!\n");
                 free(testedNumber.data.pBytes);
                 testedNumber.data.pBytes = (unsigned char *)malloc(size);
                 memcpy(testedNumber.data.pBytes, pCurrentData, size);
@@ -211,7 +217,7 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
                 printf("ADD: %i\n", add);
                 adder.data.pBytes[0] = (unsigned char)add;
                 adder.used_size = 1;
-                res = myintOp(INT_OP_ADD, &testedNumber, &adder, &result);
+                res = myintOp(INT_OP_ADD, &testedNumber, &adder, &result, &rest);
                 if (res)
                 {
                     printf("ADD FAILED: %i\n", res);
@@ -229,11 +235,11 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
             }
 
             restValue = 0;
-            //pUShort = divisor.data.pShorts;
+            // pUShort = divisor.data.pShorts;
 
             primeIdx = 0;
             // unsigned int ds=0;
-            //clear2(pUShort, divisor.size);
+            // clear2(pUShort, divisor.size);
             divisor.used_size = 1;
 
             for (; primeIdx < NUM_PRIMES;)
@@ -259,7 +265,7 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
                 printf("DIV| %s | %u/%u\n", 
                 printCompressChars3, divisor.used_size, divisor.size);
 #endif
-                pRest = result.rest;
+                pRest = &rest;
                 if (pRest != NULL)
                 {
                     if (pRest->size == 4)
@@ -274,7 +280,7 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
                     pRest->used_size = 0;
                 }
 
-                res = myintOp(INT_OP_DIV, &testedNumber, &divisor, &result);
+                res = myintOp(INT_OP_DIV, &testedNumber, &divisor, &result, &rest);
                 if (res != 0)
                 {
                     printf("DIV FAILED!\n");
@@ -283,7 +289,7 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
 
                 restValue = -1;
 
-                pRest = result.rest;
+                pRest = &rest;
                 if (pRest != NULL)
                 {
                     restValue = 0;
@@ -372,7 +378,7 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
 
             add += 1;
         }
-        res = myintOp(INT_OP_CLEAR_ALL, &divisor, &adder, &result);
+        INT_CLEAR_CALL3(res, &divisor, &adder, &result);
         if (res != 0)
         {
             printf("CLEAR FAILED!\n");

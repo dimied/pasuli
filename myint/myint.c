@@ -61,11 +61,9 @@ void reverseUCharArray(unsigned char *pArray, unsigned int size)
 
 void nullifyMyInt(MYINT *pMyInt)
 {
-    if (pMyInt != NULL)
-    {
-        clear2(pMyInt, sizeof(MYINT));
-    }
+    clear2(pMyInt, sizeof(MYINT));
 }
+
 int checkOrRealloc(MYINT *pResult, unsigned int sizeVal)
 {
     if (sizeVal > pResult->size)
@@ -110,10 +108,71 @@ unsigned char *myintClearBytes(MYINT *pSrc)
 
 int myintOpShort(int op, MYINT *pSrc)
 {
-    return myintOp(op, pSrc, NULL, NULL);
+    return myintOp(op, pSrc, NULL, NULL, NULL);
 }
 
-int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
+int myintInit(MYINT *pMyInt)
+{
+    nullifyMyInt(pMyInt);
+    int res = checkOrRealloc(pMyInt, INITIAL_INIT_SIZE);
+    if (res)
+    {
+        return res;
+    }
+    myintClearBytes(pMyInt);
+    return res;
+}
+
+int myintInitMany(int num, MYINT **pMyInt)
+{
+    for (int i = 0; i < num; i++)
+    {
+        int res = myintInit(pMyInt[i]);
+        if (res)
+        {
+            return res;
+        }
+    }
+    return 0;
+}
+
+int myintClear(MYINT *pSrc)
+{
+    int res = myDataOp(REALLOC_FREE, (unsigned char **)&pSrc->data.pBytes, 0, 0);
+    if (res == 0)
+    {
+        pSrc->size = 0;
+        pSrc->used_size = 0;
+#if 0
+        if (pSrc->rest != NULL)
+        {
+            res = myintClear(pSrc->rest);
+        }
+#endif
+    }
+    return res;
+}
+
+int myintStoreRest(MYINT *pRest, uint64_t restValue)
+{
+    if (restValue > 0)
+    {
+        if (pRest != NULL)
+        {
+            if (0 != checkOrRealloc(pRest, 8))
+            {
+                return INT_ALLOCATION_ERROR;
+            }
+            void *pFrom = myintClearBytes(pRest);
+            *((uint64_t *)pFrom) = restValue;
+            return 0;
+        }
+        return INT_MISSING_REST;
+    }
+    return 0;
+}
+
+int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult, MYINT *pRest)
 {
 #if 0
     if (intOps > 0)
@@ -122,68 +181,9 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     }
 #endif
     int res = 1;
-#if INT_USE_OP_CLEAR
-    if (op >= INT_OP_INIT_SRC && op <= INT_OP_INIT_ALL)
-    {
-        op = op & INT_OP_INIT_ALL;
-        if (INT_INTERNAL_CHECK_INIT(op, INT_OP_INIT_RESULT))
-        {
-            res = myintOpShort(INT_OP_INIT_SRC, pResult);
-        }
-
-        if (INT_INTERNAL_CHECK_INIT(op, INT_OP_INIT_SRC2))
-        {
-            res = myintOpShort(INT_OP_INIT_SRC, pSrc2);
-        }
-
-        if (INT_INTERNAL_CHECK_INIT(op, INT_OP_INIT_SRC))
-        {
-            nullifyMyInt(pSrc);
-            res = checkOrRealloc(pSrc, INITIAL_INIT_SIZE);
-            if (res)
-            {
-                return res;
-            }
-            myintClearBytes(pSrc);
-        }
-        return res;
-    }
-#endif
-
-#if INT_USE_OP_CLEAR
-    if (op <= INT_OP_CLEAR_ALL)
-    {
-        op = op & INT_OP_CLEAR_ALL;
-        if (INT_INTERNAL_CHECK_CLEAR(op, INT_OP_CLEAR_RESULT))
-        {
-            res = myintOpShort(INT_OP_CLEAR_SRC, pResult);
-        }
-
-        if (INT_INTERNAL_CHECK_CLEAR(op, INT_OP_CLEAR_SRC2))
-        {
-            res = myintOpShort(INT_OP_CLEAR_SRC, pSrc2);
-        }
-
-        if (INT_INTERNAL_CHECK_CLEAR(op, INT_OP_CLEAR_SRC))
-        {
-            res = myDataOp(REALLOC_FREE, (unsigned char **)&pSrc->data.pBytes, 0, 0);
-            if (res == 0)
-            {
-                pSrc->size = 0;
-                pSrc->used_size = 0;
-
-                if (pSrc->rest != NULL)
-                {
-                    res = myintOpShort(INT_OP_CLEAR_SRC, pSrc->rest);
-                }
-            }
-        }
-        return res;
-    }
-#endif
 
     unsigned int sizeVal, resultValue = 0, resIdx = 0, i = 0, a = 0, b = 0, t = 0;
-    MYINT *pRest = NULL;
+    // MYINT *pRest = NULL;
     unsigned char *pSrc1Chars = pSrc->data.pBytes, *pSrc2Chars = pSrc2->data.pBytes;
     unsigned char *pFrom, *pFromEnd, *pSub, *pTo, *pTemp;
     int diff;
@@ -238,7 +238,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         {
             return INT_RESULT_CMP_GREATER;
         }
-        //same length, check bytes
+        // same length, check bytes
         if (a != 0)
         {
             --a;
@@ -300,7 +300,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 
         while (resultValue > 0)
         {
-            resultValue = (unsigned int)(*pFrom) + resultValue;//(resultValue & 0xFF);
+            resultValue = (unsigned int)(*pFrom) + resultValue; //(resultValue & 0xFF);
             *pFrom = (unsigned char)(resultValue & 0xFF);
             resultValue >>= 8;
             ++pFrom;
@@ -313,7 +313,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         a = pSrc->used_size;
         b = pSrc2->used_size;
 #endif
-        res = myintOp(INT_OP_CMP_ABS, pSrc, pSrc2, NULL);
+        res = myintOp(INT_OP_CMP_ABS, pSrc, pSrc2, NULL, NULL);
         pResult->sign = 0;
 
         if (res == INT_RESULT_CMP_LESS)
@@ -473,15 +473,18 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             return 1;
         }
 
-#if 1
+#if 0
+        if(pRest == NULL) {
+
+        }
         res = myDataOp(REALLOC_ALLOC_IF_NEEDED | REALLOC_NULLIFY, (unsigned char **)&pResult->rest, sizeof(MYINT), 0);
         if (res)
         {
             return INT_ALLOCATION_ERROR;
         }
-        pRest = pResult->rest;
+        //pRest = pResult->rest;
 #else
-        MYINT *pRest = pResult->rest;
+        // MYINT *pRest = pResult->rest;
         if (pRest == NULL)
         {
             pRest = (MYINT *)malloc(sizeof(MYINT));
@@ -490,10 +493,10 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                 return INT_ALLOCATION_ERROR;
             }
             nullifyMyInt(pRest);
-            pResult->rest = pRest;
+            // pResult->rest = pRest;
         }
 #endif
-        res = myintOp(INT_OP_CMP_ABS, pSrc, pSrc2, NULL);
+        res = myintOp(INT_OP_CMP_ABS, pSrc, pSrc2, NULL, NULL);
         pResult->sign = 0;
 
         pFrom = myintClearBytes(pRest);
@@ -573,12 +576,6 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 
             pTo = myintClearBytes(pResult);
 
-            if (0 != checkOrRealloc(pRest, 8))
-            {
-                return INT_ALLOCATION_ERROR;
-            }
-            pFrom = myintClearBytes(pRest); // pRest->data.pBytes;
-
 #if INT_DEBUG_SHOW_DIV
             logStack = getLine();
             if (logStack != NULL)
@@ -631,11 +628,9 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                     return INT_ALLOCATION_ERROR;
                 }
 
-                *((uint64_t *)pFrom) = rest64;
                 *((uint64_t *)pResult->data.pBytes) = result64;
-                res = 0;
-                // adjust(pRest);
-                // adjust(pResult);
+
+                res = myintStoreRest(pRest, rest64);
 #if INT_DEBUG_SHOW_DIV
                 logStack = getLine();
                 if (logStack != NULL)
@@ -653,10 +648,6 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             }
 
             pTo = myintClearBytes(pResult);
-            // pFrom = myintClearBytes(pRest);
-            // pTo = pResult->data.pBytes;
-            // clear2(pTo, pResult->size);
-            // clear2(pFrom, pRest->size);
 #if 0
             pTemp = getTempMemory(pSrc->used_size);
             if (pTemp == NULL)
@@ -721,9 +712,19 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             ++i;
             reverseUCharArray(pResult->data.pBytes, i);
             // pResult->used_size = i;
-            *((uint64_t *)pRest->data.pBytes) = rest64;
-            //*((uint64_t *)pFrom) = rest64;
-            res = 0;
+#if 0
+            if (rest64 > 0)
+            {
+                if (0 != checkOrRealloc(pRest, 8))
+                {
+                    return INT_ALLOCATION_ERROR;
+                }
+                pFrom = myintClearBytes(pRest);
+                *((uint64_t *)pFrom) = rest64;
+            }
+#endif
+
+            res = myintStoreRest(pRest, rest64);
             break;
             // adjust(pRest);
             // adjust(pResult);
@@ -741,7 +742,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         return 0;
     }
     return res;
-    //return INT_COMMAND_ERROR;
+    // return INT_COMMAND_ERROR;
 }
 
 int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)

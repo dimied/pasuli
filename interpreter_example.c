@@ -34,11 +34,12 @@ int main()
     printf("----\n");
     testDivision();
     printf("----\n");
-#endif
     printTestResults();
+#endif
+#if 1
     printf("\n---\n");
     testCompress();
-
+#endif
     printf("MYINT-SIZE: %li\n", sizeof(MYINT));
     // printf("PTR-SIZE: %li\n", sizeof(unsigned char *));
     return 0;

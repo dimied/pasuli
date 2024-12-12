@@ -165,7 +165,7 @@ void testAddition()
     MYINT test2;
     MYINT result;
     intOps = 0;
-    int res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
+    int INT_INIT_CALL3(res, &test1, &test2, &result);
 
     printf("Allocated! %i\n", res);
     if (res)
@@ -189,7 +189,7 @@ void testAddition()
         test2.used_size = pTests->numBytesB;
         test2.size = test2.used_size;
 
-        res = myintOp(INT_OP_ADD, &test1, &test2, &result);
+        res = myintOp(INT_OP_ADD, &test1, &test2, &result, NULL);
         if (res == 0)
         {
             printMyInt(&result, testChars, NUM_TEST_CHARS);
@@ -239,7 +239,7 @@ void testAddition()
     snprintf(pText, TEST_CHARS_SIZE, "ADD-TEST: #ok=%i, #failed=%i\n", okTests, failedTests);
     printf("%s", pText);
 
-    res = myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
+    INT_CLEAR_CALL3(res, &test1, &test2, &result);
     intOps = 0;
     printf("Test ADD!%i\n", res);
 }
@@ -251,7 +251,7 @@ void testSubtraction()
     MYINT test2;
     MYINT result;
 
-    int res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
+    int INT_INIT_CALL3(res, &test1, &test2, &result);
 
     printf("Allocated! %i\n", res);
     if (res)
@@ -281,7 +281,7 @@ void testSubtraction()
 
             int expectedInt = f - s;
             hasFailed = 0;
-            res = myintOp(INT_OP_SUB, &test1, &test2, &result);
+            res = myintOp(INT_OP_SUB, &test1, &test2, &result, NULL);
             pUShort3 = result.data.pShorts;
             value = *pUShort3;
             if (result.sign)
@@ -337,7 +337,7 @@ void testSubtraction()
         test2.used_size = pTests->numBytesB;
         test2.size = test2.used_size;
 
-        res = myintOp(INT_OP_SUB, &test1, &test2, &result);
+        res = myintOp(INT_OP_SUB, &test1, &test2, &result, NULL);
         if (res == 0)
         {
             char *pTestChars = testChars;
@@ -393,7 +393,7 @@ void testSubtraction()
     snprintf(pText, TEST_CHARS_SIZE, "SUB-TEST:2: #ok=%i, #failed=%i\n", okTests, failedTests);
     printf("%s", pText);
 
-    res = myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
+    INT_CLEAR_CALL3(res, &test1, &test2, &result);
 
     printf("Cleared! %i\n", res);
     printf("Test SUB!\n");
@@ -405,7 +405,7 @@ void testMultiplication()
     MYINT test2;
     MYINT result;
 
-    int res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
+    int INT_INIT_CALL3(res, &test1, &test2, &result);
 
     printf("Allocated! %i\n", res);
     if (res)
@@ -439,7 +439,7 @@ void testMultiplication()
 
             expectedUInt = f * s;
             hasFailed = 0;
-            res = myintOp(INT_OP_MUL, &test1, &test2, &result);
+            res = myintOp(INT_OP_MUL, &test1, &test2, &result, NULL);
             resultUInt = 0;
             ii = 0;
             while (ii < result.used_size)
@@ -503,7 +503,7 @@ void testMultiplication()
         test2.used_size = pTests->numBytesB;
         test2.size = test2.used_size;
 
-        res = myintOp(INT_OP_MUL, &test1, &test2, &result);
+        res = myintOp(INT_OP_MUL, &test1, &test2, &result, NULL);
         if (res == 0)
         {
             char *pTestChars = testChars;
@@ -551,7 +551,7 @@ void testMultiplication()
     snprintf(pText, TEST_CHARS_SIZE, "MUL-TEST-END:2: #ok=%i, #failed=%i\n", okTests, failedTests);
     printf("%s", pText);
 
-    res = myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
+    INT_CLEAR_CALL3(res, &test1, &test2, &result);
 
     printf("Cleared! %i\n", res);
 
@@ -563,10 +563,12 @@ void testDivision()
     MYINT test1;
     MYINT test2;
     MYINT result;
+    MYINT rest;
 
-    int restRes, res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
+    int restRes, restResInit, INT_INIT_CALL3(res, &test1, &test2, &result);
+    INT_INIT_CALL1(restResInit, &rest);
 
-    printf("Allocated! %i\n", res);
+    printf("Allocated! %x|%x\n", res, restResInit);
 
     int okTests = 0;
     int failedTests = 0;
@@ -598,7 +600,7 @@ void testDivision()
             unsigned int expectedRest = f % s;
             unsigned int expected = f / s;
             hasFailed = 0;
-            res = myintOp(INT_OP_DIV, &test1, &test2, &result);
+            res = myintOp(INT_OP_DIV, &test1, &test2, &result, &rest);
             unsigned short *pUShort3 = (unsigned short *)result.data.pBytes;
             unsigned int value = *pUShort3;
             if (result.used_size == 0)
@@ -609,12 +611,12 @@ void testDivision()
             {
                 value = value & 0xFF;
             }
-            unsigned int rest = 0;
+            unsigned int restValue = 0;
             if (res == 0)
             {
-                if (expected == value && result.rest != NULL)
+                if (expected == value)
                 {
-                    if (result.rest->used_size == 0)
+                    if (rest.used_size == 0)
                     {
                         if (expectedRest == 0)
                         {
@@ -627,16 +629,16 @@ void testDivision()
                     }
                     else
                     {
-                        unsigned int numBytes = result.rest->used_size;
-                        unsigned short *pUShort4 = (unsigned short *)result.rest->data.pBytes;
+                        unsigned int numBytes = rest.used_size;
+                        unsigned short *pUShort4 = (unsigned short *)rest.data.pBytes;
                         if (pUShort4 != NULL)
                         {
-                            rest = *pUShort4;
+                            restValue = *pUShort4;
                             if (numBytes == 1)
                             {
-                                rest = rest & 0xFF;
+                                restValue = restValue & 0xFF;
                             }
-                            if (rest == expectedRest)
+                            if (restValue == expectedRest)
                             {
                                 ++okTests;
                             }
@@ -668,7 +670,7 @@ void testDivision()
                 printf("%i|Failed: %i / %i = %i|%x (rest=%i|%x) <> Ex=%i|%x (rest=%i|%x)\n", res,
                        f, s,
                        value, value,
-                       rest, rest,
+                       restValue, restValue,
                        expected, expected,
                        expectedRest, expectedRest);
 
@@ -730,7 +732,7 @@ void testDivision()
     test2.used_size = 2;
     const char *expectedDivResult = "2108487321999504381414452155199553956396";
     const char *expectedDivRest = "317";
-    res = myintOp(INT_OP_DIV, &test1, &test2, &result);
+    res = myintOp(INT_OP_DIV, &test1, &test2, &result, &rest);
     test1.data.pBytes = pChars;
     printf("DIV => %i\n", res);
 
@@ -743,7 +745,7 @@ void testDivision()
     }
 
     clear2(printChars, NUM_TEST_CHARS);
-    resI = printMyInt(result.rest, printChars, NUM_TEST_CHARS);
+    resI = printMyInt(&rest, printChars, NUM_TEST_CHARS);
     if (0 != strcmp(printChars, expectedDivRest))
     {
         printf("%i!%s\n", resI, printChars);
@@ -766,16 +768,15 @@ void testDivision()
         test2.size = test2.used_size;
         clearStack();
 
-        res = myintOp(INT_OP_DIV, &test1, &test2, &result);
+        res = myintOp(INT_OP_DIV, &test1, &test2, &result, &rest);
         if (res == 0)
         {
             clear2(testChars, NUM_TEST_CHARS);
             clear2(testRestChars, NUM_TEST_CHARS);
             printMyInt(&result, testChars, NUM_TEST_CHARS);
-            if (result.rest != NULL)
-            {
-                printMyInt(result.rest, testRestChars, NUM_TEST_CHARS);
-            }
+            
+                printMyInt(&rest, testRestChars, NUM_TEST_CHARS);
+            
 
             res = strcmp(testChars, pTests->ptrC);
             restRes = strcmp(testRestChars, pTests->ptrR);
@@ -828,7 +829,7 @@ void testDivision()
     snprintf(pText, TEST_CHARS_SIZE, "DIV-TEST-END:2: #ok=%i, #failed=%i\n", okTests, failedTests);
     printf("%s", pText);
 
-    res = myintOp(INT_OP_CLEAR_ALL, &test1, &test2, &result);
+   INT_CLEAR_CALL3(res, &test1, &test2, &result);
 
     printf("Cleared! %i\n", res);
 
