@@ -21,8 +21,7 @@ float circleParams[] = {1};
 
 float uParams[] = {0, PI * 0.5, PI};
 float vParams[] = {0, PI, 2 * PI};
-char nParamsU = 3;
-char nParamsV = 3;
+char nParamsU = 3, nParamsV = 3;
 
 void sphere(float u, float v, float *pParams, float *pResults)
 {

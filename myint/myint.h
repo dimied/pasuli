@@ -107,8 +107,6 @@ typedef struct _MYINT
 
 extern int intOps;
 
-
-
 void nullifyMyInt(MYINT *pMyInt);
 
 unsigned int myintAdjust(MYINT *pData);
