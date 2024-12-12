@@ -144,5 +144,4 @@ int myDataOp(int op, unsigned char **pData, unsigned int size, unsigned int oldS
         clear2(*pData, size);
     }
     return res;
-    // return DATA_OP_RESULT_INVALID;
 }

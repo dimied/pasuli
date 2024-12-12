@@ -102,32 +102,14 @@ void adjust(MYINT *pData)
 
 int intOps = 0;
 
-void sprintHex(unsigned char *vals, size_t sss, char *pResult, unsigned int size)
-{
-
-    if (vals != NULL && pResult != NULL)
-    {
-        unsigned int j = 0;
-        for (size_t i = 0; i < sss; i++)
-        {
-            unsigned char vvv = vals[sss - i - 1];
-            if (j + 1 < size)
-            {
-                snprintf(pResult + j, size - j, "%x%x", vvv >> 4, vvv & 0xF);
-            }
-
-            j += 2;
-        }
-    }
-}
-
 unsigned char *myintClearBytes(MYINT *pSrc)
 {
     clear2(pSrc->data.pBytes, pSrc->size);
     return pSrc->data.pBytes;
 }
 
-int myintOpShort(int op, MYINT *pSrc) {
+int myintOpShort(int op, MYINT *pSrc)
+{
     return myintOp(op, pSrc, NULL, NULL);
 }
 
@@ -140,6 +122,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
     }
 #endif
     int res = 1;
+#if INT_USE_OP_CLEAR
     if (op >= INT_OP_INIT_SRC && op <= INT_OP_INIT_ALL)
     {
         op = op & INT_OP_INIT_ALL;
@@ -165,7 +148,9 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         }
         return res;
     }
+#endif
 
+#if INT_USE_OP_CLEAR
     if (op <= INT_OP_CLEAR_ALL)
     {
         op = op & INT_OP_CLEAR_ALL;
@@ -195,8 +180,9 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         }
         return res;
     }
+#endif
 
-    unsigned int sizeVal, resultValue = 0, resIdx = 0, i=0, a=0, b=0, t=0;
+    unsigned int sizeVal, resultValue = 0, resIdx = 0, i = 0, a = 0, b = 0, t = 0;
     MYINT *pRest = NULL;
     unsigned char *pSrc1Chars = pSrc->data.pBytes, *pSrc2Chars = pSrc2->data.pBytes;
     unsigned char *pFrom, *pFromEnd, *pSub, *pTo, *pTemp;
@@ -214,12 +200,12 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         b = pSrc2->used_size;
     }
 #endif
+    res = INT_COMMAND_ERROR;
 
     switch (op)
     {
     case INT_OP_ZERO:
         myintClearBytes(pSrc);
-        // clear2(pSrc->data.pBytes, pSrc->size);
         pSrc->used_size = 0;
         return 0;
 #if 0
@@ -252,13 +238,13 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         {
             return INT_RESULT_CMP_GREATER;
         }
+        //same length, check bytes
         if (a != 0)
         {
             --a;
             pSrc1Chars += a;
             pSrc2Chars += a;
             ++a;
-            /// if a and b have the same degree check each degree individually
             do
             {
                 diff = (int)(*pSrc1Chars) - (int)(*pSrc2Chars);
@@ -293,11 +279,16 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         }
 
         pFrom = myintClearBytes(pResult);
-        // pFrom = pResult->data.pBytes;
-        // clear2(pFrom, sizeVal);
         memcpy(pFrom, pSrc1Chars, a);
 
-        for (; i < b; i++)
+#define ADD_BY_PTR_CMP 0
+
+#if ADD_BY_PTR_CMP
+        pFromEnd = pSrc2Chars + b - 1;
+        while (pSrc2Chars <= pFromEnd)
+#else
+        for (; i < b; ++i)
+#endif
         {
             resultValue += (unsigned int)(*pFrom) + (unsigned int)(*pSrc2Chars);
 
@@ -309,7 +300,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
 
         while (resultValue > 0)
         {
-            resultValue = (unsigned int)(*pFrom) + (resultValue & 0xFF);
+            resultValue = (unsigned int)(*pFrom) + resultValue;//(resultValue & 0xFF);
             *pFrom = (unsigned char)(resultValue & 0xFF);
             resultValue >>= 8;
             ++pFrom;
@@ -408,7 +399,6 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         // pFrom = pResult->data.pBytes;
         if (diff > 0)
         {
-            // myintOp(INT_OP_ZERO, pResult, pSrc, NULL);
             myintClearBytes(pResult);
             // clear2(pFrom, pResult->size);
             pResult->used_size = 0;
@@ -518,12 +508,12 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
         }
 #endif
 
-        //pTo = pResult->data.pBytes;
+        // pTo = pResult->data.pBytes;
 
         if (res == INT_RESULT_CMP_LESS)
         {
             myintClearBytes(pResult);
-            //clear2(pTo, pResult->size);
+            // clear2(pTo, pResult->size);
             pResult->used_size = 0;
 
             res = checkOrRealloc(pRest, a);
@@ -587,7 +577,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             {
                 return INT_ALLOCATION_ERROR;
             }
-            pFrom = myintClearBytes(pRest);// pRest->data.pBytes;
+            pFrom = myintClearBytes(pRest); // pRest->data.pBytes;
 
 #if INT_DEBUG_SHOW_DIV
             logStack = getLine();
@@ -644,8 +634,8 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                 *((uint64_t *)pFrom) = rest64;
                 *((uint64_t *)pResult->data.pBytes) = result64;
                 res = 0;
-                //adjust(pRest);
-                //adjust(pResult);
+                // adjust(pRest);
+                // adjust(pResult);
 #if INT_DEBUG_SHOW_DIV
                 logStack = getLine();
                 if (logStack != NULL)
@@ -654,7 +644,7 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
                              divFrom64, div64, result64, rest64);
                 }
 #endif
-                //return 0;
+                // return 0;
                 break;
             }
             if (0 != checkOrRealloc(pResult, a - b + 2))
@@ -735,21 +725,23 @@ int myintOp(int op, MYINT *pSrc, MYINT *pSrc2, MYINT *pResult)
             //*((uint64_t *)pFrom) = rest64;
             res = 0;
             break;
-            //adjust(pRest);
-            //adjust(pResult);
-            //return 0;
-            // printf("N: %x\n", divFrom64);
+            // adjust(pRest);
+            // adjust(pResult);
+            // return 0;
+            //  printf("N: %x\n", divFrom64);
 
             // free(pTemp);
         }
 #endif
     }
-    if(res == 0 && op== INT_OP_DIV) {
-adjust(pRest);
-            adjust(pResult);
-            return 0;
+    if (res == 0 && op == INT_OP_DIV)
+    {
+        adjust(pRest);
+        adjust(pResult);
+        return 0;
     }
-    return INT_COMMAND_ERROR;
+    return res;
+    //return INT_COMMAND_ERROR;
 }
 
 int printMyInt(MYINT *pSrc, char *pResult, unsigned int resultLength)

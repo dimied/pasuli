@@ -36,8 +36,10 @@ int main()
     printf("----\n");
 #endif
     printTestResults();
+    printf("\n---\n");
     testCompress();
 
+    printf("MYINT-SIZE: %li\n", sizeof(MYINT));
     // printf("PTR-SIZE: %li\n", sizeof(unsigned char *));
     return 0;
 }
@@ -73,13 +75,15 @@ void testCompress()
         0x57,
         0x01,
         0x78,
-        0x7D, 0x11, 0x93};
+        0x7D,
+        0x11,
+        0x93};
     char pResult2[80] = {0};
     int res = printBytes(testData, sizeof(testData), pResult2, 80);
     printf("%i|%s\n", res, pResult2);
 
-    unsigned char pResult[20] = {0};
+    unsigned char pResult[30] = {0};
     compressType = 0;
-    compress(testData, sizeof(testData), pResult, 20);
+    compress(testData, sizeof(testData), pResult, 30);
     printf("COMPRESS!\n");
 }

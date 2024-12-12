@@ -47,7 +47,7 @@ opengl:
 #interpreter_example.c interpreter.c interpreter_text.c interpreter_progs.c prime_compressor.c memory.c myint.c log_stack.c myint_test_data.c myint_test.c 
 interpreter: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
 	rm -f ./intertest
-	g++ -Wall -g -Os -B -lm -lc ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} -o intertest
+	gcc -Wall -g -Os -B -lc -o intertest ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} -lm
 
 showsizes15:
 	nm --size-sort intertest | tail -15

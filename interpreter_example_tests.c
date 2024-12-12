@@ -97,8 +97,8 @@ void interpreter_tests() {
 
     // parseCodeText(CIRCLE_PROG_BYTES, circleProgs);
 
-    timeval tp;
-    timeval tp2;
+    struct timeval tp;
+    struct timeval tp2;
 
     setParseCodeOptions(0);
 

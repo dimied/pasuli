@@ -4,6 +4,26 @@
 #include "memory.h"
 
 
+void sprintHex(unsigned char *vals, size_t sss, char *pResult, unsigned int size)
+{
+
+    if (vals != NULL && pResult != NULL)
+    {
+        unsigned int j = 0;
+        for (size_t i = 0; i < sss; i++)
+        {
+            unsigned char vvv = vals[sss - i - 1];
+            if (j + 1 < size)
+            {
+                snprintf(pResult + j, size - j, "%x%x", vvv >> 4, vvv & 0xF);
+            }
+
+            j += 2;
+        }
+    }
+}
+
+
 int printBytes(unsigned char *p, unsigned int size, char *pResult, unsigned int resultLength)
 {
     if (resultLength < 2)
