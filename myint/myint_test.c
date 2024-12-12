@@ -5,6 +5,7 @@
 #include "../util/log_stack.h"
 #include "../util/memory.h"
 #include "../util/output.h"
+#include "myint_util.h"
 #include "myint_test.h"
 #include "myint_test_data.h"
 
@@ -600,6 +601,7 @@ void testDivision()
             unsigned int expectedRest = f % s;
             unsigned int expected = f / s;
             hasFailed = 0;
+            clear2(rest.data.pBytes, rest.size);
             res = myintOp(INT_OP_DIV, &test1, &test2, &result, &rest);
             unsigned short *pUShort3 = (unsigned short *)result.data.pBytes;
             unsigned int value = *pUShort3;
