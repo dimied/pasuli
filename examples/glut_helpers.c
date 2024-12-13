@@ -13,7 +13,6 @@ GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
 float lmodel_twoside[] = {GL_TRUE};
 float lmodel_oneside[] = {GL_FALSE};
 
-
 /* enumerations for the mouse buttons */
 enum MouseState
 {

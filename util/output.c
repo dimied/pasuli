@@ -4,7 +4,7 @@
 #include "memory.h"
 
 
-void sprintHex(unsigned char *vals, size_t sss, char *pResult, unsigned int size)
+void sprintHex(unsigned char *vals, unsigned int sss, char *pResult, unsigned int size)
 {
 
     if (vals != NULL && pResult != NULL)

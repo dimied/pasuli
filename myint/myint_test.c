@@ -13,7 +13,7 @@
 // res = myintOp(INT_OP_INIT_ALL, &test1, &test2, &result);
 char printChars[NUM_TEST_CHARS];
 
-unsigned char adds[] = {1, 2, 3, 5, 7, 11, 13, 17};
+const unsigned char adds[] = {1, 2, 3, 5, 7, 11, 13, 17};
 
 #define TEST_CHARS_SIZE 60
 char testChars[TEST_CHARS_SIZE];

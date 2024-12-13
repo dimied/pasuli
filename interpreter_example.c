@@ -1,5 +1,10 @@
+
+//#if USE_START
 #include <stdio.h> // printf
 #include <stdlib.h>
+//#include <gnu/lib-names.h>
+
+
 #include <sys/time.h>
 #include <math.h>
 

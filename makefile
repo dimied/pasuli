@@ -49,6 +49,12 @@ interpreter: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prime_co
 	rm -f ./intertest
 	gcc -Wall -g -Os -B -lc -o intertest ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} -lm
 
+interpreter_tcc: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
+	rm -f ./intertest
+	tcc -std=c11 -I./ -Wall -vv -fno-common -g -Os -B -ltcc -lm -o intertest ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
+
+
+
 showsizes15:
 	nm --size-sort intertest | tail -15
 
@@ -57,6 +63,17 @@ showsizes30:
 
 showsizes50:
 	nm --size-sort intertest | tail -50
+
+showsizes50_extern:
+	nm --size-sort -g intertest | tail -50
+
+
+ogl: ogl_test.c ogl_names.c
+	rm -f ogl_test
+	gcc -Wall -g -Os -lc -ldl -o ogl_test ogl_test.c ogl_names.c
+
+showogl5:
+	nm --size-sort ogl_test | tail -5
 
 clean:
 	rm -f *.o 
