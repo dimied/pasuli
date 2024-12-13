@@ -22,7 +22,11 @@
 #define BOOLEAN_PTR_TYPE 0x11
 #define UBYTE_PTR_TYPE 0x12
 #define DOUBLE_PTR_TYPE 0x13
+#define DOUBLE_MATRIX_TYPE DOUBLE_PTR_TYPE
+
 #define FLOAT_PTR_TYPE 0x14
+#define FLOAT_MATRIX_TYPE FLOAT_PTR_TYPE
+
 #define CLAMPF_PTR_TYPE 0x14
 #define INT_PTR_TYPE 0x15
 #define SHORT_PTR_TYPE 0x16
@@ -43,156 +47,93 @@ typedef struct _OGL_FUNC_DESC
     unsigned char version;
 } OGL_FUNC_DESC;
 
-#define FUNC_DECL0(VT, NAME) \
-    {                        \
-        rType : VT,          \
-        name : NAME,         \
-        paramCount : 0,      \
-        version : 1          \
+#define V_FUNC_DECL0(V, VT, NAME) \
+    {                             \
+        rType : VT,               \
+        name : NAME,              \
+        paramCount : 0,           \
+        version : V               \
     }
 
-#define V11_FUNC_DECL0(VT, NAME) \
-    {                            \
-        rType : VT,              \
-        name : NAME,             \
-        paramCount : 0,          \
-        version : 11             \
+#define FUNC_DECL0(VT, NAME) V_FUNC_DECL0(1, VT, NAME)
+#define V11_FUNC_DECL0(VT, NAME) V_FUNC_DECL0(11, VT, NAME)
+
+#define V_FUNC_DECL1(V, VT, NAME, P1) \
+    {                                 \
+        rType : VT,                   \
+        name : NAME,                  \
+        paramCount : 1,               \
+        params : {P1},                \
+        version : V                   \
     }
 
-#define FUNC_DECL1(VT, NAME, P1) \
-    {                            \
-        rType : VT,              \
-        name : NAME,             \
-        paramCount : 1,          \
-        params : {P1},           \
-        version : 1              \
+#define FUNC_DECL1(VT, NAME, P1) V_FUNC_DECL1(1, VT, NAME, P1)
+#define V11_FUNC_DECL1(VT, NAME, P1) V_FUNC_DECL1(11, VT, NAME, P1)
+#define V13_FUNC_DECL1(VT, NAME, P1) V_FUNC_DECL1(13, VT, NAME, P1)
+
+#define V_FUNC_DECL2(V, VT, NAME, P1, P2) \
+    {                                     \
+        rType : VT,                       \
+        name : NAME,                      \
+        paramCount : 2,                   \
+        params : {P1, P2},                \
+        version : V                       \
     }
 
-#define V11_FUNC_DECL1(VT, NAME, P1) \
-    {                                \
-        rType : VT,                  \
-        name : NAME,                 \
-        paramCount : 1,              \
-        params : {P1},               \
-        version : 11                 \
+#define FUNC_DECL2(VT, NAME, P1, P2) V_FUNC_DECL2(1, VT, NAME, P1, P2)
+#define V11_FUNC_DECL2(VT, NAME, P1, P2) V_FUNC_DECL2(11, VT, NAME, P1, P2)
+#define V13_FUNC_DECL2(VT, NAME, P1, P2) V_FUNC_DECL2(13, VT, NAME, P1, P2)
+
+#define V_FUNC_DECL3(V, VT, NAME, P1, P2, P3) \
+    {                                         \
+        rType : VT,                           \
+        name : NAME,                          \
+        paramCount : 3,                       \
+        params : {P1, P2, P3},                \
+        version : V                           \
     }
 
-#define V13_FUNC_DECL1(VT, NAME, P1) \
-    {                                \
-        rType : VT,                  \
-        name : NAME,                 \
-        paramCount : 1,              \
-        params : {P1},               \
-        version : 13                 \
+#define FUNC_DECL3(VT, NAME, P1, P2, P3) V_FUNC_DECL3(1, VT, NAME, P1, P2, P3)
+#define V11_FUNC_DECL3(VT, NAME, P1, P2, P3) V_FUNC_DECL3(11, VT, NAME, P1, P2, P3)
+#define V13_FUNC_DECL3(VT, NAME, P1, P2, P3) V_FUNC_DECL3(13, VT, NAME, P1, P2, P3)
+
+#define V_FUNC_DECL4(V, VT, NAME, P1, P2, P3, P4) \
+    {                                             \
+        rType : VT,                               \
+        name : NAME,                              \
+        paramCount : 4,                           \
+        params : {P1, P2, P3, P4},                \
+        version : V                               \
     }
 
-#define FUNC_DECL2(VT, NAME, P1, P2) \
-    {                                \
-        rType : VT,                  \
-        name : NAME,                 \
-        paramCount : 3,              \
-        params : {P1, P2},           \
-        version : 1                  \
+#define FUNC_DECL4(VT, NAME, P1, P2, P3, P4) V_FUNC_DECL4(1, VT, NAME, P1, P2, P3, P4)
+#define V13_FUNC_DECL4(VT, NAME, P1, P2, P3, P4) V_FUNC_DECL4(13, VT, NAME, P1, P2, P3, P4)
+
+#define V_FUNC_DECL5(V, VT, NAME, P1, P2, P3, P4, P5) \
+    {                                                 \
+        rType : VT,                                   \
+        name : NAME,                                  \
+        paramCount : 5,                               \
+        params : {P1, P2, P3, P4, P5},                \
+        version : V                                   \
     }
 
-#define V11_FUNC_DECL2(VT, NAME, P1, P2) \
-    {                                    \
-        rType : VT,                      \
-        name : NAME,                     \
-        paramCount : 3,                  \
-        params : {P1, P2},               \
-        version : 11                     \
+#define FUNC_DECL5(VT, NAME, P1, P2, P3, P4, P5) V_FUNC_DECL5(1, VT, NAME, P1, P2, P3, P4, P5)
+#define V11_FUNC_DECL5(VT, NAME, P1, P2, P3, P4, P5) V_FUNC_DECL5(11, VT, NAME, P1, P2, P3, P4, P5)
+#define V13_FUNC_DECL5(VT, NAME, P1, P2, P3, P4, P5) V_FUNC_DECL5(13, VT, NAME, P1, P2, P3, P4, P5)
+
+#define V_FUNC_DECL6(V, VT, NAME, P1, P2, P3, P4, P5, P6) \
+    {                                                     \
+        rType : VT,                                       \
+        name : NAME,                                      \
+        paramCount : 6,                                   \
+        params : {P1, P2, P3, P4, P5, P6},                \
+        version : V                                       \
     }
 
-#define V13_FUNC_DECL2(VT, NAME, P1, P2) \
-    {                                    \
-        rType : VT,                      \
-        name : NAME,                     \
-        paramCount : 3,                  \
-        params : {P1, P2},               \
-        version : 13                     \
-    }
-
-#define FUNC_DECL3(VT, NAME, P1, P2, P3) \
-    {                                    \
-        rType : VT,                      \
-        name : NAME,                     \
-        paramCount : 3,                  \
-        params : {P1, P2, P3},           \
-        version : 1                      \
-    }
-
-#define V11_FUNC_DECL3(VT, NAME, P1, P2, P3) \
-    {                                        \
-        rType : VT,                          \
-        name : NAME,                         \
-        paramCount : 3,                      \
-        params : {P1, P2, P3},               \
-        version : 11                         \
-    }
-
-#define V13_FUNC_DECL3(VT, NAME, P1, P2, P3) \
-    {                                        \
-        rType : VT,                          \
-        name : NAME,                         \
-        paramCount : 3,                      \
-        params : {P1, P2, P3},               \
-        version : 13                         \
-    }
-
-#define FUNC_DECL4(VT, NAME, P1, P2, P3, P4) \
-    {                                        \
-        rType : VT,                          \
-        name : NAME,                         \
-        paramCount : 4,                      \
-        params : {P1, P2, P3, P4},           \
-        version : 1                          \
-    }
-
-#define FUNC_DECL5(VT, NAME, P1, P2, P3, P4, P5) \
-    {                                            \
-        rType : VT,                              \
-        name : NAME,                             \
-        paramCount : 5,                          \
-        params : {P1, P2, P3, P4, P5},           \
-        version : 1                              \
-    }
-
-#define V11_FUNC_DECL5(VT, NAME, P1, P2, P3, P4, P5) \
-    {                                                \
-        rType : VT,                                  \
-        name : NAME,                                 \
-        paramCount : 5,                              \
-        params : {P1, P2, P3, P4, P5},               \
-        version : 1                                  \
-    }
-
-#define FUNC_DECL6(VT, NAME, P1, P2, P3, P4, P5, P6) \
-    {                                                \
-        rType : VT,                                  \
-        name : NAME,                                 \
-        paramCount : 6,                              \
-        params : {P1, P2, P3, P4, P5, P6},           \
-        version : 1                                  \
-    }
-
-#define V11_FUNC_DECL6(VT, NAME, P1, P2, P3, P4, P5, P6) \
-    {                                                    \
-        rType : VT,                                      \
-        name : NAME,                                     \
-        paramCount : 6,                                  \
-        params : {P1, P2, P3, P4, P5, P6},               \
-        version : 11                                     \
-    }
-
-#define V12_FUNC_DECL6(VT, NAME, P1, P2, P3, P4, P5, P6) \
-    {                                                    \
-        rType : VT,                                      \
-        name : NAME,                                     \
-        paramCount : 6,                                  \
-        params : {P1, P2, P3, P4, P5, P6},               \
-        version : 12                                     \
-    }
+#define FUNC_DECL6(VT, NAME, P1, P2, P3, P4, P5, P6) V_FUNC_DECL6(1, VT, NAME, P1, P2, P3, P4, P5, P6)
+#define V11_FUNC_DECL6(VT, NAME, P1, P2, P3, P4, P5, P6) V_FUNC_DECL6(11, VT, NAME, P1, P2, P3, P4, P5, P6)
+#define V12_FUNC_DECL6(VT, NAME, P1, P2, P3, P4, P5, P6) V_FUNC_DECL6(12, VT, NAME, P1, P2, P3, P4, P5, P6)
 
 #define FUNC_DECL7(VT, NAME, P1, P2, P3, P4, P5, P6, P7) \
     {                                                    \
@@ -204,12 +145,12 @@ typedef struct _OGL_FUNC_DESC
     }
 
 #define V13_FUNC_DECL7(VT, NAME, P1, P2, P3, P4, P5, P6, P7) \
-    {                                                    \
-        rType : VT,                                      \
-        name : NAME,                                     \
-        paramCount : 7,                                  \
-        params : {P1, P2, P3, P4, P5, P6, P7},           \
-        version : 13                                      \
+    {                                                        \
+        rType : VT,                                          \
+        name : NAME,                                         \
+        paramCount : 7,                                      \
+        params : {P1, P2, P3, P4, P5, P6, P7},               \
+        version : 13                                         \
     }
 
 #define V11_FUNC_DECL7(VT, NAME, P1, P2, P3, P4, P5, P6, P7) \
@@ -294,12 +235,12 @@ typedef struct _OGL_FUNC_DESC
     }
 
 #define V12_FUNC_DECL9(VT, NAME, P1, P2, P3, P4, P5, P6, P7, P8, P9) \
-    {                                                                     \
-        rType : VT,                                                       \
-        name : NAME,                                                      \
-        paramCount : 9,                                                  \
-        params : {P1, P2, P3, P4, P5, P6, P7, P8, P9},                \
-        version : 12                                                      \
+    {                                                                \
+        rType : VT,                                                  \
+        name : NAME,                                                 \
+        paramCount : 9,                                              \
+        params : {P1, P2, P3, P4, P5, P6, P7, P8, P9},               \
+        version : 12                                                 \
     }
 
 #define V12_FUNC_DECL10(VT, NAME, P1, P2, P3, P4, P5, P6, P7, P8, P9, PA) \
@@ -311,22 +252,22 @@ typedef struct _OGL_FUNC_DESC
         version : 12                                                      \
     }
 
-#define V12_FUNC_DECL11(VT, NAME, P1, P2, P3, P4, P5, P6, P7, P8, P9, PA,PB) \
-    {                                                                     \
-        rType : VT,                                                       \
-        name : NAME,                                                      \
-        paramCount : 11,                                                  \
-        params : {P1, P2, P3, P4, P5, P6, P7, P8, P9, PA,PB},                \
-        version : 12                                                      \
+#define V12_FUNC_DECL11(VT, NAME, P1, P2, P3, P4, P5, P6, P7, P8, P9, PA, PB) \
+    {                                                                         \
+        rType : VT,                                                           \
+        name : NAME,                                                          \
+        paramCount : 11,                                                      \
+        params : {P1, P2, P3, P4, P5, P6, P7, P8, P9, PA, PB},                \
+        version : 12                                                          \
     }
 
-#define V13_FUNC_DECL11(VT, NAME, P1, P2, P3, P4, P5, P6, P7, P8, P9, PA,PB) \
-    {                                                                     \
-        rType : VT,                                                       \
-        name : NAME,                                                      \
-        paramCount : 11,                                                  \
-        params : {P1, P2, P3, P4, P5, P6, P7, P8, P9, PA,PB},                \
-        version : 13                                                      \
+#define V13_FUNC_DECL11(VT, NAME, P1, P2, P3, P4, P5, P6, P7, P8, P9, PA, PB) \
+    {                                                                         \
+        rType : VT,                                                           \
+        name : NAME,                                                          \
+        paramCount : 11,                                                      \
+        params : {P1, P2, P3, P4, P5, P6, P7, P8, P9, PA, PB},                \
+        version : 13                                                          \
     }
 
 #define V12_FUNC_DECL12(VT, NAME, P1, P2, P3, P4, P5, P6, P7, P8, P9, PA, PB, PC) \
