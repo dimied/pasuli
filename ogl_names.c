@@ -2,8 +2,7 @@
 #include "ogl_names.h"
 
 OGL_FUNC_DESC oglNames[] = {
-    // Miscellaneous
-    FUNC_DECL1(VOID_TYPE, "glClear", BITMASK_TYPE),
+    FUNC_DECL1(VOID_TYPE, "glClear", BITFIELD_TYPE),
     FUNC_DECL4(VOID_TYPE, "glClearColor", CLAMPF_TYPE, CLAMPF_TYPE, CLAMPF_TYPE, CLAMPF_TYPE),
     FUNC_DECL1(VOID_TYPE, "glClearIndex", FLOAT_TYPE),
 
@@ -21,13 +20,13 @@ OGL_FUNC_DESC oglNames[] = {
 
     FUNC_DECL2(VOID_TYPE, "glLineStipple", INT_TYPE, USHORT_TYPE),
     FUNC_DECL2(VOID_TYPE, "glPolygonMode", ENUM_TYPE, ENUM_TYPE),
-    FUNC_DECL2(VOID_TYPE, "glPolygonOffset", FLOAT_TYPE, FLOAT_TYPE),
+    V11_FUNC_DECL2(VOID_TYPE, "glPolygonOffset", FLOAT_TYPE, FLOAT_TYPE),
 
     FUNC_DECL1(VOID_TYPE, "glPolygonStipple", UBYTE_PTR_TYPE),
     FUNC_DECL1(VOID_TYPE, "glEdgeFlag", BOOLEAN_TYPE),
     FUNC_DECL1(VOID_TYPE, "glEdgeFlagv", BOOLEAN_PTR_TYPE),
 
-    FUNC_DECL4(VOID_TYPE, "glScissor", INT_TYPE, INT_TYPE, INT_TYPE, INT_TYPE),
+    FUNC_DECL4(VOID_TYPE, "glScissor", INT_TYPE, INT_TYPE, SIZEI_TYPE, SIZEI_TYPE),
     FUNC_DECL2(VOID_TYPE, "glClipPlane", ENUM_TYPE, DOUBLE_PTR_TYPE),
     FUNC_DECL2(VOID_TYPE, "glGetClipPlane", ENUM_TYPE, DOUBLE_PTR_TYPE),
 
@@ -46,7 +45,7 @@ OGL_FUNC_DESC oglNames[] = {
     FUNC_DECL2(VOID_TYPE, "glGetFloatv", ENUM_TYPE, FLOAT_PTR_TYPE),
     FUNC_DECL2(VOID_TYPE, "glGetIntegerv", ENUM_TYPE, INT_PTR_TYPE),
 
-    FUNC_DECL1(VOID_TYPE, "glPushAttrib", BITMASK_TYPE),
+    FUNC_DECL1(VOID_TYPE, "glPushAttrib", BITFIELD_TYPE),
     FUNC_DECL0(VOID_TYPE, "glPopAttrib"),
 
     V11_FUNC_DECL1(BOOLEAN_TYPE, "glPushClientAttrib", BITFIELD_TYPE),
@@ -58,7 +57,7 @@ OGL_FUNC_DESC oglNames[] = {
 
     FUNC_DECL0(VOID_TYPE, "glFinish"),
     FUNC_DECL0(VOID_TYPE, "glFlush"),
-    FUNC_DECL2(VOID_TYPE, "glHint", ENUM_TYPE, DOUBLE_PTR_TYPE),
+    FUNC_DECL2(VOID_TYPE, "glHint", ENUM_TYPE, ENUM_TYPE),
 
     FUNC_DECL1(VOID_TYPE, "glClearDepth", CLAMPD_TYPE),
     FUNC_DECL1(VOID_TYPE, "glDepthFunc", ENUM_TYPE),
@@ -66,7 +65,6 @@ OGL_FUNC_DESC oglNames[] = {
     FUNC_DECL2(VOID_TYPE, "glDepthRange", CLAMPD_TYPE, CLAMPD_TYPE),
 
     FUNC_DECL4(VOID_TYPE, "glClearAccum", FLOAT_TYPE, FLOAT_TYPE, FLOAT_TYPE, FLOAT_TYPE),
-    FUNC_DECL2(VOID_TYPE, "glDepthRange", ENUM_TYPE, FLOAT_TYPE),
 
     FUNC_DECL1(VOID_TYPE, "glMatrixMode", ENUM_TYPE),
 
@@ -282,11 +280,12 @@ OGL_FUNC_DESC oglNames[] = {
     FUNC_DECL3(VOID_TYPE, "glIndexPointer", ENUM_TYPE, SIZEI_TYPE, VOID_PTR_TYPE),
     FUNC_DECL4(VOID_TYPE, "glTexCoordPointer", INT_TYPE, ENUM_TYPE, SIZEI_TYPE, VOID_PTR_TYPE),
     FUNC_DECL2(VOID_TYPE, "glEdgeFlagPointer", SIZEI_TYPE, VOID_PTR_TYPE),
-    FUNC_DECL2(VOID_TYPE, "glGetPointerv", ENUM_TYPE, VOID_VOID_PTR_TYPE),
+    V11_FUNC_DECL2(VOID_TYPE, "glGetPointerv", ENUM_TYPE, VOID_VOID_PTR_TYPE),
 
     FUNC_DECL1(VOID_TYPE, "glArrayElement", INT_TYPE),
-    FUNC_DECL3(VOID_TYPE, "glDrawArrays", ENUM_TYPE, INT_TYPE, SIZEI_TYPE),
-    FUNC_DECL4(VOID_TYPE, "glDrawElements", ENUM_TYPE, SIZEI_TYPE, ENUM_TYPE, VOID_PTR_TYPE),
+    // GL_VERSION 1_1
+    V11_FUNC_DECL3(VOID_TYPE, "glDrawArrays", ENUM_TYPE, INT_TYPE, SIZEI_TYPE),
+    V11_FUNC_DECL4(VOID_TYPE, "glDrawElements", ENUM_TYPE, SIZEI_TYPE, ENUM_TYPE, VOID_PTR_TYPE),
     FUNC_DECL3(VOID_TYPE, "glInterleavedArrays", ENUM_TYPE, SIZEI_TYPE, VOID_PTR_TYPE),
 
     FUNC_DECL1(VOID_TYPE, "glShadeModel", ENUM_TYPE),
@@ -445,14 +444,10 @@ OGL_FUNC_DESC oglNames[] = {
     V11_FUNC_DECL0(VOID_TYPE, "glPopName"),
 
     // OpenGL 1.2
-    V12_FUNC_DECL6(VOID_TYPE, "glPopName", ENUM_TYPE, UINT_TYPE, UINT_TYPE, SIZEI_TYPE, ENUM_TYPE, VOID_PTR_TYPE),
+    V12_FUNC_DECL6(VOID_TYPE, "glDrawRangeElements", ENUM_TYPE, UINT_TYPE, UINT_TYPE, SIZEI_TYPE, ENUM_TYPE, VOID_PTR_TYPE),
     V12_FUNC_DECL10(VOID_TYPE, "glTexImage3D", ENUM_TYPE, INT_TYPE, INT_TYPE, SIZEI_TYPE, SIZEI_TYPE, SIZEI_TYPE, INT_TYPE, ENUM_TYPE, ENUM_TYPE, VOID_PTR_TYPE),
     V12_FUNC_DECL11(VOID_TYPE, "glTexSubImage3D", ENUM_TYPE, INT_TYPE, INT_TYPE, INT_TYPE, INT_TYPE, SIZEI_TYPE, SIZEI_TYPE, SIZEI_TYPE, ENUM_TYPE, ENUM_TYPE, VOID_PTR_TYPE),
     V12_FUNC_DECL9(VOID_TYPE, "glCopyTexSubImage3D", ENUM_TYPE, INT_TYPE, INT_TYPE, INT_TYPE, INT_TYPE, INT_TYPE, INT_TYPE, ENUM_TYPE, ENUM_TYPE),
-    // typedef void (APIENTRYP PFNGLDRAWRANGEELEMENTSPROC) (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const GLvoid *indices);
-    // typedef void (APIENTRYP PFNGLTEXIMAGE3DPROC) (GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const GLvoid *pixels);
-    // typedef void (APIENTRYP PFNGLTEXSUBIMAGE3DPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const GLvoid *pixels);
-    // typedef void (APIENTRYP PFNGLCOPYTEXSUBIMAGE3DPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height);
     //
     // GL_ARB_imaging
     FUNC_DECL6(VOID_TYPE, "glColorTable", ENUM_TYPE, ENUM_TYPE, SIZEI_TYPE, ENUM_TYPE, ENUM_TYPE, VOID_PTR_TYPE),
@@ -465,9 +460,18 @@ OGL_FUNC_DESC oglNames[] = {
     FUNC_DECL4(VOID_TYPE, "glGetColorTable", ENUM_TYPE, ENUM_TYPE, ENUM_TYPE, VOID_PTR_TYPE),
     FUNC_DECL3(VOID_TYPE, "glGetColorTableParameterfv", ENUM_TYPE, ENUM_TYPE, FLOAT_PTR_TYPE),
     FUNC_DECL3(VOID_TYPE, "glGetColorTableParameteriv", ENUM_TYPE, ENUM_TYPE, INT_PTR_TYPE),
-    FUNC_DECL1(VOID_TYPE, "glBlendEquation", ENUM_TYPE),
 
-    FUNC_DECL4(VOID_TYPE, "glBlendColor", CLAMPF_TYPE, CLAMPF_TYPE, CLAMPF_TYPE, CLAMPF_TYPE),
+    // OpenGL 1.4
+    V14_FUNC_DECL4(VOID_TYPE, "glBlendColor", CLAMPF_TYPE, CLAMPF_TYPE, CLAMPF_TYPE, CLAMPF_TYPE),
+    V14_FUNC_DECL1(VOID_TYPE, "glBlendEquation", ENUM_TYPE),
+    V14_FUNC_DECL4(VOID_TYPE, "glBlendFuncSeparate", ENUM_TYPE, ENUM_TYPE, ENUM_TYPE, ENUM_TYPE),
+    V14_FUNC_DECL4(VOID_TYPE, "glMultiDrawArrays", ENUM_TYPE, INT_PTR_TYPE, SIZEI_PTR_TYPE, SIZEI_TYPE),
+    V14_FUNC_DECL5(VOID_TYPE, "glMultiDrawElements", ENUM_TYPE, SIZEI_PTR_TYPE, ENUM_TYPE, VOID_VOID_PTR_TYPE, SIZEI_TYPE),
+    V14_FUNC_DECL2(VOID_TYPE, "glPointParameterf", ENUM_TYPE, FLOAT_TYPE),
+    V14_FUNC_DECL2(VOID_TYPE, "glPointParameterfv", ENUM_TYPE, FLOAT_PTR_TYPE),
+    V14_FUNC_DECL2(VOID_TYPE, "glPointParameteri", ENUM_TYPE, INT_TYPE),
+    V14_FUNC_DECL2(VOID_TYPE, "glPointParameteriv", ENUM_TYPE, INT_PTR_TYPE),
+
     FUNC_DECL4(VOID_TYPE, "glHistogram", ENUM_TYPE, SIZEI_TYPE, ENUM_TYPE, BOOLEAN_TYPE),
     FUNC_DECL1(VOID_TYPE, "glResetHistogram", ENUM_TYPE),
     FUNC_DECL5(VOID_TYPE, "glGetHistogram", ENUM_TYPE, BOOLEAN_TYPE, ENUM_TYPE, ENUM_TYPE, VOID_PTR_TYPE),
@@ -504,6 +508,7 @@ OGL_FUNC_DESC oglNames[] = {
     V13_FUNC_DECL1(VOID_TYPE, "glClientActiveTexture", ENUM_TYPE),
     V13_FUNC_DECL7(VOID_TYPE, "glCompressedTexImage1D", ENUM_TYPE, INT_TYPE, ENUM_TYPE, SIZEI_TYPE, INT_TYPE, SIZEI_TYPE, VOID_PTR_TYPE),
     V13_FUNC_DECL8(VOID_TYPE, "glCompressedTexImage2D", ENUM_TYPE, INT_TYPE, ENUM_TYPE, SIZEI_TYPE, SIZEI_TYPE, INT_TYPE, SIZEI_TYPE, VOID_PTR_TYPE),
+    V13_FUNC_DECL9(VOID_TYPE, "glCompressedTexImage3D", ENUM_TYPE, INT_TYPE, ENUM_TYPE, SIZEI_TYPE, SIZEI_TYPE, SIZEI_TYPE, INT_TYPE, SIZEI_TYPE, VOID_PTR_TYPE),
 
     V13_FUNC_DECL7(VOID_TYPE, "glCompressedTexSubImage1D", ENUM_TYPE, INT_TYPE, INT_TYPE, SIZEI_TYPE, ENUM_TYPE, SIZEI_TYPE, VOID_PTR_TYPE),
     V13_FUNC_DECL9(VOID_TYPE, "glCompressedTexSubImage2D", ENUM_TYPE, INT_TYPE, INT_TYPE, INT_TYPE, SIZEI_TYPE, SIZEI_TYPE, ENUM_TYPE, SIZEI_TYPE, VOID_PTR_TYPE),
@@ -567,7 +572,7 @@ OGL_FUNC_DESC oglNames[] = {
 
     V13_FUNC_DECL2(VOID_TYPE, "glSampleCoverage", CLAMPF_TYPE, BOOLEAN_TYPE),
 
-    //GL_ARB_multitexture (ARB extension 1 and OpenGL 1.2.1)
+    // GL_ARB_multitexture (ARB extension 1 and OpenGL 1.2.1)
     FUNC_DECL1(VOID_TYPE, "glActiveTextureARB", ENUM_TYPE),
     FUNC_DECL1(VOID_TYPE, "glClientActiveTextureARB", ENUM_TYPE),
 
@@ -586,7 +591,7 @@ OGL_FUNC_DESC oglNames[] = {
     FUNC_DECL3(VOID_TYPE, "glMultiTexCoord2dARB", ENUM_TYPE, DOUBLE_TYPE, DOUBLE_TYPE),
     FUNC_DECL2(VOID_TYPE, "glMultiTexCoord2dvARB", ENUM_TYPE, DOUBLE_PTR_TYPE),
 
-    FUNC_DECL3(VOID_TYPE, "glMultiTexCoord2fARB", ENUM_TYPE, FLOAT_TYPE,FLOAT_TYPE),
+    FUNC_DECL3(VOID_TYPE, "glMultiTexCoord2fARB", ENUM_TYPE, FLOAT_TYPE, FLOAT_TYPE),
     FUNC_DECL2(VOID_TYPE, "glMultiTexCoord2fvARB", ENUM_TYPE, FLOAT_PTR_TYPE),
 
     FUNC_DECL3(VOID_TYPE, "glMultiTexCoord2iARB", ENUM_TYPE, INT_TYPE, INT_TYPE),
@@ -598,7 +603,7 @@ OGL_FUNC_DESC oglNames[] = {
     FUNC_DECL4(VOID_TYPE, "glMultiTexCoord3dARB", ENUM_TYPE, DOUBLE_TYPE, DOUBLE_TYPE, DOUBLE_TYPE),
     FUNC_DECL2(VOID_TYPE, "glMultiTexCoord3dvARB", ENUM_TYPE, DOUBLE_PTR_TYPE),
 
-    FUNC_DECL4(VOID_TYPE, "glMultiTexCoord3fARB", ENUM_TYPE, FLOAT_TYPE,FLOAT_TYPE,FLOAT_TYPE),
+    FUNC_DECL4(VOID_TYPE, "glMultiTexCoord3fARB", ENUM_TYPE, FLOAT_TYPE, FLOAT_TYPE, FLOAT_TYPE),
     FUNC_DECL2(VOID_TYPE, "glMultiTexCoord3fvARB", ENUM_TYPE, FLOAT_PTR_TYPE),
 
     FUNC_DECL4(VOID_TYPE, "glMultiTexCoord3iARB", ENUM_TYPE, INT_TYPE, INT_TYPE, INT_TYPE),
@@ -610,7 +615,7 @@ OGL_FUNC_DESC oglNames[] = {
     FUNC_DECL5(VOID_TYPE, "glMultiTexCoord4dARB", ENUM_TYPE, DOUBLE_TYPE, DOUBLE_TYPE, DOUBLE_TYPE, DOUBLE_TYPE),
     FUNC_DECL2(VOID_TYPE, "glMultiTexCoord4dvARB", ENUM_TYPE, DOUBLE_PTR_TYPE),
 
-    FUNC_DECL5(VOID_TYPE, "glMultiTexCoord4fARB", ENUM_TYPE, FLOAT_TYPE,FLOAT_TYPE,FLOAT_TYPE,FLOAT_TYPE),
+    FUNC_DECL5(VOID_TYPE, "glMultiTexCoord4fARB", ENUM_TYPE, FLOAT_TYPE, FLOAT_TYPE, FLOAT_TYPE, FLOAT_TYPE),
     FUNC_DECL2(VOID_TYPE, "glMultiTexCoord4fvARB", ENUM_TYPE, FLOAT_PTR_TYPE),
 
     FUNC_DECL5(VOID_TYPE, "glMultiTexCoord4iARB", ENUM_TYPE, INT_TYPE, INT_TYPE, INT_TYPE, INT_TYPE),
@@ -618,239 +623,168 @@ OGL_FUNC_DESC oglNames[] = {
 
     FUNC_DECL5(VOID_TYPE, "glMultiTexCoord4sARB", ENUM_TYPE, SHORT_TYPE, SHORT_TYPE, SHORT_TYPE, SHORT_TYPE),
     FUNC_DECL2(VOID_TYPE, "glMultiTexCoord4svARB", ENUM_TYPE, SHORT_PTR_TYPE),
+
+    // OpenGl 1.5
+    V15_FUNC_DECL2(VOID_TYPE, "glGenQueries", SIZEI_TYPE, UINT_PTR_TYPE),
+    V15_FUNC_DECL2(VOID_TYPE, "glDeleteQueries", SIZEI_TYPE, UINT_PTR_TYPE),
+    V15_FUNC_DECL1(BOOLEAN_TYPE, "glIsQuery", UINT_TYPE),
+    V15_FUNC_DECL2(VOID_TYPE, "glBeginQuery", ENUM_TYPE, UINT_TYPE),
+    V15_FUNC_DECL1(VOID_TYPE, "glEndQuery", ENUM_TYPE),
+
+    V15_FUNC_DECL3(VOID_TYPE, "glGetQueryiv", ENUM_TYPE, ENUM_TYPE, INT_PTR_TYPE),
+    V15_FUNC_DECL3(VOID_TYPE, "glGetQueryObjectiv", UINT_TYPE, ENUM_TYPE, INT_PTR_TYPE),
+    V15_FUNC_DECL3(VOID_TYPE, "glGetQueryObjectuiv", UINT_TYPE, ENUM_TYPE, UINT_PTR_TYPE),
+    V15_FUNC_DECL2(VOID_TYPE, "glBindBuffer", ENUM_TYPE, UINT_TYPE),
+
+    V15_FUNC_DECL2(VOID_TYPE, "glDeleteBuffers", SIZEI_TYPE, UINT_PTR_TYPE),
+    V15_FUNC_DECL2(VOID_TYPE, "glGenBuffers", SIZEI_TYPE, UINT_PTR_TYPE),
+    V15_FUNC_DECL1(BOOLEAN_TYPE, "glIsBuffer", UINT_TYPE),
+
+    V15_FUNC_DECL4(VOID_TYPE, "glBufferData", ENUM_TYPE, SIZEI_PTR_TYPE, VOID_PTR_TYPE, ENUM_TYPE),
+    V15_FUNC_DECL4(VOID_TYPE, "glBufferSubData", ENUM_TYPE, INT_PTR_TYPE, SIZEI_PTR_TYPE, VOID_PTR_TYPE),
+    V15_FUNC_DECL4(VOID_TYPE, "glGetBufferSubData", ENUM_TYPE, INT_PTR_TYPE, SIZEI_PTR_TYPE, VOID_PTR_TYPE),
+
+    V15_FUNC_DECL2(VOID_PTR_TYPE, "glMapBuffer", ENUM_TYPE, ENUM_TYPE),
+    V15_FUNC_DECL1(BOOLEAN_TYPE, "glUnmapBuffer", ENUM_TYPE),
+    V15_FUNC_DECL3(VOID_PTR_TYPE, "glGetBufferParameteriv", ENUM_TYPE, ENUM_TYPE, INT_PTR_TYPE),
+    V15_FUNC_DECL3(VOID_PTR_TYPE, "glGetBufferPointerv", ENUM_TYPE, ENUM_TYPE, VOID_PTR_TYPE),
+
+    // OpenGl 2.0
+    V20_FUNC_DECL2(VOID_TYPE, "glBlendEquationSeparate", ENUM_TYPE, ENUM_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glDrawBuffers", SIZEI_TYPE, ENUM_PTR_TYPE),
+    V20_FUNC_DECL4(VOID_TYPE, "glStencilOpSeparate", ENUM_TYPE, ENUM_TYPE, ENUM_TYPE, ENUM_TYPE),
+    V20_FUNC_DECL4(VOID_TYPE, "glStencilFuncSeparate", ENUM_TYPE, ENUM_TYPE, INT_TYPE, UINT_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glStencilMaskSeparate", ENUM_TYPE, UINT_TYPE),
+
+    V20_FUNC_DECL2(VOID_TYPE, "glAttachShader", UINT_TYPE, UINT_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glBindAttribLocation", UINT_TYPE, UINT_TYPE, BYTE_PTR_TYPE),
+    V20_FUNC_DECL1(VOID_TYPE, "glCompileShader", UINT_TYPE),
+
+    V20_FUNC_DECL0(UINT_TYPE, "glCreateProgram"),
+    V20_FUNC_DECL1(UINT_TYPE, "glCreateShader", ENUM_TYPE),
+    V20_FUNC_DECL1(VOID_TYPE, "glDeleteProgram", UINT_TYPE),
+    V20_FUNC_DECL1(VOID_TYPE, "glDeleteShader", UINT_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glDetachShader", UINT_TYPE, UINT_TYPE),
+    V20_FUNC_DECL1(VOID_TYPE, "glDisableVertexAttribArray", UINT_TYPE),
+    V20_FUNC_DECL1(VOID_TYPE, "glEnableVertexAttribArray", UINT_TYPE),
+
+    V20_FUNC_DECL7(VOID_TYPE, "glGetActiveAttrib", UINT_TYPE, UINT_TYPE, SIZEI_TYPE, SIZEI_PTR_TYPE, INT_PTR_TYPE, ENUM_PTR_TYPE, BYTE_PTR_TYPE),
+    V20_FUNC_DECL7(VOID_TYPE, "glGetActiveUniform", UINT_TYPE, UINT_TYPE, SIZEI_TYPE, SIZEI_PTR_TYPE, INT_PTR_TYPE, ENUM_PTR_TYPE, BYTE_PTR_TYPE),
+    V20_FUNC_DECL4(VOID_TYPE, "glGetAttachedShaders", UINT_TYPE, SIZEI_TYPE, SIZEI_PTR_TYPE, UINT_PTR_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glGetAttribLocation", UINT_TYPE, BYTE_PTR_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glGetProgramiv", UINT_TYPE, ENUM_TYPE, INT_PTR_TYPE),
+    V20_FUNC_DECL4(VOID_TYPE, "glGetProgramInfoLog", UINT_TYPE, SIZEI_TYPE, SIZEI_PTR_TYPE, BYTE_PTR_TYPE),
+
+    V20_FUNC_DECL3(VOID_TYPE, "glGetShaderiv", UINT_TYPE, ENUM_TYPE, INT_PTR_TYPE),
+    V20_FUNC_DECL4(VOID_TYPE, "glGetShaderInfoLog", UINT_TYPE, SIZEI_TYPE, SIZEI_PTR_TYPE, BYTE_PTR_TYPE),
+    V20_FUNC_DECL4(VOID_TYPE, "glGetShaderSource", UINT_TYPE, SIZEI_TYPE, SIZEI_PTR_TYPE, BYTE_PTR_TYPE),
+    V20_FUNC_DECL2(INT_TYPE, "glGetUniformLocation", UINT_TYPE, BYTE_PTR_TYPE),
+
+    V20_FUNC_DECL3(VOID_TYPE, "glGetUniformfv", UINT_TYPE, INT_TYPE, FLOAT_PTR_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glGetUniformiv", UINT_TYPE, INT_TYPE, INT_PTR_TYPE),
+
+    V20_FUNC_DECL3(VOID_TYPE, "glGetVertexAttribdv", UINT_TYPE, ENUM_TYPE, DOUBLE_PTR_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glGetVertexAttribfv", UINT_TYPE, ENUM_TYPE, FLOAT_PTR_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glGetVertexAttribiv", UINT_TYPE, ENUM_TYPE, INT_PTR_TYPE),
+
+    V20_FUNC_DECL3(VOID_TYPE, "glGetVertexAttribPointerv", UINT_TYPE, ENUM_TYPE, VOID_VOID_PTR_TYPE),
+    V20_FUNC_DECL1(BOOLEAN_TYPE, "glIsProgram", UINT_TYPE),
+    V20_FUNC_DECL1(BOOLEAN_TYPE, "glIsShader", UINT_TYPE),
+    V20_FUNC_DECL1(VOID_TYPE, "glLinkProgram", UINT_TYPE),
+
+    V20_FUNC_DECL4(VOID_TYPE, "glShaderSource", UINT_TYPE, SIZEI_TYPE, BYTE_BYTE_PTR_TYPE, INT_PTR_TYPE),
+    V20_FUNC_DECL1(VOID_TYPE, "glUseProgram", UINT_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glUniform1f", INT_TYPE, FLOAT_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glUniform2f", INT_TYPE, FLOAT_TYPE, FLOAT_TYPE),
+    V20_FUNC_DECL4(VOID_TYPE, "glUniform3f", INT_TYPE, FLOAT_TYPE, FLOAT_TYPE, FLOAT_TYPE),
+    V20_FUNC_DECL5(VOID_TYPE, "glUniform4f", INT_TYPE, FLOAT_TYPE, FLOAT_TYPE, FLOAT_TYPE, FLOAT_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glUniform1fv", INT_TYPE, SIZEI_TYPE, FLOAT_PTR_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glUniform2fv", INT_TYPE, SIZEI_TYPE, FLOAT_PTR_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glUniform3fv", INT_TYPE, SIZEI_TYPE, FLOAT_PTR_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glUniform4fv", INT_TYPE, SIZEI_TYPE, FLOAT_PTR_TYPE),
+
+    V20_FUNC_DECL2(VOID_TYPE, "glUniform1i", INT_TYPE, INT_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glUniform2i", INT_TYPE, INT_TYPE, INT_TYPE),
+    V20_FUNC_DECL4(VOID_TYPE, "glUniform3i", INT_TYPE, INT_TYPE, INT_TYPE, INT_TYPE),
+    V20_FUNC_DECL5(VOID_TYPE, "glUniform4i", INT_TYPE, INT_TYPE, INT_TYPE, INT_TYPE, INT_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glUniform1iv", INT_TYPE, SIZEI_TYPE, INT_PTR_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glUniform2iv", INT_TYPE, SIZEI_TYPE, INT_PTR_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glUniform3iv", INT_TYPE, SIZEI_TYPE, INT_PTR_TYPE),
+    V20_FUNC_DECL3(VOID_TYPE, "glUniform4iv", INT_TYPE, SIZEI_TYPE, INT_PTR_TYPE),
+
+    V20_FUNC_DECL4(VOID_TYPE, "glUniformMatrix2fv", INT_TYPE, SIZEI_TYPE, BOOLEAN_TYPE, FLOAT_PTR_TYPE),
+    V20_FUNC_DECL4(VOID_TYPE, "glUniformMatrix3fv", INT_TYPE, SIZEI_TYPE, BOOLEAN_TYPE, FLOAT_PTR_TYPE),
+    V20_FUNC_DECL4(VOID_TYPE, "glUniformMatrix4fv", INT_TYPE, SIZEI_TYPE, BOOLEAN_TYPE, FLOAT_PTR_TYPE),
+
+    V20_FUNC_DECL1(VOID_TYPE, "glValidateProgram", UINT_TYPE),
+
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib1d", UINT_TYPE, DOUBLE_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib1dv", UINT_TYPE, DOUBLE_PTR_TYPE),
+
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib1f", UINT_TYPE, FLOAT_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib1fv", UINT_TYPE, FLOAT_PTR_TYPE),
+
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib1s", UINT_TYPE, SHORT_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib1sv", UINT_TYPE, SHORT_PTR_TYPE),
+
+    V20_FUNC_DECL3(VOID_TYPE, "glVertexAttrib2d", UINT_TYPE, DOUBLE_TYPE, DOUBLE_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib2dv", UINT_TYPE, DOUBLE_PTR_TYPE),
+
+    V20_FUNC_DECL3(VOID_TYPE, "glVertexAttrib2f", UINT_TYPE, FLOAT_TYPE, FLOAT_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib2fv", UINT_TYPE, FLOAT_PTR_TYPE),
+
+    V20_FUNC_DECL3(VOID_TYPE, "glVertexAttrib2s", UINT_TYPE, SHORT_TYPE, SHORT_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib2sv", UINT_TYPE, SHORT_PTR_TYPE),
+
+    V20_FUNC_DECL4(VOID_TYPE, "glVertexAttrib3d", UINT_TYPE, DOUBLE_TYPE, DOUBLE_TYPE, DOUBLE_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib3dv", UINT_TYPE, DOUBLE_PTR_TYPE),
+
+    V20_FUNC_DECL4(VOID_TYPE, "glVertexAttrib3f", UINT_TYPE, FLOAT_TYPE, FLOAT_TYPE, FLOAT_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib3fv", UINT_TYPE, FLOAT_PTR_TYPE),
+
+    V20_FUNC_DECL4(VOID_TYPE, "glVertexAttrib3s", UINT_TYPE, SHORT_TYPE, SHORT_TYPE, SHORT_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib3sv", UINT_TYPE, SHORT_PTR_TYPE),
+
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4Nbv", UINT_TYPE, BYTE_PTR_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4Niv", UINT_TYPE, INT_PTR_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4Nsv", UINT_TYPE, SHORT_PTR_TYPE),
+
+    V20_FUNC_DECL5(VOID_TYPE, "glVertexAttrib4Nub", UINT_TYPE, UBYTE_TYPE, UBYTE_TYPE, UBYTE_TYPE, UBYTE_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4Nubv", UINT_TYPE, UBYTE_PTR_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4Nuiv", UINT_TYPE, UINT_PTR_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4Nusv", UINT_TYPE, USHORT_PTR_TYPE),
+
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4bv", UINT_TYPE, BYTE_PTR_TYPE),
+
+    V20_FUNC_DECL5(VOID_TYPE, "glVertexAttrib4d", UINT_TYPE, DOUBLE_TYPE, DOUBLE_TYPE, DOUBLE_TYPE, DOUBLE_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4dv", UINT_TYPE, DOUBLE_PTR_TYPE),
+
+    V20_FUNC_DECL5(VOID_TYPE, "glVertexAttrib4f", UINT_TYPE, FLOAT_TYPE, FLOAT_TYPE, FLOAT_TYPE, FLOAT_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4fv", UINT_TYPE, FLOAT_PTR_TYPE),
+
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4iv", UINT_TYPE, INT_PTR_TYPE),
+    V20_FUNC_DECL5(VOID_TYPE, "glVertexAttrib4s", UINT_TYPE, SHORT_TYPE, SHORT_TYPE, SHORT_TYPE, SHORT_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4sv", UINT_TYPE, SHORT_PTR_TYPE),
+
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4ubv", UINT_TYPE, UBYTE_PTR_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4uiv", UINT_TYPE, UINT_PTR_TYPE),
+    V20_FUNC_DECL2(VOID_TYPE, "glVertexAttrib4usv", UINT_TYPE, USHORT_PTR_TYPE),
+
+    V20_FUNC_DECL6(VOID_TYPE, "glVertexAttribPointer", UINT_TYPE, INT_TYPE, ENUM_TYPE, BOOLEAN_TYPE, SIZEI_TYPE, VOID_PTR_TYPE),
+
+    //OpenGL 2.1
+    V21_FUNC_DECL4(VOID_TYPE, "glUniformMatrix2x3fv", INT_TYPE, SIZEI_TYPE, BOOLEAN_TYPE, FLOAT_PTR_TYPE),
+    V21_FUNC_DECL4(VOID_TYPE, "glUniformMatrix3x2fv", INT_TYPE, SIZEI_TYPE, BOOLEAN_TYPE, FLOAT_PTR_TYPE),
+
+    V21_FUNC_DECL4(VOID_TYPE, "glUniformMatrix2x4fv", INT_TYPE, SIZEI_TYPE, BOOLEAN_TYPE, FLOAT_PTR_TYPE),
+    V21_FUNC_DECL4(VOID_TYPE, "glUniformMatrix4x2fv", INT_TYPE, SIZEI_TYPE, BOOLEAN_TYPE, FLOAT_PTR_TYPE),
+
+    V21_FUNC_DECL4(VOID_TYPE, "glUniformMatrix3x4fv", INT_TYPE, SIZEI_TYPE, BOOLEAN_TYPE, FLOAT_PTR_TYPE),
+    V21_FUNC_DECL4(VOID_TYPE, "glUniformMatrix4x3fv", INT_TYPE, SIZEI_TYPE, BOOLEAN_TYPE, FLOAT_PTR_TYPE),
+
+    //OpenGL 3.0
 };
 
-/*
-GLAPI void APIENTRY glCullFace (GLenum mode);
-GLAPI void APIENTRY glFrontFace (GLenum mode);
-GLAPI void APIENTRY glHint (GLenum target, GLenum mode);
-GLAPI void APIENTRY glLineWidth (GLfloat width);
-GLAPI void APIENTRY glPointSize (GLfloat size);
-GLAPI void APIENTRY glPolygonMode (GLenum face, GLenum mode);
-GLAPI void APIENTRY glScissor (GLint x, GLint y, GLsizei width, GLsizei height);
-GLAPI void APIENTRY glTexParameterf (GLenum target, GLenum pname, GLfloat param);
-GLAPI void APIENTRY glTexParameterfv (GLenum target, GLenum pname, const GLfloat *params);
-GLAPI void APIENTRY glTexParameteri (GLenum target, GLenum pname, GLint param);
-GLAPI void APIENTRY glTexParameteriv (GLenum target, GLenum pname, const GLint *params);
-GLAPI void APIENTRY glTexImage1D (GLenum target, GLint level, GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const void *pixels);
-GLAPI void APIENTRY glTexImage2D (GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const void *pixels);
-GLAPI void APIENTRY glDrawBuffer (GLenum buf);
-GLAPI void APIENTRY glClear (GLbitfield mask);
-GLAPI void APIENTRY glClearColor (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
-GLAPI void APIENTRY glClearStencil (GLint s);
-GLAPI void APIENTRY glClearDepth (GLdouble depth);
-GLAPI void APIENTRY glStencilMask (GLuint mask);
-GLAPI void APIENTRY glColorMask (GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha);
-GLAPI void APIENTRY glDepthMask (GLboolean flag);
-GLAPI void APIENTRY glDisable (GLenum cap);
-GLAPI void APIENTRY glEnable (GLenum cap);
-GLAPI void APIENTRY glFinish (void);
-GLAPI void APIENTRY glFlush (void);
-GLAPI void APIENTRY glBlendFunc (GLenum sfactor, GLenum dfactor);
-GLAPI void APIENTRY glLogicOp (GLenum opcode);
-GLAPI void APIENTRY glStencilFunc (GLenum func, GLint ref, GLuint mask);
-GLAPI void APIENTRY glStencilOp (GLenum fail, GLenum zfail, GLenum zpass);
-GLAPI void APIENTRY glDepthFunc (GLenum func);
-GLAPI void APIENTRY glPixelStoref (GLenum pname, GLfloat param);
-GLAPI void APIENTRY glPixelStorei (GLenum pname, GLint param);
-GLAPI void APIENTRY glReadBuffer (GLenum src);
-GLAPI void APIENTRY glReadPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, void *pixels);
-GLAPI void APIENTRY glGetBooleanv (GLenum pname, GLboolean *data);
-GLAPI void APIENTRY glGetDoublev (GLenum pname, GLdouble *data);
-GLAPI GLenum APIENTRY glGetError (void);
-GLAPI void APIENTRY glGetFloatv (GLenum pname, GLfloat *data);
-GLAPI void APIENTRY glGetIntegerv (GLenum pname, GLint *data);
-GLAPI const GLubyte *APIENTRY glGetString (GLenum name);
-GLAPI void APIENTRY glGetTexImage (GLenum target, GLint level, GLenum format, GLenum type, void *pixels);
-GLAPI void APIENTRY glGetTexParameterfv (GLenum target, GLenum pname, GLfloat *params);
-GLAPI void APIENTRY glGetTexParameteriv (GLenum target, GLenum pname, GLint *params);
-GLAPI void APIENTRY glGetTexLevelParameterfv (GLenum target, GLint level, GLenum pname, GLfloat *params);
-GLAPI void APIENTRY glGetTexLevelParameteriv (GLenum target, GLint level, GLenum pname, GLint *params);
-GLAPI GLboolean APIENTRY glIsEnabled (GLenum cap);
-GLAPI void APIENTRY glDepthRange (GLdouble n, GLdouble f);
-GLAPI void APIENTRY glViewport (GLint x, GLint y, GLsizei width, GLsizei height);
-*/
-/*
-GL_VERSION_1_1
-
-GLAPI void APIENTRY glDrawArrays (GLenum mode, GLint first, GLsizei count);
-GLAPI void APIENTRY glDrawElements (GLenum mode, GLsizei count, GLenum type, const void *indices);
-GLAPI void APIENTRY glGetPointerv (GLenum pname, void **params);
-GLAPI void APIENTRY glPolygonOffset (GLfloat factor, GLfloat units);
-GLAPI void APIENTRY glCopyTexImage1D (GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLint border);
-GLAPI void APIENTRY glCopyTexImage2D (GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border);
-GLAPI void APIENTRY glCopyTexSubImage1D (GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width);
-GLAPI void APIENTRY glCopyTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height);
-GLAPI void APIENTRY glTexSubImage1D (GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const void *pixels);
-GLAPI void APIENTRY glTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *pixels);
-GLAPI void APIENTRY glBindTexture (GLenum target, GLuint texture);
-GLAPI void APIENTRY glDeleteTextures (GLsizei n, const GLuint *textures);
-GLAPI void APIENTRY glGenTextures (GLsizei n, GLuint *textures);
-GLAPI GLboolean APIENTRY glIsTexture (GLuint texture);
-*/
-/*
-1.2
-
-GLAPI void APIENTRY glDrawRangeElements (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void *indices);
-GLAPI void APIENTRY glTexImage3D (GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const void *pixels);
-GLAPI void APIENTRY glTexSubImage3D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void *pixels);
-GLAPI void APIENTRY glCopyTexSubImage3D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height);
-*/
-/*
-GL_VERSION_1_3
-
-GLAPI void APIENTRY glActiveTexture (GLenum texture);
-GLAPI void APIENTRY glSampleCoverage (GLfloat value, GLboolean invert);
-GLAPI void APIENTRY glCompressedTexImage3D (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, const void *data);
-GLAPI void APIENTRY glCompressedTexImage2D (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, const void *data);
-GLAPI void APIENTRY glCompressedTexImage1D (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLint border, GLsizei imageSize, const void *data);
-GLAPI void APIENTRY glCompressedTexSubImage3D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void *data);
-GLAPI void APIENTRY glCompressedTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const void *data);
-GLAPI void APIENTRY glCompressedTexSubImage1D (GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const void *data);
-GLAPI void APIENTRY glGetCompressedTexImage (GLenum target, GLint level, void *img);
-*/
-/*
-GL_VERSION_1_4
-GLAPI void APIENTRY glBlendFuncSeparate (GLenum sfactorRGB, GLenum dfactorRGB, GLenum sfactorAlpha, GLenum dfactorAlpha);
-GLAPI void APIENTRY glMultiDrawArrays (GLenum mode, const GLint *first, const GLsizei *count, GLsizei drawcount);
-GLAPI void APIENTRY glMultiDrawElements (GLenum mode, const GLsizei *count, GLenum type, const void *const*indices, GLsizei drawcount);
-GLAPI void APIENTRY glPointParameterf (GLenum pname, GLfloat param);
-GLAPI void APIENTRY glPointParameterfv (GLenum pname, const GLfloat *params);
-GLAPI void APIENTRY glPointParameteri (GLenum pname, GLint param);
-GLAPI void APIENTRY glPointParameteriv (GLenum pname, const GLint *params);
-GLAPI void APIENTRY glBlendColor (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
-GLAPI void APIENTRY glBlendEquation (GLenum mode);
-*/
-/*
-GL_VERSION_1_5
-
-GLAPI void APIENTRY glGenQueries (GLsizei n, GLuint *ids);
-GLAPI void APIENTRY glDeleteQueries (GLsizei n, const GLuint *ids);
-GLAPI GLboolean APIENTRY glIsQuery (GLuint id);
-GLAPI void APIENTRY glBeginQuery (GLenum target, GLuint id);
-GLAPI void APIENTRY glEndQuery (GLenum target);
-GLAPI void APIENTRY glGetQueryiv (GLenum target, GLenum pname, GLint *params);
-GLAPI void APIENTRY glGetQueryObjectiv (GLuint id, GLenum pname, GLint *params);
-GLAPI void APIENTRY glGetQueryObjectuiv (GLuint id, GLenum pname, GLuint *params);
-GLAPI void APIENTRY glBindBuffer (GLenum target, GLuint buffer);
-GLAPI void APIENTRY glDeleteBuffers (GLsizei n, const GLuint *buffers);
-GLAPI void APIENTRY glGenBuffers (GLsizei n, GLuint *buffers);
-GLAPI GLboolean APIENTRY glIsBuffer (GLuint buffer);
-GLAPI void APIENTRY glBufferData (GLenum target, GLsizeiptr size, const void *data, GLenum usage);
-GLAPI void APIENTRY glBufferSubData (GLenum target, GLintptr offset, GLsizeiptr size, const void *data);
-GLAPI void APIENTRY glGetBufferSubData (GLenum target, GLintptr offset, GLsizeiptr size, void *data);
-GLAPI void *APIENTRY glMapBuffer (GLenum target, GLenum access);
-GLAPI GLboolean APIENTRY glUnmapBuffer (GLenum target);
-GLAPI void APIENTRY glGetBufferParameteriv (GLenum target, GLenum pname, GLint *params);
-GLAPI void APIENTRY glGetBufferPointerv (GLenum target, GLenum pname, void **params);
-*/
-/*
-GL_VERSION_2_0
-
-GLAPI void APIENTRY glBlendEquationSeparate (GLenum modeRGB, GLenum modeAlpha);
-GLAPI void APIENTRY glDrawBuffers (GLsizei n, const GLenum *bufs);
-GLAPI void APIENTRY glStencilOpSeparate (GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass);
-GLAPI void APIENTRY glStencilFuncSeparate (GLenum face, GLenum func, GLint ref, GLuint mask);
-GLAPI void APIENTRY glStencilMaskSeparate (GLenum face, GLuint mask);
-GLAPI void APIENTRY glAttachShader (GLuint program, GLuint shader);
-GLAPI void APIENTRY glBindAttribLocation (GLuint program, GLuint index, const GLchar *name);
-GLAPI void APIENTRY glCompileShader (GLuint shader);
-GLAPI GLuint APIENTRY glCreateProgram (void);
-GLAPI GLuint APIENTRY glCreateShader (GLenum type);
-GLAPI void APIENTRY glDeleteProgram (GLuint program);
-GLAPI void APIENTRY glDeleteShader (GLuint shader);
-GLAPI void APIENTRY glDetachShader (GLuint program, GLuint shader);
-GLAPI void APIENTRY glDisableVertexAttribArray (GLuint index);
-GLAPI void APIENTRY glEnableVertexAttribArray (GLuint index);
-GLAPI void APIENTRY glGetActiveAttrib (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *type, GLchar *name);
-GLAPI void APIENTRY glGetActiveUniform (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *type, GLchar *name);
-GLAPI void APIENTRY glGetAttachedShaders (GLuint program, GLsizei maxCount, GLsizei *count, GLuint *shaders);
-GLAPI GLint APIENTRY glGetAttribLocation (GLuint program, const GLchar *name);
-GLAPI void APIENTRY glGetProgramiv (GLuint program, GLenum pname, GLint *params);
-GLAPI void APIENTRY glGetProgramInfoLog (GLuint program, GLsizei bufSize, GLsizei *length, GLchar *infoLog);
-GLAPI void APIENTRY glGetShaderiv (GLuint shader, GLenum pname, GLint *params);
-GLAPI void APIENTRY glGetShaderInfoLog (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *infoLog);
-GLAPI void APIENTRY glGetShaderSource (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *source);
-GLAPI GLint APIENTRY glGetUniformLocation (GLuint program, const GLchar *name);
-GLAPI void APIENTRY glGetUniformfv (GLuint program, GLint location, GLfloat *params);
-GLAPI void APIENTRY glGetUniformiv (GLuint program, GLint location, GLint *params);
-GLAPI void APIENTRY glGetVertexAttribdv (GLuint index, GLenum pname, GLdouble *params);
-GLAPI void APIENTRY glGetVertexAttribfv (GLuint index, GLenum pname, GLfloat *params);
-GLAPI void APIENTRY glGetVertexAttribiv (GLuint index, GLenum pname, GLint *params);
-GLAPI void APIENTRY glGetVertexAttribPointerv (GLuint index, GLenum pname, void **pointer);
-GLAPI GLboolean APIENTRY glIsProgram (GLuint program);
-GLAPI GLboolean APIENTRY glIsShader (GLuint shader);
-GLAPI void APIENTRY glLinkProgram (GLuint program);
-GLAPI void APIENTRY glShaderSource (GLuint shader, GLsizei count, const GLchar *const*string, const GLint *length);
-GLAPI void APIENTRY glUseProgram (GLuint program);
-GLAPI void APIENTRY glUniform1f (GLint location, GLfloat v0);
-GLAPI void APIENTRY glUniform2f (GLint location, GLfloat v0, GLfloat v1);
-GLAPI void APIENTRY glUniform3f (GLint location, GLfloat v0, GLfloat v1, GLfloat v2);
-GLAPI void APIENTRY glUniform4f (GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3);
-GLAPI void APIENTRY glUniform1i (GLint location, GLint v0);
-GLAPI void APIENTRY glUniform2i (GLint location, GLint v0, GLint v1);
-GLAPI void APIENTRY glUniform3i (GLint location, GLint v0, GLint v1, GLint v2);
-GLAPI void APIENTRY glUniform4i (GLint location, GLint v0, GLint v1, GLint v2, GLint v3);
-GLAPI void APIENTRY glUniform1fv (GLint location, GLsizei count, const GLfloat *value);
-GLAPI void APIENTRY glUniform2fv (GLint location, GLsizei count, const GLfloat *value);
-GLAPI void APIENTRY glUniform3fv (GLint location, GLsizei count, const GLfloat *value);
-GLAPI void APIENTRY glUniform4fv (GLint location, GLsizei count, const GLfloat *value);
-GLAPI void APIENTRY glUniform1iv (GLint location, GLsizei count, const GLint *value);
-GLAPI void APIENTRY glUniform2iv (GLint location, GLsizei count, const GLint *value);
-GLAPI void APIENTRY glUniform3iv (GLint location, GLsizei count, const GLint *value);
-GLAPI void APIENTRY glUniform4iv (GLint location, GLsizei count, const GLint *value);
-GLAPI void APIENTRY glUniformMatrix2fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
-GLAPI void APIENTRY glUniformMatrix3fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
-GLAPI void APIENTRY glUniformMatrix4fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
-GLAPI void APIENTRY glValidateProgram (GLuint program);
-GLAPI void APIENTRY glVertexAttrib1d (GLuint index, GLdouble x);
-GLAPI void APIENTRY glVertexAttrib1dv (GLuint index, const GLdouble *v);
-GLAPI void APIENTRY glVertexAttrib1f (GLuint index, GLfloat x);
-GLAPI void APIENTRY glVertexAttrib1fv (GLuint index, const GLfloat *v);
-GLAPI void APIENTRY glVertexAttrib1s (GLuint index, GLshort x);
-GLAPI void APIENTRY glVertexAttrib1sv (GLuint index, const GLshort *v);
-GLAPI void APIENTRY glVertexAttrib2d (GLuint index, GLdouble x, GLdouble y);
-GLAPI void APIENTRY glVertexAttrib2dv (GLuint index, const GLdouble *v);
-GLAPI void APIENTRY glVertexAttrib2f (GLuint index, GLfloat x, GLfloat y);
-GLAPI void APIENTRY glVertexAttrib2fv (GLuint index, const GLfloat *v);
-GLAPI void APIENTRY glVertexAttrib2s (GLuint index, GLshort x, GLshort y);
-GLAPI void APIENTRY glVertexAttrib2sv (GLuint index, const GLshort *v);
-GLAPI void APIENTRY glVertexAttrib3d (GLuint index, GLdouble x, GLdouble y, GLdouble z);
-GLAPI void APIENTRY glVertexAttrib3dv (GLuint index, const GLdouble *v);
-GLAPI void APIENTRY glVertexAttrib3f (GLuint index, GLfloat x, GLfloat y, GLfloat z);
-GLAPI void APIENTRY glVertexAttrib3fv (GLuint index, const GLfloat *v);
-GLAPI void APIENTRY glVertexAttrib3s (GLuint index, GLshort x, GLshort y, GLshort z);
-GLAPI void APIENTRY glVertexAttrib3sv (GLuint index, const GLshort *v);
-GLAPI void APIENTRY glVertexAttrib4Nbv (GLuint index, const GLbyte *v);
-GLAPI void APIENTRY glVertexAttrib4Niv (GLuint index, const GLint *v);
-GLAPI void APIENTRY glVertexAttrib4Nsv (GLuint index, const GLshort *v);
-GLAPI void APIENTRY glVertexAttrib4Nub (GLuint index, GLubyte x, GLubyte y, GLubyte z, GLubyte w);
-GLAPI void APIENTRY glVertexAttrib4Nubv (GLuint index, const GLubyte *v);
-GLAPI void APIENTRY glVertexAttrib4Nuiv (GLuint index, const GLuint *v);
-GLAPI void APIENTRY glVertexAttrib4Nusv (GLuint index, const GLushort *v);
-GLAPI void APIENTRY glVertexAttrib4bv (GLuint index, const GLbyte *v);
-GLAPI void APIENTRY glVertexAttrib4d (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
-GLAPI void APIENTRY glVertexAttrib4dv (GLuint index, const GLdouble *v);
-GLAPI void APIENTRY glVertexAttrib4f (GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
-GLAPI void APIENTRY glVertexAttrib4fv (GLuint index, const GLfloat *v);
-GLAPI void APIENTRY glVertexAttrib4iv (GLuint index, const GLint *v);
-GLAPI void APIENTRY glVertexAttrib4s (GLuint index, GLshort x, GLshort y, GLshort z, GLshort w);
-GLAPI void APIENTRY glVertexAttrib4sv (GLuint index, const GLshort *v);
-GLAPI void APIENTRY glVertexAttrib4ubv (GLuint index, const GLubyte *v);
-GLAPI void APIENTRY glVertexAttrib4uiv (GLuint index, const GLuint *v);
-GLAPI void APIENTRY glVertexAttrib4usv (GLuint index, const GLushort *v);
-GLAPI void APIENTRY glVertexAttribPointer (GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void *pointer);
-*/
-/*
-GL_VERSION_2_1
-
-GLAPI void APIENTRY glUniformMatrix2x3fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
-GLAPI void APIENTRY glUniformMatrix3x2fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
-GLAPI void APIENTRY glUniformMatrix2x4fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
-GLAPI void APIENTRY glUniformMatrix4x2fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
-GLAPI void APIENTRY glUniformMatrix3x4fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
-GLAPI void APIENTRY glUniformMatrix4x3fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
-*/
 /*
 GL_VERSION_3_0
 
