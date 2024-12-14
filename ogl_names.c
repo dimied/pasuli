@@ -783,37 +783,45 @@ OGL_FUNC_DESC oglNames[] = {
     V21_FUNC_DECL4(VOID_TYPE, "glUniformMatrix4x3fv", INT_TYPE, SIZEI_TYPE, BOOLEAN_TYPE, FLOAT_PTR_TYPE),
 
     //OpenGL 3.0
+    FUNC_DECL5(VOID_TYPE, "glColorMaski", UINT_TYPE, BOOLEAN_TYPE, BOOLEAN_TYPE, BOOLEAN_TYPE,BOOLEAN_TYPE),
+    FUNC_DECL3(VOID_TYPE, "glGetBooleani_v", ENUM_TYPE, UINT_TYPE, BOOLEAN_PTR_TYPE),
+    FUNC_DECL3(VOID_TYPE, "glGetIntegeri_v", ENUM_TYPE, UINT_TYPE, INT_PTR_TYPE),
+
+    FUNC_DECL2(VOID_TYPE, "glEnablei", ENUM_TYPE, UINT_TYPE),
+    FUNC_DECL2(VOID_TYPE, "glDisablei", ENUM_TYPE, UINT_TYPE),
+    FUNC_DECL2(BOOLEAN_TYPE, "glIsEnabledi", ENUM_TYPE, UINT_TYPE),
+
+    FUNC_DECL1(VOID_TYPE, "glBeginTransformFeedback", ENUM_TYPE),
+    FUNC_DECL0(VOID_TYPE, "glEndTransformFeedback"),
+
+    FUNC_DECL5(BOOLEAN_TYPE, "glBindBufferRange", ENUM_TYPE, UINT_TYPE, UINT_TYPE, INT_PTR_TYPE, SIZEI_PTR_TYPE),
+    FUNC_DECL3(BOOLEAN_TYPE, "glBindBufferBase", ENUM_TYPE, UINT_TYPE, UINT_TYPE),
+    FUNC_DECL4(BOOLEAN_TYPE, "glTransformFeedbackVaryings", UINT_TYPE, SIZEI_TYPE, BYTE_BYTE_PTR_TYPE, ENUM_TYPE),
+    FUNC_DECL7(BOOLEAN_TYPE, "glGetTransformFeedbackVarying", UINT_TYPE, UINT_TYPE, SIZEI_TYPE, SIZEI_PTR_TYPE, SIZEI_PTR_TYPE, ENUM_PTR_TYPE, BYTE_PTR_TYPE),
+
+    FUNC_DECL2(VOID_TYPE, "glClampColor", ENUM_TYPE, ENUM_TYPE),
+    FUNC_DECL2(VOID_TYPE, "glBeginConditionalRender", UINT_TYPE, ENUM_TYPE),
+    FUNC_DECL0(VOID_TYPE, "glEndConditionalRender"),
+
+    FUNC_DECL5(BOOLEAN_TYPE, "glVertexAttribIPointer", UINT_TYPE, INT_TYPE, ENUM_TYPE, SIZEI_TYPE, VOID_PTR_TYPE),
+    FUNC_DECL3(VOID_TYPE, "glGetVertexAttribIiv", UINT_TYPE, ENUM_TYPE, INT_PTR_TYPE),
+    FUNC_DECL3(VOID_TYPE, "glGetVertexAttribIuiv", UINT_TYPE, ENUM_TYPE, UINT_PTR_TYPE),
+
+    FUNC_DECL2(VOID_TYPE, "glVertexAttribI1i", UINT_TYPE, INT_TYPE),
+    FUNC_DECL3(VOID_TYPE, "glVertexAttribI2i", UINT_TYPE, INT_TYPE, INT_TYPE),
+    FUNC_DECL4(VOID_TYPE, "glVertexAttribI3i", UINT_TYPE, INT_TYPE, INT_TYPE, INT_TYPE),
+    FUNC_DECL5(VOID_TYPE, "glVertexAttribI4i", UINT_TYPE, INT_TYPE, INT_TYPE, INT_TYPE, INT_TYPE),
+
+    FUNC_DECL2(VOID_TYPE, "glVertexAttribI1ui", UINT_TYPE, UINT_TYPE),
+    FUNC_DECL3(VOID_TYPE, "glVertexAttribI2ui", UINT_TYPE, UINT_TYPE, UINT_TYPE),
+    FUNC_DECL4(VOID_TYPE, "glVertexAttribI3ui", UINT_TYPE, UINT_TYPE, UINT_TYPE, UINT_TYPE),
+    FUNC_DECL5(VOID_TYPE, "glVertexAttribI4ui", UINT_TYPE, UINT_TYPE, UINT_TYPE, UINT_TYPE, UINT_TYPE),
+
 };
 
 /*
 GL_VERSION_3_0
 
-GLAPI void APIENTRY glColorMaski (GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a);
-GLAPI void APIENTRY glGetBooleani_v (GLenum target, GLuint index, GLboolean *data);
-GLAPI void APIENTRY glGetIntegeri_v (GLenum target, GLuint index, GLint *data);
-GLAPI void APIENTRY glEnablei (GLenum target, GLuint index);
-GLAPI void APIENTRY glDisablei (GLenum target, GLuint index);
-GLAPI GLboolean APIENTRY glIsEnabledi (GLenum target, GLuint index);
-GLAPI void APIENTRY glBeginTransformFeedback (GLenum primitiveMode);
-GLAPI void APIENTRY glEndTransformFeedback (void);
-GLAPI void APIENTRY glBindBufferRange (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size);
-GLAPI void APIENTRY glBindBufferBase (GLenum target, GLuint index, GLuint buffer);
-GLAPI void APIENTRY glTransformFeedbackVaryings (GLuint program, GLsizei count, const GLchar *const*varyings, GLenum bufferMode);
-GLAPI void APIENTRY glGetTransformFeedbackVarying (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLsizei *size, GLenum *type, GLchar *name);
-GLAPI void APIENTRY glClampColor (GLenum target, GLenum clamp);
-GLAPI void APIENTRY glBeginConditionalRender (GLuint id, GLenum mode);
-GLAPI void APIENTRY glEndConditionalRender (void);
-GLAPI void APIENTRY glVertexAttribIPointer (GLuint index, GLint size, GLenum type, GLsizei stride, const void *pointer);
-GLAPI void APIENTRY glGetVertexAttribIiv (GLuint index, GLenum pname, GLint *params);
-GLAPI void APIENTRY glGetVertexAttribIuiv (GLuint index, GLenum pname, GLuint *params);
-GLAPI void APIENTRY glVertexAttribI1i (GLuint index, GLint x);
-GLAPI void APIENTRY glVertexAttribI2i (GLuint index, GLint x, GLint y);
-GLAPI void APIENTRY glVertexAttribI3i (GLuint index, GLint x, GLint y, GLint z);
-GLAPI void APIENTRY glVertexAttribI4i (GLuint index, GLint x, GLint y, GLint z, GLint w);
-GLAPI void APIENTRY glVertexAttribI1ui (GLuint index, GLuint x);
-GLAPI void APIENTRY glVertexAttribI2ui (GLuint index, GLuint x, GLuint y);
-GLAPI void APIENTRY glVertexAttribI3ui (GLuint index, GLuint x, GLuint y, GLuint z);
-GLAPI void APIENTRY glVertexAttribI4ui (GLuint index, GLuint x, GLuint y, GLuint z, GLuint w);
 GLAPI void APIENTRY glVertexAttribI1iv (GLuint index, const GLint *v);
 GLAPI void APIENTRY glVertexAttribI2iv (GLuint index, const GLint *v);
 GLAPI void APIENTRY glVertexAttribI3iv (GLuint index, const GLint *v);
