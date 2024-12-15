@@ -9,6 +9,56 @@
 #define PARSE_RESULT_MEM_ALLOC_FAIL 2
 
 const char *sGLAPI = "GLAPI ";
+const char *sGLAPIENTRY = "GLAPIENTRY ";
+
+#define PARSE_FUNC_NAME_MAX_LENGTH 100
+
+void trimInplace(char *pStr)
+{
+  if(pStr == 0) {
+    return;
+  }
+  char *pStart = pStr;
+  while ((*pStart != 0) && (*pStart == ' ' || *pStart == '\t' || *pStart == '\n'))
+  {
+    ++pStart;
+  }
+  char *pEnd = 0;
+  // printf("?%s\n", pStr);
+  if (pStart != pStr)
+  {
+    char *p = pStr;
+    while (*pStart != 0)
+    {
+      *p = *pStart;
+      ++pStart;
+      ++p;
+    }
+    pEnd = p;
+    while (*p != 0)
+    {
+      *p = 0;
+      ++p;
+    }
+  }
+  if (pEnd == 0)
+  {
+    pEnd = pStr;
+    while (*pEnd != 0)
+    {
+      ++pEnd;
+    }
+  }
+  if (pEnd != pStr)
+  {
+    --pEnd;
+    while (pEnd != pStr && (*pEnd == ' ' || *pEnd == '\t' || *pEnd == '\n'))
+    {
+      *pEnd = 0;
+      --pEnd;
+    }
+  }
+}
 
 int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pFunctions)
 {
@@ -49,10 +99,17 @@ int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pFunctions)
   char *pDataLimit = fileContent + dataLength;
   int numLines = 0, numFuncLines = 0, pass = 0;
   int codeMaxLineLength = 0;
+  char *sFuncName;
+  char *sReturnType;
+  char *sParameters;
+
+  int s1 = strlen(sGLAPI);
+  int s2 = strlen(sGLAPIENTRY);
 
   while (pass < 2)
   {
     pData = fileContent;
+    int lineNr = 0;
     // int lineRes = 0;
     while (*pData != 0 && pData < pDataLimit)
     {
@@ -60,7 +117,8 @@ int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pFunctions)
       char *charPtr = strchr(pData, '\n');
       if (charPtr == 0)
       {
-        break;
+        ++pData;
+        continue;
       }
       int lineLen = charPtr - pData;
       if (lineLen < 3)
@@ -71,8 +129,8 @@ int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pFunctions)
 
       charPtr = strstr(pData, sGLAPI);
 
-      int isFuncLine = 0;
-      //char *pDataRaw = pData;
+      int isFuncLine = 0, isHit = 0;
+      char *pDataRaw = pData;
 
       if (charPtr == pData)
       {
@@ -87,10 +145,6 @@ int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pFunctions)
         {
           isFuncLine = 1;
         }
-
-        pData = charPtr;
-        ++pData;
-        
       }
 
       if (pass == 0)
@@ -113,12 +167,82 @@ int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pFunctions)
       else if (pass == 1)
       {
         memset(pSingleLine, 0, codeMaxLineLength);
+        if (isFuncLine)
+        {
+          memcpy(pSingleLine, pDataRaw, lineLen);
+          memset(sFuncName, 0, codeMaxLineLength);
+          memset(sReturnType, 0, codeMaxLineLength / 2);
+          memset(sParameters, 0, codeMaxLineLength);
+          int state = 0;
+
+          char *p = pSingleLine + s1;
+          char *pApi = strstr(p, sGLAPIENTRY);
+          int s3;
+
+          if (pApi != 0)
+          {
+            s3 = pApi - p;
+            memcpy(sReturnType, p, s3);
+            p = pApi + s2;
+            ++state;
+          }
+          char *fnName = strstr(p, "gl");
+          if (fnName != 0 && state > 0)
+          {
+            char *pO = strchr(p, '(');
+            if (pO != 0)
+            {
+              s3 = pO - fnName;
+              memcpy(sFuncName, fnName, s3);
+              p = pO + 1;
+            }
+            ++state;
+          }
+          if (state > 1)
+          {
+            char *pC = strchr(p, ')');
+            if (pC != 0)
+            {
+              s3 = pC - p;
+              memcpy(sParameters, p, s3);
+            }
+          }
+          if (*sReturnType != 0 && *sFuncName != 0 && *sParameters != 0)
+          {
+            trimInplace(sReturnType);
+            trimInplace(sFuncName);
+            trimInplace(sParameters);
+            if (lineNr < 10)
+            {
+              printf("!!!\n");
+            }
+          }
+
+          if (lineNr < 10)
+          {
+            printf("|%s\n", pSingleLine);
+            printf("|RT:%s|", sReturnType);
+            printf("|FN:%s|\n", sFuncName);
+            printf("|PA:%s|\n", sParameters);
+          }
+          ++lineNr;
+        }
+      }
+
+      if (isHit)
+      {
+        pData = charPtr;
+        ++pData;
       }
 
       // printf("LL:%i|%s\n", lineLen, pSingleLine);
       ++pData;
-      ++numLines;
+      if (pass == 0)
+      {
+        ++numLines;
+      }
     }
+
     if (pass == 0)
     {
       if (codeMaxLineLength > maxLineLength)
@@ -132,13 +256,35 @@ int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pFunctions)
         }
       }
 
-      int funcAllocSize = numFuncLines*sizeof(OpenGLSingleFunction);
-      void *pMem = malloc(funcAllocSize);
-      if(pMem == 0) {
+      void *pMem = malloc(codeMaxLineLength);
+      if (pMem == 0)
+      {
+        return PARSE_RESULT_MEM_ALLOC_FAIL;
+      }
+      sFuncName = pMem;
+
+      pMem = malloc(codeMaxLineLength / 2);
+      if (pMem == 0)
+      {
+        return PARSE_RESULT_MEM_ALLOC_FAIL;
+      }
+      sReturnType = pMem;
+
+      pMem = malloc(codeMaxLineLength);
+      if (pMem == 0)
+      {
+        return PARSE_RESULT_MEM_ALLOC_FAIL;
+      }
+      sParameters = pMem;
+
+      int funcAllocSize = numFuncLines * sizeof(OpenGLSingleFunction);
+      pMem = malloc(funcAllocSize);
+      if (pMem == 0)
+      {
         return PARSE_RESULT_MEM_ALLOC_FAIL;
       }
       memset(pMem, 0, funcAllocSize);
-      pFunctions->pFunctions = (OpenGLSingleFunction*)pMem;
+      pFunctions->pFunctions = (OpenGLSingleFunction *)pMem;
       pFunctions->numFunctions = numFuncLines;
     }
     else if (pass == 1)

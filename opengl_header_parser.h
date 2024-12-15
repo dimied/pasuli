@@ -38,8 +38,8 @@ typedef struct _OpenGLFunctions {
   int numFunctions;
   // pointer to an array with numFunctions values
   OpenGLSingleFunction *pFunctions;
-  // pointer to other functions, real type is OpenGLFunctions*, i.e. it's a
-  // linked list
+  // pointer to other functions, real type is OpenGLFunctions*, 
+  // i.e. it's a linked list
   void *pNextFunctions;
 } OpenGLFunctions;
 
