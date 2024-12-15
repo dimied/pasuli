@@ -1,8 +1,8 @@
 #ifndef __OPENGL_HEADER_PARSER__
 #define __OPENGL_HEADER_PARSER__
 
-#define OGL_FUNC_NAME_MAX_LENGTH 30
-#define OGL_FUNC_PARAMETER_TYPE_MAX_LENGTH 20
+#define OGL_FUNC_NAME_MAX_LENGTH 40
+#define OGL_FUNC_PARAMETER_TYPE_MAX_LENGTH 30
 #define OGL_FUNC_PARAMETER_NAME_MAX_LENGTH 20
 #define OGL_FUNC_RETURN_TYPE_MAX_LENGTH 20
 
@@ -48,6 +48,8 @@ typedef struct _OpenGLFunctions {
 #endif
 
 int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pFunctions);
+
+int clearFunctions(OpenGLFunctions *pFunctions);
 
 int showHeaderInfo(OpenGLFunctions *pFunctions);
 
