@@ -68,12 +68,15 @@ showsizes50_extern:
 	nm --size-sort -g intertest | tail -50
 
 
-ogl: ogl_test.c ogl_names.c opengl_header_parser.c file_utils.c
+ogl: ogl_test.c ogl_names.c opengl_header_parser.c file_utils.c ogl_compress_test.c
 	rm -f ogl_test
-	gcc -Wall -g -Os -lc -ldl -o ogl_test ogl_test.c ogl_names.c opengl_header_parser.c file_utils.c
+	gcc -Wall -g -Os -lc -ldl -o ogl_test ogl_test.c ogl_names.c opengl_header_parser.c file_utils.c  ogl_compress_test.c
 
 showogl5:
 	nm --size-sort ogl_test | tail -5
+
+showcomp10:
+	nm --size-sort ogl_test | grep 'compress' | tail -10 
 
 clean:
 	rm -f *.o 

@@ -8,10 +8,17 @@
 #define PARSE_RESULT_INVALID_PARAMETERS 1
 #define PARSE_RESULT_MEM_ALLOC_FAIL 2
 
+#ifdef IS_EMPTY_CHAR
+#define PARSER_SOME_PREVIOUS_IS_EMPTY_CHAR_STAFF IS_EMPTY_CHAR
+#endif
+#define IS_EMPTY_CHAR(C) (((C) == ' ') || ((C) == '\t') || ((C) == '\n'))
+
 const char *sGLAPI = "GLAPI ";
 const char *sGLAPIENTRY = "GLAPIENTRY ";
 
 #define PARSE_FUNC_NAME_MAX_LENGTH 100
+
+int understandType(char *pStr, int *pTypeResult, int *pPointerResult);
 
 void trimInplace(char *pStr)
 {
@@ -60,8 +67,6 @@ void trimInplace(char *pStr)
     }
   }
 }
-
-#define IS_EMPTY_CHAR(C)  (((C) == ' ')||((C) == '\t')||((C) == '\n'))
 
 int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pResult)
 {
@@ -249,12 +254,13 @@ int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pResult)
                   pParameterPositions[funcIdx][1] = p;
                   ++funcIdx;
                   ++p;
-                  
+
                   while (IS_EMPTY_CHAR(*p) && *p != 0)
                   {
                     ++p;
                   }
-                  if(*p == 0) {
+                  if (*p == 0)
+                  {
                     break;
                   }
                   pLast = p;
@@ -264,7 +270,8 @@ int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pResult)
 
               if (pLast != p)
               {
-                while(pLast != p && IS_EMPTY_CHAR(*pLast)) {
+                while (pLast != p && IS_EMPTY_CHAR(*pLast))
+                {
                   ++pLast;
                 }
                 pParameterPositions[funcIdx][0] = pLast;
@@ -276,9 +283,9 @@ int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pResult)
           if (funcIdx > 0)
           {
             unsigned int paramSizes = sizeof(OpenGLParameter) * funcIdx;
-            //printf("?mal?%u|%s|%s\n", paramSizes, pSingleLine, sParameters);
+            // printf("?mal?%u|%s|%s\n", paramSizes, pSingleLine, sParameters);
             OpenGLParameter *pParameters = (OpenGLParameter *)malloc(paramSizes);
-            //printf("PARAMS!\n");
+            // printf("PARAMS!\n");
 
             if (pParameters == 0)
             {
@@ -315,18 +322,18 @@ int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pResult)
                 *pFE = 0;
                 int paramTypeSize = strlen(pFS);
                 int paramNameSize = strlen(pFN + 1);
-                //printf("P?%s?%s\n", pFS, pFN + 1);
+                // printf("P?%s?%s\n", pFS, pFN + 1);
                 *pFN = d;
                 *pFE = ec;
 
                 if (paramTypeSize < OGL_FUNC_PARAMETER_TYPE_MAX_LENGTH &&
                     paramNameSize < OGL_FUNC_PARAMETER_NAME_MAX_LENGTH)
                 {
-                  memcpy(pParameters[fIdx].type, pFS, paramTypeSize);
+                  memcpy(pParameters[fIdx].sType, pFS, paramTypeSize);
 
                   if (paramNameSize > 0)
                   {
-                    memcpy(pParameters[fIdx].name, pFN + 1, paramNameSize);
+                    memcpy(pParameters[fIdx].sName, pFN + 1, paramNameSize);
                   }
                 }
                 else
@@ -338,8 +345,8 @@ int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pResult)
               }
             }
 
-            memcpy(pResFunc->funcName, sFuncName, strlen(sFuncName));
-            memcpy(pResFunc->returnType, sReturnType, strlen(sReturnType));
+            memcpy(pResFunc->sFuncName, sFuncName, strlen(sFuncName));
+            memcpy(pResFunc->sReturnType, sReturnType, strlen(sReturnType));
             pResFunc->numParameters = funcIdx;
             pResFunc->pParameters = pParameters;
             ++funcIdxToStore;
@@ -430,8 +437,61 @@ int parseOpenGLHeaderFile(char *fileContent, OpenGLFunctions *pResult)
   return PARSE_RESULT_OK;
 }
 
+int clearFunctions(OpenGLFunctions *pFunctions)
+{
+  if (pFunctions == 0)
+  {
+    return 1;
+  }
+  if (pFunctions->numFunctions > 0)
+  {
+    if (pFunctions->pFunctions == 0)
+    {
+      return 2;
+    }
+    int num = pFunctions->numFunctions;
+    for (int funcIdx = 0; funcIdx < num; funcIdx++)
+    {
+      // int res =
+      clearSingleFunction(&pFunctions->pFunctions[funcIdx]);
+    }
+    free(pFunctions->pFunctions);
+    pFunctions->pFunctions = 0;
+  }
 
-int clearFunctions(OpenGLFunctions *pFunctions) {
+  if (pFunctions->pNextFunctions)
+  {
+    int res = clearFunctions((OpenGLFunctions *)pFunctions->pNextFunctions);
+    pFunctions->pNextFunctions = 0;
+    return res;
+  }
+  return 0;
+}
+
+int understandType(char *pStr, int *pTypeResult, int *pPointerResult)
+{
+  if(pStr == 0 || pTypeResult == 0) {
+    return -1;
+  }
+
+  return 0;
+}
+
+int clearSingleFunction(OpenGLSingleFunction *pSingleFunction)
+{
+  if (pSingleFunction == 0)
+  {
+    return 1;
+  }
+  if (pSingleFunction->numParameters > 0)
+  {
+    if (pSingleFunction->pParameters == 0)
+    {
+      return 2;
+    }
+    free(pSingleFunction->pParameters);
+    pSingleFunction->pParameters = 0;
+  }
   return 0;
 }
 
@@ -446,3 +506,7 @@ int showHeaderInfo(OpenGLFunctions *pFunctions)
   printf("FUNCS: %i\n", pFunctions->numFunctions);
   return 0;
 }
+
+#ifdef PARSER_SOME_PREVIOUS_IS_EMPTY_CHAR_STAFF
+#define IS_EMPTY_CHAR PARSER_SOME_PREVIOUS_IS_EMPTY_CHAR_STAFF
+#endif
