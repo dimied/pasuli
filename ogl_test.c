@@ -9,7 +9,7 @@
 #include "file_utils.h"
 
 
-#include "ogl_compress_test.h"
+#include "ogl_compress/ogl_compress_test.h"
 
 int parseHeaderFiles();
 
