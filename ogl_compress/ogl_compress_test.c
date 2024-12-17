@@ -37,7 +37,7 @@ char *names[] = {
     "glLoadTransposeMatrixd",
 
     "glMatrixMode",
-    "glMultTransposeMatrixf",
+    //"glMultTransposeMatrixf",
     "glOrtho",
     "glPopMatrix",
     "glPushMatrix",
@@ -125,6 +125,13 @@ typedef struct _CompressTestResult
     int code;
 } CompressTestResult;
 
+int ascSort(const void *pA, const void *pB)
+{
+    int s1 = strlen((char *)pA);
+    int s2 = strlen((char *)pB);
+    return s1 - s2;
+}
+
 void compressTest()
 {
     int is = sizes(names, NAMES_COUNT);
@@ -132,7 +139,7 @@ void compressTest()
     int cs2 = compress2(names, NAMES_COUNT, 0);
     int cs3 = compress3(names, NAMES_COUNT);
     int cs4 = compress4(names, NAMES_COUNT);
-    int cs5 = compress5(names, NAMES_COUNT, 2); //2 for "gl"
+    int cs5 = compress5(names, NAMES_COUNT, 2); // 2 for "gl"
 
     printf("HITS(2) = %i\n", compress2Hits);
 
@@ -175,10 +182,21 @@ void compressTest()
     free(pRes4);
 
     printf("|5|@%p|\n", pCompressResult5);
-    printf("|5|%s|%li\n",  (char *)pCompressResult5, strlen(pCompressResult5));
+    printf("|5|%s|%li\n", (char *)pCompressResult5, strlen(pCompressResult5));
     callIdx = 0;
     memset(pReverseResult, 0, reverseSize);
     decompress5(pCompressResult5, &decompressCall);
+    checkResult();
+
+    qsort(names, NAMES_COUNT, sizeof(char *), ascSort);
+
+    free(pCompressResult5);
+    int cs5s = compress5(names, NAMES_COUNT, 2);
+    printf("|5|@%p|\n", pCompressResult5);
+    printf("|5|%s|%li\n", (char *)pCompressResult5, strlen(pCompressResult5));
+    callIdx = 0;
+    memset(pReverseResult, 0, reverseSize);
+    decompress5s(pCompressResult5, &decompressCall);
     checkResult();
 
     CompressTestResult results[] = {
@@ -188,6 +206,7 @@ void compressTest()
         {cs : cs4, code : DECOMPRESS4_SIZE, pName : "4"},
         {cs : cs4, code : DECOMPRESS4ASM_SIZE, pName : "4asm"},
         {cs : cs5, code : DECOMPRESS5_SIZE, pName : "5"},
+        {cs : cs5s, code : DECOMPRESS5SORTED_SIZE, pName : "5s"},
     };
 
     printf("\nIS=%i\n", is);
@@ -196,4 +215,10 @@ void compressTest()
     {
         printf("%s:CS+DC= %i + %i(%x) = %i\n", results[i].pName, results[i].cs, results[i].code, results[i].code, results[i].cs + results[i].code);
     }
+
+    free(pCompressResult);
+    free(pCompressResult2);
+    free(pCompressResult3);
+    free(pCompressResult4);
+    free(pCompressResult5);
 }

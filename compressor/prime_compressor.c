@@ -185,14 +185,17 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
         // TODO:
         //  collect and compare results
 
-        numTries = 3;
+        numTries = 0xFFFF - 1;
 
-        unsigned char *pTemp = testedNumber.data.pBytes;
+        //unsigned char *pTemp = testedNumber.data.pBytes;
         // unsigned char *pDiv = divisor.data.pBytes;
         // unsigned short *pUShort;
         int lastPrimesIdx = NUM_PRIMES_TO_CHECK;
         MYINT *pRest;
         unsigned char *pRestUchars;
+
+        int *tryHits = (int *)malloc(numTries * sizeof(int));
+        memset(tryHits, 0, numTries * sizeof(int));
 
         while (testIdx < numTries)
         {
@@ -212,11 +215,20 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
                 testedNumber.size = size;
             }
 
-            if (1 == 0 && add > 0 && add < 256)
+            if (add > 0)
             {
                 printf("ADD: %i\n", add);
-                adder.data.pBytes[0] = (unsigned char)add;
-                adder.used_size = 1;
+                if (add < 256)
+                {
+                    adder.data.pBytes[0] = (unsigned char)add;
+                    adder.used_size = 1;
+                }
+                else if (add < 256 * 256)
+                {
+                    adder.data.pShorts[0] = (unsigned short)add;
+                    adder.used_size = 2;
+                }
+
                 res = myintOp(INT_OP_ADD, &testedNumber, &adder, &result, &rest);
                 if (res)
                 {
@@ -249,13 +261,6 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
                 if (prime > 0xFF)
                 {
                     divisor.used_size = primeSizes[primeIdx];
-#if 0
-                    divisor.used_size = 2;
-                    if (prime > 0xFFFF)
-                    {
-                        divisor.used_size = 3;
-                    }
-#endif
                 }
 
 #if 0
@@ -308,16 +313,6 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
                     pRest->data.pBytes[0], pRest->data.pBytes[1]
                     );
 #endif
-#if 0
-                    if (pRest->size == 4)
-                    {
-                        *pRest->data.pUInts = 0;
-                    }
-                    else
-                    {
-                        clear2(pRest->data.pBytes, pRest->size);
-                    }
-#endif
                     pRest->used_size = 0;
                 }
 
@@ -328,8 +323,10 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
 
                     clear2(printCompressChars, PRINT_CHARS_SIZE);
                     printMyInt(&result, printCompressChars, PRINT_CHARS_SIZE);
+#if 0
                     printf("%i %% %s \n", prime, printCompressChars2);
                     printf("%i|%s =?> %u\n", prime, printCompressChars, result.used_size);
+#endif
                     free(testedNumber.data.pBytes);
                     testedNumber.data.pBytes = result.data.pBytes;
                     testedNumber.used_size = result.used_size;
@@ -358,26 +355,45 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
                 if (primesCounters[primeIdx])
                 {
                     printf("%i : %i\n", primes[primeIdx], primesCounters[primeIdx]);
-                    if (primes[primeIdx] < 256)
+                    if (primeIdx < 256)
                     {
                         resUInt += 2;
-                    }
-                    else
-                    {
-                        resUInt += 3;
                     }
 
                     lastPrimesIdx = primeIdx;
                 }
             }
-            unsigned int resSize = resUInt + testedNumber.used_size;
+            if (lastPrimesIdx < 0x80)
+            {
+                resUInt /= 2;
+            }
+            //+1 for the number of used primes
+            unsigned int resSize = 1 + resUInt + testedNumber.used_size;
+            if (add > 0)
+            {
+                resSize += add < 256 ? 2 : 3;
+            }
 
             printf(">PS+RS: %u +%u = %u ? %u | @%i\n", resUInt, testedNumber.used_size, resSize, size, lastPrimesIdx);
+            if (resSize < size)
+            {
+                tryHits[testIdx] = resSize;
+            }
 
             ++testIdx;
 
             add += 1;
         }
+
+        for (int testIdx = 0; testIdx < numTries; testIdx++)
+        {
+            if (tryHits[testIdx] > 0)
+            {
+                printf("H: %i -> %i\n", testIdx, tryHits[testIdx]);
+            }
+        }
+
+        free(tryHits);
         INT_CLEAR_CALL3(res, &divisor, &adder, &result);
         if (res != 0)
         {
@@ -392,6 +408,7 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
 
     printf("Prime time %llu (micro) | %llu (milli)\n", duration2, duration2 / 1000);
     printf("Last prime: %i\n", primes[NUM_PRIMES_ALL - 1]);
+
     free(primes);
     free(primesSq);
     free(primeSizes);

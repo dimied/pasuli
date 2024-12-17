@@ -252,8 +252,7 @@ int compress5(char **names, int numNames, int inputNameOffset)
 
     // 2 passes. 1st step: estimate size, 2nd step: allocate and write
     int pass = 0;
-    int resSize = 1; // for new line
-    int allocSize = 0;
+    int resSize = 0, allocSize = 0;
     unsigned char *pResult = 0, *pDest = 0;
     // const int charOffset = minValue - 1;
 
@@ -279,7 +278,7 @@ int compress5(char **names, int numNames, int inputNameOffset)
         for (int idx = 0; idx < numNames; idx++)
         {
             char *pStr = names[idx] + inputNameOffset;
-            int sLen = strlen(pStr);
+            size_t sLen = strlen(pStr);
             if (sLen == 0)
             {
                 continue;
@@ -314,13 +313,14 @@ int compress5(char **names, int numNames, int inputNameOffset)
                         *pDest = lastC | INC_MARKER;
                         ++pDest;
                     }
+                    // printf("M: %c%c\n", newAlphabet[lastC-1], newAlphabet[curOffset]);
                     ++numMerges;
                     lastC = 0;
                 }
                 else
                 {
                     ++allocSize;
-                    lastC = curOffset + 1;
+                    lastC = (unsigned char)curOffset + 1;
                     if (pass)
                     {
                         *pDest = lastC;
@@ -356,55 +356,29 @@ int compress5(char **names, int numNames, int inputNameOffset)
     return resSize;
 }
 
-#define DECOMPRESS5_DEBUG 1
+#define DECOMPRESS5_DEBUG 0
 
 void decompress5(unsigned char *pData, decompressFPtr func)
 {
-    // const int charOffset = *pData;
     unsigned int val = *pData, alphabetIdx;
     ++pData;
 
     const char *pAlphabet = (char *)pData;
     pData += val;
-    char buffer[100];
+    char buffer[50];
     char *pWord;
 
-#if DECOMPRESS5_DEBUG
-    int numMerges = 0;
-    memset(buffer, 0, 100);
-    memcpy(buffer, pAlphabet, val);
-    printf("A|%s|\n", buffer);
-    unsigned char *pTest = pData;
-    numMerges = 0;
-    while (*pTest != 0)
-    {
-        val = *pTest;
-        if (val | INC_MARKER)
-        {
-            ++numMerges;
-        }
-        ++pTest;
-    }
-    printf("?merge: %i\n", numMerges);
-    numMerges = 0;
-#endif
-
 memclear:
-    memset(buffer, 0, 100);
-    pWord = buffer;
+    pWord = memset(buffer, 0, 50);
 
     while (*pData != 0)
     {
         val = *pData;
-        alphabetIdx = (val & 0x3F)-1;
+        alphabetIdx = (val & 0x3F) - 1;
         *pWord = pAlphabet[alphabetIdx];
         ++pWord;
-        if (val | INC_MARKER)
+        if (val & INC_MARKER)
         {
-#if DECOMPRESS5_DEBUG
-            //printf("<%c|%c\n", pAlphabet[alphabetIdx], pAlphabet[alphabetIdx + 1]);
-            ++numMerges;
-#endif
             *pWord = pAlphabet[alphabetIdx + 1];
             ++pWord;
         }
@@ -412,16 +386,40 @@ memclear:
         ++pData;
         if (val > LAST_CHAR_MARKER)
         {
-            #if DECOMPRESS5_DEBUG
-            printf(">%s\n", buffer);
-            #endif
             func(buffer, pWord - buffer);
 
             goto memclear;
         }
     }
+}
 
-#if DECOMPRESS5_DEBUG
-    printf("#merges = %i\n", numMerges);
-#endif
+void decompress5s(unsigned char *pData, decompressFPtr func)
+{
+    unsigned int val = *pData, alphabetIdx;
+    ++pData;
+
+    const char *pAlphabet = (char *)pData;
+    pData += val;
+    char buffer[50];
+    char *pWord = memset(buffer, 0, 50);
+    
+    while (*pData != 0)
+    {
+        val = *pData;
+        alphabetIdx = (val & 0x3F) - 1;
+        *pWord = pAlphabet[alphabetIdx];
+        ++pWord;
+        if (val & INC_MARKER)
+        {
+            *pWord = pAlphabet[alphabetIdx + 1];
+            ++pWord;
+        }
+
+        ++pData;
+        if (val > LAST_CHAR_MARKER)
+        {
+            func(buffer, pWord - buffer);
+            pWord = buffer;
+        }
+    }
 }

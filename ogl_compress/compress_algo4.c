@@ -5,10 +5,9 @@
 #include "compress_algos.h"
 #include "ogl_compress_types.h"
 
-extern void* pTempMemory;
-extern void* pCompressResult4;
+extern void *pTempMemory;
+extern void *pCompressResult4;
 extern void decompressCall(char *p, int s);
-
 
 int compress4(char **pNames, int size)
 {
@@ -63,23 +62,42 @@ void decompress4(unsigned char *pData, decompressFPtr func)
     }
 }
 
+/**
+ * Destroys input data.
+ */
 void decompress4asm(unsigned char *pData, decompressFPtr func)
 {
+    // decompress4(pData,func);
+    // return;
+#if 0
+    asm(
+        "push rbp\n"
+        "mov rbp, rsp\n"
+        "sub rsp, 0x20\n"
+        //pData -> stack
+        "mov QWORD PTR [rbp-0x18],rdi\n"
+        //func -> stack
+        "mov QWORD PTR [rbp-0x20],rsi\n"
+        //pLast 
+        "mov rbx, rdi\n"
+        "leave\n"
+        "ret\n"
+    );
+#endif
+#if 1
     unsigned char *pLast = pData;
+    int val;
+
     while (*pData != 0)
     {
-        int val = *pData;
+        val = *pData;
+        *pData = (val) & 0x7F;
+        ++pData;
         if (val > 0x80)
         {
-            *pData = (val) & 0x7F;
-            // val = *pData;
-            //*pData = 0;
-            (*func)((char *)pLast, (pData + 1 - pLast));
-            *pData = val;
-            ++pData;
+            (*func)((char *)pLast, (pData - pLast));
             pLast = pData;
-            continue;
         }
-        ++pData;
     }
+#endif
 }

@@ -71,7 +71,7 @@ OGL_TEST_FILES = ogl_compress/*.c
 
 ogl: ogl_test.c ogl_names.c opengl_header_parser.c file_utils.c ${OGL_TEST_FILES}
 	rm -f ogl_test
-	gcc -Wall -g -Os -lc -ldl -o ogl_test ogl_test.c ogl_names.c opengl_header_parser.c file_utils.c ${OGL_TEST_FILES}
+	gcc -Wall -g -Os -lc -ldl -masm=intel -o  ogl_test ogl_test.c ogl_names.c opengl_header_parser.c file_utils.c ${OGL_TEST_FILES}
 
 showogl5:
 	nm --size-sort ogl_test | tail -5

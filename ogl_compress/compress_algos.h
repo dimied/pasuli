@@ -30,14 +30,17 @@ int compress4(char **pNames, int size);
 #define DECOMPRESS4_SIZE 0x3A
 void decompress4(unsigned char *pData, decompressFPtr func);
 
-#define DECOMPRESS4ASM_SIZE 0x3C
+#define DECOMPRESS4ASM_SIZE 0x31
 void decompress4asm(unsigned char *pData, decompressFPtr func);
 
 #define PRINT_STATS 0
 #define COMPRESS5_VERBOSE 0
 int compress5(char **names, int numNames, int inputNameOffset);
 
-#define DECOMPRESS5_SIZE 0x9C
+#define DECOMPRESS5_SIZE 0x9F
 void decompress5(unsigned char *pData, decompressFPtr func);
+
+#define DECOMPRESS5SORTED_SIZE 0x9D
+void decompress5s(unsigned char *pData, decompressFPtr func);
 
 #endif
