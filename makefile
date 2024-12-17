@@ -47,6 +47,10 @@ opengl:
 #interpreter_example.c interpreter.c interpreter_text.c interpreter_progs.c prime_compressor.c memory.c myint.c log_stack.c myint_test_data.c myint_test.c 
 interpreter: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
 	rm -f ./intertest
+	gcc -Wall -pedantic -g -Os -B -lc -DIS_PEDANTIC_GCC -o intertest ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} -lm
+
+interpreter2: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
+	rm -f ./intertest
 	gcc -Wall -g -Os -B -lc -o intertest ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} -lm
 
 interpreter_tcc: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
@@ -71,7 +75,7 @@ OGL_TEST_FILES = ogl_compress/*.c
 
 ogl: ogl_test.c ogl_names.c opengl_header_parser.c file_utils.c ${OGL_TEST_FILES}
 	rm -f ogl_test
-	gcc -Wall -g -Os -lc -ldl -masm=intel -o  ogl_test ogl_test.c ogl_names.c opengl_header_parser.c file_utils.c ${OGL_TEST_FILES}
+	gcc -Wall -pedantic -g -Os -lc -ldl -masm=intel -o  ogl_test ogl_test.c ogl_names.c opengl_header_parser.c file_utils.c ${OGL_TEST_FILES}
 
 showogl5:
 	nm --size-sort ogl_test | tail -5

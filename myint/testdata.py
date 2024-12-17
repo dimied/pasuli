@@ -52,133 +52,228 @@ def cLikeArray(v):
 
 
 nC = False
+print("")
+print("")
 print('#include "myint_test_data.h"')
+print("")
+print("")
 
-print("IntTest addTests[" + str(numTests) + "] = {")
-for v in addResult:
-    print("{")
-    print(' ptrA: "' + str(v[0]) + '",')
-    print(' ptrB: "' + str(v[1]) + '",')
-    print(' ptrC: "' + str(v[2]) + '",')
 
-    print(" signA:0, signB:0, signC:0,")
+def generateAddTests():
 
-    b1 = toByteArray(v[0])
-    n1 = len(b1)
-    print(" aBytes: " + cLikeArray(b1) + ",")
+    idx = 0
+    print("")
+    print("")
+    for v in addResult:
+        b1 = toByteArray(v[0])
+        b2 = toByteArray(v[1])
+        b3 = toByteArray(v[2])
 
-    b2 = toByteArray(v[1])
-    n2 = len(b2)
-    print(" bBytes: " + cLikeArray(b2) + ",")
+        n = "aBytesAdd" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(b1) + ";")
+        n = "bBytesAdd" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(b2) + ";")
+        n = "cBytesAdd" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(b3) + ";")
+        idx += 1
 
-    b3 = toByteArray(v[2])
-    n3 = len(b3)
-    print(" cBytes: " + cLikeArray(b3) + ",")
+    idx = 0
+    print("")
+    print("")
+    print("IntTest addTests[" + str(numTests) + "] = {")
+    for v in addResult:
+        s = "INIT_INT_TEST("
+        s += '"' + str(v[0]) + '",'
+        s += '"' + str(v[1]) + '",'
+        s += '"' + str(v[2]) + '",'
+        s += "0,0,0,"  # signs
 
-    print(" numBytesA: " + str(n1) + ",")
-    print(" numBytesB: " + str(n2) + ",")
-    print(" numBytesC: " + str(n3) + "")
+        b1 = toByteArray(v[0])
+        b2 = toByteArray(v[1])
+        b3 = toByteArray(v[2])
+        n1 = len(b1)
+        n2 = len(b2)
+        n3 = len(b3)
+        # bytes
+        s += "aBytesAdd" + str(idx) + ","
+        s += "bBytesAdd" + str(idx) + ","
+        s += "cBytesAdd" + str(idx) + ","
+        # num bytes
+        s += str(n1) + ","
+        s += str(n2) + ","
+        s += str(n3) + ")"
+        print(s + ",")
+        idx += 1
 
-    print("},")
+    print("};")
 
-print("};")
 
-print("IntTest subTests[" + str(numTests) + "] = {")
-for v in subResult:
-    print("{")
-    print(' ptrA: "' + str(v[0]) + '",')
-    print(' ptrB: "' + str(v[1]) + '",')
-    print(' ptrC: "' + str(v[2]) + '",')
+def generateSubTests():
 
-    signA = 0
-    signB = 0
-    signC = 0
-    if v[2] < 0:
-        signC = 1
-        v[2] = -v[2]
-    print(
-        " signA:" + str(signA) + ", signB:" + str(signB) + ", signC:" + str(signC) + ","
-    )
-    b1 = toByteArray(v[0])
-    n1 = len(b1)
-    print(" aBytes: " + cLikeArray(b1) + ",")
+    idx = 0
+    print("")
+    print("")
+    for v in addResult:
+        b1 = toByteArray(v[0])
+        b2 = toByteArray(v[1])
+        b3 = toByteArray(v[2])
 
-    b2 = toByteArray(v[1])
-    n2 = len(b2)
-    print(" bBytes: " + cLikeArray(b2) + ",")
+        n = "aBytesSub" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(b1) + ";")
+        n = "bBytesSub" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(b2) + ";")
+        n = "cBytesSub" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(b3) + ";")
+        idx += 1
 
-    b3 = toByteArray(v[2])
-    n3 = len(b3)
-    print(" cBytes: " + cLikeArray(b3) + ",")
+    idx = 0
+    print("")
+    print("")
+    print("IntTest subTests[" + str(numTests) + "] = {")
+    for v in subResult:
 
-    print(" numBytesA: " + str(n1) + ",")
-    print(" numBytesB: " + str(n2) + ",")
-    print(" numBytesC: " + str(n3) + "")
+        signA = 0
+        signB = 0
+        signC = 0
+        if v[2] < 0:
+            signC = 1
+            v[2] = -v[2]
 
-    print("},")
+        s = "INIT_INT_TEST("
+        s += '"' + str(v[0]) + '",'
+        s += '"' + str(v[1]) + '",'
+        s += '"' + str(v[2]) + '",'
+        s += "0,0," + str(signC) + ","  # signs
 
-print("};")
+        b1 = toByteArray(v[0])
+        b2 = toByteArray(v[1])
+        b3 = toByteArray(v[2])
+        n1, n2, n3 = len(b1), len(b2), len(b3)
+        # bytes
+        s += "aBytesSub" + str(idx) + ","
+        s += "bBytesSub" + str(idx) + ","
+        s += "cBytesSub" + str(idx) + ","
+        # num bytes
+        s += str(n1) + ","
+        s += str(n2) + ","
+        s += str(n3) + ")"
+        print(s + ",")
+        idx += 1
 
-print("IntTest mulTests[" + str(numTests) + "] = {")
-for v in mulResult:
-    print("{")
-    print(' ptrA: "' + str(v[0]) + '",')
-    print(' ptrB: "' + str(v[1]) + '",')
-    print(' ptrC: "' + str(v[2]) + '",')
+    print("};")
 
-    print(" signA:0, signB:0, signC:0,")
 
-    b1 = toByteArray(v[0])
-    n1 = len(b1)
-    print(" aBytes: " + cLikeArray(b1) + ",")
+def generateMulTests():
+    idx = 0
+    print("")
+    print("")
+    for v in mulResult:
+        b1 = toByteArray(v[0])
+        b2 = toByteArray(v[1])
+        b3 = toByteArray(v[2])
 
-    b2 = toByteArray(v[1])
-    n2 = len(b2)
-    print(" bBytes: " + cLikeArray(b2) + ",")
+        n = "aBytesMul" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(b1) + ";")
+        n = "bBytesMul" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(b2) + ";")
+        n = "cBytesMul" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(b3) + ";")
+        idx += 1
 
-    b3 = toByteArray(v[2])
-    n3 = len(b3)
-    print(" cBytes: " + cLikeArray(b3) + ",")
+    idx = 0
+    print("")
+    print("")
 
-    print(" numBytesA: " + str(n1) + ",")
-    print(" numBytesB: " + str(n2) + ",")
-    print(" numBytesC: " + str(n3) + "")
+    print("IntTest mulTests[" + str(numTests) + "] = {")
+    for v in mulResult:
+        s = "INIT_INT_TEST("
+        s += '"' + str(v[0]) + '",'
+        s += '"' + str(v[1]) + '",'
+        s += '"' + str(v[2]) + '",'
+        s += "0,0,0,"  # signs
 
-    print("},")
+        b1 = toByteArray(v[0])
+        b2 = toByteArray(v[1])
+        b3 = toByteArray(v[2])
+        n1 = len(b1)
+        n2 = len(b2)
+        n3 = len(b3)
+        # bytes
+        s += "aBytesMul" + str(idx) + ","
+        s += "bBytesMul" + str(idx) + ","
+        s += "cBytesMul" + str(idx) + ","
+        # num bytes
+        s += str(n1) + ","
+        s += str(n2) + ","
+        s += str(n3) + ")"
+        print(s + ",")
+        idx += 1
 
-print("};")
+    print("};")
 
-print("IntTest divTests[" + str(numTests) + "] = {")
-for v in divResult:
-    print("{")
-    print(' ptrA: "' + str(v[0]) + '",')
-    print(' ptrB: "' + str(v[1]) + '",')
-    print(' ptrC: "' + str(v[2]) + '",')
 
-    print(" signA:0, signB:0, signC:0,")
+def generateDivTests():
+    idx = 0
+    print("")
+    print("")
+    for v in divResult:
+        b1 = toByteArray(v[0])
+        b2 = toByteArray(v[1])
+        b3 = toByteArray(v[2])
+        rest = toByteArray(v[2])
 
-    b1 = toByteArray(v[0])
-    n1 = len(b1)
-    print(" aBytes: " + cLikeArray(b1) + ",")
+        n = "aBytesDiv" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(b1) + ";")
+        n = "bBytesDiv" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(b2) + ";")
+        n = "cBytesDiv" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(b3) + ";")
+        n = "rBytesDiv" + str(idx)
+        print("unsigned char " + n + "[20] = " + cLikeArray(rest) + ";")
+        idx += 1
 
-    b2 = toByteArray(v[1])
-    n2 = len(b2)
-    print(" bBytes: " + cLikeArray(b2) + ",")
+    idx = 0
+    print("")
+    print("")
+    print("IntTest divTests[" + str(numTests) + "] = {")
+    for v in divResult:
 
-    b3 = toByteArray(v[2])
-    n3 = len(b3)
-    print(" cBytes: " + cLikeArray(b3) + ",")
+        s = "INIT_INT_TEST_DIV("
+        s += '"' + str(v[0]) + '",'
+        s += '"' + str(v[1]) + '",'
+        s += '"' + str(v[2]) + '",'
+        s += "0,0,0,"  # signs
 
-    print(" numBytesA: " + str(n1) + ",")
-    print(" numBytesB: " + str(n2) + ",")
-    print(" numBytesC: " + str(n3) + ",")
+        b1 = toByteArray(v[0])
+        b2 = toByteArray(v[1])
+        b3 = toByteArray(v[2])
+        n1, n2, n3 = len(b1), len(b2), len(b3)
 
-    r3 = toByteArray(v[3])
-    nr3 = len(r3)
-    print(' ptrR: "' + str(v[3]) + '",')
-    print(" rBytes: " + cLikeArray(r3) + ",")
-    print(" numBytesR: " + str(nr3) + "")
+        rest = toByteArray(v[3])
+        nrest = len(rest)
+        # bytes
+        s += "aBytesDiv" + str(idx) + ","
+        s += "bBytesDiv" + str(idx) + ","
+        s += "cBytesDiv" + str(idx) + ","
+        # num bytes
+        s += str(n1) + ","
+        s += str(n2) + ","
+        s += str(n3) + ","
+        #rest
+        s += '"' + str(v[3]) + '",'
+        s += "bBytesDiv" + str(idx) + ","
+        s += str(nrest) + ")"
+        print(s + ",")
+        idx += 1
 
-    print("},")
+    print("};")
 
-print("};")
+
+generateAddTests()
+generateSubTests()
+generateMulTests()
+generateDivTests()
+
+
+
+

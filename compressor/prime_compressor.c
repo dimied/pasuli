@@ -45,7 +45,7 @@ int highBitIndex(uint64_t val) {
 void tryDiffCompress(void *pData, unsigned int size, void *pResultData, int resultSize, int *pRealSize);
 
 void compress(void *pData, unsigned int size, void *pResultData, int resultSize, int *pRealSize) {
-
+    primeStrategy(pData, size, pResultData, resultSize, pRealSize);
 }
 
 void tryDiffCompress(void *pData, unsigned int size, void *pResultData, int resultSize, int *pRealSize)
@@ -164,7 +164,7 @@ void tryDiffCompress(void *pData, unsigned int size, void *pResultData, int resu
         printf("Bits to save? %i\n", bitSave);
 
     }
-    // primeStrategy(pData, size, pResultData, resultSize, *pRealSize);
+    
 }
 
 void primeStrategy(void *pData, unsigned int size, void *pResultData, int resultSize, int *pRealSize)
@@ -333,7 +333,11 @@ void primeStrategy(void *pData, unsigned int size, void *pResultData, int result
 
         while (testIdx < numTries)
         {
-            printf("++%i+++\n", testIdx);
+            if(testIdx%100 == 0) {
+                printf("++%i+++\n", testIdx);
+            }
+            
+
             for (int i = 0; i <= lastPrimesIdx; i++)
             {
                 primesCounters[i] = 0;
@@ -351,7 +355,7 @@ void primeStrategy(void *pData, unsigned int size, void *pResultData, int result
 
             if (add > 0)
             {
-                printf("ADD: %i\n", add);
+                //printf("ADD: %i\n", add);
                 if (add < 256)
                 {
                     adder.data.pBytes[0] = (unsigned char)add;
@@ -488,7 +492,7 @@ void primeStrategy(void *pData, unsigned int size, void *pResultData, int result
             {
                 if (primesCounters[primeIdx])
                 {
-                    printf("%i : %i\n", primes[primeIdx], primesCounters[primeIdx]);
+                    //printf("%i : %i\n", primes[primeIdx], primesCounters[primeIdx]);
                     if (primeIdx < 256)
                     {
                         resUInt += 2;
@@ -508,7 +512,8 @@ void primeStrategy(void *pData, unsigned int size, void *pResultData, int result
                 resSize += add < 256 ? 2 : 3;
             }
 
-            printf(">PS+RS: %u +%u = %u ? %u | @%i\n", resUInt, testedNumber.used_size, resSize, size, lastPrimesIdx);
+
+            //printf(">PS+RS: %u +%u = %u ? %u | @%i\n", resUInt, testedNumber.used_size, resSize, size, lastPrimesIdx);
             if (resSize < size)
             {
                 tryHits[testIdx] = resSize;
