@@ -3,5 +3,8 @@
 
 extern int compressType;
 
-void compress(void *pData, unsigned int size, void *pResultData, int resultSize);
+void compress(void *pData, unsigned int size, void *pResultData, int resultSize, int* pRealSize);
+
+void primeStrategy(void *pData, unsigned int size, void *pResultData, int resultSize, int* pRealSize);
+
 #endif

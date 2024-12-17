@@ -33,7 +33,141 @@ char printCompressChars[PRINT_CHARS_SIZE];
 char printCompressChars2[PRINT_CHARS_SIZE];
 char printCompressChars3[20];
 
-void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
+int highBitIndex(uint64_t val) {
+    int bit = 0;
+    while(val > 0) {
+        ++bit;
+        val >>=1;
+    }
+    return bit;
+}
+
+void tryDiffCompress(void *pData, unsigned int size, void *pResultData, int resultSize, int *pRealSize);
+
+void compress(void *pData, unsigned int size, void *pResultData, int resultSize, int *pRealSize) {
+
+}
+
+void tryDiffCompress(void *pData, unsigned int size, void *pResultData, int resultSize, int *pRealSize)
+{
+    char *pChars = (char *)pData;
+    short *pShorts = (short *)pData;
+    uint32_t *pUints = (uint32_t *)pData;
+    uint64_t *pUint64s = (uint64_t *)pData;
+    int maxDiffPos = 0;
+    int maxDiffNeg = 0x100;
+    int maxDiffChar = 0;
+    int lastC = *pChars;
+
+    int bitIdx=0;
+    int numVals = 0;
+    for (int i = 1; i < size; i++)
+    {
+        int diff = pChars[i] - lastC;
+        if (diff < 0)
+        {
+            if (maxDiffNeg > diff)
+            {
+                maxDiffNeg = diff;
+            }
+            diff += 0x100;
+            if (maxDiffChar < diff)
+            {
+                maxDiffChar = diff;
+            }
+        }
+        else
+        {
+            if (maxDiffPos < diff)
+            {
+                maxDiffPos = diff;
+            }
+        }
+        ++numVals;
+        lastC = pChars[i];
+    }
+    bitIdx = highBitIndex(maxDiffChar);
+    printf("MAX-DIFF:char: %i : %i | %i | %i ?%i?\n",numVals, maxDiffNeg, maxDiffPos, maxDiffChar, bitIdx);
+    int32_t lastShort = pShorts[0];
+    int64_t diffInt = 0;
+    int64_t maxDiffShort = 0;
+    numVals = 0;
+    for (int i = 1; i < size / 2; i++)
+    {
+        diffInt = pShorts[i] - lastShort;
+        if (diffInt < 0)
+        {
+            diffInt += 0x10000;
+        }
+        if (maxDiffShort < diffInt)
+        {
+            maxDiffShort = diffInt;
+        }
+        ++numVals;
+        lastShort = pShorts[i];
+    }
+    bitIdx = highBitIndex(maxDiffShort);
+    printf("MAX-DIFF:short: %i : %li ?%i?\n",numVals, maxDiffShort, bitIdx);
+    uint32_t lastUint = pUints[0];
+    int64_t diffInt64 = 0;
+    int64_t maxDiffInt64 = 0;
+    numVals = 0;
+    for (int i = 1; i < size / 4; i++)
+    {
+        diffInt64 = pUints[i] - lastUint;
+        if (diffInt64 < 0)
+        {
+            diffInt64 += 0x100000000;
+        }
+        if (maxDiffInt64 < diffInt64)
+        {
+            maxDiffInt64 = diffInt64;
+        }
+        ++numVals;
+        lastUint = pUints[i];
+    }
+    bitIdx = highBitIndex(maxDiffInt64);
+    printf("MAX-DIFF:uint: %i : %li ?%i?\n",numVals, maxDiffInt64, bitIdx);
+
+    uint64_t lastUint64 = pUint64s[0];
+    diffInt64 = 0;
+    uint64_t diffUInt64 = 0;
+    uint64_t maxDiffUInt64 = 0;
+    numVals = 0;
+
+#define MAX_UINT 0xFFFFFFFFul
+#define MAX_UINT64 ((MAX_UINT<<32)|MAX_UINT)
+
+    for (int i = 1; i < size / 8; i++)
+    {
+        diffInt64 = pUint64s[i] - lastUint64;
+        if (diffInt64 < 0)
+        {
+            diffInt64 = -diffInt64;
+            diffUInt64 = MAX_UINT64 - diffInt64;
+        } else {
+            diffUInt64 = diffInt64;
+        }
+        if (maxDiffUInt64 < diffUInt64)
+        {
+            maxDiffUInt64 = diffUInt64;
+        }
+        lastUint64 = pUint64s[i];
+        ++numVals;
+    }
+    bitIdx = highBitIndex(maxDiffUInt64);
+    printf("MAX-DIFF:uint64: %i : %li | %lx ?%i?\n",numVals, maxDiffInt64, maxDiffUInt64, bitIdx);
+    if(bitIdx < 64) {
+        int bitSave = 64-bitIdx;
+        bitSave *= numVals;
+        bitSave--;
+        printf("Bits to save? %i\n", bitSave);
+
+    }
+    // primeStrategy(pData, size, pResultData, resultSize, *pRealSize);
+}
+
+void primeStrategy(void *pData, unsigned int size, void *pResultData, int resultSize, int *pRealSize)
 {
     unsigned int *primes = (unsigned int *)malloc(NUM_PRIMES_ALL_RESERVE * sizeof(int));
     unsigned int *primesSq = (unsigned int *)malloc(NUM_PRIMES_ALL_RESERVE * sizeof(uint64_t));
@@ -187,9 +321,9 @@ void compress(void *pData, unsigned int size, void *pResultData, int resultSize)
 
         numTries = 0xFFFF - 1;
 
-        //unsigned char *pTemp = testedNumber.data.pBytes;
-        // unsigned char *pDiv = divisor.data.pBytes;
-        // unsigned short *pUShort;
+        // unsigned char *pTemp = testedNumber.data.pBytes;
+        //  unsigned char *pDiv = divisor.data.pBytes;
+        //  unsigned short *pUShort;
         int lastPrimesIdx = NUM_PRIMES_TO_CHECK;
         MYINT *pRest;
         unsigned char *pRestUchars;
