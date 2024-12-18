@@ -105,6 +105,7 @@ typedef struct _MYINT
 	unsigned char state;	// properties
 } MYINT;
 
+
 extern int intOps;
 
 void nullifyMyInt(MYINT *pMyInt);

@@ -11,6 +11,8 @@ MYINT_FILES = myint/*.c
 UTIL_INTERPRETER_FILES = util/memory.c util/output.c util/log_stack.c
 INTERPRETER_FILES = interpreter/*.c
 INTERPRETER_TEST_FILES = interpreter_example.c interpreter_example_tests.c
+
+OGL_TEST_FILES = ogl_compress/*.c
 #
 #
 #
@@ -57,8 +59,6 @@ interpreter_tcc: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prim
 	rm -f ./intertest
 	tcc -std=c11 -I./ -Wall -vv -fno-common -g -Os -B -ltcc -lm -o intertest ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
 
-
-
 showsizes15:
 	nm --size-sort intertest | tail -15
 
@@ -70,8 +70,6 @@ showsizes50:
 
 showsizes50_extern:
 	nm --size-sort -g intertest | tail -50
-
-OGL_TEST_FILES = ogl_compress/*.c
 
 ogl: ogl_test.c ogl_names.c opengl_header_parser.c file_utils.c ${OGL_TEST_FILES}
 	rm -f ogl_test

@@ -125,6 +125,9 @@ typedef struct _CompressTestResult
     int code;
 } CompressTestResult;
 
+#define COMPRESS_TEST_RESULT_DECL(PNAME, COMPRESS_SIZE, CODE_SIZE) \
+    {PNAME, COMPRESS_SIZE, CODE_SIZE}
+
 int ascSort(const void *pA, const void *pB)
 {
     int s1 = strlen((char *)pA);
@@ -200,13 +203,13 @@ void compressTest()
     checkResult();
 
     CompressTestResult results[] = {
-        {cs : cs, code : DECOMPRESS_SIZE, pName : "1"},
-        {cs : cs2, code : DECOMPRESS2_SIZE, pName : "2"},
-        {cs : cs3, code : DECOMPRESS3_SIZE, pName : "3"},
-        {cs : cs4, code : DECOMPRESS4_SIZE, pName : "4"},
-        {cs : cs4, code : DECOMPRESS4ASM_SIZE, pName : "4asm"},
-        {cs : cs5, code : DECOMPRESS5_SIZE, pName : "5"},
-        {cs : cs5s, code : DECOMPRESS5SORTED_SIZE, pName : "5s"},
+        COMPRESS_TEST_RESULT_DECL("1", cs, DECOMPRESS_SIZE),
+        COMPRESS_TEST_RESULT_DECL("2", cs2, DECOMPRESS2_SIZE),
+        COMPRESS_TEST_RESULT_DECL("3", cs3, DECOMPRESS3_SIZE),
+        COMPRESS_TEST_RESULT_DECL("4", cs4, DECOMPRESS4_SIZE),
+        COMPRESS_TEST_RESULT_DECL("4asm", cs4, DECOMPRESS4ASM_SIZE),
+        COMPRESS_TEST_RESULT_DECL("5", cs5, DECOMPRESS5_SIZE),
+        COMPRESS_TEST_RESULT_DECL("5s", cs5s, DECOMPRESS5SORTED_SIZE),
     };
 
     printf("\nIS=%i\n", is);

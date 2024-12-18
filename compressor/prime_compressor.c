@@ -319,7 +319,7 @@ void primeStrategy(void *pData, unsigned int size, void *pResultData, int result
         // TODO:
         //  collect and compare results
 
-        numTries = 0xFFFF - 1;
+        numTries = 50;//0xFFFF - 1;
 
         // unsigned char *pTemp = testedNumber.data.pBytes;
         //  unsigned char *pDiv = divisor.data.pBytes;

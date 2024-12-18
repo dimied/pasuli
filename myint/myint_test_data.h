@@ -103,6 +103,7 @@ typedef struct
         RBYTES,                                                                                                                            \
         NBYTESR}
 #endif
+
 extern IntTest addTests[NUM_MYINT_TESTS];
 extern IntTest subTests[NUM_MYINT_TESTS];
 extern IntTest mulTests[NUM_MYINT_TESTS];
