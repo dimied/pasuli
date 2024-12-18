@@ -27,6 +27,10 @@
 
 #define COMMAND(CMD, PARAM) ((CMD << 4) + PARAM)
 #define COMMAND16(CMD, PARAM) (CMD, PARAM)
+
+//For humans
+#define COMMAND_COMMENT(COMMENT)
+
 /**
  * COMMANDS
  */

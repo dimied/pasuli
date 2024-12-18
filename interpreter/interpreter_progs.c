@@ -1,6 +1,7 @@
 
 #include "interpreter_progs.h"
 #include "interpreter.h"
+
 /*
 reg1 = r
 reg2 = theta
@@ -29,6 +30,10 @@ save to z (reg7)
 */
 
 unsigned char circleProgs[CIRCLE_PROG_BYTES] = {
+    SPHERE_PROG
+
+};
+#if 0
     COMMAND(CMD_SETUP_START, CMD_SETUP_INIT),
     // load r
     CMD_SETUP_LOAD_PARAMS(1),
@@ -59,4 +64,5 @@ unsigned char circleProgs[CIRCLE_PROG_BYTES] = {
     COMMAND(CMD_SIN, REG(3)),
     COMMAND(CMD_MUL_BY_REG, REG(4)),
     COMMAND(CMD_SAVE_ACCUM_TO_REG, REG(6)),
-    COMMAND(CMD_SETUP_END, CMD_SETUP_V)};
+    COMMAND(CMD_SETUP_END, CMD_SETUP_V)
+#endif
