@@ -13,9 +13,10 @@ typedef struct _PaSuLiTestPointTest
     pasuli_vartype y;
     pasuli_vartype z;
     pasuli_vartype *pConstants;
+    int numConstants;
 } PaSuLiTestPointTest;
 
-#define PASULI_POINT_TEST(U, V, X, Y, Z, PTR_CONSTANTS) {U, V, X, Y, Z, PTR_CONSTANTS}
+#define PASULI_POINT_TEST(U, V, X, Y, Z, PTR_CONSTANTS, NCONSTANTS) {U, V, X, Y, Z, PTR_CONSTANTS, NCONSTANTS}
 
 typedef struct _PaSuLiTestSampling
 {

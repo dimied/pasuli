@@ -19,12 +19,12 @@ pasuli_vartype testConstants[] = {1};
 pasuli_vartype testConstants2[] = {2.5};
 
 PaSuLiTestPointTest spherePointTests[] = {
-    PASULI_POINT_TEST(0, 0, 0, 0, 1, testConstants),
-    PASULI_POINT_TEST(2 * MY_PI, 0, 0, 0, 1, testConstants),
-    PASULI_POINT_TEST(0, MY_PI, 0, 0, -1, testConstants),
-    PASULI_POINT_TEST(0, MY_PI, 0, 0, -2.5, testConstants2),
-    PASULI_POINT_TEST(2 * MY_PI, 0, 0, 0, 2.5, testConstants2),
-    };
+    PASULI_POINT_TEST(0, 0, 0, 0, 1, testConstants, 1),
+    PASULI_POINT_TEST(0, 2 * MY_PI, 0, 0, 1, testConstants, 1),
+    PASULI_POINT_TEST(MY_PI, 0, 0, 0, -1, testConstants, 1),
+    PASULI_POINT_TEST(MY_PI, 0, 0, 0, -2.5, testConstants2, 1),
+    PASULI_POINT_TEST(0, 2 * MY_PI, 0, 0, 2.5, testConstants2, 1),
+};
 
 PaSuLiTestDesc sphereTest =
     PASULI_TEST("sphere", Sphere, sphereTestProg, sizeof(sphereTestProg),

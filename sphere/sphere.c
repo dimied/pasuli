@@ -14,16 +14,16 @@ void Sphere(pasuli_vartype u,
 {
 	PASULI_SET_TYPE_ID(SPHERE)
 
-	pasuli_calctype cos_u = cos(u);
-	pasuli_calctype sin_u = sin(u);
 	pasuli_calctype cos_v = cos(v);
 	pasuli_calctype sin_v = sin(v);
+	pasuli_calctype cos_u = cos(u);
+	pasuli_calctype sin_u = sin(u);
 	pasuli_calctype r = *constants;
-	pasuli_calctype rsinv = r * sin_v;
+	pasuli_calctype rsinu = r * sin_u;
 
-	P_X(cos_u * rsinv);
-	P_Y(sin_u * rsinv);
-	P_Z(cos_v * r);
+	P_X(cos_v * rsinu);
+	P_Y(sin_v * rsinu);
+	P_Z(cos_u * r);
 
 	// No scaling by sin_v
 #if (PASULIOBJECT_UD != 0)
@@ -39,24 +39,25 @@ void Sphere(pasuli_vartype u,
 #endif
 
 	// No scaling by sin_v
-	N_X(-PASULI_COND_COPY_POS_X(sin_v * cos_u));
-	N_Y(-PASULI_COND_COPY_POS_Y(sin_v * sin_u));
-	N_Z(-PASULI_COND_COPY_POS_Z(cos_v));
+	N_X(-PASULI_COND_COPY_POS_X(sin_u * cos_v));
+	N_Y(-PASULI_COND_COPY_POS_Y(sin_u * sin_v));
+	N_Z(-PASULI_COND_COPY_POS_Z(cos_u));
 
 	// No scaling by sin_v
-	UUD_X(-cos_u);
-	UUD_Y(-sin_u);
+	UUD_X(-cos_v);
+	UUD_Y(-sin_v);
 	UUD_Z_CONST(0);
 
 	// No scaling by cos_v
-	UVD_X(-sin_u);
-	UVD_Y(cos_u);
+	UVD_X(-sin_v);
+	UVD_Y(cos_v);
 	UVD_Z_CONST(0);
 
-	VVD_X(-PASULI_COND_COPY_POS_X(cos_u * sin_v));
-	VVD_Y(-PASULI_COND_COPY_POS_Y(sin_u * sin_v));
-	VVD_Z(-cos_v);
+	VVD_X(-PASULI_COND_COPY_POS_X(cos_v * sin_u));
+	VVD_Y(-PASULI_COND_COPY_POS_Y(sin_v * sin_u));
+	VVD_Z(-cos_u);
 }
+
 #endif
 
 ///////////////////////////////////////////////
