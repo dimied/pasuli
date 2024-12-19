@@ -10,5 +10,8 @@
 #include "../sphere.h"
 #include "../sphere_prog.h"
 
+unsigned char sphereTestProg[] = {
+    SPHERE_PROG};
+
 PaSuLiTestDesc sphereTest =
-    PASULI_TEST("sphere", Sphere);
+    PASULI_TEST("sphere", Sphere, sphereTestProg, sizeof(sphereTestProg), 0, 0, 0);
