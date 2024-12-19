@@ -4,7 +4,7 @@
 #include "../pasuli_conf/pasuli_cfg.h"
 #include "../pasuli_common/pasuli_defs.h"
 
-#pragma pack(1)
+//#pragma pack(1)
 typedef struct _PaSuLiTestPointTest
 {
     pasuli_vartype u;
@@ -26,10 +26,11 @@ typedef struct _PaSuLiTestSampling
     float vStart;
     float vEnd;
     int vNumSamples;
+    pasuli_vartype *pConstants;
 } PaSuLiTestSampling;
 
-#define PASULI_TEST_SAMPLING(USTART, UEND, UCOUNT, VSTART, VEND, VCOUNT) \
-    {USTART, UEND, UCOUNT, VSTART, VEND, VCOUNT}
+#define PASULI_TEST_SAMPLING(USTART, UEND, UCOUNT, VSTART, VEND, VCOUNT, CONSTS) \
+    {USTART, UEND, UCOUNT, VSTART, VEND, VCOUNT, CONSTS}
 
 typedef struct _PaSuLiTestDesc
 {
@@ -40,12 +41,13 @@ typedef struct _PaSuLiTestDesc
     PaSuLiTestPointTest *pPosTests;
     int posTestCount;
     PaSuLiTestSampling *pSampling;
+    int numSamplings;
 } PaSuLiTestDesc;
 
 #define PASULI_NO_TEST_VALUES ((PaSuLiTestPointTest *)0)
 #define PASULI_NO_TEST_SAMPLING ((PaSuLiTestSampling *)0)
 
-#define PASULI_TEST(NAME, FUNC_PTR, TEST_PROG, TEST_PROG_SIZE, POS_TEST_PTR, POS_TEST_COUNT, TEST_SAMPLING) \
-    {NAME, FUNC_PTR, TEST_PROG, TEST_PROG_SIZE, POS_TEST_PTR, POS_TEST_COUNT, TEST_SAMPLING}
+#define PASULI_TEST(NAME, FUNC_PTR, TEST_PROG, TEST_PROG_SIZE, POS_TEST_PTR, POS_TEST_COUNT, TEST_SAMPLING, NUM_SAMPLINGS) \
+    {NAME, FUNC_PTR, TEST_PROG, TEST_PROG_SIZE, POS_TEST_PTR, POS_TEST_COUNT, TEST_SAMPLING, NUM_SAMPLINGS}
 
 #endif

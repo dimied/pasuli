@@ -5,6 +5,7 @@
 #include "pasuli_tests_code.h"
 #include "../sphere/tests/all_sphere_tests.h"
 #include "../interpreter/interpreter.h"
+#include "pasuli_test_code_util.h"
 
 PaSuLiTestPair testPairs[] = {
     PASULI_TEST_PAIR("Spheres", allSphereTests, PASULI_ALL_SPHERE_TESTS_COUNT)};
@@ -13,40 +14,16 @@ int numTestPairs = sizeof(testPairs) / sizeof(PaSuLiTestPair);
 
 void executeSuiteTests(PaSuLiTestPair *testPair);
 
+TestVars testVars = {0, 0, 0, 0};
+
+TestSampling testSampling = {0, 0, 0, 0, 0, 0};
+
 void executePaSuLiTests()
 {
     for (int testSuiteIdx = 0; testSuiteIdx < numTestPairs; testSuiteIdx++)
     {
         executeSuiteTests(&testPairs[testSuiteIdx]);
     }
-}
-
-#define MAX_DIFF 0.000001
-
-int comparePos(PaSuLiObject *pResult, PaSuLiTestPointTest *pExpected)
-{
-    double xDiff = pResult->pos[0] - pExpected->x;
-    double yDiff = pResult->pos[1] - pExpected->y;
-    double zDiff = pResult->pos[2] - pExpected->z;
-
-    if (fabs(xDiff) > MAX_DIFF || fabs(yDiff) > MAX_DIFF || fabs(zDiff) > MAX_DIFF)
-    {
-        return 1;
-    }
-    return 0;
-}
-
-int comparePosFloat(float *pPos, PaSuLiTestPointTest *pExpected)
-{
-    double xDiff = pPos[0] - pExpected->x;
-    double yDiff = pPos[1] - pExpected->y;
-    double zDiff = pPos[2] - pExpected->z;
-
-    if (fabs(xDiff) > MAX_DIFF || fabs(yDiff) > MAX_DIFF || fabs(zDiff) > MAX_DIFF)
-    {
-        return 1;
-    }
-    return 0;
 }
 
 float globalConstants[10] = {0};
@@ -61,6 +38,8 @@ void executeSuiteTests(PaSuLiTestPair *testPair)
 
     PaSuLiObject testPoint;
     memset(&testPoint, 0, sizeof(PaSuLiObject));
+
+    allocTestVars(&testVars);
 
     for (int testIdx = 0; testIdx < numTests; testIdx++)
     {
@@ -80,12 +59,12 @@ void executeSuiteTests(PaSuLiTestPair *testPair)
         }
         PaSuLiTestPointTest *pTestPoints = pTest->pPosTests;
         int nPoints = pTest->posTestCount;
+
+        clearTestVars(&testVars);
+        clearSampleValues(&testSampling);
+
         if (pTestPoints)
         {
-            //float funcConstants[10] = {0};
-            float interpreterResultPoint[3] = {0};
-            float progParams[10] = {0};
-
             printf("%sPoints(count): %i\n", pTestIndent, nPoints);
             for (int testPointIdx = 0; testPointIdx < nPoints; testPointIdx++)
             {
@@ -95,18 +74,9 @@ void executeSuiteTests(PaSuLiTestPair *testPair)
 
                 PaSuLiTestPointTest *pPointTest = &pTestPoints[testPointIdx];
 
-                float us[] = {u};
-                float vs[] = {v};
-
                 pTest->pasuliFunc(u, v, pConst, &testPoint);
 
-                if (pTestPoints[testPointIdx].pConstants)
-                {
-                    for (int cIdx = 0; cIdx < pTestPoints[testPointIdx].numConstants; cIdx++)
-                    {
-                        progParams[cIdx] = (float)pConst[cIdx];
-                    }
-                }
+                convertConstants(pConst, pTestPoints[testPointIdx].numConstants, testVars.pProgParams);
 
                 if (comparePos(&testPoint, pPointTest))
                 {
@@ -119,31 +89,55 @@ void executeSuiteTests(PaSuLiTestPair *testPair)
                 }
                 if (pTest->pTestProg)
                 {
-
+                    testVars.pU[0] = u;
+                    testVars.pV[0] = v;
+                    float *pPoint = testVars.pResultPoint;
                     // int interpreterRes =
                     parseCode(
-                        us,
+                        testVars.pU,
                         1,
-                        vs,
+                        testVars.pV,
                         1,
                         DEFINE_STEPS(1, 1),
                         globalConstants,
-                        progParams,
+                        testVars.pProgParams,
                         pTest->testProgSize,
                         pTest->pTestProg,
-                        interpreterResultPoint);
-                    if (comparePosFloat(interpreterResultPoint, pPointTest))
+                        pPoint);
+                    if (comparePosFloat(pPoint, pPointTest))
                     {
                         printf("%s|I|Point(%i):", pTestIndent, testPointIdx);
                         printf(" (%f,%f) =>(%f,%f,%f)\n",
-                               u, v, interpreterResultPoint[0], interpreterResultPoint[1], interpreterResultPoint[2]);
+                               u, v, pPoint[0], pPoint[1], pPoint[2]);
 
                         printf("%sERROR: (%f,%f,%f)\n",
                                pTestIndent, pTestPoints[testPointIdx].x, pTestPoints[testPointIdx].y, pTestPoints[testPointIdx].z);
                     }
+                    
                 }
             }
         }
+        if(pTest->pSampling && pTest->numSamplings) {
+            for(int samplingIdx=0; samplingIdx < pTest->numSamplings; samplingIdx++) {
+                clearSampleValues(&testSampling);
+
+                PaSuLiTestSampling* pTestSampling = &pTest->pSampling[samplingIdx];
+                testSampling.uStart = pTestSampling->uStart;
+                testSampling.uEnd = pTestSampling->uEnd;
+                testSampling.vStart = pTestSampling->vStart;
+                testSampling.vEnd = pTestSampling->vEnd;
+                testSampling.uNumValues = pTestSampling->uNumSamples;
+                testSampling.vNumValues = pTestSampling->vNumSamples;
+
+                if(sampleValues(&testSampling)) {
+                    printf("ERROR: Failed to sample\n");
+                    continue;
+                }
+                printf("%sSamples OK!\n", pTestIndent);
+
+            }
+        }
+                    
         printf("  -----\n");
         //
     }
