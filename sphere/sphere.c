@@ -1,9 +1,10 @@
 
-#include "../pasuli_const.h"
-#include "sphere.h"
 #include <math.h>
-
-#include "../pasuli_macros.h"
+#include "../pasuli_common/pasuli_const.h"
+#include "../pasuli_common/pasuli_macros.h"
+#include "../pasuli_conf/pasuli_cfg.h"
+#include "sphere.h"
+#include "tests/sphere_test_conf.h"
 
 #if (USE_SPHERE != 0)
 void Sphere(pasuli_vartype u,
@@ -23,13 +24,17 @@ void Sphere(pasuli_vartype u,
 	P_Z(cos_v);
 
 	// No scaling by sin_v
+#if (PASULIOBJECT_UD != 0)
 	UD_X(-sin_u);
 	UD_Y(cos_u);
 	UD_Z_CONST(0);
+#endif
 
+#if (PASULIOBJECT_VD != 0)
 	VD_X(cos_u * cos_v);
 	VD_Y(sin_u * cos_v);
 	VD_Z(-sin_v);
+#endif
 
 	// No scaling by sin_v
 	N_X(-PASULI_COND_COPY_POS_X(sin_v * cos_u));

@@ -7,6 +7,12 @@ FILES_REPO = repository/*.c
 FILES_UTIL = util/*.c
 EX_FILES = examples/glut_helpers.c examples/pasuli_mesh.c examples/pasuli_mesh_util.c examples/pasuli_mesh_opengl.c
 
+SPHERE_FILES = sphere/*.c
+SPHERE_TEST_FILES = sphere/tests/*.c
+SPHERE_ALL_FILES = ${SPHERE_FILES} ${SPHERE_TEST_FILES}
+
+ALL_PASULI_FILES = ${SPHERE_ALL_FILES}
+
 MYINT_FILES = myint/*.c
 UTIL_INTERPRETER_FILES = util/memory.c util/output.c util/log_stack.c
 INTERPRETER_FILES = interpreter/*.c
@@ -47,15 +53,22 @@ opengl:
 	strip --strip-all ex_ogl
 
 #interpreter_example.c interpreter.c interpreter_text.c interpreter_progs.c prime_compressor.c memory.c myint.c log_stack.c myint_test_data.c myint_test.c 
-interpreter: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
+interpreter: ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
 	rm -f ./intertest
 	gcc -Wall -pedantic -g -Os -B -lc -DIS_PEDANTIC_GCC -o intertest ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} -lm
+
+interpreter_test: ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} ${ALL_PASULI_FILES}
+	rm -f ./pasulitest
+	gcc -Wall -pedantic -g -Os -B -lc -DIS_PEDANTIC_GCC -o pasulitest ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} ${ALL_PASULI_FILES} -lm
+
+showtestsizes15:
+	nm --size-sort pasulitest | grep 'sphere'| tail -15
 
 interpreter2: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
 	rm -f ./intertest
 	gcc -Wall -g -Os -B -lc -o intertest ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} -lm
 
-interpreter_tcc: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
+interpreter_use_tcc: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
 	rm -f ./intertest
 	tcc -std=c11 -I./ -Wall -vv -fno-common -g -Os -B -ltcc -lm -o intertest ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
 

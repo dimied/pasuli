@@ -4,7 +4,7 @@
 // E.g. disabling surfaces you don't need
 
 // Disables all surfaces
-#include "pasuli_cfg_no_use.h"
+#include "pasuli_conf/pasuli_cfg_no_use.h"
 
 #undef USE_TORUS
 

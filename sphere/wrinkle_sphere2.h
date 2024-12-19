@@ -1,8 +1,8 @@
 #ifndef __PASULI_WRINKLE_SPHERE2__
 #define __PASULI_WRINKLE_SPHERE2__
 
-#include "../pasuli_cfg.h"
-#include "../pasuli_defs.h"
+#include "../pasuli_conf/pasuli_cfg.h"
+#include "../pasuli_common/pasuli_defs.h"
 
 #if (USE_WRINKLE_SPHERE2 != 0)
 void WrinkleSphere2(pasuli_vartype u,

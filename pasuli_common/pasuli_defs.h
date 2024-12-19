@@ -2,7 +2,7 @@
 #define __PARAMETRIC_SURFACE_LIBRARY_VERSION_DEFS__
 
 #include <stdint.h>
-#include "pasuli_cfg.h"
+#include "../pasuli_conf/pasuli_cfg.h"
 
 #define HEADER_DESC_PTR(PTR) extern char *PTR;
 
@@ -194,6 +194,11 @@ typedef struct _PaSuLiTextDesc
 	*/
 } PaSuLiTextDesc;
 
-#include "pasuli_custom_defs.h"
+typedef void (*PaSuLiFuncPtr)(pasuli_vartype u,
+			pasuli_vartype v,
+			pasuli_consttype *constants,
+			PaSuLiObject *pO);
+
+#include "../pasuli_custom_defs.h"
 
 #endif

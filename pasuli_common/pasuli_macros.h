@@ -1,7 +1,7 @@
 #ifndef __PASULI_MACRO_DEFINITIONS__
 #define __PASULI_MACRO_DEFINITIONS__
 
-#include "pasuli_cfg.h"
+#include "../pasuli_conf/pasuli_cfg.h"
 
 #if (USE_ID_IN_PASULI_FUNCTION != 0)
 #define PASULI_SET_TYPE_ID(X) pO->_ID = X;

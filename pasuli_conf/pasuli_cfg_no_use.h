@@ -167,10 +167,22 @@
 #define USE_MYA_ARENARIA 0
 
 // Sphere surfaces
+#ifndef USE_SPHERE
 #define USE_SPHERE 0
+#endif
+
+#ifndef USE_ELLIPSOID
 #define USE_ELLIPSOID 0
+#endif
+
+#ifndef USE_SPHERE_V
 #define USE_SPHERE_V 0
+#endif
+
+#ifndef USE_SPHERE_UV
 #define USE_SPHERE_UV 0
+#endif
+
 #define USE_PSEUDOSPHERE 0
 #define USE_TWISTED_SPHERE 0
 #define USE_OPEN_SPHERE 0

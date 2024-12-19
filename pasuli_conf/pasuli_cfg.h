@@ -6,7 +6,7 @@
 // For GCC compiler collection
 #define PASULI_COMPILER_GCC 2
 
-#include "pasuli_custom_cfg.h"
+#include "../pasuli_custom_cfg.h"
 
 // Used compiler
 #ifndef PASULI_COMPILER
