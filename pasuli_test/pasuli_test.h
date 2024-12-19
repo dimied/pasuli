@@ -5,16 +5,17 @@
 #include "../pasuli_common/pasuli_defs.h"
 
 #pragma pack(1)
-typedef struct _PaSuLiTestValues
+typedef struct _PaSuLiTestPointTest
 {
-    float u;
-    float v;
-    float x;
-    float y;
-    float z;
-} PaSuLiTestValues;
+    pasuli_vartype u;
+    pasuli_vartype v;
+    pasuli_vartype x;
+    pasuli_vartype y;
+    pasuli_vartype z;
+    pasuli_vartype *pConstants;
+} PaSuLiTestPointTest;
 
-#define PASULI_TEST_VALUE(U, V, X, Y, Z) {U, V, X, Y, Z}
+#define PASULI_POINT_TEST(U, V, X, Y, Z, PTR_CONSTANTS) {U, V, X, Y, Z, PTR_CONSTANTS}
 
 typedef struct _PaSuLiTestSampling
 {
@@ -35,12 +36,12 @@ typedef struct _PaSuLiTestDesc
     PaSuLiFuncPtr pasuliFunc;
     unsigned char *pTestProg;
     int testProgSize;
-    PaSuLiTestValues *pPosTests;
+    PaSuLiTestPointTest *pPosTests;
     int posTestCount;
     PaSuLiTestSampling *pSampling;
 } PaSuLiTestDesc;
 
-#define PASULI_NO_TEST_VALUES ((PaSuLiTestValues *)0)
+#define PASULI_NO_TEST_VALUES ((PaSuLiTestPointTest *)0)
 #define PASULI_NO_TEST_SAMPLING ((PaSuLiTestSampling *)0)
 
 #define PASULI_TEST(NAME, FUNC_PTR, TEST_PROG, TEST_PROG_SIZE, POS_TEST_PTR, POS_TEST_COUNT, TEST_SAMPLING) \

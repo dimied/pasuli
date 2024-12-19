@@ -18,10 +18,12 @@ void Sphere(pasuli_vartype u,
 	pasuli_calctype sin_u = sin(u);
 	pasuli_calctype cos_v = cos(v);
 	pasuli_calctype sin_v = sin(v);
+	pasuli_calctype r = *constants;
+	pasuli_calctype rsinv = r * sin_v;
 
-	P_X(cos_u * sin_v);
-	P_Y(sin_u * sin_v);
-	P_Z(cos_v);
+	P_X(cos_u * rsinv);
+	P_Y(sin_u * rsinv);
+	P_Z(cos_v * r);
 
 	// No scaling by sin_v
 #if (PASULIOBJECT_UD != 0)
@@ -64,7 +66,7 @@ pasulidefdesc_ct sphere_def_constants[] = {1.5, 1.0, 1.0};
 #if (COMPILE_DEF_DESC_SPHERE != 0)
 PaSuLiDefDesc pslddSphere = {
 	SPHERE,
-			PASULI_U_CLOSED |
+	PASULI_U_CLOSED |
 		PASULI_V_CLOSED | PASULI_U_END_PI | PASULI_V_END_PI |
 		PASULI_FULL_IMPL | PASULI_CONST_COUNT(0),
 	0, 2, 0, 1, 0};

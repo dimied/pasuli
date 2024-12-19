@@ -1,5 +1,7 @@
 
 #include <stdio.h>
+#include <string.h>
+#include <math.h>
 #include "pasuli_tests_code.h"
 #include "../sphere/tests/all_sphere_tests.h"
 
@@ -17,11 +19,74 @@ void executePaSuLiTests()
         executeSuiteTests(&testPairs[testSuiteIdx]);
     }
 }
+
+#define MAX_DIFF 0.000001
+
+int comparePos(PaSuLiObject *pResult, PaSuLiTestPointTest *pExpected)
+{
+    double xDiff = pResult->pos[0] - pExpected->x;
+    double yDiff = pResult->pos[1] - pExpected->y;
+    double zDiff = pResult->pos[2] - pExpected->z;
+
+    if (fabs(xDiff) > MAX_DIFF || fabs(yDiff) > MAX_DIFF || fabs(zDiff) > MAX_DIFF)
+    {
+        return 1;
+    }
+    return 0;
+}
+
 void executeSuiteTests(PaSuLiTestPair *testPair)
 {
     char *pName = testPair->name;
     int numTests = testPair->numTests;
     printf("Tests: %s | #tests: %i\n", pName, numTests);
     printf("---\n");
+    char *pTestIndent = "  ";
+
+    PaSuLiObject testPoint;
+    memset(&testPoint, 0, sizeof(PaSuLiObject));
+
+    for (int testIdx = 0; testIdx < numTests; testIdx++)
+    {
+        PaSuLiTestDesc *pTest = testPair->tests[testIdx];
+        if (0 == pTest)
+        {
+            continue;
+        }
+        printf("%sTest: %s\n", pTestIndent, pTest->surfaceName);
+        if (0 == pTest->pasuliFunc)
+        {
+            printf("%sMissing PaSuLi test function\n", pTestIndent);
+            continue;
+        }
+        PaSuLiTestPointTest *pTestPoints = pTest->pPosTests;
+        int nPoints = pTest->posTestCount;
+        if (pTestPoints)
+        {
+            printf("%sPoints(count): %i\n", pTestIndent, nPoints);
+            for (int testPointIdx = 0; testPointIdx < nPoints; testPointIdx++)
+            {
+                double u = pTestPoints[testPointIdx].u;
+                double v = pTestPoints[testPointIdx].v;
+                pTest->pasuliFunc(
+                    u,
+                    v,
+                    pTestPoints[testPointIdx].pConstants,
+                    &testPoint);
+
+                if (comparePos(&testPoint, &pTestPoints[testPointIdx]))
+                {
+                    printf("%sPoint(%i):", pTestIndent, testPointIdx);
+                    printf(" (%f,%f) =>(%f,%f,%f)\n",
+                           u, v, testPoint.pos[0], testPoint.pos[1], testPoint.pos[2]);
+
+                    printf("%sERROR: (%f,%f,%f)\n",
+                           pTestIndent, pTestPoints[testPointIdx].x, pTestPoints[testPointIdx].y, pTestPoints[testPointIdx].z);
+                }
+            }
+        }
+
+        //
+    }
     printf("---\n");
 }

@@ -15,7 +15,18 @@ PaSuLiTestSampling sphereTestSampling =
 
 unsigned char sphereTestProg[] = {SPHERE_PROG};
 
+pasuli_vartype testConstants[] = {1};
+pasuli_vartype testConstants2[] = {2.5};
+
+PaSuLiTestPointTest spherePointTests[] = {
+    PASULI_POINT_TEST(0, 0, 0, 0, 1, testConstants),
+    PASULI_POINT_TEST(2 * MY_PI, 0, 0, 0, 1, testConstants),
+    PASULI_POINT_TEST(0, MY_PI, 0, 0, -1, testConstants),
+    PASULI_POINT_TEST(0, MY_PI, 0, 0, -2.5, testConstants2),
+    PASULI_POINT_TEST(2 * MY_PI, 0, 0, 0, 2.5, testConstants2),
+    };
+
 PaSuLiTestDesc sphereTest =
     PASULI_TEST("sphere", Sphere, sphereTestProg, sizeof(sphereTestProg),
-                PASULI_NO_TEST_VALUES, 0,
+                spherePointTests, 5,
                 &sphereTestSampling);
