@@ -43,9 +43,9 @@ int main()
 #endif
 #if 1
     printf("\n---\n");
-    testCompress();
+    //testCompress();
 #endif
-    printf("MYINT-SIZE: %li\n", sizeof(MYINT));
+    // printf("MYINT-SIZE: %li\n", sizeof(MYINT));
     // printf("PTR-SIZE: %li\n", sizeof(unsigned char *));
     return 0;
 }

@@ -16,7 +16,9 @@ ALL_PASULI_FILES = ${SPHERE_ALL_FILES}
 MYINT_FILES = myint/*.c
 UTIL_INTERPRETER_FILES = util/memory.c util/output.c util/log_stack.c
 INTERPRETER_FILES = interpreter/*.c
-INTERPRETER_TEST_FILES = interpreter_example.c interpreter_example_tests.c
+INTERPRETER_TEST_FILES = interpreter_example_tests.c
+
+PASULI_TESTS = pasuli_test/*.c
 
 OGL_TEST_FILES = ogl_compress/*.c
 #
@@ -59,10 +61,14 @@ interpreter: ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_com
 
 interpreter_test: ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} ${ALL_PASULI_FILES}
 	rm -f ./pasulitest
-	gcc -Wall -pedantic -g -Os -B -lc -DIS_PEDANTIC_GCC -o pasulitest ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} ${ALL_PASULI_FILES} -lm
+	gcc -Wall -pedantic -g -Os -B -lc -DIS_PEDANTIC_GCC -DENABLE_PASULI_TEST=1 -o pasulitest ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} ${ALL_PASULI_FILES} -lm
+
+pasuli_test:  pasulitests.c ${PASULI_TESTS} ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} ${ALL_PASULI_FILES}
+	rm -f ./pasulitest
+	gcc -Wall -pedantic -g -Os -B -lc -DIS_PEDANTIC_GCC -DENABLE_PASULI_TEST=1 -o pasulitest pasulitests.c ${PASULI_TESTS} ${INTERPRETER_TEST_FILES} ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES} ${ALL_PASULI_FILES} -lm
 
 showtestsizes15:
-	nm --size-sort pasulitest | grep 'sphere'| tail -15
+	nm --size-sort pasulitest | grep '[sS]phere'| tail -15
 
 interpreter2: ${INTERPRETER_TEST_FILES}  ${INTERPRETER_FILES} compressor/prime_compressor.c ${MYINT_FILES} ${UTIL_INTERPRETER_FILES}
 	rm -f ./intertest

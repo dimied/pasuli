@@ -6,16 +6,18 @@
 #include "ogl_test.h"
 #include "ogl_names.h"
 #include "opengl_header_parser.h"
-#include "file_utils.h"
+#include "util/file_utils.h"
 
 #include "ogl_compress/ogl_compress_test.h"
 #include "ogl_parse.h"
+#include "pasuli_test/pasuli_tests_code.h"
 
 //#include ""
 
 int main()
 {
     printf("OGL TEST\n");
+    executePaSuLiTests();
 
     //compressTest();
 

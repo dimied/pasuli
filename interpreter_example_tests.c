@@ -23,7 +23,7 @@ float uParams[] = {0, PI * 0.5, PI};
 float vParams[] = {0, PI, 2 * PI};
 char nParamsU = 3, nParamsV = 3;
 
-void sphere(float u, float v, float *pParams, float *pResults)
+void sphereExample(float u, float v, float *pParams, float *pResults)
 {
     float r = *pParams;
     float rsin = r * sinf(u);
@@ -60,7 +60,7 @@ void testRaw(int nU, int nV, float *pU, float *pV, float *pResults)
     {
         for (int j = 0; j < nV; j++)
         {
-            sphere(pU[i], pV[j], circleParams, pResults);
+            sphereExample(pU[i], pV[j], circleParams, pResults);
         }
     }
     zeroWithinLimit(pRes, 0.000001, nU * nV * 3);
@@ -127,7 +127,7 @@ void interpreter_tests() {
     {
         for (int j = 0; j < nParamsV; j++)
         {
-            sphere(uParams[i], vParams[j], circleParams, pResults2);
+            sphereExample(uParams[i], vParams[j], circleParams, pResults2);
             pResults2 += 3;
         }
     }

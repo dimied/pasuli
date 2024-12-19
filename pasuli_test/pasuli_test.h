@@ -4,8 +4,7 @@
 #include "../pasuli_conf/pasuli_cfg.h"
 #include "../pasuli_common/pasuli_defs.h"
 
-#define SURFACE_PROG_SIZE 100
-
+#pragma pack(1)
 typedef struct _PaSuLiTestValues
 {
     float u;
@@ -14,6 +13,8 @@ typedef struct _PaSuLiTestValues
     float y;
     float z;
 } PaSuLiTestValues;
+
+#define PASULI_TEST_VALUE(U, V, X, Y, Z) {U, V, X, Y, Z}
 
 typedef struct _PaSuLiTestSampling
 {
@@ -25,6 +26,9 @@ typedef struct _PaSuLiTestSampling
     int vNumSamples;
 } PaSuLiTestSampling;
 
+#define PASULI_TEST_SAMPLING(USTART, UEND, UCOUNT, VSTART, VEND, VCOUNT) \
+    {USTART, UEND, UCOUNT, VSTART, VEND, VCOUNT}
+
 typedef struct _PaSuLiTestDesc
 {
     char *surfaceName;
@@ -35,6 +39,9 @@ typedef struct _PaSuLiTestDesc
     int posTestCount;
     PaSuLiTestSampling *pSampling;
 } PaSuLiTestDesc;
+
+#define PASULI_NO_TEST_VALUES ((PaSuLiTestValues *)0)
+#define PASULI_NO_TEST_SAMPLING ((PaSuLiTestSampling *)0)
 
 #define PASULI_TEST(NAME, FUNC_PTR, TEST_PROG, TEST_PROG_SIZE, POS_TEST_PTR, POS_TEST_COUNT, TEST_SAMPLING) \
     {NAME, FUNC_PTR, TEST_PROG, TEST_PROG_SIZE, POS_TEST_PTR, POS_TEST_COUNT, TEST_SAMPLING}

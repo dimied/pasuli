@@ -1,6 +1,7 @@
 
 #include "ellipsoid.h"
 #include "sphere_c_includes.h"
+#include "tests/sphere_test_conf.h"
 
 #if (USE_ELLIPSOID != 0)
 void Ellipsoid(pasuli_vartype u,
@@ -23,13 +24,17 @@ void Ellipsoid(pasuli_vartype u,
 	P_Y(b * sin_u * sin_v);
 	P_Z(c * cos_v);
 
+#if (PASULIOBJECT_UD != 0)
 	UD_X(-a * sin_u * sin_v);
 	UD_Y(b * cos_u * sin_v);
 	UD_Z(0);
+#endif
 
+#if (PASULIOBJECT_VD != 0)
 	VD_X(a * cos_u * cos_v);
 	VD_Y(b * sin_u * cos_v);
 	VD_Z(-c * sin_v);
+#endif
 
 	//sin(v)^2 = (1-cos(v))*0.5
 	NORMAL_OP(pasuli_calctype sin_v2 = 0.5 - 0.5*cos(2*v));
