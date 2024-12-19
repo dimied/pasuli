@@ -92,8 +92,7 @@ void executeSuiteTests(PaSuLiTestPair *testPair)
                     testVars.pU[0] = u;
                     testVars.pV[0] = v;
                     float *pPoint = testVars.pResultPoint;
-                    // int interpreterRes =
-                    parseCode(
+                    int interpreterRes = parseCode(
                         testVars.pU,
                         1,
                         testVars.pV,
@@ -104,40 +103,105 @@ void executeSuiteTests(PaSuLiTestPair *testPair)
                         pTest->testProgSize,
                         pTest->pTestProg,
                         pPoint);
+
+                    if (interpreterRes)
+                    {
+                        printf("ERROR: Interpreter fail (%i)|res: %i\n", interpreterRes, testPointIdx);
+                        break;
+                    }
                     if (comparePosFloat(pPoint, pPointTest))
                     {
                         printf("%s|I|Point(%i):", pTestIndent, testPointIdx);
-                        printf(" (%f,%f) =>(%f,%f,%f)\n",
+                        printf(" (%f,%f) => (%f,%f,%f)\n",
                                u, v, pPoint[0], pPoint[1], pPoint[2]);
 
                         printf("%sERROR: (%f,%f,%f)\n",
                                pTestIndent, pTestPoints[testPointIdx].x, pTestPoints[testPointIdx].y, pTestPoints[testPointIdx].z);
                     }
-                    
                 }
             }
         }
-        if(pTest->pSampling && pTest->numSamplings) {
-            for(int samplingIdx=0; samplingIdx < pTest->numSamplings; samplingIdx++) {
+        if (pTest->pTestProg && pTest->testProgSize > 0 && pTest->pSampling && pTest->numSamplings)
+        {
+            int numSampleTests = 0;
+
+            for (int samplingIdx = 0; samplingIdx < pTest->numSamplings; samplingIdx++)
+            {
+                printf("%sSample:idx: %i\n", pTestIndent, samplingIdx);
                 clearSampleValues(&testSampling);
 
-                PaSuLiTestSampling* pTestSampling = &pTest->pSampling[samplingIdx];
+                PaSuLiTestSampling *pTestSampling = &pTest->pSampling[samplingIdx];
                 testSampling.uStart = pTestSampling->uStart;
                 testSampling.uEnd = pTestSampling->uEnd;
                 testSampling.vStart = pTestSampling->vStart;
                 testSampling.vEnd = pTestSampling->vEnd;
                 testSampling.uNumValues = pTestSampling->uNumSamples;
                 testSampling.vNumValues = pTestSampling->vNumSamples;
+                pasuli_consttype *pConstPoint = pTestSampling->pConstants;
 
-                if(sampleValues(&testSampling)) {
+                printf("%sSample:#consts: %i\n", pTestIndent, pTestSampling->numConstants);
+
+                if (sampleValues(&testSampling))
+                {
                     printf("ERROR: Failed to sample\n");
                     continue;
                 }
                 printf("%sSamples OK!\n", pTestIndent);
+                clearTestVars(&testVars);
+                convertConstants(pConstPoint, pTestSampling->numConstants, testVars.pProgParams);
 
+                float *pPoint = testVars.pResultPoint;
+                pasuli_vartype *pPos = testPoint.pos;
+                int numFails = 0;
+
+                // printf("CONSTS: %f|%p\n",testVars.pProgParams[0], (void*)pConstPoint);
+
+                for (int iU = 0; iU < testSampling.uNumValues && numFails < 10; iU++)
+                {
+                    double u = testSampling.pUValues[iU];
+                    testVars.pU[0] = (float)u;
+                    for (int iV = 0; iV < testSampling.vNumValues && numFails < 10; iV++)
+                    {
+                        double v = testSampling.pVValues[iV];
+                        testVars.pV[0] = (float)v;
+                        // PaSuLi
+                        pTest->pasuliFunc(u, v, pConstPoint, &testPoint);
+
+                        int interpreterRes =
+                            parseCode(
+                                testVars.pU,
+                                1,
+                                testVars.pV,
+                                1,
+                                DEFINE_STEPS(1, 1),
+                                globalConstants,
+                                testVars.pProgParams,
+                                pTest->testProgSize,
+                                pTest->pTestProg,
+                                pPoint);
+                        if (interpreterRes)
+                        {
+                            printf("ERROR: Interpreter (%i)(%i,%i)\n", interpreterRes, iU, iV);
+                            break;
+                        }
+                        if (comparePosArray(&testPoint, pPoint))
+                        {
+                            printf("%s|S|Point(%i,%i):", pTestIndent, iU, iV);
+                            printf(" (%f,%f) => (%f,%f,%f)\n",
+                                   u, v, pPos[0], pPos[1], pPos[2]);
+
+                            printf("%s   ERROR: (%f,%f,%f)\n",
+                                   pTestIndent, pPoint[0], pPoint[1], pPoint[2]);
+                            ++numFails;
+                            continue;
+                        }
+                        ++numSampleTests;
+                    }
+                }
+                printf("%sSamples tested: %i\n", pTestIndent, numSampleTests);
             }
         }
-                    
+
         printf("  -----\n");
         //
     }

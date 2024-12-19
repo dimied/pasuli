@@ -12,7 +12,7 @@ typedef struct _PaSuLiTestPointTest
     pasuli_vartype x;
     pasuli_vartype y;
     pasuli_vartype z;
-    pasuli_vartype *pConstants;
+    pasuli_consttype *pConstants;
     int numConstants;
 } PaSuLiTestPointTest;
 
@@ -26,11 +26,12 @@ typedef struct _PaSuLiTestSampling
     float vStart;
     float vEnd;
     int vNumSamples;
-    pasuli_vartype *pConstants;
+    pasuli_consttype *pConstants;
+    int numConstants;
 } PaSuLiTestSampling;
 
-#define PASULI_TEST_SAMPLING(USTART, UEND, UCOUNT, VSTART, VEND, VCOUNT, CONSTS) \
-    {USTART, UEND, UCOUNT, VSTART, VEND, VCOUNT, CONSTS}
+#define PASULI_TEST_SAMPLING(USTART, UEND, UCOUNT, VSTART, VEND, VCOUNT, CONSTS, NCONSTS) \
+    {USTART, UEND, UCOUNT, VSTART, VEND, VCOUNT, CONSTS, NCONSTS}
 
 typedef struct _PaSuLiTestDesc
 {

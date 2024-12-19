@@ -41,6 +41,8 @@ int comparePos(PaSuLiObject *pResult, PaSuLiTestPointTest *pExpected);
 
 int comparePosFloat(float *pPos, PaSuLiTestPointTest *pExpected);
 
+int comparePosArray(PaSuLiObject *pResult, float* pPos);
+
 void convertConstants(pasuli_vartype *inConstants, int numConstants, float *outConstants);
 
 #endif

@@ -16,7 +16,7 @@ pasuli_vartype testConstants[] = {1};
 pasuli_vartype testConstants2[] = {2.5};
 
 PaSuLiTestSampling sphereTestSampling[] = {
-    PASULI_TEST_SAMPLING(0, MY_PI, 100, 0, 2 * MY_PI, 100, testConstants),
+    PASULI_TEST_SAMPLING(0, MY_PI, 100, 0, 2 * MY_PI, 100, testConstants, 1),
 };
 
 PaSuLiTestPointTest spherePointTests[] = {

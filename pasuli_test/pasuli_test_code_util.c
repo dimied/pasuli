@@ -151,6 +151,19 @@ int comparePos(PaSuLiObject *pResult, PaSuLiTestPointTest *pExpected)
     return 0;
 }
 
+int comparePosArray(PaSuLiObject *pResult, float* pPos)
+{
+    double xDiff = pResult->pos[0] - pPos[0];
+    double yDiff = pResult->pos[1] - pPos[1];
+    double zDiff = pResult->pos[2] - pPos[2];
+
+    if (fabs(xDiff) > MAX_DIFF || fabs(yDiff) > MAX_DIFF || fabs(zDiff) > MAX_DIFF)
+    {
+        return 1;
+    }
+    return 0;
+}
+
 int comparePosFloat(float *pPos, PaSuLiTestPointTest *pExpected)
 {
     double xDiff = pPos[0] - pExpected->x;
