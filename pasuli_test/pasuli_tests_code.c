@@ -123,10 +123,11 @@ void executeSuiteTests(PaSuLiTestPair *testPair)
         }
         if (pTest->pTestProg && pTest->testProgSize > 0 && pTest->pSampling && pTest->numSamplings)
         {
-            int numSampleTests = 0;
+            long int allNumSampleTests = 0;
 
             for (int samplingIdx = 0; samplingIdx < pTest->numSamplings; samplingIdx++)
             {
+                int numSampleTests = 0;
                 printf("%sSample:idx: %i\n", pTestIndent, samplingIdx);
                 clearSampleValues(&testSampling);
 
@@ -198,8 +199,10 @@ void executeSuiteTests(PaSuLiTestPair *testPair)
                         ++numSampleTests;
                     }
                 }
-                printf("%sSamples tested: %i\n", pTestIndent, numSampleTests);
+                allNumSampleTests += numSampleTests;
+                printf("%sSamples tested(%i): %i\n", pTestIndent, samplingIdx, numSampleTests);
             }
+            printf("%sSamples tested(all): %li\n", pTestIndent,allNumSampleTests );
         }
 
         printf("  -----\n");

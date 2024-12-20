@@ -6,6 +6,7 @@
 #define PASULI_ALL_SPHERE_TESTS_COUNT 2
 
 extern PaSuLiTestDesc sphereTest;
+extern PaSuLiTestDesc ellipsoidTest;
 
 extern PaSuLiTestDesc *allSphereTests[PASULI_ALL_SPHERE_TESTS_COUNT];
 
