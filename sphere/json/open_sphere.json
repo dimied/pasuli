@@ -1,0 +1,25 @@
+{
+    "name": "Open Sphere",
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            "-inf",
+            "inf"
+        ],
+        "v": [
+            "-inf",
+            "inf"
+        ]
+    },
+    "vals": {
+        "uq" : "u*u",
+        "vq": "v*v",
+        "divisor": "1+uq+vq"
+    }, 
+    "x": "(2*u)/divisor",
+    "y": "(uq+vq-1)/divisor",
+    "z": "(2*v)/divisor"
+}

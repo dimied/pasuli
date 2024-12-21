@@ -1,0 +1,20 @@
+{
+    "name": "Wave sphere",
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            14
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "x": "u*cos(cos(u))*cos(v)",
+    "y": "u*cos(cos(u))*sin(v)",
+    "z": "u*sin(cos(u))"
+}

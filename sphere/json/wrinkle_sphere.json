@@ -1,0 +1,20 @@
+{
+    "name": "Wrinkle sphere",
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            "(0",
+            "2*PI)"
+        ]
+    },
+    "x": "sin(u)*sin(v)+(0.05*cos(20*v))",
+    "y": "cos(u)*sin(v)+(0.05*cos(20*u))",
+    "z": "cos(v)"
+}

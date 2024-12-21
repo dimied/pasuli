@@ -12,5 +12,8 @@
   ],
   "author": "Dimitri Maljavin",
   "license": "MIT",
-  "server_port": 8080
+  "server_port": 8080,
+  "dependencies": {
+    "three": "^0.171.0"
+  }
 }

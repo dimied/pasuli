@@ -12,12 +12,16 @@ const types = {
     json: 'application/json',
 };
 
-//const root = path.normalize(path.resolve(directoryName));
 const pasuliRoot = path.normalize(path.resolve(path.join(__dirname, '..')));
 const scriptRoot = __dirname;
 
 console.log("Script path: " + scriptRoot);
 console.log("Root: '" + pasuliRoot);
+
+const otherScripts = [];
+//Iterate in scriptRoot
+//get JS and CSS files
+//check them first and deliver.
 
 
 const server = http.createServer((req, res) => {
@@ -44,7 +48,7 @@ const server = http.createServer((req, res) => {
 
     if (!isPathUnderRoot) {
         res.writeHead(404, { 'Content-Type': 'text/html' });
-        res.end('404: File not found "' + filePath+'"');
+        res.end('404: File not found "' + filePath + '"');
         return;
     }
 

@@ -1,7 +1,9 @@
 {
     "name": "Ellipsoid",
     "params": [
-        "a","b", "c"
+        "a",
+        "b",
+        "c"
     ],
     "vars": [
         "u",
@@ -16,15 +18,20 @@
             0,
             "2*PI"
         ],
-        "r": [
-            0,
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)"
+    "x": "a*sin(u)*cos(v)",
+    "y": "b*sin(u)*sin(v)",
+    "z": "c*cos(u)"
 }

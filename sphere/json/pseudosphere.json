@@ -1,0 +1,20 @@
+{
+    "name": "Pseudo Sphere",
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            0.1,
+            3.10
+        ]
+    },
+    "x": "cos(u)*sin(v)",
+    "y": "sin(u)*sin(v)",
+    "z": "cos(v)*log(tan(0.5*v))"
+}

@@ -1,0 +1,32 @@
+{
+    "name": "Twisted Sphere",
+    "params": [
+        "a",
+        "b"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ],
+        "a": [
+            0,
+            "inf"
+        ],
+        "b": [
+            0,
+            "inf"
+        ]
+    },
+    "x": "a*cos(u)*cos(v)",
+    "y": "a*sin(v)+(b*u)",
+    "z": "a*sin(u)*cos(v)"
+}
