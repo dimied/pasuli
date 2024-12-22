@@ -26,7 +26,7 @@ function writeJsHead(res) {
 
 var pasuliDirectories = [
     {
-        cat: "Sphere",
+        catname: "Sphere",
         folder: 'sphere'
     }
 ];

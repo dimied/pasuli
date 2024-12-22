@@ -58,4 +58,40 @@ button.selected {
     background-color: azure;
     width: 10rem;
     height: 100%;
+    padding-right: 0.2rem;
+}
+
+.category .title {
+    
+    padding: 0.2rem;
+    margin: 0.2rem;
+    border: 1px solid grey;
+    border-radius: 0.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    width: 100%;
+}
+.category .title .text {
+    text-align: center;
+    flex:1;
+}
+
+.category .title .controls {
+    width: 2rem;
+}
+
+.category .title .cat-control {
+    width: 1rem;
+}
+
+.category.closed .surfaces {
+    display: none;
+}
+
+.surface-desc {
+    margin-bottom: 0.5rem;
+    padding: 0.2rem;
+    border: 1px solid grey;
+    cursor: pointer;
 }

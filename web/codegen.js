@@ -1,5 +1,4 @@
-
-
+//Code gen
 var codeGenerator = (function () {
     function generateFuncName(name) {
         return name.trim().replaceAll(' ', '_') + 'Func';
@@ -109,3 +108,4 @@ var codeGenerator = (function () {
         }
     };
 }());
+
