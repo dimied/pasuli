@@ -81,17 +81,36 @@ button.selected {
     width: 2rem;
 }
 
-.category .title .cat-control {
+.category .title .cat-control, .surface-control {
     width: 1rem;
 }
 
-.category.closed .surfaces {
+.category.closed .surfaces, .surface-desc.closed .surface-conf{
     display: none;
 }
 
 .surface-desc {
     margin-bottom: 0.5rem;
-    padding: 0.2rem;
+    padding: 0.4rem 0.2rem;
     border: 1px solid grey;
+    border-radius: 0.2rem;
+}
+.surface-name {
     cursor: pointer;
+    color: black;
+}
+
+.surface-desc .surface-name.selected {
+    text-decoration: underline;
+    color: red;
+}
+
+.surface-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.surface-control {
+    margin: 0 0.3rem 0 0.1rem;
 }

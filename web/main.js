@@ -223,6 +223,16 @@ var allFunctions = {};
         return findCategoryElement(elem.parentElement);
     }
 
+    function findSurfaceElement(elem) {
+        if (!elem) {
+            return;
+        }
+        if (elem.className.indexOf('surface-desc') >= 0) {
+            return elem;
+        }
+        return findSurfaceElement(elem.parentElement);
+    }
+
     function toggleCategory(cat) {
         console.log('Toggle:', cat);
         if (!cat) {
@@ -256,7 +266,9 @@ var allFunctions = {};
 
     function createSurfaceHTML(surface,desc) {
         console.log('GEN-HTML:', surface)
-        var res = '<div class="surface-desc" id="' + createSurfaceDescId(surface) + '">';
+        var res = '<div class="surface-desc closed" id="' + createSurfaceDescId(surface) + '">';
+        res += '<div class="surface-title">';
+        res +='<div><button class="surface-control">+</button></div>';
         res += '<div class="surface-name"'
         if(desc) {
             if (desc.id) {
@@ -267,6 +279,9 @@ var allFunctions = {};
         }
         
         res += '>' + surface.name + '</div>';
+        res += '</div>';
+        res += '<div class="surface-conf">';
+        res += '</div>';
         res += '</div>';
         return res;
     }
@@ -304,6 +319,33 @@ var allFunctions = {};
     }
     function surfaceClickHandler(e) {
         console.log('Click:', e.target);
+        var elem = e.target;
+        if(!elem) {
+            return;
+        }
+        if(elem.className.indexOf('surface-control')>=0) {
+            var parentElem = findSurfaceElement(elem);
+            console.log('Control!');
+            if(parentElem.className.indexOf('closed')>=0) {
+                cssUtil.remove(parentElem, 'closed');
+                elem.innerHTML = '-';
+            } else {
+                cssUtil.add(parentElem, 'closed');
+                elem.innerHTML = '+';
+            }
+            return;
+        }
+        if(elem.className.indexOf('surface-name')>=0) {
+            var parentElem = findSurfaceElement(elem);
+            console.log('Select!', parentElem);
+            var elems = document.getElementsByClassName('surface-name');
+            for(var i=0; i < elems.length; i++) {
+                var e = elems.item(i);
+                cssUtil.remove(e, 'selected');
+            }
+            cssUtil.add(elem, 'selected');
+            return;
+        }
     }
 
     function addCategoryHandlers() {
@@ -313,7 +355,12 @@ var allFunctions = {};
             e.addEventListener('click', categoryToggleHandler);
         }
         //todo add surface handlers
-        elems = document.getElementsByClassName('surface-desc');
+        elems = document.getElementsByClassName('surface-name');
+        for (var sIdx = 0; sIdx < elems.length; sIdx++) {
+            var e = elems.item(sIdx);
+            e.addEventListener('click', surfaceClickHandler);
+        }
+        elems = document.getElementsByClassName('surface-control');
         for (var sIdx = 0; sIdx < elems.length; sIdx++) {
             var e = elems.item(sIdx);
             e.addEventListener('click', surfaceClickHandler);
