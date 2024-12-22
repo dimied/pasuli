@@ -90,10 +90,9 @@ var codeGenerator = (function () {
             if (!content) {
                 return '';
             }
-
-            console.log('S:', content);
-            var funcCode = 'function ' + generateFuncName(content.name) + "(u,v, params) {\n"
             var indent = "  ";
+            //console.log('S:', content);
+            var funcCode = 'function ' + generateFuncName(content.name) + "(u,v, params) {\n"
             var c = generateParamsLine(content.params, indent);
             funcCode += c ? c + "\n" : '';
 

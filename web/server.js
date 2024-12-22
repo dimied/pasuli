@@ -26,8 +26,32 @@ function writeJsHead(res) {
 
 var pasuliDirectories = [
     {
+        catname: "Cylinder",
+        folder: 'cylinder'
+    },
+    {
+        catname: "Fruits",
+        folder: 'fruits'
+    },
+    {
+        catname: "Shell",
+        folder: 'shells'
+    },
+    {
         catname: "Sphere",
         folder: 'sphere'
+    },
+    {
+        catname: "Spiral",
+        folder: 'spiral'
+    },
+    {
+        catname: "Surfaces",
+        folder: 'surfaces'
+    },
+    {
+        catname: "Torus",
+        folder: 'torus'
     }
 ];
 

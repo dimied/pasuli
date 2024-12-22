@@ -1,0 +1,38 @@
+{
+    "name": "Versiera-Agnesi-Cylinder",
+    "params": [
+        "R",
+        "a"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-inf",
+            "inf"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ]
+    },
+    "vals": [
+        {
+            "name": "xy",
+            "op": "(R + 2*a/(1 + v*v))"
+        }
+    ],
+    "x": "xy*cos(u)",
+    "y": "xy*sin(u)",
+    "z": "2*a*v"
+}

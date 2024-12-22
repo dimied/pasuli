@@ -1,0 +1,31 @@
+{
+    "name": "Cylinder",
+    "params": [
+        "r"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-inf",
+            "inf"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ]
+    },
+    "x": "r*cos(u)",
+    "y": "r*sin(u)",
+    "z": "v",
+    "nx": "cos(u)",
+    "ny": "sin(u)",
+    "nz": "0",
+    "normal_normalized": true
+}

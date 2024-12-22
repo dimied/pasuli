@@ -30,6 +30,12 @@ var allFunctions = {};
         }
     };
 
+    var validViewTypes = ['3d', 'math'], currentType = 'math', surfaces = [];
+
+    function addClickHandler(e, f) {
+        e && f && e.addEventListener('click', f);
+    }
+
     function isJSON(headers) {
         return headers && headers.get('content-type') === 'application/json';
     }
@@ -51,8 +57,6 @@ var allFunctions = {};
             onSuccess(data);
         });
     }
-
-    var validViewTypes = ['3d', 'math'], currentType = 'math';
 
     function selectView(type) {
         console.log('Type:', type);
@@ -81,8 +85,6 @@ var allFunctions = {};
             }
         }
     }
-
-    var surfaces = [];
 
     function createCatId(cat) {
         if (typeof cat === 'string') {
@@ -123,7 +125,6 @@ var allFunctions = {};
     }
 
     function toggleCategory(cat) {
-        console.log('Toggle:', cat);
         if (!cat) {
             return;
         }
@@ -153,24 +154,80 @@ var allFunctions = {};
         console.log('Load-Surface:', surface);
     }
 
-    function createSurfaceHTML(surface,desc) {
-        console.log('GEN-HTML:', surface)
-        var res = '<div class="surface-desc closed" id="' + createSurfaceDescId(surface) + '">';
+    function createSurfaceParamsHTML(surface) {
+        var i, p, res = '', parts = [], paramName;
+        if (surface.params && surface.params.length) {
+            var ranges = surface.ranges || {};
+
+            for (i = 0; i < surface.params.length; i++) {
+                paramName = surface.params[i];
+                p = '<div class="surface-param">';
+                p += '<div class="surface-param-name">' + paramName + '</div>';
+                p += '<input type="text" class="surface-param-' + i + '" />';
+                p += '</div>';
+                if (paramName && ranges[paramName] && ranges[paramName].length) {
+                    p += '<div class="surface-param-range">';
+                    p += ranges[paramName].join(' - ');
+                    p += '</div>';
+                }
+
+                parts.push(p);
+            }
+            res += '<div class="surface-params">' + parts.join('') + '</div>';
+        }
+        return res;
+    }
+
+    function createSurfaceValsHTML(surface) {
+        var i, p, parts = [], res = '';
+        if (surface.vals) {
+
+            for (i = 0; i < surface.vals.length; i++) {
+                if (surface.vals[i].name && surface.vals[i].op) {
+                    p = '<div>' + surface.vals[i].name;
+                    p += '<span style="display:inline-block; margin: 0 0.5rem">:';
+                    p += '</span>';
+                    p += surface.vals[i].op;
+                    p += '</div>';
+                    parts.push(p);
+                }
+            }
+            res = parts.join('');
+        }
+        return res;
+    }
+
+    function createSurfaceHTML(surface, desc) {
+        //console.log('GEN-HTML:', surface)
+        var p, parts, code, res = '<div class="surface-desc closed" id="' + createSurfaceDescId(surface) + '">';
         res += '<div class="surface-title">';
-        res +='<div><button class="surface-control">+</button></div>';
+        res += '<div><button class="surface-control">+</button></div>';
         res += '<div class="surface-name"'
-        if(desc) {
+        if (desc) {
             if (desc.id) {
                 res += 'id="' + desc.id + '"';
             } else if (desc.file) {
                 res += 'id="' + desc.file + '"';
             }
         }
-        
+
         res += '>' + surface.name + '</div>';
         res += '</div>';
-        res += '<div class="surface-conf">';
+
+        res += '<div class="surface-content">';
+
+        var c = createSurfaceParamsHTML(surface);
+        if (c) {
+            res += '<div class="surface-conf">' + c + '</div>';
+        }
+
+        c = createSurfaceValsHTML(surface);
+        if (c) {
+            res += '<div class="surface-vals">' + c + '</div>';
+        }
+
         res += '</div>';
+
         res += '</div>';
         return res;
     }
@@ -208,14 +265,16 @@ var allFunctions = {};
     }
     function surfaceClickHandler(e) {
         console.log('Click:', e.target);
-        var elem = e.target;
-        if(!elem) {
+        var parentElem, i, elems, elem = e.target;
+        if (!elem) {
             return;
         }
-        if(elem.className.indexOf('surface-control')>=0) {
-            var parentElem = findSurfaceElement(elem);
-            console.log('Control!');
-            if(parentElem.className.indexOf('closed')>=0) {
+        parentElem = findSurfaceElement(elem);
+        if (!parentElem) {
+            return;
+        }
+        if (elem.className.indexOf('surface-control') >= 0) {
+            if (parentElem.className.indexOf('closed') >= 0) {
                 cssUtil.remove(parentElem, 'closed');
                 elem.innerHTML = '-';
             } else {
@@ -224,35 +283,30 @@ var allFunctions = {};
             }
             return;
         }
-        if(elem.className.indexOf('surface-name')>=0) {
-            var parentElem = findSurfaceElement(elem);
-            console.log('Select!', parentElem);
-            var elems = document.getElementsByClassName('surface-name');
-            for(var i=0; i < elems.length; i++) {
+        if (elem.className.indexOf('surface-name') >= 0) {
+            elems = document.getElementsByClassName('surface-name');
+            for (i = 0; i < elems.length; i++) {
                 var e = elems.item(i);
                 cssUtil.remove(e, 'selected');
             }
             cssUtil.add(elem, 'selected');
-            return;
         }
     }
 
+
+
     function addCategoryHandlers() {
-        var elems = document.getElementsByClassName('cat-control');
-        for (var sIdx = 0; sIdx < elems.length; sIdx++) {
-            var e = elems.item(sIdx);
-            e.addEventListener('click', categoryToggleHandler);
+        var sIdx, elems = document.getElementsByClassName('cat-control');
+        for (sIdx = 0; sIdx < elems.length; sIdx++) {
+            addClickHandler(elems.item(sIdx), categoryToggleHandler);
         }
-        //todo add surface handlers
         elems = document.getElementsByClassName('surface-name');
-        for (var sIdx = 0; sIdx < elems.length; sIdx++) {
-            var e = elems.item(sIdx);
-            e.addEventListener('click', surfaceClickHandler);
+        for (sIdx = 0; sIdx < elems.length; sIdx++) {
+            addClickHandler(elems.item(sIdx), surfaceClickHandler);
         }
         elems = document.getElementsByClassName('surface-control');
-        for (var sIdx = 0; sIdx < elems.length; sIdx++) {
-            var e = elems.item(sIdx);
-            e.addEventListener('click', surfaceClickHandler);
+        for (sIdx = 0; sIdx < elems.length; sIdx++) {
+            addClickHandler(elems.item(sIdx), surfaceClickHandler);
         }
     }
 
@@ -265,29 +319,28 @@ var allFunctions = {};
         if (!data.success || !data.data) {
             return;
         }
-        let fIdx = 0, fLimit = 10;
-        var catCodes = [];
+        let catIdx, category, sIdx, f, elem, fIdx = 0, fLimit = 10, catCodes = [];
 
         surfaces = data.data;
 
-
-        for (var catIdx = 0; catIdx < data.data.length; catIdx++) {
-            var category = data.data[catIdx];
+        for (catIdx = 0; catIdx < data.data.length; catIdx++) {
+            category = data.data[catIdx];
             console.log('CAT:', category);
-
-            for (var sIdx = 0; sIdx < category.files.length; sIdx++) {
-                var f = category.files[sIdx];
-
-                if (fIdx < fLimit) {
-                    var content = codeGenerator.generate(f);
-                    console.log('S:', content);
+            if(category.files) {
+                for (sIdx = 0; sIdx < category.files.length; sIdx++) {
+                    f = category.files[sIdx];
+    
+                    if (fIdx < fLimit) {
+                        var content = codeGenerator.generate(f);
+                        //console.log('S:', content);
+                    }
+                    fIdx++;
                 }
-                fIdx++;
             }
             catCodes.push(createCategoryHTML(category));
         }
 
-        var elem = document.getElementById("sidebar");
+        elem = document.getElementById("sidebar");
         if (elem) {
             elem.innerHTML = catCodes.join("\n");
         }
@@ -301,8 +354,11 @@ var allFunctions = {};
     }
 
     document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM loaded');
         addButtonHandlers();
         loadAllSurfaces();
+        console.log(DEG2RAD);
+        myInit3D('view3d');
     });
 }());
 

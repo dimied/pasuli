@@ -1,0 +1,39 @@
+{
+    "name": "Gauss-Cylinder",
+    "params": [
+        "R",
+        "a",
+        "b"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "(0",
+            "inf"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ]
+    },
+    "vals": [
+        {
+            "name": "avq",
+            "op": "a*a*v*v"
+        },
+        {
+            "name": "br",
+            "op": "b*exp(-(avq))"
+        }
+    ],
+    "x": "(R + br)*cos(u)",
+    "y": "(R + br)*sin(u)",
+    "z": "v"
+}

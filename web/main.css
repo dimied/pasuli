@@ -3,16 +3,22 @@ body {
     width: 100vw;
 }
 
-body,* {
+body,
+* {
     margin: 0;
     padding: 0;
 }
 
-#content, #main, header, header > #viewbuttons {
+#content,
+#main,
+header,
+header > #viewbuttons {
     display: flex;
 }
 
-header, #main, header > #viewbuttons {
+header,
+#main,
+header > #viewbuttons {
     flex-direction: row;
 }
 header {
@@ -21,14 +27,14 @@ header {
     padding: 0.25rem;
 }
 header > h1 {
-    flex:1;
+    flex: 1;
     text-align: center;
 }
 
 header > #viewbuttons {
     width: 6rem;
 }
-header > #viewbuttons >button {
+header > #viewbuttons > button {
     margin: 0.2rem;
     padding: 0.2rem;
 }
@@ -51,7 +57,13 @@ button.selected {
 }
 
 #mainview {
-
+    flex: 1;
+    height: 100%;
+    background-color:antiquewhite;
+}
+#view3d {
+    height: 100%;
+    width: 100%;
 }
 
 #sidebar {
@@ -62,7 +74,6 @@ button.selected {
 }
 
 .category .title {
-    
     padding: 0.2rem;
     margin: 0.2rem;
     border: 1px solid grey;
@@ -74,23 +85,26 @@ button.selected {
 }
 .category .title .text {
     text-align: center;
-    flex:1;
+    flex: 1;
 }
 
 .category .title .controls {
     width: 2rem;
 }
 
-.category .title .cat-control, .surface-control {
+.category .title .cat-control,
+.surface-control {
     width: 1rem;
 }
 
-.category.closed .surfaces, .surface-desc.closed .surface-conf{
+.category.closed .surfaces,
+.surface-desc.closed .surface-content {
     display: none;
 }
 
 .surface-desc {
     margin-bottom: 0.5rem;
+    margin-left: 0.75rem;
     padding: 0.4rem 0.2rem;
     border: 1px solid grey;
     border-radius: 0.2rem;
@@ -105,10 +119,35 @@ button.selected {
     color: red;
 }
 
-.surface-title {
+.surface-title,
+.surface-param {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+}
+
+.surface-params,
+.surface-vals {
+    margin: 0.25rem 0 0.25rem 0.4rem;
+    padding: 0.2rem;
+    border: 1px dashed grey;
+    border-radius: 0.2rem;
+}
+
+.surface-param {
+    margin: 0.2rem 0;
+}
+.surface-param > .surface-param-name {
+    width: 1rem;
+    margin-right: 0.2rem;
+}
+.surface-param > input {
+    width: 6rem;
+}
+
+.surface-param-range {
+    margin-left: 2rem;
+    margin-bottom: 0.3rem;
 }
 
 .surface-control {
