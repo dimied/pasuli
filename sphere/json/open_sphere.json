@@ -14,11 +14,20 @@
             "inf"
         ]
     },
-    "vals": {
-        "uq" : "u*u",
-        "vq": "v*v",
-        "divisor": "1+uq+vq"
-    }, 
+    "vals": [
+        {
+            "name": "uq",
+            "op": "u*u"
+        },
+        {
+            "name": "vq",
+            "op": "v*v"
+        },
+        {
+            "name": "divisor",
+            "op": "1+uq+vq"
+        }
+    ],
     "x": "(2*u)/divisor",
     "y": "(uq+vq-1)/divisor",
     "z": "(2*v)/divisor"

@@ -9,7 +9,9 @@ const types = {
     html: 'text/html',
     css: 'text/css',
     js: 'application/javascript',
+    map: 'application/javascript',
     json: 'application/json',
+    ico: 'image/x-icon'
 };
 
 const pasuliRoot = path.normalize(path.resolve(path.join(__dirname, '..')));
@@ -18,10 +20,94 @@ const scriptRoot = __dirname;
 console.log("Script path: " + scriptRoot);
 console.log("Root: '" + pasuliRoot);
 
-const otherScripts = [];
-//Iterate in scriptRoot
-//get JS and CSS files
-//check them first and deliver.
+function writeJsHead(res) {
+    res.writeHead(200, { 'Content-Type': types.json });
+}
+
+var pasuliDirectories = [
+    {
+        cat: "Sphere",
+        folder: 'sphere'
+    }
+];
+
+function loadDirectory(desc) {
+    return new Promise((resolve, reject)=> {
+        const result = Object.assign({}, desc);
+        const folder = path.normalize(path.resolve(path.join(pasuliRoot, desc.folder, 'json')));
+        if(fs.existsSync(folder)) {
+            const filenames = fs.readdirSync(folder);
+            console.log("F:",filenames);
+            result.files = [];
+
+            for(var idx=0; idx < filenames.length; idx++) {
+                const filePath = path.join(folder,filenames[idx]);
+                const fileContent = fs.readFileSync(filePath);
+                const o = {
+                    file: filenames[idx],
+                    fullpath: filePath,
+                    success: false
+                };
+                try {
+                    const asJSON = JSON.parse(fileContent);
+                    o.success = true;
+                    o.content = asJSON;
+                }catch(e) {
+                    o.error = e.toString();
+                }
+                result.files.push(o);
+            }
+        } else {
+            result.success = false;
+            result.message = 'Folder missing';
+        }
+
+        resolve(result);
+    });
+}
+
+function sendJsonResponse(data, res) {
+    const json = JSON.stringify(data);
+    writeJsHead(res);
+    res.end(json);
+}
+
+function pasuli(req, res) {
+    const obj = {
+        "a": "Hallo"
+    };
+
+    var promises = [];
+
+    for(var idx=0; idx < pasuliDirectories.length; idx++) {
+        promises.push(loadDirectory(pasuliDirectories[idx]));
+    }
+
+    Promise.allSettled(promises).catch((err)=> {
+        const result = {
+            success: false,
+            message: 'Failed to load descriptions'
+        }
+        sendJsonResponse(result, res);
+    }).then((results) =>{
+        const webResult = {
+            success: true,
+            message: 'Found',
+            data:[]
+        }
+
+        for(var i=0; i< results.length; i++) {
+            webResult.data.push(results[i].value);
+        }
+        console.log('RES?', results, typeof results);
+        console.log('RES!',webResult);
+        sendJsonResponse(webResult,res);
+    });
+}
+
+const apis = {
+    pasuli: pasuli
+};
 
 
 const server = http.createServer((req, res) => {
@@ -29,12 +115,23 @@ const server = http.createServer((req, res) => {
 
     const extension = path.extname(req.url).slice(1);
     const type = extension ? types[extension] : types.html;
-    const supportedExtension = Boolean(type);
+    //const supportedExtension = Boolean(type);
+    console.log("headers:", req.headers);
+
+    if (req.url) {
+        const endpoint = req.url.substring(1);
+        if (endpoint && apis[endpoint]) {
+            console.log("Endpoint:", endpoint);
+            apis[endpoint](req, res);
+            return;
+        }
+    }
 
 
     let fileName = req.url;
-    if (req.url === '/') fileName = 'index.html';
-    else if (!extension) {
+    if (req.url === '/') {
+        fileName = 'index.html';
+    } else if (!extension) {
         try {
             accessSync(join(scriptRoot, req.url + '.html'), constants.F_OK);
             fileName = req.url + '.html';
@@ -44,6 +141,7 @@ const server = http.createServer((req, res) => {
     }
 
     const filePath = path.join(scriptRoot, fileName);
+    //console.log('Path:', filePath);
     const isPathUnderRoot = path.normalize(path.resolve(filePath)).startsWith(scriptRoot);
 
     if (!isPathUnderRoot) {

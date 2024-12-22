@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head><title>PaSuLi ...</title></head>
-    <body>
-        <h1>
-            Parametric surface Library (PaSuLi)
-        </h1>
-        <div>
-
+  <head>
+    <title>PaSuLi ...</title>
+    <link rel="stylesheet" href="main.css" />
+    <script type="module" src="three.core.js"></script>
+    <script type="module" src="OrbitControls.js" async></script>
+    <script type="module" src="math.js"></script>
+    <script src="main.js" async></script>
+  </head>
+  <body>
+    <div id="content">
+      <header>
+        <h1>Parametric surface Library (PaSuLi)</h1>
+        <div id="viewbuttons">
+          <button id="select3d">3D</button>
+          <button class="selected" id="selectmath">Math</button>
         </div>
-    </body>
+      </header>
+
+      <div id="main">
+        <div id="mainview"></div>
+        <div id="sidebar"></div>
+      </div>
+    </div>
+  </body>
 </html>
