@@ -1,0 +1,68 @@
+{
+    "name": "Sea shell",
+    "params": [
+        "a",
+        "b",
+        "c",
+        "n"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            2
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ],
+        "n": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1,
+            "b": 1,
+            "c": 1,
+            "n": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "h",
+            "op": "1-0.5*v"
+        },
+        {
+            "name": "xy",
+            "op": "a*h*(1 + cos(u))+c"
+        },
+        {
+            "name": "cnv",
+            "op": "cos(n*v*PI)"
+        },
+        {
+            "name": "snv",
+            "op": "sin(n*v*PI)"
+        }
+    ],
+    "x": "xy*cnv",
+    "y": "xy*snv",
+    "z": "b*0.5*v + a*h*sin(u)"
+}

@@ -1,0 +1,48 @@
+{
+    "name": "Snail",
+    "params": [
+        "a",
+        "b"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "6*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1,
+            "b": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "h",
+            "op": "exp(u/(6*PI))"
+        },
+        {
+            "name": "xz",
+            "op": "a*(1-h)*cos(0.5*v)*cos(0.5*v)"
+        }
+    ],
+    "x": "xz*cos(u)",
+    "y": "1 - exp(u/(b*PI)) - (1-h)*sin(v)",
+    "z": "-xz*sin(u)"
+}

@@ -1,0 +1,54 @@
+{
+    "name": "Cylinder",
+    "params": [
+        "R",
+        "r"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            {
+                "name": "t",
+                "op": "sqrt(R*R-r*r)"
+            },
+            {
+                "name": "us",
+                "op": "-t"
+            },
+            {
+                "name": "ue",
+                "op": "t"
+            }
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 2,
+            "r": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "(sqrt(R*R - u*u) - r)"
+        }
+    ],
+    "x": "xy*sin(v)",
+    "y": "xy*cos(v)",
+    "z": "u"
+}

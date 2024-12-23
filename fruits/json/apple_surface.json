@@ -1,0 +1,23 @@
+{
+    "name": "Apple Surface",
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "vals":[
+        {"name":"xy", "op":"(4 + 3.8*cos(v))"}
+    ],
+    "x": "xy*cos(u)",
+    "y": "xy*sin(u)",
+    "z": "(cos(v)+sin(v)-1)*(1+sin(v))*log(1-PI*v/10)+7.5*sin(v)"
+}

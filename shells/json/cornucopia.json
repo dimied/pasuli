@@ -1,0 +1,52 @@
+{
+    "name": "Cornucopia",
+    "params": [
+        "a",
+        "b"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1,
+            "b": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "ebv",
+            "op": "exp(b*v)"
+        },
+        {
+            "name": "eav",
+            "op": "exp(a*v)"
+        },
+        {
+            "name": "xy",
+            "op": "eav*cos(u) + ebv"
+        }
+    ],
+    "x": "xy*cos(v)",
+    "y": "xy*sin(v)",
+    "z": "eav*sin(u)"
+}

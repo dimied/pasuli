@@ -1,0 +1,48 @@
+{
+    "name": "Apple Surface (V2)",
+    "params": [
+        "R",
+        "r"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1.5,
+            "r": 0.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "(R + r*cos(v))"
+        },
+        {
+            "name": "",
+            "op": ""
+        }
+    ],
+    "x": "cos(u)*(xy) + pow((v/pi),(20))",
+    "y": "sin(u)*(xy) + 0.25*cos(5*u)",
+    "z": "-2.3*log(1 - v*0.3157) + 6*sin(v) + 2*cos(v)"
+}

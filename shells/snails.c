@@ -71,7 +71,7 @@ R sollte nur die Werte -1 oder 1 annehmen.
 u \in  [u_min, u_max]
 v \in  [0, 2 pi]
 */
-char *descSnails = "name: Cornucopia;\
+char *descSnails = "name: Snails;\
 cat: shells;\
 ut: c; vt: c;\
 us:0; ue: 1;\
