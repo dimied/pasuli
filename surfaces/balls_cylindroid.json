@@ -1,7 +1,7 @@
 {
-    "name": "Sphere",
+    "name": "Balls Cylindroid",
     "params": [
-        "r"
+        "k"
     ],
     "vars": [
         "u",
@@ -10,22 +10,27 @@
     "ranges": {
         "u": [
             0,
-            "PI"
+            2
         ],
         "v": [
             0,
             "2*PI"
         ],
-        "r": [
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "k": 1
+        }
+    ],
+    "x": "u*cos(v)",
+    "y": "u*sin(v)",
+    "z": "k*sin(v)*cos(v)"
 }

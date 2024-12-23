@@ -1,12 +1,5 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Boy Surface 2",
     "ranges": {
         "u": [
             0,
@@ -14,18 +7,24 @@
         ],
         "v": [
             0,
-            "2*PI"
-        ],
-        "r": [
-            "(0",
-            "inf"
+            "PI"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "vals": [
+        {
+            "name": "A",
+            "op": "sin(u)*sin(v)"
+        },
+        {
+            "name": "B",
+            "op": "cos(u)*sin(v)"
+        },
+        {
+            "name": "C",
+            "op": "cos(v)"
+        }
+    ],
+    "x": "((2*B^2-A^2-C^2)*(A^2+B^2+C^2)+2*A*C*(A^2-C^2)+B*C*(B^2-C^2)+A*B*(A^2-B^2))/2",
+    "y": "((A^2-C^2)*(A^2+B^2+C^2)+B*C*(C^2-B^2)+A*B*(A^2-B^2))*sqrt(3)/2",
+    "z": "(A+B+C)*((A+B+C)^3+4*(A-B)*(C-A)*(B-C))/8"
 }

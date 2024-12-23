@@ -1,31 +1,20 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
+    "name": "Bour's Minimal surface",
     "vars": [
         "u",
         "v"
     ],
     "ranges": {
         "u": [
-            0,
+            "-PI",
             "PI"
         ],
         "v": [
-            0,
+            "-2*PI",
             "2*PI"
-        ],
-        "r": [
-            "(0",
-            "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "x": "u*(cos(v)-u*cos(2*v)/2)",
+    "y": "-u*(sin(v)-u*sin(2*v)/2)",
+    "z": "4*u*sqrt(u)*cos(3*u/2)/3"
 }

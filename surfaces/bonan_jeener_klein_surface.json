@@ -1,7 +1,8 @@
 {
-    "name": "Sphere",
+    "name": "Bonan Jeener Klein Surface",
     "params": [
-        "r"
+        "a",
+        "b"
     ],
     "vars": [
         "u",
@@ -10,22 +11,34 @@
     "ranges": {
         "u": [
             0,
-            "PI"
+            "2*PI"
         ],
         "v": [
             0,
             "2*PI"
         ],
-        "r": [
+        "M": [
+            "(0",
+            "inf"
+        ],
+        "T": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "M": 1.5,
+            "T": 0.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "W",
+            "op": "sin((M - 1)*u) + T"
+        }
+    ],
+    "x": "M*cos(u) - cos(M*u) - ((M - 1)/M)*W*sin((M + 1)*u/2)*cos(v)",
+    "y": "W*sin(v)",
+    "z": "M*sin(u) - sin(M*u) + ((M - 1)/M)*W*cos((M + 1)*u/2)*cos(v)"
 }

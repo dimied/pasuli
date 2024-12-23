@@ -1,7 +1,8 @@
 {
-    "name": "Sphere",
+    "name": "Agnesi Curl",
     "params": [
-        "r"
+        "T",
+        "L"
     ],
     "vars": [
         "u",
@@ -10,22 +11,28 @@
     "ranges": {
         "u": [
             0,
-            "PI"
+            "T"
         ],
         "v": [
             0,
             "2*PI"
         ],
-        "r": [
+        "T": [
+            "(0",
+            "inf"
+        ],
+        "L": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "T": 1,
+            "L": 1
+        }
+    ],
+    "x": "u*sin(v)",
+    "y": "u*cos(v)",
+    "z": "L*sqrt((T-u)/(T+u))"
 }

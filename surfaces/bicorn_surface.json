@@ -1,8 +1,5 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
+    "name": "Bicorn Surface",
     "vars": [
         "u",
         "v"
@@ -10,22 +7,24 @@
     "ranges": {
         "u": [
             0,
-            "PI"
+            "2*PI"
         ],
         "v": [
             0,
-            "2*PI"
-        ],
-        "r": [
-            "(0",
-            "inf"
+            "PI"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "vals": [
+        {
+            "name": "sv",
+            "op": "sin(v)"
+        },
+        {
+            "name": "cv",
+            "op": "cos(v)"
+        }
+    ],
+    "x": "sv*cos(u)",
+    "y": "sv*sin(u)",
+    "z": "(cv*cv*(2 + cos(v)))/(3 + sv*sv)"
 }
