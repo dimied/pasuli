@@ -1,31 +1,22 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Cross Cup",
     "ranges": {
         "u": [
             0,
-            "PI"
+            "(1"
         ],
         "v": [
             0,
             "2*PI"
-        ],
-        "r": [
-            "(0",
-            "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "vals": [
+        {
+            "name": "yz",
+            "op": "(sin(v) + cos(v))"
+        }
+    ],
+    "x": "1 - u*u + u*u*sin(v)*sin(v)",
+    "y": "u*u*sin(v)*(yz + cos(v))",
+    "z": "sqrt((1 - u*u)/2)*u*yz"
 }

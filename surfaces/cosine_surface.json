@@ -1,31 +1,16 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Cosine Surface",
     "ranges": {
         "u": [
-            0,
+            "-PI",
             "PI"
         ],
         "v": [
-            0,
-            "2*PI"
-        ],
-        "r": [
-            "(0",
-            "inf"
+            "-PI",
+            "PI"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "x": "cos(u)",
+    "y": "cos(v)",
+    "z": "cos(u + v)"
 }

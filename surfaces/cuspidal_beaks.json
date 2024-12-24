@@ -1,31 +1,16 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Cuspidal Beaks",
     "ranges": {
         "u": [
-            0,
-            "PI"
+            -1.75,
+            1.75
         ],
         "v": [
-            0,
-            "2*PI"
-        ],
-        "r": [
-            "(0",
-            "inf"
+            -0.75,
+            0.75
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "x": "u",
+    "y": "v*(2*v*v-u*u)",
+    "z": "v*v*(3*v*v-u*u)"
 }

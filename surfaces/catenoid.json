@@ -1,31 +1,34 @@
 {
-    "name": "Sphere",
+    "name": "Catenoid",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "c"
     ],
     "ranges": {
         "u": [
-            0,
+            "-PI",
             "PI"
         ],
         "v": [
-            0,
-            "2*PI"
+            -2,
+            2
         ],
-        "r": [
+        "c": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "c": 1.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "c*cosh(v/c)"
+        }
+    ],
+    "x": "xy*cos(u)",
+    "y": "xy*sin(u)",
+    "z": "v"
 }

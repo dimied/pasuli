@@ -1,11 +1,8 @@
 {
-    "name": "Sphere",
+    "name": "Drop",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "a",
+        "b"
     ],
     "ranges": {
         "u": [
@@ -16,16 +13,32 @@
             0,
             "2*PI"
         ],
-        "r": [
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "cu",
+            "op": "cos(u)"
+        },
+        {
+            "name": "r",
+            "op": "a*(b - cu)*sin(u)"
+        }
+    ],
+    "x": "r*cos(v)",
+    "y": "r*sin(v)",
+    "z": "cu"
 }
