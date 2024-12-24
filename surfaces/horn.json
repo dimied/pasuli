@@ -1,31 +1,42 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Horn",
+    "params": "a,b,c",
     "ranges": {
         "u": [
             0,
-            "PI"
+            1
         ],
         "v": [
-            0,
-            "2*PI"
+            "-PI",
+            "PI"
         ],
-        "r": [
+        "a": [
             "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            0,
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5,
+            "c":1
+        }
+    ],
+    "vals": [
+        {
+            "name": "r",
+            "op": "(a + u*cos(v))"
+        }
+    ],
+    "x": "r*sin(b*PI*u)",
+    "y": "r*cos(b*PI*u) + c*u",
+    "z": "u*sin(v)"
 }

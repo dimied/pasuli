@@ -1,31 +1,52 @@
 {
-    "name": "Sphere",
+    "name": "Hornlet Surface",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "a",
+        "b",
+        "c",
+        "h"
     ],
     "ranges": {
         "u": [
             0,
-            "PI"
+            2
         ],
         "v": [
             0,
-            "2*PI"
+            1
         ],
-        "r": [
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ],
+        "h": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "a": 1,
+            "b": 1,
+            "c": 1,
+            "h": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "r",
+            "op": "(a+sin(b*PI*u)*sin(b*PI*v))"
+        }
+    ],
+    "x": "r*sin(c*PI*v)",
+    "y": "r*cos(c*PI*v)",
+    "z": "cos(b*PI*u)*sin(b*PI*v)+h*v"
 }

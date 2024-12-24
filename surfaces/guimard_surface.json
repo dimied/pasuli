@@ -1,31 +1,40 @@
 {
-    "name": "Sphere",
+    "name": "Guimard Surface",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "a",
+        "b",
+        "c"
     ],
     "ranges": {
         "u": [
-            0,
-            "PI"
+            -1,
+            1
         ],
         "v": [
-            0,
-            "2*PI"
+            -1,
+            1
         ],
-        "r": [
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5,
+            "c": 1
+        }
+    ],
+    "x": "((1 - u)*a + u*b)*cos(v)",
+    "y": "b*u*sin(v)",
+    "z": "c*u*sin(v)*sin(v)"
 }
