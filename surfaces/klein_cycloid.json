@@ -1,8 +1,9 @@
 {
-    "name": "Bell Polar",
+    "name": "Klein Cycloid",
     "params": [
         "a",
-        "b"
+        "b",
+        "c"
     ],
     "ranges": {
         "u": [
@@ -11,7 +12,7 @@
         ],
         "v": [
             0,
-            12
+            "4*PI"
         ],
         "a": [
             "(0",
@@ -20,21 +21,30 @@
         "b": [
             "(0",
             "inf"
+        ],
+        "c": [
+            "(0",
+            "inf"
         ]
     },
     "examples": [
         {
             "a": 1.5,
-            "b": 0.5
+            "b": 0.5,
+            "c": 1
         }
     ],
     "vals": [
         {
-            "name": "r",
-            "op": "sqrt(2*v*v)"
+            "name": "acv",
+            "op": "(a + cos(v))"
+        },
+        {
+            "name": "scv",
+            "op": "sin(v)*cos(v)"
         }
     ],
-    "x": "v*cos(u)",
-    "y": "v*sin(u)",
-    "z": "b*exp(-(a*a*r*r))"
+    "x": "cos(u/c)*cos(u/b)*acv + sin(u/b)*scv",
+    "y": "sin(u/c)*cos(u/b)*acv + sin(u/b)*scv",
+    "z": "-sin(u/b)*acv + cos(u/b)*scv"
 }

@@ -1,40 +1,22 @@
 {
-    "name": "Bell Polar",
-    "params": [
-        "a",
-        "b"
-    ],
+    "name": "Kuens Surface",
     "ranges": {
         "u": [
-            0,
-            "2*PI"
+            -4.3,
+            4.3
         ],
         "v": [
-            0,
-            12
-        ],
-        "a": [
-            "(0",
-            "inf"
-        ],
-        "b": [
-            "(0",
-            "inf"
+            0.01,
+            3.11
         ]
     },
-    "examples": [
-        {
-            "a": 1.5,
-            "b": 0.5
-        }
-    ],
     "vals": [
         {
-            "name": "r",
-            "op": "sqrt(2*v*v)"
+            "name": "h",
+            "op": "1 + u*u*sin(v)*sin(v)"
         }
     ],
-    "x": "v*cos(u)",
-    "y": "v*sin(u)",
-    "z": "b*exp(-(a*a*r*r))"
+    "x": "(2*(cos(u)+u*sin(u))*sin(v))/h",
+    "y": "(2*(-u*cos(u)+sin(u))*sin(v))/h",
+    "z": "log(tan(v/2)) + 2*cos(v)/h"
 }
