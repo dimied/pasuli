@@ -1,12 +1,5 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Fish Surface",
     "ranges": {
         "u": [
             0,
@@ -15,17 +8,9 @@
         "v": [
             0,
             "2*PI"
-        ],
-        "r": [
-            "(0",
-            "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "x": "0.25*(cos(u) - cos(2*u))*cos(v)",
+    "y": "0.25*(sin(u) - sin(2*u))*sin(v)",
+    "z": "cos(u)"
 }

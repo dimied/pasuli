@@ -1,31 +1,46 @@
 {
-    "name": "Sphere",
+    "name": "Egg",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "a",
+        "b",
+        "c"
     ],
     "ranges": {
         "u": [
             0,
-            "PI"
+            "a"
         ],
         "v": [
             0,
             "2*PI"
         ],
-        "r": [
+        "a": [
+            "(0",
+            "c"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "a": 0.5,
+            "b": 0.5,
+            "c": 0.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "r",
+            "op": "c*sqrt(u*(u - a)*(u - b))"
+        }
+    ],
+    "x": "r*cos(v)",
+    "y": "r*sin(v)",
+    "z": "u"
 }

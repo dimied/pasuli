@@ -1,31 +1,40 @@
 {
-    "name": "Sphere",
+    "name": "Egg surface",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "a",
+        "c"
     ],
     "ranges": {
         "u": [
             0,
-            "PI"
+            "2*a"
         ],
         "v": [
             0,
             "2*PI"
         ],
-        "r": [
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "c": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "a": 2,
+            "c": 1.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "r",
+            "op": "0.5*sqrt(3*u*(2*a-u)*(1-c*c/((u+a)*(u+a))))"
+        }
+    ],
+    "x": "r*cos(v)",
+    "y": "r*sin(v)",
+    "z": "u"
 }
