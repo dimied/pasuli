@@ -56,7 +56,7 @@ char *descPiriformTorus2 =
 cat: torus;\
 us:0; ue:pi:2;\
 vs:0; ve:pi:2;\
-c1:R1:1; c2:R: 1;\
+c1:R:1; c2:r: 1;\
 x: (R+cos(v)*(r+sin(v)))*cos(u);\
 y: (R+cos(v)*(r+sin(v)))*sin(u);\
 z: r+sin(v);\

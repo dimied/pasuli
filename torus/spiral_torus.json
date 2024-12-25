@@ -1,31 +1,46 @@
 {
-    "name": "Sphere",
+    "name": "Spiral Torus",
     "params": [
+        "R1",
+        "R2",
         "r"
-    ],
-    "vars": [
-        "u",
-        "v"
     ],
     "ranges": {
         "u": [
             0,
-            "PI"
+            "2*PI"
         ],
         "v": [
             0,
             "2*PI"
+        ],
+        "R1": [
+            "(0",
+            "inf"
+        ],
+        "R2": [
+            "(0",
+            "inf"
         ],
         "r": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "R1": 1,
+            "R2": 1,
+            "r": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "F",
+            "op": "(R1 + R2*cos(N*u) + r*cos(v))"
+        }
+    ],
+    "x": "F*cos(u)",
+    "y": "F*sin(u)",
+    "z": "r*sin(v) + R2*sin(N*u)"
 }

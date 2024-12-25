@@ -1,31 +1,56 @@
 {
-    "name": "Sphere",
+    "name": "Wave torus",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "R",
+        "r",
+        "a",
+        "n"
     ],
     "ranges": {
         "u": [
             0,
-            "PI"
+            "2*PI"
         ],
         "v": [
             0,
             "2*PI"
         ],
+        "R": [
+            "(0",
+            "inf"
+        ],
         "r": [
+            "(0",
+            "inf"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "n": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "R": 1.5,
+            "r": 0.5,
+            "a": 1,
+            "n": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "c",
+            "op": "(r + a*sin(n*u))"
+        },
+        {
+            "name": "F",
+            "op": "(R + cos(v)*c)"
+        }
+    ],
+    "x": "F*cos(u)",
+    "y": "F*sin(u)",
+    "z": "c*sin(v)"
 }
