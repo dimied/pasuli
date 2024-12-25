@@ -1,5 +1,5 @@
 {
-    "name": "Cylinder",
+    "name": "Lemon Surface",
     "params": [
         "R",
         "r"
@@ -8,21 +8,17 @@
         "u",
         "v"
     ],
+    "rangecalc": [
+        {
+            "name": "t",
+            "op": "sqrt(R*R-r*r)"
+        }
+    ],
     "ranges": {
-        "u": [
-            {
-                "name": "t",
-                "op": "sqrt(R*R-r*r)"
-            },
-            {
-                "name": "us",
-                "op": "-t"
-            },
-            {
-                "name": "ue",
-                "op": "t"
-            }
-        ],
+        "u": {
+            "min": "-t",
+            "max": "t"
+        },
         "v": [
             0,
             "2*PI"

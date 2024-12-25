@@ -18,44 +18,69 @@ var codeGenerator = (function () {
         return res;
     }
     function generateValsLines(vals, indent) {
-        var res = '';
+        var seen = {}, res = '', vIdx = 0;
         if (vals && vals.length > 0) {
             indent = indent || '';
             res = '';
-            for (var vIdx = 0; vIdx < vals.length; vIdx++) {
+            for (; vIdx < vals.length; vIdx++) {
                 var c = vals[vIdx];
+                if (seen[c]) {
+                    continue;
+                }
                 res += indent + 'var ' + c.name + "=(" + c.op + ");\n";
+                seen[c] = true;
             }
         }
         return res;
     }
-    var ops = [
-        { op: 'PI', real: 'Math.PI' },
-        { op: 'abs', real: 'Math.abs' },
-        { op: 'acos', real: 'Math.acos' },
-        { op: 'asin', real: 'Math.asin' },
-        { op: 'atan', real: 'Math.atan' },
-        { op: 'ceil', real: 'Math.ceil' },
-        { op: 'cos', real: 'Math.cos' },
+    var i, ops = [
+        { op: 'PI', real: 'Math.PI', 'constant': true },
+        { op: 'abs' },
+        { op: 'acos' },
+        { op: 'acosh' },
+        { op: 'asin' },
+        { op: 'asinh' },
+        { op: 'atan' },
+        { op: 'atanh' },
+        { op: 'cbrt' },
+        { op: 'ceil' },
+        { op: 'cos' },
+        { op: 'cosh' },
+        { op: 'exp' },
         { op: 'log' },
         { op: 'round' },
-        { op: 'sin', real: 'Math.sin' },
+        { op: 'sign' },
+        { op: 'sin' },
+        { op: 'sinh' },
         { op: 'sqrt' },
-        { op: 'tan', real: 'Math.tan' },
-        
+        { op: 'tan' },
+        { op: 'tanh' },
+
     ];
     //Adapt to Math.*
-    for(var i=0; i< ops.length; i++) {
-        if(!ops[i].real) {
-            ops[i].real = 'Math.'+ops[i].op;
+    for (i = 0; i < ops.length; i++) {
+        if (!ops[i].real) {
+            ops[i].real = 'Math.' + ops[i].op;
         }
     }
     function adaptToJs(op) {
-        var res = op;
-        for (var i = 0; i < ops.length; i++) {
-            var idx = res.indexOf(ops[i].op);
+        var i = 0, idx, currentOp, realOp, res = op;
+        //Remove empty space
+        while (res.indexOf(' ') >= 0) {
+            res = res.replaceAll(' ', '');
+        }
+
+        for (; i < ops.length; i++) {
+
+            currentOp = ops[i].op;
+            realOp = ops[i].real;
+            if (!ops[i].constant) {
+                currentOp += '(';
+                realOp += '(';
+            }
+            idx = res.indexOf(currentOp);
             if (idx >= 0) {
-                res = res.replaceAll(ops[i].op, ops[i].real);
+                res = res.replaceAll(currentOp, realOp);
             }
         }
         return res;

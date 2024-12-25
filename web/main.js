@@ -18,44 +18,69 @@ var codeGenerator = (function () {
         return res;
     }
     function generateValsLines(vals, indent) {
-        var res = '';
+        var seen = {}, res = '', vIdx = 0;
         if (vals && vals.length > 0) {
             indent = indent || '';
             res = '';
-            for (var vIdx = 0; vIdx < vals.length; vIdx++) {
+            for (; vIdx < vals.length; vIdx++) {
                 var c = vals[vIdx];
+                if (seen[c]) {
+                    continue;
+                }
                 res += indent + 'var ' + c.name + "=(" + c.op + ");\n";
+                seen[c] = true;
             }
         }
         return res;
     }
-    var ops = [
-        { op: 'PI', real: 'Math.PI' },
-        { op: 'abs', real: 'Math.abs' },
-        { op: 'acos', real: 'Math.acos' },
-        { op: 'asin', real: 'Math.asin' },
-        { op: 'atan', real: 'Math.atan' },
-        { op: 'ceil', real: 'Math.ceil' },
-        { op: 'cos', real: 'Math.cos' },
+    var i, ops = [
+        { op: 'PI', real: 'Math.PI', 'constant': true },
+        { op: 'abs' },
+        { op: 'acos' },
+        { op: 'acosh' },
+        { op: 'asin' },
+        { op: 'asinh' },
+        { op: 'atan' },
+        { op: 'atanh' },
+        { op: 'cbrt' },
+        { op: 'ceil' },
+        { op: 'cos' },
+        { op: 'cosh' },
+        { op: 'exp' },
         { op: 'log' },
         { op: 'round' },
-        { op: 'sin', real: 'Math.sin' },
+        { op: 'sign' },
+        { op: 'sin' },
+        { op: 'sinh' },
         { op: 'sqrt' },
-        { op: 'tan', real: 'Math.tan' },
-        
+        { op: 'tan' },
+        { op: 'tanh' },
+
     ];
     //Adapt to Math.*
-    for(var i=0; i< ops.length; i++) {
-        if(!ops[i].real) {
-            ops[i].real = 'Math.'+ops[i].op;
+    for (i = 0; i < ops.length; i++) {
+        if (!ops[i].real) {
+            ops[i].real = 'Math.' + ops[i].op;
         }
     }
     function adaptToJs(op) {
-        var res = op;
-        for (var i = 0; i < ops.length; i++) {
-            var idx = res.indexOf(ops[i].op);
+        var i = 0, idx, currentOp, realOp, res = op;
+        //Remove empty space
+        while (res.indexOf(' ') >= 0) {
+            res = res.replaceAll(' ', '');
+        }
+
+        for (; i < ops.length; i++) {
+
+            currentOp = ops[i].op;
+            realOp = ops[i].real;
+            if (!ops[i].constant) {
+                currentOp += '(';
+                realOp += '(';
+            }
+            idx = res.indexOf(currentOp);
             if (idx >= 0) {
-                res = res.replaceAll(ops[i].op, ops[i].real);
+                res = res.replaceAll(currentOp, realOp);
             }
         }
         return res;
@@ -116,31 +141,38 @@ var allFunctions = {};
     var cssUtil = {
         add: function (elem, cls) {
             if (elem && cls) {
-                //console.log('ADD:', elem, cls);
-                if (elem.className.indexOf(cls) >= 0) {
+                cls = cls.trim();
+                if (cls && elem.className.indexOf(cls) >= 0) {
                     return;
                 }
                 elem.className = (elem.className + ' ' + cls).trim();
             }
         },
         remove: function (elem, cls) {
-            if (elem && cls) {
-                //console.log('REM:', elem, cls);
-                var className = elem.className;
-                var idx = className.indexOf(cls);
-                if (idx >= 0) {
-                    var newCls = className.substring(0, idx);
-                    idx += cls.length + 1
-                    if (idx < className.length) {
-                        newCls += className.substring(idx);
-                    }
-                    elem.className = newCls.trim();
+            if (!elem || !cls) {
+                return;
+            }
+            cls = cls.trim();
+            if (!cls) {
+                return;
+            }
+            var className = elem.className;
+            var idx = className.indexOf(cls);
+            if (idx >= 0) {
+                var newCls = className.substring(0, idx).trim();
+                idx += cls.length + 1;
+                if (idx < className.length) {
+                    newCls += " " + className.substring(idx).trim();
                 }
+                elem.className = newCls.trim();
             }
         }
-    };
-
-    var validViewTypes = ['3d', 'math'], currentType = 'math', surfaces = [];
+    },
+        docUtil = {
+            byId: function (id) {
+                return document.getElementById(id);
+            }
+        }, validViewTypes = ['3d', 'math'], currentType = 'math', surfaces = [];
 
     function addClickHandler(e, f) {
         e && f && e.addEventListener('click', f);
@@ -178,16 +210,15 @@ var allFunctions = {};
     }
 
     function addButtonHandlers() {
-        var ids = ['select3d', 'selectmath'];
+        var elem, idx = 0, ids = ['select3d', 'selectmath'], f = docUtil.byId;
 
-        for (var idx = 0; idx < ids.length; idx++) {
-            var elem = document.getElementById(ids[idx]);
+        for (; idx < ids.length; idx++) {
+            elem = f(ids[idx]);
             if (elem) {
                 elem.addEventListener('click', (function (type, otherElemId) {
                     return function (e) {
                         selectView(type);
-                        var other = document.getElementById(otherElemId);
-                        cssUtil.remove(other, 'selected');
+                        cssUtil.remove(f(otherElemId), 'selected');
                         cssUtil.add(e.target, 'selected');
                     };
 
@@ -214,24 +245,32 @@ var allFunctions = {};
         return "surface-" + clearSurfaceName(surface.name);
     }
 
-    function findCategoryElement(elem) {
+    function findElementByClassName(elem, cls) {
         if (!elem) {
             return;
         }
-        if (elem.className.indexOf('category') >= 0) {
+        if (elem.className.indexOf(cls) >= 0) {
             return elem;
         }
-        return findCategoryElement(elem.parentElement);
+        return findElementByClassName(elem.parentElement, cls);
+    }
+
+    function findCategoryElement(elem) {
+        return findElementByClassName(elem, 'category');
     }
 
     function findSurfaceElement(elem) {
-        if (!elem) {
-            return;
+        return findElementByClassName(elem, 'surface-desc');
+    }
+
+    function toggleButtonClass(elem, cls) {
+        if (elem.className.indexOf(cls) >= 0) {
+            cssUtil.remove(elem, cls);
+            return '-';
+
         }
-        if (elem.className.indexOf('surface-desc') >= 0) {
-            return elem;
-        }
-        return findSurfaceElement(elem.parentElement);
+        cssUtil.add(elem, cls);
+        return '+';
     }
 
     function toggleCategory(cat) {
@@ -239,21 +278,13 @@ var allFunctions = {};
             return;
         }
         var catId = createCatId(cat);
-        var elem = document.getElementById(catId);
+        var elem = docUtil.byId(catId);
         if (!elem) {
             console.error('No cat HTML element', cat, catId);
             return;
         }
-        var toggleButtonValue;
-        if (elem.className.indexOf('closed') >= 0) {
-            toggleButtonValue = '-';
-            cssUtil.remove(elem, 'closed');
-
-        } else {
-            toggleButtonValue = '+';
-            cssUtil.add(elem, 'closed');
-        }
-        var controls = elem.getElementsByClassName('cat-control');
+        var toggleButtonValue = toggleButtonClass(elem, 'closed'),
+            controls = elem.getElementsByClassName('cat-control');
 
         if (controls.length) {
             controls.item(0).innerHTML = toggleButtonValue;
@@ -275,9 +306,10 @@ var allFunctions = {};
                 p += '<div class="surface-param-name">' + paramName + '</div>';
                 p += '<input type="text" class="surface-param-' + i + '" />';
                 p += '</div>';
-                if (paramName && ranges[paramName] && ranges[paramName].length) {
+
+                if (paramName && ranges[paramName]) {
                     p += '<div class="surface-param-range">';
-                    p += ranges[paramName].join(' - ');
+                    p += ranges[paramName].min + ' - ' + ranges[paramName].max;
                     p += '</div>';
                 }
 
@@ -289,10 +321,10 @@ var allFunctions = {};
     }
 
     function createSurfaceValsHTML(surface) {
-        var i, p, parts = [], res = '';
-        if (surface.vals) {
+        var i = 0, p, parts = [], res = '';
+        if (isArray(surface.vals)) {
 
-            for (i = 0; i < surface.vals.length; i++) {
+            for (; i < surface.vals.length; i++) {
                 if (surface.vals[i].name && surface.vals[i].op) {
                     p = '<div>' + surface.vals[i].name;
                     p += '<span style="display:inline-block; margin: 0 0.5rem">:';
@@ -342,17 +374,17 @@ var allFunctions = {};
         return res;
     }
     function createCategoryHTML(cat) {
-        var catCode = '<div class="category" id=' + createCatId(cat) + '>';
+        var catCode = '<div class="category closed" id=' + createCatId(cat) + '>';
         catCode += '<div class="title"><span class="text">' + cat.catname + '</span>';
-        catCode += '<div class="controls"><button class="cat-control">-</button></div>'
+        catCode += '<div class="controls"><button class="cat-control">+</button></div>'
         catCode += '</div>';
         catCode += '<div class="surfaces">';
 
-        var surfaceCodes = [];
-        console.log('FILES:', cat.files);
-        if (cat.files) {
-            for (var fIdx = 0; fIdx < cat.files.length; fIdx++) {
-                var file = cat.files[fIdx];
+        var fIdx = 0, file, surfaceCodes = [];
+        //console.log('FILES:', cat.files);
+        if (isArray(cat.files)) {
+            for (; fIdx < cat.files.length; fIdx++) {
+                file = cat.files[fIdx];
                 if (file.success && file.content) {
                     surfaceCodes.push(createSurfaceHTML(file.content, file));
                 } else {
@@ -374,7 +406,6 @@ var allFunctions = {};
         }
     }
     function surfaceClickHandler(e) {
-        console.log('Click:', e.target);
         var parentElem, i, elems, elem = e.target;
         if (!elem) {
             return;
@@ -384,44 +415,97 @@ var allFunctions = {};
             return;
         }
         if (elem.className.indexOf('surface-control') >= 0) {
-            if (parentElem.className.indexOf('closed') >= 0) {
-                cssUtil.remove(parentElem, 'closed');
-                elem.innerHTML = '-';
-            } else {
-                cssUtil.add(parentElem, 'closed');
-                elem.innerHTML = '+';
-            }
+            elem.innerHTML = toggleButtonClass(parentElem, 'closed');
             return;
         }
         if (elem.className.indexOf('surface-name') >= 0) {
             elems = document.getElementsByClassName('surface-name');
             for (i = 0; i < elems.length; i++) {
-                var e = elems.item(i);
-                cssUtil.remove(e, 'selected');
+                cssUtil.remove(elems.item(i), 'selected');
             }
             cssUtil.add(elem, 'selected');
         }
     }
 
-
-
     function addCategoryHandlers() {
-        var sIdx, elems = document.getElementsByClassName('cat-control');
-        for (sIdx = 0; sIdx < elems.length; sIdx++) {
-            addClickHandler(elems.item(sIdx), categoryToggleHandler);
-        }
-        elems = document.getElementsByClassName('surface-name');
-        for (sIdx = 0; sIdx < elems.length; sIdx++) {
-            addClickHandler(elems.item(sIdx), surfaceClickHandler);
-        }
-        elems = document.getElementsByClassName('surface-control');
-        for (sIdx = 0; sIdx < elems.length; sIdx++) {
-            addClickHandler(elems.item(sIdx), surfaceClickHandler);
+        var sIdx, elems, f, handlerMapping = {
+            'cat-control': categoryToggleHandler,
+            'surface-name': surfaceClickHandler,
+            'surface-control': surfaceClickHandler
+        };
+
+        for (var cls in handlerMapping) {
+            if (handlerMapping.hasOwnProperty(cls)) {
+                f = handlerMapping[cls];
+                elems = document.getElementsByClassName(cls)
+                for (sIdx = 0; sIdx < elems.length; sIdx++) {
+                    addClickHandler(elems.item(sIdx), f);
+                }
+            }
         }
     }
 
     function removeCategoryHandlers() {
 
+    }
+
+    function isString(v) {
+        return typeof v === 'string';
+    }
+
+    function isArray(v) {
+        return !!v && Array.isArray(v);
+    }
+
+    function parseSurfaceDesc(surfaceDesc) {
+        if (!surfaceDesc) {
+            return;
+        }
+        if (surfaceDesc.params) {
+            if (isString(surfaceDesc.params)) {
+                surfaceDesc.params = surfaceDesc.params.split(',');
+            }
+        }
+        var range, rName, min, max;
+        if (surfaceDesc.ranges) {
+            for (rName in surfaceDesc.ranges) {
+                if (!surfaceDesc.ranges.hasOwnProperty(rName)) {
+                    continue;
+                }
+                range = surfaceDesc.ranges[rName];
+                if (isArray(range)) {
+                    if(range.length !== 2){
+                        console.error("Wrong range length: ",range.length, rName, surfaceDesc.name);
+                    } else {
+                        min = range[0];
+                        max = range[1];
+                        range = {
+                            'min': min,
+                            'max': max
+                        };
+                    }
+                    
+                }
+                surfaceDesc.ranges[rName] = range;
+            }
+        }
+    }
+
+    function parseCategory(cat) {
+        if (!cat || !Array.isArray(cat.files)) {
+            return;
+        }
+        var fIdx = 0, fileDesc, surfaceDesc;
+        //var resFiles=[];
+        //console.log('PARSE-CAT:', cat);
+        for (var fIdx = 0; fIdx < cat.files.length; fIdx++) {
+            fileDesc = cat.files[fIdx];
+            if (fileDesc && fileDesc.content) {
+                surfaceDesc = fileDesc.content;
+                //console.log(cat.catname, surfaceDesc.name, surfaceDesc);
+                parseSurfaceDesc(surfaceDesc);
+            }
+        }
     }
 
 
@@ -436,10 +520,12 @@ var allFunctions = {};
         for (catIdx = 0; catIdx < data.data.length; catIdx++) {
             category = data.data[catIdx];
             console.log('CAT:', category);
-            if(category.files) {
+            parseCategory(category);
+
+            if (category.files) {
                 for (sIdx = 0; sIdx < category.files.length; sIdx++) {
                     f = category.files[sIdx];
-    
+
                     if (fIdx < fLimit) {
                         var content = codeGenerator.generate(f);
                         //console.log('S:', content);
@@ -467,8 +553,13 @@ var allFunctions = {};
         console.log('DOM loaded');
         addButtonHandlers();
         loadAllSurfaces();
-        console.log(DEG2RAD);
-        myInit3D('view3d');
+        setTimeout(function() {
+            if(!window.my3d) {
+                console.error("Missing: my3d");
+                return;
+            }
+            window.my3d.myInit3D('view3d');
+        },2000);
     });
 }());
 

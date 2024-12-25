@@ -56,32 +56,45 @@ var pasuliDirectories = [
 ];
 
 function loadDirectory(desc) {
-    return new Promise((resolve, reject)=> {
+    return new Promise((resolve, reject) => {
         const result = Object.assign({}, desc);
-        const folder = path.normalize(path.resolve(path.join(pasuliRoot, desc.folder, 'json')));
-        if(fs.existsSync(folder)) {
-            const filenames = fs.readdirSync(folder);
-            console.log("F:",filenames);
-            result.files = [];
+        const folders = [
+            path.join(pasuliRoot, desc.folder),
+            path.join(pasuliRoot, desc.folder, 'json')
+        ];
+        let found = false;
+        for (var dirIdx = 0; dirIdx < folders.length; dirIdx++) {
+            const folder = path.normalize(path.resolve(folders[dirIdx]));
+            if (fs.existsSync(folder)) {
+                const filenames = fs.readdirSync(folder);
+                //console.log("F:", filenames);
+                result.files = [];
 
-            for(var idx=0; idx < filenames.length; idx++) {
-                const filePath = path.join(folder,filenames[idx]);
-                const fileContent = fs.readFileSync(filePath);
-                const o = {
-                    file: filenames[idx],
-                    fullpath: filePath,
-                    success: false
-                };
-                try {
-                    const asJSON = JSON.parse(fileContent);
-                    o.success = true;
-                    o.content = asJSON;
-                }catch(e) {
-                    o.error = e.toString();
+                for (var idx = 0; idx < filenames.length; idx++) {
+                    const filePath = path.join(folder, filenames[idx]);
+                    if (!filePath.endsWith(".json")) {
+                        continue;
+                    }
+                    const fileContent = fs.readFileSync(filePath);
+                    const o = {
+                        file: filenames[idx],
+                        fullpath: filePath,
+                        success: false
+                    };
+                    try {
+                        const asJSON = JSON.parse(fileContent);
+                        o.success = true;
+                        o.content = asJSON;
+                    } catch (e) {
+                        o.error = e.toString();
+                    }
+                    result.files.push(o);
                 }
-                result.files.push(o);
+                found = true;
             }
-        } else {
+        }
+
+        if (!found) {
             result.success = false;
             result.message = 'Folder missing';
         }
@@ -103,29 +116,29 @@ function pasuli(req, res) {
 
     var promises = [];
 
-    for(var idx=0; idx < pasuliDirectories.length; idx++) {
+    for (var idx = 0; idx < pasuliDirectories.length; idx++) {
         promises.push(loadDirectory(pasuliDirectories[idx]));
     }
 
-    Promise.allSettled(promises).catch((err)=> {
+    Promise.allSettled(promises).catch((err) => {
         const result = {
             success: false,
             message: 'Failed to load descriptions'
         }
         sendJsonResponse(result, res);
-    }).then((results) =>{
+    }).then((results) => {
         const webResult = {
             success: true,
             message: 'Found',
-            data:[]
+            data: []
         }
 
-        for(var i=0; i< results.length; i++) {
+        for (var i = 0; i < results.length; i++) {
             webResult.data.push(results[i].value);
         }
         console.log('RES?', results, typeof results);
-        console.log('RES!',webResult);
-        sendJsonResponse(webResult,res);
+        console.log('RES!', webResult);
+        sendJsonResponse(webResult, res);
     });
 }
 

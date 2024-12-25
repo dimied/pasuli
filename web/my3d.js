@@ -1,4 +1,4 @@
-import * as THREE from '/three.core.js';
+import * as THREE from '/three.module.js';
 //import Stats from 'three/addons/libs/stats.module.js';
 function loadMesh(state, mesh) {
     state.mesh = mesh;
@@ -93,6 +93,8 @@ function myInit3D(containerId) {
         //
         window.addEventListener('resize', onWindowResize);
         document.addEventListener('keydown', onKeyDown);
+        
+        console.log("myInit3D done!");
     }
 
     //
@@ -211,3 +213,8 @@ function myInit3D(containerId) {
 }
 
 console.log('my3d loaded');
+
+window.my3d = {
+    myInit3D:myInit3D,
+    loadMesh:loadMesh
+};
