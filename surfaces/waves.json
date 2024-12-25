@@ -1,31 +1,40 @@
 {
-    "name": "Sphere",
+    "name": "Waves",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "a",
+        "b",
+        "c"
     ],
     "ranges": {
         "u": [
-            0,
-            "PI"
-        ],
-        "v": [
-            0,
+            "-2*PI",
             "2*PI"
         ],
-        "r": [
+        "v": [
+            "-2*PI",
+            "2*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5,
+            "c": 1
+        }
+    ],
+    "x": "u",
+    "y": "v",
+    "z": "a*cos(b*u)*cos(c*v)"
 }

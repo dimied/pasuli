@@ -1,31 +1,26 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Pillow Shape",
+    "params": "a",
     "ranges": {
         "u": [
             0,
             "PI"
         ],
         "v": [
-            0,
-            "2*PI"
+            "-PI",
+            "PI"
         ],
-        "r": [
+        "a": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "a": 1.5
+        }
+    ],
+    "x": "cos(u)",
+    "y": "cos(v)",
+    "z": "a*sin(u)*sin(v)"
 }

@@ -1,31 +1,26 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Triaxial Tritorus",
     "ranges": {
         "u": [
-            0,
+            "-PI",
             "PI"
         ],
         "v": [
-            0,
-            "2*PI"
-        ],
-        "r": [
-            "(0",
-            "inf"
+            "-PI",
+            "PI"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "vals": [
+        {
+            "name": "C2",
+            "op": "2*pi/3"
+        },
+        {
+            "name": "C4",
+            "op": "4*pi/3"
+        }
+    ],
+    "x": "sin(u + C2)*(1 + cos(v + C2))",
+    "y": "sin(u + C4)*(1 + cos(v + C4))",
+    "z": "sin(u)*(1 + cos(v))"
 }

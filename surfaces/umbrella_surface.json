@@ -1,31 +1,46 @@
 {
-    "name": "Sphere",
+    "name": "Umbrella surface",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "R",
+        "h",
+        "n"
     ],
     "ranges": {
         "u": [
             0,
-            "PI"
+            1
         ],
         "v": [
             0,
             "2*PI"
         ],
-        "r": [
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "h": [
+            "(0",
+            "inf"
+        ],
+        "n": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "R": 1,
+            "h": 1,
+            "n": 2
+        }
+    ],
+    "vals": [
+        {
+            "name": "r",
+            "op": "R/n"
+        }
+    ],
+    "x": "cbrt(u)*((R-r)*cos(v) + r*cos((n-1)*v))",
+    "y": "cbrt(u)*((R-r)*sin(v) + r*sin((n-1)*v))",
+    "z": "h*(1-u)"
 }

@@ -1,31 +1,68 @@
 {
-    "name": "Sphere",
+    "name": "Triple Cork Screw 2",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "R",
+        "r",
+        "L",
+        "N",
+        "a",
+        "b"
     ],
     "ranges": {
         "u": [
-            0,
-            "PI"
+            -1,
+            1
         ],
         "v": [
-            0,
-            "2*PI"
+            "-PI",
+            "PI"
+        ],
+        "R": [
+            "(0",
+            "inf"
         ],
         "r": [
             "(0",
             "inf"
+        ],
+        "L": [
+            "(0",
+            "inf"
+        ],
+        "N": [
+            "(0",
+            "inf"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "R": 1.5,
+            "r": 0.5,
+            "L": 1,
+            "N": 1,
+            "a": 1,
+            "b": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "c",
+            "op": "r*exp(-(b*b*u*u))"
+        },
+        {
+            "name": "d",
+            "op": "R*exp(-(a*a*u*u))"
+        }
+    ],
+    "x": "c*cos(v) + d*cos(u*N*PI)",
+    "y": "c*sin(v) + d*sin(u*N*PI)",
+    "z": "L*u"
 }

@@ -1,31 +1,16 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Whitney Umbrella",
     "ranges": {
         "u": [
-            0,
-            "PI"
+            -1.5,
+            1.5
         ],
         "v": [
-            0,
-            "2*PI"
-        ],
-        "r": [
-            "(0",
-            "inf"
+            -1.5,
+            1.5
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "x": "u*v",
+    "y": "u",
+    "z": "v*v"
 }

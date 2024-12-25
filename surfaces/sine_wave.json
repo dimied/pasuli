@@ -1,31 +1,34 @@
 {
-    "name": "Sphere",
+    "name": "Sine Wave",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "a",
+        "b"
     ],
     "ranges": {
         "u": [
-            0,
-            "PI"
+            -5,
+            5
         ],
         "v": [
-            0,
-            "2*PI"
+            -5,
+            5
         ],
-        "r": [
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5
+        }
+    ],
+    "x": "u",
+    "y": "v",
+    "z": "a*sin(b*sqrt(u*u + v*v))"
 }

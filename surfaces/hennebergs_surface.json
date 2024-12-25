@@ -1,0 +1,16 @@
+{
+    "name": "Hennerbergs Surface",
+    "ranges": {
+        "u": [
+            -1,
+            1
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "x": "2*cos(v)*sinh(u) - (2/3)*cos(3*v)*sinh(3*u)",
+    "y": "2*sin(v)*sinh(u) + (2/3)*sin(3*v)*sinh(3*u)",
+    "z": "2*cos(2*v)*cosh(2*u)"
+}

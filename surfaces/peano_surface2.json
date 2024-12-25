@@ -1,31 +1,52 @@
 {
-    "name": "Sphere",
+    "name": "Peano Surface 2",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "a",
+        "b",
+        "c",
+        "d"
     ],
     "ranges": {
         "u": [
-            0,
-            "PI"
+            -1,
+            1
         ],
         "v": [
-            0,
-            "2*PI"
+            -1,
+            1
         ],
-        "r": [
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ],
+        "d": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "a": 1,
+            "b": 1,
+            "c": 1,
+            "d": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "uq",
+            "op": "u*u"
+        }
+    ],
+    "x": "u",
+    "y": "v",
+    "z": "(2*a*uq - b*v)*(c*v - d*uq)"
 }

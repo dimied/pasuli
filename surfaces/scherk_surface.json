@@ -1,31 +1,32 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Scherk Surface",
+    "params": "c",
     "ranges": {
-        "u": [
-            0,
-            "PI"
-        ],
-        "v": [
-            0,
-            "2*PI"
-        ],
-        "r": [
+        "u": {
+            "min": "-PI",
+            "max": "PI",
+            "not": [
+                0
+            ]
+        },
+        "v": {
+            "min": "-PI",
+            "max": "PI",
+            "not": [
+                0
+            ]
+        },
+        "c": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "c": 1.5
+        }
+    ],
+    "x": "u",
+    "y": "v",
+    "z": "log(cos(c*u)/cos(c*v))/c"
 }

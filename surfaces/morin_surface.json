@@ -1,11 +1,8 @@
 {
-    "name": "Sphere",
+    "name": "Morin Surface",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "k",
+        "n"
     ],
     "ranges": {
         "u": [
@@ -14,18 +11,33 @@
         ],
         "v": [
             0,
-            "2*PI"
+            "PI"
         ],
-        "r": [
+        "k": [
             "(0",
             "inf"
-        ]
+        ],
+        "n": {
+            "min": 2,
+            "max": "inf",
+            "not": [
+                1
+            ]
+        }
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "k": 1,
+            "n": 2
+        }
+    ],
+    "vals": [
+        {
+            "name": "K",
+            "op": "cos(u)/(sqrt(2)-k*sin(2*u)*sin(n*v))"
+        }
+    ],
+    "x": "K*((2/(n-1))*cos(u)*cos((n-1)*v)+sqrt(2)*sin(u)*cos(v))",
+    "y": "K*((2/(n-1))*cos(u)*sin((n-1)*v)-sqrt(2)*sin(u)*sin(v))",
+    "z": "K*cos(u)"
 }

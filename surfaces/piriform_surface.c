@@ -68,7 +68,7 @@ PASULI_V_START_PI|PASULI_V_END_PI|PASULI_CONST_COUNT(3),
 */
 #if (COMPILE_DESC_SURFACES != 0)
 char *descPiriformSurface =
-	"name:piriform Surface;\
+	"name:Piriform Surface;\
 ut:c; vt:c;\
 us:0; ue:pi:2;\
 vs:pi: -0.5; ve:pi: 0.5;\

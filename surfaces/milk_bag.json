@@ -1,31 +1,26 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Milk Bag",
+    "params": "k",
     "ranges": {
         "u": [
-            0,
-            "PI"
+            -1,
+            1
         ],
         "v": [
-            0,
-            "2*PI"
+            "-PI",
+            "PI"
         ],
-        "r": [
+        "k": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "k": 1
+        }
+    ],
+    "x": "k*(1 + u)*cos(v)",
+    "y": "k*(1 - u)*sin(v)",
+    "z": "u"
 }

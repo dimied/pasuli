@@ -1,31 +1,32 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Triple point twist",
+    "params": "c",
     "ranges": {
         "u": [
-            0,
-            "PI"
+            -2,
+            1.7
         ],
         "v": [
-            0,
-            "2*PI"
+            -1.5,
+            1.5
         ],
-        "r": [
+        "c": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "c": 1.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "vq",
+            "op": "v*v"
+        }
+    ],
+    "x": "u",
+    "y": "v*(vq+c)",
+    "z": "v*(u+vq*(vq+c))"
 }

@@ -1,31 +1,40 @@
 {
-    "name": "Sphere",
+    "name": "Planar Enneper Surface",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "n",
+        "A",
+        "a"
     ],
     "ranges": {
         "u": [
-            0,
-            "PI"
+            -0.8,
+            0.5
         ],
         "v": [
-            0,
-            "2*PI"
+            -1.5,
+            1.5
         ],
-        "r": [
+        "n": [
+            "(0",
+            "inf"
+        ],
+        "A": [
+            "(0",
+            "inf"
+        ],
+        "a": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "n": 2,
+            "A": 0.4,
+            "a": 1
+        }
+    ],
+    "x": "exp(2*a*u)*(exp(-(n+1)*u)*cos((2*a-(n+1))*v)/(2*a*A-A*(n+1)) - A*exp((n+1)*u)*cos((2*a+(n+1))*v)/(2*a+(n+1)))/(2*(n+1))",
+    "y": "exp(2*a*u)*(exp(-(n+1)*u)*sin((2*a-(n+1))*v)/(2*a*A-A*(n+1)) + A*exp((n+1)*u)*sin((2*a+(n+1))*v)/(2*a+(n+1)))/(2*(n+1))",
+    "z": "-exp(2*a*u)*cos(2*a*v)/(2*a*(n+1))"
 }

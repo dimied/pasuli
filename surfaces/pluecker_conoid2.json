@@ -1,31 +1,16 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Pluecker's Conoid 2",
     "ranges": {
         "u": [
             0,
-            "PI"
+            2
         ],
         "v": [
             0,
             "2*PI"
-        ],
-        "r": [
-            "(0",
-            "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "x": "u*cos(v)",
+    "y": "u*sin(v)",
+    "z": "sin(2*v)"
 }

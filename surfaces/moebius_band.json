@@ -1,31 +1,32 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Moebius Band",
+    "params": "r",
     "ranges": {
         "u": [
-            0,
-            "PI"
+            -1,
+            1
         ],
         "v": [
             0,
             "2*PI"
         ],
         "r": [
-            "(0",
+            0,
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "r": 1.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "(r + u*cos(0.5*v))"
+        }
+    ],
+    "x": "xy*cos(v)",
+    "y": "xy*sin(v)",
+    "z": "u*sin(0.5*v)"
 }

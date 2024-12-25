@@ -1,31 +1,22 @@
 {
-    "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "name": "Roman Surface 2",
     "ranges": {
         "u": [
             0,
             "PI"
         ],
         "v": [
-            0,
-            "2*PI"
-        ],
-        "r": [
-            "(0",
-            "inf"
+            "-0.5*PI",
+            "0.5*PI"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "vals": [
+        {
+            "name": "r",
+            "op": "sqrt(2*v*v)"
+        }
+    ],
+    "x": "sin(2*u)*sin(v)*sin(v)",
+    "y": "sin(u)*cos(2*v)",
+    "z": "cos(u)*sin(2*v)"
 }

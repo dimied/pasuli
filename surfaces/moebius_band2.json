@@ -1,31 +1,46 @@
 {
-    "name": "Sphere",
+    "name": "Moebius Band 2",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "a",
+        "b",
+        "m"
     ],
     "ranges": {
         "u": [
-            0,
-            "PI"
+            -0.4,
+            0.4
         ],
         "v": [
             0,
             "2*PI"
         ],
-        "r": [
+        "a": [
+            0,
+            "inf"
+        ],
+        "b": [
+            0,
+            "inf"
+        ],
+        "m": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "a": 1,
+            "b": 1,
+            "m":1
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "u*sin(0.5*m*v)"
+        }
+    ],
+    "x": "(a + xy)*cos(v)",
+    "y": "(b + xy)*sin(v)",
+    "z": "u*cos(0.5*m*v)"
 }
