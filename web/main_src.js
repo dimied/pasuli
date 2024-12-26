@@ -92,9 +92,9 @@ var allFunctions = {};
         //return;
         if (currentType === '3d') {
             cssUtil.add(elem1, 'hidden');
-            //cssUtil.remove(elem2, 'hidden');
+            cssUtil.remove(elem2, 'hidden');
         } else {
-            //cssUtil.add(elem2, 'hidden');
+            cssUtil.add(elem2, 'hidden');
             cssUtil.remove(elem1, 'hidden');
         }
     }
@@ -135,6 +135,14 @@ var allFunctions = {};
         return "surface-" + clearSurfaceName(surface.name);
     }
 
+    function getSurfaceCoord(surface, name) {
+        var value = '';
+        if (surface[name]) {
+            value = surface[name];
+        }
+        return value;
+    }
+
     function generateDescBlock(surface, names) {
         var i = 0, n, res = '<table class="coord-table">', value;
         if (surface && names && names.length) {
@@ -144,10 +152,8 @@ var allFunctions = {};
                 res += '<tr>';
                 res += '<td class="coord-name">' + n + '</td>';
                 res += '<td class="coord-saved">';
-                if (surface[n]) {
-                    value = surface[n];
-                    res += value;
-                }
+                value = getSurfaceCoord(surface, n);
+                res += value;
                 res += '</td>';
                 res += '</tr>';
                 res += '<tr>';
@@ -160,11 +166,191 @@ var allFunctions = {};
         return res;
     }
 
+    function removeWhiteSpaces(input) {
+        while (input.indexOf(' ') >= 0) {
+            input = input.replaceAll(' ', '');
+        }
+        return input;
+    }
+
+    function insertVals(input, surface) {
+        var v, v2, seen = {}, i = 0, vals = {}, valsKeys = [],
+            replaced = true, replacements = 0, obj, res = input;
+        if (isArray(surface.vals)) {
+            res = removeWhiteSpaces(res);
+            for (i = 0; i < surface.vals.length; i++) {
+                v = surface.vals[i];
+                if (seen[v.name]) {
+                    continue;
+                }
+                vals[v.name] = v.op;
+                valsKeys.push(v.name);
+            }
+            //Prepare vals
+            while (replaced) {
+                replaced = false;
+                for (i = 0; i < valsKeys.length; i++) {
+                    v = valsKeys[i];
+                    obj = vals[v];
+                    for (var j = 0; j < valsKeys.length; j++) {
+                        if (j == i) {
+                            continue;
+                        }
+                        v2 = valsKeys[j];
+                        if (obj.indexOf(v2) >= 0) {
+                            obj = obj.replaceAll(v2, vals[v2]);
+                            ++replacements;
+                            replaced = true;
+                            vals[v] = obj;
+                        }
+                    }
+                }
+                if (replacements > 10) {
+                    console.error('Too many replacements:', vals, surface.vals);
+                    break;
+                }
+            }
+
+            for (i = 0; i < valsKeys.length; i++) {
+                v = valsKeys[i];
+                if (res.indexOf(v) >= 0) {
+                    res = res.replaceAll(v, vals[v]);
+                }
+            }
+        }
+        return res;
+    }
+
+    function hasNameConflicts(surface) {
+        console.log('C?', surface);
+        if (isArray(surface.vals)) {
+            var i = 0, v, seen = [];
+            for (; i < surface.vals.length; i++) {
+                v = surface.vals[i];
+                if (seen.indexOf(v.name) >= 0) {
+                    return true;
+                }
+                for (var j = 0; j < seen.length; j++) {
+                    if (v.name.indexOf(seen[j]) >= 0) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    function buttonCell(coord, derivs) {
+        var cls = 'copy-button copy-btn-' + coord + '-' + derivs.join('-');
+        return '<td><button class="' + cls + '">&lt;</button></td>';
+    }
+
+    function derivTableRow(coord, derivs, derivative) {
+        return '<tr class="deriv-row">' + buttonCell(coord, derivs) + '<td class="deriv-name">' + coord + derivs.join('') + '</td><td class="deriv-eq">' + derivative.toString() + '</td></tr>';
+    }
+
+    function generateDerivativeBlock(surface, derivs, resultOut) {
+        var i = 0, x = surface.x, y = surface.y, z = surface.z, res = '';
+
+        var xres = insertVals(x, surface), yres = insertVals(y, surface),
+            zres = insertVals(z, surface);
+
+        var dx = xres, dy = yres, dz = zres;
+        for (; i < derivs.length; i++) {
+            dx = math.derivative(dx, derivs[i]);
+            dy = math.derivative(dy, derivs[i]);
+            dz = math.derivative(dz, derivs[i]);
+        }
+
+
+        var k = derivs.join('');
+        console.log('X:', x, xres);
+        console.log(k + 'X:', dx.toString());
+        console.log('Y:', y, yres);
+        console.log(k + 'Y:', dy.toString());
+        console.log('Z:', z, zres);
+        console.log(k + 'Z:', dz.toString());
+
+        res = '<div class="vals-table-wrapper">';
+        res += '<table class="vals-table">';
+        res += derivTableRow('x', derivs, dx);
+        res += derivTableRow('y', derivs, dy);
+        res += derivTableRow('z', derivs, dz);
+
+        if (resultOut) {
+            resultOut.x = dx;
+            resultOut.y = dy;
+            resultOut.z = dz;
+        }
+
+        res += '</table></div>';
+        return res;
+    }
+    function calcCrossProduct(uVec, vVec) {
+        var resVec = {
+            'x': '?',
+            'y': '?',
+            'z': '?',
+        };
+        var a1 = uVec[0], a2 = uVec[1], a3 = uVec[2],
+            b1 = vVec[0], b2 = vVec[1], b3 = vVec[2];
+        //cross(A, B) = [ a2 * b3 - a3 * b2, a3 * b1 - a1 * b3, a1 * b2 - a2 * b1 ]
+        var x = '(' + a2 + ')*(' + b3 + ')-(' + a3 + ')*(' + b2 + ')';
+        var y = '(' + a3 + ')*(' + b1 + ')-(' + a1 + ')*(' + b3 + ')';
+        var z = '(' + a1 + ')*(' + b2 + ')-(' + a2 + ')*(' + b1 + ')';
+        resVec.x = math.simplify(x);
+        resVec.y = math.simplify(y);
+        resVec.z = math.simplify(z);
+
+        return resVec;
+
+    }
+
+    function generateValsBlock(surface) {
+        var i = 0, v, res = '';
+        if (isArray(surface.vals)) {
+            res += '<div class="vals-table-wrapper">';
+            res += '<table class="vals-table">';
+            for (; i < surface.vals.length; i++) {
+                v = surface.vals[i];
+                res += '<tr>';
+                res += '<td class="vals-name">' + v.name + '</td>';
+                res += '<td class="vals-saved">' + v.op + '</td>';
+                res += '</tr>';
+            }
+            res += '</table></div>';
+        }
+        var dres = generateDerivativeBlock(surface, []);
+        res += dres;
+        var s = performance.now();
+        var uVec = {}, vVec = {};
+        dres = generateDerivativeBlock(surface, ['u'], uVec);
+        res += dres;
+        dres = generateDerivativeBlock(surface, ['v'], vVec);
+        res += dres;
+        dres = generateDerivativeBlock(surface, ['u', 'u']);
+        res += dres;
+        dres = generateDerivativeBlock(surface, ['u', 'v']);
+        res += dres;
+        dres = generateDerivativeBlock(surface, ['v', 'v']);
+        res += dres;
+        var e = performance.now();
+
+        var rrr = calcCrossProduct(
+            [uVec.x.toString(), uVec.y.toString(), uVec.z.toString()],
+            [vVec.x.toString(), vVec.y.toString(), vVec.z.toString()]
+        );
+        console.log('CROSS:x:', rrr.x.toString());
+        console.log('CROSS:y:', rrr.y.toString());
+        console.log('CROSS:z:', rrr.z.toString());
+        console.log('Time:', e - s);
+        return res;
+    }
+
     function loadSurfaceIntoView(surface) {
         console.log('Load-Surface:', surface);
         var surfaceFile;
         if (surface instanceof HTMLElement) {
-            console.log('IS ELEM!');
             surfaceFile = surface.getAttribute('data-file');
         }
         if (surface.file) {
@@ -199,7 +385,7 @@ var allFunctions = {};
         c = generateDescBlock(surface.content, ['xvv', 'yvv', 'zvv'], ['v', 'v']);
         code += c;
         code = '<div class="coords">' + code + '</div>';
-        code += '<div class="coord-vals">VALS</div>';
+        code += '<div class="coord-vals">' + generateValsBlock(surface.content) + '</div>';
         elem.innerHTML = code;
     }
 
@@ -475,6 +661,10 @@ var allFunctions = {};
                 ++numRanges;
                 surfaceDesc.ranges[rName] = range;
             }
+        }
+
+        if (hasNameConflicts(surfaceDesc)) {
+            console.warn('Vals conflicts:', surfaceDesc.name, surfaceDesc.vals);
         }
         if (surfaceDesc.params && numRanges > 0 && (numRanges != numConstRanges) && (!surfaceDesc.examples || !surfaceDesc.examples.length)) {
             console.warn("Missing examples: ", surfaceDesc.name, fileDesc);
