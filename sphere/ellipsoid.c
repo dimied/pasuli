@@ -67,12 +67,12 @@ PaSuLiDefDesc pslddEllipsoid = {
 */
 #if (COMPILE_DESC_SPHERE != 0)
 char *descEllipsoid =
-	"name: ellipsoid;\
+	"name: Ellipsoid;\
 cat: sphere;\
 ut: c; vt: c;\
 us:0; ue:pi:2;\
 vs:0; ve:pi:1;\
-c1:a: 1.5; c2:b: 1.0; c3:c: 1.0;\
+c1:a: 1.5; c2:b: 1; c3:c: 1;\
 x: a*cos(u)*sin(v);\
 y: b*sin(u)*sin(v);\
 z: c*cos(v);\

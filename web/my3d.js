@@ -4,20 +4,47 @@ function loadMesh(state, mesh) {
     state.mesh = mesh;
 }
 
-function myInit3D(containerId) {
+function ThreeRenderer(containerId) {
+    var state = {
+        containerId: containerId,
+        getSizes: function () {
+            var container = document.getElementById(containerId);
+            return container.getBoundingClientRect();
+        }
+    };
 
-    let SCREEN_WIDTH = window.innerWidth;
-    let SCREEN_HEIGHT = window.innerHeight;
-    let aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
-    let state = {};
+}
 
-    state.container = document.getElementById(containerId);
+function myInit3D(containerId, useElementSizes) {
+
+    let state = {
+        container: document.getElementById(containerId)
+    };
+
+    function getSizes() {
+        if (useElementSizes) {
+            return state.container.getBoundingClientRect();
+        }
+        return {
+            width: window.innerWidth,
+            height: window.innerWidth
+        };
+    }
+
+    let aspect;
+
     let camera, scene, renderer, mesh;
     let cameraRig, activeCamera, activeHelper;
     let cameraPerspective, cameraOrtho;
     let cameraPerspectiveHelper, cameraOrthoHelper;
     const frustumSize = 600;
 
+    function updateAspectRatio() {
+        var sizes = getSizes();
+        aspect = sizes.width / sizes.height;
+    }
+
+    updateAspectRatio();
     init();
 
     function init() {
@@ -52,13 +79,13 @@ function myInit3D(containerId) {
         scene.add(cameraRig);
 
         //
-/*
-        mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(100, 16, 8),
-            new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true })
-        );
-        scene.add(mesh);
-        */
+        /*
+                mesh = new THREE.Mesh(
+                    new THREE.SphereGeometry(100, 16, 8),
+                    new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true })
+                );
+                scene.add(mesh);
+                */
         //
 
         const geometry = new THREE.BufferGeometry();
@@ -79,9 +106,10 @@ function myInit3D(containerId) {
 
         //
 
+        var sizes = getSizes();
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        renderer.setSize(sizes.width, sizes.height);
         renderer.setAnimationLoop(animate);
         state.container.appendChild(renderer.domElement);
 
@@ -93,7 +121,7 @@ function myInit3D(containerId) {
         //
         window.addEventListener('resize', onWindowResize);
         document.addEventListener('keydown', onKeyDown);
-        
+
         console.log("myInit3D done!");
     }
 
@@ -116,18 +144,16 @@ function myInit3D(containerId) {
 
                 break;
         }
-
     }
 
     //
 
     function onWindowResize() {
 
-        SCREEN_WIDTH = window.innerWidth;
-        SCREEN_HEIGHT = window.innerHeight;
-        aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
+        var sizes = getSizes();
+        updateAspectRatio();
 
-        renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        renderer.setSize(sizes.width, sizes.height);
 
         camera.aspect = 0.5 * aspect;
         camera.updateProjectionMatrix();
@@ -143,7 +169,6 @@ function myInit3D(containerId) {
     }
 
     //
-
     function animate() {
 
         render();
@@ -151,11 +176,10 @@ function myInit3D(containerId) {
 
     }
 
-
     function render() {
 
         const r = Date.now() * 0.0005;
-        if(!state.mesh) {
+        if (!state.mesh) {
             return;
         }
         var mesh = state.mesh;
@@ -193,18 +217,21 @@ function myInit3D(containerId) {
         cameraRig.lookAt(mesh.position);
         //
         activeHelper.visible = false;
+        var sizes = getSizes();
+        var width = sizes.width/2, height = sizes.height;
 
         renderer.setClearColor(0x000000, 1);
-        renderer.setScissor(0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT);
-        renderer.setViewport(0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT);
+        renderer.setScissor(0, 0, width, height);
+        renderer.setViewport(0, 0, width, height);
         renderer.render(scene, activeCamera);
         //
         activeHelper.visible = true;
 
         renderer.setClearColor(0x111111, 1);
-        renderer.setScissor(SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT);
-        renderer.setViewport(SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT);
+        renderer.setScissor(width, 0, width, height);
+        renderer.setViewport(width, 0, width, height);
         renderer.render(scene, camera);
+
     }
 
     state.scene = scene;
@@ -215,6 +242,6 @@ function myInit3D(containerId) {
 console.log('my3d loaded');
 
 window.my3d = {
-    myInit3D:myInit3D,
-    loadMesh:loadMesh
+    myInit3D: myInit3D,
+    loadMesh: loadMesh
 };

@@ -1,8 +1,11 @@
 //Code gen
 var codeGenerator = (function () {
     function generateFuncName(name) {
-        return name.trim().replaceAll(' ', '_') + 'Func';
+        name = name.trim().replaceAll("'", '');
+        name = name.trim().replaceAll(' ', '_');
+        return name.trim().replaceAll('-', '_') + 'Func';
     }
+    
     function generateParamsLine(params, indent) {
         var res = '';
         if (params) {
@@ -457,7 +460,7 @@ var allFunctions = {};
         return !!v && Array.isArray(v);
     }
 
-    function parseSurfaceDesc(surfaceDesc) {
+    function parseSurfaceDesc(surfaceDesc, fileDesc) {
         if (!surfaceDesc) {
             return;
         }
@@ -466,16 +469,19 @@ var allFunctions = {};
                 surfaceDesc.params = surfaceDesc.params.split(',');
             }
         }
-        var range, rName, min, max;
+        var range, rName, min, max, numConstRanges = 0, numRanges = 0;
         if (surfaceDesc.ranges) {
             for (rName in surfaceDesc.ranges) {
                 if (!surfaceDesc.ranges.hasOwnProperty(rName)) {
                     continue;
                 }
+                if (rName === 'u' || rName === 'v') {
+                    continue;
+                }
                 range = surfaceDesc.ranges[rName];
                 if (isArray(range)) {
-                    if(range.length !== 2){
-                        console.error("Wrong range length: ",range.length, rName, surfaceDesc.name);
+                    if (range.length !== 2) {
+                        console.error("Wrong range length: ", range.length, rName, surfaceDesc.name);
                     } else {
                         min = range[0];
                         max = range[1];
@@ -484,10 +490,19 @@ var allFunctions = {};
                             'max': max
                         };
                     }
-                    
+                } else if (typeof range === 'number') {
+                    range = {
+                        'min': range,
+                        'max': range
+                    };
+                    ++numConstRanges;
                 }
+                ++numRanges;
                 surfaceDesc.ranges[rName] = range;
             }
+        }
+        if (surfaceDesc.params && numRanges > 0 && (numRanges != numConstRanges) && (!surfaceDesc.examples || !surfaceDesc.examples.length)) {
+            console.warn("Missing examples: ", surfaceDesc.name, fileDesc);
         }
     }
 
@@ -496,14 +511,13 @@ var allFunctions = {};
             return;
         }
         var fIdx = 0, fileDesc, surfaceDesc;
-        //var resFiles=[];
         //console.log('PARSE-CAT:', cat);
         for (var fIdx = 0; fIdx < cat.files.length; fIdx++) {
             fileDesc = cat.files[fIdx];
             if (fileDesc && fileDesc.content) {
                 surfaceDesc = fileDesc.content;
                 //console.log(cat.catname, surfaceDesc.name, surfaceDesc);
-                parseSurfaceDesc(surfaceDesc);
+                parseSurfaceDesc(surfaceDesc, fileDesc);
             }
         }
     }
@@ -536,7 +550,7 @@ var allFunctions = {};
             catCodes.push(createCategoryHTML(category));
         }
 
-        elem = document.getElementById("sidebar");
+        elem = document.getElementById("sidebar-content");
         if (elem) {
             elem.innerHTML = catCodes.join("\n");
         }
@@ -553,13 +567,13 @@ var allFunctions = {};
         console.log('DOM loaded');
         addButtonHandlers();
         loadAllSurfaces();
-        setTimeout(function() {
-            if(!window.my3d) {
+        setTimeout(function () {
+            if (!window.my3d) {
                 console.error("Missing: my3d");
                 return;
             }
-            window.my3d.myInit3D('view3d');
-        },2000);
+            window.my3d.myInit3D('view3d', true);
+        }, 2000);
     });
 }());
 

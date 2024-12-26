@@ -1,12 +1,6 @@
 {
     "name": "Sphere",
-    "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
-    ],
+    "params": "r",
     "ranges": {
         "u": [
             0,
@@ -21,6 +15,11 @@
             "inf"
         ]
     },
+    "examples": [
+        {
+            "r": 1
+        }
+    ],
     "x": "r*sin(u)*cos(v)",
     "y": "r*sin(u)*sin(v)",
     "z": "r*cos(u)",

@@ -1,9 +1,5 @@
 {
     "name": "Wrinkle sphere",
-    "vars": [
-        "u",
-        "v"
-    ],
     "ranges": {
         "u": [
             0,

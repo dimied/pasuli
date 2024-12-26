@@ -1,31 +1,28 @@
 {
-    "name": "Sphere",
+    "name": "Crossed through surface",
     "params": [
-        "r"
-    ],
-    "vars": [
-        "u",
-        "v"
+        "c"
     ],
     "ranges": {
         "u": [
             0,
-            "PI"
+            1
         ],
         "v": [
-            0,
-            "2*PI"
+            "-PI",
+            "PI"
         ],
-        "r": [
+        "c": [
             "(0",
             "inf"
         ]
     },
-    "x": "r*sin(u)*cos(v)",
-    "y": "r*sin(u)*sin(v)",
-    "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
-    "normal_normalized": true
+    "examples": [
+        {
+            "c": 1
+        }
+    ],
+    "x": "u*sin(v)",
+    "y": "u*cos(v)",
+    "z": "c*pow(u*u*sin(2*v)*0.5, 2)"
 }

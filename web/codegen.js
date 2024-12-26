@@ -1,8 +1,11 @@
 //Code gen
 var codeGenerator = (function () {
     function generateFuncName(name) {
-        return name.trim().replaceAll(' ', '_') + 'Func';
+        name = name.trim().replaceAll("'", '');
+        name = name.trim().replaceAll(' ', '_');
+        return name.trim().replaceAll('-', '_') + 'Func';
     }
+    
     function generateParamsLine(params, indent) {
         var res = '';
         if (params) {

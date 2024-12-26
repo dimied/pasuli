@@ -1,17 +1,13 @@
 {
     "name": "Open Sphere",
-    "vars": [
-        "u",
-        "v"
-    ],
     "ranges": {
         "u": [
-            "-inf",
-            "inf"
+            -10,
+            10
         ],
         "v": [
-            "-inf",
-            "inf"
+            -10,
+            10
         ]
     },
     "vals": [

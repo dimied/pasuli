@@ -14,7 +14,7 @@ void EpizykloidCylinder(pasuli_vartype u,
 	pasuli_consttype r = constants[1];
 	pasuli_consttype h = constants[2];
 	pasuli_consttype H = constants[3];
-	//ATTENTION
+	// ATTENTION
 	pasuli_calctype Rsum = R + r;
 	pasuli_calctype cosRsum = cos((Rsum * u) / r);
 	pasuli_calctype sinRsum = sin((Rsum * u) / r);

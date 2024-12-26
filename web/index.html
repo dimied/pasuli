@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="main.css" />
     <script type="module" src="three.core.js"></script>
     <script type="module" src="three.module.js"></script>
+    <!--
     <script type="module" src="OrbitControls.js" async></script>    
+  -->
     <script type="module" src="math.js"></script>
     <script type="module" src="my3d.js"></script>
     <script type="module" src="main.js" async></script>
@@ -22,11 +24,16 @@
 
       <div id="main">
         <div id="mainview">
+          
           <div id="view3d">
 
           </div>
         </div>
-        <div id="sidebar"></div>
+        <div id="sidebar">
+          <div></div>
+          <div id="sidebar-content"></div>
+          <div></div>
+        </div>
       </div>
     </div>
   </body>

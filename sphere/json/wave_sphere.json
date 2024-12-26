@@ -1,9 +1,5 @@
 {
     "name": "Wave sphere",
-    "vars": [
-        "u",
-        "v"
-    ],
     "ranges": {
         "u": [
             0,

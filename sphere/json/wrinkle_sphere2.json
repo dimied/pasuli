@@ -3,10 +3,6 @@
     "params": [
         "n"
     ],
-    "vars": [
-        "u",
-        "v"
-    ],
     "ranges": {
         "u": [
             0,
@@ -21,6 +17,11 @@
             "inf"
         ]
     },
+    "examples": [
+        {
+            "n": 20
+        }
+    ],
     "x": "sin(v)*sin(u)+(cos(n*v)/n)",
     "y": "sin(v)*cos(u)+(cos(n*u)/n)",
     "z": "cos(v)"
