@@ -68,10 +68,42 @@ button.selected {
     width: 100%;
     background-color: beige;
     padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
 .hidden {
     display: none;
+}
+.coord-table {
+    width: 80%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid grey;
+    border-radius: 0.4rem;
+}
+
+.coords {
+    flex: 2;
+}
+.coord-vals {
+    flex: 1;
+}
+
+.coord-name {
+    width: 3rem;
+}
+.coord-saved {
+    padding: 0.2rem;
+}
+.coord-input {
+    width: 95%;
+}
+input {
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+    padding: 0.1rem;
 }
 
 #view3d {
@@ -88,7 +120,6 @@ button.selected {
     overflow-y: scroll;
 }
 #sidebar-content {
-    
 }
 
 .category .title {

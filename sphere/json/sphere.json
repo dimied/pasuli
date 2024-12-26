@@ -23,8 +23,8 @@
     "x": "r*sin(u)*cos(v)",
     "y": "r*sin(u)*sin(v)",
     "z": "r*cos(u)",
-    "nx": "sin(u)*cos(v)",
-    "ny": "sin(u)*sin(v)",
-    "nz": "cos(u)",
+    "xn": "sin(u)*cos(v)",
+    "yn": "sin(u)*sin(v)",
+    "zn": "cos(u)",
     "normal_normalized": true
 }
