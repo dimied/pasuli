@@ -340,9 +340,12 @@ var allFunctions = {};
             [uVec.x.toString(), uVec.y.toString(), uVec.z.toString()],
             [vVec.x.toString(), vVec.y.toString(), vVec.z.toString()]
         );
-        console.log('CROSS:x:', rrr.x.toString());
-        console.log('CROSS:y:', rrr.y.toString());
-        console.log('CROSS:z:', rrr.z.toString());
+        if(true) {
+            console.log('CROSS:x:', rrr.x.toString());
+            console.log('CROSS:y:', rrr.y.toString());
+            console.log('CROSS:z:', rrr.z.toString());
+        }
+        
         console.log('Time:', e - s);
         return res;
     }
