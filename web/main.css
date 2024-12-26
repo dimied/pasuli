@@ -63,6 +63,17 @@ button.selected {
     height: 100%;
     background-color: antiquewhite;
 }
+#math {
+    height: auto;
+    width: 100%;
+    background-color: beige;
+    padding: 1rem;
+}
+
+.hidden {
+    display: none;
+}
+
 #view3d {
     height: 100%;
     width: 100%;

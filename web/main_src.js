@@ -37,7 +37,7 @@ var allFunctions = {};
             byId: function (id) {
                 return document.getElementById(id);
             }
-        }, validViewTypes = ['3d', 'math'], currentType = 'math', surfaces = [];
+        }, validViewTypes = ['3d', 'math'], currentType = 'math', allSurfaces = [];
 
     function addClickHandler(e, f) {
         e && f && e.addEventListener('click', f);
@@ -72,6 +72,15 @@ var allFunctions = {};
             return;
         }
         currentType = type;
+        var elem1 = docUtil.byId('math'), elem2 = docUtil.byId('view3d');
+        //return;
+        if (currentType === '3d') {
+            cssUtil.add(elem1, 'hidden');
+            //cssUtil.remove(elem2, 'hidden');
+        } else {
+            //cssUtil.add(elem2, 'hidden');
+            cssUtil.remove(elem1, 'hidden');
+        }
     }
 
     function addButtonHandlers() {
@@ -108,6 +117,44 @@ var allFunctions = {};
             return 'surface-' + clearSurfaceName(surface);
         }
         return "surface-" + clearSurfaceName(surface.name);
+    }
+
+    function findSurfaceByFile(fileName) {
+        var i = 0, sIdx, cat, surface;
+        if (fileName) {
+            //console.log('ALLS:', allSurfaces);
+            for (; i < allSurfaces.length; i++) {
+                cat = allSurfaces[i];
+                if (cat && cat.files) {
+                    for (sIdx = 0; sIdx < cat.files.length; sIdx++) {
+                        surface = cat.files[sIdx];
+                        if (surface && surface.file === fileName) {
+                            return surface;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    function loadSurfaceIntoView(surface) {
+        console.log('Load-Surface:', surface);
+        var surfaceFile;
+        if (surface instanceof HTMLElement) {
+            console.log('IS ELEM!');
+            surfaceFile = surface.getAttribute('data-file');
+        }
+        if (surface.file) {
+            surfaceFile = surface.file;
+        }
+        if (surfaceFile) {
+            surface = findSurfaceByFile(surfaceFile);
+        } else {
+            console.warn("Can't recognize surface file!");
+            return;
+        }
+
+        console.log('Surface:', surface);
     }
 
     function findElementByClassName(elem, cls) {
@@ -156,27 +203,39 @@ var allFunctions = {};
         }
     }
 
-    function loadSurfaceIntoView(surface) {
-        console.log('Load-Surface:', surface);
-    }
-
     function createSurfaceParamsHTML(surface) {
-        var i, p, res = '', parts = [], paramName;
+        var i, p, range, ex,res = '', rangeHTML = '', parts = [], paramName, value;
         if (surface.params && surface.params.length) {
-            var ranges = surface.ranges || {};
+            var ranges = surface.ranges || {},
+                examples = surface.examples || [];
 
             for (i = 0; i < surface.params.length; i++) {
                 paramName = surface.params[i];
+                value='';
+                if (paramName && ranges[paramName]) {
+                    range = ranges[paramName];
+                    rangeHTML = '<div class="surface-param-range">';
+                    rangeHTML += range.min + ' - ' + range.max;
+                    rangeHTML += '</div>';
+                    if (range.max === range.min) {
+                        value = '' + range.min;
+                    }
+                }
+                if (!value && examples.length > 0) {
+                    ex = examples[0];
+                    if (ex && ex[paramName]) {
+                        value = ex[paramName];
+                    }
+                }
+
+
                 p = '<div class="surface-param">';
                 p += '<div class="surface-param-name">' + paramName + '</div>';
-                p += '<input type="text" class="surface-param-' + i + '" />';
+                p += '<input type="text" class="surface-param-' + i + '" value="' + value + '" />';
                 p += '</div>';
 
-                if (paramName && ranges[paramName]) {
-                    p += '<div class="surface-param-range">';
-                    p += ranges[paramName].min + ' - ' + ranges[paramName].max;
-                    p += '</div>';
-                }
+
+                p += rangeHTML;
 
                 parts.push(p);
             }
@@ -205,8 +264,13 @@ var allFunctions = {};
     }
 
     function createSurfaceHTML(surface, desc) {
-        //console.log('GEN-HTML:', surface)
-        var p, parts, code, res = '<div class="surface-desc closed" id="' + createSurfaceDescId(surface) + '">';
+        //console.log('GEN-HTML:', surface, desc)
+        var res = '', id = ' id="' + createSurfaceDescId(surface) + '" ';
+        if (desc && desc.file) {
+            res = ' data-file="' + desc.file + '" ';
+        }
+
+        res = '<div class="surface-desc closed" ' + id + res + '>';
         res += '<div class="surface-title">';
         res += '<div><button class="surface-control">+</button></div>';
         res += '<div class="surface-name"'
@@ -289,6 +353,7 @@ var allFunctions = {};
                 cssUtil.remove(elems.item(i), 'selected');
             }
             cssUtil.add(elem, 'selected');
+            loadSurfaceIntoView(parentElem);
         }
     }
 
@@ -391,7 +456,7 @@ var allFunctions = {};
         }
         let catIdx, category, sIdx, f, elem, fIdx = 0, fLimit = 10, catCodes = [];
 
-        surfaces = data.data;
+        allSurfaces = data.data;
 
         for (catIdx = 0; catIdx < data.data.length; catIdx++) {
             category = data.data[catIdx];
