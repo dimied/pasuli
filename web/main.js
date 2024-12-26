@@ -360,19 +360,20 @@ var allFunctions = {};
     }
 
     function hasNameConflicts(surface) {
-        console.log('C?', surface);
+        //console.log('C?', surface);
         if (isArray(surface.vals)) {
             var i = 0, v, seen = [];
             for (; i < surface.vals.length; i++) {
                 v = surface.vals[i];
                 if (seen.indexOf(v.name) >= 0) {
-                    return true;
+                    continue;
                 }
                 for (var j = 0; j < seen.length; j++) {
                     if (v.name.indexOf(seen[j]) >= 0) {
                         return true;
                     }
                 }
+                seen.push(v.name);
             }
         }
         return false;
@@ -400,6 +401,11 @@ var allFunctions = {};
             dz = math.derivative(dz, derivs[i]);
         }
 
+        if (resultOut) {
+            resultOut.x = dx;
+            resultOut.y = dy;
+            resultOut.z = dz;
+        }
 
         var k = derivs.join('');
         console.log('X:', x, xres);
@@ -414,13 +420,6 @@ var allFunctions = {};
         res += derivTableRow('x', derivs, dx);
         res += derivTableRow('y', derivs, dy);
         res += derivTableRow('z', derivs, dz);
-
-        if (resultOut) {
-            resultOut.x = dx;
-            resultOut.y = dy;
-            resultOut.z = dz;
-        }
-
         res += '</table></div>';
         return res;
     }
@@ -478,7 +477,7 @@ var allFunctions = {};
             [uVec.x.toString(), uVec.y.toString(), uVec.z.toString()],
             [vVec.x.toString(), vVec.y.toString(), vVec.z.toString()]
         );
-        if(true) {
+        if(false) {
             console.log('CROSS:x:', rrr.x.toString());
             console.log('CROSS:y:', rrr.y.toString());
             console.log('CROSS:z:', rrr.z.toString());
