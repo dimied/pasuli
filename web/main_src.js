@@ -63,6 +63,27 @@ var allFunctions = {};
         return headers && headers.get('content-type') === 'application/json';
     }
 
+    function isString(v) {
+        return typeof v === 'string';
+    }
+
+    function isArray(v) {
+        return !!v && Array.isArray(v);
+    }
+
+
+    function forEach(arr, f) {
+        if (isArray(arr)) {
+            if (arr.forEach) {
+                arr.forEach(f);
+                return;
+            }
+            for (var i = 0; i < arr.length; i++) {
+                f(arr[i], i, arr);
+            }
+        }
+    }
+
     function access(path, onSuccess, onError) {
         fetch(path).catch(function (e) {
             console.error("No...")
@@ -143,8 +164,10 @@ var allFunctions = {};
         return value;
     }
 
-    function generateDescBlock(surface, names) {
-        var i = 0, n, res = '<table class="coord-table">', value;
+    function generateDescBlock(surface, names, derivs) {
+        var i = 0, n, res = (derivs || []).join('-'), cls, value;
+        res = '<table class="coord-table" data-vals="' + res + '">';
+
         if (surface && names && names.length) {
             for (; i < names.length; i++) {
                 n = names[i];
@@ -158,7 +181,8 @@ var allFunctions = {};
                 res += '</tr>';
                 res += '<tr>';
                 res += '<td class="coord-name">' + n + '</td>';
-                res += '<td><input class="coord-input" value="' + value + '"/></td>';
+                cls = 'coord-input coord-input-' + n;
+                res += '<td><input class="' + cls + '" value="' + value + '"/></td>';
                 res += '</tr>';
             }
         }
@@ -198,7 +222,7 @@ var allFunctions = {};
                         }
                         v2 = valsKeys[j];
                         if (obj.indexOf(v2) >= 0) {
-                            obj = obj.replaceAll(v2, vals[v2]);
+                            obj = obj.replaceAll(v2, '(' + vals[v2] + ')');
                             ++replacements;
                             replaced = true;
                             vals[v] = obj;
@@ -214,7 +238,7 @@ var allFunctions = {};
             for (i = 0; i < valsKeys.length; i++) {
                 v = valsKeys[i];
                 if (res.indexOf(v) >= 0) {
-                    res = res.replaceAll(v, vals[v]);
+                    res = res.replaceAll(v, '(' + vals[v] + ')');
                 }
             }
         }
@@ -241,17 +265,22 @@ var allFunctions = {};
         return false;
     }
 
-    function buttonCell(coord, derivs) {
-        var cls = 'copy-button copy-btn-' + coord + '-' + derivs.join('-');
-        return '<td><button class="' + cls + '">&lt;</button></td>';
+    function buttonCell(coord, derivs, noButton) {
+        var d = [coord].concat(derivs);
+        var cls = 'copy-button copy-btn-' + d.join('-');
+        d = ' data-vals="' + d + '"';
+        var btn = noButton ? '' : '<button class="' + cls + '" ' + d + '>&lt;</button>';
+        return '<td class="copy-button-cell">' + btn + '</td>';
     }
 
-    function derivTableRow(coord, derivs, derivative) {
-        return '<tr class="deriv-row">' + buttonCell(coord, derivs) + '<td class="deriv-name">' + coord + derivs.join('') + '</td><td class="deriv-eq">' + derivative.toString() + '</td></tr>';
+    function derivTableRow(coord, derivs, derivative, noButton) {
+        var n = ['deriv-eq', coord].concat(derivs).join('-');
+        return '<tr class="deriv-row">' + buttonCell(coord, derivs, noButton) + '<td class="deriv-name">' + coord + derivs.join('') + '</td>' +
+            '<td class="deriv-eq ' + n + '">' + derivative.toString() + '</td></tr>';
     }
 
     function generateDerivativeBlock(surface, derivs, resultOut) {
-        var i = 0, x = surface.x, y = surface.y, z = surface.z, res = '';
+        var i = 0, btn, noButton = derivs.length === 0, x = surface.x, y = surface.y, z = surface.z, res = '';
 
         var xres = insertVals(x, surface), yres = insertVals(y, surface),
             zres = insertVals(z, surface);
@@ -269,40 +298,42 @@ var allFunctions = {};
             resultOut.z = dz;
         }
 
-        var k = derivs.join('');
-        console.log('X:', x, xres);
-        console.log(k + 'X:', dx.toString());
-        console.log('Y:', y, yres);
-        console.log(k + 'Y:', dy.toString());
-        console.log('Z:', z, zres);
-        console.log(k + 'Z:', dz.toString());
+        if (false) {
+            var k = derivs.join('');
+            console.log('X:', x, xres);
+            console.log(k + 'X:', dx.toString());
+            console.log('Y:', y, yres);
+            console.log(k + 'Y:', dy.toString());
+            console.log('Z:', z, zres);
+            console.log(k + 'Z:', dz.toString());
+        }
+        var d = derivs.join('-');
+        btn = 'copy-button-all copy-button-all-' + derivs.join('');
+        btn = '<button class="' + btn + '" data-vals="' + d + '">&lt; &lt; &lt;</button>';
+        btn = '<td class="copy-button-all-cell" colspan="3">' + btn + '</td>';
+        btn = '<tr>' + btn + '</tr>';
 
         res = '<div class="vals-table-wrapper">';
         res += '<table class="vals-table">';
-        res += derivTableRow('x', derivs, dx);
-        res += derivTableRow('y', derivs, dy);
-        res += derivTableRow('z', derivs, dz);
+        res += btn;
+        res += derivTableRow('x', derivs, dx, noButton);
+        res += derivTableRow('y', derivs, dy, noButton);
+        res += derivTableRow('z', derivs, dz, noButton);
         res += '</table></div>';
         return res;
     }
     function calcCrossProduct(uVec, vVec) {
-        var resVec = {
-            'x': '?',
-            'y': '?',
-            'z': '?',
-        };
         var a1 = uVec[0], a2 = uVec[1], a3 = uVec[2],
             b1 = vVec[0], b2 = vVec[1], b3 = vVec[2];
         //cross(A, B) = [ a2 * b3 - a3 * b2, a3 * b1 - a1 * b3, a1 * b2 - a2 * b1 ]
-        var x = '(' + a2 + ')*(' + b3 + ')-(' + a3 + ')*(' + b2 + ')';
-        var y = '(' + a3 + ')*(' + b1 + ')-(' + a1 + ')*(' + b3 + ')';
-        var z = '(' + a1 + ')*(' + b2 + ')-(' + a2 + ')*(' + b1 + ')';
-        resVec.x = math.simplify(x);
-        resVec.y = math.simplify(y);
-        resVec.z = math.simplify(z);
-
-        return resVec;
-
+        var x = '(' + a2 + ')*(' + b3 + ') - (' + a3 + ')*(' + b2 + ')';
+        var y = '(' + a3 + ')*(' + b1 + ') - (' + a1 + ')*(' + b3 + ')';
+        var z = '(' + a1 + ')*(' + b2 + ') - (' + a2 + ')*(' + b1 + ')';
+        return {
+            x: math.simplify(x),
+            y: math.simplify(y),
+            z: math.simplify(z)
+        };
     }
 
     function generateValsBlock(surface) {
@@ -327,6 +358,20 @@ var allFunctions = {};
         res += dres;
         dres = generateDerivativeBlock(surface, ['v'], vVec);
         res += dres;
+
+        var normalVec = calcCrossProduct(
+            [uVec.x.toString(), uVec.y.toString(), uVec.z.toString()],
+            [vVec.x.toString(), vVec.y.toString(), vVec.z.toString()]
+        );
+
+        var nres = '<div class="vals-table-wrapper">';
+        nres += '<table class="vals-table">';
+        nres += derivTableRow('x', ['n'], normalVec.x);
+        nres += derivTableRow('y', ['n'], normalVec.y);
+        nres += derivTableRow('z', ['n'], normalVec.z);
+        nres += '</table></div>';
+        res += nres;
+
         dres = generateDerivativeBlock(surface, ['u', 'u']);
         res += dres;
         dres = generateDerivativeBlock(surface, ['u', 'v']);
@@ -335,18 +380,71 @@ var allFunctions = {};
         res += dres;
         var e = performance.now();
 
-        var rrr = calcCrossProduct(
-            [uVec.x.toString(), uVec.y.toString(), uVec.z.toString()],
-            [vVec.x.toString(), vVec.y.toString(), vVec.z.toString()]
-        );
-        if(false) {
-            console.log('CROSS:x:', rrr.x.toString());
-            console.log('CROSS:y:', rrr.y.toString());
-            console.log('CROSS:z:', rrr.z.toString());
+
+        if (false) {
+            console.log('CROSS:x:', normalVec.x.toString());
+            console.log('CROSS:y:', normalVec.y.toString());
+            console.log('CROSS:z:', normalVec.z.toString());
         }
-        
+
         console.log('Time:', e - s);
         return res;
+    }
+
+    function toArray(arrLike) {
+        var res = [];
+        for (var i = 0; i < arrLike.length; i++) {
+            res.push(arrLike[i]);
+        }
+        return res;
+    }
+
+    function onCopyClick(e) {
+        console.log('COPY:', e.target);
+        var i = 0, c, cls = toArray(e.target.classList);
+        var obj = {}, elem, vals = e.target.getAttribute('data-vals') || '';
+
+        if (cls.indexOf('copy-button-all') >= 0) {
+            elem = findElementByClassName(e.target, 'vals-table');
+
+            console.log('ELM:', elem);
+
+            if (elem) {
+                var key = 'deriv-eq-', elems = elem.getElementsByClassName('deriv-eq');
+                console.log('EQs:', elems);
+                for (; i < elems.length; i++) {
+                    c = toArray(elems.item(i).classList);
+                    for (var j = 0; j < c.length; j++) {
+                        if (c[j].indexOf(key) >= 0) {
+                            var cv = c[j].replaceAll(key, '');
+                            cv = cv.replaceAll('-', '');
+                            obj[cv] = (elems.item(i).innerText || '').trim();
+                        }
+                    }
+                }
+
+            }
+        } else if (cls.indexOf('copy-button') >= 0) {
+            elem = findElementByClassName(e.target, 'deriv-row');
+            if (elem && vals) {
+                var elems = elem.getElementsByClassName('deriv-eq');
+                if (elems.length === 1) {
+                    var k = vals.replaceAll(',', '');
+                    obj[k] = elems.item(0).innerText;
+                }
+            }
+        }
+        console.log('ELEMS:', obj);
+    }
+
+    function addButtonHandlersForEdit() {
+        forEach(['copy-button', 'copy-button-all'], function (cls) {
+            var elems = document.getElementsByClassName(cls);
+            //console.log('ELEMS:', cls, elems);
+            for (var i = 0; i < elems.length; i++) {
+                elems.item(i).addEventListener('click', onCopyClick);
+            }
+        });
     }
 
     function loadSurfaceIntoView(surface) {
@@ -389,6 +487,7 @@ var allFunctions = {};
         code = '<div class="coords">' + code + '</div>';
         code += '<div class="coord-vals">' + generateValsBlock(surface.content) + '</div>';
         elem.innerHTML = code;
+        addButtonHandlersForEdit()
     }
 
     function findElementByClassName(elem, cls) {
@@ -467,9 +566,7 @@ var allFunctions = {};
                 p += '<input type="text" class="surface-param-' + i + '" value="' + value + '" />';
                 p += '</div>';
 
-
                 p += rangeHTML;
-
                 parts.push(p);
             }
             res += '<div class="surface-params">' + parts.join('') + '</div>';
@@ -615,13 +712,6 @@ var allFunctions = {};
 
     }
 
-    function isString(v) {
-        return typeof v === 'string';
-    }
-
-    function isArray(v) {
-        return !!v && Array.isArray(v);
-    }
 
     function parseSurfaceDesc(surfaceDesc, fileDesc) {
         if (!surfaceDesc) {

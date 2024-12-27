@@ -43,7 +43,7 @@
     "vals": [
         {
             "name": "us",
-            "op": "((R - r)/r)*u"
+            "op": "((u*(R - r))/r)"
         }
     ],
     "x": "(R - r)*cos(u) + h*cos(us)",
