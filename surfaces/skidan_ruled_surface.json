@@ -1,0 +1,50 @@
+{
+    "name": "Skidan Ruled Surface",
+    "params": [
+        "a",
+        "h",
+        "n"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            1
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "h": [
+            "(0",
+            "inf"
+        ],
+        "n": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1,
+            "h": 1,
+            "n": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "b",
+            "op": "h*abs(cos(n*v))"
+        },
+        {
+            "name": "r",
+            "op": "(u*sin(a)+b*cos(a))"
+        }
+    ],
+    "x": "r*cos(v)",
+    "y": "r*sin(v)",
+    "z": "u*cos(a) - b*sin(a)"
+}

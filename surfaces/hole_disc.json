@@ -1,0 +1,26 @@
+{
+    "name": "Hole Disc",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            3,
+            4.5
+        ]
+    },
+    "vals": [
+        {
+            "name": "d",
+            "op": "(1 + sqrt(2))"
+        },
+        {
+            "name": "xy",
+            "op": "(sqrt(2) + sin(v))"
+        }
+    ],
+    "x": "sin(u)/xy",
+    "y": "cos(u)/xy",
+    "z": "cos(u)/d"
+}

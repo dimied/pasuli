@@ -1,0 +1,32 @@
+{
+    "name": "Eight Torus",
+    "params": "c",
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "c": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "F",
+            "op": "(c + sin(v)*cos(u) - sin(2*v)*sin(u)*0.5)"
+        }
+    ],
+    "x": "F*cos(u)",
+    "y": "F*sin(u)",
+    "z": "sin(u)*sin(v) + cos(u)*sin(2*v)*0.5"
+}

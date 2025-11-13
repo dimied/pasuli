@@ -1,0 +1,23 @@
+{
+    "name": "Bent Horns",
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-2*PI",
+            "2*PI"
+        ]
+    },
+    "vals": [
+        {"name":"yz", "op":"(cos(v) - 1)"}
+    ],
+    "x": "(2 + cos(u))*(v/3 - sin(v))",
+    "y": "(2 + cos(u + 2*PI/3))*(yz)",
+    "z": "(2 + cos(u - 2*PI/3))*(yz)"
+}

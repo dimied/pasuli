@@ -1,0 +1,34 @@
+{
+    "name": "Catenoid",
+    "params": [
+        "c"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            -2,
+            2
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "c": 1.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "c*cosh(v/c)"
+        }
+    ],
+    "x": "xy*cos(u)",
+    "y": "xy*sin(u)",
+    "z": "v"
+}

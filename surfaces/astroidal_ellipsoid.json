@@ -1,0 +1,36 @@
+{
+    "name": "Astroidal Ellipsoid",
+    "params": [
+        "a",
+        "b",
+        "c"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            "-0.5*PI",
+            "0.5*PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1,
+            "b": 1,
+            "c": 1
+        }
+    ],
+    "x": "a*pow((cos(u)*cos(v)),3)",
+    "y": "b*pow((sin(u)*cos(v)),3)",
+    "z": "c*pow(sin(v),3)"
+}

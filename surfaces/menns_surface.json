@@ -1,0 +1,32 @@
+{
+    "name": "Menns Surface",
+    "params": "a",
+    "ranges": {
+        "u": [
+            -1,
+            1
+        ],
+        "v": [
+            -1,
+            1
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "uq",
+            "op": "u*u"
+        }
+    ],
+    "x": "u",
+    "y": "v",
+    "z": "a*uq*(uq+v) - v*v"
+}

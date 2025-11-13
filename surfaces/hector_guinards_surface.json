@@ -1,0 +1,40 @@
+{
+    "name": "Hector Guinards Surface",
+    "params": [
+        "a",
+        "b",
+        "c"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            1
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1,
+            "b": 1,
+            "c": 1
+        }
+    ],
+    "x": "((1-u)*a+u*b)*cos(v)",
+    "y": "b*u*sin(v)",
+    "z": "c*u*sin(v)*sin(v)"
+}

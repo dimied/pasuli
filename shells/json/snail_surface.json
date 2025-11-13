@@ -1,0 +1,20 @@
+{
+    "name": "Snail Surface",
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "x": "u*sin(u)*cos(v)",
+    "y": "u*cos(u)*cos(v)",
+    "z": "-u*sin(v)"
+}

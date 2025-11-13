@@ -1,0 +1,32 @@
+{
+    "name": "Wavy Enneper Surface",
+    "params": "s",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "PI"
+        ],
+        "s": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "s": 2
+        }
+    ],
+    "vals": [
+        {
+            "name": "d",
+            "op": "(2*s-1)"
+        }
+    ],
+    "x": "u*cos(v) - pow(u,d)*cos(d*v)/d",
+    "y": "-u*sin(v) - pow(u,d)*sin(d*v)/d",
+    "z": "2*pow(u,s)*cos(s*v)/s"
+}

@@ -1,0 +1,22 @@
+{
+    "name": "Goblet",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "cos(2*v)"
+        }
+    ],
+    "x": "r*cos(u)",
+    "y": "r*sin(u)",
+    "z": "-2*sin(v)"
+}

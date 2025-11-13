@@ -1,0 +1,26 @@
+{
+    "name": "Enneper Surface 3",
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "xy",
+            "op": "(-6+u*u-3*v*v)"
+        },
+        {
+            "name": "d",
+            "op": "6*sqrt(2)"
+        }
+    ],
+    "x": "-u*xy/d",
+    "y": "v*xy/d",
+    "z": "(u*u - v*v)/2"
+}

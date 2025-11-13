@@ -1,0 +1,38 @@
+{
+    "name": "Sphere uv",
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            10
+        ],
+        "v": [
+            -10,
+            10
+        ]
+    },
+    "vals": [
+        {
+            "name": "uq",
+            "op": "u*u"
+        },
+        {
+            "name": "vq",
+            "op": "v*v"
+        },
+        {
+            "name": "up",
+            "op": "uq+1"
+        },
+        {
+            "name": "vp",
+            "op": "vq+1"
+        }
+    ],
+    "x": "(2*u*(1-vq))/(up*vp)",
+    "y": "(1-uq)/up",
+    "z": "(4*u*v)/(up*vp)"
+}

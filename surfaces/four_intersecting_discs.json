@@ -1,0 +1,16 @@
+{
+    "name": "Four intersecting discs",
+    "ranges": {
+        "u": [
+            0,
+            "4*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "x": "v*cos(u)-v*v*cos(2*u)/2",
+    "y": "-v*sin(u)-v*v*sin(2*u)/2",
+    "z": "4*v*sqrt(v)*cos(1.5*u)/3"
+}

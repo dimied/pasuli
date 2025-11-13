@@ -1,0 +1,26 @@
+{
+    "name": "Helicoid",
+    "params": "c",
+    "ranges": {
+        "u": [
+            -2,
+            2
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "c": 1.5
+        }
+    ],
+    "x": "u*cos(v)",
+    "y": "u*sin(v)",
+    "z": "c*v"
+}

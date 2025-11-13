@@ -1,0 +1,18 @@
+#ifndef __PASULI_ASTROIDAL_ELLIPSOID__
+#define __PASULI_ASTROIDAL_ELLIPSOID__
+
+#include "../pasuli_cfg.h"
+#include "../pasuli_defs.h"
+
+#if (USE_ASTROIDAL_ELLIPSOID != 0)
+void AstroidalEllipsoid(pasuli_vartype u,
+                        pasuli_vartype v,
+                        pasuli_consttype *constants,
+                        PaSuLiObject *pO);
+#endif
+
+#if (COMPILE_DESC_SURFACES != 0)
+HEADER_DESC_PTR(descAstroidalEllipsoid)
+#endif
+
+#endif

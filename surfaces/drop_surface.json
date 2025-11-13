@@ -1,0 +1,34 @@
+{
+    "name": "Drop Surface",
+    "params": [
+        "a"
+    ],
+    "ranges": {
+        "u": [
+            "-0.5*PI",
+            "0.5*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "cu",
+            "op": "cos(u)"
+        }
+    ],
+    "x": "cos(v)*cu",
+    "y": "sin(v)*cu",
+    "z": "sin(u - a)"
+}

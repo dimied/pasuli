@@ -1,0 +1,46 @@
+{
+    "name": "Umbrella surface",
+    "params": [
+        "R",
+        "h",
+        "n"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            1
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "h": [
+            "(0",
+            "inf"
+        ],
+        "n": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1,
+            "h": 1,
+            "n": 2
+        }
+    ],
+    "vals": [
+        {
+            "name": "r",
+            "op": "R/n"
+        }
+    ],
+    "x": "cbrt(u)*((R-r)*cos(v) + r*cos((n-1)*v))",
+    "y": "cbrt(u)*((R-r)*sin(v) + r*sin((n-1)*v))",
+    "z": "h*(1-u)"
+}

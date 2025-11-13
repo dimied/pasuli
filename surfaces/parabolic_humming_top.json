@@ -1,0 +1,40 @@
+{
+    "name": "Parabolic Humming Top",
+    "params": [
+        "h",
+        "p"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            "-h",
+            "h"
+        ],
+        "h": [
+            "(0",
+            "inf"
+        ],
+        "p": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "h": 1,
+            "p": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "(abs(v)-h)*(abs(v)-h)"
+        }
+    ],
+    "x": "xy*cos(u)/(2*p)",
+    "y": "xy*sin(u)/(2*p)",
+    "z": "v"
+}

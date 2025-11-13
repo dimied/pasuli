@@ -1,0 +1,32 @@
+{
+    "name": "Triple point twist",
+    "params": "c",
+    "ranges": {
+        "u": [
+            -2,
+            1.7
+        ],
+        "v": [
+            -1.5,
+            1.5
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "c": 1.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "vq",
+            "op": "v*v"
+        }
+    ],
+    "x": "u",
+    "y": "v*(vq+c)",
+    "z": "v*(u+vq*(vq+c))"
+}

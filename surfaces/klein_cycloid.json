@@ -1,0 +1,50 @@
+{
+    "name": "Klein Cycloid",
+    "params": [
+        "a",
+        "b",
+        "c"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "4*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5,
+            "c": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "acv",
+            "op": "(a + cos(v))"
+        },
+        {
+            "name": "scv",
+            "op": "sin(v)*cos(v)"
+        }
+    ],
+    "x": "cos(u/c)*cos(u/b)*acv + sin(u/b)*scv",
+    "y": "sin(u/c)*cos(u/b)*acv + sin(u/b)*scv",
+    "z": "-sin(u/b)*acv + cos(u/b)*scv"
+}

@@ -1,0 +1,22 @@
+{
+    "name": "Jet Surface",
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "0.5*(1 - cosh(u))*sin(u)"
+        }
+    ],
+    "x": "r*cos(v)",
+    "y": "r*sin(v)",
+    "z": "cosh(u)"
+}

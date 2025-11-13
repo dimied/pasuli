@@ -1,0 +1,78 @@
+{
+    "name": "Fresnel",
+    "params": [
+        "a",
+        "b",
+        "c"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-0.5*PI",
+            "0.5*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5,
+            "c": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "d",
+            "op": "(sin(v)*sin(v)+c*c*cos(v)*cos(v)*(cos(u)*cos(u)/a*a + sin(u)*sin(u)/b*b))"
+        },
+        {
+            "name": "d",
+            "op": "(sin(v)*sin(v)+c*c*cos(v)*cos(v))",
+            "cond": [
+                {
+                    "var": "a",
+                    "value": 1
+                },
+                {
+                    "var": "b",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "name": "d",
+            "op": "1",
+            "cond": [
+                {
+                    "var": "a",
+                    "value": 1
+                },
+                {
+                    "var": "b",
+                    "value": 1
+                },
+                {
+                    "var": "c",
+                    "value": 1
+                }
+            ]
+        }
+    ],
+    "x": "(c*c/a)*(cos(u)*cos(u))/d",
+    "y": "(c*c/b)*(sin(u)*cos(v))/d",
+    "z": "c*(sin(v))/d"
+}

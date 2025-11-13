@@ -1,0 +1,38 @@
+{
+    "name": "Bow Curve",
+    "params": [
+        "T"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "T": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "T": 1.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "(2 + T*sin(u))"
+        }
+    ],
+    "x": "xy**sin(2*v)",
+    "y": "xy*cos(2*v)",
+    "z": "T*cos(u)+3*cos(v)"
+}

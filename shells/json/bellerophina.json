@@ -1,0 +1,37 @@
+{
+    "name": "Bellerophina",
+    "params": [
+        "R",
+        "a",
+        "b",
+        "c",
+        "h",
+        "k",
+        "w"
+    ],
+    "kindof": "Snails",
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            -10,
+            -1
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ],
+        "R": 1,
+        "a": 0.85,
+        "b": 1.2,
+        "c": 1,
+        "h": 0.75,
+        "k": 0,
+        "w": 0.06
+    },
+    "x": "exp(w*u)*(h+a*cos(v))*cos(c*u)",
+    "y": "R*exp(w*u)*(h+a*cos(v))*sin(c*u)",
+    "z": "exp(w*u)*(k + b*sin(v))"
+}

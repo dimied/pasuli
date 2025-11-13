@@ -1,0 +1,52 @@
+{
+    "name": "Strophoide-Cylinder",
+    "params": [
+        "R",
+        "a"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            2,
+            2
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1,
+            "a": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "vq",
+            "op": "v*v"
+        },
+        {
+            "name": "vp1",
+            "op": "vq+1"
+        },
+        {
+            "name": "vm1",
+            "op": "vq-1"
+        },
+        {
+            "name": "xy",
+            "op": "(R + a*(vm1)/(vp1))"
+        }
+    ],
+    "x": "xy*cos(u)",
+    "y": "xy*sin(u)",
+    "z": "a*v*(vm1)/(vp1)"
+}

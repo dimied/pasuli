@@ -1,0 +1,26 @@
+{
+    "name": "Cayley Surface",
+    "ranges": {
+        "u": [
+            -1.5,
+            1
+        ],
+        "v": [
+            -1.5,
+            1.5
+        ]
+    },
+    "vals": [
+        {
+            "name": "uq",
+            "op": "u*u"
+        },
+        {
+            "name": "vq",
+            "op": "v*v"
+        }
+    ],
+    "x": "u+v",
+    "y": "(uq+vq)/2+(v-u)",
+    "z": "(uq*u+vq*v)/3+(vq-uq)"
+}

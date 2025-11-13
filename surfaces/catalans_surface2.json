@@ -1,0 +1,34 @@
+{
+    "name": "Catalan Surface 2",
+    "params": [
+        "a"
+    ],
+    "ranges": {
+        "u": [
+            -1,
+            1
+        ],
+        "v": [
+            -5,
+            5
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "u1",
+            "op": "(1+2*u*u)"
+        }
+    ],
+    "x": "a*(2*v-u1*sin(2*v))",
+    "y": "a*u1*cos(2*v)",
+    "z": "4*a*u*sin(v)*cos(v)"
+}

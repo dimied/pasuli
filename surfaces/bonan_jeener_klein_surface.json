@@ -1,0 +1,44 @@
+{
+    "name": "Bonan Jeener Klein Surface",
+    "params": [
+        "a",
+        "b"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "M": [
+            "(0",
+            "inf"
+        ],
+        "T": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "M": 1.5,
+            "T": 0.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "W",
+            "op": "sin((M - 1)*u) + T"
+        }
+    ],
+    "x": "M*cos(u) - cos(M*u) - ((M - 1)/M)*W*sin((M + 1)*u/2)*cos(v)",
+    "y": "W*sin(v)",
+    "z": "M*sin(u) - sin(M*u) + ((M - 1)/M)*W*cos((M + 1)*u/2)*cos(v)"
+}

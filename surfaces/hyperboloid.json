@@ -1,0 +1,40 @@
+{
+    "name": "Hyperboloid",
+    "params": [
+        "a",
+        "b"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            -2,
+            2
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "acv",
+            "op": "a*cosh(v)"
+        }
+    ],
+    "x": "acv*cos(u)",
+    "y": "acv*sin(u)",
+    "z": "b*sinh(v)"
+}

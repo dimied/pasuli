@@ -1,0 +1,43 @@
+{
+    "name": "Morin Surface",
+    "params": [
+        "k",
+        "n"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            0,
+            "PI"
+        ],
+        "k": [
+            "(0",
+            "inf"
+        ],
+        "n": {
+            "min": 2,
+            "max": "inf",
+            "not": [
+                1
+            ]
+        }
+    },
+    "examples": [
+        {
+            "k": 1,
+            "n": 2
+        }
+    ],
+    "vals": [
+        {
+            "name": "K",
+            "op": "cos(u)/(sqrt(2)-k*sin(2*u)*sin(n*v))"
+        }
+    ],
+    "x": "K*((2/(n-1))*cos(u)*cos((n-1)*v)+sqrt(2)*sin(u)*cos(v))",
+    "y": "K*((2/(n-1))*cos(u)*sin((n-1)*v)-sqrt(2)*sin(u)*sin(v))",
+    "z": "K*cos(u)"
+}

@@ -1,0 +1,250 @@
+body,
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body,
+#content {
+    height: 100vh;
+    width: 100vw;
+    max-height: 100vh;
+}
+
+#content,
+#main,
+header,
+header > #viewbuttons, #math {
+    display: flex;
+}
+
+header,
+#main,
+header > #viewbuttons, #math {
+    flex-direction: row;
+}
+
+header {
+    width: 100%;
+    justify-content: flex-end;
+    padding: 0.25rem;
+}
+header > h1 {
+    flex: 1;
+    text-align: center;
+}
+
+header > #viewbuttons {
+    width: 6rem;
+}
+header > #viewbuttons > button {
+    margin: 0.2rem;
+    padding: 0.2rem;
+}
+
+button.selected {
+    background-color: bisque;
+}
+
+#content {
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#main {
+    justify-content: flex-end;
+    width: 100%;
+    flex: 1;
+    background-color: aqua;
+    height: calc(100vh - 3rem);
+}
+
+#mainview {
+    flex: 1;
+    max-height: 100%;
+    background-color: antiquewhite;
+}
+#math {
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    background-color: beige;
+    padding: 1rem;
+    justify-content: flex-start;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+div.hidden, #math.hidden {
+    display: none;
+}
+.coord-table,
+.vals-table {
+    width: 96%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid grey;
+    border-radius: 0.4rem;
+}
+
+.vals-table {
+    border: none;
+}
+
+.vals-table-wrapper {
+    padding: 0.25rem;
+    height: auto;
+    width: 90%;
+    border: 1px solid grey;
+    border-radius: 0.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.coords {
+    width:50%;
+}
+.coord-vals {
+    width:50%;
+}
+
+.copy-button-cell {
+    width: 2rem;
+}
+
+.copy-button-all {
+    width: 20%;
+}
+
+.copy-button {
+    margin: 0.1rem 0.2rem;
+    font-size: 1.1rem;
+}
+.deriv-name {
+    padding: 0.1rem 0.3rem;
+    width: 3rem;
+    text-align: left;
+}
+
+.deriv-eq {
+    padding: 0.2rem;
+    text-align: left;
+}
+
+.deriv-row > td{
+    padding-top: 0.2rem;
+}
+
+.coord-name,
+.vals-name {
+    width: 3rem;
+}
+.coord-saved,
+.vals-saved {
+    padding: 0.4rem 0.2rem;
+}
+
+.coord-input {
+    width: 95%;
+}
+input {
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+    padding: 0.1rem;
+}
+
+#view3d {
+    height: 100%;
+    width: 100%;
+}
+
+#sidebar {
+    background-color: azure;
+    width: 14rem;
+    height: auto;
+    max-height: calc(100vh - 3rem);
+    padding-right: 0.5rem;
+    overflow-y: scroll;
+}
+#sidebar-content {
+}
+
+.category .title {
+    padding: 0.2rem;
+    margin: 0.2rem;
+    border: 1px solid grey;
+    border-radius: 0.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    width: 100%;
+}
+.category .title .text {
+    text-align: center;
+    flex: 1;
+}
+
+.category .title .controls {
+    width: 2rem;
+}
+
+.category .title .cat-control,
+.surface-control {
+    width: 1rem;
+}
+
+.category.closed .surfaces,
+.surface-desc.closed .surface-content {
+    display: none;
+}
+
+.surface-desc {
+    margin-bottom: 0.5rem;
+    margin-left: 0.75rem;
+    padding: 0.4rem 0.2rem;
+    border: 1px solid grey;
+    border-radius: 0.2rem;
+}
+.surface-name {
+    cursor: pointer;
+    color: black;
+}
+
+.surface-desc .surface-name.selected {
+    text-decoration: underline;
+    color: red;
+}
+
+.surface-title,
+.surface-param {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.surface-params,
+.surface-vals {
+    margin: 0.25rem 0 0.25rem 0.4rem;
+    padding: 0.2rem;
+    border: 1px dashed grey;
+    border-radius: 0.2rem;
+}
+
+.surface-param {
+    margin: 0.2rem 0;
+}
+.surface-param > .surface-param-name {
+    width: 1rem;
+    margin-right: 0.2rem;
+}
+.surface-param > input {
+    width: 6rem;
+}
+
+.surface-param-range {
+    margin-left: 2rem;
+    margin-bottom: 0.3rem;
+}
+
+.surface-control {
+    margin: 0 0.3rem 0 0.1rem;
+}

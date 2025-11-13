@@ -1,0 +1,22 @@
+{
+    "name": "Pseudo Cross Cap",
+    "ranges": {
+        "u": [
+            -1,
+            1
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "(1-u*u)"
+        }
+    ],
+    "x": "r*sin(v)",
+    "y": "r*sin(2*v)",
+    "z": "u"
+}

@@ -1,0 +1,30 @@
+{
+    "name": "Sphere",
+    "params": "r",
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "r": 1
+        }
+    ],
+    "x": "r*sin(u)*cos(v)",
+    "y": "r*sin(u)*sin(v)",
+    "z": "r*cos(u)",
+    "xn": "sin(u)*cos(v)",
+    "yn": "sin(u)*sin(v)",
+    "zn": "cos(u)",
+    "normal_normalized": true
+}

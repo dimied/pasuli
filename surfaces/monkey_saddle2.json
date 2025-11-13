@@ -1,0 +1,22 @@
+{
+    "name": "Monkey Saddle 2",
+    "params": "a",
+    "ranges": {
+        "u": [
+            0,
+            1
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1
+        }
+    ],
+    "x": "u*cos(v)",
+    "y": "u*sin(v)",
+    "z": "a*u*u*u*sin(3*v)"
+}

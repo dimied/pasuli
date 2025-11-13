@@ -1,0 +1,22 @@
+{
+    "name": "Kai-WingFung Surface 2",
+    "ranges": {
+        "u": [
+            0,
+            "6*PI"
+        ],
+        "v": [
+            -1,
+            1
+        ]
+    },
+    "vals": [
+        {
+            "name": "xy",
+            "op": "0.5*(cosh(v)-sinh(v))"
+        }
+    ],
+    "x": "-0.5*u + sin(u)*xy",
+    "y": "-0.5*v + cos(u)*xy",
+    "z": "2*(cosh(v*0.5)-sinh(v*0.5))*sin(u*0.5)"
+}

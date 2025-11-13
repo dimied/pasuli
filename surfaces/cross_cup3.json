@@ -1,0 +1,31 @@
+{
+    "name": "Cross Cup 3",
+    "params": [
+        "a"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "0.5*PI"
+        ],
+        "a": "(0,inf"
+    },
+    "examples": [
+        {
+            "a": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "asq",
+            "op": "a*sin(v)*sin(v)"
+        }
+    ],
+    "x": "a*sin(u)*sin(2*v)/2",
+    "y": "sin(2*u)*asq",
+    "z": "cos(2*u)*asq"
+}

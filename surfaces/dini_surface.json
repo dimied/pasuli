@@ -1,0 +1,40 @@
+{
+    "name": "Dini Surface",
+    "params": [
+        "a",
+        "b"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "4*PI"
+        ],
+        "v": [
+            0.01,
+            "PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "r",
+            "op": "a*sin(v)"
+        }
+    ],
+    "x": "r*cos(u)",
+    "y": "r*sin(u)",
+    "z": "a*(cos(v) + ln(tan(v/2))) + b*u"
+}

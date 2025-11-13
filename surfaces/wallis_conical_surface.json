@@ -1,0 +1,40 @@
+{
+    "name": "Wallis Conical Surface",
+    "params": [
+        "a",
+        "b",
+        "c"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            0,
+            1
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "a"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5,
+            "c": 1
+        }
+    ],
+    "x": "v*cos(u)",
+    "y": "v*sin(u)",
+    "z": "c*sqrt(a*a - b*b*cos(u)*cos(u))"
+}

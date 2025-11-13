@@ -1,0 +1,52 @@
+{
+    "name": "Hypozykloid Torus 2",
+    "params": [
+        "R1",
+        "R",
+        "r",
+        "h"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "R1": [
+            "(0",
+            "inf"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ],
+        "h": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R1": 1,
+            "R": 1,
+            "r": 0.5,
+            "h": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "F",
+            "op": "(R1 + (R - r)*sin(v) - h*sin(((R - r)/r)*v))"
+        }
+    ],
+    "x": "F*cos(u)",
+    "y": "F*sin(u)",
+    "z": "(R - r)*cos(v) - h*cos(((R + r)/r)*v)"
+}

@@ -1,0 +1,22 @@
+{
+    "name": "Klein Bottle Surface",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "(cos(0.5*u)*(sqrt(2)+cos(v)) + sin(0.5*u)*sin(v)*cos(v))"
+        }
+    ],
+    "x": "r*cos(u)",
+    "y": "r*sin(u)",
+    "z": "-sin(0.5*u)*(sqrt(2)+cos(v)) + cos(0.5*u)*sin(v)*cos(v)"
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Cosine Surface",
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "x": "cos(u)",
+    "y": "cos(v)",
+    "z": "cos(u + v)"
+}

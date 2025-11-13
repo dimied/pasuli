@@ -1,0 +1,52 @@
+{
+    "name": "Virich Cyclic Surface",
+    "params": [
+        "a",
+        "b",
+        "c",
+        "d"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ],
+        "d": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1,
+            "b": 1,
+            "c": 1,
+            "d": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "f",
+            "op": "a*b/sqrt(a*a*sin(v)*sin(v)+b*b*cos(v)*cos(v))"
+        }
+    ],
+    "x": "(f*(1+cos(u))+(d*d-c*c)*(1-cos(u))/f)*cos(v)*0.5",
+    "y": "(f*(1+cos(u))+(d*d-c*c)*(1-cos(u))/f)*sin(v)*0.5",
+    "z": "(f-(d*d-c*c)/f)*sin(u)*0.5"
+}

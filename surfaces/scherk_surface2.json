@@ -1,0 +1,16 @@
+{
+    "name": "Scherk Surface 2",
+    "ranges": {
+        "u": [
+            0,
+            0.75
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "x": "log((1 + u*u + 2*u*cos(v))/(1+u*u-2*u*cos(v)))",
+    "y": "log((1 + u*u - 2*u*cos(v))/(1+u*u+2*u*cos(v)))",
+    "z": "2*arctan(2*u*u*sin(2*v)/(u*u-1))"
+}

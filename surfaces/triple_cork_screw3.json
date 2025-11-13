@@ -1,0 +1,56 @@
+{
+    "name": "Triple Cork Screw 3",
+    "params": [
+        "R",
+        "r",
+        "L",
+        "N"
+    ],
+    "ranges": {
+        "u": [
+            -1,
+            1
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ],
+        "L": [
+            "(0",
+            "inf"
+        ],
+        "N": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1.5,
+            "r": 0.5,
+            "L": 1,
+            "N": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "a",
+            "op": "r*(1 - abs(u))"
+        },
+        {
+            "name": "b",
+            "op": "R*cos(u*PI*0.5)"
+        }
+    ],
+    "x": "a*cos(v) + b*cos(u*N*PI)",
+    "y": "a*sin(v) + b*sin(u*N*PI)",
+    "z": "L*u"
+}

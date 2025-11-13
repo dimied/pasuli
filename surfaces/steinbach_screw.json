@@ -1,0 +1,16 @@
+{
+    "name": "Steinbach Screw",
+    "ranges": {
+        "u": [
+            -4,
+            4
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "x": "u*cos(v)",
+    "y": "u*sin(v)",
+    "z": "v*cos(u)"
+}

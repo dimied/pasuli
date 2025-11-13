@@ -1,0 +1,22 @@
+{
+    "name": "Enneper Surface 2",
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "sqrt(2*v*v)"
+        }
+    ],
+    "x": "exp(u)*(3*cos(v)-exp(2*u)*cos(3*v))/6",
+    "y": "exp(u)*(-3*sin(v)-exp(2*u)*sin(3*v))/6",
+    "z": "exp(2*u)*cos(2*v)/2"
+}

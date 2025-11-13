@@ -1,0 +1,22 @@
+{
+    "name": "Spinning Top 1",
+    "ranges": {
+        "u": [
+            -1,
+            1
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "(abs(u)-1)*(abs(u)-1)"
+        }
+    ],
+    "x": "r*cos(v)",
+    "y": "r*sin(v)",
+    "z": "u"
+}

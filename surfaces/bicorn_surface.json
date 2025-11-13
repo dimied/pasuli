@@ -1,0 +1,32 @@
+{
+    "name": "Bicorn Surface",
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "sv",
+            "op": "sin(v)"
+        },
+        {
+            "name": "cv",
+            "op": "cos(v)"
+        }
+    ],
+    "x": "sv*cos(u)",
+    "y": "sv*sin(u)",
+    "z": "(cv*cv*(2 + cv))/(3 + sv*sv)",
+    "z?": "(cv*cv*(2 + cv))/(3 + (1-cv*cv))",
+    "z?2": "(cv*cv*(2 + cv))/(4 - cv*cv)"
+}

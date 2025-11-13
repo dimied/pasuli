@@ -1,0 +1,22 @@
+{
+    "name": "Cosine Surface 2",
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "cuv",
+            "op": "cos(u + v)"
+        }
+    ],
+    "x": "cos(u)",
+    "y": "cos(v)",
+    "z": "-cuv*cuv"
+}

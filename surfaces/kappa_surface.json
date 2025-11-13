@@ -1,0 +1,32 @@
+{
+    "name": "Kappa Surface",
+    "params": "a",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0.25,
+            "0.5*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "r",
+            "op": "a*cos(v)"
+        }
+    ],
+    "x": "r*cos(u)",
+    "y": "r*sin(u)",
+    "z": "-r/tan(v)"
+}

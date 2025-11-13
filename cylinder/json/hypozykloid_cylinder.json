@@ -1,0 +1,52 @@
+{
+    "name": "Hypozykloid-Cylinder",
+    "params": [
+        "R",
+        "r",
+        "H",
+        "h"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            0,
+            1
+        ],
+        "R": [
+            0,
+            "inf"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ],
+        "H": [
+            "(0",
+            "inf"
+        ],
+        "h": [
+            0,
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1.5,
+            "r": 1,
+            "H": 1,
+            "h": 0.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "us",
+            "op": "((u*(R - r))/r)"
+        }
+    ],
+    "x": "(R - r)*cos(u) + h*cos(us)",
+    "y": "(R - r)*sin(u) - h*sin(us)",
+    "z": "H*v"
+}

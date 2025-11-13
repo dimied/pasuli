@@ -1,0 +1,26 @@
+{
+    "name": "Enneper Surface Polar",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            2.5
+        ]
+    },
+    "vals": [
+        {
+            "name": "s",
+            "op": "v*cos(u)"
+        },
+        {
+            "name": "t",
+            "op": "v*sin(u)"
+        }
+    ],
+    "x": "s*(1 - s*s/3 + t*t)",
+    "y": "t*(1 - t*t/3 + s*s)",
+    "z": "s*s - t*t"
+}

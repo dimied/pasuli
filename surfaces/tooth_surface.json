@@ -1,0 +1,22 @@
+{
+    "name": "Tooth Surface",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "0.5*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "R",
+            "op": "sqrt(1/((pow(sin(u),4)+pow(cos(u),4))*pow(cos(v),4)+pow(sin(v),4)))"
+        }
+    ],
+    "x": "R*cos(v)*cos(u)",
+    "y": "R*cos(v)*sin(u)",
+    "z": "R*sin(v)"
+}

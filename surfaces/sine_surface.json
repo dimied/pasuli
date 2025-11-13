@@ -1,0 +1,16 @@
+{
+    "name": "Sine Surface",
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "x": "sin(u)",
+    "y": "sin(v)",
+    "z": "sin(u+v)"
+}

@@ -1,0 +1,46 @@
+{
+    "name": "Ruled Rotor Cylindroid",
+    "params": [
+        "a",
+        "b",
+        "n"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            2
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "n": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1,
+            "b": 1,
+            "n":1
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "(a+b*sin(n*u))"
+        }
+    ],
+    "x": "xy*cos(u)-v*sin(u)",
+    "y": "xy*sin(u)+v*cos(u)",
+    "z": "b*cos(n*u)"
+}

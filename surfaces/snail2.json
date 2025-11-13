@@ -1,0 +1,32 @@
+{
+    "name": "Snail 2",
+    "params": "a",
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            "-2*PI",
+            "2*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "c",
+            "op": "pow(a,v)*sin(u)"
+        }
+    ],
+    "x": "c*sin(u)*sin(v)",
+    "y": "c*sin(u)*cos(v)",
+    "z": "c*cos(u)"
+}

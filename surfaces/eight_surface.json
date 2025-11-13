@@ -1,0 +1,22 @@
+{
+    "name": "Eight Surface",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            "-0.5*PI",
+            "0.5*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "sin(2*v)"
+        }
+    ],
+    "x": "r*cos(u)",
+    "y": "r*sin(u)",
+    "z": "sin(v)"
+}

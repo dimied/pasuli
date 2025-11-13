@@ -1,0 +1,22 @@
+{
+    "name": "Ding Dong Surface",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            -1,
+            1
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "v*sqrt(1-v)"
+        }
+    ],
+    "x": "r*cos(u)",
+    "y": "r*sin(u)",
+    "z": "v"
+}

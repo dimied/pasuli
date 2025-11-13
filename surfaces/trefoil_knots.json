@@ -1,0 +1,48 @@
+{
+    "name": "Trefoil Knots",
+    "params": [
+        "R",
+        "r"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "12*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1.5,
+            "r": 0.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "Bx",
+            "op": "(R + r*cos(0.5*u))*cos(u/3)"
+        },
+        {
+            "name": "By",
+            "op": "(R + r*cos(0.5*u))*sin(u/3)"
+        },
+        {
+            "name": "Bz",
+            "op": "r + sin(u/2)"
+        }
+    ],
+    "x": "Bx + r*cos(u/3)*cos(v-PI)",
+    "y": "By + r*sin(u/3)*cos(v-PI)",
+    "z": "Bz + r*sin(v-PI)"
+}

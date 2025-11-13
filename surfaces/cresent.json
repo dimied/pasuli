@@ -1,0 +1,46 @@
+{
+    "name": "Cresent",
+    "params": [
+        "a",
+        "b",
+        "c"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            0,
+            "PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5,
+            "c": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "(a + sin(b*u)*sin(b*v))"
+        }
+    ],
+    "x": "xy*sin(c*v)",
+    "y": "xy*cos(c*v)",
+    "z": "cos(b*u)*sin(b*v) + 4*v/pi - 2"
+}

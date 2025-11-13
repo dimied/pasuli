@@ -1,0 +1,22 @@
+{
+    "name": "Cross Cup",
+    "ranges": {
+        "u": [
+            0,
+            "(1"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "yz",
+            "op": "(sin(v) + cos(v))"
+        }
+    ],
+    "x": "1 - u*u + u*u*sin(v)*sin(v)",
+    "y": "u*u*sin(v)*(yz + cos(v))",
+    "z": "sqrt((1 - u*u)/2)*u*yz"
+}

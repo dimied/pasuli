@@ -1,0 +1,22 @@
+{
+    "name": "Lawson Bottle",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "w",
+            "op": "0.5*(sin(u)*sin(v)+sin(0.5*u)*cos(v))"
+        }
+    ],
+    "x": "(sin(u)*sin(v)-sin(0.5*u)*cos(v))*sqrt(0.5)/(1+w)",
+    "y": "cos(u)*sin(v)/(1+w)",
+    "z": "cos(0.5*u)*cos(v)/(1+w)"
+}

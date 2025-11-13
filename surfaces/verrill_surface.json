@@ -1,0 +1,22 @@
+{
+    "name": "Verrill Surface",
+    "ranges": {
+        "u": [
+            0.5,
+            1
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "xy",
+            "op": "2*u*u*u*cos(3*v)/3"
+        }
+    ],
+    "x": "-2*u*cos(v) + (2*cos(v)/u) - xy",
+    "y": "6*u*sin(v) - (2*sin(v)/u) - xy",
+    "z": "4*log(u)"
+}

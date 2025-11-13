@@ -1,0 +1,36 @@
+{
+    "name": "Balls Cylindroid",
+    "params": [
+        "k"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            2
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "k": 1
+        }
+    ],
+    "x": "u*cos(v)",
+    "y": "u*sin(v)",
+    "z": "k*sin(v)*cos(v)"
+}

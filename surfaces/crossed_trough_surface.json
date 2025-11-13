@@ -1,0 +1,28 @@
+{
+    "name": "Crossed through surface",
+    "params": [
+        "c"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            1
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "c": 1
+        }
+    ],
+    "x": "u*sin(v)",
+    "y": "u*cos(v)",
+    "z": "c*pow(u*u*sin(2*v)*0.5, 2)"
+}

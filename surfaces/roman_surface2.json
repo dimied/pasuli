@@ -1,0 +1,22 @@
+{
+    "name": "Roman Surface 2",
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            "-0.5*PI",
+            "0.5*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "sqrt(2*v*v)"
+        }
+    ],
+    "x": "sin(2*u)*sin(v)*sin(v)",
+    "y": "sin(u)*cos(2*v)",
+    "z": "cos(u)*sin(2*v)"
+}

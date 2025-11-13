@@ -1,0 +1,32 @@
+{
+    "name": "Scherk Surface",
+    "params": "c",
+    "ranges": {
+        "u": {
+            "min": "-PI",
+            "max": "PI",
+            "not": [
+                0
+            ]
+        },
+        "v": {
+            "min": "-PI",
+            "max": "PI",
+            "not": [
+                0
+            ]
+        },
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "c": 1.5
+        }
+    ],
+    "x": "u",
+    "y": "v",
+    "z": "log(cos(c*u)/cos(c*v))/c"
+}

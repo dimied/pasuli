@@ -1,0 +1,44 @@
+{
+    "name": "Bohemian Dome Surface",
+    "params": [
+        "a",
+        "b",
+        "c"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1,
+            "b": 1,
+            "c": 1
+        }
+    ],
+    "x": "a*cos(u)",
+    "y": "b*cos(v) + a*sin(u)",
+    "z": "c*sin(v)"
+}

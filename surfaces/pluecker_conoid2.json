@@ -1,0 +1,16 @@
+{
+    "name": "Pluecker's Conoid 2",
+    "ranges": {
+        "u": [
+            0,
+            2
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "x": "u*cos(v)",
+    "y": "u*sin(v)",
+    "z": "sin(2*v)"
+}

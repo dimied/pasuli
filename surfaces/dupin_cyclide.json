@@ -1,0 +1,52 @@
+{
+    "name": "Dupin Cyclide",
+    "params": [
+        "a",
+        "b",
+        "c",
+        "d"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            "(0",
+            "inf"
+        ],
+        "d": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5,
+            "c": 1,
+            "d": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "h",
+            "op": "a - c*cos(u)*cos(v)"
+        }
+    ],
+    "x": "(d*(c - a*cos(u)*cos(v)) + b*b*cos(u))/h",
+    "y": "(b*sin(u)*(a - d*cos(v)))/h",
+    "z": "b*sin(v)*(c*cos(u) - d)/h"
+}

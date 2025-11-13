@@ -1,0 +1,28 @@
+{
+    "name": "Facing Snail",
+    "params": [
+        "a"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            0,
+            "6*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5
+        }
+    ],
+    "x": "cos(v)*cos(u)",
+    "y": "sin(v)*cos(u)",
+    "z": "(1 - a*v)*sin(u)"
+}

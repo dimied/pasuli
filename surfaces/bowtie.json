@@ -1,0 +1,26 @@
+{
+    "name": "Bowtie",
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "sq",
+            "op": "sqrt(2)"
+        },
+        {
+            "name": "su",
+            "op": "sin(u)"
+        }
+    ],
+    "x": "su/(sq+sin(v))",
+    "y": "su/(sq+cos(v))",
+    "z": "cos(u)/(1+sq)"
+}

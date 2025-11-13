@@ -1,0 +1,30 @@
+{
+    "name": "Klein Bottle 2",
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "A",
+            "op": "cos(u)*cos(v)*sin(u)"
+        },
+        {
+            "name": "B",
+            "op": "48*pow(cos(u),4)*cos(v)+48*pow(cos(u),6)*cos(v)-60*sin(u)"
+        },
+        {
+            "name": "C",
+            "op": "80*cos(v)*sin(u)*(pow(cos(u),5) + pow(cos(u),7))"
+        }
+    ],
+    "x": "-2*cos(u)*(3*cos(v)-30*sin(u)+90*pow(cos(u),4)*sin(u)-60*pow(cos(u),6)*sin(u)+5*A)/15",
+    "y": "-sin(u)*(3*cos(v)-3*cos(u)*cos(u)*cos(v)-B+5*A-5*pow(cos(u),3)*cos(v)*sin(u)-C)/15",
+    "z": "2*(3+5*cos(u)*sin(u))*sin(v)/15"
+}

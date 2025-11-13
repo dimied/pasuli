@@ -1,0 +1,22 @@
+{
+    "name": "Twisted Ribbon",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "3*sin(u)"
+        }
+    ],
+    "x": "r*cos(v)",
+    "y": "r*sin(v)",
+    "z": "cos(v)"
+}

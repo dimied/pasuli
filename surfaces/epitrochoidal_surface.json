@@ -1,0 +1,44 @@
+{
+    "name": "Epitrochoidal Surface",
+    "params": [
+        "a",
+        "m"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            "-0.5*PI",
+            "0.5*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "m": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1,
+            "m": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "R",
+            "op": "a*(1+m*cos(u))"
+        },
+        {
+            "name": "r",
+            "op": "2*R*cos(v)*cos(v)"
+        }
+    ],
+    "x": "R*cos(u)",
+    "y": "R*sin(u)",
+    "z": "r*sin(2*v)"
+}

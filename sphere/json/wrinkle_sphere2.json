@@ -1,0 +1,28 @@
+{
+    "name": "Wrinkle sphere 2",
+    "params": [
+        "n"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            "(0",
+            "2*PI)"
+        ],
+        "n": [
+            1,
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "n": 20
+        }
+    ],
+    "x": "sin(v)*sin(u)+(cos(n*v)/n)",
+    "y": "sin(v)*cos(u)+(cos(n*u)/n)",
+    "z": "cos(v)"
+}

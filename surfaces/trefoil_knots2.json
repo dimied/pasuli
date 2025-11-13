@@ -1,0 +1,52 @@
+{
+    "name": "Trefoil Knots 2",
+    "params": [
+        "R",
+        "r",
+        "a",
+        "N"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "4*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "N": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1.5,
+            "r": 0.5,
+            "a":1,
+            "N":1
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "R*(1 + a*cos(N*u)) + r*cos(v)"
+        }
+    ],
+    "x": "cos(u)*xy",
+    "y": "sin(u)*xy",
+    "z": "r*sin(v) + a*sin(N*u)"
+}

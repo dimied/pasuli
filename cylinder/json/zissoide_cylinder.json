@@ -1,0 +1,48 @@
+{
+    "name": "Zissoide-Cylinder",
+    "params": [
+        "R",
+        "a"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            -5,
+            5
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1,
+            "a": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "vq",
+            "op": "v*v"
+        },
+        {
+            "name": "divisor",
+            "op": "1+vq"
+        },
+        {
+            "name": "xy",
+            "op": "(R + a*vq/(divisor))"
+        }
+    ],
+    "x": "xy*cos(u)",
+    "y": "xy*sin(u)",
+    "z": "a*v*vq/(divisor)"
+}

@@ -1,0 +1,50 @@
+{
+    "name": "Gauss-Cylinder",
+    "params": [
+        "R",
+        "a",
+        "b"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "(0",
+            "inf"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1,
+            "a": 1,
+            "b": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "avq",
+            "op": "a*a*v*v"
+        },
+        {
+            "name": "br",
+            "op": "b*exp(-(avq))"
+        }
+    ],
+    "x": "(R + br)*cos(u)",
+    "y": "(R + br)*sin(u)",
+    "z": "v"
+}

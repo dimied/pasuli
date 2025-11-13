@@ -1,0 +1,22 @@
+{
+    "name": "Maeders Owl",
+    "ranges": {
+        "u": [
+            0,
+            "4*PI"
+        ],
+        "v": [
+            0.001,
+            1
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "sqrt(2*v*v)"
+        }
+    ],
+    "x": "v*(cos(u) - 0.5*v*cos(2*u))",
+    "y": "v*(sin(u) - 0.5*v*sin(2*u))",
+    "z": "4*exp(1.5*log(v))*cos(1.5*u)/3"
+}

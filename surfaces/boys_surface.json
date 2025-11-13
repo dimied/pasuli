@@ -1,0 +1,26 @@
+{
+    "name": "Boys Surface",
+    "ranges": {
+        "u": [
+            "-0.5*PI",
+            "0.5*PI"
+        ],
+        "v": [
+            0,
+            "PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "a",
+            "op": "sqrt(2)"
+        },
+        {
+            "name": "b",
+            "op": "a - sin(3*v)*sin(2*u)"
+        }
+    ],
+    "x": "cos(u)*(cos(u)*cos(2*v) + a*sin(u)*cos(v))/b",
+    "y": "cos(u)*(cos(u)*sin(2*v) - a*sin(u)*sin(v))/b",
+    "z": "3*cos(u)*cos(u)/b"
+}

@@ -1,0 +1,40 @@
+{
+    "name": "Umbillic Torus",
+    "params": [
+        "R",
+        "r"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1.5,
+            "r": 0.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "F",
+            "op": "(7 + cos(u/3-2*v) + 2*cos(u/3+v))"
+        }
+    ],
+    "x": "F*cos(u)",
+    "y": "F*sin(u)",
+    "z": "sin(u/3-2*v) + 2*sin(u/3+v)"
+}

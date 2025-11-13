@@ -1,0 +1,26 @@
+{
+    "name": "Pillow Shape",
+    "params": "a",
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5
+        }
+    ],
+    "x": "cos(u)",
+    "y": "cos(v)",
+    "z": "a*sin(u)*sin(v)"
+}

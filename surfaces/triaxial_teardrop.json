@@ -1,0 +1,26 @@
+{
+    "name": "Triaxial Teardrop",
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "C",
+            "op": "2*PI/3"
+        },
+        {
+            "name": "xy",
+            "op": "(1 - cos(u))*cos(u + C)*0.5"
+        }
+    ],
+    "x": "xy*cos(v + C)",
+    "y": "xy*cos(v - C)",
+    "z": "cos(u - C)"
+}

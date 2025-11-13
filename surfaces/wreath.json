@@ -1,0 +1,22 @@
+{
+    "name": "Wreath",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "yz",
+            "op": "cos(u)*sin(v)*cos(v)*sin(u)"
+        }
+    ],
+    "x": "cos(u+4)/3",
+    "y": "yz*cos(v) + 0.5*cos(u)",
+    "z": "yz"
+}

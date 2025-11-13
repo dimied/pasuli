@@ -1,0 +1,16 @@
+{
+    "name": "Cross Cup 2",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "0.5*PI"
+        ]
+    },
+    "x": "cos(u)*sin(2*v)/2",
+    "y": "sin(u)*sin(2*v)/2",
+    "z": "(cos(v)*cos(v)-cos(u)*cos(u)*sin(v)*sin(v))/2"
+}

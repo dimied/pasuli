@@ -1,0 +1,40 @@
+{
+    "name": "Sievert Surface",
+    "params": "C",
+    "ranges": {
+        "u": [
+            "-0.5*PI",
+            "0.5*PI"
+        ],
+        "v": [
+            0.1,
+            "3*PI"
+        ],
+        "C": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "C": 1.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "p",
+            "op": "-u/sqrt(C + 1) + atan(tan(u)*sqrt(C + 1))"
+        },
+        {
+            "name": "a",
+            "op": "2/(C + 1 - C*sin(v)*sin(v)*cos(u)*cos(u))"
+        },
+        {
+            "name": "r",
+            "op": "a*sqrt((C + 1)*(1 + C*sin(u)*sin(u)))*sin(v)/sqrt(C)"
+        }
+    ],
+    "x": "r*cos(p)",
+    "y": "r*sin(p)",
+    "z": "(ln(tan(v/2)) + a*(C + 1)*cos(v))/sqrt(C)"
+}

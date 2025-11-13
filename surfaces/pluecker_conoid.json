@@ -1,0 +1,22 @@
+{
+    "name": "Pluecker Conoid",
+    "ranges": {
+        "u": [
+            -2,
+            2
+        ],
+        "v": [
+            -1,
+            1
+        ]
+    },
+    "vals": [
+        {
+            "name": "xz",
+            "op": "1 - v*v"
+        }
+    ],
+    "x": "u*sqrt(xz)",
+    "y": "u*v",
+    "z": "xz"
+}

@@ -1,0 +1,22 @@
+{
+    "name": "Loop",
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "c",
+            "op": "2*cos(v)"
+        }
+    ],
+    "x": "sin(v)*cos(u)",
+    "y": "c",
+    "z": "2*c*sin(v)"
+}

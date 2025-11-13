@@ -1,0 +1,46 @@
+{
+    "name": "Epizykloid-Cylinder",
+    "params": [
+        "R",
+        "r",
+        "H",
+        "h"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            0,
+            "inf"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ],
+        "H": [
+            "(0",
+            "inf"
+        ],
+        "h": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1.5,
+            "r": 1,
+            "h": 0.5,
+            "H": 1
+        }
+    ],
+    "x": "(R + r)*cos(u) - h*cos((R + r)*u/r)",
+    "y": "(R + r)*sin(u) - h*sin((R + r)*u/r)",
+    "z": "H*v"
+}

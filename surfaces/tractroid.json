@@ -1,0 +1,16 @@
+{
+    "name": "Tractroid",
+    "ranges": {
+        "u": [
+            0,
+            4
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "x": "sech(u)*cos(v)",
+    "y": "sech(u)*sin(v)",
+    "z": "u - tanh(u)"
+}

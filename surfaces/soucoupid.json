@@ -1,0 +1,16 @@
+{
+    "name": "Soucoupoid",
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            0,
+            "PI"
+        ]
+    },
+    "x": "cos(u)*cos(v)",
+    "y": "cos(u)*sin(v)",
+    "z": "pow(sin(u),3)"
+}

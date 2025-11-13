@@ -1,0 +1,16 @@
+{
+    "name": "Folium",
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "x": "cos(u)*(2*v/PI - tanh(v))",
+    "y": "cos(u + 2*PI/3)/cosh(v)",
+    "z": "cos(u - 2*PI/3)/cosh(v)"
+}

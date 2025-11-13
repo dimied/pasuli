@@ -1,0 +1,16 @@
+{
+    "name": "Fish Surface",
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "x": "0.25*(cos(u) - cos(2*u))*cos(v)",
+    "y": "0.25*(sin(u) - sin(2*u))*sin(v)",
+    "z": "cos(u)"
+}

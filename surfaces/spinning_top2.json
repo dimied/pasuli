@@ -1,0 +1,26 @@
+{
+    "name": "Spinning Top 2",
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "c2u",
+            "op": "cos(2*u)"
+        },
+        {
+            "name": "r",
+            "op": "c2u*sin(u)"
+        }
+    ],
+    "x": "r*cos(v)",
+    "y": "r*sin(v)",
+    "z": "c2u*cos(u)"
+}

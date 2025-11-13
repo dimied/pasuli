@@ -1,0 +1,32 @@
+{
+    "name": "Hyperbolic Helicoid",
+    "params": "a",
+    "ranges": {
+        "u": [
+            -4,
+            4
+        ],
+        "v": [
+            -4,
+            4
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 0.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "d",
+            "op": "(1+cosh(u)*cosh(v))"
+        }
+    ],
+    "x": "sinh(v)*cos(a*u)/d",
+    "y": "sinh(v)*sin(a*u)/d",
+    "z": "cosh(v)*sinh(u)/d"
+}

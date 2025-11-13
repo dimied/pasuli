@@ -1,0 +1,22 @@
+{
+    "name": "Twisted Heart",
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "m",
+            "op": "1/sqrt(2)"
+        }
+    ],
+    "x": "(abs(v) - abs(u) - abs(tanh(m*u)/m) + abs(tanh(m*v)/m))*sin(v)",
+    "y": "(abs(v) + abs(u) - abs(tanh(m*u)/m) - abs(tanh(m*v)/m))*cos(v)",
+    "z": "m*(u*u + v*v)/(cosh(m*u)*cosh(m*v))"
+}

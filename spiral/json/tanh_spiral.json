@@ -1,0 +1,40 @@
+{
+    "name": "Tanh Spiral",
+    "params": [
+        "a",
+        "H"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            -1.5,
+            1.5
+        ],
+        "v": [
+            0,
+            1
+        ],
+        "H": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1,
+            "H": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "(cos(2*a*u) + cosh(2*u))"
+        }
+    ],
+    "x": "sinh(2*u)/xy",
+    "y": "sin(2*u)/xy",
+    "z": "H*v"
+}

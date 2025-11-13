@@ -1,0 +1,50 @@
+{
+    "name": "Antisymmetric Torus",
+    "params": [
+        "R",
+        "r",
+        "a"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1.5,
+            "r": 0.5,
+            "a": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "asu",
+            "op": "(a + sin(u))"
+        },
+        {
+            "name": "xy",
+            "op": "(R + r*cos(v)*asu)"
+        }
+    ],
+    "x": "xy*cos(u)",
+    "y": "xy*sin(u)",
+    "z": "r*sin(v)*asu"
+}

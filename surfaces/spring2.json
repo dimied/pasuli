@@ -1,0 +1,54 @@
+{
+    "name": "Spring 2",
+    "params": [
+        "R",
+        "r",
+        "h"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            0,
+            "5*PI"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ],
+        "h": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1.5,
+            "r": 0.5,
+            "h": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "w",
+            "op": "sqrt(R*R + r*r)"
+        },
+        {
+            "name": "xy1",
+            "op": "(R + r*cos(u))"
+        },
+        {
+            "name": "xy2",
+            "op": "r*h*sin(u)"
+        }
+    ],
+    "x": "xy1*cos(v) + xy2*sin(v)/w",
+    "y": "xy1*sin(v) - xy2*cos(v)/w",
+    "z": "h*v + R*r*sin(u)/w"
+}

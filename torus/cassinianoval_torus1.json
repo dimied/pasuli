@@ -1,0 +1,46 @@
+{
+    "name": "Cassinian Oval Torus 1",
+    "params": [
+        "R",
+        "a",
+        "b"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1,
+            "a": 1,
+            "b": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "M",
+            "op": "2*a*a*cos(2*v) + 2*sqrt((-pow(a,4) + pow(b,4)) + pow(a,4)*cos(2*v)*cos(2*v))"
+        }
+    ],
+    "x": "(R + sqrt(M/2)*cos(v))*cos(u)",
+    "y": "(R + sqrt(M/2)*cos(v))*sin(u)",
+    "z": "sqrt(M/2)*sin(v)"
+}

@@ -1,0 +1,40 @@
+{
+    "name": "Lemniskate-Cylinder",
+    "params": [
+        "r",
+        "H"
+    ],
+    "ranges": {
+        "u": [
+            "-PI",
+            "PI"
+        ],
+        "v": [
+            0,
+            1
+        ],
+        "r": [
+            "(0",
+            "inf"
+        ],
+        "H": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "r": 1,
+            "H": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "sq1",
+            "op": "(1 + sin(u)*sin(u))"
+        }
+    ],
+    "x": "r*cos(u)/(sq1)",
+    "y": "r*sin(u)*cos(u)/(sq1)",
+    "z": "H*v"
+}

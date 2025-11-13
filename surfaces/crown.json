@@ -1,0 +1,22 @@
+{
+    "name": "Crown",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "yz",
+            "op": "cos(v)*sin(u)*cos(u)*sin(v)"
+        }
+    ],
+    "x": "cos(u + 4)/3",
+    "y": "xy*cos(v) + 0.5*cos(u)",
+    "z": "xy"
+}

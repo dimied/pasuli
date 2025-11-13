@@ -1,0 +1,34 @@
+{
+    "name": "Pseudodevelopable Helicoid",
+    "params": [
+        "a",
+        "b"
+    ],
+    "ranges": {
+        "u": [
+            -1.5,
+            0
+        ],
+        "v": [
+            0,
+            "4*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1,
+            "b": 1
+        }
+    ],
+    "x": "a*cos(v) - u*sin(v)",
+    "y": "a*sin(v) + u*cos(v)",
+    "z": "b*v"
+}

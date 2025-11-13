@@ -1,0 +1,22 @@
+{
+    "name": "Lemniscape",
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            0,
+            "PI"
+        ]
+    },
+    "vals": [
+        {
+            "name": "xy",
+            "op": "sqrt(abs(sin(2*u)))"
+        }
+    ],
+    "x": "cos(v)*xy*cos(u)",
+    "y": "cos(v)*xy*sin(u)",
+    "z": "x*x - y*y + 2*x*y*tan(v)*tan(v)"
+}

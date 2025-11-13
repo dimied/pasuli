@@ -1,0 +1,22 @@
+{
+    "name": "Double Cone",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            -1,
+            1
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "sqrt(2*v*v)"
+        }
+    ],
+    "x": "v*cos(u)",
+    "y": "(v - 1)*cos(u + 2*PI/3)",
+    "z": "(1 - v)*cos(u - 2*PI/3)"
+}

@@ -1,0 +1,8 @@
+
+.vscode
+# Test executable
+ex
+intertest
+pasulitest
+gl/*
+node_modules/*

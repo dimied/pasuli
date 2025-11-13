@@ -1,0 +1,42 @@
+{
+    "name": "Horn",
+    "params": "a,b,c",
+    "ranges": {
+        "u": [
+            0,
+            1
+        ],
+        "v": [
+            "-PI",
+            "PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "c": [
+            0,
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5,
+            "c":1
+        }
+    ],
+    "vals": [
+        {
+            "name": "r",
+            "op": "(a + u*cos(v))"
+        }
+    ],
+    "x": "r*sin(b*PI*u)",
+    "y": "r*cos(b*PI*u) + c*u",
+    "z": "u*sin(v)"
+}

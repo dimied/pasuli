@@ -1,0 +1,26 @@
+{
+    "name": "Zindlers Conoid",
+    "params": "a",
+    "ranges": {
+        "u": [
+            -1,
+            1
+        ],
+        "v": [
+            -0.75,
+            0.75
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5
+        }
+    ],
+    "x": "u*cos(v)",
+    "y": "u*sin(v)",
+    "z": "a*tan(2*v)"
+}

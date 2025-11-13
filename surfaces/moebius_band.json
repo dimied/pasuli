@@ -1,0 +1,32 @@
+{
+    "name": "Moebius Band",
+    "params": "r",
+    "ranges": {
+        "u": [
+            -1,
+            1
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "r": [
+            0,
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "r": 1.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "xy",
+            "op": "(r + u*cos(0.5*v))"
+        }
+    ],
+    "x": "xy*cos(v)",
+    "y": "xy*sin(v)",
+    "z": "u*sin(0.5*v)"
+}

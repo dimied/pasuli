@@ -1,0 +1,52 @@
+{
+    "name": "Kai-WingFung Surface 1",
+    "params": [
+        "n"
+    ],
+    "ranges": {
+        "u": [
+            -1,
+            1
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "n": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "n": 2
+        }
+    ],
+    "vals": [
+        {
+            "name": "a",
+            "op": "sin(PI/n)",
+            "type":"const"
+        },
+        {
+            "name": "b",
+            "op": "cos(PI/n)",
+            "type":"const"
+        },
+        {
+            "name": "C",
+            "op": "cosh(u)+sinh(u)"
+        },
+        {
+            "name": "D",
+            "op": "sin(v)*cosh(u)*sinh(u)"
+        },
+        {
+            "name": "E",
+            "op": "cos(v)*cosh(u)*sinh(u)"
+        }
+    ],
+    "x": "(-b*cos(v)*cosh(u)^2-b*E+a*sin(v)*cosh(u)^2+a*D-a*sin(v))/C",
+    "y": "(-a*cos(v)*cosh(u)^2+a*E-a*cos(v)+b*sin(v)*cosh(u)^2+b*D)/C",
+    "z": "b*u-a*v"
+}

@@ -1,0 +1,52 @@
+{
+    "name": "Gear Torus",
+    "params": [
+        "R",
+        "a",
+        "b",
+        "N"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "2*PI"
+        ],
+        "R": [
+            "(0",
+            "inf"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ],
+        "N": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "R": 1,
+            "a": 1,
+            "b": 1,
+            "N": 1
+        }
+    ],
+    "vals": [
+        {
+            "name": "r",
+            "op": "a+tanh(b*sin(n*v))/b"
+        }
+    ],
+    "x": "(R + r*cos(v))*cos(u)",
+    "y": "(R + r*cos(v))*sin(u)",
+    "z": "r*sin(v)"
+}

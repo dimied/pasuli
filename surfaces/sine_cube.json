@@ -1,0 +1,16 @@
+{
+    "name": "Sine Cube",
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0,
+            "PI"
+        ]
+    },
+    "x": "sin(u)*sin(v)",
+    "y": "cos(u)*sin(v)",
+    "z": "cos(u)*cos(v)"
+}

@@ -1,0 +1,22 @@
+{
+    "name": "Enneper Surface",
+    "ranges": {
+        "u": [
+            -2,
+            2
+        ],
+        "v": [
+            -2,
+            2
+        ]
+    },
+    "vals": [
+        {
+            "name": "r",
+            "op": "sqrt(2*v*v)"
+        }
+    ],
+    "x": "u*(1 - u*u/3 + v*v)",
+    "y": "v*(1 - v*v/3 + u*u)",
+    "z": "u*u - v*v"
+}

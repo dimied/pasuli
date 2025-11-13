@@ -1,0 +1,16 @@
+{
+    "name": "Hyperbolic Paraboloid",
+    "ranges": {
+        "u": [
+            -1,
+            1
+        ],
+        "v": [
+            -1,
+            1
+        ]
+    },
+    "x": "u",
+    "y": "v",
+    "z": "u*v"
+}

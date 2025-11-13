@@ -1,0 +1,22 @@
+{
+    "name": "Richmond Surface 2",
+    "ranges": {
+        "u": [
+            -1,
+            1
+        ],
+        "v": [
+            -1,
+            1
+        ]
+    },
+    "vals": [
+        {
+            "name": "d",
+            "op": "(u*u+v*v)"
+        }
+    ],
+    "x": "u*(u*u/3-v*v) + u/d",
+    "y": "v*(v*v/3-u*u) - v/d",
+    "z": "2*u"
+}

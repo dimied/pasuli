@@ -1,0 +1,32 @@
+{
+    "name": "Fermat Spiral",
+    "params": [
+        "H"
+    ],
+    "vars": [
+        "u",
+        "v"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            23
+        ],
+        "v": [
+            0,
+            1
+        ],
+        "H": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "H": 1
+        }
+    ],
+    "x": "sqrt(u)*cos(u)",
+    "y": "sqrt(u)*sin(u)",
+    "z": "H*v"
+}

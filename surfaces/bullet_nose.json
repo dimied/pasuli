@@ -1,0 +1,40 @@
+{
+    "name": "Bullet Nose",
+    "params": [
+        "a",
+        "b"
+    ],
+    "ranges": {
+        "u": [
+            0,
+            "2*PI"
+        ],
+        "v": [
+            0.25,
+            "0.5*PI"
+        ],
+        "a": [
+            "(0",
+            "inf"
+        ],
+        "b": [
+            "(0",
+            "inf"
+        ]
+    },
+    "examples": [
+        {
+            "a": 1.5,
+            "b": 0.5
+        }
+    ],
+    "vals": [
+        {
+            "name": "ac",
+            "op": "a*cos(v)"
+        }
+    ],
+    "x": "ac*cos(u)",
+    "y": "ac*sin(u)",
+    "z": "-b/tan(v)"
+}

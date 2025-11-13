@@ -1,0 +1,16 @@
+{
+    "name": "Moebius Band 3",
+    "ranges": {
+        "u": [
+            0,
+            "PI"
+        ],
+        "v": [
+            0.7,
+            1
+        ]
+    },
+    "x": "(3*v*v*(v*v-1)-6*v*(1+pow(v,4))*cos(u)+(pow(v,6)-1)*(4*cos(u)*cos(u)-1))*sin(u)/(3*v*v*v)",
+    "y": "(4*(1-pow(v,6))*cos(u)*cos(u)*cos(u)-3*v*(1+pow(v,4))+3*(v*v-1)*(1+pow(v,4))*cos(u)+6*v*(1+pow(v,4))*cos(u)*cos(u))/(3*v*v*v)",
+    "z": "2*sin(u)*(v*v-1)/v"
+}
